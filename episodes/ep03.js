@@ -68,10 +68,10 @@ ep.panel(720, { cam: { x: 1070, y: 600, w: 1360 }, bg: LI,
   [cap('It was dark, and shabby, and full of people in pointed hats.', 44, 34, { w: 380 })], { mood: 'candle', alt: 'Inside the Leaky Cauldron: dim, wood-beamed, smoky. Witches and wizards at small tables, an old barman behind the bar, and in the far corner by the fire, a pale young man.' });
 ep.panel(600, { cam: { on: ['tom'], fr: 'bust', dx: -0.45, dy: -0.25 }, bg: LI, fg: COUNTER, actors: [TOM({ expr: 'shock', pose: 'hold' })] },
   [say('Tom', 'Good Lord. Is this… can this be…?', 250, 120, { w: 300, fixed: true })], { mood: 'candle' });
-ep.panel(760, { cam: { on: ['harry'], fr: 'waist', dx: -0.75 }, bg: LI, blur: 2, mid: COUNTER, actors: [HAR({ x: 1420, y: 1080, expr: { base: 'smug', eyes: { open: 0.8 } }, pose: 'present' })] },
-  [cap('A question like *that* deserved his very best.', 44, 30, { w: 360 }),
-   say('Harry', 'Am I… could I be… maybe… you never know… if I\'m *not*… but then the question is…', 250, 370, { w: 340 }),
-   say('Harry', '*Who?*', 300, 620, { w: 140 })], { mood: 'candle' });
+ep.panel(760, { cam: { on: ['harry'], fr: 'waist', dx: -0.88, zoom: 0.85 }, bg: LI, blur: 2, mid: COUNTER, actors: [HAR({ x: 1420, y: 1080, expr: { base: 'smug', eyes: { open: 0.8 } }, pose: 'present' })] },
+  [cap('A question like *that* deserved his very best.', 44, 30, { w: 330 }),
+   say('Harry', 'Am I… could I be… maybe… you never know… if I\'m *not*… but then the question is…', 284, 264, { w: 340, fixed: true }),
+   say('Harry', '*Who?*', 300, 560, { w: 140 })], { mood: 'candle' });
 ep.panel(620, { cam: { on: ['tom'], fr: 'close' }, bg: LI, blur: 2, actors: [TOM({ expr: 'awe' })], fg: COUNTER },
   [whisper('Tom', 'Bless my soul. Harry Potter… what an honour.', 260, 110, { w: 320, size: 28 })], { mood: 'candle' });
 ep.panel(820, { cam: { x: 1290, y: 545, w: 760 }, bg: LI, blur: 1, actors: [MCG({ expr: 'stern', pose: 'handsHips' }), HAR({ expr: 'smug', pose: 'gesture' })] },
@@ -246,7 +246,7 @@ ep.panel(860, { cam: { x: 795, y: 700, w: 820 }, bg: stage('#3a2a14', '#e9b86a')
 ep.setBg(C.paper);
 ep.tile({ h: 140, panels: [], bubbles: [], bg: { top: '#1b1210', bottom: C.paper } });
 ep.panel(760, { cam: { on: ['harry'], fr: 'close' }, bg: DA({ start: 3 }), blur: 3, actors: [{ def: harry, id: 'harry', x: 700, y: 1060, s: 1.1, turn: 0.1, expr: 'teary' }] },
-  [inner('Harry', '*I didn\'t know those people. Not really. They aren\'t my parents now. It would be pointless to feel so sad for them.*', 400, 110, { w: 560 })], { mood: 'day' });
+  [inner('Harry', '*I didn\'t know those people. Not really. They aren\'t my parents now. It would be pointless to feel so sad for them.*', 400, 110, { w: 500 })], { mood: 'day' });
 ep.panel(900, { cam: { on: ['mcgonagall', 'harry'], fr: 'waist', padX: 1.05 }, bg: DA({ start: 3 }), blur: 2,
   actors: [{ def: mcgonagall, id: 'mcgonagall', x: 900, y: 1080, turn: -0.3, pose: 'stand', armF: { sh: 38, el: 62, hand: 'open' }, armB: { sh: 30, el: 70, hand: 'open' }, expr: 'teary' }, { def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.6, pose: 'stand', armF: { sh: 40, el: 30, hand: 'open' }, armB: { sh: 35, el: 30, hand: 'open' }, expr: 'sob' }] },
   [cap('When Harry was done sobbing into the witch\'s robes, he looked up, and felt a little better to see tears in Professor McGonagall\'s eyes as well.', 44, 34, { w: 460 })], { mood: 'day', alt: 'Harry cries into McGonagall\'s robes. She holds him, and she is crying too.' });
@@ -287,9 +287,9 @@ ep.beat(380, [plain('?', 680, 190, { font: "'IM Fell English', serif", size: 46,
   { alt: 'A faint question mark sits alone in the margin.' });
 ep.panel(620, { cam: { on: ['harry'], fr: 'bust' }, bg: DA({ start: 3 }), blur: 2, actors: [{ def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.5, pose: 'slump', expr: 'sad' }] },
   [say('Harry', 'I\'ll… have to think about this.', 560, 90, { w: 280 })], { mood: 'day' });
-ep.panel(880, { cam: { on: ['harry', 'mcgonagall'], fr: 'waist', dy: -0.2 }, bg: DA({ start: 3 }), blur: 2, actors: [{ def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.4, pose: 'stand', expr: 'warm' }, { def: mcgonagall, id: 'mcgonagall', x: 1060, y: 1080, turn: -0.3, pose: 'stand', expr: 'sad' }] },
-  [say('Harry', 'You can call them my parents, if you want. You don\'t have to say "genetic parents".', 262, 132, { w: 330, fixed: true }),
-   say('Harry', 'I guess there\'s no reason I can\'t have two mothers and two fathers.', 275, 365, { w: 320, fixed: true, tail: 'harry' })], { mood: 'day' });
+ep.panel(920, { cam: { on: ['harry', 'mcgonagall'], fr: 'waist', dy: -0.45 }, bg: DA({ start: 3 }), blur: 2, actors: [{ def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.4, pose: 'stand', expr: 'warm' }, { def: mcgonagall, id: 'mcgonagall', x: 1060, y: 1080, turn: -0.3, pose: 'stand', expr: 'sad' }] },
+  [say('Harry', 'You can call them my parents, if you want. You don\'t have to say "genetic parents".', 262, 140, { w: 330, fixed: true }),
+   say('Harry', 'I guess there\'s no reason I can\'t have two mothers and two fathers.', 275, 390, { w: 320, fixed: true, tail: 'harry' })], { mood: 'day' });
 ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: DA({ start: 3 }), blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 900, y: 1080, turn: -0.2, expr: { base: 'teary', mouth: { type: 'line', curve: 0.3 } } }] },
   [cap('There was no sound from Professor McGonagall.', 44, 30, { w: 360 })], { mood: 'day', alt: 'McGonagall, moved beyond words.' });
 ep.bleed(1300, { cam: { x: 1000, y: 230, w: 1500 }, bg: () => L.gringotts(),

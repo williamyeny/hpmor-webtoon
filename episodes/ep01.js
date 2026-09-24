@@ -94,11 +94,11 @@ const gardenMem = (env) => rect(-400, -400, 3000, 3000, { fill: '#cdb68a' }) + K
 ep.panel(760, { cam: { on: ['lily', 'pet'], fr: 'knees', dy: -1.2 }, bg: gardenMem,
   actors: [{ def: petuniaTeen, id: 'pet', x: 700, y: 1100, turn: 0.45, expr: 'sad', pose: 'crossArms' }, { def: lilyTeen, id: 'lily', x: 1060, y: 1100, turn: -0.4, expr: 'delight', pose: 'present' }],
   over: (e) => FX.sparkles([[e.anchors?.lily?.handF?.[0] ?? 430, (e.anchors?.lily?.handF?.[1] ?? 380) - 30, 14]]) },
-  [cap('“Lily was always the pretty one. And then she got *magic.* Can you imagine how I felt?”', 60, 40, { w: 440 })], { ...MEM, alt: 'Memory, in sepia: two teenage sisters. The red-haired one makes flowers bloom in her palm. The plainer one watches, arms crossed.' });
+  [cap('“Lily was always the pretty one. And then she got *magic.* Can you imagine how I felt?”', 60, 40, { w: 400 })], { ...MEM, alt: 'Memory, in sepia: two teenage sisters. The red-haired one makes flowers bloom in her palm. The plainer one watches, arms crossed.' });
 
 ep.panel(700, { cam: { on: ['lily', 'pet'], fr: 'bust', dy: -0.9 }, bg: gardenMem,
   actors: [{ def: petuniaTeen, id: 'pet', x: 760, y: 1100, turn: 0.45, expr: 'pleading', pose: 'reach' }, { def: lilyTeen, id: 'lily', x: 1060, y: 1100, turn: -0.45, expr: 'worried', pose: 'crossArms' }] },
-  [cap('“I begged her to use it on me. For *years.* She always said no, with the most ridiculous excuses. A *centaur* told her not to!”', 300, 40, { w: 440 })], MEM);
+  [cap('“I begged her to use it on me. For *years.* She always said no, with the most ridiculous excuses. A *centaur* told her not to!”', 272, 40, { w: 420 })], MEM);
 
 ep.panel(900, { cam: { on: ['pet', 'vernon'], fr: 'waist', dy: -1.4 }, bg: gardenMem,
   actors: [{ def: vernon, id: 'vernon', x: 1120, y: 1120, turn: -0.4, expr: 'smug', pose: 'handsHips' }, { def: petuniaTeen, id: 'pet', x: 740, y: 1100, turn: 0.4, expr: 'horror', pose: 'panic' }] },
@@ -143,15 +143,15 @@ ep.panel(760, { cam: { on: ['mum'], fr: 'bust', dy: -0.35, dx: 0.3 }, bg: LR(), 
   [say('Mum', 'Ah… They didn\'t just send a letter. They sent a professor from Hogwarts.', 470, 100, { w: 400 }),
    say('Mum', 'She showed us some magic.', 610, 560, { w: 250 })], { mood: 'warm' });
 
-ep.panel(960, { cam: { on: ['harry'], fr: 'waist', dx: -0.6, dy: -0.4, zoom: 0.88 }, bg: LR(), actors: [{ def: harry, id: 'harry', x: 1400, y: 1010, s: 1.12, turn: -0.3, pose: 'present', expr: 'delight' }],
+ep.panel(1000, { cam: { on: ['harry'], fr: 'waist', dx: -0.6, dy: -0.6, zoom: 0.88 }, bg: LR(), actors: [{ def: harry, id: 'harry', x: 1400, y: 1010, s: 1.12, turn: -0.3, pose: 'present', expr: 'delight' }],
   mid: (e) => g({ transform: `translate(${e.cam.x - e.w / 2 / e.z},${e.cam.y - e.h / 2 / e.z}) scale(${1 / e.z})` }, rect(0, 0, e.w, e.h, { fill: '#f6e3b0', opacity: 0.55 })) },
-  [say('Harry', 'Then you don\'t have to fight about this!', 220, 80, { w: 320 }),
-   say('Harry', 'We get a Hogwarts professor here, and we *look.* If it\'s real, Dad admits it. If it isn\'t, Mum admits it.', 200, 330, { w: 330 }),
-   say('Harry', 'That\'s what experiments are *for!* So we don\'t have to settle things by arguing!', 215, 700, { w: 360 })], { mood: 'warm', alt: 'Harry, lit up with the idea, spreads his hands.' });
+  [say('Harry', 'Then you don\'t have to fight about this!', 256, 84, { w: 320 }),
+   say('Harry', 'We get a Hogwarts professor here, and we *look.* If it\'s real, Dad admits it. If it isn\'t, Mum admits it.', 505, 300, { w: 400 }),
+   say('Harry', 'That\'s what experiments are *for!* So we don\'t have to settle things by arguing!', 250, 790, { w: 300 })], { mood: 'warm', alt: 'Harry, lit up with the idea, spreads his hands.' });
 
 ep.panel(820, { cam: { on: ['dad', 'harry'], fr: 'waist' }, bg: LR(),
   actors: [DAD({ x: 1150, expr: 'smile', pose: 'gesture2', turn: 0.3 }), { def: harry, id: 'harry', x: 1400, y: 1010, s: 1.12, turn: -0.3, pose: 'stand', expr: 'hopeful' }] },
-  [say('Dad', 'Oh, come now, Harry. Really? *Magic?*', 250, 80, { w: 360 }),
+  [say('Dad', 'Oh, come now, Harry. Really? *Magic?*', 262, 84, { w: 360 }),
    say('Dad', 'I thought *you\'d* know better than to take this seriously, son. Even if you\'re only ten.', 230, 610, { w: 380 })], { mood: 'warm' });
 
 ep.panel(760, { cam: { on: ['harry'], fr: 'close' }, bg: LR(), blur: 3, actors: [{ def: harry, id: 'harry', x: 1400, y: 1010, s: 1.12, turn: -0.15, expr: 'hurt' }] },
@@ -166,19 +166,19 @@ ep.panel(800, { cam: { on: ['dad', 'mum', 'harry'], fr: 'waist', dy: -0.9, zoom:
   actors: [DAD({ x: 900, expr: 'cross', pose: 'lecture' }), MUM({ x: 1180, expr: 'cross', pose: 'fists' }), { def: harry, id: 'harry', x: 1500, y: 1040, s: 1.12, turn: -0.6, pose: 'slump', expr: 'sad' }] },
   [say('Mum', 'Just *once*, trust your wife who loves you!', 470, 80, { w: 320, tail: 'mum' }),
    say('Dad', 'It isn\'t a question of *trust*, dear. It\'s a question of *evidence!*', 200, 230, { w: 330, tail: 'dad' }),
-   whisper('Harry', 'I\'m going to go to my room.', 620, 400, { w: 240, tail: 'harry' })], { mood: 'warm' });
+   whisper('Harry', 'I\'m going to go to my room.', 610, 380, { w: 220, tail: 'harry' })], { mood: 'warm' });
 
 ep.panel(760, { cam: { x: 652, y: 640, w: 1070 }, bg: () => O.stairs(),
   actors: [{ def: harry, id: 'harry', x: O.stairStep(6)[0], y: O.stairStep(6)[1], s: 1.0, turn: 0.6, pose: 'walk', expr: 'sad' }] },
   [whisper('Mum', '…never *listen*…', 160, 560, { w: 200, tail: [80, 700] }),
-   whisper('Dad', '…being *hysterical*…', 330, 660, { w: 220, tail: [260, 760] }),
+   whisper('Dad', '…being *hysterical*…', 350, 660, { w: 320, tail: [260, 760] }),
    cap('And they went on fighting while Harry climbed the stairs.', 320, 30, { w: 350 })], { mood: 'warm', alt: 'Harry climbs the staircase alone; muffled argument drifts up from below.' });
 
 // =============================================================== BEDROOM
 const HB = (o = {}) => (env) => O.bedroom(o);
 const chair = (x, y) => g({}, rect(x - 50, y - 150, 100, 16, { fill: '#6b4429', stroke: C.ink, 'stroke-width': 2 }), rect(x - 46, y - 136, 10, 136, { fill: '#5e3b22' }), rect(x + 36, y - 136, 10, 136, { fill: '#5e3b22' }), rect(x - 52, y - 330, 14, 190, { fill: '#6b4429', stroke: C.ink, 'stroke-width': 2 }));
 ep.panel(760, { cam: { on: ['harry'], fr: 'knees', dx: 0.4 }, bg: HB(), actors: [{ def: harry, id: 'harry', x: 330, y: 960, s: 1.1, turn: 0.35, pose: 'slump', expr: 'sad' }] },
-  [think('Harry', 'The funny thing is, I *should* agree with Dad.', 520, 110, { w: 300 })], { mood: 'candle' });
+  [think('Harry', 'The funny thing is, I *should* agree with Dad.', 520, 124, { w: 300 })], { mood: 'candle' });
 
 ep.panel(760, { cam: { on: ['harry'], fr: 'waist' }, bg: HB(), actors: [chair(430, 960), { def: harry, id: 'harry', x: 470, y: 965, s: 1.1, turn: 0.5, pose: 'chin', expr: 'think' }] },
   [inner('Harry', 'No-one has ever seen real evidence of magic. It should be a clean case for Mum joking, lying, or being insane…', 290, 110, { w: 500 }),
@@ -189,7 +189,7 @@ ep.panel(620, { cam: { x: 560, y: 632, w: 360 }, bg: HB(), actors: [g({ transfor
    inner('Harry', '*Where do you come from, strange little prediction?*', 400, 510, { w: 390 })], { mood: 'candle', alt: 'The Hogwarts envelope in the candlelight.' });
 
 ep.panel(680, { cam: { on: ['harry'], fr: 'close' }, bg: HB(), blur: 2, actors: [{ def: harry, id: 'harry', x: 470, y: 965, s: 1.1, turn: 0.2, expr: 'grin' }] },
-  [say('Harry', 'Well. You know what you do with a testable hypothesis?', 230, 90, { w: 300 }),
+  [say('Harry', 'Well. You know what you do with a testable hypothesis?', 250, 90, { w: 380 }),
    say('Harry', 'You go and *test* it.', 560, 560, { w: 260 })], { mood: 'candle' });
 
 // letter-writing sequence (three small panels)
@@ -221,7 +221,7 @@ ep.beat(360, [capC('As scary as arguments could be, *not* arguing was somehow mu
 
 ep.panel(800, { cam: { on: ['mum', 'harry'], fr: 'waist', dy: -0.6, zoom: 1.1 }, bg: () => O.kitchen(),
   actors: [{ def: mum, id: 'mum', x: 820, y: 1000, turn: -0.5, pose: 'hold', expr: 'shock' }, { def: harry, id: 'harry', x: 420, y: 1000, s: 1.12, turn: 0.5, pose: 'holdOne', expr: 'determined', armF: { prop: g({ transform: 'translate(0,30) scale(0.35) rotate(90)' }, envelope({ back: true, sealText: 'H' })) } }] },
-  [say('Harry', 'Mum, I\'m going to test the hypothesis. According to your theory, how do I send an owl to Hogwarts?', 250, 90, { w: 380 }),
+  [say('Harry', 'Mum, I\'m going to test the hypothesis. According to your theory, how do I send an owl to Hogwarts?', 272, 90, { w: 380 }),
    say('Mum', 'I… I don\'t know. I suppose you just need a magic owl?', 560, 560, { w: 300 })], { mood: 'warm' });
 
 ep.panel(900, { cam: { on: ['harry', 'dad'], fr: 'waist', dy: -1.8 }, bg: LR(),
