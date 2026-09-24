@@ -68,7 +68,8 @@ export function shot(o) {
       an.s = p.s * z; an.hr = p.def.body.headRy * p.s * z; ctx.anchors[p.id] = an;
     }
     const T = `translate(${r2(ctx.w / 2)},${r2(ctx.h / 2)}) scale(${r2(z)}) translate(${r2(-cam.x)},${r2(-cam.y)})`;
-    const env = { ...ctx, cam, z, toPanel };
+    const wa = {}; for (const p of placed) if (p.id) wa[p.id] = { ...p.anchors, s: p.s, hr: p.def.body.headRy * p.s };
+    const env = { ...ctx, cam, z, toPanel, wa };
     const bg = typeof o.bg === 'function' ? o.bg(env) : (o.bg || '');
     const mid = typeof o.mid === 'function' ? o.mid(env) : (o.mid || '');
     const fg = typeof o.fg === 'function' ? o.fg(env) : (o.fg || '');

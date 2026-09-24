@@ -412,3 +412,53 @@ export const hermione = {
   outfit: { top: '#1f1d24', robe: true, robeColor: '#1f1d24', robeLen: 0.95, wideSleeves: true, cuffW: 1.6, legs: '#2a2630', shoes: '#3a2418', collar: '#f2ecde', robeTrim: '#35323c' },
 };
 Object.assign(CAST, { hermione });
+
+// ---------- Hogwarts staff
+export const snape = {
+  name: 'snape', body: { ...ADULT_M, shoulderW: 104, waistW: 84, hipW: 86, headRx: 47, headRy: 60 }, skin: '#e6d9c4', skinShade: '#bfae98',
+  head: { jaw: 0.5, chin: 1.08, cheek: 0.82 },
+  face: adultFace({ eye: { color: '#1f1a1a', w: 18, h: 13, iris: 6.4 }, brow: { color: '#1f1a1f', len: 22, w: 4 }, nose: 'hook', noseLen: 28, mouth: { w: 18 }, cheekLines: true }),
+  hair: { color: '#1b181c', ...H.long('snape', { len: 1.35, part: 0.2 }) },
+  outfit: { top: '#15131a', robe: true, robeColor: '#15131a', robeLen: 1.04, flare: 1.4, wideSleeves: true, cuffW: 2.0, legs: '#000', shoes: '#0a0808', robeTrim: '#2a2630', collar: '#e6e0d2' },
+};
+export const flitwick = {
+  name: 'flitwick', body: { ...KID_SMALL, torsoH: 70, legU: 34, legL: 32, headRx: 58, headRy: 56 }, skin: '#efd6c0', skinShade: '#cfb29a',
+  head: { jaw: 0.7, chin: 0.98, cheek: 0.98 },
+  face: adultFace({ eyeY: 6, eye: { color: '#4a5a7a', w: 18, h: 16, iris: 7 }, brow: { color: '#eeece6', len: 24, w: 6 }, nose: 'button', rosy: true, wrinkles: true }),
+  hair: { color: '#eeece6', ...H.bald({ fringe: true, wisps: true }) },
+  facialHair: ({ rx, ry, s, lw, F, mz }) => path(smoothD([[-rx * 0.85, ry * 0.3], [-rx * 0.8, ry * 1.1], [mz.x, ry * 1.6], [rx * 0.8, ry * 1.1], [rx * 0.85, ry * 0.3], [mz.x + 16, F.mouthY + 8], [mz.x - 16, F.mouthY + 8]], true, 0.45), { fill: '#eeece6', stroke: C.ink, 'stroke-width': lw * 0.9 }),
+  outfit: { top: '#2f4f86', robe: true, robeColor: '#2f4f86', robeLen: 0.95, wideSleeves: true, cuffW: 1.7, cuff: '#b0713b', legs: '#1d1a20', shoes: '#2a1a12', robeTrim: '#b0713b' },
+};
+export const sprout = {
+  name: 'sprout', body: { ...ADULT_F, torsoH: 132, legU: 90, legL: 86, headRx: 52, headRy: 54, waistW: 118, hipW: 124 }, skin: '#eec8a8', skinShade: '#cf9f80',
+  head: { jaw: 0.72, chin: 0.98, cheek: 1.0 },
+  face: adultFace({ eye: { color: '#5a6a3a', w: 17, h: 14, iris: 6.4 }, brow: { color: '#8a8a7a', len: 20, w: 4 }, nose: 'button', rosy: true, wrinkles: true }),
+  hair: { color: '#9a9a8a', ...H.curlyShort('sprout') },
+  hat: ({ rx, ry, s, lw }) => path(`M${-rx * 1.3},${-ry * 0.55} Q0,${-ry * 0.35} ${rx * 1.3},${-ry * 0.6} Q${rx * 0.8},${-ry * 0.95} ${rx * 0.6},${-ry * 1.2} Q0,${-ry * 1.45} ${-rx * 0.6},${-ry * 1.2} Q${-rx * 0.8},${-ry * 0.95} ${-rx * 1.3},${-ry * 0.55}Z`, { fill: '#d6a33a', stroke: C.ink, 'stroke-width': lw }) + path(`M${-rx * 0.6},${-ry * 0.95} Q0,${-ry * 0.85} ${rx * 0.6},${-ry * 0.98}`, { fill: 'none', stroke: '#2f5a40', 'stroke-width': lw * 2 }),
+  outfit: { top: '#5a4a2a', robe: true, robeColor: '#5a4a2a', robeLen: 0.97, wideSleeves: true, cuffW: 1.6, legs: '#2a2630', shoes: '#3a2418', robeTrim: '#d6a33a' },
+};
+export const hagrid = {
+  name: 'hagrid', body: { ...ADULT_M, torsoH: 300, legU: 200, legL: 190, shoulderW: 250, waistW: 260, hipW: 250, headRx: 80, headRy: 84, armU: 140, armL: 130, armW: 60, handR: 26, legW: 70, foot: 70, neck: 10, neckW: 60 }, skin: '#e2b893', skinShade: '#c08c68',
+  head: { jaw: 0.78, chin: 1.0, cheek: 1.0 },
+  face: adultFace({ eye: { color: '#1b1310', w: 16, h: 16, iris: 7 }, brow: { color: '#1b1310', len: 30, w: 8 }, nose: 'button', rosy: true }),
+  hair: { color: '#1b1310', ...H.bushy('hagrid') },
+  facialHair: ({ rx, ry, s, lw, F, mz }) => path(smoothD([[-rx * 1.0, -ry * 0.1], [-rx * 1.1, ry * 1.0], [mz.x, ry * 1.8], [rx * 1.1, ry * 1.0], [rx * 1.0, -ry * 0.1], [rx * 0.6, ry * 0.35], [mz.x + 20, F.mouthY - 4], [mz.x - 20, F.mouthY - 4], [-rx * 0.6, ry * 0.35]], true, 0.5), { fill: '#241a14', stroke: C.ink, 'stroke-width': lw }),
+  outfit: { top: '#5a4632', legs: '#3a2e22', shoes: '#2a1a12', hem: false, pattern: 'pinstripe' },
+};
+export const trelawney = {
+  name: 'trelawney', body: { ...ADULT_F, headRx: 46, headRy: 54 }, skin: '#efdac6', skinShade: '#cfb59e',
+  head: { jaw: 0.5, chin: 1.06, cheek: 0.86 },
+  face: adultFace({ eye: { color: '#5a7a9a', w: 24, h: 24, iris: 9, lash: 2 }, brow: { color: '#6a5a4a', len: 20, w: 3 }, nose: 'long', lips: '#b8676b' }),
+  glasses: { r: 22, shape: 'round', frame: 1.3, color: '#6a5a4a' },
+  hair: { color: '#8a6a4a', ...H.long('trel', { len: 1.8 }) },
+  outfit: { top: '#6a5a7a', robe: true, robeColor: '#6a5a7a', robeLen: 1.0, wideSleeves: true, cuffW: 2.0, cuff: '#c9a24a', legs: '#2a2630', shoes: '#3a2418', robeTrim: '#c9a24a' },
+};
+export const clearwater = { ...makeExtra(1101, { female: true, old: false, hairStyle: 'long', robe: '#1f1d24' }), name: 'clearwater', body: { ...TEEN } };
+clearwater.outfit = { ...clearwater.outfit, robeTrim: '#2f4f86', cuff: '#2f4f86', tie: '#2f4f86' };
+// students in House trim, and first-years (plain black) — deterministic by seed
+const HOUSE = { g: '#9a2a2a', s: '#2f5a40', r: '#2f4f86', h: '#d6a33a', n: '#3a3744' };
+export function student(seed, house = 'n', o = {}) {
+  const e = makeExtra(seed, { kid: true, robe: '#1f1d24', ...o });
+  return { ...e, name: 'st' + seed + house, outfit: { ...e.outfit, top: '#1f1d24', robeColor: '#1f1d24', robeTrim: HOUSE[house], cuff: house === 'n' ? undefined : HOUSE[house], tie: house === 'n' ? undefined : HOUSE[house] } };
+}
+Object.assign(CAST, { snape, flitwick, sprout, hagrid, trelawney, clearwater });
