@@ -17,4 +17,5 @@ export default { title: 'enginepass', tiles: [
      shout('Harry', 'I shall achieve my objectives through the power of *Science!* This is a long shout to check the calmer spikes.', 330, 330, { w: 520, fixed: true }),
      say('Harry', 'This is a long speech in the boxier balloon shape, which hugs the text rather than making a big ellipse around it. It should fit narrow panels much better.', 400, 860, { anchor: 'bc', w: 560, fixed: true, shape: 'box' }),
    ] },
+  { h: 700, panels: ['crossArms', 'gesture', 'think'].map((pose, k) => ({ x: 18 + k * 258, y: 18, w: 248, h: 664, art: shot({ cam: { head: 'h' + k, hw: 0.55, hy: 0.3 }, bg: () => CS.defenceStage({}), actors: [{ def: k === 1 ? quirrell : harryRaven, id: 'h' + k, x: 1000, y: 900, s: k === 1 ? 1 : 1.1, turn: 0.3, pose, expr: 'neutral' }] }) })) },
 ]};

@@ -299,6 +299,9 @@ export function drawCharacter(def, opts = {}) {
     const out = [];
     const sleeve = O.sleeve || topCol;
     const col = far ? shade(sleeve, -0.15) : sleeve;
+    // dark sleeves (Hogwarts robes) vanish against the dark torso: give them a faint lighter rim just outside the ink line
+    const hexL = (h) => { const m = /^#?([0-9a-f]{6})$/i.exec(h || ''); if (!m) return 1; const n = parseInt(m[1], 16); return (0.3 * (n >> 16) + 0.59 * ((n >> 8) & 255) + 0.11 * (n & 255)) / 255; };
+    const RS = hexL(col) < 0.2 ? { fill: 'none', stroke: shade(col, 0.55), 'stroke-width': lw * 2.9, 'stroke-linejoin': 'round', opacity: 0.6 } : null;
     const wide = O.wideSleeves;
     const w0 = B.armW * 1.05, w1 = B.armW * 0.95, w2 = wide ? B.armW * (O.cuffW ?? 2.1) : B.armW * 0.82;
     const side = far ? 1 : -1;
@@ -319,6 +322,7 @@ export function drawCharacter(def, opts = {}) {
     }
     if (!wide) {
       out.push(hand);
+      if (RS) out.push(path(limbD(p[0], p[1], p[2], w0, w1, w2 * 1.05), RS));
       out.push(path(limbD(p[0], p[1], p[2], w0, w1, w2 * 1.05), S(col)));
       // elbow crease
       const cr = add(p[1], mul(norm(sub(p[2], p[0])), -2));
@@ -326,11 +330,11 @@ export function drawCharacter(def, opts = {}) {
       if (O.cuff) out.push(capsule(mix(p[1], p[2], 0.84), mix(p[1], p[2], 0.99), w2 * 1.08, w2 * 1.08, S(O.cuff)));
       return out.join('');
     }
-    const lower = wide
-      ? path(`M${p[1][0] - w1 / 2 * Math.cos(forearmAng)},${p[1][1] + w1 / 2 * Math.sin(forearmAng)} L${p[2][0] - w2 / 2 * Math.cos(forearmAng) + Math.sin(forearmAng) * 6},${p[2][1] + w2 / 2 * Math.sin(forearmAng) + Math.cos(forearmAng) * 6} Q${p[2][0] + Math.sin(forearmAng) * 14},${p[2][1] + Math.cos(forearmAng) * 14} ${p[2][0] + w2 / 2 * Math.cos(forearmAng) + Math.sin(forearmAng) * 6},${p[2][1] - w2 / 2 * Math.sin(forearmAng) + Math.cos(forearmAng) * 6} L${p[1][0] + w1 / 2 * Math.cos(forearmAng)},${p[1][1] - w1 / 2 * Math.sin(forearmAng)}Z`, S(col))
-      : capsule(p[1], p[2], w1, w2, S(col));
+    const lowerD = wide ? `M${p[1][0] - w1 / 2 * Math.cos(forearmAng)},${p[1][1] + w1 / 2 * Math.sin(forearmAng)} L${p[2][0] - w2 / 2 * Math.cos(forearmAng) + Math.sin(forearmAng) * 6},${p[2][1] + w2 / 2 * Math.sin(forearmAng) + Math.cos(forearmAng) * 6} Q${p[2][0] + Math.sin(forearmAng) * 14},${p[2][1] + Math.cos(forearmAng) * 14} ${p[2][0] + w2 / 2 * Math.cos(forearmAng) + Math.sin(forearmAng) * 6},${p[2][1] - w2 / 2 * Math.sin(forearmAng) + Math.cos(forearmAng) * 6} L${p[1][0] + w1 / 2 * Math.cos(forearmAng)},${p[1][1] - w1 / 2 * Math.sin(forearmAng)}Z` : '';
+    const lower = wide ? path(lowerD, S(col)) : capsule(p[1], p[2], w1, w2, S(col));
     if (wide) {
       out.push(hand);
+      if (RS) out.push(path(lowerD, RS));
       out.push(lower);
       // dark sleeve mouth
       const mouthC = add(p[2], mul([Math.sin(forearmAng), Math.cos(forearmAng)], 8));
@@ -341,6 +345,7 @@ export function drawCharacter(def, opts = {}) {
       if (O.cuff) out.push(capsule(mix(p[1], p[2], 0.86), p[2], w2 * 1.02, w2 * 1.02, S(O.cuff)));
       out.push(hand);
     }
+    if (RS) out.push(capsule(p[0], p[1], w0, w1, RS));
     out.push(capsule(p[0], p[1], w0, w1, S(col)));
     return out.join('');
   }
