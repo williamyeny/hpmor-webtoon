@@ -11,7 +11,7 @@ import { toad } from '../engine/props/props.js';
 const ep = new Episode({ id: 'ep11', number: 11, title: 'Potter, Harry!' });
 const NIGHT = '#0a1020';
 ep.setBg(NIGHT);
-ep.beat(280, [plain('CHAPTER ELEVEN', 400, 110, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Potter, Harry!', 400, 190, { size: 54, color: '#f1e6cc' })], { bg: { top: C.paper, bottom: NIGHT } });
+ep.beat(280, [plain('EPISODE ELEVEN', 400, 110, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Potter, Harry!', 400, 190, { size: 54, color: '#f1e6cc' })], { bg: { top: C.paper, bottom: NIGHT } });
 
 // =============================================================== the lake
 const LAKE = (o = {}) => () => HG.lakeNight(o);

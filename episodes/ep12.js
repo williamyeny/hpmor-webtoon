@@ -12,7 +12,7 @@ import { harryRobes, harryRaven, hermione, neville, mcgonagall, dumbledore, snap
 const ep = new Episode({ id: 'ep12', number: 12, title: 'Self Awareness' });
 const MIND = '#07080f';
 ep.setBg(MIND);
-ep.beat(280, [plain('CHAPTER TWELVE', 400, 110, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Self Awareness', 400, 190, { size: 54, color: '#f1e6cc' })], { bg: { top: C.paper, bottom: MIND } });
+ep.beat(280, [plain('EPISODE TWELVE', 400, 110, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Self Awareness', 400, 190, { size: 54, color: '#f1e6cc' })], { bg: { top: C.paper, bottom: MIND } });
 
 // mind-panels: the Hat looms; Harry is a small figure in his own head
 const mind = (tone, mood, o = {}) => (ctx) => {

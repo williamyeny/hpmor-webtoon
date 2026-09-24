@@ -19,7 +19,7 @@ const MUM = (o = {}) => ({ def: mum, id: 'mum', x: 1300, y: 990, turn: -0.4, ...
 const HAR = (o = {}) => ({ def: harry, id: 'harry', x: 1470, y: 1030, s: 1.12, turn: -0.4, ...o });
 
 // =============================================================== the silent dinner
-ep.beat(260, [plain('CHAPTER TWO', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Everything I Believe Is False', 400, 170, { size: 46 })]);
+ep.beat(260, [plain('EPISODE TWO', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Everything I Believe Is False', 400, 170, { size: 46 })]);
 const tableFg = () => O.dinnerTable() + path('M222,928 L1178,928 L1170,1060 L230,1060Z', { fill: '#e6dcc4', stroke: C.ink, 'stroke-width': 1.8 }) + path('M222,928 L1178,928 L1176,940 L224,940Z', { fill: '#000', opacity: 0.08 });
 ep.panel(660, { cam: { x: 700, y: 700, w: 900 }, bg: () => O.kitchen(), fg: tableFg,
   actors: [{ def: dad, id: 'dad', x: 380, y: 1020, turn: 0.45, pose: 'sit', expr: 'deadpan' }, { def: mum, id: 'mum', x: 1020, y: 1010, turn: -0.45, pose: 'sit', expr: 'sad' }, { def: harry, id: 'harry', x: 700, y: 950, s: 1.1, turn: 0, pose: 'sit', expr: 'unimpressed' }] },

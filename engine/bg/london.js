@@ -165,7 +165,7 @@ export function shopfront(x, w, shop, seed, o = {}) {
   out += rect(x, sy, w, 430, { fill: col, ...bl(2.2) });
   out += rect(x + 10, sy + 10, w - 20, 70, { fill: shade(col, -0.35), ...bl(1.6) });
   const signCol = shop.fire ? '#ffb347' : '#f0dcb0';
-  out += text(x + w / 2, sy + 58, shop.n, { 'font-family': 'IM Fell English', 'font-size': Math.min(36, (w - 30) / (shop.n.length * 0.48)), fill: signCol, 'text-anchor': 'middle' });
+  out += text(x + w / 2, sy + 58, shop.n, { 'font-family': 'IM Fell English', 'font-size': Math.min(36, (w - 40) / (shop.n.length * 0.56)), fill: signCol, 'text-anchor': 'middle' });
   if (shop.fire) out += K.glow(x + w / 2, sy + 45, w * 0.6, '#ff9a3c', 0.45);
   // window + door
   const ww = w * 0.58;
@@ -219,7 +219,14 @@ export function stall(x, sign, col = C.burgundy, wares = 'boots') {
   out += line(x - 135, FLOOR - 60, x - 135, FLOOR - 330, bl(4)) + line(x + 135, FLOOR - 60, x + 135, FLOOR - 330, bl(4));
   let d = ''; for (let i = 0; i < 7; i++) d += `M${x - 150 + i * 43},${FLOOR - 340} l43,0 l-4,50 l-35,0Z `;
   out += path(d, { fill: col, ...bl(1.4) });
-  out += rect(x - 120, FLOOR - 260, 240, 50, { fill: '#efe2c4', ...bl(1.6), rx: 4 }) + text(x, FLOOR - 226, sign, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': 30, fill: '#3a2a20', 'text-anchor': 'middle' });
+  // price board: one line if it fits, else two (split at ": " or the middle space); Caveat averages ~0.47em per character
+  const fit = (t) => Math.min(30, 220 / (t.length * 0.47)), T = (t, y, fs) => text(x, y, t, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, fill: '#3a2a20', 'text-anchor': 'middle' });
+  if (fit(sign) >= 24) out += rect(x - 120, FLOOR - 260, 240, 50, { fill: '#efe2c4', ...bl(1.6), rx: 4 }) + T(sign, FLOOR - 226, fit(sign));
+  else {
+    const at = sign.includes(': ') ? sign.indexOf(': ') : sign.lastIndexOf(' ', sign.length / 2), l1 = sign.slice(0, at + (sign[at] === ':' ? 1 : 0)).trim(), l2 = sign.slice(at + 1).replace(/^:?\s*/, '');
+    // the name as big as the stall's full width allows, the price on its own line at full size
+    out += rect(x - 148, FLOOR - 286, 296, 84, { fill: '#efe2c4', ...bl(1.6), rx: 4 }) + T(l1, FLOOR - 252, Math.min(30, 276 / (l1.length * 0.47))) + T(l2, FLOOR - 214, fit(l2));
+  }
   if (wares === 'boots') for (let i = 0; i < 3; i++) out += path(`M${x - 100 + i * 70},${FLOOR - 64} l0,-50 l24,0 l0,34 l24,6 l0,10Z`, { fill: ['#c43a32', '#2f5a40', '#d6a33a'][i], ...bl(1.4) });
   if (wares === 'cutlery') for (let i = 0; i < 6; i++) out += line(x - 110 + i * 42, FLOOR - 64, x - 100 + i * 42, FLOOR - 140, { stroke: '#c9c9d0', 'stroke-width': 7, 'stroke-linecap': 'round' }) + circle(x - 100 + i * 42, FLOOR - 144, 8, { fill: '#c9c9d0' });
   return out;

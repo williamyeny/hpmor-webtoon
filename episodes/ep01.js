@@ -43,7 +43,7 @@ ep.tile({ h: 900, bg: { top: NIGHT, bottom: C.paper }, gutterGrain: true,
     title('Harry Potter', 400, 330, { size: 70, color: '#f1e6cc' }),
     plain('and the', 400, 400, { font: "'IM Fell English', serif", size: 34, color: '#e8dcc2' }),
     title('Methods of Rationality', 400, 460, { size: 58, color: '#f6ead0' }),
-    plain('CHAPTER ONE · A Day of Very Low Probability', 400, 790, { font: "'IM Fell English SC', serif", size: 26, color: '#3a2a20', w: 700 }),
+    plain('EPISODE ONE · A Day of Very Low Probability', 400, 790, { font: "'IM Fell English SC', serif", size: 26, color: '#3a2a20', w: 700 }),
   ], alt: 'Title: Harry Potter and the Methods of Rationality. Chapter One: A Day of Very Low Probability.' });
 
 // =============================================================== OXFORD

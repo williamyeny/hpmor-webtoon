@@ -12,7 +12,7 @@ import { owl, comedCan, spray } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep08', number: 8, title: 'Reciprocation' });
 ep.setBg(C.paper);
-ep.beat(260, [plain('CHAPTER EIGHT', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Reciprocation', 400, 170, { size: 54 })]);
+ep.beat(260, [plain('EPISODE EIGHT', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Reciprocation', 400, 170, { size: 54 })]);
 // Harry's pencil notes: Caveat on cream paper
 const T = FX.scrawl;
 const OWL = (x, y, k = 0.5) => (e) => g({ transform: `translate(${x},${y}) scale(${k})` }, owl({ col: '#e8e0d0' }));

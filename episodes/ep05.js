@@ -10,7 +10,7 @@ import { wand } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep05', number: 5, title: 'Six Minutes' });
 ep.setBg(C.paper);
-ep.beat(260, [plain('CHAPTER FIVE', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Six Minutes', 400, 170, { size: 54 })]);
+ep.beat(260, [plain('EPISODE FIVE', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Six Minutes', 400, 170, { size: 54 })]);
 const wandIn = (rot) => g({ transform: `translate(0,9) rotate(${rot}) translate(0,-4)` }, wand(120, '#4a2e1b')); // gripped in the hand
 const WAND = wandIn(-20);
 const SPARK = [[100, 200, 20], [700, 160, 16], [120, 600, 12], [680, 560, 18]];

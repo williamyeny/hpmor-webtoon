@@ -136,7 +136,7 @@ Drawn centred at (0, 0), scaled by transform, like `props.js`.
 ### `episodes/b2.js`
 
 - `dayBeat(ep, day, specific, {h, color, sub, bg})`: the ch. 17-style opener ("Thursday." then the small italic "If you wanted to be specific…"). Every Book Two episode starts with one.
-- `header(ep, chapterWord, title, {book, h})`: book line, "CHAPTER …", and title.
+- `header(ep, numberWord, title, {book, h})`: book line, "EPISODE …" (number in words), and title.
 - `note(text, x, y, {kind: 'hand' | 'quill', w, size, align, rot})`: a Game note lettered on paper. `'hand'` is Harry's pencil (Caveat, left-aligned); the default is the Quotes Quill's regular print (centred). Always `fixed`.
 - `RT()` draws the Ravenclaw table in the Great Hall; `DORM(opts)` gives a `bg` function for the Ravenclaw dorm (`CS.ravenclawDorm(opts)`).
 

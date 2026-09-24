@@ -12,7 +12,7 @@ import { wand, pouch, coinBag, healerKit } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep06', number: 6, title: 'The Planning Fallacy' });
 ep.setBg(C.paper);
-ep.beat(260, [plain('CHAPTER SIX', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Planning Fallacy', 400, 170, { size: 50 })]);
+ep.beat(260, [plain('EPISODE SIX', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Planning Fallacy', 400, 170, { size: 50 })]);
 const WAND = g({ transform: 'translate(0,10)' }, wand(120, '#4a2e1b')); // gripped in the hand, pointing out past the fingers
 const DA = (o = {}) => () => L.diagonAlley({ seed: 7, ...o });
 // the near hand holds the open pouch; the far arm hangs relaxed
@@ -60,15 +60,21 @@ ep.panel(700, { cam: { on: ['harry', 'mcgonagall'], fr: 'bust' }, bg: DA({ start
 ep.panel(600, { cam: { on: ['harry'], fr: 'bust', dy: 0.1 }, bg: DA({ start: 4 }), blur: 2, actors: [HW({ expr: 'shock', pose: 'walk2', lean: -14 })] },
   [shout('Harry', '*TEN?*', 400, 118, { w: 200, size: 50, fixed: true })], { mood: 'day', shape: 'burst', points: 26, seed: 12 });
 const twoWays = (ctx) => {
-  const w = ctx.w, h = ctx.h;
+  const w = ctx.w, h = ctx.h, a = w * 0.25, b = w * 0.75, ink = { stroke: '#2d2a4a', 'stroke-width': 2.5 };
   let out = rect(0, 0, w, h, { fill: '#f4ecd6' });
   out += T(w / 2, 62, 'Nobody here has ever run an experiment. So either…', 38);
-  out += rect(40, 100, w / 2 - 60, h - 150, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 2.5 }) + rect(w / 2 + 20, 100, w / 2 - 60, h - 150, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 2.5 });
-  out += T(w * 0.25, 156, '(1) magic is so', 38) + T(w * 0.25, 200, 'impenetrable that', 38) + T(w * 0.25, 244, 'everyone gave up', 38) + path(`M${w * 0.25 - 50},320 q50,-50 100,0 q-50,50 -100,0Z`, { fill: '#b9ad92' }) + T(w * 0.25, 410, '…and I\'ll do', 36) + T(w * 0.25, 450, 'no better', 36);
-  out += T(w * 0.75, 150, '(2)', 34) + g({ transform: `translate(${w * 0.75},290)` }, circle(0, 0, 70, { fill: '#8fb4cf', stroke: '#2d2a4a', 'stroke-width': 3 }), path('M-40,-20 q30,-30 60,0 q-10,30 -40,40Z M10,20 q20,-10 30,10', { fill: '#7fa06a', stroke: '#2d2a4a', 'stroke-width': 2 }), path('M-6,-110 L-6,-66 M-6,-110 L34,-98 L-6,-86', { stroke: '#c43a32', 'stroke-width': 4, fill: '#c43a32' })) + T(w * 0.75, 430, 'mine.', 50);
+  out += rect(40, 100, w / 2 - 60, h - 150, { fill: 'none', ...ink }) + rect(w / 2 + 20, 100, w / 2 - 60, h - 150, { fill: 'none', ...ink }) + T(w / 2, h / 2 + 10, 'or', 34);
+  // (1) a little figure stuck in front of a wall of bricks too tall to see past
+  let wall = '';
+  for (let r = 0; r < 5; r++) for (let c = -2; c < 2; c++) wall += rect(c * 34 + (r % 2 ? 17 : 0), -r * 22, 32, 20, { fill: '#c9b48e', ...ink, 'stroke-width': 1.5 });
+  out += T(a, 156, '(1) magic is so', 36) + T(a, 196, 'impenetrable that', 36) + T(a, 236, 'everyone gave up…', 36) +
+    g({ transform: `translate(${a + 10},355)` }, wall, circle(-100, -38, 9, { fill: 'none', ...ink }), path('M-100,-29 L-100,2 M-100,-18 L-88,-12 M-100,-18 L-112,-10 M-100,2 L-108,20 M-100,2 L-92,20', { fill: 'none', ...ink }), T(-100, -58, '?', 34)) +
+    T(a, 412, '…and I\'ll do', 34) + T(a, 448, 'no better.', 34);
+  // (2) the world, with his flag on it
+  out += T(b, 156, '(2) I\'ll be taking', 36) + T(b, 196, 'over the world.', 36) + g({ transform: `translate(${b},320)` }, circle(0, 0, 70, { fill: '#8fb4cf', ...ink, 'stroke-width': 3 }), path('M-40,-20 q30,-30 60,0 q-10,30 -40,40Z M10,20 q20,-10 30,10', { fill: '#7fa06a', ...ink, 'stroke-width': 2 }), path('M-6,-110 L-6,-66 M-6,-110 L34,-98 L-6,-86', { stroke: '#c43a32', 'stroke-width': 4, fill: '#c43a32' })) + T(b, 460, '(Eventually.)', 32);
   return out;
 };
-ep.panel(560, twoWays, [], { shape: 'torn', frame: 'paper', seed: 17, alt: 'Harry\'s notes: either magic is so impenetrable that everyone gave up, or the whole world is his for the taking. A little flag planted on a globe.' });
+ep.panel(560, twoWays, [], { shape: 'torn', frame: 'paper', seed: 17, alt: 'Harry\'s notes: either magic is so impenetrable that everyone gave up (a little figure stuck in front of a tall brick wall), or he\'ll be taking over the world, eventually (a flag planted on a globe).' });
 ep.bleed(1000, { cam: { x: 1500, y: 700, w: 700 }, bg: DA({ start: 4 }), actors: [HW({ x: 1500, y: 1180, s: 1.6, turn: 0.1, pose: 'holdUp', expr: 'bigGrin', armF: { sh: -145, el: 15, hand: 'fist' }, armB: { sh: 8, el: -4 } })] },
   [cap('*You\'re mine now,* Harry thought at the walls of Diagon Alley, and at all the lands and people of wizarding Britain, and the entire universe of which Muggle scientists understood so much less than they believed.', 44, 40, { w: 500 }),
    dark('I, Harry James Potter-Evans-Verres, do now claim this territory in the name of Science.', 400, 870, { w: 560 })], { mood: 'day', alt: 'Harry thrusts a fist at the sky in the middle of Diagon Alley.' });

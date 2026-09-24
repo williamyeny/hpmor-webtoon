@@ -12,7 +12,7 @@ import { comedCan, spray, earthrise, bookOpen, owl, sheet, quill, galleon } from
 
 const ep = new Episode({ id: 'ep09', number: 9, title: 'The Moon' });
 ep.setBg(C.paper);
-ep.beat(260, [plain('CHAPTER NINE', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Moon', 400, 170, { size: 56 })]);
+ep.beat(260, [plain('EPISODE NINE', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Moon', 400, 170, { size: 56 })]);
 
 const P9 = () => S.platform934();
 const TABLE = () => S.picnicTable(1100, 1170);

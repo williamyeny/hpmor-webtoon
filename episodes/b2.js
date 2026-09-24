@@ -11,11 +11,11 @@ export function dayBeat(ep, day, specific, o = {}) {
   const h = o.h ?? 300;
   return ep.beat(h, [title(day, 400, h * 0.4, { size: 60, color: o.color || C.ink }), plain(specific ? `*${specific}*` : '', 400, h * 0.4 + 42, { anchor: 'tc', font: "'IM Fell English', serif", size: 28, color: o.sub || '#5a4032' })], o.bg ? { bg: o.bg } : {});
 }
-// episode header: book line + chapter + title
-export function header(ep, chapter, name, o = {}) {
+// episode header: book line + episode number (in words) + title
+export function header(ep, number, name, o = {}) {
   return ep.beat(o.h ?? 330, [
     plain(o.book ?? 'BOOK TWO · THE FIRST WEEK', 400, 70, { font: "'IM Fell English SC', serif", size: 22, color: '#8a6a4a' }),
-    plain(`CHAPTER ${chapter}`, 400, 125, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }),
+    plain(`EPISODE ${number}`, 400, 125, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }),
     title(name, 400, 205, { size: 54 }),
   ]);
 }

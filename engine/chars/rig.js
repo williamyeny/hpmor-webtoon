@@ -519,9 +519,9 @@ export function drawHead(def, o) {
   if (F.rosy) for (const side of [-1, 1]) { const p = onSphere(side * sp * 1.12, rx, t); if (p.vis) out.push(ellipse(p.x, eyeY + F.eye.h * 0.72, 11 * p.k + 2, 6, { fill: C.blush, opacity: 0.22, filter: 'url(#glowXs)' })); }
   // mouth
   const mSt = expr.mouth || { type: 'line' };
-  out.push(mouth(mz.x + s * 3, F.mouthY, F.mouth || { w: 20 }, mSt, Math.min(1, 0.6 + mz.k * 0.4), lw, skin));
+  // lips (F.lips) tint the mouth's line a dark rose instead of ink: reads as lipstick without a separate shape
+  out.push(mouth(mz.x + s * 3, F.mouthY, F.mouth || { w: 20 }, mSt, Math.min(1, 0.6 + mz.k * 0.4), lw, skin, F.lips && shade(F.lips, -0.35)));
   if (F.buckTeeth && ['line', 'smirk', 'wobble', 'flat', 'smile2', 'pout'].includes(mSt.type) && (mSt.curve ?? 0) > -0.3) { const tx = mz.x + s * 3; out.push(path(`M${tx - 3.5},${F.mouthY + 1.5} L${tx - 3.5},${F.mouthY + 5.5} L${tx + 3.5},${F.mouthY + 5.5} L${tx + 3.5},${F.mouthY + 1.5}Z M${tx},${F.mouthY + 1.5} L${tx},${F.mouthY + 5.5}`, { fill: '#fffaf0', stroke: C.ink, 'stroke-width': lw * 0.45, 'stroke-linejoin': 'round' })); }
-  if (F.lips && !['shout', 'scream', 'grin', 'laugh', 'smile', 'o', 'open', 'grit', 'grimace', 'frown-open', 'wobble'].includes(mSt.type)) { const lw2 = (F.mouth?.w ?? 20) * 0.5, lx0 = mz.x + s * 3; out.push(path(`M${lx0 - lw2 * 0.6},${F.mouthY + 3.5} Q${lx0},${F.mouthY + 8} ${lx0 + lw2 * 0.6},${F.mouthY + 3.5}`, { fill: 'none', stroke: F.lips, 'stroke-width': lw * 1.3, 'stroke-linecap': 'round', opacity: 0.7 })); }
   // extras
   if (expr.blush) for (const side of [-1, 1]) { const p = onSphere(side * sp * 1.15, rx, t); if (p.vis) out.push(blush(p.x, eyeY + F.eye.h * 0.75, 10 * p.k + 3, lw, expr.blush === 'strong')); }
   if (expr.tears === 'stream') for (const side of [-1, 1]) { const p = side < 0 ? pL : pR; if (p.vis) out.push(tearStream(p.x, eyeY + 6, ry * 0.8, lw)); }

@@ -13,7 +13,7 @@ import { bookHeld, comedCan, spray, foldedNote, sheet, toad, pouch } from '../en
 
 const ep = new Episode({ id: 'ep10', number: 10, title: 'Positive Bias' });
 ep.setBg(C.paper);
-ep.beat(260, [plain('CHAPTER TEN', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Positive Bias', 400, 170, { size: 54 })]);
+ep.beat(260, [plain('EPISODE TEN', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Positive Bias', 400, 170, { size: 54 })]);
 
 const CP = (o = {}) => () => S.compartment(o);
 const BOOK = { sh: 28, el: 85, hand: 'hold', prop: bookHeld('#2f4f86', { rot: 180, w: 56, h: 74 }) };

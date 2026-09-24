@@ -79,6 +79,7 @@ Renamed from "The Fundamental Attribution Error" (that idea is now delivered in 
 | The pan-and-the-mugger memory drawn in sepia. | The origin of Harry's distrust of adults, shown rather than told. |
 | The planning fallacy as a bar chart. | One study, one picture. |
 | Ends on the alley, with "Professor McGonagall didn't say whether she agreed." | Leaves the Obliviation question (and McGonagall's doubt) open into Ep 7. |
+| Harry's "So either…" note follows the book's two possibilities closely: "magic is so impenetrable that everyone gave up… and I'll do no better" (a little figure facing a tall brick wall) or "I'll be taking over the world. (Eventually.)" (a flag on a globe). Changed at the user's request. | The earlier shorthand ("(2) mine.") and its abstract picture didn't read. |
 
 ## Episode 7 — The Winner Shall Lose (ch. 6 second half + Aftermath)
 

@@ -138,13 +138,13 @@ export function brow(cx, cy, b, st, side, k, color) {
 }
 
 // ---------------- mouths ----------------
-export function mouth(mx, my, m, st, k, lw, skin) {
+export function mouth(mx, my, m, st, k, lw, skin, lineCol) {
   const type = st.type || 'line';
   const W = (m.w ?? 20) * (st.w ?? 1) * Math.max(0.5, k);
   const open = st.open ?? 0.5;
   const curve = st.curve ?? 0; // + smile, - frown
   const asym = st.asym ?? 0;   // + right corner up
-  const INK = C.ink;
+  const INK = lineCol || C.ink;
   const inside = '#5a1f22', tongue = '#d4706a', teeth = '#fffaf0';
   const S = { stroke: INK, 'stroke-width': lw * 1.25, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' };
   const lx = mx - W / 2, rx = mx + W / 2;

@@ -19,7 +19,7 @@ const MCG = (o = {}) => ({ def: mcgonagall, id: 'mcgonagall', x: 1160, y: 1080, 
 const WAND_OUT = g({ transform: 'translate(0,4)' }, wand(120, '#4a2e1b')); // points out past the fingers when the arm is raised
 
 // =============================================================== August
-ep.beat(260, [plain('CHAPTER THREE', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Boy Who Lived', 400, 170, { size: 50 })]);
+ep.beat(260, [plain('EPISODE THREE', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Boy Who Lived', 400, 170, { size: 50 })]);
 // the calendar hangs on the page itself (no wall, no frame): an object in the reader's own room
 const calendar = (ctx) => {
   const B = ctx.h - 168; // calendar bottom; the caption sits on the page below it

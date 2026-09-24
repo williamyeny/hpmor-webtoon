@@ -11,7 +11,7 @@ import { galleon, cane, pouch, coinBag } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep04', number: 4, title: 'The Efficient Market Hypothesis' });
 ep.setBg(C.paper);
-ep.beat(260, [plain('CHAPTER FOUR', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Efficient Market Hypothesis', 400, 170, { size: 44 })]);
+ep.beat(260, [plain('EPISODE FOUR', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Efficient Market Hypothesis', 400, 170, { size: 44 })]);
 
 // =============================================================== the banking hall
 // crossed arms: hands stay tucked inside the wide sleeves
