@@ -33,11 +33,20 @@ ep.beat(420, [], { over: (t) => FX.sfxText(400, 260, 'DING-DONG', { size: 110, r
 
 // =============================================================== the doorstep
 const DS = () => O.doorstep();
-ep.panel(920, { cam: { x: 990, y: 620, w: 840 }, bg: DS,
-  actors: [{ def: harry, id: 'harry', x: 800, y: 990, s: 1.12, turn: 0.45, pose: 'stand', expr: 'shock' }, { def: mcgonagall, id: 'mcgonagall', x: 1200, y: 1060, turn: -0.4, pose: 'stand', expr: 'calm' }],
-  fg: (e) => { const R = [[1150, 520], [1280, 470], [1210, 430], [1320, 560], [1100, 480]]; return R.map(([x, y]) => line(x, y - 30, x - 4, y + 10, { stroke: '#dfeaf4', 'stroke-width': 2.4, opacity: 0.9 }) + circle(x - 4, y + 12, 3, { fill: '#e9f3fa' })).join(''); } },
-  [cap('Harry opened the door.', 44, 34, { w: 175 }),
-   say('McGonagall', 'Good evening. I understand someone in this house has been asking for an owl.', 545, 180, { w: 330 })], { mood: 'night', alt: 'A very tall witch in a pointed hat stands on the rainy doorstep. The rain stops just short of her, as if it had been told not to.' });
+// the view out through the open front door: the terrace across the wet street, the doorstep lit from behind us
+const STREET = () => rect(0, -200, 2000, 1600, { fill: '#1d2640' }) + g({ transform: 'translate(720,490) scale(0.35)' }, O.houseExterior())
+  + rect(0, 870, 2000, 400, { fill: '#2b2f3c' }) + K.rainOverlay(2000, 1300, 9, 0.6, 0.45) + rect(700, 1030, 600, 60, { fill: '#8a8272', ...K.bl(2) }) + path('M760,1030 L1240,1030 L1330,1300 L670,1300Z', { fill: '#f0c878', opacity: 0.16 })
+  + K.glow(1000, 820, 360, C.candle, 0.18);
+const rainStops = (x0) => (e) => { const R = [[x0 - 50, 520], [x0 + 80, 470], [x0 + 10, 430], [x0 + 120, 560], [x0 - 100, 480]]; return R.map(([x, y]) => line(x, y - 30, x - 4, y + 10, { stroke: '#dfeaf4', 'stroke-width': 2.4, opacity: 0.9 }) + circle(x - 4, y + 12, 3, { fill: '#e9f3fa' })).join(''); };
+// the front door, swung open towards us (drawn on the page, hinged on the doorway's left edge)
+const DOORLEAF = path('M350,26 L292,8 L292,934 L350,914Z', { fill: '#2f4a33', ...K.bl(2) }) + path('M344,90 L300,74 L300,440 L344,450Z M344,510 L300,506 L300,880 L344,860Z', { fill: '#294230', ...K.bl(1.4) }) + circle(306, 676, 6, { fill: '#c9a24a', ...K.bl(1) });
+// Harry stands on the page (our side of the door); the panel is the open doorway, with the witch in the rain beyond it
+ep.multi(940, [
+  { x: 0, y: 0, w: 380, h: 940, cutout: true, border: 'none', art: { cam: { x: 190, y: 470, w: 380 }, actors: [DOORLEAF, { def: harry, id: 'harry', x: 150, y: 900, s: 1.25, turn: 0.45, pose: 'stand', expr: 'shock', armB: { sh: 62, el: 25, hand: 'open' } }] } },
+  { x: 350, y: 24, w: 420, h: 892, frame: 'wood', mood: 'night', art: { cam: { x: 1000, y: 640, w: 470 }, bg: STREET, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1000, y: 1060, turn: -0.3, pose: 'stand', expr: 'calm' }], fg: rainStops(1000) } },
+], [cap('Harry opened the door.', 30, 40, { w: 175 }),
+   say('McGonagall', 'Good evening. I understand someone in this house has been asking for an owl.', 560, 170, { w: 300 })]);
+ep.tiles.at(-1).alt = 'Through the open front door: a very tall witch in a pointed hat stands on the rainy doorstep. The rain stops just short of her, as if it had been told not to.';
 ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: DS, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1200, y: 1060, turn: -0.3, pose: 'stand', expr: 'smile' }] },
   [say('McGonagall', 'I\'m afraid you\'ll have to make do with me. Minerva McGonagall, Deputy Headmistress.', 250, 110, { w: 360 })], { mood: 'night' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: DS, blur: 2, actors: [{ def: harry, id: 'harry', x: 800, y: 990, s: 1.12, turn: 0.3, expr: { base: 'awe', eyes: { lookY: -0.6 } } }] },
@@ -64,9 +73,10 @@ ep.panel(520, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: LR(), blur: 2, act
   [say('McGonagall', 'Just "Professor" will do.', 540, 110, { w: 250 })], { mood: 'warm' });
 
 // =============================================================== Wingardium Leviosa
-const sparkTrail = (e) => { const a = e.anchors?.mcgonagall?.handB; if (!a) return ''; return FX.sparkles([[a[0] - 185, a[1] - 95, 16], [a[0] - 105, a[1] - 185, 10], [a[0] + 45, a[1] - 200, 12]], { col: '#fff3b0' }) + path(`M${a[0] - 165},${a[1] - 65} Q${a[0] - 125},${a[1] - 230} ${a[0] + 30},${a[1] - 195}`, { fill: 'none', stroke: '#fff0a8', 'stroke-width': 4, opacity: 0.8, 'stroke-dasharray': '2 10', 'stroke-linecap': 'round' }); };
-ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'waist', dx: -0.45, dy: -0.4 }, bg: LR(), actors: [MCG({ expr: 'focus', pose: 'wandUp', armB: { sh: 128, el: -12, hand: 'hold', under: g({ transform: 'translate(0,10)' }, wand(125, '#4a2e1b')) } })], over: sparkTrail },
-  [shout('McGonagall', '*Wingardium Leviosa.*', 420, 110, { w: 440, size: 34, weight: 400, fixed: true })], { mood: 'warm' });
+// the spell: her wand arm and its trail of sparks rise out over the top of the frame
+const sparkUp = (e) => { const a = e.wa?.mcgonagall?.handB; if (!a) return ''; const [x, y] = a; return FX.sparkles([[x - 95, y - 118, 9], [x - 45, y - 160, 12], [x + 30, y - 146, 8], [x - 112, y - 150, 6]], { col: '#fff3b0' }) + path(`M${x - 72},${y - 112} Q${x - 50},${y - 172} ${x + 22},${y - 145}`, { fill: 'none', stroke: '#fff0a8', 'stroke-width': 3, opacity: 0.85, 'stroke-dasharray': '2 8', 'stroke-linecap': 'round' }); };
+ep.panel(800, { cam: { head: 'mcgonagall', hw: 0.17, hx: 0.62, hy: 0.3 }, bg: LR(), actors: [MCG({ expr: 'focus', pose: 'wandUp', armB: { sh: 160, el: -8, hand: 'hold', under: g({ transform: 'translate(0,10)' }, wand(125, '#4a2e1b')) } }), sparkUp] },
+  [shout('McGonagall', '*Wingardium Leviosa.*', 316, 580, { w: 380, size: 34, weight: 400, fixed: true })], { mood: 'warm', breakout: 'top', ph: 662, panel: { y: 120 } });
 ep.bleed(1300, { cam: { x: 860, y: 560, w: 760 }, bg: LR(),
   actors: [{ def: dad, id: 'dad', x: 760, y: 600, turn: 0.2, pose: 'panic', expr: 'blank', armF: { sh: -60, el: -20, hand: 'open', prop: g({ transform: 'translate(0,30) rotate(160)' }, bookHeld('#43302a', { w: 60, h: 76 })) } }],
   under: (e) => '', over: (e) => FX.sparkles([[e.w * 0.3, e.h * 0.62, 14], [e.w * 0.7, e.h * 0.66, 10], [e.w * 0.55, e.h * 0.72, 12], [e.w * 0.4, e.h * 0.78, 8]], { col: '#fff3b0' }) },
@@ -95,12 +105,12 @@ ep.panel(600, { cam: { on: ['harry'], fr: 'close' }, bg: LR(), blur: 2, actors: 
 
 // =============================================================== the cat
 ep.beat(300, [capC('Professor McGonagall turned into a cat.', 400, 150, { w: 480 })]);
-ep.panel(760, { cam: { x: 1245, y: 830, w: 640 }, bg: LR(),
+ep.panel(760, { cam: { x: 1245, y: 830, w: 640, roll: -5 }, bg: LR(),
   actors: [g({ transform: 'translate(1040,1012) scale(0.95)' }, cat({ col: '#9b7a52', spectacles: true })),
     { def: harry, id: 'harry', x: 1380, y: 1050, s: 1.12, turn: -0.6, pose: 'fallBack', expr: 'horror' },
     g({ transform: 'translate(1390,700) rotate(30)' }, bookHeld('#274060', { w: 60, h: 80 })), g({ transform: 'translate(1300,800) rotate(-40)' }, bookHeld('#7b2433', { w: 50, h: 70 })), g({ transform: 'translate(1560,960) rotate(80)' }, bookHeld('#2f5a40', { w: 50, h: 66 }))],
-  over: (e) => FX.sfxText(e.w * 0.72, e.h * 0.22, 'THWACK', { size: 84, rot: 8 }) },
-  [], { mood: 'warm', alt: 'Where McGonagall stood sits a small tabby cat with spectacle-shaped markings round its eyes. Harry has scrambled backwards over a stack of books and landed hard.' });
+  over: (e) => FX.sfxText(e.w * 0.66, e.h * 0.2, 'THWACK', { size: 84, rot: 8 }) },
+  [], { mood: 'warm', shape: 'slant', slant: -70, alt: 'Where McGonagall stood sits a small tabby cat with spectacle-shaped markings round its eyes. Harry has scrambled backwards over a stack of books and landed hard.' });
 ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'bust', dx: -0.55 }, bg: LR(), actors: [MCG({ expr: { base: 'smile', mouth: { type: 'smirk' } } })] },
   [say('McGonagall', 'I\'m sorry, Mr Potter. I should have warned you.', 440, 100, { w: 470 }),
    cap('Though the corners of her lips were twitching upwards.', 44, 560, { w: 360 })], { mood: 'warm' });
@@ -110,12 +120,14 @@ ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'close', dx: -0.5, dy: -0.05 }, b
   [say('McGonagall', 'It\'s only a Transfiguration. An Animagus transformation, to be exact.', 250, 100, { w: 400 })], { mood: 'warm' });
 
 // the meltdown
-ep.bleed(1540, { cam: { on: ['harry'], fr: 'waist' }, bg: LR(), blur: 3,
+// no frame: Harry's meltdown spills straight onto the page, the burst lines fading out into the paper
+const pageBurst = (cx, cy, r, o = {}) => (e) => { const id = 'pb' + Math.round(cx + cy + r); return `<defs><radialGradient id="${id}g" gradientUnits="userSpaceOnUse" cx="${cx}" cy="${cy}" r="${r}"><stop offset="0.35" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><mask id="${id}m" maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="5000" height="5000"><rect x="-2000" y="-2000" width="5000" height="5000" fill="url(#${id}g)"/></mask></defs>` + g({ mask: `url(#${id}m)` }, FX.burst(e.w, e.h, cx, cy, { col: '#c9922e', op: 0.55, n: 110, ...o })); };
+ep.cutout(1640, { cam: { on: ['harry'], fr: 'full' },
   actors: [{ def: harry, id: 'harry', x: 1380, y: 1050, s: 1.12, turn: -0.1, pose: 'panic', expr: 'rant' }],
-  mid: SCREEN((e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.45, { bg: '#f6e0b0', col: '#c9922e', op: 0.7, n: 110 })) },
-  [shout('Harry', 'You turned into a cat! A *SMALL* cat! You violated Conservation of Energy!', 400, 180, { w: 430, size: 34 }),
-   say('Harry', 'That\'s not just an arbitrary rule, it\'s implied by the form of the quantum Hamiltonian! Rejecting it destroys unitarity and then you get faster-than-light signalling!', 270, 1030, { w: 420, size: 26 }),
-   say('Harry', 'And cats are *complicated!* What about the *neurology?* How can you go on *thinking* using a cat-sized brain?!', 560, 1170, { w: 380, size: 26, tail: null })], { mood: 'warm', alt: 'Harry, arms flailing, has a complete meltdown.' });
+  behind: (e) => pageBurst(e.anchors.harry.head[0], e.anchors.harry.head[1], 660)(e) },
+  [shout('Harry', 'You turned into a cat! A *SMALL* cat! You violated Conservation of Energy!', 400, 168, { w: 430, size: 34 }),
+   say('Harry', 'That\'s not just an arbitrary rule, it\'s implied by the form of the quantum Hamiltonian! Rejecting it destroys unitarity and then you get faster-than-light signalling!', 300, 1140, { w: 500, size: 26, shape: 'box', anchor: 'tc', tail: null }),
+   say('Harry', 'And cats are *complicated!* What about the *neurology?* How can you go on *thinking* using a cat-sized brain?!', 500, 1362, { w: 460, size: 26, shape: 'box', anchor: 'tc', tail: null })], { ph: 800, panel: { y: 290 }, alt: 'Harry, arms flailing, has a complete meltdown.' });
 ep.panel(560, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: LR(), blur: 2, actors: [MCG({ expr: { base: 'calm', mouth: { type: 'line', curve: 0.5 } } })] },
   [say('McGonagall', 'Magic.', 540, 120, { w: 150 })], { mood: 'warm' });
 ep.panel(720, { cam: { on: ['harry'], fr: 'waist', zoom: 0.72, dy: -0.3 }, bg: LR(), actors: [{ def: harry, id: 'harry', x: 1380, y: 1050, s: 1.12, turn: -0.3, pose: 'fists', expr: 'yell' }] },
@@ -124,10 +136,11 @@ ep.panel(600, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: LR(), blur: 2, act
   [say('McGonagall', 'That\'s the first time I\'ve ever been called *that.*', 520, 110, { w: 300 })], { mood: 'warm' });
 
 // physics goes down the drain
-ep.bleed(1250, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#1a2238' }) + FX.physicsDrain(ctx.w, ctx.h, ctx.w * 0.5, ctx.h * 0.55, { n: 22 }),
-  [dark('A blur came over Harry\'s vision as his brain began to comprehend what had just broken.', 400, 120, { w: 560 }),
-   dark('Three thousand years of discovering that the music of the planets was the same tune as a falling apple. That the true laws were universal, with no exceptions anywhere. That the mind was the brain, and the brain was made of neurons.', 400, 1045, { w: 600 })],
-  { bg: C.paper, alt: 'Planets, a falling apple, atoms, a brain and a storm of equations swirl down into a dark drain.' });
+// the panel is the drain itself: a round hole in the page that everything swirls down
+ep.panel(1330, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#1a2238' }) + FX.physicsDrain(ctx.w, ctx.h, ctx.w * 0.5, ctx.h * 0.5, { n: 22 }),
+  [dark('A blur came over Harry\'s vision as his brain began to comprehend what had just broken.', 400, 110, { w: 560 }),
+   dark('Three thousand years of discovering that the music of the planets was the same tune as a falling apple. That the true laws were universal, with no exceptions anywhere. That the mind was the brain, and the brain was made of neurons.', 400, 1162, { w: 600 })],
+  { bg: C.paper, shape: 'circle', ph: 752, panel: { y: 214, x: 24, w: 752 }, overlay: (ctx) => `<defs><radialGradient id="drainrim"><stop offset="0.7" stop-color="#05070e" stop-opacity="0"/><stop offset="1" stop-color="#05070e" stop-opacity="0.75"/></radialGradient></defs>` + rect(0, 0, ctx.w, ctx.h, { fill: 'url(#drainrim)' }), alt: 'Planets, a falling apple, atoms, a brain and a storm of equations swirl down into a dark drain.' });
 ep.beat(380, [capC('And then a woman turned into a cat. So much for all that.', 400, 190, { w: 520 })]);
 
 ep.panel(760, { cam: { on: ['harry'], fr: 'bust', zoom: 0.8, dy: -0.3, dx: -0.5 }, bg: LR(), actors: [{ def: harry, id: 'harry', x: 1380, y: 1050, s: 1.12, turn: -0.35, pose: 'gesture', expr: 'suspicious' }] },
@@ -141,14 +154,19 @@ ep.panel(760, { cam: { on: ['harry'], fr: 'close', dx: 0.4, dy: -0.25 }, bg: LR(
 ep.panel(600, { cam: { head: 'mcgonagall', hw: 0.4, hx: 0.5, hy: 0.52 }, bg: LR(), blur: 2, actors: [MCG({ expr: 'laugh' })] },
   [cap('A choked laugh escaped Professor McGonagall, as if extracted from her by tweezers.', 44, 30, { w: 620 })], { mood: 'warm' });
 
+// a shout-shaped panel: a jagged burst on a squarish (superellipse) outline, so the top stays wide enough for the shout
+const squareBurst = (n = 22, seed = 4, k = 3.2) => (w, h) => { let r = seed; const R = () => ((r = (r * 9301 + 49297) % 233280) / 233280); const pts = []; for (let i = 0; i < n * 2; i++) { const a = (i / (n * 2)) * Math.PI * 2 - Math.PI / 2, c = Math.cos(a), s = Math.sin(a), e = Math.pow(Math.pow(Math.abs(c), k) + Math.pow(Math.abs(s), k), -1 / k), m = i % 2 === 0 ? 1 : 0.86 + R() * 0.04; pts.push([w / 2 + c * e * (w / 2) * m, h / 2 + s * e * (h / 2) * m]); } return 'M' + pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' L') + 'Z'; };
 // =============================================================== his condition
 ep.panel(760, { cam: { on: ['dad', 'mcgonagall'], fr: 'bust', dy: -1.1 }, bg: LR(), actors: [DAD({ expr: 'worried', pose: 'gesture' }), MCG({ expr: 'suspicious', turn: -0.5 })] },
   [say('Dad', 'Hold on a moment, Harry. Remember why you haven\'t been going to school? What about your *condition?*', 290, 110, { w: 460 }),
    say('McGonagall', 'His condition? What\'s this?', 590, 330, { w: 260 })], { mood: 'warm' });
 const sleepClock = (ctx) => {
   const cx = ctx.w / 2, cy = ctx.h * 0.575, r = Math.min(ctx.w, ctx.h) * 0.32;
-  let out = rect(0, 0, ctx.w, ctx.h, { fill: '#f3ead3' });
-  out += circle(cx, cy, r, { fill: '#fbf5e6', stroke: C.ink, 'stroke-width': 4 });
+  // a sheet of ruled notepaper (the panel is torn from Harry's notebook)
+  let out = rect(0, 0, ctx.w, ctx.h, { fill: '#fbf6e8' });
+  for (let y = 70; y < ctx.h; y += 46) out += line(0, y, ctx.w, y, { stroke: '#9fb4cc', 'stroke-width': 1.4, opacity: 0.55 });
+  out += line(64, 0, 64, ctx.h, { stroke: '#d98b8b', 'stroke-width': 1.6, opacity: 0.6 });
+  out += circle(cx, cy, r, { fill: '#fdfaf1', stroke: C.ink, 'stroke-width': 4 });
   for (let i = 0; i < 12; i++) { const a = (i / 12) * Math.PI * 2 - Math.PI / 2; out += text(cx + Math.cos(a) * r * 0.82, cy + Math.sin(a) * r * 0.82 + 10, String(i === 0 ? 12 : i), { 'font-family': 'IM Fell English', 'font-size': 30, 'text-anchor': 'middle', fill: C.ink }); }
   const marks = [10, 12, 2, 4, 6];
   marks.forEach((h, i) => { const a = ((h % 12) / 12) * Math.PI * 2 - Math.PI / 2; const x = cx + Math.cos(a) * r * 0.55, y = cy + Math.sin(a) * r * 0.55; out += circle(x, y, 34, { fill: '#2f4f86', opacity: 0.2 + i * 0.15 }) + text(x, y + 11, ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'][i], { 'font-family': 'Caveat', 'font-size': 32, 'text-anchor': 'middle', fill: '#2d2a4a', 'font-weight': 700 }); });
@@ -157,7 +175,7 @@ const sleepClock = (ctx) => {
 };
 ep.panel(840, sleepClock,
   [say('Harry', 'I don\'t sleep right. My sleep cycle is twenty-six hours long. I go to sleep two hours later, every day.', 400, 90, { w: 520, who: 'Harry', tail: null }),
-   note('10, 12, 2, 4… all the way round the clock', 400, 775, { w: 600, size: 34 })], { alt: 'A clock diagram: Harry\'s bedtime creeps two hours later every day, all the way round the dial.' });
+   note('10, 12, 2, 4… all the way round the clock', 400, 775, { w: 600, size: 34 })], { shape: 'torn', frame: 'paper', seed: 11, tear: 12, rotate: -1.2, shadow: true, alt: 'A clock diagram: Harry\'s bedtime creeps two hours later every day, all the way round the dial.' });
 ep.panel(860, { cam: { on: ['harry', 'mum'], fr: 'bust', dy: -1.0 }, bg: LR(), actors: [MUM({ expr: 'smile', x: 1250 }), HAR({ expr: 'unimpressed', x: 1480 })] },
   [say('Harry', 'That\'s why I haven\'t been going to a normal school.', 560, 90, { w: 300, tail: [555, 480] }),
    say('Mum', '*One* of the reasons.', 170, 215, { w: 220, tail: 'mum' })], { mood: 'warm' });
@@ -167,19 +185,21 @@ ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 0.8 }, bg: LR(), acto
    say('McGonagall', 'No. I\'m sure this won\'t be a problem—I\'ll find a solution *in time.*', 530, 440, { w: 340 })], { mood: 'warm' });
 ep.panel(600, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: LR(), blur: 2, actors: [MCG({ expr: 'suspicious' })] },
   [say('McGonagall', 'Now. What are these *other* reasons?', 540, 110, { w: 280 })], { mood: 'warm' });
-ep.panel(940, { cam: { on: ['harry'], fr: 'waist', zoom: 0.72, dx: -0.95, dy: 0.1 }, bg: LR(), actors: [HAR({ expr: 'determined', pose: 'handsHips', turn: -0.3 })] },
+// no frame: Harry plants himself on the page, hands on hips, to make his declaration
+ep.cutout(940, { cam: { head: 'harry', hw: 0.56, hx: 0.52, hy: 0.25 }, actors: [HAR({ expr: 'determined', pose: 'handsHips', turn: -0.3 })] },
   [say('Harry', 'I am a conscientious objector to child conscription,', 250, 110, { w: 360, fixed: true }),
-   say('Harry', 'on grounds that I should not have to suffer for a disintegrating school system\'s failure to provide teachers or study materials of even minimally adequate quality.', 246, 590, { w: 320, fixed: true, shape: 'box' })], { mood: 'warm' });
+   say('Harry', 'on grounds that I should not have to suffer for a disintegrating school system\'s failure to provide teachers or study materials of even minimally adequate quality.', 246, 630, { w: 320, fixed: true, shape: 'box' })], { ph: 900, panel: { x: 380, w: 420, y: 20 } });
 ep.panel(700, { cam: { on: ['dad', 'mum'], fr: 'bust', padX: 1.1, dy: -0.6 }, bg: LR(), actors: [DAD({ expr: 'laugh', x: 900 }), MUM({ expr: 'laugh', x: 1150 })] },
   [say('Dad', 'Oh! Is *that* why you bit a maths teacher in third year?', 250, 90, { w: 330 })], { mood: 'warm' });
-ep.panel(680, { cam: { on: ['harry'], fr: 'close', dy: -0.12, zoom: 0.88 }, bg: LR(), blur: 2, actors: [HAR({ expr: 'rant', turn: -0.1 })], mid: SCREEN((e) => FX.burst(e.w, e.h, e.w / 2, e.h / 2, { col: '#e8b4a0', op: 0.5 })) },
-  [shout('Harry', 'SHE DIDN\'T KNOW WHAT A LOGARITHM WAS!', 400, 84, { w: 400, size: 38, anchor: 'tc', fixed: true })], { mood: 'warm' });
+ep.panel(780, { cam: { on: ['harry'], fr: 'close', dy: -0.3, zoom: 0.85 }, bg: LR(), blur: 2, actors: [HAR({ expr: 'rant', turn: -0.1 })], mid: SCREEN((e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.6, { col: '#e8b4a0', op: 0.5 })) },
+  [shout('Harry', 'SHE DIDN\'T KNOW WHAT A LOGARITHM WAS!', 400, 128, { w: 380, size: 38, anchor: 'tc', fixed: true })], { mood: 'warm', shape: squareBurst(22, 4) });
 // flashback gag
 const teacher = makeExtra(7, { female: true, muggle: true, old: false, hairStyle: 'bun' });
 const classroom = () => rect(-500, -500, 3000, 3000, { fill: '#cdb68a' }) + rect(250, 250, 800, 380, { fill: '#2f4a3a', stroke: '#4a2e1b', 'stroke-width': 18 }) + text(420, 420, 'log₁₀ 100 = ?', { 'font-family': 'Caveat', 'font-size': 60, fill: '#efe6cf' }) + rect(-500, 900, 3000, 600, { fill: '#9a7a52' });
-ep.panel(760, { cam: { x: 700, y: 650, w: 820 }, bg: classroom,
+// the memory has no frame: it fades in and out of the page
+ep.bleed(820, { cam: { x: 700, y: 650, w: 860 }, bg: classroom,
   actors: [{ def: teacher, id: 'teacher', x: 820, y: 1010, turn: 0.2, pose: 'armsUp', expr: 'horror' }, { def: harry, id: 'kid', x: 900, y: 1040, s: 0.62, turn: -0.6, pose: 'hug', expr: 'angry', lean: 20 }] },
-  [cap('Age seven.', 44, 34, { w: 180 }), note('chomp', 670, 600, { size: 50, rot: -10 })], { mood: 'sepia', overlay: (ctx) => FX.memoryEdge(ctx.w, ctx.h), alt: 'Memory: a tiny seven-year-old Harry clamped onto a teacher\'s ankle beneath a blackboard.' });
+  [cap('Age seven.', 44, 60, { w: 180 }), note('chomp', 670, 640, { size: 50, rot: -10 })], { mood: 'sepia', overlay: (ctx) => FX.memoryEdge(ctx.w, ctx.h), alt: 'Memory: a tiny seven-year-old Harry clamped onto a teacher\'s ankle beneath a blackboard.' });
 ep.panel(900, { cam: { x: 1025, y: 395, w: 590 }, bg: LR(), actors: [DAD({ expr: 'smug', x: 900 }), MUM({ expr: 'smile', x: 1150 })] },
   [say('Mum', 'Of course. Biting her was a very mature response to that.', 600, 100, { w: 300 }),
    say('Dad', 'A well-considered policy for addressing the problem of teachers who don\'t understand logarithms.', 225, 325, { w: 370 })], { mood: 'warm' });
@@ -189,8 +209,9 @@ ep.panel(700, { cam: { on: ['mum'], fr: 'close', dy: -0.1 }, bg: LR(), blur: 2, 
   [say('Mum', 'I know. You bite *one* maths teacher, and they never let you forget it, do they?', 270, 100, { w: 380 })], { mood: 'warm' });
 ep.panel(700, { cam: { on: ['harry', 'mcgonagall'], fr: 'bust', dy: 0.35 }, bg: LR(), actors: [MCG({ expr: 'twitch', x: 1150, turn: 0.3 }), HAR({ expr: 'cross', pose: 'point', x: 1420, turn: -0.5 })] },
   [say('Harry', 'There! You see what I have to deal with?', 560, 90, { w: 280 })], { mood: 'warm' });
-ep.panel(620, { cam: { on: ['mum'], fr: 'full' }, bg: GDX(), actors: [{ def: mum, id: 'mum', x: 360, y: 1000, turn: 0.6, pose: 'run', expr: 'laugh' }] },
-  [say('Mum', 'Excuse me!', 632, 80, { w: 200, fixed: true, tail: 'mum' })], { mood: 'dusk', alt: 'Mum flees out of the back door.', over: undefined });
+// Mum bolts so fast she runs right out of the panel
+ep.panel(620, { cam: { on: ['mum'], fr: 'full', dx: -2.7 }, bg: GDX(), actors: [{ def: mum, id: 'mum', x: 360, y: 1000, turn: 0.6, pose: 'run', expr: 'laugh' }] },
+  [say('Mum', 'Excuse me!', 330, 90, { w: 200, fixed: true, tail: 'mum' })], { breakout: 'right', w: 600, panel: { grain: false }, alt: 'Mum flees out of the back door, so fast she runs out of the panel.' });
 function GDX() { return () => O.garden(); }
 ep.beat(360, [], { over: (t) => FX.sfxText(330, 170, 'HAHAHAHA', { size: 90, rot: -6, fill: '#f6e3b0' }) + FX.sfxText(520, 290, 'HAHAHA', { size: 60, rot: 4, fill: '#f6e3b0' }) });
 
@@ -208,16 +229,19 @@ ep.panel(800, { cam: { on: ['harry'], fr: 'bust', dy: -0.45 }, bg: LR(), actors:
 ep.panel(820, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 0.7, dy: 0.25 }, bg: LR(), blur: 2, actors: [MCG({ expr: { base: 'calm', eyes: { open: 0.6 } } })] },
   [say('McGonagall', 'Rest assured, Mr Potter, Hogwarts is quite capable of teaching the basics.', 530, 110, { w: 420 }),
    say('McGonagall', 'And I suspect that if I leave you alone for two months with your schoolbooks, even without a wand, I will return to this house to find…', 570, 520, { w: 290, fixed: true })], { mood: 'warm' });
-ep.bleed(900, (ctx) => {
+// what McGonagall imagines, in a cloud of (purple) smoke
+ep.panel(1000, (ctx) => {
   const w = ctx.w, h = ctx.h;
-  let out = `<defs><linearGradient id="zsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a2a5a"/><stop offset="0.6" stop-color="#e8773a"/><stop offset="1" stop-color="#f3c66f"/></linearGradient></defs>` + rect(0, 0, w, h, { fill: 'url(#zsky)' });
-  for (let i = 0; i < 9; i++) out += rect(i * 95 - 10, h * 0.55 - (i % 3) * 40, 70, 200 + (i % 3) * 40, { fill: '#3a2a3a', opacity: 0.7 });
-  out += rect(0, h * 0.72, w, h * 0.3, { fill: '#6b4a3a' });
-  out += g({ transform: `translate(${w * 0.5},${h * 0.7})` }, FX.crater(420));
-  out += g({ transform: `translate(${w * 0.25},${h * 0.9}) scale(0.9)` }, FX.zebra()) + g({ transform: `translate(${w * 0.75},${h * 0.86}) scale(0.7)` }, FX.zebra({ flip: true })) + g({ transform: `translate(${w * 0.55},${h * 0.97}) scale(1.1)` }, FX.zebra());
+  let out = `<defs><linearGradient id="zsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a2a5a"/><stop offset="0.55" stop-color="#e8773a"/><stop offset="1" stop-color="#f3c66f"/></linearGradient></defs>` + rect(0, 0, w, h, { fill: 'url(#zsky)' });
+  for (let i = 0; i < 9; i++) out += rect(i * 95 - 10, h * 0.3 - (i % 3) * 40, 70, 220 + (i % 3) * 40, { fill: '#3a2a3a', opacity: 0.7 });
+  out += rect(0, h * 0.54, w, h * 0.5, { fill: '#6b4a3a' });
+  // the purple smoke billows up and fills the sky
+  out += [[0.5, 0.36, 110], [0.4, 0.25, 120], [0.58, 0.16, 140], [0.44, 0.07, 150], [0.66, 0.3, 90]].map(([x, y, r], i) => circle(w * x, h * y, r, { fill: '#8a5fb0', opacity: 0.5 - i * 0.05, filter: 'url(#blur3)' })).join('');
+  out += g({ transform: `translate(${w * 0.5},${h * 0.52})` }, FX.crater(440));
+  out += g({ transform: `translate(${w * 0.27},${h * 0.76}) scale(0.95)` }, FX.zebra()) + g({ transform: `translate(${w * 0.78},${h * 0.68}) scale(0.72)` }, FX.zebra({ flip: true })) + g({ transform: `translate(${w * 0.7},${h * 0.9}) scale(1.05)` }, FX.zebra({ flip: true }));
   return out;
-}, [dark('…a crater billowing purple smoke, a depopulated city surrounding it, and a plague of flaming zebras terrorising what remains of England.', 400, 110, { w: 600 })],
-  { alt: 'Imagined: a smoking purple crater, a ruined skyline, and a stampede of zebras on fire.' });
+}, [dark('…a crater billowing purple smoke, a depopulated city surrounding it, and a plague of flaming zebras terrorising what remains of England.', 400, 96, { w: 600 })],
+  { shape: 'cloud', seed: 6, ph: 810, panel: { y: 176 }, alt: 'Imagined, in a cloud of smoke: a smoking purple crater, a ruined skyline, and a stampede of zebras on fire.' });
 ep.panel(660, { cam: { on: ['dad', 'mum'], fr: 'bust', padX: 1.1, zoom: 0.85, dx: 0.5, dy: -0.5 }, bg: LR(), actors: [DAD({ expr: 'calm', x: 900, turn: 0.2 }), MUM({ expr: 'calm', x: 1150, turn: -0.2 })],
   over: (e) => FX.sfxText(e.anchors.dad.head[0] + e.anchors.dad.hr * 1.65, e.anchors.dad.head[1] + e.anchors.dad.hr * 0.5, 'nod', { size: 46, rot: -8 }) + FX.sfxText(e.anchors.mum.head[0] + e.anchors.mum.hr * 1.65, e.anchors.mum.head[1] + e.anchors.mum.hr * 0.5, 'nod', { size: 46, rot: 8 }) },
   [cap('Harry\'s mother and father nodded in perfect unison.', 44, 30, { w: 320 })], { mood: 'warm' });
