@@ -59,11 +59,9 @@ ep.panel(1160, FLOW,
    FT('If not: try the next pair. Send that back.', 590, 530, 290),
    FT('When I\'m done: go back in time an hour, and drop off the paper.', 400, 750, 540),
    cap('So the only possible *stable* time loop was the one in which the paper already held the answer. If this worked, he could find any answer that was hard to find but easy to check. Combination locks. Passwords. Maybe even the entrance to the Chamber of Secrets.', 44, 860, { w: 620, fixed: true })], { shape: 'torn', frame: 'paper', seed: 18, tear: 12, alt: 'Harry\'s pencil algorithm for a time loop that factors a number, drawn as a flowchart on a torn-out notebook page.' });
-// trembling-hand marks around a hand anchor
-// SHAKE('handF', dx) centres the marks on Harry's hand (shifted dx); SHAKE(x, y) on a fixed point
-const SHAKE = (x0, y0, k = 1) => (e) => { let x = x0, y = y0; if (typeof x0 === 'string') { const p = e.anchors.harry[x0]; x = p[0] + (y0 || 0); y = p[1]; } return SHAKE0(x, y, k); };
-const SHAKE0 = (x, y, k = 1) => [-1, 1].map((d) => path(`M${x + d * 120 * k},${y - 40 * k} q${d * 14 * k},${34 * k} 0,${68 * k} M${x + d * 146 * k},${y - 24 * k} q${d * 10 * k},${22 * k} 0,${44 * k}`, { fill: 'none', stroke: '#f3e6c4', 'stroke-width': 4, 'stroke-linecap': 'round' })).join('');
-ep.panel(760, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: () => CS.trunkCavern(), blur: 2, actors: [{ def: harryRaven, id: 'harry', x: 900, y: 900, s: 1.1, turn: 0.1, pose: 'hold', expr: 'hopeful', armF: { sh: 30, el: 90, hand: 'hold', prop: P2.slip(70, 50, {}) } }], over: SHAKE('handF') },
+// trembling-hand marks either side of Harry's near hand
+const SHAKE = (e) => { const [x, y] = e.anchors.harry.handF; return [-1, 1].map((d) => path(`M${x + d * 120},${y - 40} q${d * 14},34 0,68 M${x + d * 146},${y - 24} q${d * 10},22 0,44`, { fill: 'none', stroke: '#f3e6c4', 'stroke-width': 4, 'stroke-linecap': 'round' })).join(''); };
+ep.panel(760, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: () => CS.trunkCavern(), blur: 2, actors: [{ def: harryRaven, id: 'harry', x: 900, y: 900, s: 1.1, turn: 0.1, pose: 'hold', expr: 'hopeful', armF: { sh: 30, el: 90, hand: 'hold', prop: P2.slip(70, 50, {}) } }], over: SHAKE },
   [cap('Harry took the paper in his trembling hand, and unfolded it.', 44, 30, { w: 560, fixed: true })], { mood: 'candle' });
 // the note itself, no frame: it lies on the reader's own page
 ep.cutout(640, () => g({ transform: 'translate(400,320) rotate(-3)' },
@@ -71,7 +69,7 @@ ep.cutout(640, () => g({ transform: 'translate(400,320) rotate(-3)' },
     P2.slip(580, 392, {})),
   [{ type: 'plain', text: 'DO NOT MESS WITH TIME', x: 400, y: 320, w: 520, fixed: true, font: "'Caveat', cursive", size: 76, color: '#2d2a4a', rot: -5 }],
   { x: 0, y: 0, w: 800, ph: 640, alt: 'The paper says, in slightly shaky handwriting: DO NOT MESS WITH TIME.' });
-ep.panel(1150, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: () => CS.trunkCavern(), blur: 2, actors: [{ def: harryRaven, id: 'harry', x: 900, y: 900, s: 1.1, turn: 0.1, pose: 'hold', expr: 'horror', armF: { sh: 30, el: 80, hand: 'hold', prop: g({ transform: 'rotate(-6)' }, P2.slip(60, 40, {})) } }], over: SHAKE('handF') },
+ep.panel(1150, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: () => CS.trunkCavern(), blur: 2, actors: [{ def: harryRaven, id: 'harry', x: 900, y: 900, s: 1.1, turn: 0.1, pose: 'hold', expr: 'horror', armF: { sh: 30, el: 80, hand: 'hold', prop: g({ transform: 'rotate(-6)' }, P2.slip(60, 40, {})) } }], over: SHAKE },
   [cap('Harry wrote down "DO NOT MESS WITH TIME" on a fresh piece of paper, in slightly shaky handwriting, and folded it neatly.', 44, 30, { w: 620, fixed: true }),
    cap('He resolved not to do any more truly brilliant experiments on Time until he was at least fifteen. To the best of his knowledge, it had been the scariest experimental result in the entire history of science.', 44, 900, { w: 620, fixed: true })], { mood: 'candle' });
 
@@ -97,14 +95,13 @@ ep.panel(800, { cam: { x: 1220, y: 520, w: 1250 }, bg: FIELD(), actors: [HO({ po
   [say('Hooch', 'When I blow my whistle, you kick off from the ground, hard. Rise a few feet, then come straight back down by leaning forwards slightly. On my whistle—three—two—', 420, 60, { anchor: 'tc', w: 520, fixed: true })], { mood: 'day' });
 // Neville
 // motion ghosts: faint copies of a spinning actor at other angles
-const GHOST = (a, rots, op = 0.22) => rots.map((r) => () => g({ opacity: op }, String(place(a.def, { ...a, rot: r })))) ;
+const GHOST = (a, rots, op = 0.22) => rots.map((r) => () => g({ opacity: op }, String(place(a.def, { ...a, rot: r }))));
 ep.bleed(1200, { cam: { x: 1100, y: -160, w: 900 }, bg: FIELD(), actors: [...GHOST({ def: nevilleHuff, x: 1100, y: -120, s: 1.05, turn: 0.2, pose: 'panic', expr: 'horror' }, [-30, 110]), { def: nevilleHuff, id: 'neville', x: 1100, y: -120, s: 1.05, turn: 0.2, pose: 'panic', expr: 'horror', rot: 40 }, CS.broomUnder('neville', 60, 60, 0.9)], behind: (e) => FX.speedLines(e.w, e.h, { n: 34, angle: 90 }) },
   [cap('One of the brooms shot skyward, before the whistle. Its rider was screaming. Of horror, not delight. He was spinning at an awful rate, and they only got glimpses of his white face…', 44, 40, { w: 620, fixed: true }),
    shout('Neville', 'Aaaaaaaa!', 230, 820, { w: 260, fixed: true })], { alt: 'A broom rockets skyward with a small boy clinging to it, spinning.' });
-ep.panel(1000, { cam: { on: ['harry'], fr: 'waist', dy: -0.2 }, bg: FIELD(), actors: [{ def: harryRaven, id: 'harry', x: 1500, y: 960, s: 1.1, turn: 0, pose: 'wandUp', expr: 'yell', armB: WAND_UP() }], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.3, { n: 20, op: 0.15 }) },
+ep.panel(1000, { cam: { on: ['harry'], fr: 'waist', dy: -0.2 }, bg: FIELD(), actors: [{ def: harryRaven, id: 'harry', x: 1500, y: 960, s: 1.1, turn: 0, pose: 'wandUp', expr: 'yell', armB: { sh: 160, el: 0, hand: 'hold', prop: wand(110) } }], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.3, { n: 20, op: 0.15 }) },
   [inner('Harry', '*If there is any hidden power in me, let it reveal itself now!*', 400, 64, { anchor: 'tc', w: 460, fixed: true }),
    shout('Harry', '*Wingardium Leviosa!*', 400, 940, { anchor: 'bc', w: 360, fixed: true })], { mood: 'day' });
-function WAND_UP() { return { sh: 160, el: 0, hand: 'hold', prop: wand(110) }; }
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: FIELD(), blur: 3, actors: [{ def: harryRaven, id: 'harry', x: 1500, y: 960, s: 1.1, turn: 0, expr: 'horror' }] },
   [cap('The spell failed. He could feel it fail.', 44, 30, { w: 420, fixed: true })], { mood: 'day' });
 const LOOSEBROOM = (x, y, r = 8) => () => g({ transform: `translate(${x},${y}) rotate(${r})` }, P2.broom(0.75));
@@ -189,7 +186,7 @@ ep.panel(1000, { cam: { on: ['draco'], fr: 'bust', dy: -0.5 }, bg: FIELD(), blur
    whisper('Draco', 'Potter, *what?*', 590, 820, { w: 220, fixed: true }),
    cap('(which he somehow did without moving his lips)', 44, 966, { anchor: 'bl', w: 440, fixed: true })], { mood: 'day' });
 // a Remembrall resting on an actor's open hand (drawn over the hand so it reads)
-const ONHAND = (id, k = 0.5, side = 'handB', o = {}) => (e) => { const a = e.anchors[id]; if (!a) return ''; const h = a[side]; return g({ transform: `translate(${h[0]},${h[1] - a.hr * 0.3})` }, P2.remembrall(k * a.hr / 40, o)); };
+const ONHAND = (id) => (e) => { const a = e.anchors[id], h = a.handB; return g({ transform: `translate(${h[0]},${h[1] - a.hr * 0.3})` }, P2.remembrall(0.5 * a.hr / 40)); };
 const DUEL = (g0, h0) => [{ def: goyle, id: 'goyle', x: 2100, y: 960, s: 1.12, turn: -0.5, ...g0 }, { def: harryRaven, id: 'harry', x: 1570, y: 960, s: 1.1, turn: 0.4, ...h0 }];
 ep.panel(1150, { cam: { x: 1835, y: 770, w: 720 }, bg: FIELD(), actors: DUEL({ pose: 'stand', expr: 'confused', armB: { sh: 100, el: 40, hand: 'hold', prop: P2.remembrall(1.4) } }, { pose: 'stand', expr: 'determined', armB: { sh: 100, el: 70, hand: 'point' } }) },
   [cap('Harry stopped a few paces from Mr Goyle, far enough that they couldn\'t reach each other. Slowly, deliberately, he sheathed his wand. Everyone backed away.', 44, 30, { w: 620, fixed: true }),
@@ -248,17 +245,17 @@ const MO = () => CS.mcgonagallOffice();
 const MCG = (o = {}) => ({ def: mcgonagall, id: 'mcgonagall', x: 1000, y: 900, turn: 0.25, pose: 'sit', seat: 190, expr: 'angry', ...o });
 const DESK = () => CS.mcgDesk(1000, 960);
 const HP = (o = {}) => ({ def: harryRaven, id: 'harry', x: 1450, y: 1040, s: 1.1, turn: -0.4, pose: 'stand', expr: 'neutral', ...o });
-ep.panel(1150, { cam: { on: ['mcgonagall'], fr: 'waist', dy: -0.9 }, bg: MO, actors: [MCG({ expr: 'yell', pose: 'fists', seat: undefined, y: 960 }), DESK] },
+ep.panel(1150, { cam: { on: ['mcgonagall'], fr: 'waist', dy: -0.9 }, bg: MO, actors: [MCG({ expr: 'yell', pose: 'fists', y: 960 }), DESK] },
   [shout('McGonagall', '*You are not to use the Time-Turner in that fashion, Mr Potter!* Is the concept of secrecy not something that you understand?', 400, 100, { anchor: 'tc', w: 480, size: 30, fixed: true })], { mood: 'warm' });
 ep.panel(1100, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: MO, blur: 2, actors: [HP({ expr: 'rant', pose: 'gesture' })] },
   [say('Harry', 'Professor, Slytherin was pointing their wands at Hufflepuff, Gryffindor at Slytherin, some *idiot* called wands out in Ravenclaw, and I had maybe five seconds to keep the whole thing from blowing sky-high!', 400, 56, { anchor: 'tc', w: 540, fixed: true }),
    say('Harry', 'They don\'t *know* how I did it! They just think I can do really weird things by snapping my fingers! I *had to do it!*', 400, 1040, { anchor: 'bc', w: 540, fixed: true })], { mood: 'warm' });
-ep.panel(1500, { cam: { head: 'mcgonagall', hw: 0.25, hx: 0.4, hy: 0.54 }, bg: MO, actors: [MCG({ expr: 'yell', pose: 'point', seat: undefined, y: 960, turn: 0.4 }), DESK] },
+ep.panel(1500, { cam: { head: 'mcgonagall', hw: 0.25, hx: 0.4, hy: 0.54 }, bg: MO, actors: [MCG({ expr: 'yell', pose: 'point', y: 960, turn: 0.4 }), DESK] },
   [shout('McGonagall', 'You did *not* have to do it! All you needed was to get this *anonymous Slytherin* back on the ground! You could have challenged him to a game of Exploding Snap!', 400, 125, { anchor: 'tc', w: 450, fixed: true }),
    shout('McGonagall', 'But no, you had to use the Time-Turner in a flagrant and unnecessary manner!', 400, 1395, { anchor: 'bc', w: 450, fixed: true })], { mood: 'warm' });
 ep.panel(880, { cam: { on: ['harry'], fr: 'bust', dy: -0.4 }, bg: MO, blur: 2, actors: [HP({ expr: 'rant', pose: 'gesture' })] },
   [say('Harry', 'It was all I could think of! They wouldn\'t have accepted chess, and if I\'d picked arm-wrestling I would have lost!', 400, 50, { anchor: 'tc', w: 520, fixed: true })], { mood: 'warm' });
-ep.bleed(1000, { cam: { on: ['mcgonagall'], fr: 'close', dy: -0.3 }, bg: MO, blur: 3, actors: [MCG({ expr: 'yell', pose: 'fists', seat: undefined, y: 960, turn: 0.05 })], under: (e) => rect(0, 0, e.w, e.h, { fill: '#7b2433' }), behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.66, { n: 40, op: 0.7, inner: e.w * 0.36, col: '#f6e2b8' }) },
+ep.bleed(1000, { cam: { on: ['mcgonagall'], fr: 'close', dy: -0.3 }, bg: MO, blur: 3, actors: [MCG({ expr: 'yell', pose: 'fists', y: 960, turn: 0.05 })], under: (e) => rect(0, 0, e.w, e.h, { fill: '#7b2433' }), behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.66, { n: 40, op: 0.7, inner: e.w * 0.36, col: '#f6e2b8' }) },
   [shout('McGonagall', '*Then you should have picked WRESTLING!*', 400, 82, { anchor: 'tc', w: 500, size: 56, fixed: true })], { alt: 'McGonagall, at full volume.' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'close', dy: 0.1 }, bg: MO, blur: 3, actors: [HP({ expr: 'blank' })] },
   [say('Harry', 'But then I\'d have *lost*—', 400, 64, { anchor: 'tc', w: 320, fixed: true }),
@@ -286,7 +283,7 @@ ep.panel(1000, MBUST({ expr: 'worried', pose: 'sit' }, { dy: -0.2 }),
   [say('McGonagall', 'I\'m sure, Mr Potter, that it is nothing of importance. Surely you heard the Headmaster tell the students not to bother us with any unimportant complaints about the Defence Professor?', 400, 50, { anchor: 'tc', w: 560, fixed: true })], { mood: 'warm' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'bust', dy: -0.5 }, bg: MO, blur: 2, actors: [HP({ expr: 'determined', pose: 'gesture' })] },
   [say('Harry', 'But this could *be* important. Yesterday I got this sudden sense of doom when—', 400, 50, { anchor: 'tc', w: 520, fixed: true })], { mood: 'warm' });
-ep.bleed(1050, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.7 }, bg: MO, blur: 2, actors: [MCG({ expr: 'yell', pose: 'raiseHand', seat: undefined, y: 960, turn: 0.1 })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.66, { n: 30, op: 0.55, inner: e.w * 0.36, col: '#f6e2b8' }) },
+ep.bleed(1050, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.7 }, bg: MO, blur: 2, actors: [MCG({ expr: 'yell', pose: 'raiseHand', y: 960, turn: 0.1 })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.66, { n: 30, op: 0.55, inner: e.w * 0.36, col: '#f6e2b8' }) },
   [shout('McGonagall', 'Mr Potter! I have a sense of doom as well! And my sense of doom is suggesting that *you must not finish that sentence!*', 400, 104, { anchor: 'tc', w: 470, fixed: true })], { alt: 'McGonagall cuts him off.' });
 ep.panel(1360, { cam: { on: ['harry'], fr: 'bust', dy: -1.3 }, bg: MO, blur: 2, actors: [HP({ expr: 'rant', pose: 'gesture' })] },
   [shout('Harry', '*This isn\'t like you!* That seems *unbelievably* irresponsible! If there\'s some kind of jinx on the Defence position, if you already *know* something\'s going to go wrong, I\'d think you\'d all be on your toes—', 400, 140, { anchor: 'tc', w: 460, fixed: true })], { mood: 'warm' });
@@ -297,14 +294,14 @@ ep.panel(1250, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.95 }, bg: MO, blu
 ep.panel(1100, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: MO, blur: 2, actors: [HP({ expr: 'think', pose: 'chin' })] },
   [say('Harry', 'I see. So in other words, whatever\'s wrong with Professor Quirrell, you desperately don\'t want to know about it until the end of the school year.', 400, 64, { anchor: 'tc', w: 560, fixed: true }),
    say('Harry', 'And since it\'s currently September, he could assassinate the Prime Minister on live television and get away with it, so far as you\'re concerned.', 400, 1040, { anchor: 'bc', w: 560, fixed: true })], { mood: 'warm' });
-ep.panel(1150, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.95 }, bg: MO, blur: 2, actors: [MCG({ expr: 'stern', pose: 'lecture', seat: undefined, y: 960, turn: 0.15 })] },
+ep.panel(1150, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.95 }, bg: MO, blur: 2, actors: [MCG({ expr: 'stern', pose: 'lecture', y: 960, turn: 0.15 })] },
   [say('McGonagall', 'You, and you alone, have reported this mysterious sense of doom. You, and you alone, are a chaos magnet the likes of which I have never seen. I can well foresee that I am fated to sit in the Headmaster\'s office and hear some hilarious tale about Professor Quirrell in which you, and you alone, play a starring role. After which there will be no choice but to fire him.', 400, 44, { anchor: 'tc', w: 620, shape: 'box', fixed: true })], { mood: 'warm' });
 ep.panel(1000, { cam: { on: ['mcgonagall'], fr: 'close', dy: -0.55 }, bg: MO, blur: 3, actors: [MCG({ expr: 'menace', seat: undefined, y: 960, turn: 0.05 })], over: (e) => rect(0, 0, e.w, e.h, { fill: '#3a0a10', opacity: 0.25 }) },
   [say('McGonagall', 'And if this sad event takes place any earlier than the Ides of May, I will string you up by the gates of Hogwarts with your own intestines and pour *fire beetles* into your nose. *Now* do you understand me completely?', 400, 44, { anchor: 'tc', w: 600, shape: 'box', fixed: true })], { mood: 'warm', alt: 'McGonagall, very close, very calm, very menacing.' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'close', dy: 0.15 }, bg: MO, blur: 3, actors: [HP({ expr: { base: 'shock', eyes: { open: 1.2 } } })] },
   [cap('Harry nodded, eyes very wide. Then, after a second:', 44, 30, { w: 660, fixed: true }),
    say('Harry', 'What do I get if I can make it happen on the last day of the school year?', 400, 700, { anchor: 'bc', w: 460, fixed: true })], { mood: 'warm' });
-ep.panel(1050, { cam: { head: 'mcgonagall', hw: 0.4, hx: 0.36, hy: 0.56 }, bg: MO, actors: [MCG({ expr: 'yell', pose: 'point', seat: undefined, y: 960, turn: 0.3 })], fg: DESK, under: (e) => rect(0, 0, e.w, e.h, { fill: '#2a1a10' }), behind: (e) => FX.burst(e.w, e.h, e.w * 0.42, e.h * 0.6, { n: 44, op: 0.55, inner: e.w * 0.3, col: '#f6e2b8' }) },
+ep.panel(1050, { cam: { head: 'mcgonagall', hw: 0.4, hx: 0.36, hy: 0.56 }, bg: MO, actors: [MCG({ expr: 'yell', pose: 'point', y: 960, turn: 0.3 })], fg: DESK, under: (e) => rect(0, 0, e.w, e.h, { fill: '#2a1a10' }), behind: (e) => FX.burst(e.w, e.h, e.w * 0.42, e.h * 0.6, { n: 44, op: 0.55, inner: e.w * 0.3, col: '#f6e2b8' }) },
   [shout('McGonagall', '*GET OUT OF MY OFFICE!*', 334, 80, { anchor: 'tc', w: 390, size: 58, fixed: true })], { w: 580, breakout: 'right', alt: 'McGonagall points at the door, her arm thrust right out of the panel.' });
 ep.end();
 export default ep;
