@@ -219,3 +219,47 @@ export function makeExtra(seed, o = {}) {
     hat: o.witchHat ? ({ rx, ry, s, lw }) => path(`M${-rx * 1.4},${-ry * 0.7} Q0,${-ry * 0.5} ${rx * 1.4},${-ry * 0.75} Q${rx * 0.7},${-ry * 0.95} ${rx * 0.5},${-ry * 0.95} Q${rx * 0.2 + s * 30},${-ry * 2.2} ${-rx * 0.1 + s * 40},${-ry * 2.4} Q${-rx * 0.3},${-ry * 1.6} ${-rx * 0.6},${-ry * 0.95} Q${-rx * 0.9},${-ry * 0.9} ${-rx * 1.4},${-ry * 0.7}Z`, { fill: shade(robe, -0.3), stroke: C.ink, 'stroke-width': lw }) : undefined,
   };
 }
+
+// ---------- Leaky Cauldron & Diagon Alley walk-ons
+export const tom = {
+  name: 'tom', body: { ...ADULT_M, waistW: 120, hipW: 110, headRx: 54, headRy: 56 }, skin: '#ecc3a3', skinShade: '#cc987a',
+  head: { jaw: 0.7, chin: 0.98, cheek: 0.98 },
+  face: adultFace({ eye: { color: '#5b4632', w: 16, h: 13, iris: 6 }, brow: { color: '#b9b4ab', len: 22, w: 5 }, nose: 'button', wrinkles: true, cheekLines: true, rosy: true }),
+  hair: { color: '#c9c4bb', ...H.bald({ fringe: true, wisps: true }) },
+  outfit: { top: '#6a5a44', legs: '#3a302a', shoes: '#2a1a12', sleeve: '#efe6d2', collar: '#efe6d2', hem: false,
+    over: ({ T, sw, hw, B, lw, S }) => { const a = T(-sw * 0.55, -B.torsoH * 0.62), b = T(sw * 0.5, -B.torsoH * 0.62), c = T(hw * 0.7, 30), d = T(-hw * 0.75, 30); return path(`M${a[0]},${a[1]} L${b[0]},${b[1]} L${c[0]},${c[1]} L${d[0]},${d[1]}Z`, S('#e8dcc2')); } },
+};
+export const doris = {
+  name: 'doris', body: { ...ADULT_F, torsoH: 130, legU: 90, legL: 86, headRx: 48, headRy: 52, waistW: 84, hipW: 96 }, skin: '#efcfb8', skinShade: '#cfa98f',
+  head: { jaw: 0.62, chin: 1.0, cheek: 0.92 },
+  face: adultFace({ eye: { color: '#5d7fa3', w: 17, h: 14, iris: 6.5 }, brow: { color: '#d8d4cc', len: 18, w: 3.2 }, nose: 'button', wrinkles: true, cheekLines: true, lips: '#b8676b', rosy: true }),
+  hair: { color: '#dcd7ce', ...H.curlyShort('doris') },
+  outfit: { top: '#6b4a6e', robe: true, robeColor: '#6b4a6e', robeLen: 0.98, wideSleeves: true, cuffW: 1.6, legs: '#2a2630', shoes: '#2a1a12', robeTrim: '#4a2e4c' },
+  hat: ({ rx, ry, s, lw }) => path(`M${-rx * 1.4},${-ry * 0.62} Q0,${-ry * 0.4} ${rx * 1.4},${-ry * 0.66} Q${rx * 0.6},${-ry * 0.92} ${rx * 0.5},${-ry * 0.92} Q${rx * 0.3 + s * 20},${-ry * 1.7} ${-rx * 0.4 + s * 30},${-ry * 1.9} Q${-rx * 0.3},${-ry * 1.3} ${-rx * 0.6},${-ry * 0.92} Q${-rx},${-ry * 0.88} ${-rx * 1.4},${-ry * 0.62}Z`, { fill: '#4a2e4c', stroke: C.ink, 'stroke-width': lw }) + path(`M${-rx * 0.55},${-ry * 0.92} Q0,${-ry * 0.8} ${rx * 0.5},${-ry * 0.94}`, { fill: 'none', stroke: '#c9a24a', 'stroke-width': lw * 2 }),
+  hatTop: 0.6,
+};
+// Professor Quirinus Quirrell: young, pale, prematurely balding, twitching. (Keep him slightly *off*.)
+export const quirrell = {
+  name: 'quirrell', body: { ...ADULT_M, shoulderW: 104, waistW: 82, hipW: 86, headRx: 47, headRy: 58, armW: 23, legW: 27 }, skin: '#ecdfd2', skinShade: '#c8b6a6',
+  head: { jaw: 0.5, chin: 1.06, cheek: 0.84 },
+  face: adultFace({ eye: { color: '#7d8fa3', w: 20, h: 17, iris: 6.5, lash: 1.3 }, brow: { color: '#6b5a48', len: 20, w: 3 }, nose: 'long', noseLen: 23, mouth: { w: 18 }, cheekLines: true }),
+  hair: { color: '#6b5a48', ...H.bald({ fringe: true, wisps: true }) },
+  outfit: { top: '#3b3242', robe: true, robeColor: '#3b3242', robeLen: 1.0, wideSleeves: true, cuffW: 1.9, legs: '#221d26', shoes: '#1d1410', robeTrim: '#56455e', neckline: true },
+};
+// Young James Potter (memory / silhouette): Harry's hair, taller.
+export const james = {
+  name: 'james', body: { ...ADULT_M, waistW: 92, hipW: 90, headRx: 50, headRy: 56 }, skin: '#efcfb3', skinShade: '#d2a98c',
+  head: { jaw: 0.58, chin: 1.0 }, face: adultFace({ eye: { color: '#6a4a2a', w: 20, h: 17, iris: 7.5 }, brow: { color: '#1f1a1f' }, nose: 'long', noseLen: 18 }),
+  hair: { color: C.hairBlack, ...H.messy('james') }, glasses: { r: 15, shape: 'round', frame: 0.9 },
+  outfit: { top: '#5a2a2a', robe: true, robeColor: '#3a2a2a', robeLen: 0.96, wideSleeves: true, legs: '#2a2630', shoes: '#2a1a12' },
+};
+export const lilyAdult = { ...lilyTeen, name: 'lily', body: { ...ADULT_F, headRx: 47, headRy: 54 }, face: adultFace({ eye: { color: '#2f8a4c', w: 23, h: 20, iris: 8.4, lash: 2.0 }, brow: { color: '#8a3319', len: 19, w: 3.4 }, nose: 'button', lips: '#c96a6f', rosy: true }) };
+// The Dark Lord, as he appears in stories: a hooded shape. Only ever drawn as a silhouette in Book One.
+export const darkLord = {
+  name: 'darkLord', body: { ...ADULT_M, torsoH: 190, legU: 130, legL: 124, shoulderW: 110, waistW: 80, hipW: 90, headRx: 46, headRy: 60 }, skin: '#d8d4cc', skinShade: '#aaa49a',
+  head: { jaw: 0.42, chin: 1.1, cheek: 0.8 }, face: adultFace({ eye: { color: '#c41e1e', w: 18, h: 9, iris: 5 }, brow: { color: '#000' }, nose: 'button' }),
+  hair: { color: '#111', ...H.bald() },
+  outfit: { top: '#0b0a0d', robe: true, robeColor: '#0b0a0d', robeLen: 1.05, flare: 1.6, wideSleeves: true, cuffW: 2.4, legs: '#000', shoes: '#000' },
+  hat: ({ rx, ry, s, lw }) => path(`M${-rx * 1.3},${ry * 0.9} Q${-rx * 1.6},${-ry * 1.1} ${s * 20},${-ry * 1.55} Q${rx * 1.6},${-ry * 1.1} ${rx * 1.3},${ry * 0.9} Q${rx * 0.9},${ry * 0.2} ${rx * 0.95},${-ry * 0.4} Q0,${-ry * 1.05} ${-rx * 0.95},${-ry * 0.4} Q${-rx * 0.9},${ry * 0.2} ${-rx * 1.3},${ry * 0.9}Z`, { fill: '#0b0a0d', stroke: '#000', 'stroke-width': lw }),
+};
+Object.assign(CAST, { tom, doris, quirrell, james, lilyAdult, darkLord });

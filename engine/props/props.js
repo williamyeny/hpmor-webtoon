@@ -138,3 +138,7 @@ export function owl(o = {}) {
   if (o.letter) out += g({ transform: 'translate(0,44) scale(0.35)' }, envelope({ back: true }));
   return out;
 }
+
+export function tankard(s = 1) {
+  return g({ transform: `scale(${s})` }, rect(-14, -34, 28, 38, { fill: '#8a8f96', stroke: INK, 'stroke-width': 2, rx: 3 }), path('M14,-26 q14,2 12,14 q-2,8 -12,8', { fill: 'none', stroke: INK, 'stroke-width': 3 }), ellipse(0, -34, 14, 5, { fill: '#f3e6c0', stroke: INK, 'stroke-width': 1.6 }), path('M-8,-28 L-8,0', { stroke: '#c9ced4', 'stroke-width': 3 }));
+}

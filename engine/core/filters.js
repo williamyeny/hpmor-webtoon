@@ -32,6 +32,8 @@ export function baseDefs() {
 <filter id="blur2" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="3.5"/></filter>
 <filter id="blur3" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="7"/></filter>
 <filter id="blur4" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="12"/></filter>
+<filter id="silhouette"><feFlood flood-color="#150b08" result="f"/><feComposite in="f" in2="SourceAlpha" operator="in"/></filter>
+<filter id="silhouetteRed"><feFlood flood-color="#3a0a0a" result="f"/><feComposite in="f" in2="SourceAlpha" operator="in"/></filter>
 <filter id="desat"><feColorMatrix type="saturate" values="0.35"/></filter>
 <filter id="desat2"><feColorMatrix type="saturate" values="0.1"/></filter>
 <filter id="rough" x="-5%" y="-5%" width="110%" height="110%">

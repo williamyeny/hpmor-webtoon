@@ -72,13 +72,55 @@ function resolveRef(ref, panelsA, fallbackAnchor = 'mouth') {
   for (const A of list) if (A && A[id] && A[id][part]) return { p: A[id][part], s: A[id].s || 1, A: A[id] };
   return null;
 }
-function resolveBubbles(bubbles, panelsA) {
-  return (bubbles || []).map((b0) => {
+// rough balloon size estimate (matches stage.js padding closely enough for layout decisions)
+function estSize(b) {
+  const size = b.size || ({ shout: 38, whisper: 26, caption: 29, captionC: 29, inner: 30, cold: 29, hat: 33, note: 36, dark: 30 }[b.type] ?? 31);
+  const cw = size * 0.56;
+  const len = String(b.text || '').replace(/\*+/g, '').length;
+  const maxW = b.w || 330;
+  const lineChars = Math.max(4, Math.floor(maxW / cw));
+  const lines = Math.max(1, Math.ceil(len / lineChars));
+  const w = Math.min(maxW, len * cw) + (['speech', 'shout', 'thought', 'whisper'].includes(b.type || 'speech') ? 64 : 44);
+  const h = lines * size * 1.22 + 50;
+  return { w, h };
+}
+function rectOf(b, sz) {
+  if (b.anchor === 'tl') return { x: b.x, y: b.y, w: sz.w, h: sz.h };
+  return { x: b.x - sz.w / 2, y: b.y - sz.h / 2, w: sz.w, h: sz.h };
+}
+const hitCircle = (r, c) => { const cx = Math.max(r.x, Math.min(c[0], r.x + r.w)), cy = Math.max(r.y, Math.min(c[1], r.y + r.h)); return Math.hypot(cx - c[0], cy - c[1]) < c[2]; };
+const hitRect = (a, b) => a.x < b.x + b.w && b.x < a.x + a.w && a.y < b.y + b.h && b.y < a.y + a.h;
+// Nudge balloons off faces (and off each other). Balloons with fixed:true are left alone.
+function avoidFaces(bubbles, panelsA, W, H) {
+  const heads = [];
+  for (const A of panelsA) for (const id in A || {}) { const a = A[id]; if (a.head && a.hr) heads.push([a.head[0], a.head[1] + a.hr * 0.15, a.hr * 1.02]); }
+  const placed = [];
+  for (const b of bubbles) {
+    if (b.x === undefined || ['sfx', 'plain', 'title', 'note', 'hatBig'].includes(b.type) || b.fixed) { if (b.x !== undefined) placed.push(rectOf(b, estSize(b))); continue; }
+    const sz = estSize(b);
+    const bad = (bb) => { const r = rectOf(bb, sz); if (r.x < 4 || r.x + r.w > W - 4 || r.y < 4 || r.y + r.h > H - 4) return 2; if (heads.some((c) => hitCircle(r, c))) return 1; if (placed.some((p) => hitRect(r, p))) return 1; return 0; };
+    if (bad(b) === 1 && heads.some((c) => hitCircle(rectOf(b, sz), c))) {
+      let best = null;
+      const steps = [];
+      for (let d = 30; d <= 360; d += 30) steps.push([d, 0], [-d, 0], [0, -d], [d, -d * 0.6], [-d, -d * 0.6], [0, d]);
+      for (const [dx, dy] of steps) { const cand = { ...b, x: b.x + dx, y: b.y + dy }; if (!bad(cand)) { best = cand; break; } }
+      if (best) { b.x = best.x; b.y = best.y; }
+    }
+    placed.push(rectOf(b, sz));
+  }
+  return bubbles;
+}
+function resolveBubbles(bubbles, panelsA, W = 800, H = 1000) {
+  const pre = (bubbles || []).map((b0) => {
     const b = { ...b0 };
     if (b.near) {
       const r = resolveRef(b.near, panelsA, 'top');
       if (r) { b.x = r.p[0] + (b.dx ?? 0); b.y = r.p[1] + (b.dy ?? -60); }
     }
+    return b;
+  });
+  avoidFaces(pre, panelsA, W, H);
+  return pre.map((b) => {
     const fix = (t) => {
       if (Array.isArray(t)) return t;
       const r = resolveRef(t, panelsA, 'mouth');
@@ -128,6 +170,6 @@ export function composeTile(tile) {
 ${tile.gutterGrain === false ? '' : `<rect width="${W}" height="${H}" filter="url(#grain)" opacity="0.35" style="mix-blend-mode:multiply"/>`}
 ${under}${panels}${over}
 </svg>`;
-  const bubbles = resolveBubbles(tile.bubbles, panelsA).map(bubbleHTML).join('');
+  const bubbles = resolveBubbles(tile.bubbles, panelsA, W, H).map(bubbleHTML).join('');
   return { W, H, html: `<div id="tile" style="position:relative;width:${W}px;height:${H}px;overflow:hidden">${svg}<svg id="bsvg" width="${W}" height="${H}" style="position:absolute;left:0;top:0;overflow:visible"></svg>${bubbles}</div>` };
 }
