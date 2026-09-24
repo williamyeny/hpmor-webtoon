@@ -1,6 +1,6 @@
 # Story Design — Arc One
 
-This file runs the `STORYTELLING.md` method on the HPMOR opening (source chapters 1–10, plus the start of 12) and records every decision. Later arcs should append their own run of the method below, not overwrite this one.
+This file runs the `storytelling` skill (`.claude/skills/storytelling/SKILL.md`) method on the HPMOR opening (source chapters 1–10, plus the start of 12) and records every decision. Later arcs should append their own run of the method below, not overwrite this one.
 
 ---
 

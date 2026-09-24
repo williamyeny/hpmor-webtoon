@@ -12,4 +12,4 @@ Since HPMOR is quite large, you can only create some of it at a time. Please hea
 
 The final output should be a static website optimized for phone screens, e.g. the panels should scroll vertically and the text should be formatted to be readable. Don't add too much UI, keep the focus on the content. Deploy to my GitHub pages. Constantly commit and push as you work your way through this.
 
-Let's start with the opening arc, the first 10 chapters or so (if you choose to follow HPMOR's chapters). Use `STORYTELLING.md` to help you. I expect you to take very long on this.
+Let's start with the opening arc, the first 10 chapters or so (if you choose to follow HPMOR's chapters). Use the `storytelling` skill (`.claude/skills/storytelling/SKILL.md`) to help you. I expect you to take very long on this.

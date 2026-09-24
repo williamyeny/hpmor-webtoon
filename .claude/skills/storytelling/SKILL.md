@@ -1,3 +1,8 @@
+---
+name: storytelling
+description: The Story Algorithm, a step-by-step method for taking an idea to a finished story in any form (premise, main character, cast, world, ending-first spine, scenes, draft, revision), with every check written in terms of the audience's experience. Use when designing, planning or revising a story, an arc, an episode plan or a scene.
+---
+
 # The Story Algorithm
 
 This is a method for taking a simple idea all the way to a finished story in any form: a screenplay, a novel, a TV series, a short story. The steps never change. What changes is what you feed into them, so two people following it faithfully will end up with completely different stories.
