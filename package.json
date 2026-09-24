@@ -1,9 +1,9 @@
 {
   "name": "hpmor-webtoon",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "render": "node engine/render.mjs",
+    "site": "node engine/build-site.mjs"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +24,7 @@
     "@fontsource/unifrakturmaguntia": "^5.3.0",
     "playwright": "^1.63.0",
     "sharp": "^0.35.4"
-  }
+  },
+  "type": "module",
+  "private": true
 }
