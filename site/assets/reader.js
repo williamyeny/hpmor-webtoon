@@ -21,9 +21,9 @@
     var s2=load(),E=s2.eps||{},cur=null;
     // "currently reading" = the last episode opened, if unfinished; otherwise the first unread after it
     if(s2.last&&E[s2.last]&&!E[s2.last].done)cur=s2.last;
-    list.forEach(function(li){var id=li.dataset.id,e=E[id],tag=li.querySelector('.st');
-      if(e&&e.done){li.classList.add('read');tag.textContent='✓ Read';}
-      else if(id===cur){li.classList.add('reading');tag.textContent='Reading';var b=li.querySelector('.bar2');if(b){b.hidden=false;b.firstChild.style.width=Math.round((e.p||0)*100)+'%';}}
+    list.forEach(function(li){var id=li.dataset.id,e=E[id];
+      if(e&&e.done){li.classList.add('read');}
+      else if(id===cur){li.classList.add('reading');var b=li.querySelector('.bar2');if(b){b.hidden=false;var pc=Math.max(4,Math.round((e.p||0)*100))+'%';b.querySelector('i').style.width=pc;b.querySelector('b').style.left=pc;}}
     });
     var btn=document.getElementById('continue');
     if(btn){var target=cur,label='Continue';

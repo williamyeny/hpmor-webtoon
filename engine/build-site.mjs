@@ -94,16 +94,16 @@ ol.eps .n{flex:none;width:2.4rem;height:2.4rem;font-size:1rem}
 ol.eps .tt{font-family:'IM Fell English',serif;font-size:1.2rem;line-height:1.2}
 ol.eps .bb{font-style:italic;color:var(--ink2);font-size:.95rem;line-height:1.3;margin-top:.15rem}
 ol.eps .soon{opacity:.45}
-ol.eps .st{display:block;width:fit-content;font-family:'IM Fell English SC',serif;font-size:.78rem;letter-spacing:.3px;margin:0 0 .2rem;padding:.02rem .5rem;border-radius:999px}
-ol.eps .st:empty{display:none}
 ol.eps li.read .n{background:radial-gradient(circle at 35% 30%,#a08868,#6b5840 70%);color:#f1e6cc}
 ol.eps li.read .tt,ol.eps li.read .bb{opacity:.6}
-ol.eps li.read .st{background:#d9ccae;color:#5a4a36}
 ol.eps li.reading .n{box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--gold),0 1px 3px rgba(0,0,0,.4)}
-ol.eps li.reading .st{background:var(--gold);color:#2a1b14}
 ol.eps li.reading{background:linear-gradient(90deg,rgba(201,162,74,.16),transparent)}
-ol.eps .bar2{height:3px;background:#dccfae;border-radius:2px;margin-top:.35rem;overflow:hidden}
-ol.eps .bar2 i{display:block;height:100%;background:var(--gold)}
+ol.eps .bar2{position:relative;height:18px;margin-top:.9rem}
+ol.eps .bar2:before{content:'';position:absolute;left:0;right:0;top:11px;border-top:2px dotted #c9b48a}
+ol.eps .bar2 i{position:absolute;left:0;top:9px;height:5px;border-radius:3px;background:#2a1b14;box-shadow:0 0 0 .5px #2a1b14;clip-path:polygon(0 30%,100% 0,100% 100%,0 70%)}
+ol.eps .bar2 b{position:absolute;top:-17px;margin-left:-6px;width:34px;height:34px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M6%2036%20Q10%2022%2022%2012%20Q30%205%2038%202%20Q34%2010%2028%2017%20Q20%2027%208%2034Z%22%20fill%3D%22%23f4ecd6%22%20stroke%3D%22%235a4032%22%20stroke-width%3D%221.6%22/%3E%3Cpath%20d%3D%22M6%2036%20L26%2013%22%20stroke%3D%22%238a7458%22%20stroke-width%3D%221.2%22/%3E%3Cpath%20d%3D%22M4%2038%20L8%2033%22%20stroke%3D%22%232a1b14%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E") no-repeat center/contain;transform-origin:10% 95%;animation:scribe 1.6s ease-in-out infinite}
+@keyframes scribe{0%,100%{transform:rotate(0)}50%{transform:rotate(-9deg)}}
+@media (prefers-reduced-motion:reduce){ol.eps .bar2 b{animation:none}}
 ol.eps .soon .n{background:#9b8b6e}
 .foot{font-size:.85rem;color:#b9a888;text-align:center;padding:1.5rem 1rem 3rem;max-width:var(--col);margin:0 auto;line-height:1.5}
 .foot a{color:#d8c7a2}
@@ -133,9 +133,9 @@ const READER_JS = `
     var s2=load(),E=s2.eps||{},cur=null;
     // "currently reading" = the last episode opened, if unfinished; otherwise the first unread after it
     if(s2.last&&E[s2.last]&&!E[s2.last].done)cur=s2.last;
-    list.forEach(function(li){var id=li.dataset.id,e=E[id],tag=li.querySelector('.st');
-      if(e&&e.done){li.classList.add('read');tag.textContent='\u2713 Read';}
-      else if(id===cur){li.classList.add('reading');tag.textContent='Reading';var b=li.querySelector('.bar2');if(b){b.hidden=false;b.firstChild.style.width=Math.round((e.p||0)*100)+'%';}}
+    list.forEach(function(li){var id=li.dataset.id,e=E[id];
+      if(e&&e.done){li.classList.add('read');}
+      else if(id===cur){li.classList.add('reading');var b=li.querySelector('.bar2');if(b){b.hidden=false;var pc=Math.max(4,Math.round((e.p||0)*100))+'%';b.querySelector('i').style.width=pc;b.querySelector('b').style.left=pc;}}
     });
     var btn=document.getElementById('continue');
     if(btn){var target=cur,label='Continue';
@@ -190,7 +190,7 @@ const hasCover = fs.existsSync(path.join(SITE, 'cover.webp'));
 const list = EPISODES.map((e) => {
   const ok = ready.find((r) => r.id === e.id);
   const inner = `${seal(e.number)}<span><div class="tt">${esc(e.title)}</div><div class="bb">${esc(e.blurb)}</div></span>`;
-  const inner2 = `${seal(e.number)}<span><span class="st"></span><div class="tt">${esc(e.title)}</div><div class="bb">${esc(e.blurb)}</div><div class="bar2" hidden><i></i></div></span>`;
+  const inner2 = `${seal(e.number)}<span><div class="tt">${esc(e.title)}</div><div class="bb">${esc(e.blurb)}</div><div class="bar2" hidden><i></i><b></b></div></span>`;
   return ok ? `<li data-id="${e.id}"><a href="${e.id}/">${inner2}</a></li>` : `<li><span class="soon">${inner}</span></li>`;
 }).join('\n');
 const index = `${head(SERIES.title, '', '<link rel="preload" as="image" href="cover.webp">')}
