@@ -207,3 +207,239 @@ of the frame, the Defence Professor looking back at him.
 
 Vertical-scroll webtoon, ~40–60 tiles per episode, 12 episodes this arc. Each episode opens a
 question and ends on a turn, a laugh-button, or a cliffhanger. See `EPISODES.md`.
+
+---
+---
+
+# Story Design — Book Two: *The First Week* (Ep 13–23)
+
+Source: HPMOR ch. 12 (the feast notices Book One skipped) through ch. 20. One week of school,
+Sunday night to Friday evening. Ch. 21 onward (Draco's blood-purity experiments) is its own arc and
+is left for Book Three: it has a different engine (a conspiracy of two) and a different core
+relationship (Harry ↔ Draco).
+
+## Step 1 — Seed and feeling
+
+**Seed:** Give the cleverest, angriest eleven-year-old in Britain a time machine on his first day
+of school, and put four very different grown-ups in charge of him.
+
+**The feeling:** *The rush of getting away with everything, and the vertigo underneath it.* Every
+day Harry wins bigger, and every win makes the reader a little more nervous. The feeling to protect
+is the one on the stairs after the Snape fight: *he won, and he is terrified of himself.*
+
+## Step 2–3 — Premise
+
+Candidates (abridged): the Time-Turner as a heist comedy; Harry vs. Snape as a war story; the week
+told as a mystery ("who is playing the Game?"); Quirrell as a Pied Piper story told from
+McGonagall's side; Hermione vs. Harry as a rivalry comedy; Harry as a tiny revolutionary against
+the school system; "four teachers, four answers" as a portmanteau.
+
+**Chosen:** *A boy who has never lost an argument gets a time machine on his first day at
+Hogwarts and wins every fight for a week, until winning costs him the time machine, the trust of
+the one adult he loves, and very nearly his future. The only person who can teach him to lose is
+the most dangerous teacher in the castle.*
+
+Contradiction: the lesson that saves him (humility) comes from the person who most wants him to
+be a Dark Lord. Stranger test: "a teacher who has his own students beat up the hero, and it's the
+kindest thing anyone does for him all week?" Engine test: the Time-Turner and his temper generate
+trouble on their own. Room: five days, each worse. Distance: not canon (canon Harry never wins
+anything against Snape).
+
+## Step 4 — The question
+
+Book One asked *"If you're sure you're the smartest person in the room, who gets to tell you
+no?"* Book Two narrows it to a question with real disagreement:
+
+**"Is refusing to back down strength, or weakness?"**
+
+- *Case for Harry (the side the book argues against, made as strong as possible):* Snape has
+  tortured children for years and every adult let him. Harry refuses to back down, escalates, and
+  *wins*: half of Hogwarts is safe by lunchtime. Nobody who "knew how to lose" ever achieved that.
+- *Case against:* he bet his education, his Time-Turner, McGonagall's trust and (unknown to
+  anyone but the reader) the war against Voldemort on a ten-point slap. He could not stop. The
+  Dark Lord could not stop either.
+
+The Book's answer, shown through action: **strength is being *able* to lose, and choosing when.**
+Harry learns to say "I lose", and then, in the last scene, to say "You win" and mean it with
+delight. Cost: he learns it from Quirrell (see Step 10).
+
+## Step 5 — Promise
+
+Primary: **laughter** (the funniest stretch of HPMOR: the Game, the time-machine meltdown,
+"Heh", the chicken). Secondary: **dread** (a week that is visibly spiralling) and, at the very
+end, **awe** (the stars).
+
+**Promise:** *You laugh all week, you wince every time he wins, and you close the book in tears
+under a sky full of stars, trusting the one person you shouldn't.*
+
+**Must-haves** (and delivery):
+
+| Must-have | Delivery |
+|---|---|
+| First morning at Hogwarts | The Game: waking alone to a note in his own handwriting. |
+| Getting lost in a magic castle | Moving stairs, a portrait who says the Game is life. |
+| The Time-Turner | "You're giving me a time machine to treat my sleep disorder." Full meltdown splash, echoing Ep 2's cat. |
+| First real spell | Ma-ha-su: the first time he feels like a wizard. |
+| A great Defence teacher | Quirrell's Battle Magic speech (applause from one boy). |
+| Flying lesson | Neville falls; Harry's healer kit (Ep 6 payoff); the Remembrall. |
+| Meeting Dumbledore properly | Heh, the Cloak, the rock, the chicken. |
+| The evil Potions master | The class that ends with a boy vanishing from a cupboard. |
+| The hero vs. the Headmaster | "What is this Nazgûl doing in my Fellowship?" |
+| A phoenix | The chicken returns as Fawkes. The song on the stairs. |
+| The hero's humbling | Learning to lose. |
+| A wonder | The stars. |
+
+## Step 6 — Harry, this Book
+
+- **Wants (visible):** to *win* the week: keep up with Hermione, master magic, beat the Game,
+  beat Snape, keep his Time-Turner. Tracked by points: the Game's points, House points, Quirrell
+  points, his own "anti-Dark-Lord programme" points.
+- **Wants (underneath):** to prove he isn't what the Hat said. Every good deed this week is
+  partly a performance for an audience (Quirrell spots this in Ep 23).
+- **Believes:** if you're right, you should never back down. Backing down is letting the wrong
+  person win.
+- **Why:** Book One. Every adult who ever overruled him was wrong (the maths teacher, Dad, the
+  Oxford adults). He has never lost to someone who was right.
+- **Good at:** lateral thinking, bluffing, speed, and now: time travel.
+- **Flaw:** *intent to win.* Named aloud by McGonagall ("Then you should have picked wrestling!")
+  and by Quirrell ("you do not know how to lose").
+- **Would never:** hurt a child. (Which is why the Snape fight is so dangerous: he's doing the
+  wrong thing for the right reason.)
+- **Early defining choice:** Monday morning. Surrounded by five older Slytherins, he pulls Neville
+  out and takes his place: "Hello. I'm the Boy-Who-Lived." Brave, kind, and much too rough; Neville
+  says so.
+
+## Step 7 — Pressure
+
+- **Time.** One week, day captions on every episode. The Time-Turner makes every day longer and
+  Harry more tired; McGonagall notices before he does.
+- **Four adults, four ways of saying no:** McGonagall (rules and trust), Dumbledore (madness that
+  might be wisdom), Snape (pure dominance), Quirrell (understanding him better than he does).
+- **His own cold side**, now given something to *do*: in Potions it wins.
+- **Hermione**, the rival he can't beat at magic.
+- **The Defence jinx and the sense of doom** (Quirrell). The reader should feel a hum of wrongness
+  under every warm Quirrell scene.
+
+## Step 8 — Cast as a system (Book Two)
+
+Every character is a different answer to *"can you lose?"*
+
+| Character | Wants | Can they lose? | Job |
+|---|---|---|---|
+| **Hermione** | To be the best, fairly | **Yes, gracefully.** Refuses to hex anyone and accepts the point loss with her shoulders straight. | The mirror who already has the virtue Harry lacks. Rival, and the voice that screams "Harry, don't!" |
+| **Neville** | To stop being the victim | He *only* loses. | Shows the cost of being unable to fight back. His verdict on Harry ("really cool some day, but right now, you're not") is the Book's thesis in one line. |
+| **Draco** | Power; Harry's friendship; his father's pride | **No.** Asks to be made "fully as strong" as Quirrell. | Tempter turned would-be advisor; can't stop Goyle because it would look weak. |
+| **McGonagall** | Harry safe; the school's rules intact | **Yes, and it costs her.** Confesses in front of Dumbledore ("I'm sorry, Albus"), then makes herself the villain to take the Time-Turner. | Core relationship. Gives Harry the time machine (trust) and takes it back (love). |
+| **Dumbledore** | ??? (the pattern) | **Yes, laughing.** Loses to Harry and hands him the win ("Now the hero wins, of course"). | Trickster. Every absurd thing he does looks like madness and plays, on a reread, as foresight. |
+| **Snape** | To dominate; to be left alone | **No**, in his own room. | The antagonist of the week. A bully who can't lose, pushing a boy who can't lose. |
+| **Quirrell** | Harry | **He teaches losing.** He can do it perfectly, because he knows it's a performance. | Mentor and tempter. The adult who finally *understands* Harry. The reader should love him. |
+| **Sprout, Flitwick, Hooch, Ernie** | Their students safe | — | Texture: the good ordinary grown-ups and kids that make the castle feel real. |
+| **Fred & George** | Chaos, cake | — | Chorus. Their cake with 51 candles bookends Friday. |
+
+**Core relationship arcs, crossing:** *Harry ↔ McGonagall* goes down (gift → anger → she confesses
+→ she takes it back → he sobs) while *Harry ↔ Quirrell* goes up (doom → "intent to kill" → the
+lesson → the stars). By the last page Harry has chosen his first mentor, and Dumbledore tells him
+what it will cost.
+
+## Step 9 — World rules that matter this Book
+
+- **The Time-Turner:** at most six hours back, six uses a day; you cannot change the past; you
+  should not be seen by yourself. *Established in Ep 15 before it's used to win anything.*
+- **Transfiguration is not permanent.** Never into liquid, gas, food, money; never a living thing;
+  never on the Defence Professor's say-so. (Shown in full because it pays off at the end of HPMOR.)
+- **House points and Quirrell points.** Points are the currency of the week; the Game made them
+  absurd, the Book makes them matter (51 lost, 51 given back).
+- **Legilimency exists** (the Hat warned him). Snape and Dumbledore can read minds.
+- **Wizards resist impacts** (a boy can fall off a broom and just break his wrist).
+- **The Defence position is jinxed** — nobody lasts a year.
+
+## Step 10 — The ending
+
+**Central question:** *Can anyone at Hogwarts handle Harry Potter?* Four adults try.
+
+Endings considered:
+1. McGonagall wins him back (the expected, warm ending).
+2. Harry beats every adult and stays unbeaten (a power-fantasy ending, and a disaster).
+3. He wins against Snape but loses the Time-Turner, McGonagall, and his friends (wins what he
+   wanted, loses what he needed).
+4. He loses to Quirrell and gains the thing he needed: the ability to lose.
+5. **(Chosen, HPMOR's, sharpened)** 3 *then* 4: the Snape victory costs him the Time-Turner and
+   McGonagall's approval; Quirrell teaches him to lose in front of the whole year, the school
+   applauds, and then shows him the stars. Harry chooses him. Dumbledore warns: *"You will lose
+   him."*
+
+**The answer to the theme, through action:** on the mat Harry says *"I lose"* and means it; in
+the last scene, told that Quirrell sneaked into NASA to protect the Pioneer plaque, he says *"You
+win"* with pure delight. Losing has become something he can do, even happily.
+
+**The cost:** the person who taught him is, as the rereader knows, Voldemort; the lesson itself is
+genuine. The Time-Turner is locked from 9 to midnight. McGonagall cries alone in her office.
+
+**Final image (mirror):** Book Two opens with Harry alone in an empty dorm, reading
+"*You have lost the game.*" It closes with Harry saying "You win," and then a silent
+epilogue: Pioneer 11 drifting out of the Solar System, its golden plaque catching starlight, with a
+faint glow that shouldn't be there. (The plaque is a Horcrux in HPMOR; see LOOSE_ENDS.) Across the
+two Books, the stars run: empty garden sky (Ep 1) → the enchanted ceiling (Ep 12) → the real stars,
+shown by the wrong teacher (Ep 23).
+
+## Step 11 — Plants the ending needs
+
+| Payoff | Plant |
+|---|---|
+| Quirrell's lesson in losing lands | Ep 18: McGonagall, "Then you should have picked wrestling!" "But then I'd have *lost*—" Ep 16: Hermione refuses to fire and loses a point with dignity. |
+| "You have no patience" freezes Harry | Ep 22: the dojo story, told minutes earlier. |
+| Harry's cold wins the Snape fight and loses the week | Ep 14: the cold with the Slytherins (and Neville's verdict). Ep 17: "intent to kill". |
+| McGonagall takes the Time-Turner | Ep 15: "you must *not* tell"; Ep 18: "One more display like that…" |
+| Fawkes, the phoenix, calms Harry | Ep 19: Fawkes the *chicken* burns (the joke is the plant). |
+| "Nazgûl in my Fellowship" | Ep 19: Dumbledore's Tolkien shelf and "*You cannot pass!*". |
+| Quirrell's star spell hits hard | Ep 1 garden sky; Ep 9 the Moon; Ep 12 the ceiling; Ep 20 Quirrell says he approves of *space travel* only. |
+| "You will lose him" | The Defence jinx (Ep 13); McGonagall's "sense of doom" (Ep 18). |
+| Dumbledore reads Harry's mind | Ep 13: Dumbledore knows about the Quidditch rant. Ep 12: the Hat's warning. |
+
+**Double-meaning scenes for the reread** (each works once as written, and again once you know
+Quirrell is Voldemort): the sense of doom; "I wanted to be the next Dark Lord when *I* was a young
+Slytherin"; the list of Dark Lord mistakes; the dojo massacre told in the third person; *"The Dark
+Lord did not win that day"*; "You have no patience"; "I resolved my parental issues to my own
+satisfaction"; the Pioneer plaque.
+
+## Step 12 — The opening
+
+- **Hook:** Ep 13 opens with Dumbledore reading Harry's mind in front of the whole school (the
+  Quidditch line). Then: morning, an empty dorm, a note in his own handwriting that he doesn't
+  remember writing.
+- **Before:** a week ago he'd never done magic; today his wand has never been used.
+- **Mirror:** "You have lost the game."
+- **Disrupt:** "Please play the game."
+
+## Step 13 — The ladder (one rung per day)
+
+1. **Sunday night** — Dumbledore knows things. *(Warning shot.)*
+2. **Monday (the Game)** — beat the Game → *loses* ("minus infinity"), but he defends Neville,
+   and it costs him Neville's respect. Wins a time machine. *(Rise, with a sting.)*
+3. **Monday (classes)** — beat Hermione → *loses*, badly, at actual magic. Declares war. *(Fall,
+   played for laughs.)*
+4. **Wednesday** — be taken seriously by the new teacher → he is, as a killer. *(A rise that
+   feels like a fall.)* **Turn near the middle:** Quirrell sees him exactly. The sense of doom.
+5. **Thursday** — protect Neville's Remembrall → wins with the Time-Turner in public;
+   McGonagall's fury ("intent to win"). Dumbledore's office: trapped, charmed, terrified.
+6. **Friday morning** — survive Snape → the cold takes over and *wins everything*, then loses
+   the Time-Turner and McGonagall's approval. **Low point**, caused by his own flaw.
+7. **Friday afternoon** — the lesson: he *chooses* to lose in front of everyone. **Turn toward
+   the climax.**
+8. **Friday evening** — the stars; he chooses a mentor; "You win." **Climax as a choice.**
+
+## Step 14 — Who knows what
+
+- **Audience < Harry:** who wrote the Game (Ep 13–14); resolved in Ep 15, when the reader and
+  Harry work it out together.
+- **Audience = Harry, then both ahead:** the Time-Turner rules; the replay of Monday shows us
+  things we saw from the other side.
+- **Audience > Harry:** Quirrell keeps his distance from Harry (he steps away from the door);
+  McGonagall's private "I'm sorry too, Harry"; the Pioneer glow.
+- **Chosen confusion:** the Remembrall glowing red (left open; HPMOR never resolves it outright;
+  see LOOSE_ENDS); Lily's potions book; why Dumbledore keeps Snape.
+
+## Step 15 — Form
+
+Eleven episodes, each opening on a day-and-time caption in the style of ch. 17 ("Thursday. If you
+wanted to be specific, 7:24 on Thursday morning."). See ADAPTATION.md for the per-episode plan.
