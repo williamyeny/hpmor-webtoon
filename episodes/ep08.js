@@ -36,7 +36,7 @@ ep.panel(890, (ctx) => {
   for (let r = 0; r < 4; r++) for (let k = 0; k < 5; k++) { const x = 48 + k * 144, y = h - 40 - r * 136, bw = 132; out += rect(x, y - 124, bw, 124, { fill: mixB(R), stroke: C.ink, 'stroke-width': 3 }) + text(x + bw / 2, y - 54, R.pick(['PHYSICS', 'CHEM.', 'MATHS', 'SCI-FI', 'BIOLOGY', 'HISTORY', 'ECON.']), { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': 26, 'text-anchor': 'middle', fill: '#3a2618' }); }
   return out;
   function mixB(R) { return R.pick(['#b9955e', '#c9a56e', '#a9854e']); }
-}, [cap('Thirty boxes of science books, now sitting in the cavern level of Harry\'s trunk. His father had tried to hide the till displays, but Harry figured he must have spent at least a thousand pounds.', 44, 34, { w: 500, size: 26 })],
+}, [cap('Thirty boxes of science books, now sitting in the cavern level of Harry\'s trunk. His father had tried to hide the till displays, but Harry figured he must have spent at least a thousand pounds.', 44, 30, { w: 600, size: 26 })],
   { alt: 'The cavern under the trunk, stacked with thirty cardboard boxes labelled PHYSICS, MATHS, SCI-FI…' });
 ep.panel(620, { cam: { on: ['harry', 'dad'], fr: 'bust' }, bg: () => O.livingRoom({ letter: false }), actors: [DR({ expr: 'smile', pose: 'stand', armF: undefined }), HR({ expr: 'hopeful', pose: 'stand', armF: undefined })] },
   [say('Harry', 'I\'ll pay you back as soon as I figure out how to convert wizarding gold into Muggle money.', 250, 100, { w: 340 }),
@@ -75,8 +75,8 @@ ep.panel(900, { cam: { on: ['dad', 'harry'], fr: 'bust', padX: 1.2, dy: -0.5 }, 
 
 // the barrier
 ep.panel(860, { cam: { x: 1190, y: 630, w: 1080 }, bg: KX, actors: [HK({ x: 1020, turn: 0.4, expr: 'suspicious', pose: 'think' }), DK({ x: 800, turn: 0.4 })] },
-  [say('Dad', 'So… do *you* see a Platform Nine-and-Three-Quarters?', 230, 100, { w: 380 }),
-   cap('There was a Platform Nine and a Platform Ten, and nothing between them but a thin, unpromising barrier wall.', 400, 590, { w: 360 })], { mood: 'day' });
+  [say('Dad', 'So… do *you* see a Platform Nine-and-Three-Quarters?', 260, 100, { w: 440 }),
+   cap('There was a Platform Nine and a Platform Ten, and nothing between them but a thin, unpromising barrier wall.', 372, 290, { w: 360 })], { mood: 'day' });
 ep.panel(940, { cam: { on: ['harry', 'dad'], fr: 'waist', dy: -1.3 }, bg: KX, actors: [HK({ x: 1020, turn: -0.4, expr: 'yell', pose: 'fists' }), DK({ x: 800, turn: 0.4, pose: 'gesture' })] },
   [say('Dad', 'Hm. Maybe look for a trail of mixed footprints leading somewhere that doesn\'t make sense—', 260, 110, { w: 440 }),
    shout('Harry', '*Dad!* Stop that! I haven\'t even *tried* to figure it out on my own!', 540, 360, { w: 340, size: 28 })], { mood: 'day' });
@@ -105,16 +105,16 @@ ep.panel(860, { cam: { x: 1480, y: 740, w: 1080 }, bg: KX, actors: [...WZ({ moll
    cap('Four boys, a red-headed girl, and an owl all swung round and froze in place.', 44, 730, { w: 560 })], { mood: 'day', alt: 'A family of fiery redheads (a plump mother, identical twin teenage boys, a tall skinny boy, a small girl, and a white owl) all freeze and stare at Harry.' });
 ep.panel(620, { cam: { on: ['harry'], fr: 'bust' }, bg: KX, blur: 2, actors: [HK({ x: 1100, expr: 'rant', pose: 'shrug', turn: 0.4 })] },
   [shout('Harry', 'Oh, *come on!* I bought a sweatband and everything!', 400, 125, { w: 440, size: 32, fixed: true })], { mood: 'day' });
-ep.panel(620, { cam: { on: ['fred', 'george'], fr: 'bust' }, bg: KX, blur: 2, actors: WZ({ fred: { expr: 'smug' }, george: { expr: 'smug' } }).slice(1, 3) },
-  [say('Fred', 'Your picture was in the newspapers.', 260, 100, { w: 280 })], { mood: 'day' });
+ep.panel(700, { cam: { on: ['fred', 'george'], fr: 'bust', dy: -0.4 }, bg: KX, blur: 2, actors: WZ({ fred: { expr: 'smug' }, george: { expr: 'smug' } }).slice(1, 3) },
+  [say('Fred', 'Your picture was in the newspapers.', 270, 112, { w: 280, fixed: true })], { mood: 'day' });
 ep.panel(1040, { cam: { on: ['dad', 'harry'], fr: 'waist', dy: -1.9 }, bg: KX, actors: [DK({ x: 880, turn: 0.4, expr: 'suspicious', pose: 'walk' }), HK({ x: 1100, turn: -0.4, expr: 'flustered', pose: 'shrug' })] },
   [say('Dad', 'Yes, how *do* you know who he is?', 250, 108, { w: 400, fixed: true }),
-   shout('Harry', '*Dad!* It\'s not like that! It\'s \'cause I defeated the Dark Lord You-Know-Who when I was one year old!', 455, 335, { w: 480, size: 26, fixed: true }),
+   shout('Harry', '*Dad!* It\'s not like that! It\'s \'cause I defeated the Dark Lord You-Know-Who when I was one year old!', 432, 335, { w: 460, size: 26, fixed: true }),
    say('Dad', '*What?*', 140, 535, { w: 160, fixed: true })], { mood: 'day' });
 ep.panel(640, { cam: { on: ['mum'], fr: 'close', zoom: 0.9, dy: 0.1 }, bg: KX, blur: 3, actors: [MK({ x: 700, expr: 'embarrassed', turn: 0.4 })] },
   [say('Mum', 'Ah… Michael dear, there are certain things I thought it best not to bother you with until now.', 400, 125, { w: 540, fixed: true })], { mood: 'day' });
 ep.panel(1260, { cam: { on: ['molly', 'harry'], fr: 'waist', dy: -2.6 }, bg: KX, actors: [...WZ().slice(0, 1), HK({ x: 1280, turn: 0.4, expr: 'pleading', pose: 'gesture' })] },
-  [say('Harry', 'Excuse me, but it would be\n*extremely* helpful if you could\ntell me how to get to\nPlatform Nine-and-Three-Quarters\n*right now.*', 392, 180, { w: 540, size: 28, fixed: true }),
+  [say('Harry', 'Excuse me, but it would be\n*extremely* helpful if you could\ntell me how to get to\nPlatform Nine-and-Three-Quarters\n*right now.*', 392, 180, { w: 540, size: 28, fixed: true, tail: [180, 470] }),
    say('Molly', 'Just walk straight at the barrier between platforms nine and ten. Don\'t stop, and don\'t be scared you\'ll crash into it. That\'s very important.', 490, 500, { w: 400, size: 27, fixed: true })], { mood: 'day' });
 ep.panel(1040, { cam: { on: ['fred', 'molly'], fr: 'bust', dy: -1.95 }, bg: KX, blur: 2, actors: WZ({ fred: { expr: 'scheme' }, molly: { expr: 'cross' } }).slice(0, 2) },
   [say('Fred', 'And whatever you do, don\'t think of an elephant.', 465, 105, { w: 400, fixed: true }),
@@ -133,7 +133,7 @@ ep.panel(820, (ctx) => {
   out += A(345, 308, 480, 308) + A(590, 350, 590, 700) + A(420, 738, 360, 738) + A(200, 700, 200, 360);
   return out;
 },
-  [cap('It was at times like this that Harry hated his mind for working fast enough to realise this was a case of *resonant doubt.*', 44, 30, { w: 580, size: 26 })], { alt: 'A loop in pencil: "I\'ll get through… if I believe… but now I\'m worried… so I don\'t believe…" around the word "doubt".' });
+  [cap('It was at times like this that Harry hated his mind for working fast enough to realise this was a case of *resonant doubt.*', 44, 30, { w: 500, size: 26 })], { alt: 'A loop in pencil: "I\'ll get through… if I believe… but now I\'m worried… so I don\'t believe…" around the word "doubt".' });
 ep.panel(900, { cam: { on: ['harry'], fr: 'close', zoom: 0.9, dy: 0.1 }, bg: KX, blur: 3, actors: [HK({ expr: { base: 'wince' } })] },
   [shout('Dad', 'Harry! Get back here, you have some explaining to do!', 400, 120, { w: 380, size: 28, tail: [790, 220] }),
    inner('Harry', 'He shut his eyes, ignored everything he knew about justified credibility, and just tried to believe *really hard*…', 400, 790, { w: 520 })], { mood: 'day' });
@@ -155,7 +155,7 @@ ep.panel(1000, { cam: { on: ['harry', 'ron'], fr: 'waist', dy: -1.7 }, bg: P9, a
    say('Harry', 'I have no logical way of knowing that for certain. For all *I* know, there could easily be spells to polymorph a child into a specified appearance.', 345, 355, { w: 460, size: 27, fixed: true })], { mood: 'day' });
 ep.panel(460, { cam: { on: ['ron'], fr: 'close' }, bg: P9, blur: 3, actors: [RP({ expr: 'confused' })] }, [say('Ron', 'Er, what, mate?', 280, 100, { w: 220 })], { mood: 'day' });
 ep.panel(1000, { cam: { on: ['harry', 'ron'], fr: 'waist', dy: -1.7 }, bg: P9, actors: [HP({ expr: 'determined', pose: 'handsHips' }), RP({ expr: 'deadpan' }), OWL(1292, 925)] },
-  [cap('Harry tied his scarf over his face and pulled on his robes.', 44, 30, { w: 540 }),
+  [cap('Harry tied his scarf over his face and pulled on his robes.', 44, 30, { w: 660 }),
    say('Harry', 'There. Am I identifiable as Harry Potter? No? Very good. You will henceforth address me as *Mr Spoo.*', 290, 300, { w: 460 })], { mood: 'day', alt: 'Harry, now in black robes with a red-and-gold striped winter scarf wrapped over his face like a bandit, eyes peeking out.' });
 ep.panel(780, { cam: { on: ['ron'], fr: 'bust', zoom: 0.85, dy: 0.1 }, bg: P9, blur: 2, actors: [RP({ expr: 'embarrassed' })] },
   [say('Ron', 'Okay, Mister Spoo—', 280, 90, { w: 340 }), say('Ron', 'I can\'t do that, it makes me feel stupid.', 580, 640, { w: 340 })], { mood: 'day' });
@@ -189,16 +189,16 @@ ep.panel(760, { cam: { on: ['draco'], fr: 'waist' }, bg: P9, actors: [DP({ pose:
   [say('Draco', 'Potter. *What* is that on your face? And *what* is standing next to you?', 300, 118, { w: 360, fixed: true })], { mood: 'day', alt: 'Draco Malfoy, in school robes, with an elegant silver-and-emerald trunk.' });
 ep.panel(560, { cam: { on: ['ron'], fr: 'close' }, bg: P9, blur: 3, actors: [RP({ expr: 'angry', turn: -0.5 })] }, [shout('Ron', '*You!*', 400, 100, { w: 160, size: 40 })], { mood: 'day' });
 ep.panel(1000, { cam: { on: ['draco', 'harry', 'ron'], fr: 'waist', dy: -2.5, zoom: 1.3 }, bg: P9, actors: [DP({ x: 780 }), HP({ x: 1000, turn: -0.4, expr: 'happy', pose: 'present' }), RP({ x: 1220, expr: 'yell' })] },
-  [say('Harry', 'Draco! Good to see you\'re doing so well after, um, our last meeting. This is Ron Weasley. And I\'m going incognito, so call me, er… *Mister Black.*', 400, 170, { w: 480, size: 27, fixed: true }),
-   shout('Ron', '*Harry!* You can\'t use *that* name!', 565, 398, { w: 340, size: 28, fixed: true })], { mood: 'day' });
+  [say('Harry', 'Draco! Good to see you\'re doing so well after, um, our last meeting. This is Ron Weasley. And I\'m going incognito, so call me, er… *Mister Black.*', 400, 170, { w: 480, size: 27, fixed: true, tail: [300, 440] }),
+   shout('Ron', '*Harry!* You can\'t use *that* name!', 548, 404, { w: 320, size: 26, fixed: true })], { mood: 'day' });
 ep.panel(760, { cam: { on: ['draco'], fr: 'bust', dy: -0.5 }, bg: P9, blur: 2, actors: [DP({ expr: 'smug', pose: 'crossArms' })] },
   [say('Draco', 'I\'d say it\'s a *fine* name, but it belongs to the Noble and Most Ancient House of Black. I\'ll call you Mr Silver.', 400, 148, { w: 520, fixed: true })], { mood: 'day' });
 ep.panel(460, { cam: { on: ['ron'], fr: 'close' }, bg: P9, blur: 3, actors: [RP({ expr: 'cross' })] }, [say('Ron', '*You* get away from… from Mr *Gold!*', 400, 100, { w: 360 })], { mood: 'day' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close', dy: 0.1, zoom: 0.9 }, bg: P9, blur: 3, actors: [HP({ expr: 'exasperated' })] }, [say('Harry', 'I\'ll go by Mr Bronze, thanks for the naming schema.', 400, 90, { w: 440 })], { mood: 'day' });
 ep.panel(1060, { cam: { on: ['draco', 'ron'], fr: 'bust', dy: -2.0, zoom: 1.15 }, bg: P9, actors: [DP({ x: 900, expr: 'coldSmile', turn: 0.4 }), RP({ x: 1150, expr: 'hurt' }), OWL(1192, 925)] },
   [say('Draco', 'Oh, what\'s *this?* Where\'s the famous Weasley family rat?', 250, 100, { w: 400 }),
-   say('Ron', 'Buried in the backyard.', 590, 280, { w: 340 }),
-   say('Draco', 'Aw, how sad. The Weasleys have *the best pet story ever*, Mr Bronze. Want to tell it, Weasley?', 300, 480, { w: 480, size: 27 })], { mood: 'day' });
+   say('Ron', 'Buried in the backyard.', 600, 290, { w: 340, fixed: true }),
+   say('Draco', 'Aw, how sad. The Weasleys have *the best pet story ever*, Mr Bronze. Want to tell it, Weasley?', 250, 462, { w: 360, size: 27, fixed: true })], { mood: 'day' });
 ep.panel(760, { cam: { on: ['ron'], fr: 'close', zoom: 0.9, dy: 0.05 }, bg: P9, blur: 3, actors: [RP({ expr: 'teary' })] },
   [say('Ron', 'You wouldn\'t think it was funny if it happened to *your* family!', 400, 110, { w: 460 }), say('Draco', 'Oh, but it wouldn\'t ever *happen* to the Malfoys.', 420, 660, { w: 480, tail: [30, 720] })], { mood: 'day' });
 ep.panel(940, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.15 }, bg: P9, blur: 2, actors: [HP({ expr: 'stern', pose: 'raiseHand', mask: 'scarfDown' })] },
@@ -219,11 +219,11 @@ ep.panel(680, { cam: { on: ['harry'], fr: 'close', zoom: 0.9, dy: 0.2 }, bg: P9,
 // Draco & Harry
 const HD = (o = {}) => HP({ x: 1000, turn: -0.4, mask: 'scarfDown', ...o });
 ep.panel(1080, { cam: { on: ['draco', 'harry'], fr: 'waist', dy: -2.3 }, bg: P9, actors: [DP({ expr: 'calm', pose: 'gesture' }), HD({ expr: 'focus' })] },
-  [say('Draco', 'If you really were raised by Muggles, you mightn\'t know what it\'s like to be famous. People will take up *all* your time. You *have* to learn to say no.', 330, 130, { w: 560, size: 27 }),
-   say('Draco', 'Decide who you *want* to be seen with, Potter. Everyone\'s going to judge you by it.', 330, 400, { w: 480 })], { mood: 'day' });
+  [say('Draco', 'If you really were raised by Muggles, you mightn\'t know what it\'s like to be famous. People will take up *all* your time. You *have* to learn to say no.', 400, 130, { w: 540, size: 27, fixed: true }),
+   say('Draco', 'Decide who you *want* to be seen with, Potter. Everyone\'s going to judge you by it.', 350, 410, { w: 480, fixed: true })], { mood: 'day' });
 ep.panel(1040, { cam: { on: ['harry', 'draco'], fr: 'bust', dy: -2.0 }, bg: P9, actors: [DP({ expr: 'smug' }), HD({ expr: 'think' })] },
-  [say('Harry', 'How did you recognise me, if you don\'t mind my asking?', 570, 100, { w: 380 }),
-   say('Draco', 'I *have* met you, remember. I saw someone going around with a scarf wrapped round his head, looking absolutely ridiculous. So I took a *guess.*', 300, 360, { w: 520, size: 27 })], { mood: 'day' });
+  [say('Harry', 'How did you recognise me, if you don\'t mind my asking?', 544, 112, { w: 340, fixed: true, tail: [650, 340] }),
+   say('Draco', 'I *have* met you, remember. I saw someone going around with a scarf wrapped round his head, looking absolutely ridiculous. So I took a *guess.*', 316, 425, { w: 420, size: 26, fixed: true })], { mood: 'day' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'bust', dy: -0.5 }, bg: P9, blur: 2, actors: [HD({ expr: 'sad', pose: 'bow' })] },
   [say('Harry', 'I\'m *terribly* sorry about our first meeting. I didn\'t mean to embarrass you in front of Lucius.', 400, 100, { w: 540 })], { mood: 'day' });
 ep.panel(920, { cam: { on: ['draco'], fr: 'bust', zoom: 0.85, dy: -0.1 }, bg: P9, blur: 2, actors: [DP({ expr: 'grin', pose: 'gesture' })] },
@@ -289,9 +289,9 @@ ep.panel(860, { cam: { on: ['draco'], fr: 'close', zoom: 0.85, dy: 0.1 }, bg: P9
 
 // =============================================================== the Comed-Tea
 const ST = () => S.comedStall(1300, 1150);
-ep.panel(900, { cam: { x: 1250, y: 820, w: 900 }, bg: P9, mid: ST, actors: [{ def: stallMan, id: 'stall', x: 1420, y: 1000, turn: -0.4, pose: 'holdOne', expr: 'shock', armF: { sh: 110, el: 40, hand: 'hold', prop: g({ transform: 'translate(0,10)' }, comedCan(1.1)) } }, DP({ x: 980, y: 1180, turn: 0.4 }), HP({ x: 1110, y: 1180, turn: 0.4, expr: 'focus' })],
+ep.panel(900, { cam: { x: 1250, y: 910, w: 900 }, bg: P9, mid: ST, actors: [{ def: stallMan, id: 'stall', x: 1420, y: 1000, turn: -0.4, pose: 'holdOne', expr: 'shock', armF: { sh: 110, el: 40, hand: 'hold', prop: g({ transform: 'translate(0,10)' }, comedCan(1.1)) } }, DP({ x: 980, y: 1180, turn: 0.4 }), HP({ x: 1110, y: 1180, turn: 0.4, expr: 'focus' })],
   over: (e) => { const m = e.anchors?.stall?.mouth; return m ? spray(m[0] - 10, m[1], -1, 1.2) : ''; } },
-  [cap('The stall-holder spotted the refined Draco Malfoy approaching with a boy looking incredibly stupid with a scarf tied over his face, and had a sudden coughing fit in mid-drink.', 44, 680, { w: 600, size: 26 })], { mood: 'day', alt: 'A newspaper stall stacked with neon-green cans. The bald, bearded stall-holder sprays green fizz over his beard.' });
+  [cap('The stall-holder spotted the refined Draco Malfoy approaching with a boy looking incredibly stupid with a scarf tied over his face, and had a sudden coughing fit in mid-drink.', 44, 700, { w: 600, size: 26 })], { mood: 'day', alt: 'A newspaper stall stacked with neon-green cans. The bald, bearded stall-holder sprays green fizz over his beard.' });
 ep.panel(1060, { cam: { on: ['stall'], fr: 'bust', zoom: 0.85, dy: -0.3 }, bg: P9, blur: 2, mid: ST, actors: [{ def: stallMan, id: 'stall', x: 1420, y: 1000, turn: -0.3, pose: 'present', expr: 'grin' }] },
   [say('Harry', '\'Scuse me, but what *is* that stuff?', 520, 110, { w: 440, tail: [790, 130], fixed: true }),
    say('Stall-holder', 'Comed-Tea. Drink it, and something surprising is bound to happen that makes you spill it on yourself or someone else. Charmed to vanish a few seconds later.', 400, 875, { w: 540, size: 27, fixed: true })], { mood: 'day' });
@@ -315,7 +315,7 @@ ep.panel(660, { cam: { on: ['stall'], fr: 'close', zoom: 0.9, dy: -0.1 }, bg: P9
   [say('Stall-holder', 'It doesn\'t always happen immediately. But it\'s guaranteed once per can, or your money back.', 400, 100, { w: 540 })], { mood: 'day' });
 ep.panel(1000, { cam: { on: ['harry'], fr: 'waist', zoom: 0.9, dy: -0.35 }, bg: P9, actors: [HP({ x: 1200, y: 1180, turn: 0.5, pose: 'walk', expr: 'smug', mask: 'scarfDown', armF: { sh: 55, el: 70, hand: 'hold', prop: g({ transform: 'translate(0,8)' }, comedCan(1.3)) } })] },
   [inner('Harry', 'In his state of mental preparedness, Lucius Malfoy could walk past in a ballerina outfit and it wouldn\'t make him do a spit-take. Just what wacky shenanigan was the universe supposed to cough up *now?*', 400, 110, { w: 600, size: 27 }),
-   cap('He swigged, and glanced back at the newspaper stand.', 44, 890, { w: 520 })], { mood: 'day' });
+   cap('He swigged, and glanced back at the newspaper stand.', 44, 900, { w: 640 })], { mood: 'day' });
 ep.bleed(920, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#e8dcc0' }) + g({ transform: `translate(${ctx.w / 2},${ctx.h * 0.5}) scale(1.6) rotate(-2)` }, S.quibblerPage()), [], { alt: 'The Quibbler\'s front page. Headline: BOY-WHO-LIVED GETS DRACO MALFOY PREGNANT.' });
 ep.bleed(900, { cam: { on: ['harry', 'draco'], fr: 'bust', dy: -0.6 }, bg: P9, blur: 3,
   actors: [HP({ x: 1200, y: 1180, turn: -0.3, pose: 'fists', expr: 'rant', mask: 'scarfDown' }), DP({ x: 1000, y: 1180, turn: 0.3, pose: 'panic', expr: 'horror' })],

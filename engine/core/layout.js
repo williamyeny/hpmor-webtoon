@@ -114,7 +114,8 @@ function avoidFaces(bubbles, panelsA, W, H) {
   }
   return bubbles;
 }
-function resolveBubbles(bubbles, panelsA, W = 800, H = 1000) {
+const panelAt = (rects, x, y) => rects.findIndex((p) => x >= p[0] && x <= p[0] + p[2] && y >= p[1] && y <= p[1] + p[3]);
+function resolveBubbles(bubbles, panelsA, W = 800, H = 1000, rects = []) {
   const pre = (bubbles || []).map((b0) => {
     const b = { ...b0 };
     if (b.near) {
@@ -138,7 +139,9 @@ function resolveBubbles(bubbles, panelsA, W = 800, H = 1000) {
     if (b.tails) b.tails = b.tails.map(fix).filter(Boolean);
     if (b.tail === undefined && b.who && !b.noTail && ['speech', 'shout', 'whisper', 'thought', 'cold'].includes(b.type || 'speech')) {
       const r = resolveRef(b.who.toLowerCase(), panelsA, 'mouth');
-      const far = r && r.A.hr && (b.y ?? 0) > r.A.head[1] + r.A.hr * 2.6; // bubble well below the speaker's head: no tail
+      // a tail only makes sense inside the speaker's own panel; in a gutter, only if the speaker is close by
+      const pb = panelAt(rects, b.x ?? 0, b.y ?? 0), ph = r && r.A.head ? panelAt(rects, r.A.head[0], r.A.head[1]) : -1;
+      const far = r && r.A.hr && (pb >= 0 ? (ph >= 0 && ph !== pb) : (b.y ?? 0) > r.A.head[1] + r.A.hr * 2.6);
       const t = far ? null : fix(b.who.toLowerCase());
       if (t) b.tail = t;
     }
@@ -153,7 +156,9 @@ function bubbleHTML(b, i) {
     tails: b.tails || null, size: b.size || null, font: b.font || null, color: b.color || null, align: b.align || null,
     rot: b.rot || 0, fixed: b.fixed || false, pad: b.pad ?? null, bg: b.bg || null, border: b.border || null, weight: b.weight || null,
   };
-  const html = b.html ?? escText(b.text || '').replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>').replace(/\n/g, '<br>');
+  let html = b.html ?? escText(b.text || '').replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>').replace(/\n/g, '<br>');
+  // keep hyphenated words (Boy-Who-Lived, Nine-and-Three-Quarters) on one line: wrap them in nowrap spans, text nodes only
+  if (b.html === undefined) html = html.split(/(<[^>]+>)/).map((seg) => seg.startsWith('<') ? seg : seg.replace(/([^\s<>]*[A-Za-z0-9’'][-‑][A-Za-z0-9‘'][^\s<>]*)/g, '<span style="white-space:nowrap">$1</span>')).join('');
   return `<div class="bub t-${data.type}" data-b='${JSON.stringify(data).replace(/'/g, '&#39;')}'><div class="bt">${html}</div></div>`;
 }
 
@@ -173,8 +178,10 @@ export function composeTile(tile) {
 ${tile.gutterGrain === false ? '' : `<rect width="${W}" height="${H}" filter="url(#grain)" opacity="0.35" style="mix-blend-mode:multiply"/>`}
 ${under}${panels}${over}
 </svg>`;
-  const bubbles = resolveBubbles(tile.bubbles, panelsA, W, H).map(bubbleHTML).join('');
+  // bordered panel rects: the stage keeps auto-placed balloons inside their panel and warns when one crosses a frame
+  const rects = (tile.panels || []).map((p) => [p.x ?? 0, p.y ?? 0, p.w ?? W, p.h, p.border === 'none' || p.border === 'bleed' ? 0 : 1]);
+  const bubbles = resolveBubbles(tile.bubbles, panelsA, W, H, rects).map(bubbleHTML).join('');
   const heads = [];
   for (const A of panelsA) for (const id in A || {}) { const a = A[id]; if (a.head && a.hr) heads.push([Math.round(a.head[0]), Math.round(a.head[1] + a.hr * 0.28), Math.round(a.hr * 0.78)]); }
-  return { W, H, html: `<div id="tile" data-heads='${JSON.stringify(heads)}' style="position:relative;width:${W}px;height:${H}px;overflow:hidden">${svg}<svg id="bsvg" width="${W}" height="${H}" style="position:absolute;left:0;top:0;overflow:visible"></svg>${bubbles}</div>` };
+  return { W, H, html: `<div id="tile" data-heads='${JSON.stringify(heads)}' data-panels='${JSON.stringify(rects.map((r) => r.map((v) => Math.round(v))))}' style="position:relative;width:${W}px;height:${H}px;overflow:hidden">${svg}<svg id="bsvg" width="${W}" height="${H}" style="position:absolute;left:0;top:0;overflow:visible"></svg>${bubbles}</div>` };
 }

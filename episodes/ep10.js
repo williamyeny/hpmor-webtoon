@@ -46,7 +46,7 @@ ep.panel(900, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.1 }, bg: CO
    say('Harry', 'Presumably I\'m meant to invite you to join my party, or get a key magical item from you. PC or NPC, that is the question?', 400, 752, { w: 540, fixed: true })], { mood: 'day' });
 ep.panel(460, { cam: { on: ['hermione'], fr: 'close' }, bg: CORR, blur: 3, actors: [{ def: hermione, id: 'hermione', x: 700, y: 1000, s: 1.1, turn: 0.3, expr: 'what' }] }, [cap('She couldn\'t think of any *possible* reply to… whatever that was.', 44, 30, { w: 420 })], { mood: 'day' });
 ep.panel(860, { cam: { x: 900, y: 700, w: 1060 }, bg: CP(), mid: TRUNKS, actors: [HER({ pose: 'stand', y: 900, seat: undefined, x: 560, expr: 'confused', turn: 0.5 }), HAR({ expr: 'grin', mask: 'scarf' })] },
-  [cap('He sat down across from her. His trunk scurried in after him, grew to three times its size, and snuggled up next to hers in an oddly disturbing fashion.', 40, 30, { w: 660, size: 26, fixed: true }),
+  [cap('He sat down across from her. His trunk scurried in after him, grew to three times its size, and snuggled up next to hers in an oddly disturbing fashion.', 40, 30, { w: 620, size: 26, fixed: true }),
    say('Harry', 'Please, have a seat. And close the door, if you would. Don\'t worry, I don\'t bite anyone who doesn\'t bite me first.', 480, 698, { w: 440, size: 27, fixed: true, tail: [640, 470] })], { mood: 'day' });
 ep.panel(560, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#5a3a22' }) + FX.sfxText(ctx.w / 2, ctx.h * 0.64, 'SLAM', { size: 210, rot: -6 }) + FX.speedLines(ctx.w, ctx.h, { n: 30, col: '#f1e6cc' }), [cap('The imputation that this boy thought she was *scared* of him made her slam the door into the wall with unnecessary force.', 40, 28, { w: 540, size: 26, fixed: true })], { alt: 'SLAM.' });
 ep.panel(700, { cam: { on: ['hermione'], fr: 'bust' }, bg: CP(), blur: 2, actors: [HER({ pose: 'fists', seat: undefined, y: 900, x: 560, expr: 'angry', turn: 0.4 })] },
@@ -79,8 +79,8 @@ ep.panel(900, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.1 }, bg: CP
 ep.panel(560, { cam: { on: ['hermione'], fr: 'close' }, bg: CP(), blur: 3, actors: [HER({ expr: { base: 'awe', eyes: { sparkle: true } } })] }, [cap('Instantly, Hermione wanted one of those pouches more than she\'d ever wanted anything.', 40, 28, { w: 640, fixed: true })], { mood: 'day' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.2 }, bg: CP(), blur: 2, actors: [HAR({ expr: 'focus', pose: 'sitRead', armF: { ...BOOK, prop: bookHeld('#5a3a22', { rot: 180, w: 56, h: 74 }) } })] },
   [say('Harry', 'If you were brewing a *potion of spider climbing*, what would be the next ingredient after the Acromantula silk?', 400, 130, { w: 500, size: 28, fixed: true })], { mood: 'day' });
-ep.panel(880, { cam: { on: ['hermione'], fr: 'bust', zoom: 0.85, dy: -0.55 }, bg: CP(), blur: 2, actors: [HER({ expr: 'smug' })] },
-  [say('Hermione', 'Wait until the potion turns exactly the shade of the cloudless dawn sky, eight degrees from the horizon, eight minutes before sunrise. Stir eight times widdershins and once deasil, and then add eight drams of unicorn bogies.', 400, 175, { w: 530, size: 26, fixed: true })], { mood: 'day' });
+ep.panel(910, { cam: { on: ['hermione'], fr: 'bust', zoom: 0.85, dy: -0.55 }, bg: CP(), blur: 2, actors: [HER({ expr: 'smug' })] },
+  [say('Hermione', 'Wait until the potion turns exactly the shade of the cloudless dawn sky, eight degrees from the horizon, eight minutes before sunrise. Stir eight times widdershins and once deasil, and then add eight drams of unicorn bogies.', 400, 205, { w: 530, size: 26, fixed: true })], { mood: 'day' });
 ep.panel(740, { cam: { on: ['harry'], fr: 'close', zoom: 0.8, dy: 0.1 }, bg: CP(), blur: 3, actors: [HAR({ expr: 'delight' })] }, [say('Harry', 'Well well well *well* well well.', 400, 100, { w: 440, fixed: true }), say('Harry', 'I should like to make you a proposition, Miss Granger.', 400, 650, { w: 480, fixed: true })], { mood: 'day' });
 ep.panel(600, { cam: { on: ['hermione'], fr: 'close', zoom: 0.85, dy: 0.05 }, bg: CP(), blur: 3, actors: [HER({ expr: 'suspicious' })] }, [say('Hermione', 'A *proposition?*', 400, 90, { w: 300, fixed: true }), cap('Girls weren\'t supposed to listen to those.', 40, 520, { w: 640, fixed: true })], { mood: 'day' });
 
@@ -89,7 +89,7 @@ ep.panel(660, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.2 }, bg: CP
   [say('Harry', 'Can I offer you something to drink?', 400, 110, { w: 460, fixed: true })], { mood: 'day' });
 ep.panel(820, { cam: { on: ['hermione'], fr: 'bust', zoom: 0.85, dy: -0.1 }, bg: CP(), blur: 2, actors: [HER({ expr: 'smile', pose: 'holdOne', armF: { sh: 60, el: 95, hand: 'hold', prop: g({ transform: 'translate(0,8)' }, comedCan(1)) } })] },
   [cap('Hermione politely accepted the fizzy drink. As she started to drink, the boy said:', 40, 28, { w: 640, size: 26, fixed: true }),
-   say('Harry', 'I\'d like you to help me take over the universe.', 540, 715, { w: 380, tail: [790, 745], fixed: true })], { mood: 'day' });
+   say('Harry', 'I\'d like you to help me take over the universe.', 515, 715, { w: 380, tail: [784, 745], fixed: true })], { mood: 'day' });
 ep.panel(760, { cam: { on: ['hermione'], fr: 'bust', zoom: 0.8, dy: -0.05 }, bg: CP(), blur: 2, actors: [HER({ expr: 'calm', pose: 'holdOne', armF: { sh: 30, el: 60, hand: 'hold', prop: g({ transform: 'translate(0,8)' }, comedCan(1)) } })] },
   [cap('Hermione finished her drink and lowered the can.', 40, 28, { w: 640, fixed: true }), say('Hermione', 'No thank you. I\'m not evil.', 400, 675, { w: 460, fixed: true })], { mood: 'day' });
 ep.panel(920, { cam: { on: ['harry'], fr: 'waist', zoom: 0.8, dy: -0.9 }, bg: CP(), actors: [HAR({ expr: 'delight', pose: 'armsUp' })], under: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.4, { col: '#f0c878', op: 0.4 }) },
@@ -99,7 +99,7 @@ ep.panel(800, { cam: { on: ['harry'], fr: 'close', zoom: 0.8, dy: 0.6 }, bg: CP(
 ep.panel(460, { cam: { on: ['hermione'], fr: 'close' }, bg: CP(), blur: 3, actors: [HER({ expr: 'unimpressed' })] }, [say('Hermione', 'And?', 400, 100, { w: 120 })], { mood: 'day' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: CP(), blur: 3, actors: [HAR({ expr: 'shock' })] }, [shout('Harry', '*And?* That\'s not *enough?*', 400, 110, { w: 340, size: 32 })], { mood: 'day' });
 ep.panel(720, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.25 }, bg: CP(), blur: 2, actors: [HAR({ expr: 'warm', pose: 'gesture' })] },
-  [say('Harry', 'With your encyclopaedic memory added to my intelligence and rationality, we\'ll have it finished in no time. Where by "no time" I mean at least thirty-five years.', 400, 135, { w: 540, size: 27, fixed: true })], { mood: 'day' });
+  [say('Harry', 'With your encyclopaedic memory added to my intelligence and rationality, we\'ll have it finished in no time. Where by "no time" I mean at least thirty-five years.', 400, 157, { w: 540, size: 27, fixed: true })], { mood: 'day' });
 ep.panel(700, { cam: { on: ['hermione'], fr: 'bust', zoom: 0.85, dy: -0.2 }, bg: CP(), blur: 2, actors: [HER({ expr: 'smug', pose: 'crossArms' })] },
   [say('Hermione', 'I haven\'t seen you do anything intelligent. Maybe I\'ll let *you* help *me* with *my* research.', 400, 120, { w: 500, fixed: true })], { mood: 'day' });
 ep.beat(300, [capC('There was a certain silence in the compartment.', 400, 150, { w: 460 })]);
@@ -107,8 +107,8 @@ ep.panel(900, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.1 }, bg: CP
   [say('Harry', 'So you\'re asking me to demonstrate my intelligence, then.', 400, 110, { w: 480, fixed: true }),
    say('Harry', 'I warn you: challenging my ingenuity is a dangerous project. It tends to make your life a lot more surreal.', 400, 775, { w: 540, fixed: true })], { mood: 'day' });
 ep.panel(680, { cam: { on: ['hermione'], fr: 'bust', zoom: 0.85, dy: 0.05 }, bg: CP(), blur: 3, actors: [HER({ expr: 'smug', pose: 'holdOne', armF: { sh: 60, el: 95, hand: 'hold', prop: g({ transform: 'translate(0,8)' }, comedCan(1)) } })] }, [say('Hermione', 'I\'m not impressed yet.', 400, 100, { w: 440, fixed: true }), cap('Unnoticed, the green drink once again rose to her lips.', 40, 605, { w: 640, fixed: true })], { mood: 'day' });
-ep.panel(820, { cam: { on: ['harry'], fr: 'close', zoom: 0.82, dy: 0.05 }, bg: CP(), blur: 3, actors: [HAR({ expr: 'scheme' })] },
-  [say('Harry', 'Well, maybe *this* will impress you. I\'ve found out I don\'t need the wand. I can make anything I want happen, just by snapping my fingers.', 400, 128, { w: 540, fixed: true })], { mood: 'day' });
+ep.panel(850, { cam: { on: ['harry'], fr: 'close', zoom: 0.82, dy: 0.05 }, bg: CP(), blur: 3, actors: [HAR({ expr: 'scheme' })] },
+  [say('Harry', 'Well, maybe *this* will impress you. I\'ve found out I don\'t need the wand. I can make anything I want happen, just by snapping my fingers.', 400, 160, { w: 540, fixed: true })], { mood: 'day' });
 ep.bleed(1000, { cam: { on: ['hermione'], fr: 'waist' }, bg: CP(), blur: 3, actors: [HER({ expr: 'horror', pose: 'panic', seat: undefined, y: 900, x: 560 })], under: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.4, { bg: '#e8ffd8', col: '#6ad05a', op: 0.6 }), over: (e) => spray(e.w * 0.5, e.h * 0.74, 1, 2) + spray(e.w * 0.5, e.h * 0.74, -1, 1.6) },
   [cap('Onto her brand-new, never-before-worn robes. On the very first day of school.', 40, 30, { w: 640, fixed: true }),
    shout('Hermione', '*EEK! MY CLOTHES!*', 400, 885, { w: 560, size: 42, fixed: true })], { mood: 'day' });
@@ -129,7 +129,7 @@ ep.panel(760, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.15 }, bg: C
   [say('Harry', 'You asked me to demonstrate my intelligence. So I did something apparently impossible. I can\'t *really* do anything by snapping my fingers. At least, I\'ve never actually tested it.', 400, 145, { w: 540, size: 26, fixed: true })], { mood: 'day' });
 ep.panel(600, { cam: { on: ['harry'], fr: 'close', zoom: 0.8, dy: 0.1 }, bg: CP(), blur: 3, actors: [HAR({ expr: 'deadpan', pose: 'wave' })], over: (e) => FX.sfxText(e.w * 0.14, e.h * 0.42, 'snap', { size: 54, rot: -8 }) }, [say('Harry', 'Nope. No banana.', 450, 90, { w: 360, fixed: true })], { mood: 'day' });
 ep.panel(920, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.08 }, bg: CP(), blur: 2, actors: [HAR({ expr: 'focus', pose: 'gesture' })] },
-  [say('Harry', 'I did *warn* you that challenging my ingenuity makes your life surreal. Remember that, the next time I warn you about something.', 400, 120, { w: 540, fixed: true }),
+  [say('Harry', 'I did *warn* you that challenging my ingenuity makes your life surreal. Remember that, the next time I warn you about something.', 400, 141, { w: 540, fixed: true }),
    say('Harry', 'You think you have what it takes to be a scientist in your own right? Then let\'s see how *you* investigate a confusing phenomenon.', 400, 790, { w: 540, fixed: true })], { mood: 'day' });
 // the science-fair method
 const poster = (ctx) => {
@@ -141,16 +141,16 @@ const poster = (ctx) => {
   return out;
 };
 ep.panel(580, poster, [cap('Hermione\'s mind skipped gears, ground against itself, and spat back the instructions for a school science project:', 40, 28, { w: 640, size: 26, fixed: true })], { alt: 'Step 1: Form a hypothesis. Step 2: Do an experiment. Step 3: Measure the results. Step 4: Make a cardboard poster.' });
-ep.panel(960, { cam: { on: ['hermione'], fr: 'bust', zoom: 0.85, dy: -0.05 }, bg: CP(), blur: 2, actors: [HER({ expr: 'think', pose: 'think' })] },
-  [say('Hermione', 'My hypothesis is that the robes come from the shop with a Charm on them to keep them clean. You found that out by spilling something on *yourself* earlier.', 400, 130, { w: 560, fixed: true }),
-   say('Hermione', 'And now I do Step Two: an experiment. I\'ll pour some on *your* robes, and I predict the stain will disappear.', 400, 830, { w: 540, fixed: true })], { mood: 'day' });
+ep.panel(990, { cam: { on: ['hermione'], fr: 'bust', zoom: 0.85, dy: -0.05 }, bg: CP(), blur: 2, actors: [HER({ expr: 'think', pose: 'think' })] },
+  [say('Hermione', 'My hypothesis is that the robes come from the shop with a Charm on them to keep them clean. You found that out by spilling something on *yourself* earlier.', 400, 163, { w: 560, fixed: true }),
+   say('Hermione', 'And now I do Step Two: an experiment. I\'ll pour some on *your* robes, and I predict the stain will disappear.', 400, 860, { w: 540, fixed: true })], { mood: 'day' });
 ep.panel(620, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#1f1d24' }) + [0.18, 0.5, 0.82].map((f) => path(`M${ctx.w * f - 40},0 Q${ctx.w * f - 20},${ctx.h * 0.6} ${ctx.w * f - 60},${ctx.h}`, { stroke: '#34303c', 'stroke-width': 6, fill: 'none' })).join('') + path(`M500,232 Q470,${ctx.h * 0.5} 468,${ctx.h * 0.8}`, { stroke: '#8aff6a', 'stroke-width': 10, fill: 'none', 'stroke-linecap': 'round' }) + ellipse(468, ctx.h * 0.82, 70, 18, { fill: '#8aff6a', stroke: '#2a8a2a', 'stroke-width': 2, opacity: 0.8 }) + g({ transform: `translate(${ctx.w * 0.5},${ctx.h * 0.3}) rotate(120)` }, comedCan(3)),
   [note('…and it vanished.', 560, 560, { size: 38, color: '#e8e0d0' })], { alt: 'Hermione pours a little pop on the corner of Harry\'s robes. It vanishes.' });
 ep.panel(600, { cam: { on: ['hermione'], fr: 'close', zoom: 0.85, dy: 0.12 }, bg: CP(), blur: 3, actors: [HER({ expr: 'smug' })] }, [say('Hermione', 'My answer is that the robes are Charmed to keep themselves clean.', 400, 95, { w: 560, fixed: true })], { mood: 'day' });
 ep.panel(460, { cam: { on: ['harry'], fr: 'close' }, bg: CP(), blur: 3, actors: [HAR({ expr: 'calm' })] }, [say('Harry', 'Not quite.', 400, 100, { w: 160 })], { mood: 'day' });
 ep.panel(840, { cam: { on: ['hermione'], fr: 'close', zoom: 0.8, dy: 0.05 }, bg: CP(), blur: 3, actors: [HER({ expr: 'hurt' })] },
   [cap('A stab of disappointment. He wasn\'t a teacher. But it was still a test, and getting a question wrong always felt like a little punch in the stomach.', 40, 28, { w: 640, size: 26, fixed: true }),
-   cap('(It said almost everything you needed to know about Hermione Granger that she had never once let that stop her.)', 40, 690, { w: 570, size: 25, fixed: true })], { mood: 'day' });
+   cap('(It said almost everything you needed to know about Hermione Granger that she had never once let that stop her.)', 40, 674, { w: 570, size: 25, fixed: true })], { mood: 'day' });
 
 // the 2-4-6 game
 ep.panel(1030, { cam: { on: ['harry'], fr: 'bust', zoom: 0.8, dy: -0.15 }, bg: CP(), blur: 2, actors: [HAR({ expr: 'focus', pose: 'present', armB: { sh: 62, el: 30, hand: 'palm', prop: g({ transform: 'translate(0,-10)' }, foldedNote(1.2)) } })] },
@@ -167,7 +167,7 @@ const triplets = (rows, ans) => (ctx) => {
 };
 ep.panel(480, triplets([['2 - 4 - 6', 'YES'], ['4 - 6 - 8', 'YES'], ['10 - 12 - 14', 'YES'], ['1 - 3 - 5', 'YES'], ['-3, -1, +1', 'YES']], ''), [], { alt: 'Hermione\'s guesses: 4-6-8, 10-12-14, 1-3-5, -3/-1/+1. All YES.' });
 ep.panel(600, { cam: { on: ['hermione'], fr: 'close', zoom: 0.85, dy: 0.12 }, bg: CP(), blur: 3, actors: [HER({ expr: 'smug' })] }, [say('Hermione', 'The rule is that the numbers have to go up by two each time.', 400, 115, { w: 560, fixed: true })], { mood: 'day' });
-ep.panel(660, { cam: { on: ['harry'], fr: 'close', zoom: 0.85, dy: 0.15 }, bg: CP(), blur: 3, actors: [HAR({ expr: 'scheme' })] }, [say('Harry', 'Now suppose I tell you this test is harder than it looks, and only twenty percent of grown-ups get it right.', 400, 110, { w: 540, fixed: true })], { mood: 'day' });
+ep.panel(720, { cam: { on: ['harry'], fr: 'close', zoom: 0.85, dy: -0.05 }, bg: CP(), blur: 3, actors: [HAR({ expr: 'scheme' })] }, [say('Harry', 'Now suppose I tell you this test is harder than it looks, and only twenty percent of grown-ups get it right.', 400, 141, { w: 540, fixed: true })], { mood: 'day' });
 ep.panel(460, triplets([['2 - 5 - 8', 'YES'], ['10 - 20 - 30', 'YES']], ''), [say('Hermione', 'The numbers have to go up by the *same* amount each time! It doesn\'t have to be two!', 400, 330, { w: 520, tail: null })], {});
 ep.panel(620, { cam: { on: ['harry'], fr: 'close', zoom: 0.85, dy: 0.12 }, bg: CP(), blur: 3, actors: [HAR({ expr: 'calm' })] }, [say('Harry', 'Very well. Take the paper out and see how you did.', 400, 100, { w: 560, fixed: true })], { mood: 'day' });
 ep.bleed(680, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#5a3a22' }) + K.glow(ctx.w / 2, ctx.h / 2, 500, '#fff2c8', 0.35) + g({ transform: `translate(${ctx.w / 2},${ctx.h * 0.56}) rotate(-3)` }, sheet({ w: 700, h: 360, ruled: true, top: 150, size: 64, lh: 1.15, align: 'center', lines: ['Three real numbers', 'in increasing order.'] })),
@@ -199,7 +199,7 @@ ep.panel(820, { cam: { x: 440, y: 640, w: 600 }, bg: CP(), actors: [NEV(), HER({
   [cap('Neville looked exactly like he knocked.', 40, 28, { w: 640, fixed: true }),
    whisper('Neville', 'I\'m Neville Longbottom. I\'m looking for my pet toad… have you seen my toad?', 400, 205, { w: 480, fixed: true, tail: 'neville' })], { mood: 'day', alt: 'A small, round, frightened boy at the door.' });
 ep.panel(720, { cam: { on: ['hermione'], fr: 'bust', zoom: 0.85, dy: -0.25 }, bg: CP(), blur: 2, actors: [HER({ pose: 'handsHips', seat: undefined, y: 900, x: 540, turn: -0.4, expr: 'determined' })] },
-  [say('Hermione', 'Then we\'ll just have to check all the other carriages! I\'ll help you. My name is Hermione Granger, by the way.', 400, 120, { w: 540, fixed: true })], { mood: 'day' });
+  [say('Hermione', 'Then we\'ll just have to check all the other carriages! I\'ll help you. My name is Hermione Granger, by the way.', 400, 141, { w: 540, fixed: true })], { mood: 'day' });
 ep.panel(940, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.05 }, bg: CP(), blur: 2, actors: [HAR({ expr: 'think', pose: 'gesture' })] },
   [say('Harry', 'Hold on. I\'m not sure that\'s the best way. It\'ll take ages to check the whole train by hand, and you might miss it anyway.', 400, 125, { w: 540, fixed: true }),
    say('Harry', 'It makes more sense to go to the front carriage and ask a prefect. They might have spells that make it much easier to find a toad.', 400, 800, { w: 540, fixed: true })], { mood: 'day' });
@@ -214,7 +214,7 @@ ep.panel(600, { cam: { x: 120, y: 700, w: 640 }, bg: CP(), actors: [NEV({ x: 0, 
   [cap('Neville gave a small shriek and ran.', 40, 28, { w: 640, fixed: true }), note('eeeek!', 470, 200, { size: 64, rot: -8, color: '#fff6e0' })], { mood: 'day' });
 ep.panel(800, { cam: { on: ['hermione'], fr: 'bust', zoom: 0.85, dy: -0.15 }, bg: CP(), blur: 2, actors: [HER({ expr: 'confused', pose: 'slump' })] },
   [say('Hermione', 'Can you *please* explain to me what\'s going on?', 400, 105, { w: 480, fixed: true }),
-   cap('She wondered if hanging around Harry Potter meant always being this confused.', 40, 695, { w: 640, fixed: true })], { mood: 'day' });
+   cap('She wondered if hanging around Harry Potter meant always being this confused.', 40, 680, { w: 600, fixed: true })], { mood: 'day' });
 ep.panel(920, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.45 }, bg: CP(), blur: 2, actors: [HAR({ expr: 'grin', pose: 'gesture' })] },
   [say('Harry', 'Oh, we saw him on the platform, looking terrified. The fear is often worse than the thing itself, so we let him see his worst nightmare come true. And it wasn\'t so bad. We gave him sweets. That\'s *desensitisation therapy.*', 400, 208, { w: 520, size: 27, fixed: true })], { mood: 'day' });
 ep.panel(760, { cam: { on: ['hermione'], fr: 'bust' }, bg: CP(), blur: 2, actors: [HER({ expr: 'rant', pose: 'fists' })], under: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.45, { col: '#e8b4a0', op: 0.5 }) },
@@ -222,9 +222,9 @@ ep.panel(760, { cam: { on: ['hermione'], fr: 'bust' }, bg: CP(), blur: 2, actors
 ep.panel(940, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.8 }, bg: CP(), blur: 2, actors: [HAR({ expr: 'unimpressed', pose: 'raiseHand' })] },
   [say('Harry', 'I think the word you\'re looking for is *enjoyable.* And you\'re asking the wrong question. The question is: did it do more good than harm? It\'s called *consequentialism.* Whether an act is right isn\'t about whether it *looks* bad.', 400, 206, { w: 530, size: 27, fixed: true })], { mood: 'day' });
 ep.panel(760, { cam: { on: ['hermione'], fr: 'close', zoom: 0.8, dy: -0.05 }, bg: CP(), blur: 3, actors: [HER({ expr: 'cross' })] }, [cap('Hermione opened her mouth to say something utterly *searing*. Unfortunately, she seemed to have skipped the part where she thought of it first.', 40, 28, { w: 640, size: 26, fixed: true }), say('Hermione', 'What if he has *nightmares?*', 400, 670, { w: 480, fixed: true })], { mood: 'day' });
-ep.panel(720, { cam: { on: ['harry'], fr: 'close', zoom: 0.85, dy: -0.1 }, bg: CP(), blur: 3, actors: [HAR({ expr: 'smug' })] }, [say('Harry', 'Then they\'ll be nightmares about horrible monsters who give you chocolate. Which was sort of the whole *point.*', 400, 112, { w: 560, fixed: true })], { mood: 'day' });
-ep.panel(520, { cam: { on: ['hermione'], fr: 'close', zoom: 0.9, dx: -0.5, dy: 0.1 }, bg: CP(), blur: 3, actors: [HER({ expr: 'exasperated' })] },
-  [say('Hermione', 'Is your life always this peculiar?', 195, 110, { w: 300, fixed: true })], { mood: 'day' });
+ep.panel(720, { cam: { on: ['harry'], fr: 'close', zoom: 0.85, dy: -0.1 }, bg: CP(), blur: 3, actors: [HAR({ expr: 'smug' })] }, [say('Harry', 'Then they\'ll be nightmares about horrible monsters who give you chocolate. Which was sort of the whole *point.*', 400, 141, { w: 560, fixed: true })], { mood: 'day' });
+ep.panel(520, { cam: { on: ['hermione'], fr: 'close', zoom: 0.9, dx: -0.6, dy: 0.1 }, bg: CP(), blur: 3, actors: [HER({ expr: 'exasperated' })] },
+  [say('Hermione', 'Is your life always this peculiar?', 225, 118, { w: 300, fixed: true })], { mood: 'day' });
 ep.panel(620, { cam: { on: ['harry'], fr: 'close', zoom: 0.9, dx: 0.55, dy: 0.05 }, bg: CP(), blur: 3, actors: [HAR({ expr: 'bigGrin' })] },
   [say('Harry', 'I *make* it that peculiar. You\'re looking at the product of a lot of hard work and elbow grease.', 575, 330, { w: 330, fixed: true, tail: 'harry' })], { mood: 'day' });
 // quiz montage

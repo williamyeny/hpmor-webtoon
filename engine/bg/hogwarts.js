@@ -52,8 +52,9 @@ export function floatingCandles(x0, y0, w, h, n, seed, s = 1) {
   for (let i = 0; i < n; i++) { const x = x0 + R() * w, y = y0 + R() * h, k = s * R.range(0.6, 1.1); out += K.glow(x, y - 20 * k, 40 * k, '#ffcf75', 0.45) + rect(x - 4 * k, y - 10 * k, 8 * k, 26 * k, { fill: '#f1e6cc' }) + path(`M${x},${y - 24 * k} q${4 * k},${8 * k} 0,${12 * k} q${-4 * k},${-4 * k} 0,${-12 * k}Z`, { fill: '#ffd774' }); }
   return out;
 }
-export function enchantedCeiling(x0, y0, w, h, seed = 7) {
+export function enchantedCeiling(x0, y0, w, h, seed = 7, day = false) {
   const id = uid('ec');
+  if (day) { let o = `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fa3c9"/><stop offset="1" stop-color="#d9e3e6"/></linearGradient></defs>` + rect(x0, y0, w, h, { fill: `url(#${id})` }); const R = rng(seed); for (let i = 0; i < 9; i++) o += ellipse(x0 + R() * w, y0 + R() * h * 0.8, R.range(120, 260), R.range(24, 44), { fill: '#fbfbf7', opacity: 0.85 }); return o; }
   let out = `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#070b1c"/><stop offset="1" stop-color="#23305a"/></linearGradient></defs>` + rect(x0, y0, w, h, { fill: `url(#${id})` });
   const R = rng(seed); for (let i = 0; i < w * h / 2500; i++) out += circle(x0 + R() * w, y0 + R() * h, R.range(0.6, 2.2), { fill: '#f3f0d8', opacity: R.range(0.4, 1) });
   for (let i = 0; i < 5; i++) out += ellipse(x0 + R() * w, y0 + R() * h * 0.8, R.range(120, 260), R.range(20, 40), { fill: '#3a4a7a', opacity: 0.35 });
@@ -94,10 +95,10 @@ export function greatHallWide(o = {}) {
 
 // ---------------------------------------------------------------- reverse shot: along a student table (world 2400 × 1200); bench at y≈900
 export function hallTable(house = 'r', o = {}) {
-  let out = enchantedCeiling(-300, -700, 3000, 900, 12) + rect(-300, 200, 3000, 700, { fill: '#4a4450' });
+  let out = enchantedCeiling(-300, -700, 3000, 900, 12, o.day) + rect(-300, 200, 3000, 700, { fill: o.day ? '#6a6470' : '#4a4450' });
   for (let i = 0; i < 5; i++) out += path(`M${i * 600},700 l0,-460 q60,-80 120,0 l0,460Z`, { fill: '#2a3a6a', ...bl(1.6) });
   out += path(`M${900},200 l140,0 l0,300 l-70,-40 l-70,40Z`, { fill: HOUSE[house], ...bl(1.6) });
-  out += floatingCandles(-300, -500, 3000, 700, 60, 21, 1.4);
+  if (!o.day) out += floatingCandles(-300, -500, 3000, 700, 60, 21, 1.4);
   out += rect(-300, FLOOR, 3000, 400, { fill: '#6a5e50' });
   return out;
 }

@@ -35,7 +35,7 @@ ep.panel(820, calendar, [capC('Thirty days is a very long time to wait, when you
 ep.multi(780, [
   { x: M, y: 18, w: 752, h: 360, mood: 'candle', art: { cam: { on: ['harry'], fr: 'waist', dx: -0.6, dy: 0.3 }, bg: () => O.bedroom(), actors: [{ def: harry, id: 'harry', x: 560, y: 960, s: 1.1, turn: 0.3, pose: 'sitRead', expr: 'focus', armF: { prop: bookHeld('#2f5a40', { rot: 180 }) } }] } },
   { x: M, y: 396, w: 752, h: 366, mood: 'warm', art: { cam: { on: ['harry'], fr: 'waist', dx: 1.2 }, bg: () => O.bedroom({ night: false }), actors: [{ def: harry, id: 'harry', x: 560, y: 960, s: 1.1, turn: 0.2, pose: 'wand', expr: 'determined', armB: { sh: 92, el: -8, hand: 'hold', prop: g({ transform: 'translate(0,20) rotate(180)' }, pencil(90)) } }] } },
-], [note('3 a.m.', 110, 70, { size: 40, color: '#f6e3b0' }), note('practising', 140, 448, { size: 40, color: '#f6e3b0' }), say('Harry', 'Wingardium… Leviosa.', 575, 468, { w: 360, fixed: true, tail: 'harry@1' })]);
+], [note('3 a.m.', 110, 70, { size: 40, color: '#f6e3b0' }), note('practising', 140, 448, { size: 40, color: '#f6e3b0' }), say('Harry', 'Wingardium… Leviosa.', 540, 500, { w: 230, fixed: true, tail: 'harry@1' })]);
 
 // =============================================================== Charing Cross Road
 const CX = () => L.charingCross();

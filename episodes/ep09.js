@@ -31,10 +31,10 @@ ep.panel(900, { cam: { on: ['draco'], fr: 'bust', zoom: 0.95, dy: -0.1 }, bg: P9
    say('Draco', 'She went nuts after her mother died, and her father, who owns the paper, is *convinced* she\'s a seer. So he prints whatever Luna Lovegood says.', 400, 770, { w: 560, size: 27 })], { mood: 'day' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'bust', zoom: 0.9, dy: -0.1 }, bg: P9(), blur: 2, actors: [HP({ expr: 'unimpressed', pose: 'holdOne', armF: CANLOW })] },
   [say('Harry', 'Are you kidding me? That\'s even worse than Muggle journalism, which I would have thought was physically impossible.', 400, 110, { w: 520 }),
-   cap('Not really thinking about it, Harry opened another can and started to drink.', 40, 640, { w: 680 })], { mood: 'day' });
+   cap('Not really thinking about it, Harry opened another can and started to drink.', 44, 640, { w: 600 })], { mood: 'day' });
 ep.panel(880, { cam: { on: ['draco'], fr: 'bust' }, bg: P9(), blur: 3, actors: [DP({ expr: { base: 'coldSmile', eyes: { style: 'normal', open: 0.7 } } })] },
-  [say('Draco', 'She has some sort of perverse obsession about the Malfoys, and her father is politically opposed to us, so he prints every word.', 400, 115, { w: 560, size: 28, fixed: true }),
-   cold('Draco', 'As soon as I\'m old enough, I\'m going to make her pay. Curse her properly. The kind of curse St Mungo\'s can\'t fix.', 400, 735, { w: 560 })], { mood: 'cold', alt: 'Draco says it lightly, pleasantly, as if it were nothing.' });
+  [say('Draco', 'She has some sort of perverse obsession about the Malfoys, and her father is politically opposed to us, so he prints every word.', 400, 132, { w: 560, size: 28, fixed: true }),
+   cold('Draco', 'As soon as I\'m old enough, I\'m going to make her pay. Curse her properly. The kind of curse St Mungo\'s can\'t fix.', 400, 722, { w: 500 })], { mood: 'cold', alt: 'Draco says it lightly, pleasantly, as if it were nothing.' });
 ep.bleed(740, { cam: { on: ['harry'], fr: 'bust' }, bg: P9(), blur: 3, actors: [HP({ expr: 'horror', pose: 'cower' })], under: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.45, { bg: '#e8ffd8', col: '#6ad05a', op: 0.5 }), over: (e) => spray(e.w * 0.5, e.h * 0.55, 1, 1.6) + spray(e.w * 0.5, e.h * 0.55, -1, 1.4) },
   [cap('Green liquid spurted out of Harry\'s nostrils. Comed-Tea and lungs did not mix.', 40, 30, { w: 640 })], { mood: 'day' });
 ep.panel(560, { cam: { on: ['draco'], fr: 'close' }, bg: P9(), blur: 3, actors: [DP({ expr: 'suspicious' })] }, [say('Draco', 'Something wrong?', 250, 95, { w: 340, fixed: true })], { mood: 'day' });
@@ -67,14 +67,14 @@ ep.panel(620, { cam: { on: ['harry'], fr: 'bust' }, bg: P9(), blur: 4, actors: [
   [cold('Harry', 'Quite the opposite. I\'m so sane it burns like ice.', 400, 110, { w: 440 })], { mood: 'cold' });
 ep.panel(900, { cam: { on: ['draco'], fr: 'bust', zoom: 0.92, dx: -0.3, dy: -0.12 }, bg: P9(), blur: 4, actors: [DP({ expr: { base: 'smug', eyes: { open: 0.8 } } })] },
   [say('Draco', 'You\'ve got weirder taste than a Lestrange. I suppose you want her all to yourself, huh?', 298, 140, { w: 380, fixed: true }),
-   say('Harry', 'Yep. I\'ll owe you a favour for it.', 582, 680, { w: 250, tail: [790, 700], fixed: true }),
+   say('Harry', 'Yep. I\'ll owe you a favour for it.', 560, 680, { w: 250, tail: [784, 702], fixed: true }),
    say('Draco', 'Nah. This one\'s free.', 215, 800, { w: 240, fixed: true, tail: 'draco' })], { mood: 'day' });
 // the cold reflection
 ep.setBg('#1c2a3a');
 ep.tile({ h: 140, panels: [], bubbles: [], bg: { top: C.paper, bottom: '#1c2a3a' } });
-ep.panel(760, { cam: { on: ['harry'], fr: 'close' }, bg: P9(), blur: 4, actors: [HP({ expr: 'cold' })], over: (e) => FX.frost(e.w, e.h, 0.8, 8) },
+ep.panel(800, { cam: { on: ['harry'], fr: 'close', dy: 0.1 }, bg: P9(), blur: 4, actors: [HP({ expr: 'cold' })], over: (e) => FX.frost(e.w, e.h, 0.8, 8) },
   [dark('Charming. Happy. Generous with his favours to his friends. Draco wasn\'t a psychopath. That was the sad and awful part.', 400, 120, { w: 580 }),
-   dark('It didn\'t take an evil mutant to say what Draco had said. It was very simple, very human. To Draco, his enemies weren\'t people.', 400, 620, { w: 580 })], { mood: 'cold', alt: 'Harry\'s face, very still, frosted over.' });
+   dark('It didn\'t take an evil mutant to say what Draco had said. It was very simple, very human. To Draco, his enemies weren\'t people.', 400, 680, { w: 580 })], { mood: 'cold', alt: 'Harry\'s face, very still, frosted over.' });
 ep.panel(940, (ctx) => {
   const w = ctx.w, h = ctx.h;
   let out = rect(0, 0, w, h, { fill: '#0e1a28' });
@@ -113,8 +113,8 @@ ep.panel(1000, (ctx) => {
 }, [dark('"Our powers have grown weaker, generation by generation, as the Mudblood taint increases. Where Salazar and Godric and Rowena and Helga raised Hogwarts by their power, no wizard of these faded days has risen to rival them."', 400, 110, { w: 600, size: 27 }),
     dark('"If the taint isn\'t checked, our wands will break, the line of Merlin will end, and our children will be left scratching at the dirt like the Muggles. And darkness will cover all the world for ever."', 400, 860, { w: 600, size: 27 })],
   { border: 'none', alt: 'A tapestry-like illustration: the four Founders\' treasures shining, then a line of wizards, each generation\'s wand-spark dimmer than the last.' });
-ep.panel(700, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.1 }, bg: P9(), blur: 2, actors: [HP({ expr: 'think', pose: 'think' })] },
-  [say('Harry', 'Persuasive. But I have to correct you on one point of fact. Your information about the Muggles is a bit out of date. *We* aren\'t exactly scratching at the dirt any more.', 400, 130, { w: 540, size: 28, fixed: true })], { mood: 'day' });
+ep.panel(800, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.55 }, bg: P9(), blur: 2, actors: [HP({ expr: 'think', pose: 'think' })] },
+  [say('Harry', 'Persuasive. But I have to correct you on one point of fact. Your information about the Muggles is a bit out of date. *We* aren\'t exactly scratching at the dirt any more.', 400, 170, { w: 540, size: 28, fixed: true })], { mood: 'day' });
 ep.panel(460, { cam: { on: ['draco'], fr: 'close' }, bg: P9(), blur: 3, actors: [DP({ expr: 'shock' })] }, [shout('Draco', '*What?* What do you mean, *we?*', 300, 105, { w: 340, size: 30, fixed: true })], { mood: 'day' });
 ep.panel(800, { cam: { on: ['harry'], fr: 'waist' }, bg: P9(), actors: [HP({ expr: 'determined', pose: 'lecture' })], under: (e) => rect(0, 0, e.w, e.h, { fill: '#f6e3b0', opacity: 0.3 }) },
   [say('Harry', '*We.* The scientists. The line of Francis Bacon and the blood of the Enlightenment.', 400, 124, { w: 460, fixed: true }),
@@ -134,8 +134,8 @@ ep.panel(720, { cam: { on: ['harry'], fr: 'close', zoom: 0.78, dy: 0.05 }, bg: P
 ep.panel(720, { cam: { on: ['draco'], fr: 'close', zoom: 0.8, dy: 0.05 }, bg: P9(), blur: 3, actors: [DP({ expr: { base: 'awe', eyes: { sparkle: false, lookY: 0.7 } } })] },
   [whisper('Draco', 'If that\'s a *real* picture… why isn\'t it moving?', 400, 105, { w: 400, fixed: true }),
    whisper('Draco', 'And what are *those?*', 400, 630, { w: 420, fixed: true })], { mood: 'day' });
-ep.panel(640, { cam: { on: ['harry'], fr: 'bust', zoom: 0.9, dy: -0.2 }, bg: P9(), blur: 2, actors: [HP({ expr: 'warm', pose: 'present' })] },
-  [say('Harry', 'Those are human beings. Wearing suits that give them air, because there is no air on the Moon.', 400, 110, { w: 500, fixed: true })], { mood: 'day' });
+ep.panel(680, { cam: { on: ['harry'], fr: 'bust', zoom: 0.9, dy: -0.45 }, bg: P9(), blur: 2, actors: [HP({ expr: 'warm', pose: 'present' })] },
+  [say('Harry', 'Those are human beings. Wearing suits that give them air, because there is no air on the Moon.', 400, 128, { w: 580, fixed: true })], { mood: 'day' });
 ep.panel(600, { cam: { on: ['draco'], fr: 'close', zoom: 0.85, dy: -0.05 }, bg: P9(), blur: 3, actors: [DP({ expr: 'horror' })] }, [whisper('Draco', 'That\'s impossible. No Muggle could ever do that. *How…*', 400, 95, { w: 460, fixed: true })], { mood: 'day' });
 // book plates, drawn big enough to read on a phone
 const ROCKET = (c, fire) => {
@@ -191,9 +191,9 @@ ep.panel(640, { cam: { x: 1250, y: 860, w: 860 }, bg: P9(), actors: [DP({ x: 150
 
 // =============================================================== the Order of Chaos
 const FG = (o = {}) => [{ def: chaosLord(fred, 1), id: 'fred', x: 1450, y: 1170, turn: -0.4, pose: 'stand', expr: 'grin', ...(o.fred || {}) }, { def: chaosLord(george, 2), id: 'george', x: 1620, y: 1170, turn: -0.4, pose: 'crossArms', expr: 'grin', ...(o.george || {}) }];
-ep.panel(760, { cam: { x: 1360, y: 820, w: 820 }, bg: P9(), actors: [HP({ x: 1100, turn: 0.4, expr: 'suspicious' }), ...FG()] },
-  [cap('When Harry looked up, two figures were approaching. They looked utterly ridiculous, their faces cloaked by winter scarves.', 40, 30, { w: 520, fixed: true }),
-   say('Fred', 'Hello, Mr Bronze. Can we interest you in joining the Order of Chaos?', 560, 640, { w: 320, fixed: true, tail: 'fred' })], { mood: 'day', alt: 'Two tall figures with scarves wound over their heads like shrouds, only their eyes glinting through.' });
+ep.panel(820, { cam: { x: 1360, y: 800, w: 820 }, bg: P9(), actors: [HP({ x: 1100, turn: 0.4, expr: 'suspicious' }), ...FG()] },
+  [cap('When Harry looked up, two figures were approaching. They looked utterly ridiculous, their faces cloaked by winter scarves.', 40, 30, { w: 640, fixed: true }),
+   say('Fred', 'Hello, Mr Bronze. Can we interest you in joining the Order of Chaos?', 545, 660, { w: 340, fixed: true, tail: 'fred' })], { mood: 'day', alt: 'Two tall figures with scarves wound over their heads like shrouds, only their eyes glinting through.' });
 // the prank (shown)
 const NEV = (o = {}) => ({ def: neville, id: 'neville', x: 1300, y: 1180, s: 1.05, turn: -0.2, pose: 'cower', expr: 'horror', ...o });
 ep.panel(760, { cam: { on: ['neville'], fr: 'waist' }, bg: P9(), blur: 2, actors: [NEV({ pose: 'stand', expr: 'worried' })] },
@@ -211,8 +211,8 @@ ep.panel(800, { cam: { x: 1475, y: 800, w: 1250 }, bg: P9(), actors: [...[921, 9
   [shout('Harry', 'AAAH! THE LIGHT! IT BURNS!', 505, 120, { w: 360, size: 30, fixed: true, tail: 'harry' }),
    cap('Some of the crowd had wanted to interfere at first. Then they saw what was actually happening, and were too confused to do anything.', 40, 630, { w: 600, size: 26, fixed: true })], { mood: 'day' });
 ep.panel(620, { cam: { on: ['harry'], fr: 'close' }, bg: P9(), blur: 3, actors: [{ def: harryRobes, id: 'harry', x: 1200, y: 1180, s: 1.1, turn: 0.2, expr: 'bigGrin', mask: 'scarfDown' }] },
-  [inner('Harry', 'Hopefully, he wouldn\'t be as scared of being bullied in the future. That\'s called desensitisation therapy.', 400, 110, { w: 520 }),
-   inner('Harry', 'It was *definitely* for his own good.', 400, 500, { w: 400 })], { mood: 'day', alt: 'Harry, very pleased with himself.' });
+  [inner('Harry', 'Hopefully, he wouldn\'t be as scared of being bullied in the future. That\'s called desensitisation therapy.', 400, 90, { w: 620 }),
+   inner('Harry', 'It was *definitely* for his own good.', 400, 548, { w: 400, fixed: true })], { mood: 'day', alt: 'Harry, very pleased with himself.' });
 ep.panel(380, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#f4ecd6' }), [cap('Wasn\'t it?', 330, 158, { w: 200 })], { alt: 'Wasn\'t it?' });
 
 // =============================================================== Aftermath: Draco's letter

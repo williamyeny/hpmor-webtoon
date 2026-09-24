@@ -102,7 +102,8 @@ window.layoutBubbles=async function(){
   const svg=document.getElementById('bsvg');
   const bubs=[...document.querySelectorAll('.bub')];
   const tile=document.getElementById('tile');
-  const HEADS=JSON.parse(tile.dataset.heads||'[]'), PLACED=[];
+  const HEADS=JSON.parse(tile.dataset.heads||'[]'), PLACED=[], PANELS=JSON.parse(tile.dataset.panels||'[]').filter(p=>p[4]);
+  const panelOf=(x,y)=>PANELS.find(p=>x>=p[0]&&x<=p[0]+p[2]&&y>=p[1]&&y<=p[1]+p[3]);
   const TW=tile.offsetWidth, TH=tile.offsetHeight;
   let seed=11;
   for(const b of bubs){
@@ -125,7 +126,7 @@ window.layoutBubbles=async function(){
     if(lines>1 && !['caption','letter','inner','note'].includes(d.type)){
       let lo=r.width*0.45,hi=r.width;
       for(let k=0;k<12;k++){const mid=(lo+hi)/2;t.style.maxWidth=mid+'px';const rr=t.getBoundingClientRect();
-        if(Math.round(rr.height/lh)>lines)lo=mid;else hi=mid;}
+        if(Math.round(rr.height/lh)>lines||t.scrollWidth>t.clientWidth+1)lo=mid;else hi=mid;}
       t.style.maxWidth=Math.ceil(hi+2)+'px';
     }
     r=t.getBoundingClientRect();
@@ -133,7 +134,7 @@ window.layoutBubbles=async function(){
     const padX=d.pad!=null?d.pad:({speech:30,shout:40,whisper:26,thought:34,caption:22,captionC:22,cold:22,hat:30,mind:18,letter:26,dark:18}[d.type]??18);
     const padY=({speech:18,shout:26,whisper:16,thought:22,caption:16,captionC:16,cold:16,hat:20,mind:12,letter:22,dark:14}[d.type]??10);
     let left,top;
-    if(d.anchor==='tl'){left=d.x;top=d.y;}else if(d.anchor==='tr'){left=d.x-W;top=d.y;}else if(d.anchor==='bl'){left=d.x;top=d.y-H;}else if(d.anchor==='br'){left=d.x-W;top=d.y-H;}
+    if(d.anchor==='tc'){left=d.x-W/2;top=d.y;}else if(d.anchor==='bc'){left=d.x-W/2;top=d.y-H;}else if(d.anchor==='tl'){left=d.x;top=d.y;}else if(d.anchor==='tr'){left=d.x-W;top=d.y;}else if(d.anchor==='bl'){left=d.x;top=d.y-H;}else if(d.anchor==='br'){left=d.x-W;top=d.y-H;}
     else {left=d.x-W/2;top=d.y-H/2;}
     // collision avoidance with real sizes: faces, other balloons, tile edges
     if(!['sfx','plain','title','note','hatBig'].includes(d.type) && !d.fixed){
@@ -141,7 +142,8 @@ window.layoutBubbles=async function(){
       const R0=(l,t)=>({x:l-PX,y:t-PY,w:W+PX*2,h:H+PY*2});
       const hitC=(r,c)=>{const cx=Math.max(r.x,Math.min(c[0],r.x+r.w)),cy=Math.max(r.y,Math.min(c[1],r.y+r.h));return Math.hypot(cx-c[0],cy-c[1])<c[2];};
       const hitR=(a,b)=>a.x<b.x+b.w&&b.x<a.x+a.w&&a.y<b.y+b.h&&b.y<a.y+a.h;
-      const out=(r)=>r.x<4||r.y<4||r.x+r.w>TW-4||r.y+r.h>TH-4;
+      const home=panelOf(left+W/2,top+H/2);
+      const out=(r)=>r.x<4||r.y<4||r.x+r.w>TW-4||r.y+r.h>TH-4||(home&&(r.x<home[0]+6||r.y<home[1]+6||r.x+r.w>home[0]+home[2]-6||r.y+r.h>home[1]+home[3]-6));
       const LAST=PLACED[PLACED.length-1]; const order=(r)=>LAST&&r.y<LAST.y-8&&r.x<LAST.x+LAST.w&&LAST.x<r.x+r.w; const bad=(l,t)=>{const r=R0(l,t);return out(r)?2:(HEADS.some(c=>hitC(r,c))||PLACED.some(p=>hitR(r,p))||order(r))?1:0;};
       if(bad(left,top)){
         let found=null;
@@ -203,6 +205,11 @@ window.layoutBubbles=async function(){
   }
   // overflow report: balloons past the tile edge or overlapping each other
   const warn=[];const rs=bubs.map(b=>b.getBoundingClientRect());const T=tile.getBoundingClientRect();
+  const gs=[...svg.children];
+  bubs.forEach((b,i)=>{const d=JSON.parse(b.dataset.b);if(['sfx','plain','title','note','hatBig'].includes(d.type)||!gs[i])return;
+    let bb;try{bb=gs[i].getBBox();}catch(e){return;}const tr=rs[i];const cx=tr.left-T.left+tr.width/2,cy=tr.top-T.top+tr.height/2;
+    if(bb.x<0||bb.y<0||bb.x+bb.width>TW||bb.y+bb.height>TH)warn.push('outline-edge:'+i);
+    const p=panelOf(cx,cy);if(p&&(bb.x<p[0]-12||bb.y<p[1]-12||bb.x+bb.width>p[0]+p[2]+12||bb.y+bb.height>p[1]+p[3]+12))warn.push('border:'+i);});
   rs.forEach((r,i)=>{if(r.left<T.left+2||r.right>T.right-2||r.top<T.top+2||r.bottom>T.bottom-2)warn.push('edge:'+i);
     rs.forEach((q,j)=>{if(j>i&&r.left<q.right-6&&q.left<r.right-6&&r.top<q.bottom-6&&q.top<r.bottom-6)warn.push('overlap:'+i+'/'+j);});});
   window.__warn=warn;

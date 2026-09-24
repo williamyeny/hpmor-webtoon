@@ -71,7 +71,7 @@ ep.panel(620, mind('void', null, { harry: HM('shock', 'armsUp', { x: 0, y: 90 })
 ep.panel(460, mind('void', 'talk', { hs: 1.6 }), [hat('*No, you don\'t.*', 200, 150, { w: 240, size: 36 })], { border: 'none' });
 ep.panel(900, mind('void', 'talk', { harry: HM('pleading') }),
   [inner('Harry', '*Hermione\'s in Ravenclaw! And my plans!*', 200, 90, { w: 320 }),
-   hat('*You can meet her after lessons. So re-plan! Don\'t let your life be steered by your reluctance to do a little extra thinking. You know that.*', 465, 290, { w: 420, size: 27 })], { border: 'none' });
+   hat('*You can meet her after lessons. So re-plan! Don\'t let your life be steered by your reluctance to do a little extra thinking. You know that.*', 440, 290, { w: 420, size: 27 })], { border: 'none' });
 // Hufflepuff
 ep.bleed(1100, (ctx) => HG.mindscape(ctx.w, ctx.h, 'warm', 21) + HG.houseDoors(ctx.w, ctx.h, 'h', { g: 0.4, r: 0.4, s: 0.4 }),
   [hat('*"Clever kids in Ravenclaw, evil kids in Slytherin, wannabe heroes in Gryffindor, and everyone who does the actual work in Hufflepuff." That indicates a certain amount of respect.*', 400, 140, { w: 520, size: 27 }),
@@ -214,7 +214,7 @@ const RAV = (o = {}) => [
 ];
 ep.panel(820, { cam: { x: 800, y: 760, w: 960 }, bg: RT, actors: RAV({ h: { expr: 'exasperated' } }) },
   [cap('Being at the centre of an extraordinary and curious event and *then* being sorted into Ravenclaw, was closely akin to being dipped in barbecue sauce and flung into a pit of starving kittens.', 44, 34, { w: 620, size: 26 }),
-   say('Harry', 'I promised the Sorting Hat not to talk about it. *Yes, really.*', 540, 690, { w: 400, tail: 'harry' })], { mood: 'candle', alt: 'Harry, now in blue-trimmed robes, is mobbed with questions at the Ravenclaw table.' });
+   say('Harry', 'I promised the Sorting Hat not to talk about it. *Yes, really.*', 450, 690, { w: 400, tail: 'harry' })], { mood: 'candle', alt: 'Harry, now in blue-trimmed robes, is mobbed with questions at the Ravenclaw table.' });
 ep.panel(620, { cam: { on: ['hermione', 'harry'], fr: 'bust' }, bg: RT, actors: RAV({ he: { expr: 'worried', turn: 0.5 }, h: { expr: 'sad', turn: -0.3 } }) },
   [whisper('Hermione', 'Are you all right? You were under there for *ages.*', 250, 100, { w: 300 }), whisper('Harry', 'I\'m… not sure yet.', 540, 500, { w: 300, tail: 'harry' })], { mood: 'candle' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'close' }, bg: RT, blur: 3, actors: RAV({ h: { expr: 'think' } }) },
@@ -222,7 +222,7 @@ ep.panel(760, { cam: { on: ['harry'], fr: 'close' }, bg: RT, blur: 3, actors: RA
    inner('Harry', 'A frightening prank, played on someone for their own good. Because it was clever. Because you could get away with it.', 400, 580, { w: 540 })], { mood: 'candle' });
 ep.panel(640, { cam: { on: ['neville'], fr: 'bust', dy: -0.2 }, bg: () => HG.hallTable('h'), blur: 2, actors: [{ def: neville, id: 'neville', x: 800, y: 1050, s: 1.05, turn: 0.3, expr: 'smile', pose: 'stand' }, () => HG.tableFront()] },
   [cap('Across the Hall, at the Hufflepuff table, Neville Longbottom was smiling shyly at the older students making room for him.', 44, 30, { w: 620 })], { mood: 'candle' });
-ep.panel(460, { cam: { on: ['harry'], fr: 'eyes' }, bg: RT, blur: 3, actors: RAV({ h: { expr: 'pained' } }) }, [inner('Harry', '*Oh.*', 400, 380, { w: 140 })], { mood: 'candle', alt: 'Harry understands.' });
+ep.panel(460, { cam: { on: ['harry'], fr: 'eyes' }, bg: RT, blur: 3, actors: RAV({ h: { expr: 'pained' } }) }, [inner('Harry', '*Oh.*', 110, 392, { w: 140, fixed: true })], { mood: 'candle', alt: 'Harry understands.' });
 // the to-do list
 const todo = (lines, strike = []) => (ctx) => {
   const w = ctx.w, h = ctx.h;
@@ -245,7 +245,7 @@ ep.panel(520, todo(['1. Research mind magic. All of it.', '2. Read the titles of
   [], { alt: 'The list, revised: item 3 crossed out and replaced with "Tell Professor McGonagall about the whisper." A new item at the top: "0. Apologise to Neville Longbottom."' });
 ep.panel(850, { cam: { on: ['mcgonagall', 'dumbledore'], fr: 'waist', dy: 0.3 }, bg: STAFF, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 640, y: 900, turn: 0.1, pose: 'stand', expr: 'calm' }, { def: dumbledore, id: 'dumbledore', x: 900, y: 900, turn: 0, expr: { base: 'warm', eyes: { sparkle: true } } }, () => HG.staffTable()] },
   [cap('He looked up at the High Table. Professor McGonagall happened to be looking back at him.', 44, 34, { w: 600 }),
-   cap('She didn\'t know yet that she was about to be trusted with something really important. But she would.', 50, 700, { w: 640, fixed: true })], { mood: 'candle' });
+   cap('She didn\'t know yet that she was about to be trusted with something really important. But she would.', 44, 700, { w: 610, fixed: true })], { mood: 'candle' });
 ep.panel(520, (ctx) => {
   const w = ctx.w, h = ctx.h;
   let out = rect(0, 0, w, h, { fill: '#f4ecd6' });
@@ -272,8 +272,8 @@ ep.bleed(1000, { cam: { on: ['quirrell'], fr: 'bust' }, bg: () => HG.dais(), blu
   [say('Quirrell', 'Salutations, my young apprentices.', 400, 110, { w: 400 }),
    say('Quirrell', 'We all know Hogwarts suffers a certain *misfortune* in its selections for this position. No doubt many of you are already wondering what doom shall befall me this year. I assure you, that doom is not to be my incompetence.', 400, 750, { w: 560, size: 27 })], { mood: 'candle', alt: 'Quirrell straightens, and speaks in a dry, perfectly confident voice.' });
 ep.panel(1040, { cam: { on: ['quirrell'], fr: 'close' }, bg: () => HG.dais(), blur: 3, actors: [QL({ pose: 'stand', expr: 'smug' })] },
-  [say('Quirrell', 'I intend that every one of you will always remember this year as the *best* Defence class you have ever had. You are my long-awaited students, and you *will* do your *very* best.', 400, 130, { w: 560, size: 27 }),
-   say('Quirrell', 'I would add some sort of dreadful threat, like "Otherwise you will suffer horribly". But that would be so clichéd, don\'t you think? I pride myself on being more imaginative than that.', 400, 880, { w: 560, size: 26 })], { mood: 'candle' });
+  [say('Quirrell', 'I intend that every one of you will always remember this year as the *best* Defence class you have ever had. You are my long-awaited students, and you *will* do your *very* best.', 400, 160, { w: 560, size: 27, fixed: true }),
+   say('Quirrell', 'I would add some sort of dreadful threat, like "Otherwise you will suffer horribly". But that would be so clichéd, don\'t you think? I pride myself on being more imaginative than that.', 400, 862, { w: 530, size: 26, fixed: true })], { mood: 'candle' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'close' }, bg: RT, blur: 3, actors: RAV({ h: { expr: { base: 'teary', eyes: { lookX: 0.4 } } } }), over: (e) => FX.doom(e.w, e.h, 16) },
   [inner('Harry', 'The precise tones reminded him very much of a lecturer at Oxford. And it was only starting to hit home that he wouldn\'t see his home, or his Mum, or his Dad, until Christmas.', 400, 130, { w: 560, size: 27 }),
    inner('Harry', 'That must be why his chest felt so strange.', 400, 620, { w: 600 })], { mood: 'candle' });

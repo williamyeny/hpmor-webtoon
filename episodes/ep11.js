@@ -31,7 +31,7 @@ ep.panel(1000, { cam: { x: 715, y: 636, w: 640 }, bg: LAKE({ boats: [] }), actor
 ep.panel(760, { cam: { on: ['harry'], fr: 'bust' }, bg: LAKE({ boats: [] }), blur: 2, actors: [...BOATHAR], fg: boatFg },
   [say('Harry', 'And the Sorting? Is it a test? Nobody will tell me what the test *is.*', 400, 100, { w: 440 })], { mood: 'night' });
 ep.panel(760, { cam: { on: ['hermione'], fr: 'bust' }, bg: LAKE({ boats: [] }), blur: 2, actors: [...BOATHAR], fg: boatFg },
-  [say('Hermione', 'It\'s a *Hat.* An eight-hundred-year-old artefact of forgotten magic. You put it on and it looks inside your mind and tells you where you belong!', 400, 110, { w: 520, size: 28 }),
+  [say('Hermione', 'It\'s a *Hat.* An eight-hundred-year-old artefact of forgotten magic. You put it on and it looks inside your mind and tells you where you belong!', 400, 110, { w: 590, size: 28 }),
    inner('Harry', '*A telepathic hat. Of course. Why not.*', 400, 640, { w: 560 })], { mood: 'night' });
 
 // =============================================================== the Great Hall
@@ -80,9 +80,9 @@ ep.panel(760, { cam: { on: ['quirrell'], fr: 'close', dy: -0.35 }, bg: STAFF, bl
   [cap('And further along, the pale man from the Leaky Cauldron. His eyes darted around in panic, and he twitched in his seat. For some reason, Harry kept finding himself staring at him.', 44, 34, { w: 580, size: 25 }),
    note('mmmmmmmm', 680, 560, { size: 32, color: '#c07a8a' })], { mood: 'candle', alt: 'Quirrell, twitching. The same wrong hum as before.' });
 const RP = (o = {}) => ({ def: clearwater, id: 'clearwater', x: 1150, y: 1080, turn: -0.4, pose: 'crossArms', expr: 'calm', ...o });
-ep.panel(760, { cam: { on: ['harry', 'clearwater'], fr: 'bust' }, bg: () => HG.hallTable('r'), actors: [...FY({ he: { expr: { base: 'focus', eyes: { lookX: 1 } } } }).slice(2, 4), RP()] },
+ep.panel(780, { cam: { on: ['harry', 'clearwater'], fr: 'bust', dy: -0.6 }, bg: () => HG.hallTable('r'), actors: [...FY({ he: { expr: { base: 'focus', eyes: { lookX: 1 } } } }).slice(2, 4), RP()] },
   [whisper('Harry', 'Is the man standing on his chair the Head of Ravenclaw?', 250, 100, { w: 300 }),
-   whisper('Clearwater', 'That is Professor Filius Flitwick. The most knowledgeable Charms Master alive, and a past Duelling Champion. He does have goblin ancestry…', 470, 600, { w: 510, size: 25, tail: [605, 415] })], { mood: 'candle' });
+   whisper('Clearwater', 'That is Professor Filius Flitwick. The most knowledgeable Charms Master alive, and a past Duelling Champion. He does have goblin ancestry…', 470, 620, { w: 510, size: 25, tail: [605, 415] })], { mood: 'candle' });
 ep.panel(700, { cam: { on: ['harry'], fr: 'bust' }, bg: () => HG.hallTable('r'), blur: 2, actors: FY({}).slice(2, 3) },
   [whisper('Harry', 'What? How is that *possible?* You can\'t mix two different species and get viable offspring! Where did goblins *come* from, anyway?', 400, 110, { w: 520 })], { mood: 'candle' });
 ep.panel(800, { cam: { on: ['hermione'], fr: 'close', dy: 0.1 }, bg: () => HG.hallTable('r'), blur: 3, actors: FY({ he: { expr: { base: 'focus', eyes: { lookX: 1, lookY: -0.3 } } } }).slice(3, 4) },
@@ -109,7 +109,7 @@ ep.beat(300, [capC('And Draco to Slytherin, as planned. You never did know what 
 
 // "Potter, Harry!"
 ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: DAIS, blur: 1, actors: [MCG({ expr: { base: 'stern', eyes: { open: 0.95 } } })] },
-  [cap('With a note of trepidation so firmly kept from her voice and face that you\'d have needed to know her very well indeed to notice, Minerva McGonagall inhaled deeply.', 44, 34, { w: 640, size: 26 }),
+  [cap('With a note of trepidation so firmly kept from her voice and face that you\'d have needed to know her very well indeed to notice, Minerva McGonagall inhaled deeply.', 44, 34, { w: 600, size: 26 }),
    shout('McGonagall', '"Potter, Harry!"', 190, 670, { w: 280, size: 34 })], { mood: 'candle' });
 ep.bleed(700, { cam: { x: 800, y: 800, w: 880 }, bg: () => HG.hallTable('s'), actors: [...[1211, 1212, 1213, 1214, 1215, 1216, 1217].map((sd, i) => ({ def: student(sd, ['g', 'r', 'h', 's'][i % 4]), id: 't' + i, x: 150 + i * 220, y: 1050, s: 1.05, turn: i < 3 ? 0.4 : -0.4, expr: { base: 'awe', eyes: { sparkle: false, lookX: i < 3 ? 1 : -1 } } })), () => HG.tableFront()] },
   [capC('All conversation stopped. All eyes turned to stare.', 400, 90, { w: 480 })], { mood: 'candle', alt: 'Every student in the Hall turns to stare.' });
@@ -140,7 +140,7 @@ ep.panel(460, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: DAIS, blur: 3, act
 // Harry's resolve
 ep.panel(1100, { cam: { on: ['harry'], fr: 'bust' }, bg: () => HG.greatHallWide(), blur: 3, actors: [{ def: harryRobes, id: 'harry', x: 800, y: 1150, s: 1.3, turn: 0.1, pose: 'walk', expr: { base: 'smile', eyes: { teary: true } } }] },
   [inner('Harry', 'They were cheering him for a job he\'d done when he was one year old. A job he hadn\'t really finished. Somewhere, somehow, the Dark Lord was still alive. Would they cheer so hard if they knew?', 400, 120, { w: 560, size: 27 }),
-   inner('Harry', 'He couldn\'t stand to let it be false. To flash and fade like so many child prodigies. To be a disappointment.', 400, 560, { w: 620 }),
+   inner('Harry', 'He couldn\'t stand to let it be false. To flash and fade like so many child prodigies. To be a disappointment.', 400, 650, { w: 620, fixed: true }),
    inner('Harry', 'He would fulfil their expectations. And then exceed them, so that people wondered, looking back, that they had once asked so little of him.', 400, 830, { w: 560, size: 27 })], { mood: 'candle' });
 ep.panel(760, { cam: { x: 930, y: 560, w: 1000 }, bg: DAIS, actors: [MCG({ x: 560 }), HAT('sleep'), { def: harryRobes, id: 'harry', x: 1300, y: 900, s: 1.1, turn: -0.2, pose: 'bowGrand', expr: 'bigGrin' }] },
   [cap('He swept a bow to the Order of Chaos at the Gryffindor table, and another to the rest of the Hall, and waited for the applause and giggling to die away.', 44, 34, { w: 460, size: 26 })], { mood: 'candle' });
