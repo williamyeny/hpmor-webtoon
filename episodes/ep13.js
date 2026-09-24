@@ -69,6 +69,11 @@ ep.panel(780, { cam: { on: ['dumbledore'], fr: 'waist', dy: -0.2 }, bg: STAFF, a
   [say('Dumbledore', 'Additionally, this year, the third-floor corridor on the right-hand side is out of bounds to everyone who does not wish to die a very painful death.', 400, 64, { anchor: 'tc',  w: 560, fixed: true })], { mood: 'candle' });
 ep.panel(480, { cam: { on: ['harry'], fr: 'close' }, bg: RT, blur: 3, actors: TABLE({ h: { expr: 'blank' } }) },
   [cap('Harry was numb at this point.', 44, 30, { w: 400, fixed: true })], { mood: 'candle' });
+// the Defence Professor notice (ch. 12): McGonagall cites it in Ep 18
+ep.panel(960, { cam: { on: ['dumbledore'], fr: 'waist', dy: -0.75 }, bg: STAFF, actors: [DUMB({ pose: 'gesture', expr: { base: 'calm', eyes: { lookX: 0.3 } } }), LECTERN] },
+  [say('Dumbledore', 'I hope all students will extend Professor Quirrell the utmost courtesy and *tolerance* due his extraordinary service to this school, and that you *will not pester us* with any *niggling complaints* about him, unless *you* want to try doing his job.', 400, 50, { anchor: 'tc', w: 600, fixed: true })], { mood: 'candle', alt: 'Dumbledore\'s gaze moves searchingly across the students.' });
+ep.panel(420, { cam: { on: ['harry'], fr: 'close' }, bg: RT, blur: 3, actors: TABLE({ h: { expr: 'suspicious' } }) },
+  [inner('Harry', '*What was* that *about?*', 400, 40, { anchor: 'tc', w: 360, fixed: true })], { mood: 'candle' });
 ep.panel(960, { cam: { on: ['dumbledore'], fr: 'waist', dy: -1.05, zoom: 0.85 }, bg: STAFF, actors: [DUMB({ pose: 'armsUp', expr: 'laugh' }), LECTERN] },
   [shout('Dumbledore', 'And now, before we go to bed, let us sing the school song! Everyone pick their favourite tune and favourite words, and off we go!', 400, 130, { anchor: 'tc',  w: 430, fixed: true })], { mood: 'candle' });
 // the school song: every tune at once
@@ -79,6 +84,9 @@ ep.bleed(1000, { cam: { x: 800, y: 560, w: 1500 }, bg: () => HG.greatHallWide(),
     for (let i = 0; i < 14; i++) { const x = e.w / 2 + (i % 2 ? 1 : -1) * R.range(40, 150), y = 90 + i * (e.h - 150) / 13; o += text(x, y, bits[i % bits.length], { 'font-family': fonts[i % fonts.length], 'font-size': R.range(28, 40), 'text-anchor': 'middle', fill: R.pick(['#f6e7c4', '#ffd774', '#dcebf5', '#f1c0c8']), transform: `rotate(${R.range(-8, 8)} ${x} ${y})`, opacity: 0.95, stroke: '#2a1b14', 'stroke-width': 3, 'paint-order': 'stroke' }); }
     return o; } },
   [], { alt: 'The whole Hall sings the school song, every student to a different tune; words in every style fly through the air.' });
+// his send-off (ch. 12's banquet opener): Harry borrows it in Ep 18
+ep.panel(760, { cam: { on: ['dumbledore'], fr: 'waist', dy: -0.6 }, bg: STAFF, actors: [DUMB({ pose: 'armsUp', expr: 'bigGrin' }), LECTERN] },
+  [shout('Dumbledore', 'Happy happy boom boom swamp swamp swamp! Thank you, and good night!', 400, 40, { anchor: 'tc', w: 460, fixed: true })], { mood: 'candle' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: RT, blur: 3, actors: TABLE({ h: { expr: 'exasperated' } }) },
   [inner('Harry', '*Note to self: do not mess with Dumbledore.*', 400, 64, { anchor: 'tc',  w: 540, fixed: true })], { mood: 'candle' });
 

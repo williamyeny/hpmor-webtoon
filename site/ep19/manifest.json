@@ -1,0 +1,866 @@
+{
+ "id": "ep19",
+ "title": "Your Father's Rock",
+ "number": 19,
+ "subtitle": "",
+ "tiles": [
+  {
+   "file": "001.webp",
+   "w": 800,
+   "h": 330,
+   "alt": "BOOK TWO · THE FIRST WEEK / CHAPTER NINETEEN / Your Father's Rock"
+  },
+  {
+   "file": "002.webp",
+   "w": 800,
+   "h": 300,
+   "alt": "Thursday. / There must have been something about Thursdays. 5:32 p.m."
+  },
+  {
+   "file": "003.webp",
+   "w": 800,
+   "h": 800,
+   "alt": "Tiny Professor Flitwick escorts Harry down a torchlit corridor toward a great stone gargoyle. / Dumbledore wanted to speak to him. Apparently the Headmaster had said that Harry was far too young to invoke the words of power and madness. / Harry: Happy happy boom boom swamp swamp swamp?"
+  },
+  {
+   "file": "004.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Flitwick: Please don't worry too much, Mr Potter! The Headmaster may seem a little odd, or a lot odd, or even extremely odd, but he has never hurt a student in the slightest. Just keep that in mind at all times and you'll be sure not to panic!"
+  },
+  {
+   "file": "005.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "This was not helping."
+  },
+  {
+   "file": "006.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "The gargoyle steps aside, revealing a spiral staircase turning in the dark. / The stone gargoyle walked aside, with a very natural movement that Harry found rather shocking, since it still looked like solid stone the whole time. Behind it, a set of slowly revolving spiral stairs. / Flitwick: Up you go!"
+  },
+  {
+   "file": "007.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Harry rides the turning spiral staircase upward. / Revolving the spiral ought not to take you anywhere. Harry found himself, for some reason his brain couldn't visualise, moving upwards."
+  },
+  {
+   "file": "008.webp",
+   "w": 800,
+   "h": 1080,
+   "alt": "Dumbledore's office: shelves of whirring silver instruments, portraits asleep in their frames, a hat rack with the Sorting Hat, a bird on a golden perch, and behind a clean black desk, a cushioned throne. / And Harry saw the most interesting room he'd ever seen in his life."
+  },
+  {
+   "file": "009.webp",
+   "w": 800,
+   "h": 990,
+   "alt": "Tiny metal mechanisms that whirred or ticked or slowly changed shape. Dozens of mysterious fluids, bubbling and changing colour. Clocks with many hands. A wall of pictures of people sleeping. The Sorting Hat, on a hat rack with two umbrellas and three red slippers for left feet. A bird on a golden perch."
+  },
+  {
+   "file": "010.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Dumbledore on his throne, in three layers of bright pink pyjamas and a squashed-mushroom hat. / And behind the desk: Albus Percival Wulfric Brian Dumbledore, adorned with a long silver beard, a hat like a squashed giant mushroom, and what looked to Muggle eyes like three layers of bright pink pyjamas."
+  },
+  {
+   "file": "011.webp",
+   "w": 800,
+   "h": 420,
+   "alt": "His eyes twinkled with a mad intensity."
+  },
+  {
+   "file": "012.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Dumbledore: Hello, Harry. / Harry: Hello, Headmaster."
+  },
+  {
+   "file": "013.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Dumbledore: Please, Harry! Headmaster sounds so formal. Just call me Heh for short."
+  },
+  {
+   "file": "014.webp",
+   "w": 800,
+   "h": 520,
+   "alt": "Harry: I'll be sure to, Heh."
+  },
+  {
+   "file": "015.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "There was a slight pause. / Dumbledore: Do you know, you're the first person who's ever taken me up on that?"
+  },
+  {
+   "file": "016.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "Harry: Ah… I'm sorry, I, ah, Headmaster, you told me to do it, so I did…"
+  },
+  {
+   "file": "017.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Dumbledore: Heh, please! And there's no call to be so worried. I won't launch you out of a window just because you make one mistake. I'll give you plenty of warnings first!"
+  },
+  {
+   "file": "018.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Dumbledore: Sherbet lemon? / Harry: Never accept sweets from a madman."
+  },
+  {
+   "file": "019.webp",
+   "w": 800,
+   "h": 660,
+   "alt": "Harry: Er, no thank you, Heh. You said something about my being too young to invoke the words of power and madness?"
+  },
+  {
+   "file": "020.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Dumbledore: That you most certainly are! Thankfully the Words of Power and Madness were lost seven centuries ago, and no-one has the slightest idea what they are any more. It was just a little remark."
+  },
+  {
+   "file": "021.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: Why did you call me here, then?"
+  },
+  {
+   "file": "022.webp",
+   "w": 800,
+   "h": 780,
+   "alt": "Dumbledore: Why? Ah, Harry, if I went around all day asking why I do things, I'd never have time to get a single thing done!"
+  },
+  {
+   "file": "023.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Once it had become clear that Dumbledore was deliberately messing with him, something within Harry absolutely refused to sit and take it. / Harry: Yes, it was a very impressive list. Headmaster, Chief Warlock, Supreme Mugwump. Sorry to ask, but is it possible to get more than six hours if you use more than one Time-Turner? Because it's pretty impressive if you're doing all that on just thirty hours a day."
+  },
+  {
+   "file": "024.webp",
+   "w": 800,
+   "h": 800,
+   "alt": "Dumbledore: I'm afraid Time doesn't like being stretched out too much. And yet we ourselves seem a little too large for it. So it's a constant struggle to fit our lives into Time."
+  },
+  {
+   "file": "025.webp",
+   "w": 800,
+   "h": 480,
+   "alt": "Harry: Indeed. That's why it's best to come to our points quickly."
+  },
+  {
+   "file": "026.webp",
+   "w": 800,
+   "h": 960,
+   "alt": "For a moment Harry wondered if he'd gone too far. Then Dumbledore chuckled. / Dumbledore: Straight to the point it shall be. Harry, this Monday you did something that should have been impossible, even with a Time-Turner. Where did those two pies come from, I wonder?"
+  },
+  {
+   "file": "027.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Dumbledore: If no-one could see the thrower, it would be easy enough to throw the pies. One might suspect that since you had a Time-Turner, you were the invisible one. And since Disillusionment is far beyond you, you had an invisibility cloak."
+  },
+  {
+   "file": "028.webp",
+   "w": 800,
+   "h": 1060,
+   "alt": "Dumbledore: And such cloaks are not for sale in Diagon Alley. But there is one which might find its own way to a destined wearer. The Cloak of Invisibility, one of the three Deathly Hallows. May I see it, Harry?"
+  },
+  {
+   "file": "029.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry, frozen, remembering the anonymous note. / If Dumbledore saw a chance to possess one of the Deathly Hallows, he would never let it escape his grasp until the day he died. / This was the most powerful wizard in the world. There was no way he could make it out of the door."
+  },
+  {
+   "file": "030.webp",
+   "w": 800,
+   "h": 840,
+   "alt": "Dumbledore sinks back into his throne, the twinkle gone. / Slowly, Dumbledore leaned back into his chair. The bright light had gone out of his eyes. / Dumbledore: Harry. If you don't want to, you can just say no."
+  },
+  {
+   "file": "031.webp",
+   "w": 800,
+   "h": 480,
+   "alt": "Harry: I can?"
+  },
+  {
+   "file": "032.webp",
+   "w": 800,
+   "h": 800,
+   "alt": "Dumbledore: It seems that you're afraid of me, Harry. Surely you realise that I do not need your permission. I am powerful enough to draw it out myself, mokeskin pouch or no."
+  },
+  {
+   "file": "033.webp",
+   "w": 800,
+   "h": 860,
+   "alt": "Dumbledore: But this I will not do. The Cloak is yours. I will not seize it from you. Not even to look at for a moment, unless you decide to show it to me. That is a promise and an oath."
+  },
+  {
+   "file": "034.webp",
+   "w": 800,
+   "h": 920,
+   "alt": "Harry holds out his pouch, biting his lip. / Harry: If you really don't need my permission… then you have it. / He bit down hard on his lip, sending that signal to himself in case he was Obliviated afterwards."
+  },
+  {
+   "file": "035.webp",
+   "w": 800,
+   "h": 1040,
+   "alt": "Dumbledore holds the shimmering Cloak across his hands, wistful. / Dumbledore: Centuries old, and still as perfect as the day it was made. I can feel the power of it like an echo in my mind. Like a song, forever being sung, without anyone to hear it…"
+  },
+  {
+   "file": "036.webp",
+   "w": 800,
+   "h": 920,
+   "alt": "Dumbledore: Do not sell it. Think twice before you show it to anyone, and ponder three times again before you reveal it is a Deathly Hallow. This is indeed a Thing of Power."
+  },
+  {
+   "file": "037.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Dumbledore holds the Cloak out across the desk to Harry. / For a moment Dumbledore's face grew wistful. And then he handed the Cloak back."
+  },
+  {
+   "file": "038.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Harry: There was a note with the Cloak. It said you would try to take it from me, if you knew. I don't know who left it, I really don't."
+  },
+  {
+   "file": "039.webp",
+   "w": 800,
+   "h": 1020,
+   "alt": "Dumbledore: I won't impugn the motives of whoever left you that note. They did give you the Cloak, after all. You and I are both game pieces of the same colour, I think. I will only ask that you think twice, and ponder three times again, the next time someone tells you to distrust me."
+  },
+  {
+   "file": "040.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Dumbledore stands by a table of instruments, gazing at a dial with eight hands. / Dumbledore: In truth, there are some at Hogwarts you would do well not to trust. Perhaps even some you call friends. He probably seems to you quite charming. Polite, to you at least. Always ready with a helping hand, a favour, a word of advice…"
+  },
+  {
+   "file": "041.webp",
+   "w": 800,
+   "h": 780,
+   "alt": "Harry: Oh, Draco Malfoy! Oh no, no no no, you've got it all wrong. He's not turning me. I'm turning him."
+  },
+  {
+   "file": "042.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Dumbledore: You're what?"
+  },
+  {
+   "file": "043.webp",
+   "w": 800,
+   "h": 880,
+   "alt": "Harry: I'm going to turn Draco Malfoy from the Dark Side. Make him a good guy. I selected him for redemption specifically because he's the heir to House Malfoy. If you had to pick one person to redeem, it would obviously be him."
+  },
+  {
+   "file": "044.webp",
+   "w": 800,
+   "h": 660,
+   "alt": "Harry: Not just for me! For all of magical Britain! And he'll have a happier and mentally healthier life himself!"
+  },
+  {
+   "file": "045.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Dumbledore, doubled over, laughing until he has to wipe his eyes. / Dumbledore started laughing. A lot harder than Harry would have expected. Almost howling. It seemed positively undignified. / Dumbledore: Ah, me. Ah, me. Oft evil will shall evil mar indeed."
+  },
+  {
+   "file": "046.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry points, astonished. / Harry: Hey, that's a Tolkien quote! Gandalf says that! / Dumbledore: Théoden, actually."
+  },
+  {
+   "file": "047.webp",
+   "w": 800,
+   "h": 440,
+   "alt": "Harry: You're Muggle-born?"
+  },
+  {
+   "file": "048.webp",
+   "w": 800,
+   "h": 800,
+   "alt": "Dumbledore: I'm afraid not. But my Muggle-born students tend to think alike in certain ways. I have no fewer than twenty copies of The Lord of the Rings."
+  },
+  {
+   "file": "049.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Dumbledore strikes a pose, wand aloft, in pink pyjamas. / Dumbledore: You cannot pass! How does that look?"
+  },
+  {
+   "file": "050.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: Ah… I think you're missing a Balrog."
+  },
+  {
+   "file": "051.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Dumbledore: I fear there have been precious few Balrogs in my life of late. Nowadays it's all meetings of the Wizengamot, where I must try desperately to prevent any work from getting done."
+  },
+  {
+   "file": "052.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Dumbledore: And being mysterious at people. Knowing things I have no way of knowing. Making cryptic statements which can only be understood in hindsight."
+  },
+  {
+   "file": "053.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Dumbledore: Speaking of which, Harry, I have a certain something to give you. Something which belonged to your father."
+  },
+  {
+   "file": "054.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "With some effort, Dumbledore heaves a large, grey, ordinary rock onto the desk. / Dumbledore: This was your father's rock. / THUNK"
+  },
+  {
+   "file": "055.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: This is a joke, right?"
+  },
+  {
+   "file": "056.webp",
+   "w": 800,
+   "h": 860,
+   "alt": "Dumbledore: It is not. I took this from the ruins of James and Lily's home in Godric's Hollow, where also I found you. I have kept it from then until now, against the day I could give it to you."
+  },
+  {
+   "file": "057.webp",
+   "w": 800,
+   "h": 660,
+   "alt": "Harry peers at the rock: large, grey and entirely ordinary. / Harry: Um. Is it a magical rock?"
+  },
+  {
+   "file": "058.webp",
+   "w": 800,
+   "h": 780,
+   "alt": "Dumbledore: Not so far as I know. But I advise you with the greatest possible stringency to keep it close about your person at all times."
+  },
+  {
+   "file": "059.webp",
+   "w": 800,
+   "h": 520,
+   "alt": "Harry: You think I should just carry a big rock everywhere I go?"
+  },
+  {
+   "file": "060.webp",
+   "w": 800,
+   "h": 780,
+   "alt": "Dumbledore: That might prove wise. Tell them I ordered you to do it. No-one will question that, since they all think I'm insane."
+  },
+  {
+   "file": "061.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Dumbledore: Ah, Harry. When we are young, we believe that if we see no explanation for something, then no explanation exists. When we are older, we realise that the whole universe works by a rhythm and a reason, even if we ourselves do not know it."
+  },
+  {
+   "file": "062.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Dumbledore: It is only our own ignorance which appears to us as insanity."
+  },
+  {
+   "file": "063.webp",
+   "w": 800,
+   "h": 500,
+   "alt": "Harry: Reality is always lawful, even if we don't know the law."
+  },
+  {
+   "file": "064.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "Dumbledore: Precisely, Harry. To understand this is the essence of wisdom."
+  },
+  {
+   "file": "065.webp",
+   "w": 800,
+   "h": 660,
+   "alt": "Harry: So… why do I have to carry this rock, exactly?"
+  },
+  {
+   "file": "066.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Dumbledore: I can't think of a reason, actually."
+  },
+  {
+   "file": "067.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: …you can't. / The instruments ticked on."
+  },
+  {
+   "file": "068.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Harry: Okay, that is simply not the correct way to deal with our admitted ignorance of the universe."
+  },
+  {
+   "file": "069.webp",
+   "w": 800,
+   "h": 780,
+   "alt": "Harry's pencil sketch: a grid of boxes, one with a diamond, and a magnifying glass homing in on it. / Harry: If there are a million possibilities, most of the evidence you need goes into just locating the right one: bringing it to your attention at all."
+  },
+  {
+   "file": "070.webp",
+   "w": 800,
+   "h": 860,
+   "alt": "Harry's sketch: a detective in a deerstalker points at random at one bewildered stick figure in a crowd: Mortimer Snodgrass. / Harry: You can't just pluck one possibility out of thin air and promote it. Like a detective with no evidence saying, \"Have we considered the possibility that Mortimer Snodgrass did it?\""
+  },
+  {
+   "file": "071.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: There are a million other things I could do besides carry around my father's rock!"
+  },
+  {
+   "file": "072.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Dumbledore: An interesting argument. But doesn't it break down when you compare a million murderers, only one of whom did it, with a million courses of action, many of which may all be wise? I do not say carrying your father's rock is the one best course. Only that it is wiser to do than not."
+  },
+  {
+   "file": "073.webp",
+   "w": 800,
+   "h": 580,
+   "alt": "Harry opened his mouth, and found he had no reply ready."
+  },
+  {
+   "file": "074.webp",
+   "w": 800,
+   "h": 920,
+   "alt": "Dumbledore: Being Sorted into Ravenclaw means that you are driven by your desire to know things. That is not at all the same quality as being intelligent. Nonetheless, you do seem rather intelligent. I shall be daring, and offer you a certain other heirloom."
+  },
+  {
+   "file": "075.webp",
+   "w": 800,
+   "h": 520,
+   "alt": "Harry: You don't mean… my father… owned another rock?"
+  },
+  {
+   "file": "076.webp",
+   "w": 800,
+   "h": 780,
+   "alt": "Dumbledore: Excuse me, I am still older and more mysterious than you, and if there are any revelations to be made then I will do the revealing, thank you…"
+  },
+  {
+   "file": "077.webp",
+   "w": 800,
+   "h": 920,
+   "alt": "Only Dumbledore's pink-pyjama'd legs stick up out of the desk drawer, kicking. / Dumbledore's head and shoulders and whole torso disappeared into the desk drawer, until only his legs were sticking out, as though the drawer were eating him. / Dumbledore: oh, where is that thing!"
+  },
+  {
+   "file": "078.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Dumbledore: This was your mother's fifth-year Potions textbook. Which holds a terrible secret. A secret so disastrous that I must ask you to swear never to tell anyone. And I do require you to swear it seriously."
+  },
+  {
+   "file": "079.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Harry: I'm feeling thirsty. And that is not at all a good sign. / (The Comed-Tea urge. Something funny was about to happen.)"
+  },
+  {
+   "file": "080.webp",
+   "w": 800,
+   "h": 720,
+   "alt": "That was the trouble with being a Ravenclaw. You couldn't refuse an offer like that, or your curiosity would eat you alive, and everyone knew it. / Harry: Yes. I swear."
+  },
+  {
+   "file": "081.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "Dumbledore: And I swear, in turn, that what I am about to tell you is the truth."
+  },
+  {
+   "file": "082.webp",
+   "w": 800,
+   "h": 1180,
+   "alt": "The open textbook: \"I wonder what would happen if you used Thestral blood here instead of blueberries?\" and beneath, in different handwriting: \"You'd get sick for weeks and maybe die.\" / Dumbledore: Do you see these notes, written in the margins? The ones in this handwriting were written by your mother. / Dumbledore: And the ones in this handwriting were written by me. I would turn myself invisible and sneak into the library while she was studying, and scribble in her book. Lily thought one of her friends was writing them. They had the most amazing fights."
+  },
+  {
+   "file": "083.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "That was the exact point at which Harry realised that the Headmaster of Hogwarts was, in fact, crazy."
+  },
+  {
+   "file": "084.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "Dumbledore: Do you understand the implications of what I have just told you, Harry?"
+  },
+  {
+   "file": "085.webp",
+   "w": 800,
+   "h": 480,
+   "alt": "Harry: Ehhh… sorry… not really…"
+  },
+  {
+   "file": "086.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry, wearing a fixed smile, makes a beeline for the door. / Harry: Of course. You know it's actually getting rather late in the day and I'm a bit hungry, so I should be going down to dinner, really…"
+  },
+  {
+   "file": "087.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "Harry yanks at the doorknob. It will not turn. / The doorknob entirely failed to turn."
+  },
+  {
+   "file": "088.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Dumbledore's quiet voice comes from right behind him. He looks saddened and weary. / Dumbledore: You wound me, Harry. Do you not at least realise that what I have told you is a sign of trust?"
+  },
+  {
+   "file": "089.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Dumbledore: You try anything new, instead of following the same pattern for a hundred and ten years, and people all start running away."
+  },
+  {
+   "file": "090.webp",
+   "w": 800,
+   "h": 800,
+   "alt": "Dumbledore: I'd heard that your friends also think you mad. I know they are mistaken. Will you not believe the same of me?"
+  },
+  {
+   "file": "091.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry: Please open the door. If you ever want me to trust you again, open the door."
+  },
+  {
+   "file": "092.webp",
+   "w": 800,
+   "h": 300,
+   "alt": "The doorknob clicks. / click"
+  },
+  {
+   "file": "093.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "The door stands open. Harry hesitates on the threshold. / Dumbledore: There were more things I planned to say to you. And if you leave now, you will not know what they were. / Sometimes Harry absolutely hated being a Ravenclaw."
+  },
+  {
+   "file": "094.webp",
+   "w": 800,
+   "h": 1200,
+   "alt": "Inside Harry's head, four tiny Harrys in four House colours argue: Gryffindor, Hufflepuff, Slytherin, Ravenclaw. Ravenclaw is outvoted. / mg: He's never hurt a student. You're not going to run away just because things are getting interesting, are you? / mh: You can't just walk out on the Headmaster! What if he starts deducting House points? / ms: Poor fellow, he looks like he needs someone to talk to. And I bet he's got a reaallly interesting book collection. / mr: You're all a bunch of lunatics."
+  },
+  {
+   "file": "095.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry pushes the door shut himself. Dumbledore looks pleased. / Harry turned, took a step toward the open door, reached out, and deliberately closed it again. (A costless sacrifice, since he was staying anyway. But maybe it would impress Dumbledore.)"
+  },
+  {
+   "file": "096.webp",
+   "w": 800,
+   "h": 520,
+   "alt": "Harry: Please don't do that again. I don't like being trapped."
+  },
+  {
+   "file": "097.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Dumbledore: I am sorry about that, Harry. But it would have been terribly unwise to let you leave without your father's rock."
+  },
+  {
+   "file": "098.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: Of course. It wasn't reasonable of me to expect the door to open before I put the quest items in my inventory."
+  },
+  {
+   "file": "099.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "The rock slides into the mokeskin pouch, which burps. / The rock went into the pouch. The burp that followed had a distinctly complaining sound to it."
+  },
+  {
+   "file": "100.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: As long as I'm here, I don't suppose you'd give me a bit of a tour?"
+  },
+  {
+   "file": "101.webp",
+   "w": 800,
+   "h": 1300,
+   "alt": "Dumbledore gestures vaguely at the sleeping portraits, the desk, the throne. / Dumbledore: I'm flattered, but there isn't much to say. These are portraits of past Headmasters. This is my desk. This is my chair."
+  },
+  {
+   "file": "102.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry: Actually I was wondering about those."
+  },
+  {
+   "file": "103.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "A table of instruments: a cube whispering \"blorple… blorple…\", an eight-handed dial, a golden thing with wibblers. / Dumbledore: The little fiddly things? They came with the office, and I have absolutely no idea what most of them do. Although this dial with the eight hands counts the number of, let's call them sneezes, by left-handed witches within the borders of France."
+  },
+  {
+   "file": "104.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Dumbledore: And this one with the golden wibblers is my own invention, and Minerva is never, ever going to figure out what it's doing."
+  },
+  {
+   "file": "105.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "The Sorting Hat, asleep on its hat rack. / Dumbledore: Here of course we have the Sorting Hat. It told me it was never again to be placed on your head under any circumstances. You're only the fourteenth student in history it's said that about. Baba Yaga was another."
+  },
+  {
+   "file": "106.webp",
+   "w": 800,
+   "h": 780,
+   "alt": "Two umbrellas and three red left slippers. / Dumbledore: This is an umbrella. This is another umbrella."
+  },
+  {
+   "file": "107.webp",
+   "w": 800,
+   "h": 940,
+   "alt": "On the golden perch sits an ordinary brown chicken. / Dumbledore: And of course, most people who come to my office want to see Fawkes. Fawkes is a phœnix. Very rare, very powerful magical creatures."
+  },
+  {
+   "file": "108.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Close on the bird: an ordinary brown chicken with tiny, beady black eyes. / Harry stared into the tiny, beady black eyes, which showed not the slightest sign of power or intelligence. He was pretty sure he recognised the shape of the bird. It was pretty hard to miss."
+  },
+  {
+   "file": "109.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Harry, pained, argues with himself. / Harry: Say something intelligent! / Harry: Well what the heck am I supposed to say? / Harry: Anything! / Harry: You mean, anything besides \"Fawkes is a chicken\"? / Harry: YES! ANYTHING BUT THAT!"
+  },
+  {
+   "file": "110.webp",
+   "w": 800,
+   "h": 800,
+   "alt": "Harry: So, ah, what sort of magic do phœnixes do, then?"
+  },
+  {
+   "file": "111.webp",
+   "w": 800,
+   "h": 800,
+   "alt": "Dumbledore: Their tears have the power to heal. They are creatures of fire. Whenever their bodies fail them, they immolate themselves in a burst of fire, and leave behind a hatchling, or sometimes an egg."
+  },
+  {
+   "file": "112.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Dumbledore peers at the chicken. / Dumbledore: Hm… looking a little peaky there, I'd say."
+  },
+  {
+   "file": "113.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "The chicken bursts into flame. / By the time this statement registered fully in Harry's mind, the chicken was already on fire."
+  },
+  {
+   "file": "114.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "A tiny, pathetic heap of ashes on the golden perch. / The blaze was brief, intense, and entirely self-contained. And then it died down, leaving a tiny, pathetic heap of ashes on the golden perch."
+  },
+  {
+   "file": "115.webp",
+   "w": 800,
+   "h": 840,
+   "alt": "Dumbledore: Don't look so horrified, Harry! Fawkes hasn't been hurt."
+  },
+  {
+   "file": "116.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Dumbledore holds up a small yellowish egg. / Dumbledore's hand dipped into a pocket, and then the same hand sifted through the ashes and turned up a small yellowish egg. / Dumbledore: Look, here's an egg!"
+  },
+  {
+   "file": "117.webp",
+   "w": 800,
+   "h": 480,
+   "alt": "Harry: Oh… wow… amazing."
+  },
+  {
+   "file": "118.webp",
+   "w": 800,
+   "h": 840,
+   "alt": "Dumbledore: I fear I have a confession to make, Harry. A confession, and an apology. I'm afraid that I've been manipulating you your entire life. It was I who consigned you to the care of your wicked step-parents…"
+  },
+  {
+   "file": "119.webp",
+   "w": 800,
+   "h": 680,
+   "alt": "Harry: My step-parents aren't wicked! My parents, I mean!"
+  },
+  {
+   "file": "120.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "Dumbledore: They aren't? Not even a little wicked? That doesn't fit the pattern…"
+  },
+  {
+   "file": "121.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry's inner Slytherin screams at the top of its mental lungs. / ms: SHUT UP YOU IDIOT HE'LL TAKE YOU AWAY FROM THEM!"
+  },
+  {
+   "file": "122.webp",
+   "w": 800,
+   "h": 840,
+   "alt": "Harry: No, no, I was just trying to spare your feelings. They're actually very wicked. They, ah, I have to do dishes and wash problems and they don't let me read a lot of books and…"
+  },
+  {
+   "file": "123.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Dumbledore: Ah, good, that's good to hear. I apologise for that, then. I'm sorry to say, Harry, that I am responsible for virtually everything bad that has ever happened to you. I know that this will probably make you very angry."
+  },
+  {
+   "file": "124.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry: Yes, I'm very angry! Grrr! / Harry's Internal Critic promptly awarded him the All-Time Award for the Worst Acting in the History of Ever."
+  },
+  {
+   "file": "125.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Dumbledore: And I just wanted you to know, as early as possible, in case something happens to one of us later…"
+  },
+  {
+   "file": "126.webp",
+   "w": 800,
+   "h": 860,
+   "alt": "Moisture glistens in the old wizard's eyes. / Dumbledore: that I am truly, truly sorry. For everything that has already happened, and everything that will."
+  },
+  {
+   "file": "127.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "Harry: And I'm very angry! So angry that I want to leave right now, unless you've got anything else to say!"
+  },
+  {
+   "file": "128.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Dumbledore: One last thing, then. You are not to attempt the forbidden door on the third-floor corridor. I doubt you could so much as open the first door, since it's locked, and you don't know the spell Alohomora…"
+  },
+  {
+   "file": "129.webp",
+   "w": 800,
+   "h": 860,
+   "alt": "Harry shoots out of the stairwell at full speed. / Harry spun around and bolted for the exit at top speed. The doorknob turned agreeably. He raced down the spiral stairs even as they turned, and fired out of the stairwell like a cannonball…"
+  },
+  {
+   "file": "130.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry and Professor McGonagall collide and go down; her parchments scatter everywhere. / …directly into Minerva McGonagall, as she was turning the corner on her way to the Headmaster's office."
+  },
+  {
+   "file": "131.webp",
+   "w": 800,
+   "h": 920,
+   "alt": "McGonagall: Harry Potter! What were you doing in the Headmaster's office? / Harry: Nothing!"
+  },
+  {
+   "file": "132.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "McGonagall: Were you talking about the Defence Professor?"
+  },
+  {
+   "file": "133.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: No! Dumbledore called me up there and gave me this big rock, and said it was my father's, and I should carry it everywhere!"
+  },
+  {
+   "file": "134.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "There was another terrible pause. / McGonagall: I see. My sympathies, Mr Potter. And I apologise for doubting you."
+  },
+  {
+   "file": "135.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "He looks up at her trustworthy, sane face. / Harry: Professor McGonagall… do you think I should? Carry my father's rock everywhere?"
+  },
+  {
+   "file": "136.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "McGonagall: That is between you and the Headmaster, I'm afraid. I will say that ignoring him completely is almost never wise."
+  },
+  {
+   "file": "137.webp",
+   "w": 800,
+   "h": 780,
+   "alt": "Harry: I was thinking that once I know how, I could Transfigure the rock into a ring, and wear it on my finger…"
+  },
+  {
+   "file": "138.webp",
+   "w": 800,
+   "h": 1080,
+   "alt": "McGonagall: It is good that you asked me first. If you lost control, the reversal would cut off your finger. But I can have a ring forged for you, with a setting for a small jewel. Keep a safe Transfiguration going for a full month, even in your sleep, and I will allow you to Transfigure, ah, your father's rock…"
+  },
+  {
+   "file": "139.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "McGonagall: Did the Headmaster really…"
+  },
+  {
+   "file": "140.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "McGonagall: That's a bit strange even for him. I'm sorry about this, Mr Potter. But now it's my own turn to see the Headmaster."
+  },
+  {
+   "file": "141.webp",
+   "w": 800,
+   "h": 1030,
+   "alt": "McGonagall rising up the turning stair; Harry points and yells after her. / Professor McGonagall stepped onto the revolving stairs and began to rise out of sight. The gargoyle started back… / Harry: Professor McGonagall, the Headmaster set fire to a chicken!"
+  },
+  {
+   "file": "142.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "The gargoyle thuds back into place, cutting her off. / McGonagall: He wha—"
+  },
+  {
+   "file": "143.webp",
+   "w": 800,
+   "h": 340,
+   "alt": "To be continued"
+  }
+ ]
+}
