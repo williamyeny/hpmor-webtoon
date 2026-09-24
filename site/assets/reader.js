@@ -30,8 +30,12 @@
       if(!target){var ids=[].map.call(list,function(li){return li.dataset.id;});var anyRead=ids.some(function(i){return E[i]&&E[i].done;});
         target=ids.filter(function(i){return !(E[i]&&E[i].done);})[0];label=anyRead?'Next':'Begin reading';
         if(!target){target=ids[0];label='Read again';}}
-      if(target&&!(label==='Begin reading')){btn.href=target+'/'+(label==='Continue'?'#continue':'');btn.textContent=label+' · Episode '+Number(target.slice(2));}
-      else if(target){btn.href=target+'/';}
+      if(target){var li=document.querySelector('ol.eps li[data-id="'+target+'"]');var t=li?li.querySelector('.tt').textContent:'';
+        btn.href=target+'/'+(label==='Continue'?'#continue':'');
+        btn.querySelector('.lbl').textContent=(label==='Begin reading'?'Break the seal':label)+' \u00b7 Episode '+Number(target.slice(2));
+        btn.querySelector('.ttl').textContent=t;
+        var tt=btn.querySelector('.ttl'),fs=25.6;tt.style.fontSize='';while(tt.scrollWidth>tt.clientWidth+1&&fs>15){fs-=1;tt.style.fontSize=fs+'px';}
+        btn.setAttribute('aria-label',label+': Episode '+Number(target.slice(2))+', '+t);}
     }
   }
 })();

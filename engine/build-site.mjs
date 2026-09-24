@@ -12,7 +12,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 
 // fonts used by the UI
 fs.mkdirSync(path.join(SITE, 'assets', 'fonts'), { recursive: true });
-for (const f of ['im-fell-english-latin-400-normal', 'im-fell-english-latin-400-italic', 'im-fell-english-sc-latin-400-normal', 'alegreya-latin-400-normal', 'alegreya-latin-400-italic']) {
+for (const f of ['pinyon-script-latin-400-normal', 'im-fell-english-latin-400-normal', 'im-fell-english-latin-400-italic', 'im-fell-english-sc-latin-400-normal', 'alegreya-latin-400-normal', 'alegreya-latin-400-italic']) {
   fs.copyFileSync(path.join(FONT_DIR, f + '.woff2'), path.join(SITE, 'assets', 'fonts', f + '.woff2'));
 }
 
@@ -20,6 +20,7 @@ const CSS = `
 @font-face{font-family:'IM Fell English';src:url(fonts/im-fell-english-latin-400-normal.woff2) format('woff2');font-display:swap}
 @font-face{font-family:'IM Fell English';font-style:italic;src:url(fonts/im-fell-english-latin-400-italic.woff2) format('woff2');font-display:swap}
 @font-face{font-family:'IM Fell English SC';src:url(fonts/im-fell-english-sc-latin-400-normal.woff2) format('woff2');font-display:swap}
+@font-face{font-family:'Pinyon Script';src:url(fonts/pinyon-script-latin-400-normal.woff2) format('woff2');font-display:swap}
 @font-face{font-family:'Alegreya';src:url(fonts/alegreya-latin-400-normal.woff2) format('woff2');font-display:swap}
 @font-face{font-family:'Alegreya';font-style:italic;src:url(fonts/alegreya-latin-400-italic.woff2) format('woff2');font-display:swap}
 :root{--paper:#f1e6cc;--paper2:#e6d6b2;--ink:#2a1b14;--ink2:#5a4032;--wax:#9c1f25;--wood:#241812;--gold:#c9a24a;--col:600px}
@@ -48,6 +49,21 @@ a{color:inherit}
 .card .h{font-family:'IM Fell English',serif;font-size:1.45rem;margin:.2rem 0}
 .card .b{font-style:italic;color:var(--ink2);font-size:1rem}
 .muted{color:var(--ink2);font-size:.95rem}
+/* ---------- the letter (main call to action) */
+.letter{position:relative;display:block;width:min(22rem,90%);aspect-ratio:34/22;margin:1.4rem auto .6rem;text-decoration:none;color:var(--ink);
+  -webkit-tap-highlight-color:transparent;filter:drop-shadow(0 6px 10px rgba(60,30,10,.28)) drop-shadow(0 1px 1px rgba(60,30,10,.3));transition:transform .25s ease}
+.letter:before{content:'';position:absolute;inset:-22% -12%;background:radial-gradient(ellipse at 50% 55%,rgba(255,207,117,.45),rgba(255,207,117,0) 62%);z-index:-1;animation:candle 4s ease-in-out infinite}
+@keyframes candle{0%,100%{opacity:.8}50%{opacity:1}}
+.letter svg.env{position:absolute;inset:0;width:100%;height:100%}
+.letter .wax{position:absolute;left:50%;top:50.5%;width:23%;aspect-ratio:1;transform:translate(-50%,-50%) rotate(-6deg);transition:transform .2s ease}
+.letter .txt{position:absolute;left:5%;right:5%;bottom:6%;text-align:center;line-height:1.1}
+.letter .lbl{display:block;font-family:'IM Fell English SC',serif;font-size:.95rem;letter-spacing:1.5px;color:#6b1a1f}
+.letter .ttl{display:block;font-family:'Pinyon Script',cursive;font-size:1.6rem;color:#1d5a3a;margin-top:.1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.letter .to{position:absolute;left:0;right:0;top:12%;text-align:center;font-family:'Pinyon Script',cursive;font-size:1.2rem;color:#1d5a3a;opacity:.85}
+.letter:hover{transform:translateY(-2px) rotate(-.5deg)}
+.letter:hover .wax{transform:translate(-50%,-50%) rotate(-6deg) scale(1.05)}
+.letter:active .wax{transform:translate(-50%,-50%) rotate(-6deg) scale(.94)}
+@media (prefers-reduced-motion:reduce){.letter:before{animation:none}}
 /* ---------- contents */
 .cover{position:relative;line-height:0}
 .cover img{width:100%;height:auto;display:block}
@@ -116,8 +132,12 @@ const READER_JS = `
       if(!target){var ids=[].map.call(list,function(li){return li.dataset.id;});var anyRead=ids.some(function(i){return E[i]&&E[i].done;});
         target=ids.filter(function(i){return !(E[i]&&E[i].done);})[0];label=anyRead?'Next':'Begin reading';
         if(!target){target=ids[0];label='Read again';}}
-      if(target&&!(label==='Begin reading')){btn.href=target+'/'+(label==='Continue'?'#continue':'');btn.textContent=label+' \u00b7 Episode '+Number(target.slice(2));}
-      else if(target){btn.href=target+'/';}
+      if(target){var li=document.querySelector('ol.eps li[data-id="'+target+'"]');var t=li?li.querySelector('.tt').textContent:'';
+        btn.href=target+'/'+(label==='Continue'?'#continue':'');
+        btn.querySelector('.lbl').textContent=(label==='Begin reading'?'Break the seal':label)+' \\u00b7 Episode '+Number(target.slice(2));
+        btn.querySelector('.ttl').textContent=t;
+        var tt=btn.querySelector('.ttl'),fs=25.6;tt.style.fontSize='';while(tt.scrollWidth>tt.clientWidth+1&&fs>15){fs-=1;tt.style.fontSize=fs+'px';}
+        btn.setAttribute('aria-label',label+': Episode '+Number(target.slice(2))+', '+t);}
     }
   }
 })();`;
@@ -170,7 +190,26 @@ ${hasCover ? '<div class="cover"><img src="cover.webp" width="1000" height="1250
 <header class="head">
 <h1><small>Harry Potter and the</small>Methods of Rationality</h1>
 <p>${esc(SERIES.tagline)}</p>
-${ready.length ? `<a class="btn" id="continue" href="${ready[0].id}/">Begin reading</a>` : ''}
+${ready.length ? `<a class="letter" id="continue" href="${ready[0].id}/" aria-label="Begin reading: Episode 1">
+<svg class="env" viewBox="0 0 340 220" aria-hidden="true"><defs>
+<linearGradient id="pp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3e6c2"/><stop offset="1" stop-color="#e2cf9f"/></linearGradient>
+<linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ead9ac"/><stop offset="1" stop-color="#d9c38e"/></linearGradient>
+<filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 .35 0 0 0 0 .25 0 0 0 0 .12 0 0 0 -1.6 1.05"/><feComposite in2="SourceGraphic" operator="in"/></filter></defs>
+<path d="M4,6 Q170,0 336,5 L335,214 Q170,219 5,215Z" fill="url(#pp)" stroke="#a88a55" stroke-width="1.5"/>
+<path d="M4,6 Q170,0 336,5 L335,214 Q170,219 5,215Z" filter="url(#rough)" opacity=".35"/>
+<path d="M8,10 L166,86 Q170,88 174,86 L332,9" fill="none" stroke="#c9b07a" stroke-width="1"/>
+<path d="M4,6 L336,5 L180,110 Q170,116 160,110Z" fill="url(#fl)" stroke="#a88a55" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M22,14 L318,13" stroke="#fff6dc" stroke-width="2" opacity=".6"/>
+</svg>
+<svg class="wax" viewBox="-60 -60 120 120" aria-hidden="true"><defs><radialGradient id="wx" cx=".38" cy=".32" r=".75"><stop offset="0" stop-color="#d4454a"/><stop offset=".55" stop-color="#9c1f25"/><stop offset="1" stop-color="#6a0f14"/></radialGradient></defs>
+<path d="M0,-54 C18,-58 30,-46 42,-40 C56,-30 50,-14 55,0 C58,16 48,28 40,40 C28,52 14,55 0,55 C-16,58 -30,50 -42,40 C-54,28 -56,14 -54,0 C-58,-16 -50,-30 -40,-42 C-28,-52 -14,-56 0,-54Z" fill="url(#wx)"/>
+<circle r="37" fill="none" stroke="#6a0f14" stroke-width="3" opacity=".7"/><circle r="31" fill="none" stroke="#e0686c" stroke-width="1.2" opacity=".5"/>
+<text y="17" text-anchor="middle" font-family="IM Fell English SC,serif" font-size="50" fill="#5e0c10">H</text>
+<text y="15" x="-1.5" text-anchor="middle" font-family="IM Fell English SC,serif" font-size="50" fill="#e97a7e" opacity=".35">H</text>
+<ellipse cx="-18" cy="-24" rx="12" ry="6" fill="#fff" opacity=".28" transform="rotate(-30 -18 -24)"/></svg>
+<span class="to">To the Reader,</span>
+<span class="txt"><span class="lbl">Break the seal · Episode 1</span><span class="ttl">${esc(ready[0].title)}</span></span>
+</a>` : ''}
 </header>
 <div class="arc">${esc(SERIES.arc)}</div>
 <ol class="eps">
