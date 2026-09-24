@@ -15,12 +15,15 @@ ep.setBg(C.paper);
 ep.beat(260, [plain('CHAPTER FOUR', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Efficient Market Hypothesis', 400, 170, { size: 44 })]);
 
 // =============================================================== the banking hall
+// crossed arms: hands stay tucked inside the wide sleeves
+const mcgX = { ...mcgonagall, outfit: { ...mcgonagall.outfit, handOut: -0.6 } };
 const clerks = [goblin('g1'), { ...goblin('g2', { coat: '#2f4a33' }), glasses: { r: 13, shape: 'half', frame: 0.8 } }, goblin('g3'), goblin('g4', { coat: '#243352' })];
-ep.panel(800, { cam: { x: 1080, y: 590, w: 1300 }, bg: () => B.bankHall(),
+ep.panel(800, { cam: { x: 1080, y: 610, w: 1180 }, bg: () => B.bankHall(),
   actors: [...clerks.map((d, i) => ({ def: d, id: 'c' + i, x: 300 + i * 520, y: 620, s: 1.0, turn: i % 2 ? -0.3 : 0.3, pose: 'scribble', expr: i === 1 ? 'suspicious' : 'focus' })), B.bankCounter(),
     { def: mcgonagall, id: 'mcgonagall', x: 1000, y: 1120, turn: 0.2, pose: 'stand', expr: 'calm' }, { def: harry, id: 'harry', x: 1180, y: 1130, s: 1.1, turn: -0.1, pose: 'stand', expr: 'awe' }] },
   [cap('Inside, it was marble and gold and hush, and the clerks were not human.', 44, 34, { w: 460 })], { mood: 'day', alt: 'The great marble banking hall of Gringotts, lit by tall windows and candle chandeliers. Goblin clerks scribble at a long high counter.' });
-ep.panel(660, { cam: { on: ['c1'], fr: 'bust' }, bg: () => B.bankHall(), blur: 2, actors: [{ def: clerks[1], id: 'c1', x: 820, y: 600, turn: -0.2, pose: 'crossArms', expr: { base: 'suspicious', eyes: { lookX: -0.6, lookY: 0.4 } } }, B.bankCounter()] },
+// the clerk looms over the counter, between two ledgers (not behind the scales)
+ep.panel(660, { cam: { head: 'c1', hw: 0.34, hx: 0.5, hy: 0.5 }, bg: () => B.bankHall(), blur: 2, actors: [{ def: clerks[1], id: 'c1', x: 1200, y: 680, turn: 0.25, pose: 'stand', expr: { base: 'suspicious', eyes: { lookX: 0.6, lookY: 0.4 } } }, B.bankCounter()] },
   [cap('One of them looked down at Harry over his spectacles as if pricing him.', 44, 34, { w: 450 })], { mood: 'day' });
 
 // =============================================================== the cart
@@ -32,7 +35,7 @@ ep.bleed(900, { cam: { x: 830, y: 700, w: 1050 }, bg: () => B.tunnel({ dragon: t
 // =============================================================== the vault
 ep.bleed(1000, { cam: { x: 900, y: 690, w: 1200 }, bg: () => B.vault(), actors: [{ def: harry, id: 'harry', x: 900, y: 1300, s: 1.6, turn: 0, pose: 'stand', expr: 'awe' }] },
   [capC('Heaps of gold Galleons. Stacks of silver Sickles. Piles of bronze Knuts.', 400, 70, { w: 560 })], { mood: 'candle', alt: 'The Potter vault: mountains of gold coins glittering in torchlight, and Harry, very small, staring.' });
-ep.panel(800, { cam: { on: ['mcgonagall'], fr: 'waist', dx: -0.6 }, bg: () => B.vaultDoor(true), actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1150, y: 1070, turn: -0.4, pose: 'crossArms', expr: { base: 'calm', eyes: { lookX: -0.4, lookY: 0.3 } } }] },
+ep.panel(800, { cam: { on: ['mcgonagall'], fr: 'waist', dx: -0.6 }, bg: () => B.vaultDoor(true), actors: [{ def: mcgX, id: 'mcgonagall', x: 1150, y: 1070, turn: -0.2, pose: 'crossArms', expr: { base: 'calm', eyes: { lookX: -0.4, lookY: 0.3 } } }] },
   [cap('From the doorway, Professor McGonagall watched him. She was leaning casually against the wall, but with her eyes intent.', 44, 34, { w: 330 }),
    cap('Being plopped in front of a giant heap of gold coins was a test of character so pure it was archetypal.', 44, 612, { w: 440 })], { mood: 'candle' });
 const VA = () => B.vault();
@@ -40,9 +43,10 @@ const GH = (o = {}) => ({ def: griphook, id: 'griphook', x: 1250, y: 1110, s: 1.
 const HV = (o = {}) => ({ def: harry, id: 'harry', x: 900, y: 1110, s: 1.1, turn: 0.4, pose: 'stand', ...o });
 ep.panel(700, { cam: { on: ['harry', 'griphook'], fr: 'waist' }, bg: VA, actors: [HV({ expr: 'think', pose: 'chin' }), GH()] },
   [say('Harry', 'Are these coins the pure metal?', 250, 90, { w: 260 })], { mood: 'candle' });
-ep.panel(700, { cam: { on: ['griphook'], fr: 'close', dy: -0.2 }, bg: VA, blur: 2, actors: [GH({ expr: 'angry' })], over: (e) => FX.emanata(e.w * 0.5, e.h * 0.5, 190, { n: 5, a0: -160, a1: -20 }) },
-  [shout('Griphook', 'Are you questioning the integrity of Gringotts, Mr Potter-Evans-Verres?', 400, 120, { w: 480, size: 30, fixed: true })], { mood: 'candle' });
-ep.panel(860, { cam: { on: ['harry'], fr: 'bust', dx: 0.55, dy: -0.55 }, bg: VA, blur: 2, actors: [HV({ expr: 'embarrassed', pose: 'shrug' })] },
+ep.panel(780, { cam: { head: 'griphook', hw: 0.46, hx: 0.5, hy: 0.62 }, bg: VA, blur: 2, actors: [GH({ expr: 'angry' })],
+  over: (e) => { const h = e.anchors?.griphook?.head; if (!h) return ''; const r = e.w * 0.46 * 0.56; return FX.emanata(h[0], h[1], r, { n: 3, a0: -152, a1: -122 }) + FX.emanata(h[0], h[1], r, { n: 3, a0: -58, a1: -28 }); } },
+  [shout('Griphook', 'Are you questioning the integrity of Gringotts, Mr Potter-Evans-Verres?', 400, 150, { w: 480, size: 30, fixed: true })], { mood: 'candle' });
+ep.panel(860, { cam: { on: ['harry'], fr: 'bust', dx: 0.64, dy: -0.55 }, bg: VA, blur: 2, actors: [HV({ expr: 'embarrassed', pose: 'shrug' })] },
   [say('Harry', 'No! Not at all. Sorry if that came out wrong, sir. I just have no idea how your financial system works.', 400, 125, { w: 520, fixed: true }),
    say('Harry', 'Can anyone coin Galleons? Or are they issued by a monopoly that thereby collects seigniorage?', 590, 560, { w: 260, fixed: true, tail: 'harry' })], { mood: 'candle' });
 ep.multi(500, [
@@ -50,8 +54,8 @@ ep.multi(500, [
   { x: 408, y: 18, w: 368, h: 464, mood: 'candle', art: { cam: { on: ['griphook'], fr: 'close', dy: -0.5 }, bg: VA, blur: 2, actors: [GH({ expr: 'bigGrin' })] } },
 ], [say('McGonagall', 'What?', 120, 70, { w: 130 }), say('Griphook', 'Only a fool would trust any but goblin coin!', 592, 108, { w: 300, fixed: true, tail: 'griphook@1' })]);
 ep.panel(940, { cam: { on: ['harry', 'griphook'], fr: 'waist', dy: -2.3 }, bg: VA, actors: [HV({ expr: 'scheme', pose: 'gesture' }), GH({ expr: 'suspicious' })] },
-  [say('Harry', 'Suppose I came in here with a ton of silver. Could I get a ton of Sickles made from it?', 250, 150, { w: 340, fixed: true }),
-   say('Griphook', 'For a fee, Mr Potter-Evans-Verres. For a certain *fee.* Where would you find a ton of silver, I wonder?', 522, 412, { w: 390, fixed: true })], { mood: 'candle' });
+  [say('Harry', 'Suppose I came in here with a ton of silver. Could I get a ton of Sickles made from it?', 240, 162, { w: 340, fixed: true }),
+   say('Griphook', 'For a fee, Mr Potter-Evans-Verres. For a certain *fee.* Where would you find a ton of silver, I wonder?', 526, 446, { w: 370, fixed: true })], { mood: 'candle' });
 ep.panel(880, { cam: { on: ['harry', 'griphook'], fr: 'waist', dy: -2.2 }, bg: VA, actors: [HV({ expr: 'smug', pose: 'stand' }), GH({ expr: 'focus' })] },
   [say('Harry', 'I was speaking hypothetically. Give me a wild guess. What fraction would you charge?', 250, 150, { w: 340, fixed: true }),
    say('Griphook', 'A twentieth part of the metal would well pay for the coining.', 575, 410, { w: 300, fixed: true })], { mood: 'candle' });
@@ -105,9 +109,9 @@ ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 0.6, dy: -0.3 }, bg: 
 ep.panel(960, { cam: { on: ['harry'], fr: 'bust', dx: -0.55, dy: -0.25 }, bg: VA, blur: 2, actors: [HV({ expr: 'scheme', pose: 'present' })] },
   [say('Harry', 'Interesting… So some of this really is, in a sense, *mine.* Earned by me. Sort of. Possibly.', 400, 125, { w: 520, fixed: true }),
    say('Harry', 'That makes me feel less guilty about spending a *very tiny fraction of it!*', 215, 450, { w: 260, fixed: true, tail: 'harry' }),
-   shout('Harry', 'DON\'T PANIC, PROFESSOR McGONAGALL!', 400, 812, { w: 300, size: 30, fixed: true, tail: 'harry' })], { mood: 'candle' });
-ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.2 }, bg: VA, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.3, pose: 'point', expr: 'angry' }] },
-  [shout('McGonagall', 'Mr Potter! You are a *minor!* You will only be allowed to make *reasonable* withdrawals!', 400, 145, { w: 460, size: 30, fixed: true })], { mood: 'candle' });
+   shout('Harry', 'DON\'T PANIC, PROFESSOR McGONAGALL!', 282, 800, { w: 300, size: 30, fixed: true, tail: 'harry' })], { mood: 'candle' });
+ep.panel(820, { cam: { head: 'mcgonagall', hw: 0.25, hx: 0.5, hy: 0.62 }, bg: VA, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.3, pose: 'point', expr: 'angry' }] },
+  [shout('McGonagall', 'Mr Potter! You are a *minor!* You will only be allowed to make *reasonable* withdrawals!', 400, 192, { w: 460, size: 30, fixed: true })], { mood: 'candle' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'bust', dx: 0.95, dy: -0.25 }, bg: VA, blur: 2, actors: [HV({ expr: 'delight', pose: 'handsHips' })] },
   [say('Harry', 'I am *all about* reasonable! I am *totally* on board with fiscal prudence and impulse control!', 400, 120, { w: 520, fixed: true }),
    say('Harry', 'But I *did* see some things on the way here which would constitute *sensible, grown-up* purchases…', 546, 520, { w: 345, fixed: true, tail: 'harry' })], { mood: 'candle' });
@@ -121,8 +125,8 @@ ep.panel(420, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: VA, blur: 2, actor
 ep.panel(760, { cam: { on: ['harry'], fr: 'bust', dx: 0.8, dy: -0.2 }, bg: VA, blur: 2, actors: [HV({ expr: 'pleading', pose: 'gesture2' })] },
   [say('Harry', 'Trunks whose insides hold more than their outsides?', 330, 110, { w: 420, fixed: true }),
    say('Harry', 'When I\'m an adult I\'ll want one anyway. And I *can* afford one. It\'s the same money either way, right?', 570, 470, { w: 290, fixed: true, tail: 'harry' })], { mood: 'candle' });
-ep.panel(580, { cam: { on: ['mcgonagall'], fr: 'bust', dx: -0.45 }, bg: VA, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.3, pose: 'crossArms', expr: 'suspicious' }] },
-  [say('McGonagall', 'And just what would you *keep* in a trunk like that, Mr Potter?', 250, 130, { w: 330 })], { mood: 'candle' });
+ep.panel(580, { cam: { on: ['mcgonagall'], fr: 'bust', dx: -0.45 }, bg: VA, blur: 2, actors: [{ def: mcgX, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.3, pose: 'crossArms', expr: 'suspicious' }] },
+  [say('McGonagall', 'And just what would you *keep* in a trunk like that, Mr Potter—', 250, 130, { w: 330 })], { mood: 'candle' });
 ep.multi(360, [
   { x: M, y: 18, w: 368, h: 324, mood: 'candle', art: { cam: { on: ['harry'], fr: 'close' }, bg: VA, blur: 3, actors: [HV({ expr: 'bigGrin' })] } },
   { x: 408, y: 18, w: 368, h: 324, mood: 'candle', art: { cam: { on: ['mcgonagall'], fr: 'close' }, bg: VA, blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.2, expr: 'exasperated' }] } },
@@ -145,17 +149,17 @@ ep.multi(560, [
 ], [say('McGonagall', '…I suppose you may add another ten Galleons.', 208, 112, { w: 300, fixed: true, tail: 'mcgonagall@0' }), capC('Griphook was favouring Harry with a gaze of frank respect.', 400, 482, { w: 640, fixed: true })]);
 ep.panel(780, { cam: { on: ['harry'], fr: 'bust', dx: 0.3, dy: -0.2 }, bg: VA, blur: 2, actors: [HV({ expr: 'smug', pose: 'gesture' })] },
   [say('Harry', 'And a little spending money, like you mentioned earlier. I think I remember seeing one or two other things…', 420, 130, { w: 500, fixed: true, tail: 'harry' })], { mood: 'candle' });
-ep.panel(520, { cam: { on: ['mcgonagall'], fr: 'eyes', dy: 0.15 }, bg: VA, blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.2, expr: 'menace' }] },
-  [cold('McGonagall', 'Don\'t push it, Mr Potter.', 400, 440, { w: 520, fixed: true, noTail: true })], { mood: 'candle' });
+ep.panel(660, { cam: { head: 'mcgonagall', hw: 0.62, hx: 0.5, hy: 0.38 }, bg: VA, blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.2, expr: 'menace' }] },
+  [cold('McGonagall', 'Don\'t push it, Mr Potter.', 400, 612, { w: 520, fixed: true, noTail: true })], { mood: 'candle' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'waist', dy: -0.5 }, bg: VA, actors: [HV({ expr: 'delight', pose: 'bowGrand' })] },
   [say('Harry', 'But oh, Professor McGonagall, why rain on my parade? Surely this is a *happy* day, when I discover all things wizarding for the first time!', 400, 150, { w: 480, fixed: true })], { mood: 'candle' });
 ep.panel(980, { cam: { on: ['harry'], fr: 'bust', dy: -0.75 }, bg: VA, blur: 2, actors: [HV({ expr: 'delight', pose: 'gesture' })] },
   [say('Harry', 'Why not smile and remember your own innocent childhood, watching the delight upon my young face as I buy a few toys using an insignificant fraction of the wealth I earned by defeating the most terrible wizard Britain has ever known? Not that I\'m accusing you of being ungrateful or anything!', 400, 290, { w: 540, fixed: true, tail: 'harry' })], { mood: 'candle' });
 ep.bleed(820, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: VA, blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.1, pose: 'fists', expr: { base: 'menace', glint: true, gloom: true } }],
-  under: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.4, { bg: '#2a0808', col: '#7a1a1a', op: 0.9, n: 120 }),
+  behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.4, { bg: '#2a0808', col: '#7a1a1a', op: 0.9, n: 120 }),
   over: (e) => { const h = e.anchors?.mcgonagall?.head; return h ? K.glow(h[0], h[1], 260, '#ff3a2a', 0.25) : ''; } },
   [shout('McGonagall', '*You.*', 400, 110, { w: 200, size: 60, bg: '#1a0808', border: '#ff5a3a', color: '#ffd9c0' })], { mood: 'dread', alt: 'McGonagall\'s face, backlit in red, is fearsome and terrible.' });
-ep.panel(760, { cam: { x: 1110, y: 900, w: 820 }, bg: VA, actors: [{ def: harry, id: 'harry', x: 900, y: 1130, s: 1.1, turn: 0.3, pose: 'fallBack', expr: 'horror' }, { def: griphook, id: 'griphook', x: 1300, y: 1120, s: 1.1, turn: -0.3, pose: 'facepalm', armF: { sh: -4, el: 8 }, armB: { sh: 30, el: 150, hand: 'palm', hr: 160 }, expr: 'exasperated' }],
+ep.panel(760, { cam: { x: 1085, y: 890, w: 770 }, bg: VA, actors: [{ def: harry, id: 'harry', x: 900, y: 1130, s: 1.1, turn: 0.3, pose: 'fallBack', expr: 'horror' }, { def: griphook, id: 'griphook', x: 1300, y: 1120, s: 1.1, turn: -0.3, pose: 'facepalm', armF: { sh: 150, el: 40, hand: 'palm', hr: 0 }, expr: 'exasperated' }],
   over: (e) => FX.sfxText(e.w * 0.5, e.h * 0.86, 'JINGLE-CRASH', { size: 76, rot: -5 }) },
   [cap('Harry squeaked, stepped back, and sprawled backwards into a heap of money. Griphook put a palm over his face.', 44, 34, { w: 560 })], { mood: 'candle' });
 ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: VA, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.3, pose: 'handsHips', expr: 'stern' }] },
@@ -173,10 +177,10 @@ ep.panel(560, (ctx) => {
 // =============================================================== the Moke Shop
 const MK = () => B.mokeShop();
 const KEEP = (o = {}) => ({ def: mokeKeeper, id: 'keeper', x: 800, y: 1000, turn: -0.4, pose: 'present', expr: 'worried', ...o });
-ep.panel(980, { cam: { x: 770, y: 543, w: 1000 }, bg: MK, actors: [KEEP(), B.mokeCounter(), { def: harry, id: 'harry', x: 460, y: 1110, s: 1.1, turn: 0.5, pose: 'hold', expr: 'awe', armF: { sh: 30, el: 70, hand: 'hold', prop: g({ transform: 'translate(0,34)' }, pouch(1)) } }, { def: mcgonagall, id: 'mcgonagall', x: 1080, y: 1120, turn: -0.4, pose: 'crossArms', expr: 'calm' }] },
+ep.panel(980, { cam: { x: 770, y: 543, w: 1000 }, bg: MK, actors: [KEEP(), B.mokeCounter(), { def: harry, id: 'harry', x: 460, y: 1110, s: 1.1, turn: 0.5, pose: 'hold', expr: 'awe', armF: { sh: 30, el: 70, hand: 'hold', under: g({ transform: 'translate(0,30) rotate(100) translate(0,12)' }, pouch(1)) } }, { def: mcgX, id: 'mcgonagall', x: 1080, y: 1120, turn: -0.4, pose: 'crossArms', expr: 'calm' }] },
   [cap('The Moke Shop was a quaint little shop behind a vegetable stall behind a glove shop, down an alleyway off a side street of Diagon Alley.', 44, 34, { w: 590 }),
    say('Keeper', 'The Moke Super Pouch QX31! Widening Lip *and* an Undetectable Extension Charm.', 400, 302, { w: 560, fixed: true, tail: 'keeper' })], { mood: 'warm', alt: 'A tiny shop crammed with hanging pouches. A nervous young witch in faded yellow robes shows Harry a furry pouch.' });
-ep.panel(760, { cam: { on: ['harry'], fr: 'bust', dx: -0.6 }, bg: MK, blur: 2, actors: [{ def: harry, id: 'harry', x: 460, y: 1110, s: 1.1, turn: 0.3, pose: 'hold', expr: { base: 'hopeful', eyes: { irisScale: 1.2, sparkle: true } }, armF: { sh: 30, el: 70, hand: 'hold', prop: g({ transform: 'translate(0,34)' }, pouch(1)) } }] },
+ep.panel(760, { cam: { on: ['harry'], fr: 'bust', dx: -0.4 }, bg: MK, blur: 2, actors: [{ def: harry, id: 'harry', x: 460, y: 1110, s: 1.1, turn: 0.3, pose: 'hold', expr: { base: 'hopeful', eyes: { irisScale: 1.2, sparkle: true } }, armF: { sh: 22, el: 100, hand: 'hold', under: g({ transform: 'translate(0,26) rotate(120) translate(0,6)' }, pouch(1)) }, armB: { sh: 0, el: 40, hand: 'hold' } }] },
   [say('Harry', 'Can I try this for a bit? To make sure it works, um, *reliably?*', 220, 170, { w: 290, fixed: true, tail: 'harry' }), cap('He widened his eyes in an expression of boyish, playful innocence.', 44, 520, { w: 270 })], { mood: 'warm' });
 // the heist, in four beats
 const hands = (phase) => (ctx) => {
@@ -185,7 +189,7 @@ const hands = (phase) => (ctx) => {
   out += g({ transform: `translate(${w * 0.5},${h * 0.62})` }, pouch(2.2, { open: true }));
   const handL = (x, y, holding) => g({ transform: `translate(${x},${y})` }, path('M-60,40 L-20,-10 L20,10 L-20,60Z', { fill: '#c9922e', stroke: C.ink, 'stroke-width': 3 }), ellipse(0, 0, 26, 22, { fill: '#f3d2b5', stroke: C.ink, 'stroke-width': 3 }), holding ? g({ transform: 'translate(10,-20)' }, coinBag(1.4)) : '');
   const handR = (x, y, coins) => g({ transform: `translate(${x},${y})` }, path('M60,40 L20,-10 L-20,10 L20,60Z', { fill: '#c9922e', stroke: C.ink, 'stroke-width': 3 }), ellipse(0, 0, 26, 22, { fill: '#f3d2b5', stroke: C.ink, 'stroke-width': 3 }), coins ? g({ transform: 'translate(-6,-14)' }, galleon(9), g({ transform: 'translate(10,4)' }, galleon(9)), g({ transform: 'translate(-12,8)' }, galleon(9))) : '');
-  if (phase === 0) out += handL(w * 0.36, h * 0.38, true) + handR(w * 0.78, h * 0.8, false);
+  if (phase === 0) out += handL(w * 0.36, h * 0.38, true) + handR(w * 0.8, h * 0.62, false);
   if (phase === 1) out += handL(w * 0.2, h * 0.7, false) + handR(w * 0.6, h * 0.4, true);
   if (phase === 2) out += handL(w * 0.2, h * 0.7, false) + handR(w * 0.56, h * 0.44, false) + g({ transform: `translate(${w * 0.5},${h * 0.5})` }, galleon(9));
   return out;
@@ -197,7 +201,7 @@ ep.multi(930, [
   capC('After ten repetitions, Professor McGonagall wandered off to examine the other items in the shop, and the shopkeeper turned to watch her.', 400, 459, { w: 680, fixed: true })],
   { alt: 'Close on Harry\'s hands: left hand dips the bag of gold into the pouch; right hand, fist full of loose coins from his pocket, sneaks in behind it. McGonagall and the shopkeeper are looking the other way.' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'close', dy: 0.05 }, bg: MK, blur: 3, actors: [{ def: harry, id: 'harry', x: 460, y: 1110, s: 1.1, turn: 0.3, expr: 'wince' }] },
-  [inner('Harry', 'The golden coins were his. But they were still stolen. Self-stolen? *Auto-thieved?*', 400, 78, { w: 600, fixed: true }),
+  [inner('Harry', 'The golden coins were his. But they were still stolen—self-stolen? *Auto-thieved?*', 400, 78, { w: 600, fixed: true }),
    inner('Harry', 'About thirty Galleons, he guessed.', 400, 684, { w: 520, fixed: true })], { mood: 'warm' });
 const wavingDoor = (e) => {
   const x0 = e.w * 0.72, y0 = e.h * 0.3, dw = 150, dh = e.h - y0;
@@ -221,25 +225,25 @@ ep.panel(640, { cam: { x: 640, y: 600, w: 1000 }, bg: () => L.diagonAlley({ seed
 // =============================================================== the old man
 const SA = () => B.sideAlley();
 const OM = (o = {}) => ({ def: oldMan, id: 'oldman', x: 1080, y: 1080, turn: -0.4, pose: 'stand', expr: 'teary', armB: { sh: 20, el: 20, hand: 'hold', prop: g({ transform: 'translate(0,10)' }, cane(260)) }, ...o });
-ep.panel(760, { cam: { on: ['oldman'], fr: 'bust' }, bg: () => L.diagonAlley({ seed: 12 }), blur: 2, actors: [OM({ x: 900, y: 1060 })] },
-  [whisper('Old man', 'Are you *really* Harry Potter? You wouldn\'t lie about that, would you?', 290, 90, { w: 350, tail: 'oldman' }),
-   whisper('Old man', 'Only I\'d heard rumours that you didn\'t *really* survive, and that\'s why no-one ever heard from you again.', 290, 580, { w: 360, tail: 'oldman' })], { mood: 'day', alt: 'An old man with a cane, one huge tear on his cheek.' });
-ep.panel(820, { cam: { on: ['harry', 'mcgonagall', 'oldman'], fr: 'waist', dy: -1.1 }, bg: SA, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 560, y: 1080, turn: 0.4, pose: 'crossArms', expr: 'stern' }, { def: harry, id: 'harry', x: 800, y: 1080, s: 1.1, turn: 0.4, pose: 'think', expr: 'think' }, OM({ x: 1120, armB: { sh: -8, el: 6, hand: 'hold', prop: g({ transform: 'translate(0,10)' }, cane(260)) } })] },
+ep.panel(820, { cam: { head: 'oldman', hw: 0.33, hx: 0.64, hy: 0.47 }, bg: () => L.diagonAlley({ seed: 12 }), blur: 2, actors: [OM({ x: 900, y: 1060 })] },
+  [whisper('Old man', 'Are you *really* Harry Potter? You wouldn\'t lie about that, would you?', 270, 110, { w: 350, tail: 'oldman' }),
+   whisper('Old man', 'Only I\'d heard rumours that you didn\'t *really* survive, and that\'s why no-one ever heard from you again.', 290, 660, { w: 360, tail: 'oldman' })], { mood: 'day', alt: 'An old man with a cane, one huge tear on his cheek.' });
+ep.panel(820, { cam: { on: ['harry', 'mcgonagall', 'oldman'], fr: 'waist', dy: -1.1 }, bg: SA, actors: [{ def: mcgX, id: 'mcgonagall', x: 560, y: 1080, turn: 0.4, pose: 'crossArms', expr: 'stern' }, { def: harry, id: 'harry', x: 800, y: 1080, s: 1.1, turn: 0.4, pose: 'think', expr: 'think' }, OM({ x: 1120, armB: { sh: -8, el: 6, hand: 'open' }, armF: { sh: 14, el: 12, hand: 'hold', prop: g({ transform: 'rotate(20) translate(0,10)' }, cane(260)) } })] },
   [cap('Professor McGonagall yanked Harry into the nearest alleyway.', 44, 34, { w: 470 }),
    say('Harry', 'I only know what other people have told me. It\'s not like I remember being born.', 440, 240, { w: 460, fixed: true, tail: 'harry' })], { mood: 'day' });
 ep.panel(800, { cam: { on: ['harry'], fr: 'bust', dy: -0.4 }, bg: SA, blur: 2, actors: [{ def: harry, id: 'harry', x: 800, y: 1080, s: 1.1, turn: 0.3, pose: 'lecture', expr: 'focus' }] },
   [say('Harry', 'If there\'s already sufficient cause to postulate a conspiracy, there\'s no reason they wouldn\'t just find another orphan and raise him to believe *he* was Harry Potter.', 400, 150, { w: 580, fixed: true, tail: 'harry' })], { mood: 'day' });
-ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 0.8 }, bg: SA, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 560, y: 1080, turn: 0.4, pose: 'facepalm', expr: 'exasperated' }] },
+ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 1.0 }, bg: SA, blur: 2, actors: [{ def: mcgX, id: 'mcgonagall', x: 560, y: 1080, turn: 0.4, pose: 'crossArms', expr: 'exasperated' }] },
   [say('McGonagall', 'You look just about exactly like your father, the year he first came to Hogwarts.', 548, 160, { w: 300, fixed: true, tail: 'mcgonagall' }),
    say('McGonagall', 'And I can attest on the basis of *personality alone* that you are related to the Scourge of Gryffindor.', 538, 545, { w: 340, fixed: true, tail: [300, 560] })], { mood: 'day' });
 ep.panel(460, { cam: { on: ['harry'], fr: 'close' }, bg: SA, blur: 3, actors: [{ def: harry, id: 'harry', x: 800, y: 1080, s: 1.1, turn: 0.2, expr: 'suspicious' }] },
-  [say('Harry', '*She* could be in on it too.', 560, 100, { w: 240 })], { mood: 'day' });
+  [say('Harry', '*She* could be in on it too—', 560, 100, { w: 240 })], { mood: 'day' });
 ep.panel(620, { cam: { on: ['oldman'], fr: 'close', dx: 0.3 }, bg: SA, blur: 3, actors: [OM({ expr: 'warm' })] },
   [whisper('Old man', 'No. She\'s right. You have your mother\'s eyes.', 596, 125, { w: 280, fixed: true, tail: 'oldman' })], { mood: 'day' });
 ep.multi(500, [
   { x: M, y: 18, w: 368, h: 464, mood: 'day', art: { cam: { on: ['harry'], fr: 'close', dy: -0.6 }, bg: SA, blur: 3, actors: [{ def: harry, id: 'harry', x: 800, y: 1080, s: 1.1, turn: 0.4, expr: 'suspicious' }] } },
   { x: 408, y: 18, w: 368, h: 464, mood: 'day', art: { cam: { on: ['mcgonagall'], fr: 'close', dy: -0.3 }, bg: SA, blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 560, y: 1080, turn: 0.2, expr: 'angry' }] } },
-], [say('Harry', 'Hmm. I suppose *you* could be in on it too…', 208, 102, { w: 262, fixed: true, tail: 'harry@0' }), say('McGonagall', 'Enough, Mr Potter.', 592, 80, { w: 280, fixed: true, tail: 'mcgonagall@1' })]);
+], [say('Harry', 'Hmm. I suppose *you* could be in on it too—', 208, 102, { w: 262, fixed: true, tail: 'harry@0' }), say('McGonagall', 'Enough, Mr Potter.', 592, 80, { w: 280, fixed: true, tail: 'mcgonagall@1' })]);
 ep.panel(700, { cam: { on: ['oldman'], fr: 'bust', dx: 0.7 }, bg: SA, actors: [OM({ pose: 'stand', expr: 'warm', turn: -0.2 })] },
   [whisper('Old man', 'I\'m just glad that you\'re alive. Thank you, Harry Potter. Thank you for what you did.', 580, 150, { w: 300, fixed: true, tail: 'oldman' }),
    whisper('Old man', 'I\'ll leave you alone now.', 590, 470, { w: 240, fixed: true, tail: 'oldman' })], { mood: 'day' });
@@ -247,7 +251,7 @@ ep.panel(520, { cam: { x: 820, y: 860, w: 900 }, bg: SA, actors: [OM({ x: 950, t
   [note('tap…', 260, 300, { size: 44, color: '#f6e3b0', rot: -6 }), note('tap…', 400, 360, { size: 44, color: '#f6e3b0', rot: 4 }), note('tap…', 250, 420, { size: 44, color: '#f6e3b0', rot: -3 })], { mood: 'day', alt: 'The old man taps slowly away out of the alley.' });
 
 // =============================================================== the fundamental attribution error
-ep.panel(860, { cam: { on: ['harry', 'mcgonagall'], fr: 'waist', dy: -0.55 }, bg: SA, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 620, y: 1080, turn: 0.4, pose: 'stand', expr: 'stern' }, { def: harry, id: 'harry', x: 860, y: 1080, s: 1.1, turn: -0.4, pose: 'slump', expr: 'sad' }] },
+ep.panel(920, { cam: { on: ['harry', 'mcgonagall'], fr: 'waist', dy: -0.52 }, bg: SA, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 620, y: 1080, turn: 0.4, pose: 'stand', expr: 'stern' }, { def: harry, id: 'harry', x: 860, y: 1080, s: 1.1, turn: -0.4, pose: 'slump', expr: 'sad' }] },
   [say('McGonagall', 'That was not well done. I know you\'re not used to this, Mr Potter, but people do care about you. Please be kind to them.', 400, 132, { w: 600, fixed: true, tail: 'mcgonagall' }),
    say('Harry', 'They shouldn\'t. Care about me, I mean.', 600, 470, { w: 280, fixed: true, tail: 'harry' })], { mood: 'day' });
 ep.panel(560, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: SA, blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 620, y: 1080, turn: 0.3, expr: 'confused' }] },
@@ -275,7 +279,7 @@ ep.panel(1000, { cam: { on: ['harry'], fr: 'full', dx: 0.45, dy: -0.1 }, bg: SA,
    say('Harry', 'I was fifteen months old! They don\'t care about *me.* They want to shake hands with a *bad explanation.*', 582, 590, { w: 290, fixed: true, tail: 'harry' })], { mood: 'day' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: SA, blur: 3, actors: [{ def: harry, id: 'harry', x: 860, y: 1080, s: 1.1, turn: -0.2, expr: 'hopeful' }] },
   [say('Harry', 'Do *you* know what really happened?', 400, 100, { w: 320 })], { mood: 'day' });
-ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: SA, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 620, y: 1080, turn: 0.4, pose: 'crossArms', expr: 'smug' }] },
+ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: SA, blur: 2, actors: [{ def: mcgX, id: 'mcgonagall', x: 620, y: 1080, turn: 0.4, pose: 'crossArms', expr: 'smug' }] },
   [say('McGonagall', 'I *have* formed an idea… After meeting you, that is.', 540, 100, { w: 300 }), say('Harry', 'Yes?', 700, 460, { w: 110, tail: [790, 540] })], { mood: 'day' });
 ep.panel(740, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: SA, blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 620, y: 1080, turn: 0.2, expr: { base: 'smug', eyes: { open: 0.6 } } }] },
   [say('McGonagall', 'You triumphed over the Dark Lord by being more awful than *he* was, and survived the Killing Curse by being more terrible than Death.', 400, 110, { w: 560 })], { mood: 'day' });

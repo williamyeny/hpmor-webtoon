@@ -255,7 +255,7 @@ ep.panel(860, { cam: { x: 1230, y: 430, w: 880 }, bg: LADY_BG(), actors: [LADY({
 ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', dy: -1.2 }, bg: LADY_BG(), blur: 2, actors: [HL({ expr: 'exasperated', pose: 'gesture' })] },
   [say('Harry', 'No. I mean an *actual* note, and somebody leaving me slips of paper about how many points I\'ve lost, like a minus-two-point penalty for wearing pyjamas! Do you know anyone crazy enough and powerful enough to do that? Besides Dumbledore?', 400, 90, { anchor: 'tc', w: 530, fixed: true })], { mood: 'warm' });
 ep.panel(1150, { cam: { on: ['lady'], fr: 'bust', dy: -0.4 }, bg: LADY_BG(), actors: [LADY({ expr: 'warm' }), HOLE], fg: LADYFG },
-  [say('Lady', 'I\'m only a picture, young man. I remember Hogwarts as it was, not Hogwarts as it is.', 400, 64, { anchor: 'tc',  w: 520, fixed: true }),
+  [say('Lady', 'I\'m only a picture, young man. I remember Hogwarts as it was—not Hogwarts as it is.', 400, 64, { anchor: 'tc',  w: 520, fixed: true }),
    say('Lady', 'All I can tell you is that if this were a riddle, the answer would be that the game is life. And that while we do not make all the rules ourselves, the one who awards or takes points is always *you.*', 400, 940, { w: 560, fixed: true })], { mood: 'warm' });
 ep.panel(1150, { cam: { x: 1250, y: 520, w: 880 }, bg: LADY_BG(), actors: [LADY({ expr: 'smile', pose: 'bow', lean: -24, headTilt: -4 }), HOLE, HL({ x: 1530, expr: 'calm', pose: 'bowGrand' })], fg: LADYFG },
   [say('Harry', 'Thank you, milady.', 640, 360, { anchor: 'tc',  w: 240, fixed: true }),

@@ -165,6 +165,8 @@ function bubbleHTML(b, i) {
   };
   let html = b.html ?? escText(b.text || '').replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>').replace(/\n/g, '<br>');
   // keep hyphenated words (Boy-Who-Lived, Nine-and-Three-Quarters) on one line: wrap them in nowrap spans, text nodes only
+  // a line never starts with an em dash: a word joiner glues the dash to the word before it (it may still break after)
+  if (b.html === undefined) html = html.replace(/(\S)—/g, '$1\u2060—');
   if (b.html === undefined) html = html.split(/(<[^>]+>)/).map((seg) => seg.startsWith('<') ? seg : seg.replace(/([^\s<>]*[A-Za-z0-9’'][-‑][A-Za-z0-9‘'][^\s<>]*)/g, '<span style="white-space:nowrap">$1</span>')).join('');
   return `<div class="bub t-${data.type}" data-b='${JSON.stringify(data).replace(/'/g, '&#39;')}'><div class="bt">${html}</div></div>`;
 }

@@ -34,7 +34,7 @@ const HR = (o = {}) => ({ def: harryRaven, id: 'harry', x: 900, y: 900, s: 1.1, 
 // lying on the bed, head on the pillow, face turned up to the ceiling
 const HL = (o = {}) => HR({ x: 1160, y: 735, turn: 0.7, pose: 'stand', rot: -90, seat: undefined, ...o });
 ep.panel(1000, { cam: { x: 1080, y: 640, w: 880 }, bg: RR, actors: [HL({ expr: { base: 'calm', eyes: { lookX: 0.6 } } })] },
-  [cap('Harry stared up at the grey ceiling. He\'d eaten quite a lot of Professor Quirrell\'s snacks: intricate confections of chocolate, dusted with sparkling sprinkles and jewelled with tiny sugar gems. He hadn\'t felt the least bit guilty. *This* he had *earned.*', 44, 34, { w: 620, fixed: true }),
+  [cap('Harry stared up at the grey ceiling. He\'d eaten quite a lot of Professor Quirrell\'s snacks—intricate confections of chocolate, dusted with sparkling sprinkles and jewelled with tiny sugar gems. He hadn\'t felt the least bit guilty. *This* he had *earned.*', 44, 34, { w: 620, fixed: true }),
    cap('He hadn\'t tried to sleep. He had a feeling he wouldn\'t like what happened when he closed his eyes.', 44, 850, { w: 620, fixed: true })], { mood: 'candle', alt: 'A small stone room with a bed and a tray of expensive sweets. Harry lies on the bed, staring at the ceiling.' });
 ep.panel(1000, { cam: PAT(HL(), 480, 340, 500, 1000), bg: RR, blur: 2, actors: [HL({ expr: { base: 'smile', eyes: { soft: true, lookX: 0.6 } } })] },
   [cap('But there was, there really and truly was, a feeling of triumph. *Anti-Dark-Lord-Harry programme, +1 point* didn\'t *begin* to cover it.', 44, 34, { w: 620, fixed: true }),
@@ -86,7 +86,7 @@ ep.multi(1300, [
   P(18, 700, QC({ expr: 'smile', pose: 'gesture' }, 440, 560, 480, 700)),
   P(736, 546, HC({ expr: 'confused' }, 480, 540, 300, 546)),
 ], [say('Quirrell', 'To convince me that you harbour no ambitions of becoming a Dark Lord? I suppose you could just raise your right hand.', 270, 70, { anchor: 'tc', w: 360, fixed: true }),
-   say('Harry', 'What? But I can raise my right hand whether or not I…', 250, 790, { anchor: 'tc', w: 340, fixed: true })]);
+   say('Harry', 'What? But I can raise my right hand whether or not I—', 250, 790, { anchor: 'tc', w: 340, fixed: true })]);
 ep.multi(1400, [
   P(18, 900, QC({ expr: 'calm', pose: 'lecture' }, 460, 400, 700, 900)),
   P(936, 446, HC({ expr: { base: 'blank', eyes: { open: 1.1 } } }, 480, 560, 250, 446)),
@@ -312,7 +312,7 @@ ep.multi(1450, [
   P(456, 520, DC({ expr: { base: 'worried', eyes: { lookX: -0.4 } } }, 460, 580, 320, 520)),
   P(994, 438, HDC({ expr: 'deadpan' }, 460, 612, 260, 438)),
 ], [say('Quirrell', 'I was teaching him how to lose. It\'s an important life skill.', 290, 70, { anchor: 'tc', w: 360, fixed: true }),
-   say('Dumbledore', 'Harry… if there is any threat the Defence Professor has offered you, to prevent you from complaining…', 290, 500, { anchor: 'tc', w: 380, fixed: true }),
+   say('Dumbledore', 'Harry… if there is any threat the Defence Professor has offered you, to prevent you from complaining—', 290, 500, { anchor: 'tc', w: 380, fixed: true }),
    say('Harry', 'Headmaster, what\'s wrong with me isn\'t that I keep quiet about abusive professors.', 282, 1040, { anchor: 'tc', w: 380, fixed: true })]);
 ep.multi(1560, [
   P(18, 900, QC({ expr: 'smile', pose: 'lecture' }, 460, 400, 700, 900)),
@@ -344,7 +344,7 @@ ep.multi(1500, [
   P(596, 420, HDC({ expr: 'hopeful', pose: { ...POSES.raiseHand, armB: { sh: 140, el: 20, hand: 'palm' } } }, 600, 590, 290, 420)),
   P(1034, 448, DC({ expr: { base: 'deadpan', eyes: { open: 0.7 } } }, 440, 590, 290, 448)),
 ], [say('Dumbledore', 'Such services are *extremely* expensive, as you well know, and I cannot help but wonder why *you* deem them necessary.', 290, 60, { anchor: 'tc', w: 380, fixed: true }),
-   say('Harry', 'If it\'s money that\'s the problem, I have some ideas for making large amounts of money quickly…', 290, 640, { anchor: 'tc', w: 380, fixed: true }),
+   say('Harry', 'If it\'s money that\'s the problem, I have some ideas for making large amounts of money quickly—', 290, 640, { anchor: 'tc', w: 380, fixed: true }),
    say('Dumbledore', 'Thank you, Quirinus, your wisdom is now quite evident, and I am sorry for disputing it.', 290, 1080, { anchor: 'tc', w: 380, fixed: true })]);
 ep.multi(1120, [
   P(18, 680, QC({ expr: { base: 'calm', eyes: { style: 'cold', open: 0.8 } }, pose: 'stand' }, 400, 400, 470, 680, { over: (e) => FX.doom(e.w, e.h, 187) })),
@@ -379,7 +379,7 @@ ep.multi(1880, [
   P(18, 580, QC({ expr: 'scheme', pose: 'gesture' }, 440, 580, 400, 580)),
   P(616, 580, QC({ expr: 'smug', pose: 'relaxed', turn: 0.4 }, 560, 230, 450, 580, { fg: { px: 670, py: 550, expr: 'awe' } })),
   P(1214, 648, QC({ expr: { base: 'bigGrin', eyes: { sparkle: true } }, pose: 'gesture' }, 400, 400, 490, 648)),
-], [say('Quirrell', 'I am going to violate rule two, which was simply "don\'t brag", and tell you about something I have done. Your oath never to speak of it.', 290, 60, { anchor: 'tc', w: 380, fixed: true }),
+], [say('Quirrell', 'I am going to violate rule two—which was simply "don\'t brag"—and tell you about something I have done. Your oath never to speak of it.', 290, 60, { anchor: 'tc', w: 380, fixed: true }),
    say('Quirrell', 'I subscribe to a Muggle bulletin on space travel. When I discovered that Pioneer 11 would be leaving the Solar System forever…', 490, 650, { anchor: 'tc', w: 420, fixed: true, tail: [290, 1000] }),
    say('Quirrell', 'I sneaked into NASA, I did. And I cast a lovely little spell on that lovely golden plaque, which will make it last a lot longer than it otherwise would.', 400, 1300, { anchor: 'tc', w: 480, fixed: true, tail: [424, 1620] })], { alt: 'Quirrell, grinning the widest grin Harry has yet seen from him.' });
 // Harry, speechless: the same face, three times, closer each time
@@ -398,7 +398,7 @@ ep.bleed(1000, { cam: { x: 1190, y: 330, w: 900 }, bg: ST2, actors: TWO({ expr: 
 ep.multi(1620, [
   P(18, 900, HC({ expr: 'scheme', pose: 'point' }, 480, 400, 720, 900)),
   P(936, 666, QC({ expr: { base: 'calm', eyes: { style: 'cold', open: 0.8 } } }, 440, 616, 540, 666)),
-], [say('Harry', 'You didn\'t add any extra information to the plaque, did you? A holographic message? Or… a portrait seems to store a whole human mind… or you found a volunteer who was dying, and made sure their *ghost* ended up in the plaque…', 400, 80, { anchor: 'tc', w: 520, fixed: true }),
+], [say('Harry', 'You didn\'t add any extra information to the plaque, did you? A holographic message? Or… a portrait seems to store a whole human mind… or you found a volunteer who was dying, and made sure their *ghost* ended up in the plaque—', 400, 80, { anchor: 'tc', w: 520, fixed: true }),
    say('Quirrell', 'Mr Potter. A spell requiring a human death would certainly be classified by the Ministry as Dark Arts, regardless of circumstances. Students should not be heard talking about such things.', 320, 1000, { anchor: 'tc', w: 440, shape: 'box', fixed: true })]);
 ep.multi(1260, [
   P(18, 860, QC({ expr: { base: 'calm', eyes: { style: 'cold', open: 0.8 } } }, 290, 400, 560, 860, { blur: 3, over: (e) => FX.doom(e.w, e.h, 189) })),
@@ -409,8 +409,8 @@ ep.multi(1460, [
   P(18, 900, TWOC({ expr: 'calm', pose: 'slump' }, { expr: 'smile', pose: 'gesture' }, 300)),
   P(936, 506, QC({ expr: { base: 'pained', eyes: { open: 0.6 } }, pose: 'slump' }, 420, 590, 330, 506)),
 ], [say('Quirrell', 'Please be discreet about the whole matter. I prefer to go through my life without attracting public notice.', 240, 60, { anchor: 'tc', w: 360, fixed: true }),
-   say('Harry', 'So just how much awesome stuff *have* you done that no-one else knows about?', 560, 350, { anchor: 'tc', w: 280, fixed: true }),
-   say('Quirrell', 'Oh, some. But I think that\'s quite enough for today, Mr Potter. I confess I am feeling a bit tired…', 290, 980, { anchor: 'tc', w: 380, fixed: true })]);
+   say('Harry', 'So just how much awesome stuff *have* you done that no-one else knows about—', 560, 350, { anchor: 'tc', w: 280, fixed: true }),
+   say('Quirrell', 'Oh, some. But I think that\'s quite enough for today, Mr Potter. I confess I am feeling a bit tired—', 290, 980, { anchor: 'tc', w: 380, fixed: true })]);
 ep.panel(900, { cam: { x: 1400, y: 440, w: 1150 }, bg: ST2, actors: TWO({ expr: 'pained', pose: 'slump' }, { x: 1720, y: 860, turn: 0.6, pose: 'walk', expr: { base: 'smile', eyes: { soft: true } } }) },
   [say('Harry', 'I understand. And *thank you.* For *everything.*', 560, 150, { anchor: 'tc', w: 300, fixed: true }),
    cap('Professor Quirrell nodded. But he was leaning harder on his desk. Harry quickly took his leave.', 48, 760, { w: 600, fixed: true })], { mood: 'candle', alt: 'Quirrell, leaning heavily on his desk, watching Harry go.' });

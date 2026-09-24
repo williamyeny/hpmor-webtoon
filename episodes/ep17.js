@@ -78,9 +78,9 @@ ep.panel(1100, { cam: { x: 1290, y: -40, w: 720 }, bg: TI, actors: MIN({ pose: '
    say('Harry', 'What? That\'s not fair!', 590, 880, { anchor: 'bc', w: 240, fixed: true }),
    say('Draco', 'And then for your families to have an arrangement from before you were born.', 262, 1040, { anchor: 'bc', w: 340, fixed: true })], { mood: 'candle' });
 ep.panel(900, { cam: { on: ['harry'], fr: 'waist', dy: -0.6 }, bg: TI, blur: 2, actors: MIN({}, {}, {}, { expr: 'scheme', pose: 'point' }) },
-  [say('Harry', 'Um, hold on. So they\'ve been told their *whole lives* that they\'re going to be your minions, and they\'ve spent *years* imagining what minions are supposed to be like…', 400, 50, { anchor: 'tc', w: 560, fixed: true })], { mood: 'candle' });
+  [say('Harry', 'Um, hold on. So they\'ve been told their *whole lives* that they\'re going to be your minions, and they\'ve spent *years* imagining what minions are supposed to be like—', 400, 50, { anchor: 'tc', w: 560, fixed: true })], { mood: 'candle' });
 ep.panel(760, { cam: { x: 770, y: -130, w: 540 }, bg: TI, blur: 2, actors: MIN() },
-  [say('Harry', '…and what\'s worse, they *do* know *each other*, and they\'ve been *practising…*', 400, 36, { anchor: 'tc', w: 520, fixed: true, noTail: true })], { mood: 'candle', alt: 'Crabbe and Goyle, looming in perfect unison.' });
+  [say('Harry', '…and what\'s worse, they *do* know *each other*, and they\'ve been *practising—*', 400, 36, { anchor: 'tc', w: 520, fixed: true, noTail: true })], { mood: 'candle', alt: 'Crabbe and Goyle, looming in perfect unison.' });
 const PICK = line(-4, 4, 44, -2, { stroke: '#f1e6cc', 'stroke-width': 6, 'stroke-linecap': 'round' });
 const KNUCK = { armF: { sh: 26, el: 72, hand: 'fist' }, armB: { sh: 6, el: 8 } };
 // kids' hands hide inside their wide sleeves, so the knuckle-crack gets drawn over the near hand: a fist pushed into a palm
@@ -160,7 +160,7 @@ ep.panel(720, { cam: { x: 820, y: 560, w: 700 }, bg: TI, actors: [...SEATS({ lit
 ep.panel(900, { cam: { on: ['quirrell'], fr: 'waist', dy: -0.9 }, bg: ST({}), blur: 2, actors: [QDESK, QS({ pose: 'raiseHand', expr: 'stern', turn: 0.15 })] },
   [say('Quirrell', 'No. Don\'t bother writing down what this subject was once called. No such pointless question will count toward your marks in any of my lessons. That is a promise.', 400, 50, { anchor: 'tc', w: 540, fixed: true })], { mood: 'candle' });
 ep.panel(1000, { cam: { x: 1330, y: 470, w: 780 }, bg: ST({}), actors: [QS({ x: 1450, y: 920, pose: 'walk', expr: 'coldSmile', turn: -0.55 })] },
-  [say('Quirrell', 'Those of you who have wasted time by reading your useless first-year Defence textbooks…', 400, 50, { anchor: 'tc', w: 480, fixed: true }),
+  [say('Quirrell', 'Those of you who have wasted time by reading your useless first-year Defence textbooks—', 400, 50, { anchor: 'tc', w: 480, fixed: true }),
    cap('Someone made a choking sound. Harry wondered if it was Hermione.', 44, 800, { w: 300, fixed: true })], { mood: 'candle', alt: 'Quirrell strides across the white marble stage.' });
 // the monsters: silhouettes conjured by the lecture
 const INK2 = '#141018';
@@ -217,7 +217,7 @@ ep.panel(820, { cam: { x: 1330, y: rowY(4) - 230, w: 620 }, bg: TI, actors: [{ d
   [sfx('clap clap clap', 590, 170, { size: 42, rot: -6, font: "'Caveat', cursive" }),
    cap('Harry started applauding. He couldn\'t help himself. It was too inspiring. (The rest of the class seemed too stunned to react.)', 44, 630, { w: 620, fixed: true })], { mood: 'candle' });
 ep.panel(900, { cam: { x: 1000, y: 355, w: 760 }, bg: ST({}), actors: [QDESK, QS({ y: 800, pose: 'sit', seat: 250, expr: 'smile', turn: 0.15 })] },
-  [say('Quirrell', 'Now to practicalities. I have combined all my first-year classes into one, which allows me to offer you twice as much classroom time as Doubles sessions…', 400, 50, { anchor: 'tc', w: 540, fixed: true })], { mood: 'candle', alt: 'Quirrell perches on the front of his desk, relaxed.' });
+  [say('Quirrell', 'Now to practicalities. I have combined all my first-year classes into one, which allows me to offer you twice as much classroom time as Doubles sessions—', 400, 50, { anchor: 'tc', w: 540, fixed: true })], { mood: 'candle', alt: 'Quirrell perches on the front of his desk, relaxed.' });
 ep.panel(880, { cam: { x: 820, y: CS.FLOOR - 352, w: 700 }, bg: TI, blur: 2, actors: SEATS({ lit: true, who: { hermione: { expr: 'gasp' }, padma: { expr: 'horror' }, dean: { expr: 'horror' }, g1: { expr: 'gasp' }, draco: { expr: 'shock' }, ernie: { expr: 'horror' }, neville: { expr: 'gasp' }, h1: { expr: 'shock' } } }) },
   [cap('*Gasps of horror.*', 44, 30, { w: 260, fixed: true }),
    say('Quirrell', '…an increased load which I will make up to you by not assigning any homework.', 400, 832, { anchor: 'bc', w: 460, fixed: true, noTail: true })], { mood: 'candle' });
@@ -322,7 +322,7 @@ ep.panel(900, { cam: { x: 1400, y: 640, w: 440 }, bg: ST({}), actors: UP('focus'
 ep.panel(700, RAV({ padma: { expr: 'awe' }, anthony: { expr: 'think', pose: 'chin' }, terry: { expr: 'smile' }, michael: { expr: 'awe' } }),
   [say('Quirrell', 'That\'s three. You need ten. The rest of the class thinks you\'ve already used up the whole contents of the room.', 400, 40, { anchor: 'tc', w: 500, fixed: true, noTail: true })], { mood: 'candle', alt: 'The Ravenclaws, impressed.' });
 ep.bleed(1150, { cam: { x: 1400, y: 580, w: 460 }, bg: ST({}), actors: UP('grin', 'point', { turn: -0.2 }) },
-  [shout('Harry', '*Ha!* The floor can be removed to make a spike pit! The ceiling can be collapsed on someone! The walls can be raw material for Transfiguration into any number of deadly things. Knives, say.', 400, 122, { anchor: 'tc', w: 470, fixed: true })], { alt: 'Harry, grinning, pointing at the floor, the ceiling, the walls.' });
+  [shout('Harry', '*Ha!* The floor can be removed to make a spike pit! The ceiling can be collapsed on someone! The walls can be raw material for Transfiguration into any number of deadly things—knives, say.', 400, 122, { anchor: 'tc', w: 470, fixed: true })], { alt: 'Harry, grinning, pointing at the floor, the ceiling, the walls.' });
 ep.panel(700, SLY({ draco: { expr: 'suspicious' }, crabbe: { expr: 'confused' }, goyle: { expr: 'worried' }, zabini: { expr: 'worried' } }),
   [say('Quirrell', 'That\'s six. But surely you\'re scraping the bottom of the barrel now?', 400, 40, { anchor: 'tc', w: 460, fixed: true, noTail: true })], { mood: 'candle', alt: 'The Slytherins, less sure now.' });
 ep.bleed(900, { cam: { x: 1400, y: 691, w: 520 }, bg: ST({}), actors: UP({ base: 'bigGrin', eyes: { sparkle: true } }, 'armsUp'), behind: (e) => { const a = e.anchors.harry; return a ? FX.burst(e.w, e.h, a.head[0], a.head[1], { n: 30, op: 0.15, inner: a.hr * 3.2 }) : ''; } },

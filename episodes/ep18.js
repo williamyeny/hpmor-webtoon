@@ -92,7 +92,7 @@ ep.panel(1000, { cam: { x: 1500, y: 640, w: 880 }, bg: FIELD(), actors: LINEUP({
   [cap('The broomstick leapt eagerly into Harry\'s hand. Which put him at the head of the class, for once. Most of the other brooms were rolling around on the ground, or trying to inch away from their would-be riders.', 44, 30, { w: 620, fixed: true }),
    inner('Harry', '*(If it turned out to be* broomstick riding *he could beat Hermione at, instead of anything intellectual, Harry would just die.)*', 400, 966, { anchor: 'bc', w: 600, fixed: true })], { mood: 'day' });
 ep.panel(800, { cam: { x: 1220, y: 520, w: 1250 }, bg: FIELD(), actors: [HO({ pose: 'point', x: 680, y: 960 }), ...LINEUP({ n: { pose: 'sit', seat: 60, expr: 'worried' }, e: { pose: 'sit', seat: 60 }, h: { pose: 'sit', seat: 60, expr: 'wince' }, d: { pose: 'sit', seat: 60, expr: 'smug' }, go: { pose: 'sit', seat: 60 }, cr: { pose: 'sit', seat: 60 } }).slice(2), ...['neville', 'ernie', 'harry', 'draco', 'goyle', 'crabbe'].map((id) => CS.broomUnder(id, 60, 0, 0.9))] },
-  [say('Hooch', 'When I blow my whistle, you kick off from the ground, hard. Rise a few feet, then come straight back down by leaning forwards slightly. On my whistle… three… two…', 420, 60, { anchor: 'tc', w: 520, fixed: true })], { mood: 'day' });
+  [say('Hooch', 'When I blow my whistle, you kick off from the ground, hard. Rise a few feet, then come straight back down by leaning forwards slightly. On my whistle—three—two—', 420, 60, { anchor: 'tc', w: 520, fixed: true })], { mood: 'day' });
 // Neville
 // motion ghosts: faint copies of a spinning actor at other angles
 const GHOST = (a, rots, op = 0.22) => rots.map((r) => () => g({ opacity: op }, String(place(a.def, { ...a, rot: r })))) ;
@@ -148,7 +148,7 @@ ep.bleed(1200, { cam: { x: 2230, y: 470, w: 1020 }, bg: FIELD(), actors: [{ def:
   [shout('Goyle', 'Come and get it, *Hufflepuffle!*', 300, 70, { anchor: 'tc', w: 320, fixed: true }),
    cap('Hadn\'t Madam Hooch said that would get him *expelled?* The Slytherins started cheering and hooting.', 44, 1170, { anchor: 'bl', w: 620, fixed: true })], { alt: 'Goyle, on a broom, soaring up above the field, the Remembrall in his hand.' });
 ep.panel(1100, { cam: { x: 1550, y: 575, w: 520 }, bg: FIELD(), actors: GR({ d: { x: 1660, turn: -0.4, expr: 'pained' }, h: { x: 1440, turn: 0.4, expr: 'cross' } }) },
-  [whisper('Harry', 'Draco, if you don\'t order that idiot back on the ground, the teacher\'s going to get back and…', 284, 50, { anchor: 'tc', w: 360, fixed: true }),
+  [whisper('Harry', 'Draco, if you don\'t order that idiot back on the ground, the teacher\'s going to get back and—', 284, 50, { anchor: 'tc', w: 360, fixed: true }),
    whisper('Draco', 'I *can\'t!* Everyone in Slytherin would think I\'m *weak!*', 590, 250, { anchor: 'tc', w: 300, fixed: true }),
    whisper('Harry', 'And if Mr Goyle gets expelled, your *father* is going to think you\'re a *moron!*', 260, 1060, { anchor: 'bc', w: 380, fixed: true })], { mood: 'day', alt: 'Draco\'s face twists in agony.' });
 // wands out: four houses
@@ -207,7 +207,7 @@ ep.panel(1060, { cam: { x: 1210, y: 650, w: 600 }, bg: FIELD(), actors: [{ def: 
   [say('Dean', 'Er. That\'s not possible, is it?', 210, 50, { anchor: 'tc', w: 280, fixed: true }),
    say('Harry', 'It\'s a plot hole. I made myself weird enough to distract the universe for a moment, and it forgot that Goyle had already picked up the Remembrall.', 480, 180, { anchor: 'tc', w: 440, fixed: true })], { mood: 'day', alt: 'Harry shrugs, perfectly deadpan.' });
 ep.panel(640, { cam: { on: ['dean'], fr: 'close', dy: 0.25 }, bg: FIELD(), blur: 3, actors: [{ def: dean, id: 'dean', x: 1040, y: 980, s: 1.05, turn: 0.3, expr: 'exasperated' }] },
-  [say('Dean', 'No, wait, I mean, that\'s *totally* not possible…', 400, 44, { anchor: 'tc', w: 460, fixed: true })], { mood: 'day' });
+  [say('Dean', 'No, wait, I mean, that\'s *totally* not possible—', 400, 44, { anchor: 'tc', w: 460, fixed: true })], { mood: 'day' });
 ep.panel(1150, { cam: { x: 1930, y: 563, w: 800 }, bg: FIELD(), actors: GR({ who: { s1: { x: 2600 }, s2: { x: 2800 }, zabini: { x: 2170, pose: 'point', expr: 'cross', turn: -0.4 } }, go: { x: 2420 }, d: { x: 1660, pose: 'stand', expr: 'think', turn: 0.2 }, cr: { x: 1920, expr: 'menace', pose: 'fists', turn: 0.5 } }) },
   [shout('Zabini', 'Hold on! How do we know that\'s Neville\'s Remembrall? You could\'ve just dropped *another* one there!', 505, 84, { anchor: 'tc', w: 340, size: 30, fixed: true }),
    say('Crabbe', 'Shut up, you. Mr Malfoy doesn\'t need *you* to tell him what to do!', 220, 420, { anchor: 'tc', w: 340, fixed: true }),
@@ -218,7 +218,7 @@ ep.panel(1000, { cam: { x: 1540, y: 688, w: 480 }, bg: FIELD(), actors: GR({ d: 
   [say('Draco', 'You promise that actually *is* Neville\'s Remembrall?', 540, 50, { anchor: 'tc', w: 340, fixed: true }),
    say('Harry', 'Yes. That\'s the one that\'ll go back to Neville, and it was his originally.', 296, 954, { anchor: 'bc', w: 420, fixed: true })], { mood: 'day' });
 ep.panel(900, { cam: { on: ['draco'], fr: 'bust', dy: -0.5 }, bg: FIELD(), blur: 2, actors: GR({ h: { x: 1250 }, d: { x: 1650, pose: 'present', turn: 0, expr: 'determined' } }) },
-  [say('Draco', 'I won\'t question the word of the Noble House of Potter, then, no matter how strange that all was. And the Noble and Most Ancient House of Malfoy keeps its word as well. Mr Goyle, give that to Mr Potter.', 400, 44, { anchor: 'tc', w: 560, shape: 'box', fixed: true })], { mood: 'day' });
+  [say('Draco', 'I won\'t question the word of the Noble House of Potter, then, no matter how strange that all was. And the Noble and Most Ancient House of Malfoy keeps its word as well. Mr Goyle, give that to Mr Potter—', 400, 44, { anchor: 'tc', w: 560, shape: 'box', fixed: true })], { mood: 'day' });
 const TOSS = (e) => { const A = e.anchors.ernie, B = e.anchors.harry; if (!A || !B) return ''; const a = A.handB, b = B.handB, bx = a[0] + (b[0] - a[0]) * 0.62, by = Math.min(a[1], b[1]) - A.hr * 1.4; return path(`M${a[0]},${a[1] - A.hr * 0.3} Q${a[0] + (bx - a[0]) * 0.5},${by - A.hr * 0.9} ${bx},${by}`, { fill: 'none', stroke: '#6a5a4a', 'stroke-width': 3.5, 'stroke-dasharray': '10 9', 'stroke-linecap': 'round' }) + g({ transform: `translate(${bx},${by})` }, P2.remembrall(A.hr / 40 * 0.8)); };
 ep.panel(900, { cam: { x: 1200, y: 640, w: 720 }, bg: FIELD(), actors: [{ def: ernie, id: 'ernie', x: 950, y: 980, s: 1.05, turn: 0.4, pose: 'reach', expr: 'grin', armB: { sh: 130, el: 10, hand: 'open' } }, { def: harryRaven, id: 'harry', x: 1440, y: 960, s: 1.1, turn: -0.3, pose: 'reach', expr: 'smile', armB: { sh: 120, el: 10, hand: 'open' } }], over: TOSS },
   [say('Ernie', 'Catch, Harry!', 200, 50, { anchor: 'tc', w: 220, fixed: true }), say('Harry', 'There. I win…', 610, 110, { anchor: 'tc', w: 220, fixed: true })], { mood: 'day' });
@@ -248,7 +248,7 @@ ep.panel(880, { cam: { on: ['harry'], fr: 'bust', dy: -0.4 }, bg: MO, blur: 2, a
 ep.bleed(1000, { cam: { on: ['mcgonagall'], fr: 'close', dy: -0.3 }, bg: MO, blur: 3, actors: [MCG({ expr: 'yell', pose: 'fists', seat: undefined, y: 960, turn: 0.05 })], under: (e) => rect(0, 0, e.w, e.h, { fill: '#7b2433' }), behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.66, { n: 40, op: 0.7, inner: e.w * 0.36, col: '#f6e2b8' }) },
   [shout('McGonagall', '*Then you should have picked WRESTLING!*', 400, 82, { anchor: 'tc', w: 500, size: 56, fixed: true })], { alt: 'McGonagall, at full volume.' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'close', dy: 0.1 }, bg: MO, blur: 3, actors: [HP({ expr: 'blank' })] },
-  [say('Harry', 'But then I\'d have *lost*…', 400, 64, { anchor: 'tc', w: 320, fixed: true }),
+  [say('Harry', 'But then I\'d have *lost*—', 400, 64, { anchor: 'tc', w: 320, fixed: true }),
    cap('Harry stopped.', 44, 620, { w: 200, fixed: true })], { mood: 'warm' });
 ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: MO, blur: 2, actors: [HP({ expr: 'sad', pose: 'slump' })] },
   [cap('It was suddenly apparent that he\'d had a *lot* of other options. He could have asked Draco to suggest something. He could have asked the crowd. There had been a giant space of possibilities. Why had he picked *that* one?', 44, 30, { w: 620, fixed: true }),
@@ -272,11 +272,11 @@ ep.panel(900, TWO({ expr: 'neutral', pose: 'sit' }, { expr: 'neutral', pose: 'ra
 ep.panel(1000, MBUST({ expr: 'worried', pose: 'sit' }, { dy: -0.2 }),
   [say('McGonagall', 'I\'m sure, Mr Potter, that it is nothing of importance. Surely you heard the Headmaster tell the students not to bother us with any unimportant complaints about the Defence Professor?', 400, 50, { anchor: 'tc', w: 560, fixed: true })], { mood: 'warm' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'bust', dy: -0.5 }, bg: MO, blur: 2, actors: [HP({ expr: 'determined', pose: 'gesture' })] },
-  [say('Harry', 'But this could *be* important. Yesterday I got this sudden sense of doom when…', 400, 50, { anchor: 'tc', w: 520, fixed: true })], { mood: 'warm' });
+  [say('Harry', 'But this could *be* important. Yesterday I got this sudden sense of doom when—', 400, 50, { anchor: 'tc', w: 520, fixed: true })], { mood: 'warm' });
 ep.bleed(1050, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.7 }, bg: MO, blur: 2, actors: [MCG({ expr: 'yell', pose: 'raiseHand', seat: undefined, y: 960, turn: 0.1 })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.66, { n: 30, op: 0.55, inner: e.w * 0.36, col: '#f6e2b8' }) },
   [shout('McGonagall', 'Mr Potter! I have a sense of doom as well! And my sense of doom is suggesting that *you must not finish that sentence!*', 400, 104, { anchor: 'tc', w: 470, fixed: true })], { alt: 'McGonagall cuts him off.' });
 ep.panel(1360, { cam: { on: ['harry'], fr: 'bust', dy: -1.3 }, bg: MO, blur: 2, actors: [HP({ expr: 'rant', pose: 'gesture' })] },
-  [shout('Harry', '*This isn\'t like you!* That seems *unbelievably* irresponsible! If there\'s some kind of jinx on the Defence position, if you already *know* something\'s going to go wrong, I\'d think you\'d all be on your toes…', 400, 140, { anchor: 'tc', w: 460, fixed: true })], { mood: 'warm' });
+  [shout('Harry', '*This isn\'t like you!* That seems *unbelievably* irresponsible! If there\'s some kind of jinx on the Defence position, if you already *know* something\'s going to go wrong, I\'d think you\'d all be on your toes—', 400, 140, { anchor: 'tc', w: 460, fixed: true })], { mood: 'warm' });
 ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'close', dy: -0.1 }, bg: MO, blur: 3, actors: [MCG({ expr: 'blank', pose: 'sit' })] },
   [say('McGonagall', 'Go *wrong*, Mr Potter? *I certainly hope not.*', 400, 44, { anchor: 'tc', w: 460, fixed: true })], { mood: 'warm', alt: 'Her face is expressionless.' });
 ep.panel(1250, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.95 }, bg: MO, blur: 2, actors: [MCG({ expr: 'deadpan', pose: 'sit' }), DESK] },

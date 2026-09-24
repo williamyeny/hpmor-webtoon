@@ -19,7 +19,7 @@ const chairBack = O.armchairBack(1520, 1010, 1.3);
 const chairFront = O.armchairFront(1520, 1010, 1.3);
 const DAD = (o = {}) => ({ def: dad, id: 'dad', x: 820, y: 1000, turn: 0.45, ...o });
 const MUM = (o = {}) => ({ def: mum, id: 'mum', x: 1170, y: 1000, turn: -0.45, ...o });
-const HARRY_CHAIR = (o = {}) => ({ def: harry, id: 'harry', x: 1520, y: 972, s: 1.12, turn: -0.35, pose: 'sitRead', expr: 'focus', armF: { prop: bookHeld('#274060', { rot: 180, w: 60, h: 80 }) }, ...o });
+const HARRY_CHAIR = (o = {}) => ({ def: harry, id: 'harry', x: 1520, y: 972, s: 1.12, turn: -0.35, pose: 'sitRead', expr: 'focus', armF: { prop: bookHeld('#274060', { rot: 200, w: 60, h: 80 }) }, ...o });
 
 // =============================================================== COLD OPEN
 ep.setBg(NIGHT);
@@ -68,8 +68,8 @@ ep.panel(760, { cam: { on: ['dad', 'mum'], fr: 'waist' }, bg: LR(), actors: [DAD
    say('Mum', 'My sister was a witch.', 560, 90, { w: 260 }),
    say('Mum', 'Her husband was a wizard.', 580, 220, { w: 260 })], { mood: 'warm' });
 
-ep.panel(700, { cam: { on: ['dad'], fr: 'bust' }, bg: LR(), actors: [DAD({ expr: 'yell', pose: 'shrug', turn: 0.5 })] },
-  [shout('Dad', 'This is absurd! They were at our *wedding!* They came for *Christmas!*', 420, 120, { w: 400, size: 30 })], { mood: 'warm' });
+ep.panel(760, { cam: { head: 'dad', hw: 0.3, hx: 0.5, hy: 0.6 }, bg: LR(), actors: [DAD({ expr: 'yell', pose: 'shrug', turn: 0.5 })] },
+  [shout('Dad', 'This is absurd! They were at our *wedding*—they came for *Christmas!*', 420, 62, { w: 400, size: 30, anchor: 'tc' })], { mood: 'warm' });
 
 ep.panel(640, { cam: { on: ['mum'], fr: 'close' }, bg: LR(), actors: [MUM({ expr: 'pained', turn: -0.35 })] },
   [whisper('Mum', 'I told them you weren\'t to know.', 250, 100, { w: 280 })], { mood: 'warm' });
@@ -86,18 +86,18 @@ ep.panel(980, { cam: { on: ['dad'], fr: 'waist', dx: 0.6, dy: -0.4 }, bg: LR(), 
 
 ep.panel(760, { cam: { on: ['mum'], fr: 'bust', dy: -0.3 }, bg: LR(), actors: [MUM({ expr: 'hurt', pose: 'hold', turn: -0.3 })] },
   [say('Mum', 'It wasn\'t bending spoons.', 230, 80, { w: 280 }),
-   say('Mum', 'Michael. I wasn\'t… always like this.', 250, 630, { w: 300 })], { mood: 'warm' });
+   say('Mum', 'Michael. I wasn\'t—always like this—', 250, 630, { w: 300 })], { mood: 'warm' });
 
 // ---- Petunia's memory (sepia)
 const MEM = { mood: 'sepia', overlay: (ctx) => FX.memoryEdge(ctx.w, ctx.h) };
 const gardenMem = (env) => rect(-400, -400, 3000, 3000, { fill: '#cdb68a' }) + K.brickWall(-400, 200, 3000, 700, '#9a6a52', 3) + rect(-400, 900, 3000, 900, { fill: '#8aa070' });
 ep.panel(760, { cam: { on: ['lily', 'pet'], fr: 'knees', dy: -1.2 }, bg: gardenMem,
-  actors: [{ def: petuniaTeen, id: 'pet', x: 700, y: 1100, turn: 0.45, expr: 'sad', pose: 'crossArms' }, { def: lilyTeen, id: 'lily', x: 1060, y: 1100, turn: -0.4, expr: 'delight', pose: 'present' }],
-  over: (e) => FX.sparkles([[e.anchors?.lily?.handF?.[0] ?? 430, (e.anchors?.lily?.handF?.[1] ?? 380) - 30, 14]]) },
+  actors: [{ def: petuniaTeen, id: 'pet', x: 660, y: 1100, turn: 0.45, expr: 'sad', pose: 'crossArms' }, { def: lilyTeen, id: 'lily', x: 1100, y: 1100, turn: -0.4, expr: 'delight', pose: 'present' }],
+  over: (e) => { const h = e.anchors?.lily?.handB ?? [430, 380]; return FX.sparkles([[h[0], h[1] - 34, 15], [h[0] - 26, h[1] - 14, 8], [h[0] + 22, h[1] - 52, 9]]); } },
   [cap('“Lily was always the pretty one. And then she got *magic.* Can you imagine how I felt?”', 60, 40, { w: 400 })], { ...MEM, alt: 'Memory, in sepia: two teenage sisters. The red-haired one makes flowers bloom in her palm. The plainer one watches, arms crossed.' });
 
 ep.panel(700, { cam: { on: ['lily', 'pet'], fr: 'bust', dy: -0.9 }, bg: gardenMem,
-  actors: [{ def: petuniaTeen, id: 'pet', x: 760, y: 1100, turn: 0.45, expr: 'pleading', pose: 'reach' }, { def: lilyTeen, id: 'lily', x: 1060, y: 1100, turn: -0.45, expr: 'worried', pose: 'crossArms' }] },
+  actors: [{ def: petuniaTeen, id: 'pet', x: 720, y: 1100, turn: 0.45, expr: 'pleading', pose: 'reach' }, { def: lilyTeen, id: 'lily', x: 1150, y: 1100, turn: -0.15, expr: 'worried', pose: 'crossArms' }] },
   [cap('“I begged her to use it on me. For *years.* She always said no, with the most ridiculous excuses. A *centaur* told her not to!”', 272, 40, { w: 420 })], MEM);
 
 ep.panel(900, { cam: { on: ['pet', 'vernon'], fr: 'waist', dy: -1.4 }, bg: gardenMem,
@@ -107,17 +107,18 @@ ep.panel(900, { cam: { on: ['pet', 'vernon'], fr: 'waist', dy: -1.4 }, bg: garde
    whisper('Petunia', '*Dudley… Dursley?*', 330, 600, { w: 260, tail: 'pet' })], MEM);
 
 ep.panel(700, { cam: { on: ['lily', 'pet'], fr: 'bust', dy: -0.7 }, bg: gardenMem,
-  actors: [{ def: petuniaTeen, id: 'pet', x: 760, y: 1100, turn: 0.45, expr: 'determined', pose: 'holdOne', armF: { prop: g({ transform: 'translate(0,34)' }, path('M-10,-30 L10,-30 L14,-4 Q14,30 0,30 Q-14,30 -14,-4Z', { fill: '#9fd0a8', stroke: C.ink, 'stroke-width': 2 }), rect(-6, -42, 12, 14, { fill: '#8a6a3a', stroke: C.ink, 'stroke-width': 2 })) } },
-    { def: lilyTeen, id: 'lily', x: 1060, y: 1100, turn: -0.45, expr: 'sad', pose: 'present' }] },
+  actors: [{ def: petuniaTeen, id: 'pet', x: 760, y: 1100, turn: 0.45, expr: 'determined', pose: 'stand', armB: { sh: 58, el: 14, hand: 'open' } },
+    { def: lilyTeen, id: 'lily', x: 1080, y: 1100, turn: -0.45, expr: 'sad', pose: 'present' },
+    (env) => { const h = env.wa.lily.handB, k = env.wa.lily.s * 0.95; return g({ transform: `translate(${h[0] - 24 * k},${h[1] - 34 * k}) scale(${k})` }, path('M-10,-30 L10,-30 L14,-4 Q14,30 0,30 Q-14,30 -14,-4Z', { fill: '#9fd0a8', stroke: C.ink, 'stroke-width': 2 }), rect(-6, -42, 12, 14, { fill: '#8a6a3a', stroke: C.ink, 'stroke-width': 2 })); }] },
   [cap('“So she gave in. I drank a potion. I was sick for weeks… and when I got better, I was *beautiful.*”', 300, 40, { w: 440 })], MEM);
 
 // ---- back to the present
 ep.panel(820, { cam: { on: ['mum'], fr: 'close', dy: -0.35 }, bg: LR(), actors: [MUM({ expr: 'teary', turn: -0.3 })] },
-  [say('Mum', 'After that I couldn\'t hate her any more. Especially when I learned what her magic brought her in the end.', 270, 110, { w: 400 })], { mood: 'warm' });
+  [say('Mum', 'After that I couldn\'t hate her any more. Especially when I learned what her magic brought her in the end—', 270, 110, { w: 400 })], { mood: 'warm' });
 
 ep.panel(900, { cam: { on: ['dad', 'mum'], fr: 'waist', dy: -1.3, zoom: 1.25 }, bg: LR(), actors: [DAD({ expr: 'warm', pose: 'gesture' }), MUM({ expr: 'teary', pose: 'hold' })] },
   [say('Dad', 'Darling. You got sick, you rested in bed, and your skin cleared up on its own.', 250, 100, { w: 400 }),
-   say('Mum', 'She was a witch. I *saw* it.', 600, 640, { w: 240 })], { mood: 'warm' });
+   say('Mum', 'She was a witch. I *saw* it.', 620, 750, { w: 240 })], { mood: 'warm' });
 
 ep.panel(780, { cam: { on: ['dad'], fr: 'bust', dx: 0.3, dy: -0.35 }, bg: LR(), actors: [DAD({ expr: 'cross', pose: 'handsHips' })] },
   [say('Dad', 'Petunia. You *know* that can\'t be true. Do I really have to explain why?', 470, 100, { w: 360 })], { mood: 'warm' });
@@ -145,8 +146,8 @@ ep.panel(760, { cam: { on: ['mum'], fr: 'bust', dy: -0.35, dx: 0.3 }, bg: LR(), 
 
 ep.panel(1000, { cam: { on: ['harry'], fr: 'waist', dx: -0.6, dy: -0.75, zoom: 0.88 }, bg: LR(), actors: [{ def: harry, id: 'harry', x: 1400, y: 1010, s: 1.12, turn: -0.3, pose: 'present', expr: 'delight' }],
   mid: (e) => g({ transform: `translate(${e.cam.x - e.w / 2 / e.z},${e.cam.y - e.h / 2 / e.z}) scale(${1 / e.z})` }, rect(0, 0, e.w, e.h, { fill: '#f6e3b0', opacity: 0.55 })) },
-  [say('Harry', 'Then you don\'t have to fight about this!', 256, 84, { w: 320 }),
-   say('Harry', 'We get a Hogwarts professor here, and we *look.* If it\'s real, Dad admits it. If it isn\'t, Mum admits it.', 505, 300, { w: 400 }),
+  [say('Harry', 'Then you don\'t have to fight about this!', 256, 84, { w: 320, tail: [296, 162] }),
+   say('Harry', 'We get a Hogwarts professor here, and we *look.* If it\'s real, Dad admits it. If it isn\'t, Mum admits it.', 505, 352, { w: 400 }),
    say('Harry', 'That\'s what experiments are *for!* So we don\'t have to settle things by arguing!', 250, 790, { w: 300 })], { mood: 'warm', alt: 'Harry, lit up with the idea, spreads his hands.' });
 
 ep.panel(820, { cam: { on: ['dad', 'harry'], fr: 'waist' }, bg: LR(),
@@ -158,9 +159,9 @@ ep.panel(760, { cam: { on: ['harry'], fr: 'close' }, bg: LR(), blur: 3, actors: 
   [cap('Harry was given anything reasonable he wanted. Books. Tutors. Every maths competition he cared to enter.', 44, 30, { w: 420 }),
    cap('Anything, except the slightest shred of respect.', 360, 610, { w: 360 })], { mood: 'warm' });
 
-ep.panel(520, { cam: { on: ['harry'], fr: 'eyes' }, bg: LR(), blur: 3, actors: [{ def: harry, id: 'harry', x: 1400, y: 1010, s: 1.12, turn: -0.1, expr: 'cold' }],
+ep.panel(600, { cam: { head: 'harry', hw: 0.75, hx: 0.5, hy: 0.64 }, bg: LR(), blur: 3, actors: [{ def: harry, id: 'harry', x: 1400, y: 1010, s: 1.12, turn: -0.1, expr: 'cold' }],
   over: (e) => FX.frost(e.w, e.h, 0.5, 3) },
-  [inner('Harry', '*Sometimes Harry wanted to scream at his father.*', 400, 420, { w: 420 })], { mood: 'cold', alt: 'Extreme close-up on Harry\'s eyes, gone flat and cold. Frost creeps at the edges of the panel.' });
+  [inner('Harry', '*Sometimes Harry wanted to scream at his father.*', 400, 24, { w: 420, anchor: 'tc' })], { mood: 'cold', alt: 'Extreme close-up on Harry\'s eyes, gone flat and cold. Frost creeps at the edges of the panel.' });
 
 ep.panel(900, { cam: { x: 1200, y: 520, w: 900 }, bg: LR(),
   actors: [DAD({ x: 900, expr: 'cross', pose: 'lecture' }), MUM({ x: 1180, expr: 'cross', pose: 'fists' }), { def: harry, id: 'harry', x: 1500, y: 1040, s: 1.12, turn: -0.6, pose: 'slump', expr: 'sad' }] },
@@ -180,7 +181,7 @@ const chair = (x, y) => g({}, rect(x - 50, y - 150, 100, 16, { fill: '#6b4429', 
 ep.panel(760, { cam: { on: ['harry'], fr: 'knees', dx: 0.4 }, bg: HB(), actors: [{ def: harry, id: 'harry', x: 330, y: 960, s: 1.1, turn: 0.35, pose: 'slump', expr: 'sad' }] },
   [think('Harry', 'The funny thing is, I *should* agree with Dad.', 520, 124, { w: 300 })], { mood: 'candle' });
 
-ep.panel(760, { cam: { on: ['harry'], fr: 'waist' }, bg: HB(), actors: [chair(430, 960), { def: harry, id: 'harry', x: 470, y: 965, s: 1.1, turn: 0.5, pose: 'chin', expr: 'think' }] },
+ep.panel(760, { cam: { on: ['harry'], fr: 'waist' }, bg: HB(), actors: [chair(430, 960), { def: harry, id: 'harry', x: 470, y: 965, s: 1.1, turn: 0.5, pose: 'chin', expr: 'think', armF: { sh: 30, el: 140, hand: 'fist', hr: 0 } }] },
   [inner('Harry', 'No-one has ever seen real evidence of magic. It should be a clean case for Mum joking, lying, or being insane…', 290, 110, { w: 500 }),
    inner('Harry', '…in ascending order of awfulness.', 480, 660, { w: 520 })], { mood: 'candle' });
 
@@ -213,19 +214,19 @@ ep.panel(700, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#5e3e25' }) + K.glow(ct
 
 // =============================================================== THE SILENCE
 ep.multi(640, [
-  { x: M, y: 18, w: 368, h: 604, mood: 'warm', art: { cam: { on: ['dad'], fr: 'waist' }, bg: LR(), actors: [K.armchair(620, 1070, 1.35, C.forest), { def: dad, id: 'dad', x: 620, y: 1040, turn: 0.2, pose: 'sitRead', expr: 'deadpan', armF: { prop: bookHeld('#43302a', { rot: 180, w: 70, h: 90 }) } }] } },
+  { x: M, y: 18, w: 368, h: 604, mood: 'warm', art: { cam: { on: ['dad'], fr: 'waist' }, bg: LR(), actors: [K.armchair(620, 1070, 1.35, C.forest), { def: dad, id: 'dad', x: 620, y: 1040, turn: 0.2, pose: 'sitRead', expr: 'deadpan', armF: { prop: bookHeld('#43302a', { rot: 200, w: 70, h: 90 }) }, armB: { sh: 6, el: 36, hand: 'open' } }] } },
   { x: 408, y: 18, w: 368, h: 604, mood: 'warm', art: { cam: { on: ['mum'], fr: 'waist' }, bg: () => O.kitchen(), actors: [{ def: mum, id: 'mum', x: 800, y: 1000, turn: 0.7, pose: 'hold', expr: 'sad' }] } },
 ], [cap('His father was reading a book of higher maths, to show how smart he was.', 40, 30, { w: 280, fixed: true }),
     cap('His mother was cooking his father\'s favourite dinner, to show how loving she was.', 428, 424, { w: 280, fixed: true })]);
 ep.beat(360, [capC('As scary as arguments could be, *not* arguing was somehow much worse.', 400, 180, { w: 560 })]);
 
 ep.panel(800, { cam: { on: ['mum', 'harry'], fr: 'waist', dy: -0.8, zoom: 1.1 }, bg: () => O.kitchen(),
-  actors: [{ def: mum, id: 'mum', x: 820, y: 1000, turn: -0.5, pose: 'hold', expr: 'shock' }, { def: harry, id: 'harry', x: 420, y: 1000, s: 1.12, turn: 0.5, pose: 'holdOne', expr: 'determined', armF: { prop: g({ transform: 'translate(0,30) scale(0.35) rotate(90)' }, envelope({ back: true, sealText: 'H' })) } }] },
+  actors: [{ def: mum, id: 'mum', x: 820, y: 1000, turn: -0.5, pose: 'hold', expr: 'shock' }, { def: harry, id: 'harry', x: 420, y: 1000, s: 1.12, turn: 0.5, pose: 'holdOne', expr: 'determined', armF: { under: g({ transform: 'translate(0,30) scale(0.35) rotate(90)' }, envelope({ back: true, sealText: 'H' })) } }] },
   [say('Harry', 'Mum, I\'m going to test the hypothesis. According to your theory, how do I send an owl to Hogwarts?', 272, 90, { w: 380 }),
-   say('Mum', 'I… I don\'t know. I suppose you just need a magic owl?', 560, 560, { w: 300 })], { mood: 'warm' });
+   say('Mum', 'I—I don\'t know. I think you just have to own a magic owl?', 560, 560, { w: 300 })], { mood: 'warm' });
 
 ep.panel(900, { cam: { on: ['harry', 'dad'], fr: 'waist', dy: -2.3 }, bg: LR(),
-  actors: [K.armchair(620, 1070, 1.35, C.forest), { def: dad, id: 'dad', x: 620, y: 1040, turn: 0.4, pose: 'sitRead', expr: 'deadpan', armF: { prop: bookHeld('#43302a', { rot: 180, w: 70, h: 90 }) } },
+  actors: [K.armchair(620, 1070, 1.35, C.forest), { def: dad, id: 'dad', x: 620, y: 1040, turn: 0.4, pose: 'sitRead', expr: 'deadpan', armF: { prop: bookHeld('#43302a', { rot: 200, w: 70, h: 90 }) }, armB: { sh: 6, el: 36, hand: 'open' } },
     { def: harry, id: 'harry', x: 940, y: 1010, s: 1.12, turn: -0.5, pose: 'gesture', expr: 'hopeful' }] },
   [say('Harry', 'Well, the letter got here *somehow.* I\'ll wave it around outside and ask for an owl.', 500, 90, { w: 380 }),
    say('Harry', 'Dad, do you want to come and watch?', 560, 300, { w: 300 })], { mood: 'warm' });
@@ -236,17 +237,17 @@ ep.panel(480, { cam: { on: ['harry'], fr: 'close' }, bg: LR(), blur: 3, actors: 
 
 // =============================================================== THE GARDEN
 const GD = (o = {}) => (env) => O.garden(o);
-ep.panel(760, { cam: { x: 840, y: 700, w: 1250 }, bg: GD(), actors: [{ def: harry, id: 'harry', x: 780, y: 1030, s: 1.1, turn: 0.3, pose: 'holdOne', expr: 'worried', armF: { prop: g({ transform: 'translate(0,30) scale(0.35) rotate(90)' }, envelope({ back: true })) } }] },
+ep.panel(760, { cam: { x: 840, y: 700, w: 1250 }, bg: GD(), actors: [{ def: harry, id: 'harry', x: 780, y: 1030, s: 1.1, turn: 0.3, pose: 'holdOne', expr: 'worried', armF: { under: g({ transform: 'translate(0,30) scale(0.35) rotate(90)' }, envelope({ back: true })) } }] },
   [cap('Standing in your own back garden, about to shout for an owl, it occurs to you that this is… actually pretty embarrassing.', 44, 34, { w: 460 })], { mood: 'dusk', alt: 'The back garden at dusk after rain. Harry stands alone on the wet lawn holding the envelope.' });
 
 ep.panel(700, { cam: { on: ['harry'], fr: 'bust' }, bg: GD(), blur: 2, actors: [{ def: harry, id: 'harry', x: 780, y: 1030, s: 1.1, turn: 0.2, pose: 'fists', expr: 'determined' }] },
   [inner('Harry', '*No.* I\'m better than Dad.', 250, 80, { w: 320 }),
-   inner('Harry', 'I will use the scientific method *even if it makes me feel stupid.*', 520, 570, { w: 380 })], { mood: 'dusk' });
+   inner('Harry', 'I will use the scientific method *even if it makes me feel stupid.*', 520, 594, { w: 380 })], { mood: 'dusk' });
 
 ep.panel(460, { cam: { on: ['harry'], fr: 'close' }, bg: GD(), blur: 2, actors: [{ def: harry, id: 'harry', x: 780, y: 1030, s: 1.1, turn: 0.1, expr: 'embarrassed' }] },
   [whisper('Harry', 'Letter…', 560, 110, { w: 160, size: 22 })], { mood: 'dusk' });
 
-ep.bleed(1150, { cam: { x: 860, y: 630, w: 1150 }, bg: GD({ star: true }), actors: [{ def: harry, id: 'harry', x: 800, y: 1190, s: 2.3, turn: 0.15, pose: 'holdUp', expr: 'yell', armB: { sh: 150, el: -25, hand: 'hold', prop: g({ transform: 'translate(0,24) scale(0.42) rotate(180)' }, envelope({ back: true })) } }],
+ep.bleed(1150, { cam: { x: 860, y: 630, w: 1150 }, bg: GD({ star: true }), actors: [{ def: harry, id: 'harry', x: 800, y: 1190, s: 2.3, turn: 0.15, pose: 'holdUp', expr: 'yell', armB: { sh: 150, el: -25, hand: 'hold', under: g({ transform: 'translate(0,24) scale(0.42) rotate(180)' }, envelope({ back: true })) } }],
   under: (e) => '' },
   [shout('Harry', 'LETTER FOR HOGWARTS! CAN I GET AN OWL?', 400, 170, { w: 520, size: 46 })], { mood: 'dusk', alt: 'Low angle: Harry thrusts the envelope at the enormous evening sky and yells.' });
 
@@ -264,7 +265,7 @@ ep.panel(820, { cam: { on: ['figg', 'harry'], fr: 'waist', zoom: 1.15, dy: -0.9 
     FENCE, CAT,
     { def: harry, id: 'harry', x: 900, y: 1040, s: 1.1, turn: 0.5, pose: 'cower', expr: 'embarrassed' }] },
   [say('Mrs Figg', 'What are you doing, Harry?', 560, 90, { w: 280, tail: 'figg' }),
-   say('Harry', 'Nothing! Just testing a really silly theory!', 420, 650, { w: 300, tail: 'harry' })], { mood: 'dusk', alt: 'An old woman in a hairnet peers over the fence, a grey cat perched beside her.' });
+   say('Harry', 'Nothing! Just—testing a really silly theory—', 420, 650, { w: 300, tail: 'harry' })], { mood: 'dusk', alt: 'An old woman in a hairnet peers over the fence, a grey cat perched beside her.' });
 
 ep.panel(700, { cam: { on: ['figg'], fr: 'close' }, bg: GD(), blur: 2, actors: [{ def: figg, id: 'figg', x: 1500, y: 1180, turn: -0.4, expr: 'smile' }] },
   [say('Mrs Figg', 'Did you get your acceptance letter from Hogwarts?', 260, 90, { w: 320, tail: 'figg' })], { mood: 'dusk' });
@@ -277,12 +278,12 @@ ep.panel(900, { cam: { on: ['figg', 'harry'], fr: 'bust', dy: -0.6 }, bg: GD(),
    say('Mrs Figg', 'But you don\'t *have* an owl! Poor dear. I can\'t imagine *what* someone was thinking, sending you just the standard letter.', 530, 668, { w: 305, tail: 'figg', fixed: true })], { mood: 'dusk' });
 
 ep.panel(700, { cam: { on: ['figg', 'harry'], fr: 'bust' }, bg: GD(),
-  actors: [{ def: figg, id: 'figg', x: 1420, y: 885, turn: -0.5, expr: 'warm', pose: 'stand', armB: { sh: 50, el: 10, hand: 'open' }, lean: 8 }, FENCE,
+  actors: [{ def: figg, id: 'figg', x: 1450, y: 885, turn: -0.5, expr: 'warm', pose: 'stand', armB: { sh: 37, el: 12, hand: 'open' }, lean: 8 }, FENCE,
     { def: harry, id: 'harry', x: 1130, y: 1040, s: 1.1, turn: 0.4, pose: 'holdUp', expr: 'blank', armB: { sh: 145, el: 0, hand: 'hold', prop: g({ transform: 'translate(0,34) scale(0.4) rotate(170)' }, envelope({})) } }] },
   [cap('Hardly thinking at all by now, Harry handed it over.', 44, 30, { w: 400 })], { mood: 'dusk', alt: 'A wrinkled hand reaches over the fence; Harry hands up the envelope.' });
 
-ep.panel(760, { cam: { on: ['figg'], fr: 'bust', dx: -0.4 }, bg: GD(), actors: [{ def: figg, id: 'figg', x: 1500, y: 885, turn: -0.3, expr: 'warm', pose: 'wave' }, FENCE] },
-  [say('Mrs Figg', 'Just leave it to me, dear. In a jiffy or two I\'ll have someone over.', 260, 90, { w: 330, tail: 'figg' })], { mood: 'dusk' });
+ep.panel(760, { cam: { head: 'figg', hw: 0.26, hx: 0.44, hy: 0.6 }, bg: GD(), actors: [{ def: figg, id: 'figg', x: 1500, y: 885, turn: -0.3, expr: 'warm', pose: 'wave' }, FENCE] },
+  [say('Mrs Figg', 'Just leave it to me, dear. In a jiffy or two I\'ll have someone over.', 560, 90, { w: 330, tail: 'figg' })], { mood: 'dusk' });
 
 ep.panel(560, { cam: { x: 1330, y: 640, w: 520 }, bg: GD(), actors: [(env) => g({ transform: 'translate(1330,712) scale(0.9)' }, cat({ col: '#8f8f8f' })), (env) => g({}, ...Array.from({ length: 22 }, (_, i) => path(`M${1100 + i * 44},900 L${1100 + i * 44},720 L${1120 + i * 44},702 L${1140 + i * 44},720 L${1140 + i * 44},900Z`, { fill: '#8a6e50', stroke: '#3e2a1f', 'stroke-width': 2 })))] },
   [cap('And her face disappeared from over the fence.', 44, 30, { w: 380 }), cap('The cat stayed.', 520, 440, { w: 200 })], { mood: 'dusk', alt: 'The old woman has gone. Her grey cat stays on the fence, looking straight at Harry.' });

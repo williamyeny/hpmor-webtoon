@@ -89,9 +89,9 @@ ep.panel(900, { cam: ON(HST(), 480, 0, 10), bg: OF({}), blur: 2, actors: SOLO({ 
 ep.panel(1100, { cam: ON(HST(), 420, 0, -100), bg: OF({}), blur: 3, actors: SOLO({ pose: 'fists', seat: undefined, expr: { base: 'angry', mouth: { type: 'scream', open: 0.6 } } }), over: (e) => FX.frost(e.w, e.h, 0.45, 128) },
   [shout('Harry', 'Some of the younger students cried while they told me. *I almost cried* when I heard them! *You allowed this abuser to run free? You did this to your students? Why?*', 400, 124, { anchor: 'tc', w: 400, size: 34, pad: 56, fixed: true })], { mood: 'cold' });
 ep.panel(620, { cam: ON(MG(), 440, 0, -45), bg: OF({}), blur: 3, actors: [CHAIR(520), MG({ expr: 'teary' })] },
-  [cap('Minerva swallowed a lump in her throat. She\'d thought that, sometimes. But somehow she\'d never quite…', 44, 30, { w: 620, fixed: true })], { mood: 'candle' });
+  [cap('Minerva swallowed a lump in her throat. She\'d—thought that, sometimes. But somehow she\'d never quite…', 44, 30, { w: 620, fixed: true })], { mood: 'candle' });
 ep.panel(1100, { cam: { x: 930, y: 640, w: 1000 }, bg: OF({}), actors: OTS({ d: { expr: 'stern', pose: 'lecture' }, h: { expr: 'cold' } }), over: (e) => FX.frost(e.w, e.h, 0.25, 129) },
-  [say('Dumbledore', 'Mr Potter, this meeting is not about Professor Snape. Professor Snape has suggested, and I have agreed, that three full months of detention will be appropriate…', 400, 44, { anchor: 'tc', w: 520, fixed: true }),
+  [say('Dumbledore', 'Mr Potter, this meeting is not about Professor Snape. Professor Snape has suggested, and I have agreed, that three full months of detention will be appropriate—', 400, 44, { anchor: 'tc', w: 520, fixed: true }),
    cold('Harry', 'Declined.', 610, 600, { anchor: 'bc', w: 180, fixed: true }),
    cap('Minerva was speechless.', 44, 1060, { anchor: 'bl', w: 300, fixed: true })], { mood: 'candle' });
 ep.multi(1240, [
@@ -129,7 +129,7 @@ ep.panel(1100, { cam: ON(DB(), 460, 0, -120), bg: OF({}), blur: 2, actors: D1({ 
   [say('Dumbledore', 'Expulsion, Mr Potter, is the final threat which may be used against a student. It is not customarily used as a threat by students against the Headmaster. This is the best magical school in the entire world. Are you under the impression that Hogwarts cannot get along without you?', 400, 66, { anchor: 'tc', w: 520, fixed: true })], { mood: 'candle' });
 ep.panel(1000, { cam: ON(H1(), 460, 0, 30), bg: OF({}), blur: 2, actors: SOLO({ expr: 'coldSmile' }), over: (e) => FX.frost(e.w, e.h, 0.4, 133) },
   [cap('Harry sat there, smiling thinly. Sudden horror dawned on Minerva. Surely he wouldn\'t…', 44, 30, { w: 620, fixed: true }),
-   cold('Harry', 'You forget that you\'re not the only one who can see patterns. *This grows private. Now send him…*', 400, 950, { anchor: 'bc', w: 500, fixed: true })], { mood: 'cold' });
+   cold('Harry', 'You forget that you\'re not the only one who can see patterns. *This grows private. Now send him—*', 400, 950, { anchor: 'bc', w: 500, fixed: true })], { mood: 'cold' });
 ep.panel(560, { cam: ON(H1(), 250, 0, 20), bg: OF({}), blur: 3, actors: SOLO({ expr: { base: 'shock', mouth: { type: 'line', curve: 0, w: 0.6 } } }) },
   [cap('Minerva could see it on his face: the moment when he remembered. She\'d told him, after all.', 44, 30, { w: 620, fixed: true })], { mood: 'candle' });
 ep.multi(1200, [
@@ -319,7 +319,7 @@ ep.panel(1240, { cam: ON(MC(), 500, 0, -10), bg: MO, blur: 2, actors: MCS({ expr
   [say('McGonagall', 'You\'ll be able to sleep. The Ministry has delivered the protective shell for your Time-Turner. Your own suggestion. I will enchant it to open only between the hours of nine and midnight.', 400, 56, { anchor: 'tc', w: 520, fixed: true }),
    say('McGonagall', 'Mr Potter, how many times have you used it since Monday? How many hours?', 400, 1200, { anchor: 'bc', w: 460, fixed: true })], { mood: 'warm' });
 ep.panel(760, { cam: ON(HM(), 420, -60, -30), bg: MO, blur: 2, actors: HMS({ expr: { base: 'think', eyes: { lookY: 0.7, lookX: 0.3 } }, armF: { sh: 20, el: 110, hand: 'fist' }, headTilt: 8 }) },
-  [say('Harry', 'I… hold on, let me add it up…', 560, 40, { anchor: 'tc', w: 320, fixed: true }),
+  [say('Harry', 'I… hold on, let me add it up—', 560, 40, { anchor: 'tc', w: 320, fixed: true }),
    cap('He glanced down at his watch.', 44, 722, { anchor: 'bl', w: 340, fixed: true })], { mood: 'warm' });
 ep.panel(1400, { cam: ON(MC(), 480, 0, 0), bg: MO, blur: 2, actors: MCS({ expr: 'sad' }) },
   [say('McGonagall', 'It wasn\'t just two per day, then. I suspect your dorm-mates would say you\'ve been struggling to stay up late enough, and waking up earlier and earlier. There are students who become addicted to them. They end up using the Time-Turner for more than just their classes.', 400, 60, { anchor: 'tc', w: 520, fixed: true }),
@@ -330,7 +330,7 @@ ep.panel(1200, { cam: ON(MC(), 380, 0, 10), bg: MO, blur: 3, actors: MCS({ expr:
 ep.multi(1160, [
   { x: M, y: 18, w: 752, h: 620, mood: 'warm', art: { cam: ON(HM(), 400, 0, -20), bg: MO, blur: 2, actors: HMS({ expr: 'pleading', pose: 'gesture' }) } },
   { x: M, y: 656, w: 752, h: 486, mood: 'warm', art: { cam: ON(MC(), 440, -110, -60), bg: MO, blur: 2, actors: MCS({ expr: 'stern' }) } },
-], [shout('Harry', 'But I *need* it! What if there are Slytherins threatening me and I have to escape? It keeps me *safe…*', 400, 86, { anchor: 'tc', w: 420, size: 33, fixed: true }),
+], [shout('Harry', 'But I *need* it! What if there are Slytherins threatening me and I have to escape? It keeps me *safe—*', 400, 86, { anchor: 'tc', w: 420, size: 33, fixed: true }),
    say('McGonagall', 'Every other student in this castle runs the same risk, and I assure you that they survive. You will hand over your Time-Turner, and do so now.', 272, 700, { anchor: 'tc', w: 300, fixed: true })]);
 ep.panel(1000, { cam: { x: 1225, y: 600, w: 760 }, bg: MO, actors: [() => g({ transform: 'translate(1220,578) scale(0.75)' }, P2.timeTurner(1, { shell: true, lock: true, chain: false })), MC({ expr: 'focus', pose: 'wand', armB: { hand: 'hold', prop: g({ transform: 'translate(0,20)' }, rect(-3, -50, 6, 90, { fill: '#6b4429' })) } }), MDESK, HCH, HM({ expr: 'cry', pose: 'hold' })], over: (e) => { const [x, y] = e.toPanel([1220, 553]); return FX.sparkles([[x, y]], { r: 40 }); } },
   [cap('Harry\'s face twisted in agony, but he drew out the Time-Turner and gave it to her. She snapped the cover into place around the hourglass, and laid her wand on it to complete the enchantment.', 44, 30, { w: 620, fixed: true })], { mood: 'warm', alt: 'The hourglass disappears inside a gold shell engraved IX–XII.' });
@@ -401,7 +401,7 @@ ep.multi(1020, [
 const SNS = (o = {}) => ({ def: snape, id: 'snape', x: 1300, y: 900, turn: -0.1, pose: 'stand', expr: 'cold', ...o });
 ep.bleed(1300, { cam: { on: ['snape'], fr: 'waist', dy: -0.3 }, bg: DAIS, actors: [SNS(), () => HG.staffTable()] },
   [say('Dumbledore', 'Thank you, Mr Potter. And now Professor Snape has something to share with us as well.', 400, 64, { anchor: 'tc', w: 520, fixed: true, noTail: true }),
-   say('Snape', 'It has been brought to my attention that my own actions played a part in provoking the admittedly inexcusable anger of Mr Potter. In the ensuing discussion, I realised that I had forgotten how easily injured are the feelings of the young and immature…', 400, 1240, { anchor: 'bc', w: 600, fixed: true })], { alt: 'Snape rises smoothly at the Head Table.' });
+   say('Snape', 'It has been brought to my attention that my own actions played a part in provoking the admittedly inexcusable anger of Mr Potter. In the ensuing discussion, I realised that I had forgotten how easily injured are the feelings of the young and immature—', 400, 1240, { anchor: 'bc', w: 600, fixed: true })], { alt: 'Snape rises smoothly at the Head Table.' });
 ep.panel(720, { cam: { x: 830, y: 740, w: 1040 }, bg: LT, actors: RAVT({ he: { expr: 'gasp' }, h: { expr: 'blank' }, who: { padma: { expr: 'horror' }, terry: { expr: 'laugh' }, anthony: { expr: 'shock' } } }) },
   [cap('There was the sound of many people making muffled chokes at the same time.', 44, 30, { w: 620, fixed: true })], { mood: 'day' });
 const SNQ = SNS({ expr: 'angry', pose: 'wand', turn: -0.3, armB: { hand: 'hold', prop: g({ transform: 'translate(0,20)' }, rect(-3, -50, 6, 90, { fill: '#8a5d38' })) } });
@@ -421,7 +421,7 @@ ep.multi(1600, [
   { x: 0, y: 0, w: 800, h: 1080, border: 'bleed', art: { cam: { x: 800, y: 560, w: 1400 }, bg: () => HG.greatHallWide(), over: HUBBUB } },
   { x: M, y: 1098, w: 368, h: 484, mood: 'day', art: { cam: ON(STU, 300, 0, -60), bg: () => HG.hallTable('h', { day: true }), blur: 2, actors: [STU, () => HG.tableFront()] } },
   { x: 408, y: 1098, w: 368, h: 484, mood: 'day', art: { cam: ON(SPR, 300, 0, -60), bg: DAIS, blur: 2, actors: [SPR, () => HG.staffTable()] } },
-], [cap('There was an explosion of conversation. Two words were clearly identifiable. The first was "What…", beginning many different sentences. The second was "*Scourgify!*", as students cleaned dropped food and spat-out drinks from themselves, the tablecloth, and each other.', 44, 40, { w: 640, fixed: true }),
+], [cap('There was an explosion of conversation. Two words were clearly identifiable. The first was "What—" beginning many different sentences. The second was "*Scourgify!*", as students cleaned dropped food and spat-out drinks from themselves, the tablecloth, and each other.', 44, 40, { w: 640, fixed: true }),
    cap('Some students were weeping openly. So was Professor Sprout.', 400, 1116, { anchor: 'tc', w: 390, fixed: true })]);
 const GT = () => HG.hallTable('g', { day: true });
 ep.panel(980, { cam: { x: 800, y: 750, w: 640 }, bg: GT, actors: [{ def: george, id: 'george', x: 620, y: 1050, turn: 0.4, lean: 8, expr: 'awe' }, { def: fred, id: 'fred', x: 980, y: 1050, turn: -0.4, lean: 8, expr: 'awe' }, () => HG.tableFront(), () => g({ transform: 'translate(800,960) scale(1.15)' }, P2.cake(1, 51))] },

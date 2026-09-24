@@ -105,7 +105,7 @@ ep.bleed(960, { cam: { x: 1160, y: 405, w: 1000 }, bg: TR(NOTPERM), actors: [MG(
 ep.panel(860, { cam: mgCam(860, 600, 0.55, 150, 1560), bg: TR(NOTPERM), actors: [MG({ x: 1560, pose: 'gesture', turn: -0.4, expr: 'stern' })] },
   [say('McGonagall', 'Mr Potter, suppose a student Transfigured a block of wood into a cup of water, and you drank it. What do you imagine might happen to you when the Transfiguration wore off?', 328, 64, { anchor: 'tc', w: 420, fixed: true })], { mood: 'warm' });
 ep.panel(520, { cam: mgCam(520, 440, 0.56, 150), bg: TR(NOTPERM), blur: 3, actors: [MG({ x: 1500, pose: 'stand', turn: -0.3, expr: { base: 'worried', mouth: { type: 'small' } } })] },
-  [say('McGonagall', '…Excuse me, I should not have asked that of you. I forgot you are blessed with an unusually pessimistic imagination…', 270, 250, { w: 370, fixed: true })], { mood: 'warm' });
+  [say('McGonagall', '…Excuse me, I should not have asked that of you. I forgot you are blessed with an unusually pessimistic imagination—', 270, 250, { w: 370, fixed: true })], { mood: 'warm' });
 ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: TR(NOTPERM), blur: 2, actors: CLASS({ h: { expr: 'pained' } }) },
   [say('Harry', 'I\'m fine. So the first answer is that I don\'t *know.* But I *imagine* there might be… wood. In my stomach. And in my bloodstream. And if any of that water had been absorbed into my body\'s tissues…', 400, 64, { anchor: 'tc', w: 580, fixed: true }),
    cap('His grasp of magic failed him. He couldn\'t understand how wood mapped into water in the first place.', 44, 790, { w: 620, fixed: true })], { mood: 'warm', alt: 'Harry, gone a little pale.' });
@@ -168,7 +168,7 @@ ep.panel(820, { cam: mgCam(820, 400, 0.66, 20), bg: TR(NOTPERM), blur: 3, actors
   [say('McGonagall', 'If you press your wand to your body and imagine yourself with golden hair, afterwards your hair will fall out. And if you Transfigure yourself into an adult body, then, when the Transfiguration wears off, you will die.', 400, 64, { anchor: 'tc', w: 560, fixed: true })], { mood: 'warm' });
 ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: TR(NOTPERM), blur: 2, actors: CLASS({ h: { ...RAISED, expr: 'think' } }) },
   [inner('Harry', '*That explained why there were still fat boys, and girls who weren\'t perfectly pretty, and old people. That wouldn\'t happen if you could just Transfigure yourself every morning…*', 400, 64, { anchor: 'tc', w: 580, fixed: true }),
-   say('Harry', 'Is it possible to Transfigure a living subject into something static, such as a coin… no, excuse me, I\'m terribly sorry, let\'s just say a *steel ball.*', 400, 940, { anchor: 'bc', w: 540, fixed: true })], { mood: 'warm' });
+   say('Harry', 'Is it possible to Transfigure a living subject into something static, such as a coin—no, excuse me, I\'m terribly sorry, let\'s just say a *steel ball.*', 400, 940, { anchor: 'bc', w: 540, fixed: true })], { mood: 'warm' });
 ep.panel(700, { cam: mgCam(700, 480, 0.6, 140), bg: TR(NOTPERM), blur: 2, actors: [MG({ x: 1500, pose: 'gesture', expr: 'stern', turn: -0.3 })] },
   [say('McGonagall', 'Mr Potter, even inanimate objects undergo small internal changes over time. For the first minute, you would notice nothing wrong.', 262, 64, { anchor: 'tc', w: 380, fixed: true })], { mood: 'warm' });
 ep.panel(480, { cam: mgCam(480, 330, 0.5, -110), bg: TR(NOTPERM), blur: 3, actors: [MG({ x: 1500, pose: 'stand', expr: 'stern', turn: 0.2 })], over: (e) => rect(0, 0, e.w, e.h, { fill: '#1a1410', opacity: 0.18 }) },

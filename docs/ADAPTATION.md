@@ -17,10 +17,11 @@ General conversions applied everywhere:
   teacher, Petunia's potion, Dad's bookshop raid, the Neville prank).
 - **Emotional beats get space.** Silent panels, tall panels, and gutters are used where the prose
   lingers (the garden silence, the story of the Potters).
-- **Few em dashes** (changed at the user's request). Dialogue, captions, notes, blurbs and alt text
-  were rewritten across all episodes so em dashes are rare; sentences use full stops, commas or
-  ellipses instead, and some were restructured. A dash stays only for a real cut-off (someone is
-  interrupted, or stops themselves), e.g. "They want my owl by the 31st of July, but—".
+- **Em dashes: the book's, not ours** (the user's rule). Lines we wrote or reworded use em dashes
+  rarely: full stops, commas or ellipses instead, and a dash only for a real cut-off. Lines that quote
+  HPMOR word for word keep the book's own dashes ("I—I don't know", "Unless—this is just a guess,
+  mind—you're trying to take over the world?"). `work/restore_dashes.py epXX` finds verbatim lines
+  whose book dashes went missing (a 5+ word run matching the chapter text) and puts them back.
 
 ---
 

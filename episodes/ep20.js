@@ -114,10 +114,10 @@ ep.panel(760, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: PR({}), blur: 
 ep.panel(900, { cam: { x: 940, y: 350, w: 560 }, bg: PR({}), blur: 2, actors: [SN({ pose: 'lecture', turn: -0.2, expr: 'coldSmile' })] },
   [say('Snape', 'You are here to learn the subtle science and exact art of potion-making. I don\'t expect you will really understand the beauty of the softly simmering cauldron, the delicate power of liquids that creep through human veins, bewitching the mind, ensnaring the senses…', 400, 70, { anchor: 'tc', w: 600, fixed: true })], { mood: 'candle', alt: 'Snape\'s eyes are as empty as a night sky without stars.' });
 ep.panel(760, tilt(-4, { cam: { on: ['snape'], fr: 'close', dy: 0.4 }, bg: PR({}), blur: 3, actors: [SN({ turn: 0.1, expr: { base: 'coldSmile', eyes: { open: 0.45 } } })] }, SHADE('#050a08', 0.5)),
-  [say('Snape', 'I can teach you how to bottle fame, brew glory, even stopper death. If you aren\'t as great a pack of fools as I usually have to teach.', 400, 712, { anchor: 'bc', w: 560, fixed: true })], { mood: 'candle' });
+  [say('Snape', 'I can teach you how to bottle fame, brew glory, even stopper death—if you aren\'t as great a pack of fools as I usually have to teach.', 400, 712, { anchor: 'bc', w: 560, fixed: true })], { mood: 'candle' });
 ep.panel(1150, { cam: { x: 880, y: 674, w: 760 }, bg: PR({}), actors: [SN({ x: 1080, pose: 'point', turn: -0.4, expr: 'menace' }), ...CLASS({ h: { expr: 'suspicious', turn: 0.4 } })] },
   [say('Snape', 'Potter! What would I get if I added powdered root of asphodel to an infusion of wormwood?', 265, 90, { anchor: 'tc', w: 355, fixed: true }),
-   say('Harry', 'Was that in *Magical Drafts and Potions?* I just finished reading it, and I don\'t remember anything which used wormwood…', 500, 1085, { anchor: 'bc', w: 400, fixed: true })], { mood: 'candle' });
+   say('Harry', 'Was that in *Magical Drafts and Potions?* I just finished reading it, and I don\'t remember anything which used wormwood—', 500, 1085, { anchor: 'bc', w: 400, fixed: true })], { mood: 'candle' });
 ep.multi(1060, [
   { x: M, y: 18, w: 752, h: 430, mood: 'candle', art: { cam: { x: 963, y: 434, w: 560 }, bg: PR({}), blur: 2, actors: [SN({ x: 1100, turn: -0.3, expr: { base: 'smug', eyes: { lookX: -0.6, lookY: 0.4 } } })] } },
   { x: M, y: 464, w: 752, h: 578, mood: 'candle', art: { cam: { x: 628, y: 693, w: 520 }, bg: PR({}), blur: 2, actors: CLASS({ h: { expr: { base: 'calm', eyes: { lookX: 0.5, lookY: -0.3 } }, turn: 0.3 } }) } },
@@ -126,7 +126,7 @@ ep.multi(1060, [
 ep.panel(1200, { cam: { x: 800, y: 790, w: 700 }, bg: PR({}), actors: [SN({ x: 950, pose: 'lecture', turn: -0.3, expr: { base: 'coldSmile', eyes: { lookX: -0.5, lookY: 0.5 } } }), ...CLASS({ h: { expr: { base: 'focus', eyes: { lookX: 0.6, lookY: -0.6 } }, turn: 0.4 } })] },
   [cap('Three-quarters of the class flinched.', 44, 30, { w: 380, fixed: true }),
    say('Snape', 'Let\'s try again. Potter, where would you look if I told you to find me a bezoar?', 240, 170, { anchor: 'tc', w: 330, fixed: true }),
-   say('Harry', 'That\'s not in the textbook either. But in one Muggle book I read that a trichobezoar is a mass of hair found in a human stomach, and Muggles used to believe it would cure any poison…', 420, 1150, { anchor: 'bc', w: 560, fixed: true })], { mood: 'candle' });
+   say('Harry', 'That\'s not in the textbook either. But in one Muggle book I read that a trichobezoar is a mass of hair found in a human stomach, and Muggles used to believe it would cure any poison—', 420, 1150, { anchor: 'bc', w: 560, fixed: true })], { mood: 'candle' });
 ep.multi(1222, [
   { x: M, y: 18, w: 752, h: 470, mood: 'candle', art: tilt(5, { cam: { x: 1010, y: 452, w: 520 }, bg: PR({}), blur: 3, actors: [SN({ x: 1100, turn: -0.3, expr: { base: 'cold', eyes: { lookX: -0.5, lookY: 0.4 } } })] }, SHADE('#050a08', 0.45)) },
   { x: M, y: 504, w: 752, h: 700, mood: 'candle', art: { cam: { x: 820, y: 590, w: 680 }, bg: PR({}), actors: [SN({ x: 1040, turn: -0.4, poseMod: { lean: 16, headTilt: 8 }, expr: { base: 'menace', eyes: { lookX: -0.5, lookY: 0.6 } } }), ...CLASS({ h: { expr: { base: 'determined', eyes: { lookX: 0.5, lookY: -0.6 } }, turn: 0.4 } })] } },
@@ -142,7 +142,7 @@ ep.panel(820, { cam: { x: 700, y: 700, w: 420 }, bg: PR({}), blur: 3, actors: CL
   [say('Snape', 'Thought you didn\'t need to open the book before coming, eh, Potter? And that will be… five points? No. Let us make it an even *ten* points from Ravenclaw, for backchat.', 400, 60, { anchor: 'tc', w: 580, fixed: true, noTail: true })], { mood: 'candle' });
 ep.panel(820, { cam: { x: 880, y: 560, w: 640 }, bg: PR({}), blur: 2, actors: CLASS({ h: { expr: { base: 'determined', eyes: { lookX: 0.5, lookY: -0.5 } }, turn: 0.3 }, he: { expr: 'gasp', turn: -0.4 } }), over: (e) => FX.frost(e.w, e.h, 0.18, 96) },
   [cap('Hermione gasped, along with a number of others.', 44, 30, { w: 480, fixed: true }),
-   say('Harry', 'Professor Severus Snape. I know of nothing which I have done to earn your enmity. If there is some problem you have with me which I do not know about, I suggest we…', 505, 150, { anchor: 'tc', w: 380, fixed: true })], { mood: 'candle' });
+   say('Harry', 'Professor Severus Snape. I know of nothing which I have done to earn your enmity. If there is some problem you have with me which I do not know about, I suggest we—', 505, 150, { anchor: 'tc', w: 380, fixed: true })], { mood: 'candle' });
 ep.panel(560, tilt(3, { cam: { x: 863, y: 454, w: 560 }, bg: PR({}), blur: 3, actors: [SN({ turn: -0.7, expr: { base: 'cold', eyes: { open: 0.35 } } })] }, SHADE('#050a08', 0.45)),
   [say('Snape', 'Shut up, Potter. Ten more points from Ravenclaw. The rest of you, open your books to page three.', 240, 270, { w: 320, fixed: true })], { mood: 'candle' });
 // the cold arrives
@@ -150,8 +150,8 @@ ep.panel(1100, { cam: { on: ['harry'], fr: 'close', dy: 0.15 }, bg: PR({}), blur
   [cap('There was only a slight, only a very faint burning sensation in the back of Harry\'s throat, and no moisture at all in his eyes. If crying was not an effective strategy for destroying this Potions professor, then there was no point in crying.', 44, 30, { w: 620, fixed: true }),
    cap('Slowly, Harry sat up very straight. All his blood seemed to have been drained away and replaced with liquid nitrogen.', 44, 860, { w: 620, fixed: true })], { mood: 'cold', alt: 'Frost spreads across the panel. Harry\'s face goes still and cold.' });
 ep.panel(900, { cam: { x: 800, y: 723, w: 520 }, bg: PR({}), blur: 2, actors: CLASS({ he: { x: 890, expr: { base: 'pleading', eyes: { lookX: 0.7 } }, turn: -0.5, poseMod: { lean: 10 } }, who: { justin: { x: 1150 } }, h: { expr: { base: 'cold', eyes: { lookX: 0.6, lookY: -0.3 } }, turn: 0.25 } }), over: (e) => FX.frost(e.w, e.h, 0.55, 94) },
-  [whisper('Hermione', 'Harry, stop, please, it\'s all right, we won\'t count it…', 480, 80, { anchor: 'tc', w: 360, fixed: true }),
-   say('Snape', 'Talking in class, Granger? Three…', 400, 862, { anchor: 'bc', w: 420, fixed: true, noTail: true })], { mood: 'candle' });
+  [whisper('Hermione', 'Harry, stop, please, it\'s all right, we won\'t count it—', 480, 80, { anchor: 'tc', w: 360, fixed: true }),
+   say('Snape', 'Talking in class, Granger? Three—', 400, 862, { anchor: 'bc', w: 420, fixed: true, noTail: true })], { mood: 'candle' });
 ep.panel(980, { cam: { x: 700, y: 725, w: 480 }, bg: PR({}), blur: 2, actors: CLASS({ h: { expr: 'cold', turn: 0.2 } }), over: (e) => FX.frost(e.w, e.h, 0.58, 95) },
   [cold('Harry', 'So. How does one go about filing a formal complaint against an abusive professor? Does one talk to the Deputy Headmistress? Write a letter to the Board of Governors? Would you care to explain how it works?', 400, 64, { anchor: 'tc', w: 600, fixed: true }),
    cap('The class was utterly frozen.', 44, 880, { w: 380, fixed: true })], { mood: 'cold', alt: 'A voice colder than zero Kelvin.' });

@@ -104,7 +104,7 @@ ep.panel(760, { cam: at(760, 440, ...DBH, 400, 540), bg: OF({}), blur: 2, actors
   [cap('There was a slight pause.', 44, 30, { w: 360, fixed: true }),
    say('Dumbledore', 'Do you know, you\'re the first person who\'s ever taken me up on that?', 430, 110, { anchor: 'tc', w: 460, fixed: true })], { mood: 'candle' });
 ep.panel(640, { cam: at(640, 420, ...HH, 560, 400), bg: OF({}), blur: 2, actors: SET({}, { expr: 'horror' }) },
-  [say('Harry', 'Ah… I\'m sorry, I, ah, Headmaster, you told me to do it, so I did…', 400, 60, { anchor: 'tc', w: 520, fixed: true })], { mood: 'candle' });
+  [say('Harry', 'Ah… I\'m sorry, I, ah, Headmaster, you told me to do it, so I did—', 400, 60, { anchor: 'tc', w: 520, fixed: true })], { mood: 'candle' });
 ep.panel(820, { cam: at(820, 520, ...DBH, 400, 560), bg: OF({}), blur: 2, actors: SET({ pose: 'gesture', expr: 'warm' }) },
   [say('Dumbledore', '*Heh*, please! And there\'s no call to be so worried. I won\'t launch you out of a window just because you make one mistake. I\'ll give you plenty of warnings first!', 400, 60, { anchor: 'tc', w: 500, fixed: true })], { mood: 'candle' });
 ep.panel(900, { cam: at(900, 760, ...DBH, 230, 330), bg: OF({}), actors: [DECOR, ...SET({ pose: 'present', expr: 'smile' }, { expr: 'suspicious' }), (e) => { const h = e.wa.dumbledore.handB; return g({ transform: `translate(${h[0] + 10},${h[1] - 22}) scale(1.3)` }, sweets); }] },
@@ -182,7 +182,7 @@ const HW = (o = {}) => HD({ turn: 0.4, ...o });
 const ROOM = (d = {}, h = {}, desk = {}) => [DECOR, () => CS.dumbledoreThrone(1000), () => CS.blackDesk(1000, 960, desk), DBW(d), HW(h)];
 const away = { x: 1900, y: 960, seat: undefined, turn: -0.5, pose: 'stand' }; // for Harry close-ups while Dumbledore is over by the table
 ep.panel(1000, { cam: at(1000, 640, ...DBWH, 470, 650), bg: OF({}), actors: ROOM({ expr: { base: 'worried', eyes: { lookX: -0.6, lookY: 0.4 } } }) },
-  [say('Dumbledore', 'In truth, there are some at Hogwarts you would do well not to trust. Perhaps even some you call friends. He probably seems to you quite charming. Polite, to you at least. Always ready with a helping hand, a favour, a word of advice…', 400, 60, { anchor: 'tc', w: 500, shape: 'box', fixed: true })], { mood: 'candle', alt: 'Dumbledore stands by a table of instruments, gazing at a dial with eight hands.' });
+  [say('Dumbledore', 'In truth, there are some at Hogwarts you would do well not to trust. Perhaps even some you call friends. He probably seems to you quite charming. Polite—to you at least. Always ready with a helping hand, a favour, a word of advice—', 400, 60, { anchor: 'tc', w: 500, shape: 'box', fixed: true })], { mood: 'candle', alt: 'Dumbledore stands by a table of instruments, gazing at a dial with eight hands.' });
 hS(780, 460, 560, 480, { turn: 0.4, pose: 'gesture', expr: 'happy' },
   [say('Harry', 'Oh, *Draco Malfoy!* Oh no, no no no, you\'ve got it all wrong. He\'s not turning me. *I\'m* turning *him.*', 400, 60, { anchor: 'tc', w: 500, fixed: true })], { d: away });
 ep.panel(460, { cam: at(460, 400, ...DBWH, 540, 300), bg: OF({}), blur: 2, actors: ROOM({ expr: 'shock', turn: -0.3 }) },
@@ -414,7 +414,7 @@ ep.panel(480, { cam: at(480, 380, 472, 714, 540, 280), bg: OF({}), blur: 2, acto
 // the apology: back at the desk
 const EG = { bird: 'egg' };
 dbS(840, 480, 620, { expr: 'sad' },
-  [say('Dumbledore', 'I fear I have a confession to make, Harry. A confession, and an apology. I\'m afraid that I\'ve been manipulating you your entire life. It was I who consigned you to the care of your *wicked* step-parents…', 400, 60, { anchor: 'tc', w: 520, fixed: true })], { of: EG });
+  [say('Dumbledore', 'I fear I have a confession to make, Harry. A confession, and an apology. I\'m afraid that I\'ve been manipulating you your entire life. It was I who consigned you to the care of your *wicked* step-parents—', 400, 60, { anchor: 'tc', w: 520, fixed: true })], { of: EG });
 hS(680, 440, 590, 480, { expr: 'yell', pose: 'fists' },
   [shout('Harry', 'My step-parents aren\'t wicked! My *parents*, I mean!', 340, 80, { anchor: 'tc', w: 400, fixed: true })], { of: EG });
 dbS(640, 440, 440, { expr: 'confused' },
@@ -435,7 +435,7 @@ ep.panel(860, { cam: at(860, 300, 1000, 440, 400, 330), bg: OF(EG), blur: 3, act
 hS(640, 440, 580, 440, { expr: 'angry' },
   [say('Harry', 'And I\'m very angry! So angry that I want to leave right now, unless you\'ve got anything else to say!', 300, 60, { anchor: 'tc', w: 440, fixed: true })], { of: EG });
 dbS(900, 500, 680, { expr: { base: 'calm', eyes: { sparkle: true } }, pose: 'lecture' },
-  [say('Dumbledore', 'One last thing, then. You are *not* to attempt the forbidden door on the third-floor corridor. I doubt you could so much as open the first door, since it\'s locked, and you don\'t know the spell *Alohomora…*', 400, 60, { anchor: 'tc', w: 520, fixed: true })], { of: EG });
+  [say('Dumbledore', 'One last thing, then. You are *not* to attempt the forbidden door on the third-floor corridor. I doubt you could so much as open the first door, since it\'s locked, and you don\'t know the spell *Alohomora—*', 400, 60, { anchor: 'tc', w: 520, fixed: true })], { of: EG });
 // he flees
 ep.bleed(860, { cam: at(860, 720, 820, 640, 400, 520, true), bg: GC({ open: true }), actors: [stairDoor, { def: harryRaven, id: 'harry', x: 700, y: 960, s: 1.1, turn: -0.8, pose: 'run', expr: 'horror' }], behind: (e) => FX.speedLines(e.w, e.h, { n: 40 }), over: (e) => FX.emanata(e.toPanel(e.wa.harry.head)[0] + 90, e.toPanel(e.wa.harry.head)[1] + 60, 120, { n: 5, a0: -40, a1: 40 }) },
   [cap('Harry spun around and bolted for the exit at top speed. The doorknob turned agreeably. He raced down the spiral stairs even as they turned, and fired out of the stairwell like a cannonball…', 44, 50, { w: 620, fixed: true })], { alt: 'Harry shoots out of the stairwell at full speed.' });

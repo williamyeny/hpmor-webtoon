@@ -47,7 +47,7 @@ ep.panel(460, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: DS, blur: 2, actor
 
 // =============================================================== ground rules
 ep.panel(780, { cam: { x: 1110, y: 600, w: 1120 }, bg: LR(),
-  actors: [DAD({ pose: 'crossArms', expr: 'unimpressed' }), MCG({ pose: 'stand', expr: 'calm', turn: -0.2 }), MUM({ pose: 'hold', expr: 'worried', x: 1540 }), HAR({ pose: 'lecture', expr: 'focus', x: 1270, turn: -0.45 })] },
+  actors: [DAD({ pose: 'crossArms', armF: { sh: 20, el: 100 }, armB: { sh: 20, el: -95, front: true }, expr: 'unimpressed' }), MCG({ pose: 'stand', expr: 'calm', turn: -0.2 }), MUM({ pose: 'stand', expr: 'worried', x: 1540 }), HAR({ pose: 'lecture', expr: 'focus', x: 1270, turn: -0.45 })] },
   [say('Harry', 'Now, just to be clear. If the Professor levitates you, Dad, and you know you haven\'t been attached to any wires, that\'s sufficient evidence.', 458, 130, { w: 470, tail: 'harry' })], { mood: 'warm', alt: 'The living room: Dad, arms crossed; the tall witch; Mum; and Harry, lecturing.' });
 ep.panel(800, { cam: { on: ['harry'], fr: 'bust', dx: -0.5, dy: -0.55 }, bg: LR(), actors: [HAR({ pose: 'gesture', expr: 'focus', x: 1460, turn: -0.45 })] },
   [say('Harry', 'No turning round afterwards and saying it was a magician\'s trick. If you feel that way, say so *now,* and we\'ll design a different experiment.', 298, 184, { w: 380, fixed: true })], { mood: 'warm' });
@@ -55,17 +55,17 @@ ep.panel(600, { cam: { on: ['dad'], fr: 'close', dx: -0.45 }, bg: LR(), blur: 2,
   [say('Dad', 'Yes, Harry.', 590, 90, { w: 180 }), cap('The Professor rolled his eyes.', 46, 380, { w: 190 })], { mood: 'warm' });
 ep.panel(820, { cam: { on: ['harry', 'mum'], fr: 'waist', dy: -0.8 }, bg: LR(), actors: [MUM({ expr: 'worried', pose: 'stand', x: 1180, turn: 0.4 }), HAR({ pose: 'point', expr: 'focus', x: 1480, turn: -0.5 })] },
   [say('Harry', 'And Mum, if it *doesn\'t* happen, you admit you were mistaken. No saying magic doesn\'t work when people are sceptical.', 440, 110, { w: 520, tail: [640, 470] })], { mood: 'warm' });
-ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'waist', dx: -0.6, dy: -0.3 }, bg: LR(), blur: 1, actors: [MCG({ expr: { base: 'smile', mouth: { type: 'smirk' } }, pose: 'wand', armB: { sh: 80, el: 15, hand: 'hold', prop: g({ transform: 'translate(0,10)' }, wand(115, '#4a2e1b')) } })] },
+ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'waist', dx: -0.6, dy: -0.3 }, bg: LR(), blur: 1, actors: [MCG({ expr: { base: 'smile', mouth: { type: 'smirk' } }, pose: 'wand', armB: { sh: 80, el: 15, hand: 'hold', under: g({ transform: 'translate(0,10)' }, wand(115, '#4a2e1b')) } })] },
   [say('McGonagall', 'Is that sufficient, Mr Potter? Shall I go ahead and demonstrate?', 540, 110, { w: 330 })], { mood: 'warm', alt: 'McGonagall, deeply amused, draws her wand.' });
-ep.panel(700, { cam: { on: ['harry'], fr: 'bust', dx: -0.8, dy: -0.2 }, bg: LR(), blur: 2, actors: [HAR({ expr: 'think', pose: 'chin' })] },
+ep.panel(700, { cam: { on: ['harry'], fr: 'bust', dx: -0.8, dy: -0.2 }, bg: LR(), blur: 2, actors: [HAR({ expr: 'think', pose: 'think' })] },
   [say('Harry', '*Sufficient?* Probably not. But it will *help.*', 400, 90, { w: 420 }),
    say('Harry', 'Go ahead, Deputy Headmistress.', 232, 500, { w: 290, fixed: true })], { mood: 'warm' });
 ep.panel(520, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: LR(), blur: 2, actors: [MCG({ expr: 'smile' })] },
   [say('McGonagall', 'Just "Professor" will do.', 540, 110, { w: 250 })], { mood: 'warm' });
 
 // =============================================================== Wingardium Leviosa
-const sparkTrail = (e) => { const a = e.anchors?.mcgonagall?.handB; if (!a) return ''; return FX.sparkles([[a[0] + 70, a[1] - 60, 16], [a[0] + 120, a[1] - 110, 10], [a[0] + 40, a[1] - 130, 12]], { col: '#fff3b0' }) + path(`M${a[0] + 20},${a[1] - 30} Q${a[0] + 140},${a[1] - 160} ${a[0] + 260},${a[1] - 120}`, { fill: 'none', stroke: '#fff0a8', 'stroke-width': 4, opacity: 0.8, 'stroke-dasharray': '2 10', 'stroke-linecap': 'round' }); };
-ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'waist', dx: -0.45, dy: -0.4 }, bg: LR(), actors: [MCG({ expr: 'focus', pose: 'wandUp', armB: { sh: 128, el: -12, hand: 'hold', prop: g({ transform: 'translate(0,10)' }, wand(125, '#4a2e1b')) } })], over: sparkTrail },
+const sparkTrail = (e) => { const a = e.anchors?.mcgonagall?.handB; if (!a) return ''; return FX.sparkles([[a[0] - 185, a[1] - 95, 16], [a[0] - 105, a[1] - 185, 10], [a[0] + 45, a[1] - 200, 12]], { col: '#fff3b0' }) + path(`M${a[0] - 165},${a[1] - 65} Q${a[0] - 125},${a[1] - 230} ${a[0] + 30},${a[1] - 195}`, { fill: 'none', stroke: '#fff0a8', 'stroke-width': 4, opacity: 0.8, 'stroke-dasharray': '2 10', 'stroke-linecap': 'round' }); };
+ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'waist', dx: -0.45, dy: -0.4 }, bg: LR(), actors: [MCG({ expr: 'focus', pose: 'wandUp', armB: { sh: 128, el: -12, hand: 'hold', under: g({ transform: 'translate(0,10)' }, wand(125, '#4a2e1b')) } })], over: sparkTrail },
   [shout('McGonagall', '*Wingardium Leviosa.*', 420, 110, { w: 440, size: 34, weight: 400, fixed: true })], { mood: 'warm' });
 ep.bleed(1300, { cam: { x: 860, y: 560, w: 760 }, bg: LR(),
   actors: [{ def: dad, id: 'dad', x: 760, y: 600, turn: 0.2, pose: 'panic', expr: 'blank', armF: { sh: -60, el: -20, hand: 'open', prop: g({ transform: 'translate(0,30) rotate(160)' }, bookHeld('#43302a', { w: 60, h: 76 })) } }],
@@ -83,7 +83,7 @@ ep.panel(820, { cam: { on: ['harry'], fr: 'waist', dy: -0.6 }, bg: LR(), actors:
 ep.panel(680, { cam: { on: ['dad', 'mcgonagall', 'mum'], fr: 'bust', padX: 1.05, dy: -0.55 }, bg: LR(), actors: [DAD({ expr: 'deadpan', x: 800 }), MCG({ expr: 'deadpan', turn: 0.3 }), MUM({ expr: 'deadpan', x: 1220 })] },
   [cap('Mum, the witch, and even Dad were giving him *that look* again.', 44, 30, { w: 500 })], { mood: 'warm' });
 ep.panel(480, { cam: { on: ['harry'], fr: 'close', dx: 0.5 }, bg: LR(), blur: 2, actors: [HAR({ expr: 'embarrassed', turn: -0.2 })] },
-  [say('Harry', 'I mean, with finding out that everything I believe is false.', 575, 130, { w: 320 })], { mood: 'warm' });
+  [say('Harry', 'I mean, with finding out that everything I believe is false.', 600, 125, { w: 320 })], { mood: 'warm' });
 
 ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: LR(), actors: [MCG({ expr: 'warm' })] },
   [say('McGonagall', 'Would you like a further demonstration, Mr Potter?', 522, 110, { w: 380 })], { mood: 'warm' });
@@ -102,10 +102,10 @@ ep.panel(760, { cam: { x: 1245, y: 830, w: 640 }, bg: LR(),
   over: (e) => FX.sfxText(e.w * 0.72, e.h * 0.22, 'THWACK', { size: 84, rot: 8 }) },
   [], { mood: 'warm', alt: 'Where McGonagall stood sits a small tabby cat with spectacle-shaped markings round its eyes. Harry has scrambled backwards over a stack of books and landed hard.' });
 ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'bust', dx: -0.55 }, bg: LR(), actors: [MCG({ expr: { base: 'smile', mouth: { type: 'smirk' } } })] },
-  [say('McGonagall', 'I\'m sorry, Mr Potter. I should have warned you.', 520, 110, { w: 300 }),
+  [say('McGonagall', 'I\'m sorry, Mr Potter. I should have warned you.', 440, 100, { w: 470 }),
    cap('Though the corners of her lips were twitching upwards.', 44, 560, { w: 360 })], { mood: 'warm' });
-ep.panel(720, { cam: { on: ['harry'], fr: 'bust' }, bg: LR(), actors: [{ def: harry, id: 'harry', x: 1380, y: 1050, s: 1.12, turn: -0.4, pose: 'sitFloor', expr: 'yell' }] },
-  [shout('Harry', 'YOU CAN\'T *DO* THAT!', 400, 120, { w: 380, size: 44 })], { mood: 'warm' });
+ep.panel(720, { cam: { on: ['harry'], fr: 'bust', dy: -0.15 }, bg: LR(), actors: [{ def: harry, id: 'harry', x: 1380, y: 1050, s: 1.12, turn: -0.4, pose: 'sitFloor', expr: 'yell' }] },
+  [shout('Harry', 'YOU CAN\'T *DO* THAT!', 400, 56, { w: 380, size: 44, anchor: 'tc' })], { mood: 'warm' });
 ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'close', dx: -0.5, dy: -0.05 }, bg: LR(), blur: 2, actors: [MCG({ expr: 'calm' })] },
   [say('McGonagall', 'It\'s only a Transfiguration. An Animagus transformation, to be exact.', 250, 100, { w: 400 })], { mood: 'warm' });
 
@@ -133,13 +133,13 @@ ep.beat(380, [capC('And then a woman turned into a cat. So much for all that.', 
 ep.panel(760, { cam: { on: ['harry'], fr: 'bust', zoom: 0.8, dy: -0.3, dx: -0.5 }, bg: LR(), actors: [{ def: harry, id: 'harry', x: 1380, y: 1050, s: 1.12, turn: -0.35, pose: 'gesture', expr: 'suspicious' }] },
   [say('Harry', 'And… and what kind of incantation is *Wingardium Leviosa?* Who invents the words to these spells, nursery schoolers?', 410, 120, { w: 480 })], { mood: 'warm' });
 ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 0.95, dy: -0.2 }, bg: LR(), actors: [MCG({ expr: 'stern' })] },
-  [say('McGonagall', 'That will do, Mr Potter.', 590, 100, { w: 260 }),
+  [say('McGonagall', 'That will do, Mr Potter.', 250, 90, { w: 260 }),
    say('McGonagall', 'If you wish to learn about magic, I suggest that we finalise the paperwork so that you can go to Hogwarts.', 568, 470, { w: 310, fixed: true })], { mood: 'warm' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'close', dx: 0.4, dy: -0.25 }, bg: LR(), blur: 2, actors: [{ def: harry, id: 'harry', x: 1380, y: 1050, s: 1.12, turn: -0.2, expr: 'determined' }] },
   [inner('Harry', 'Right. The March of Reason would just have to start over, that was all. They still had the experimental method. That was the important thing.', 400, 110, { w: 620 }),
-   say('Harry', 'How do I get to Hogwarts, then?', 625, 560, { w: 240 })], { mood: 'warm' });
-ep.panel(470, { cam: { on: ['mcgonagall'], fr: 'eyes', dy: 0.05 }, bg: LR(), blur: 2, actors: [MCG({ expr: 'laugh' })] },
-  [cap('A choked laugh escaped Professor McGonagall, as if extracted from her by tweezers.', 44, 350, { w: 620 })], { mood: 'warm' });
+   say('Harry', 'How do I get to Hogwarts, then?', 610, 560, { w: 290 })], { mood: 'warm' });
+ep.panel(600, { cam: { head: 'mcgonagall', hw: 0.4, hx: 0.5, hy: 0.52 }, bg: LR(), blur: 2, actors: [MCG({ expr: 'laugh' })] },
+  [cap('A choked laugh escaped Professor McGonagall, as if extracted from her by tweezers.', 44, 30, { w: 620 })], { mood: 'warm' });
 
 // =============================================================== his condition
 ep.panel(760, { cam: { on: ['dad', 'mcgonagall'], fr: 'bust', dy: -1.1 }, bg: LR(), actors: [DAD({ expr: 'worried', pose: 'gesture' }), MCG({ expr: 'suspicious', turn: -0.5 })] },
@@ -158,22 +158,22 @@ const sleepClock = (ctx) => {
 ep.panel(840, sleepClock,
   [say('Harry', 'I don\'t sleep right. My sleep cycle is twenty-six hours long. I go to sleep two hours later, every day.', 400, 90, { w: 520, who: 'Harry', tail: null }),
    note('10, 12, 2, 4… all the way round the clock', 400, 775, { w: 600, size: 34 })], { alt: 'A clock diagram: Harry\'s bedtime creeps two hours later every day, all the way round the dial.' });
-ep.panel(700, { cam: { on: ['harry', 'mum'], fr: 'bust', dy: 0.25 }, bg: LR(), actors: [MUM({ expr: 'smile', x: 1250 }), HAR({ expr: 'unimpressed', x: 1480 })] },
-  [say('Harry', 'That\'s why I haven\'t been going to a normal school.', 560, 90, { w: 300 }),
-   say('Mum', '*One* of the reasons.', 200, 540, { w: 220, tail: 'mum' })], { mood: 'warm' });
-ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 0.8 }, bg: LR(), actors: [MCG({ expr: 'think', pose: 'chin' })],
+ep.panel(860, { cam: { on: ['harry', 'mum'], fr: 'bust', dy: -1.0 }, bg: LR(), actors: [MUM({ expr: 'smile', x: 1250 }), HAR({ expr: 'unimpressed', x: 1480 })] },
+  [say('Harry', 'That\'s why I haven\'t been going to a normal school.', 560, 90, { w: 300, tail: [555, 480] }),
+   say('Mum', '*One* of the reasons.', 170, 215, { w: 220, tail: 'mum' })], { mood: 'warm' });
+ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 0.8 }, bg: LR(), actors: [MCG({ expr: 'think', pose: 'think' })],
   over: (e) => g({ transform: `translate(${e.w * 0.9},${e.h * 0.86}) scale(1.5)`, opacity: 0.85 }, path('M-14,-24 L14,-24 L2,0 L14,24 L-14,24 L-2,0Z', { fill: '#f1e6cc', stroke: '#b08d45', 'stroke-width': 3 }), path('M-6,-14 L6,-14 L0,-4Z M-8,20 L8,20 L0,10Z', { fill: '#d9b35c' })) },
   [say('McGonagall', 'Hmmmm. I can\'t recall hearing of such a condition. I\'ll ask Madam Pomfrey…', 530, 110, { w: 360 }),
-   say('McGonagall', 'No. I\'m sure this won\'t be a problem. I\'ll find a solution *in time.*', 530, 440, { w: 340 })], { mood: 'warm' });
+   say('McGonagall', 'No. I\'m sure this won\'t be a problem—I\'ll find a solution *in time.*', 530, 440, { w: 340 })], { mood: 'warm' });
 ep.panel(600, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: LR(), blur: 2, actors: [MCG({ expr: 'suspicious' })] },
   [say('McGonagall', 'Now. What are these *other* reasons?', 540, 110, { w: 280 })], { mood: 'warm' });
-ep.panel(940, { cam: { on: ['harry'], fr: 'waist', zoom: 0.72, dx: -0.85, dy: 0.1 }, bg: LR(), actors: [HAR({ expr: 'determined', pose: 'handsHips', turn: -0.3 })] },
+ep.panel(940, { cam: { on: ['harry'], fr: 'waist', zoom: 0.72, dx: -0.95, dy: 0.1 }, bg: LR(), actors: [HAR({ expr: 'determined', pose: 'handsHips', turn: -0.3 })] },
   [say('Harry', 'I am a conscientious objector to child conscription,', 250, 110, { w: 360, fixed: true }),
-   say('Harry', 'on grounds that I should not have to suffer for a disintegrating school system\'s failure to provide teachers or study materials of even minimally adequate quality.', 222, 590, { w: 300, fixed: true })], { mood: 'warm' });
+   say('Harry', 'on grounds that I should not have to suffer for a disintegrating school system\'s failure to provide teachers or study materials of even minimally adequate quality.', 246, 590, { w: 320, fixed: true, shape: 'box' })], { mood: 'warm' });
 ep.panel(700, { cam: { on: ['dad', 'mum'], fr: 'bust', padX: 1.1, dy: -0.6 }, bg: LR(), actors: [DAD({ expr: 'laugh', x: 900 }), MUM({ expr: 'laugh', x: 1150 })] },
   [say('Dad', 'Oh! Is *that* why you bit a maths teacher in third year?', 250, 90, { w: 330 })], { mood: 'warm' });
-ep.panel(640, { cam: { on: ['harry'], fr: 'close', dy: 0.1 }, bg: LR(), blur: 2, actors: [HAR({ expr: 'rant', turn: -0.1 })], mid: SCREEN((e) => FX.burst(e.w, e.h, e.w / 2, e.h / 2, { col: '#e8b4a0', op: 0.5 })) },
-  [shout('Harry', 'SHE DIDN\'T KNOW WHAT A LOGARITHM WAS!', 400, 135, { w: 400, size: 38 })], { mood: 'warm' });
+ep.panel(680, { cam: { on: ['harry'], fr: 'close', dy: -0.12, zoom: 0.88 }, bg: LR(), blur: 2, actors: [HAR({ expr: 'rant', turn: -0.1 })], mid: SCREEN((e) => FX.burst(e.w, e.h, e.w / 2, e.h / 2, { col: '#e8b4a0', op: 0.5 })) },
+  [shout('Harry', 'SHE DIDN\'T KNOW WHAT A LOGARITHM WAS!', 400, 84, { w: 400, size: 38, anchor: 'tc', fixed: true })], { mood: 'warm' });
 // flashback gag
 const teacher = makeExtra(7, { female: true, muggle: true, old: false, hairStyle: 'bun' });
 const classroom = () => rect(-500, -500, 3000, 3000, { fill: '#cdb68a' }) + rect(250, 250, 800, 380, { fill: '#2f4a3a', stroke: '#4a2e1b', 'stroke-width': 18 }) + text(420, 420, 'log₁₀ 100 = ?', { 'font-family': 'Caveat', 'font-size': 60, fill: '#efe6cf' }) + rect(-500, 900, 3000, 600, { fill: '#9a7a52' });
@@ -181,8 +181,8 @@ ep.panel(760, { cam: { x: 700, y: 650, w: 820 }, bg: classroom,
   actors: [{ def: teacher, id: 'teacher', x: 820, y: 1010, turn: 0.2, pose: 'armsUp', expr: 'horror' }, { def: harry, id: 'kid', x: 900, y: 1040, s: 0.62, turn: -0.6, pose: 'hug', expr: 'angry', lean: 20 }] },
   [cap('Age seven.', 44, 34, { w: 180 }), note('chomp', 670, 600, { size: 50, rot: -10 })], { mood: 'sepia', overlay: (ctx) => FX.memoryEdge(ctx.w, ctx.h), alt: 'Memory: a tiny seven-year-old Harry clamped onto a teacher\'s ankle beneath a blackboard.' });
 ep.panel(900, { cam: { x: 1025, y: 395, w: 590 }, bg: LR(), actors: [DAD({ expr: 'smug', x: 900 }), MUM({ expr: 'smile', x: 1150 })] },
-  [say('Mum', 'Of course. Biting her was a very mature response to that.', 540, 90, { w: 380 }),
-   say('Dad', 'A well-considered policy for addressing the problem of teachers who don\'t understand logarithms.', 240, 330, { w: 370 })], { mood: 'warm' });
+  [say('Mum', 'Of course. Biting her was a very mature response to that.', 600, 100, { w: 300 }),
+   say('Dad', 'A well-considered policy for addressing the problem of teachers who don\'t understand logarithms.', 225, 325, { w: 370 })], { mood: 'warm' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'bust', dy: -0.25 }, bg: LR(), actors: [HAR({ expr: 'yell', pose: 'armsUp' })] },
   [shout('Harry', 'I was *seven years old!* How long are you going to keep bringing that up?', 400, 160, { w: 400, size: 32 })], { mood: 'warm' });
 ep.panel(700, { cam: { on: ['mum'], fr: 'close', dy: -0.1 }, bg: LR(), blur: 2, actors: [MUM({ expr: 'warm' })] },
@@ -203,10 +203,10 @@ ep.beat(300, [capC('Professor Michael Verres-Evans also had to leave the room br
 // =============================================================== flaming zebras
 ep.panel(780, { cam: { on: ['mcgonagall'], fr: 'bust', zoom: 0.85, dy: -0.25 }, bg: LR(), actors: [MCG({ expr: 'exasperated' })] },
   [say('McGonagall', 'Well. I think, under the circumstances, I should avoid taking you to buy your school things until a day or two before term begins.', 420, 120, { w: 520 })], { mood: 'warm' });
-ep.panel(760, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: LR(), actors: [HAR({ expr: 'shock', pose: 'shrug' })] },
-  [shout('Harry', 'What? Why? The other children already know magic! I have to start catching up *right away!*', 400, 160, { w: 420, size: 30 })], { mood: 'warm' });
+ep.panel(800, { cam: { on: ['harry'], fr: 'bust', dy: -0.45 }, bg: LR(), actors: [HAR({ expr: 'shock', pose: 'shrug' })] },
+  [shout('Harry', 'What? Why? The other children already know magic! I have to start catching up *right away!*', 400, 92, { w: 420, size: 30, anchor: 'tc', fixed: true })], { mood: 'warm' });
 ep.panel(820, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 0.7, dy: 0.25 }, bg: LR(), blur: 2, actors: [MCG({ expr: { base: 'calm', eyes: { open: 0.6 } } })] },
-  [say('McGonagall', 'Rest assured, Mr Potter, Hogwarts is quite capable of teaching the basics.', 560, 110, { w: 330 }),
+  [say('McGonagall', 'Rest assured, Mr Potter, Hogwarts is quite capable of teaching the basics.', 530, 110, { w: 420 }),
    say('McGonagall', 'And I suspect that if I leave you alone for two months with your schoolbooks, even without a wand, I will return to this house to find…', 570, 520, { w: 290, fixed: true })], { mood: 'warm' });
 ep.bleed(900, (ctx) => {
   const w = ctx.w, h = ctx.h;
@@ -220,22 +220,22 @@ ep.bleed(900, (ctx) => {
   { alt: 'Imagined: a smoking purple crater, a ruined skyline, and a stampede of zebras on fire.' });
 ep.panel(660, { cam: { on: ['dad', 'mum'], fr: 'bust', padX: 1.1, zoom: 0.85, dx: 0.5, dy: -0.5 }, bg: LR(), actors: [DAD({ expr: 'calm', x: 900, turn: 0.2 }), MUM({ expr: 'calm', x: 1150, turn: -0.2 })],
   over: (e) => FX.sfxText(e.anchors.dad.head[0] + e.anchors.dad.hr * 1.65, e.anchors.dad.head[1] + e.anchors.dad.hr * 0.5, 'nod', { size: 46, rot: -8 }) + FX.sfxText(e.anchors.mum.head[0] + e.anchors.mum.hr * 1.65, e.anchors.mum.head[1] + e.anchors.mum.hr * 0.5, 'nod', { size: 46, rot: 8 }) },
-  [cap('Harry\'s mother and father nodded in perfect unison.', 44, 30, { w: 440 })], { mood: 'warm' });
+  [cap('Harry\'s mother and father nodded in perfect unison.', 44, 30, { w: 320 })], { mood: 'warm' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: LR(), blur: 2, actors: [HAR({ expr: 'rant', turn: 0 })], mid: SCREEN((e) => FX.burst(e.w, e.h, e.w / 2, e.h / 2, { col: '#e8b4a0', op: 0.5 })) },
   [shout('Harry', 'MUM! DAD!', 400, 110, { w: 360, size: 50 })], { mood: 'warm' });
 
 // =============================================================== goodbye at the door (ADDED beat: the thank-you)
 ep.panel(880, { cam: { on: ['harry', 'mcgonagall'], fr: 'waist', dy: -1.1 }, bg: DS,
   actors: [{ def: harry, id: 'harry', x: 800, y: 990, s: 1.12, turn: 0.45, pose: 'stand', expr: 'hopeful' }, { def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1060, turn: -0.45, pose: 'stand', expr: 'calm' }] },
-  [say('Harry', 'Professor?', 150, 80, { w: 180 }),
-   say('Harry', 'Thank you. For coming. For *showing* us, instead of just telling us.', 330, 250, { w: 440 })], { mood: 'night' });
+  [say('Harry', 'Professor?', 120, 80, { w: 180 }),
+   say('Harry', 'Thank you. For coming. For *showing* us, instead of just telling us.', 500, 230, { w: 440 })], { mood: 'night' });
 ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: DS, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1060, turn: -0.3, expr: 'warm' }] },
   [cap('Something in her face softened, just for a moment.', 44, 34, { w: 360 }),
    say('McGonagall', 'Goodnight, Mr Potter.', 610, 500, { w: 220 })], { mood: 'night' });
 ep.panel(700, { cam: { x: 1230, y: 950, w: 480 }, bg: DS,
   actors: [g({ transform: 'translate(1320,1030) scale(0.8)' }, cat({ col: '#9b7a52', spectacles: true, flip: true }))] },
   [cap('She stepped out into the rain.', 44, 34, { w: 440 }), cap('And by the bottom step, there was only a tabby cat, trotting briskly away down the wet street.', 44, 555, { w: 600 })], { mood: 'night', alt: 'A tabby cat trots off into the rain.' });
-ep.panel(900, { cam: { on: ['harry'], fr: 'knees', dy: 0.1 }, bg: () => O.bedroom(), actors: [{ def: harry, id: 'harry', x: 560, y: 960, s: 1.1, turn: 0.2, pose: 'hold', expr: 'awe', armF: { sh: 18, el: 62, hand: 'hold', prop: g({ transform: 'translate(10,40) scale(0.5)' }, envelope({})) }, armB: { sh: 22, el: 60, hand: 'hold' } }] },
+ep.panel(900, { cam: { on: ['harry'], fr: 'knees', dy: 0.1 }, bg: () => O.bedroom(), actors: [{ def: harry, id: 'harry', x: 560, y: 960, s: 1.1, turn: 0.2, pose: 'hold', expr: 'awe', armF: { sh: 18, el: 62, hand: 'hold', prop: g({ transform: 'translate(10,40) rotate(72) scale(0.5)' }, envelope({})) }, armB: { sh: 22, el: 60, hand: 'hold' } }] },
   [inner('Harry', 'Magic is real.', 400, 70, { w: 300 }),
    inner('Harry', 'Which means I\'m going to need a *lot* more books.', 400, 815, { w: 380, fixed: true })], { mood: 'candle', alt: 'That night, Harry holds the letter by candlelight, wide awake.' });
 ep.end();

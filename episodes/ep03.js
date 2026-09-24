@@ -13,7 +13,7 @@ import { envelope, seal, bookHeld, wand, pencil, tankard } from '../engine/props
 const ep = new Episode({ id: 'ep03', number: 3, title: 'The Boy Who Lived' });
 ep.setBg(C.paper);
 const WAND = g({ transform: 'translate(0,26) rotate(180)' }, wand(120, '#4a2e1b'));
-const WAND_OUT = g({ transform: 'translate(0,-20)' }, wand(120, '#4a2e1b')); // points out past the fingers when the arm is raised
+const WAND_OUT = g({ transform: 'translate(0,4)' }, wand(120, '#4a2e1b')); // points out past the fingers when the arm is raised
 
 // =============================================================== August
 ep.beat(260, [plain('CHAPTER THREE', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Boy Who Lived', 400, 170, { size: 50 })]);
@@ -33,8 +33,8 @@ const calendar = (ctx) => {
 };
 ep.panel(820, calendar, [capC('Thirty days is a very long time to wait, when you\'ve just found out that magic is real.', 400, 718, { w: 640, fixed: true })], { alt: 'A wall calendar for August 1991, every day crossed off in red up to the 29th, which is circled: "D.A.!"' });
 ep.multi(780, [
-  { x: M, y: 18, w: 752, h: 360, mood: 'candle', art: { cam: { on: ['harry'], fr: 'waist', dx: -0.6, dy: 0.3 }, bg: () => O.bedroom(), actors: [{ def: harry, id: 'harry', x: 560, y: 960, s: 1.1, turn: 0.3, pose: 'sitRead', expr: 'focus', armF: { prop: bookHeld('#2f5a40', { rot: 180 }) } }] } },
-  { x: M, y: 396, w: 752, h: 366, mood: 'warm', art: { cam: { on: ['harry'], fr: 'waist', dx: 1.2 }, bg: () => O.bedroom({ night: false }), actors: [{ def: harry, id: 'harry', x: 560, y: 960, s: 1.1, turn: 0.2, pose: 'wand', expr: 'determined', armB: { sh: 92, el: -8, hand: 'hold', prop: g({ transform: 'translate(0,20) rotate(180)' }, pencil(90)) } }] } },
+  { x: M, y: 18, w: 752, h: 360, mood: 'candle', art: { cam: { on: ['harry'], fr: 'waist', dx: -0.6, dy: 0.3 }, bg: () => O.bedroom(), actors: [{ def: harry, id: 'harry', x: 560, y: 960, s: 1.1, turn: 0.3, pose: 'sitRead', expr: 'focus', armF: { prop: bookHeld('#2f5a40', { rot: 200 }) }, armB: { sh: 0, el: 55, hand: 'hold' } }] } },
+  { x: M, y: 396, w: 752, h: 366, mood: 'warm', art: { cam: { on: ['harry'], fr: 'waist', dx: 1.2 }, bg: () => O.bedroom({ night: false }), actors: [{ def: harry, id: 'harry', x: 560, y: 960, s: 1.1, turn: 0.2, pose: 'wand', expr: 'determined', armB: { sh: 92, el: -8, hand: 'hold', under: g({ transform: 'translate(0,34) rotate(180)' }, pencil(90)) } }] } },
 ], [note('3 a.m.', 110, 70, { size: 40, color: '#f6e3b0' }), note('practising', 140, 448, { size: 40, color: '#f6e3b0' }), say('Harry', 'Wingardium… Leviosa.', 540, 500, { w: 230, fixed: true, tail: 'harry@1' })]);
 
 // =============================================================== Charing Cross Road
@@ -56,7 +56,7 @@ const TOM = (o = {}) => ({ def: tom, id: 'tom', x: 1720, y: 1000, turn: -0.4, po
 const HAR = (o = {}) => ({ def: harry, id: 'harry', x: 1420, y: 1080, s: 1.1, turn: 0.4, ...o });
 const MCG = (o = {}) => ({ def: mcgonagall, id: 'mcgonagall', x: 1160, y: 1080, turn: 0.4, ...o });
 const QUI = (o = {}) => ({ def: quirrell, id: 'quirrell', x: 560, y: 990, turn: 0.4, pose: 'cower', expr: 'twitch', ...o });
-const MUG = { sh: 30, el: 75, hand: 'hold', prop: g({ transform: 'translate(0,22)' }, tankard(1.1)) };
+const MUG = { sh: 30, el: 75, hand: 'hold', under: g({ transform: 'translate(0,12) rotate(105)' }, tankard(1.1)) };
 const crowd = (o = {}) => [
   { def: patrons[0], id: 'p0', x: o.xs?.[0] ?? 640, y: 1010, turn: 0.4, pose: o.stand ? 'reach' : 'holdOne', armF: o.stand ? undefined : MUG, expr: o.e || 'neutral' },
   { def: patrons[1], id: 'p1', x: o.xs?.[1] ?? 880, y: 1000, turn: -0.4, pose: 'holdOne', armF: MUG, expr: o.e || 'smile' },
@@ -64,13 +64,18 @@ const crowd = (o = {}) => [
   { def: patrons[3], id: 'p3', x: o.xs?.[3] ?? 460, y: 1030, turn: 0.6, pose: o.stand ? 'reach' : 'holdOne', armF: o.stand ? undefined : MUG, expr: o.e || 'neutral' },
 ];
 ep.panel(720, { cam: { x: 1070, y: 600, w: 1360 }, bg: LI,
-  actors: [QUI({ x: 470, expr: 'neutral', pose: 'stand', s: 0.95 }), ...crowd({ xs: [730, 860, 990, 600] }), { def: doris, id: 'doris', x: 1110, y: 1000, turn: 0.4, pose: 'hold', expr: 'neutral' }, TOM({ expr: 'shock' }), COUNTER(), MCG({ x: 1260, y: 1100, turn: 0.5 }), HAR({ x: 1420, y: 1110, expr: 'awe' })] },
+  actors: [QUI({ x: 440, y: 960, expr: 'neutral', pose: 'stand', s: 0.9 }),
+    { def: patrons[1], id: 'p1', x: 745, y: 935, s: 0.88, turn: 0.5, pose: 'holdOne', armF: MUG, expr: 'smile' },
+    { def: patrons[2], id: 'p2', x: 1030, y: 940, s: 0.88, turn: -0.5, pose: 'crossArms', expr: 'neutral' },
+    { def: patrons[3], id: 'p3', x: 600, y: 1030, turn: 0.6, pose: 'holdOne', armF: MUG, expr: 'neutral' },
+    { def: patrons[0], id: 'p0', x: 870, y: 1040, turn: -0.4, pose: 'holdOne', armF: MUG, expr: 'neutral' },
+    { def: doris, id: 'doris', x: 1110, y: 1030, turn: 0.4, pose: 'hold', expr: 'neutral' }, TOM({ expr: 'shock' }), COUNTER(), MCG({ x: 1270, y: 1100, turn: 0.5 }), HAR({ x: 1430, y: 1110, expr: 'awe' })] },
   [cap('It was dark, and shabby, and full of people in pointed hats.', 44, 34, { w: 380 })], { mood: 'candle', alt: 'Inside the Leaky Cauldron: dim, wood-beamed, smoky. Witches and wizards at small tables, an old barman behind the bar, and in the far corner by the fire, a pale young man.' });
 ep.panel(600, { cam: { on: ['tom'], fr: 'bust', dx: -0.45, dy: -0.25 }, bg: LI, fg: COUNTER, actors: [TOM({ expr: 'shock', pose: 'hold' })] },
-  [say('Tom', 'Good Lord. Is this… can this be…?', 250, 120, { w: 300, fixed: true })], { mood: 'candle' });
+  [say('Tom', 'Good Lord. Is this—can this be…?', 250, 120, { w: 300, fixed: true })], { mood: 'candle' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'waist', dx: -0.88, zoom: 0.85 }, bg: LI, blur: 2, mid: COUNTER, actors: [HAR({ x: 1420, y: 1080, expr: { base: 'smug', eyes: { open: 0.8 } }, pose: 'present' })] },
   [cap('A question like *that* deserved his very best.', 44, 30, { w: 330 }),
-   say('Harry', 'Am I… could I be… maybe… you never know… if I\'m *not*… but then the question is…', 284, 264, { w: 340, fixed: true }),
+   say('Harry', 'Am I—could I be—maybe—you never know—if I\'m *not*—but then the question is…', 284, 264, { w: 340, fixed: true }),
    say('Harry', '*Who?*', 300, 560, { w: 140 })], { mood: 'candle' });
 ep.panel(620, { cam: { on: ['tom'], fr: 'close' }, bg: LI, blur: 2, actors: [TOM({ expr: 'awe' })], fg: COUNTER },
   [whisper('Tom', 'Bless my soul. Harry Potter… what an honour.', 260, 110, { w: 320, size: 28 })], { mood: 'candle' });
@@ -79,7 +84,7 @@ ep.panel(820, { cam: { x: 1290, y: 545, w: 760 }, bg: LI, blur: 1, actors: [MCG(
    say('McGonagall', 'That\'s enough. Don\'t pester the boy, Tom. He\'s new to all this.', 262, 335, { w: 320, fixed: true })], { mood: 'candle' });
 
 // Doris
-ep.panel(760, { cam: { on: ['doris', 'harry'], fr: 'waist' }, bg: LI, actors: [{ def: doris, id: 'doris', x: 1220, y: 1060, turn: 0.4, pose: 'reach', expr: 'teary' }, HAR({ x: 1440, turn: -0.4, expr: 'worried', pose: 'stand' })] },
+ep.panel(760, { cam: { on: ['doris', 'harry'], fr: 'waist' }, bg: LI, actors: [{ def: doris, id: 'doris', x: 1220, y: 1060, turn: 0.4, pose: 'reach', armF: { sh: 48, el: 12, hand: 'open' }, armB: { sh: 40, el: 18, hand: 'open' }, expr: 'teary' }, HAR({ x: 1440, turn: -0.4, expr: 'worried', pose: 'stand' })] },
   [say('Doris', 'But it *is* him? It\'s Harry Potter?', 220, 85, { w: 300, fixed: true }),
    say('Doris', 'I only want to shake his hand.', 575, 165, { w: 300, fixed: true, tail: 'doris' })], { mood: 'candle' });
 ep.panel(660, (ctx) => {
@@ -101,7 +106,7 @@ ep.panel(620, { cam: { on: ['harry'], fr: 'close', dx: -0.75 }, bg: LI, blur: 2,
   [say('Harry', 'You\'re… welcome?', 235, 110, { w: 300, fixed: true, tail: 'harry' }),
    cap('He turned his head and shot Professor McGonagall a frightened, pleading look.', 44, 410, { w: 290 })], { mood: 'candle' });
 ep.panel(700, { cam: { x: 1010, y: 610, w: 1300 }, bg: LI, mid: COUNTER,
-  actors: [...crowd({ stand: true, e: 'hopeful' }), { def: doris, id: 'doris', x: 1220, y: 1060, turn: 0.4, pose: 'stand', expr: 'teary' }, { def: patrons[4], id: 'p4', x: 780, y: 1050, turn: 0.5, pose: 'reach', expr: 'delight' }, HAR({ x: 1440, turn: -0.3, expr: 'shock', pose: 'cower' }), MCG({ x: 1560, turn: -0.3, expr: 'stern' })] },
+  actors: [...crowd({ stand: true, e: 'hopeful', xs: [600, 900, 1060, 430] }), { def: doris, id: 'doris', x: 1230, y: 1060, turn: 0.4, pose: 'stand', expr: 'teary' }, { def: patrons[4], id: 'p4', x: 760, y: 1050, turn: 0.5, pose: 'reach', expr: 'delight' }, HAR({ x: 1440, turn: -0.3, expr: 'shock', pose: 'cower' }), MCG({ x: 1560, turn: -0.3, expr: 'stern' })] },
   [cap('Chairs scraped. The whole room was rising.', 44, 34, { w: 560 })], { mood: 'candle' });
 ep.bleed(900, { cam: { on: ['mcgonagall'], fr: 'full', zoom: 0.85, dy: 0.1 }, bg: LI, blur: 2, actors: [MCG({ x: 1560, turn: -0.2, expr: 'menace', pose: 'stand', armF: { sh: -18, el: 14, hand: 'fist' }, armB: { sh: 18, el: -14, hand: 'fist' }, legF: { hip: -10, knee: 30 } })],
   under: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.95, { bg: '#2a1a10', col: '#f3c66f', op: 0.5, n: 70 }),
@@ -125,7 +130,7 @@ ep.panel(720, { cam: { on: ['harry', 'mcgonagall'], fr: 'waist', dy: -0.4 }, bg:
   [say('Harry', 'Professor? Who was that pale man, by the corner? The one with the twitching eye?', 262, 130, { w: 360, fixed: true })], { mood: 'day' });
 ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.4 }, bg: CY, blur: 1, actors: [MC({ expr: 'calm', turn: -0.2 })] },
   [say('McGonagall', 'Hm? That was Professor Quirinus Quirrell. He\'ll be teaching Defence Against the Dark Arts at Hogwarts this year.', 400, 150, { w: 520, fixed: true })], { mood: 'day' });
-ep.panel(680, { cam: { on: ['harry'], fr: 'bust', dx: 0.7 }, bg: CY, blur: 2, actors: [HC({ expr: 'pained', pose: 'facepalm', turn: 0.3 })] },
+ep.panel(680, { cam: { on: ['harry'], fr: 'bust', dx: 0.7 }, bg: CY, blur: 2, actors: [HC({ expr: 'pained', pose: 'stand', turn: 0.3 })] },
   [say('Harry', 'I had the strangest feeling that I knew him.', 580, 110, { w: 300, fixed: true }),
    say('Harry', 'And that I shouldn\'t shake his hand.', 590, 420, { w: 280, fixed: true, tail: 'harry' })], { mood: 'day' });
 ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: CY, blur: 1, actors: [MC({ expr: 'worried', turn: -0.3 })] },
@@ -145,13 +150,13 @@ ep.panel(800, { cam: { on: ['harry', 'mcgonagall'], fr: 'bust', dy: 0.45 }, bg: 
 ep.panel(520, { cam: { on: ['harry'], fr: 'eyes' }, bg: CY, blur: 3, actors: [HC({ expr: 'hurt', turn: 0.1 })] },
   [inner('Harry', '*Protecting me?*', 400, 70, { w: 300, fixed: true })], { mood: 'day' });
 ep.panel(760, { cam: { on: ['mcgonagall', 'harry'], fr: 'waist' }, bg: CY,
-  actors: [HC({ expr: { base: 'shock', eyes: { lookY: -0.8 } }, pose: 'stand' }), MC({ expr: 'calm', pose: 'wand', armB: { sh: 105, el: -35, hand: 'hold', prop: WAND_OUT } })],
+  actors: [HC({ expr: { base: 'shock', eyes: { lookY: -0.8 } }, pose: 'stand' }), MC({ expr: 'calm', pose: 'wand', armB: { sh: 105, el: -35, hand: 'hold', under: WAND_OUT } })],
   over: (e) => { const h = e.anchors?.harry?.head; return h ? FX.sparkles([[h[0], h[1] - 50, 18], [h[0] + 30, h[1] - 70, 10], [h[0] - 34, h[1] - 64, 8]], { col: '#fff3b0' }) : ''; } },
   [say('McGonagall', 'Something of a disguise. So that doesn\'t happen again. Not until you\'re ready.', 560, 90, { w: 320 })], { mood: 'day' });
 
 // the archway
 const alleyView = g({ transform: 'translate(560,310) scale(0.3)' }, L.diagonAlley({ seed: 7 }));
-ep.panel(640, { cam: { x: 930, y: 560, w: 700 }, bg: CY, actors: [MC({ x: 850, turn: 0.6, expr: 'calm', pose: 'wand', armB: { sh: 146, el: 6, hand: 'hold', prop: WAND_OUT } })] },
+ep.panel(640, { cam: { x: 930, y: 560, w: 700 }, bg: CY, actors: [MC({ x: 880, y: 1020, turn: 0.6, expr: 'calm', pose: 'wand', armB: { sh: 150, el: 2, hand: 'hold', under: g({ transform: 'translate(0,-34)' }, wand(150, '#4a2e1b')) } })] },
   [note('tap', 590, 110, { size: 44, rot: -10, color: '#f6e3b0' }), note('tap', 650, 170, { size: 44, rot: 6, color: '#f6e3b0' }), note('tap', 610, 235, { size: 44, rot: -4, color: '#f6e3b0' })], { mood: 'day', alt: 'McGonagall taps a brick three times with her wand.' });
 ep.multi(620, [
   { x: M, y: 18, w: 368, h: 584, mood: 'day', art: { cam: { x: 1030, y: 540, w: 700 }, bg: CY, mid: () => L.archway(1) } },
@@ -211,7 +216,7 @@ ep.panel(900, { cam: { x: 800, y: 700, w: 620 }, bg: stage('#1d3a29', '#6a8f5a')
   over: (e) => { const h = e.anchors?.dl?.head; return h ? ellipse(h[0] - 14, h[1] + 4, 9, 4, { fill: '#ff2a2a' }) + ellipse(h[0] + 16, h[1] + 4, 9, 4, { fill: '#ff2a2a' }) + K.glow(h[0], h[1] + 4, 60, '#ff2a2a', 0.5) : ''; } },
   [dark('And she told him of the Dark Lord.', 400, 80, { w: 480 })], { border: 'none', alt: 'Shadow-theatre: a tall hooded silhouette with two red slits for eyes against a sick green sky.' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'close', dy: 0.45 }, bg: DA({ start: 3 }), blur: 3, actors: [{ def: harry, id: 'harry', x: 700, y: 1060, s: 1.1, turn: 0.1, expr: 'cold' }], over: (e) => FX.frost(e.w, e.h, 0.7, 8) },
-  [whisper('Harry', 'Voldemort?', 590, 110, { w: 200, fixed: true, tail: 'harry' }),
+  [whisper('Harry', 'Voldemort?', 600, 92, { w: 200, fixed: true, tail: 'harry' }),
    cold('Harry', 'The name burned with a cold feeling. Ruthlessness. Diamond clarity. A hammer of titanium descending on an anvil of flesh.', 400, 690, { w: 560, fixed: true, noTail: true })],
   { mood: 'cold', alt: 'Harry whispers the name, and the panel freezes over.' });
 ep.panel(300, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#e9f1f6' }), [inner('Harry', 'He resolved, then and there, to use safer terms. Like *You-Know-Who.*', 400, 150, { w: 520, fixed: true })], { border: 'none' });
@@ -248,7 +253,7 @@ ep.tile({ h: 140, panels: [], bubbles: [], bg: { top: '#1b1210', bottom: C.paper
 ep.panel(760, { cam: { on: ['harry'], fr: 'close' }, bg: DA({ start: 3 }), blur: 3, actors: [{ def: harry, id: 'harry', x: 700, y: 1060, s: 1.1, turn: 0.1, expr: 'teary' }] },
   [inner('Harry', '*I didn\'t know those people. Not really. They aren\'t my parents now. It would be pointless to feel so sad for them.*', 400, 110, { w: 500 })], { mood: 'day' });
 ep.panel(900, { cam: { on: ['mcgonagall', 'harry'], fr: 'waist', padX: 1.05 }, bg: DA({ start: 3 }), blur: 2,
-  actors: [{ def: mcgonagall, id: 'mcgonagall', x: 900, y: 1080, turn: -0.3, pose: 'stand', armF: { sh: 38, el: 62, hand: 'open' }, armB: { sh: 30, el: 70, hand: 'open' }, expr: 'teary' }, { def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.6, pose: 'stand', armF: { sh: 40, el: 30, hand: 'open' }, armB: { sh: 35, el: 30, hand: 'open' }, expr: 'sob' }] },
+  actors: [{ def: mcgonagall, id: 'mcgonagall', x: 900, y: 1080, turn: -0.3, pose: 'stand', armF: { sh: 38, el: 62, hand: 'open' }, armB: { sh: 24, el: 50, hand: 'open' }, expr: 'teary' }, { def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.6, pose: 'stand', armF: { sh: 40, el: 30, hand: 'open' }, armB: { sh: 35, el: 30, hand: 'open' }, expr: 'sob' }] },
   [cap('When Harry was done sobbing into the witch\'s robes, he looked up, and felt a little better to see tears in Professor McGonagall\'s eyes as well.', 44, 34, { w: 460 })], { mood: 'day', alt: 'Harry cries into McGonagall\'s robes. She holds him, and she is crying too.' });
 ep.panel(700, { cam: { on: ['harry'], fr: 'bust' }, bg: DA({ start: 3 }), blur: 2, actors: [{ def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.4, expr: 'hurt' }] },
   [whisper('Harry', 'So what happened?', 555, 100, { w: 280, fixed: true })], { mood: 'day' });
@@ -286,7 +291,7 @@ ep.beat(380, [plain('?', 680, 190, { font: "'IM Fell English', serif", size: 46,
   capC('(And somewhere in the back of his mind was a small, small note of confusion. A sense of something wrong about that story. But he was distracted.)', 360, 190, { w: 520, size: 25 })],
   { alt: 'A faint question mark sits alone in the margin.' });
 ep.panel(620, { cam: { on: ['harry'], fr: 'bust' }, bg: DA({ start: 3 }), blur: 2, actors: [{ def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.5, pose: 'slump', expr: 'sad' }] },
-  [say('Harry', 'I\'ll… have to think about this.', 560, 90, { w: 280 })], { mood: 'day' });
+  [say('Harry', 'I\'ll—have to think about this.', 560, 90, { w: 280 })], { mood: 'day' });
 ep.panel(920, { cam: { on: ['harry', 'mcgonagall'], fr: 'waist', dy: -0.45 }, bg: DA({ start: 3 }), blur: 2, actors: [{ def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.4, pose: 'stand', expr: 'warm' }, { def: mcgonagall, id: 'mcgonagall', x: 1060, y: 1080, turn: -0.3, pose: 'stand', expr: 'sad' }] },
   [say('Harry', 'You can call them my parents, if you want. You don\'t have to say "genetic parents".', 262, 140, { w: 330, fixed: true }),
    say('Harry', 'I guess there\'s no reason I can\'t have two mothers and two fathers.', 275, 390, { w: 320, fixed: true, tail: 'harry' })], { mood: 'day' });
