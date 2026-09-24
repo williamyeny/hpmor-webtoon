@@ -9,7 +9,7 @@ import * as CS from '../engine/bg/castle.js';
 // Every Book Two episode opens on the day, ch. 17 style: "Thursday." / "If you wanted to be specific, 7:24 on Thursday morning."
 export function dayBeat(ep, day, specific, o = {}) {
   const h = o.h ?? 300;
-  return ep.beat(h, [title(day, 400, h * 0.4, { size: 60, color: o.color || C.ink }), plain(specific ? `*${specific}*` : '', 400, h * 0.4 + 70, { font: "'IM Fell English', serif", size: 28, color: o.sub || '#5a4032' })], o.bg ? { bg: o.bg } : {});
+  return ep.beat(h, [title(day, 400, h * 0.4, { size: 60, color: o.color || C.ink }), plain(specific ? `*${specific}*` : '', 400, h * 0.4 + 42, { anchor: 'tc', font: "'IM Fell English', serif", size: 28, color: o.sub || '#5a4032' })], o.bg ? { bg: o.bg } : {});
 }
 // episode header: book line + chapter + title
 export function header(ep, chapter, name, o = {}) {
