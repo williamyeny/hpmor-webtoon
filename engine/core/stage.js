@@ -145,7 +145,7 @@ window.layoutBubbles=async function(){
     else {left=d.x-W/2;top=d.y-H/2;}
     // collision avoidance with real sizes: faces, other balloons, tile edges
     if(!['sfx','plain','title','note','hatBig'].includes(d.type) && !d.fixed){
-      const isB=['speech','whisper','shout','thought','cold','hat'].includes(d.type); const bx0=d.shape==='box'; const PX=isB?W*(bx0?0.025:0.08)+padX*0.55+6:padX+6, PY=isB?H*(bx0?0.04:0.1)+padY*0.7+6:padY+6;
+      const isB=['speech','whisper','shout','thought','cold','hat'].includes(d.type); const bx0=d.shape==='box'; const PX=isB?(bx0?W*0.02+padX*0.95:W*0.08+padX*0.55)+6:padX+6, PY=isB?(bx0?H*0.03+padY*1.15:H*0.1+padY*0.7)+6:padY+6;
       const R0=(l,t)=>({x:l-PX,y:t-PY,w:W+PX*2,h:H+PY*2});
       const hitC=(r,c)=>{const cx=Math.max(r.x,Math.min(c[0],r.x+r.w)),cy=Math.max(r.y,Math.min(c[1],r.y+r.h));return Math.hypot(cx-c[0],cy-c[1])<c[2];};
       const hitR=(a,b)=>a.x<b.x+b.w&&b.x<a.x+a.w&&a.y<b.y+b.h&&b.y<a.y+a.h;
@@ -174,17 +174,19 @@ window.layoutBubbles=async function(){
     if(['speech','whisper','shout','thought','cold','hat'].includes(d.type)){
       // shape 'box' (speech/whisper): a rounder rectangle that hugs long text instead of an ellipse ~50px wider each side
       const box=d.shape==='box'&&['speech','whisper'].includes(d.type);
-      const rx=box?W/2*1.05+padX*0.5:W/2*1.2+padX*0.55, ry=box?H/2*1.08+padY*0.7:H/2*1.2+padY*0.7;
+      const rx=box?W/2*1.04+padX*0.95:W/2*1.2+padX*0.55, ry=box?H/2*1.06+padY*1.15:H/2*1.2+padY*0.7;
+      // tall speech balloons (5+ lines) get squarer corners so the first and last lines keep their margin; same size, so nothing moves
+      const tall=!box&&H/lh>=4.5&&['speech','whisper'].includes(d.type);
       let shape;
       if(d.type==='shout')shape=spikyD(cx,cy,rx,ry,seed);
       else if(d.type==='thought')shape=cloudD(cx,cy,rx,ry,seed);
       else if(d.type==='cold')shape=angularD(cx-rx,cy-ry,rx*2,ry*2,18);
-      else shape=superD(cx,cy,rx,ry,box?5.5:d.type==='hat'?3.4:3.1,0.03,seed);
+      else shape=superD(cx,cy,rx,ry,box?5.5:tall?3.8:d.type==='hat'?3.4:3.1,0.03,seed);
       const sw=d.type==='whisper'?2.2:(d.type==='cold'?2:2.8);
       const dash=d.type==='whisper'?'7 6':'';
       if(d.type==='hat'){g.appendChild(el('path',{d:superD(cx+4,cy+6,rx,ry,3.2,0.03,seed),fill:'rgba(0,0,0,0.35)'}));}
       // tails (stroked), then body (stroked), then an unstroked patch to merge tail into body
-      const rimN=box?5.5:d.type==='cold'?6:d.type==='shout'?3:d.type==='thought'?2.2:(d.type==='hat'?3.4:3.1);
+      const rimN=box?5.5:tall?3.8:d.type==='cold'?6:d.type==='shout'?3:d.type==='thought'?2.2:(d.type==='hat'?3.4:3.1);
       const rimK=d.type==='shout'?1.12:d.type==='thought'?1.08:1;
       const T=tails.map(tp=>stdTail(cx,cy,rx*rimK,ry*rimK,rimN,tp[0],tp[1],d.type==='whisper'?0.9:1));
       tails.forEach((tp,i)=>{
@@ -197,9 +199,9 @@ window.layoutBubbles=async function(){
       if(d.type==='cold'){g.appendChild(el('path',{d:angularD(cx-rx+5,cy-ry+5,rx*2-10,ry*2-10,14),fill:'none',stroke:'#fff',opacity:0.6,'stroke-width':1.5}));}
     } else if(['caption','captionC','letter'].includes(d.type)){
       const x=left-padX,y=top-padY,w=W+padX*2,h=H+padY*2;
-      g.appendChild(el('path',{d:rectD(x+5,y+6,w,h,3,seed),fill:'rgba(40,20,10,0.25)'}));
+      if(d.bg!=='transparent')g.appendChild(el('path',{d:rectD(x+5,y+6,w,h,3,seed),fill:'rgba(40,20,10,0.25)'})); // no drop shadow under a see-through caption
       g.appendChild(el('path',{d:rectD(x,y,w,h,4,seed),fill:fill,stroke:stroke,'stroke-width':2.2,'stroke-linejoin':'round'}));
-      if(d.type!=='letter')g.appendChild(el('path',{d:rectD(x+5,y+5,w-10,h-10,2,seed+3),fill:'none',stroke:stroke,'stroke-width':0.9,opacity:0.5}));
+      if(d.type!=='letter'&&d.border!=='transparent')g.appendChild(el('path',{d:rectD(x+5,y+5,w-10,h-10,2,seed+3),fill:'none',stroke:stroke,'stroke-width':0.9,opacity:0.5}));
     } else if(d.type==='dark'){
       const x=left-padX,y=top-padY,w=W+padX*2,h=H+padY*2;
       g.appendChild(el('path',{d:rectD(x,y,w,h,3,seed),fill:fill}));

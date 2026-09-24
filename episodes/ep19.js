@@ -87,8 +87,8 @@ ep.multi(990, [
 ], [cap('Tiny metal mechanisms that whirred or ticked or slowly changed shape. Dozens of mysterious fluids, bubbling and changing colour. Clocks with many hands. A wall of pictures of people sleeping. The Sorting Hat, on a hat rack with two umbrellas and three red slippers for left feet. A bird on a golden perch.', 44, 24, { w: 620, fixed: true })]);
 ep.panel(900, { cam: { x: 1050, y: 440, w: 560 }, bg: OF({}), actors: [DECOR, ...SET({ expr: { base: 'smile', eyes: { sparkle: true } } })] },
   [cap('And behind the desk: Albus Percival Wulfric Brian Dumbledore, adorned with a long silver beard, a hat like a squashed giant mushroom, and what looked to Muggle eyes like three layers of bright pink pyjamas.', 44, 30, { w: 620, fixed: true })], { mood: 'candle', alt: 'Dumbledore on his throne, in three layers of bright pink pyjamas and a squashed-mushroom hat.' });
-ep.panel(420, { cam: { on: ['dumbledore'], fr: 'eyes' }, bg: OF({}), blur: 3, actors: SET({ expr: { base: 'smile', eyes: { sparkle: true, open: 1 } } }), over: (e) => { const h = e.toPanel(e.wa.dumbledore.head); return FX.sparkles([[h[0] - 250, h[1] - 90, 30], [h[0] + 260, h[1] - 110, 24], [h[0] + 300, h[1] + 10, 16], [h[0] - 300, h[1] + 20, 14]]); } },
-  [cap('His eyes twinkled with a mad intensity.', 44, 300, { w: 560, fixed: true })], { mood: 'candle' });
+ep.panel(520, { cam: { head: 'dumbledore', hw: 0.5, hx: 0.5, hy: 0.4 }, bg: OF({}), blur: 3, actors: SET({ expr: { base: 'smile', eyes: { sparkle: true, open: 1 } } }), over: (e) => { const h = e.toPanel(e.wa.dumbledore.head); return FX.sparkles([[h[0] - 250, h[1] - 90, 30], [h[0] + 260, h[1] - 110, 24], [h[0] + 300, h[1] + 10, 16], [h[0] - 300, h[1] + 20, 14]]); } },
+  [cap('His eyes twinkled with a mad intensity.', 400, 482, { anchor: 'bc', w: 560, fixed: true })], { mood: 'candle' });
 // camera helper: put world point (wx, wy) at tile point (tx, ty) in a standard panel of tile height h, camera width w
 const at = (h, w, wx, wy, tx, ty, bleed = false) => { const pw = bleed ? 800 : 752; return { x: wx - (tx - 400) * w / pw, y: wy - (ty - h / 2) * w / pw, w }; };
 const DBH = [1000, 427], HH = [1382, 774]; // Dumbledore's head on the throne; Harry's head in front of the desk
@@ -146,7 +146,7 @@ dbS(960, 520, 710, { pose: 'gesture', expr: 'laugh' },
   [cap('For a moment Harry wondered if he\'d gone too far. Then Dumbledore chuckled.', 44, 30, { w: 620, fixed: true }),
    say('Dumbledore', 'Straight to the point it shall be. Harry, this Monday you did something that should have been impossible, even with a Time-Turner. Where did those two pies come from, I wonder?', 400, 180, { anchor: 'tc', w: 500, fixed: true })]);
 dbS(900, 520, 650, { pose: 'gesture', expr: { base: 'smile', eyes: { sparkle: true } } },
-  [say('Dumbledore', 'If no-one could see the thrower, it would be easy enough to throw the pies. One might suspect that since you had a Time-Turner, you were the invisible one. And since Disillusionment is far beyond you, you had an invisibility cloak.', 400, 60, { anchor: 'tc', w: 500, fixed: true })]);
+  [say('Dumbledore', 'If no-one could see the thrower, it would be easy enough to throw the pies. One might suspect that since you had a Time-Turner, you were the invisible one. And since Disillusionment is far beyond you, you had an invisibility cloak.', 400, 60, { anchor: 'tc', w: 500, shape: 'box', fixed: true })]);
 two(1060, 700, 230, 580, { pose: 'reach', expr: { base: 'smile', eyes: { sparkle: true } } }, { expr: 'worried' },
   [say('Dumbledore', 'And such cloaks are not for sale in Diagon Alley. But there is *one* which might find its own way to a destined wearer. *The* Cloak of Invisibility, one of the three Deathly Hallows. May I see it, Harry?', 400, 60, { anchor: 'tc', w: 500, fixed: true })]);
 ep.panel(900, { cam: { on: ['harry'], fr: 'close', dy: 0.1 }, bg: OF({ rack: false }), blur: 3, actors: SET({}, { expr: 'horror' }), over: (e) => FX.memoryEdge(e.w, e.h) },
@@ -169,7 +169,7 @@ ep.bleed(1040, { cam: at(1040, 460, ...DBS, 400, 600, true), bg: OF({}), actors:
   { alt: 'Dumbledore holds the shimmering Cloak across his hands, wistful.' });
 ep.panel(920, { cam: at(920, 760, ...DBS, 240, 500), bg: OF({}), actors: [DECOR, () => CS.dumbledoreThrone(1000), DB(DBstand({ pose: 'hold', ...holdOut, expr: 'stern' })), () => CS.blackDesk(1000, 960, {}), drape('dumbledore', 220), HD({ expr: 'worried' })] },
   [say('Dumbledore', 'Do not sell it. Think twice before you show it to anyone, and ponder three times again before you reveal it is a Deathly Hallow. This is indeed a Thing of Power.', 400, 60, { anchor: 'tc', w: 500, fixed: true })], { mood: 'candle' });
-ep.panel(820, { cam: at(820, 760, ...DBS, 240, 330), bg: OF({}), actors: [DECOR, () => CS.dumbledoreThrone(1000), DB(DBstand({ pose: 'present', expr: { base: 'sad', eyes: { soft: true } } })), () => CS.blackDesk(1000, 960, {}), hang('dumbledore', 'handB', 200), HD({ expr: 'shock', pose: 'reach' })] },
+ep.panel(820, { cam: at(820, 760, ...DBS, 240, 330), bg: OF({}), actors: [DECOR, () => CS.dumbledoreThrone(1000), DB(DBstand({ pose: 'present', expr: { base: 'sad', eyes: { soft: true } } })), () => CS.blackDesk(1000, 960, {}), hang('dumbledore', 'handB', 250), HD({ expr: 'shock', pose: 'reach' })] },
   [cap('For a moment Dumbledore\'s face grew wistful. And then he handed the Cloak back.', 44, 30, { w: 620, fixed: true })], { mood: 'candle', alt: 'Dumbledore holds the Cloak out across the desk to Harry.' });
 hS(700, 460, 580, 470, { expr: 'embarrassed' },
   [say('Harry', 'There was a note with the Cloak. It said you would try to take it from me, if you knew. I don\'t know who left it, I really don\'t.', 360, 60, { anchor: 'tc', w: 460, fixed: true })]);
@@ -182,7 +182,7 @@ const HW = (o = {}) => HD({ turn: 0.4, ...o });
 const ROOM = (d = {}, h = {}, desk = {}) => [DECOR, () => CS.dumbledoreThrone(1000), () => CS.blackDesk(1000, 960, desk), DBW(d), HW(h)];
 const away = { x: 1900, y: 960, seat: undefined, turn: -0.5, pose: 'stand' }; // for Harry close-ups while Dumbledore is over by the table
 ep.panel(1000, { cam: at(1000, 640, ...DBWH, 470, 650), bg: OF({}), actors: ROOM({ expr: { base: 'worried', eyes: { lookX: -0.6, lookY: 0.4 } } }) },
-  [say('Dumbledore', 'In truth, there are some at Hogwarts you would do well not to trust. Perhaps even some you call friends. He probably seems to you quite charming. Polite, to you at least. Always ready with a helping hand, a favour, a word of advice…', 400, 60, { anchor: 'tc', w: 500, fixed: true })], { mood: 'candle', alt: 'Dumbledore stands by a table of instruments, gazing at a dial with eight hands.' });
+  [say('Dumbledore', 'In truth, there are some at Hogwarts you would do well not to trust. Perhaps even some you call friends. He probably seems to you quite charming. Polite, to you at least. Always ready with a helping hand, a favour, a word of advice…', 400, 60, { anchor: 'tc', w: 500, shape: 'box', fixed: true })], { mood: 'candle', alt: 'Dumbledore stands by a table of instruments, gazing at a dial with eight hands.' });
 hS(780, 460, 560, 480, { turn: 0.4, pose: 'gesture', expr: 'happy' },
   [say('Harry', 'Oh, *Draco Malfoy!* Oh no, no no no, you\'ve got it all wrong. He\'s not turning me. *I\'m* turning *him.*', 400, 60, { anchor: 'tc', w: 500, fixed: true })], { d: away });
 ep.panel(460, { cam: at(460, 400, ...DBWH, 540, 300), bg: OF({}), blur: 2, actors: ROOM({ expr: 'shock', turn: -0.3 }) },
@@ -194,14 +194,14 @@ hS(660, 420, 560, 430, { turn: 0.4, pose: 'fists', expr: 'determined' },
 ep.bleed(1000, { cam: at(1000, 520, ...DBWH, 520, 580, true), bg: OF({}), actors: ROOM({ pose: 'bow', expr: 'laugh', turn: -0.2 }), over: (e) => { const h = e.toPanel(e.wa.dumbledore.head); return FX.emanata(h[0], h[1], 150, { n: 9, a0: -170, a1: -10 }); } },
   [cap('Dumbledore started laughing. A lot harder than Harry would have expected. Almost howling. It seemed positively *undignified.*', 44, 40, { w: 620, fixed: true }),
    say('Dumbledore', 'Ah, me. Ah, me. *Oft evil will shall evil mar indeed.*', 400, 950, { anchor: 'bc', w: 480, fixed: true })], { alt: 'Dumbledore, doubled over, laughing until he has to wipe his eyes.' });
-ep.panel(900, { cam: at(900, 800, ...DBWH, 590, 430), bg: OF({}), actors: ROOM({ expr: 'happy', turn: -0.4 }, { expr: 'shock', pose: 'point' }) },
+ep.panel(900, { cam: at(900, 800, ...DBWH, 590, 430), bg: OF({}), actors: ROOM({ expr: 'happy', turn: -0.4 }, { x: 1650, expr: 'shock', pose: 'point', armB: { sh: 112, el: 0, hand: 'point' } }) },
   [say('Harry', 'Hey, that\'s a *Tolkien* quote! *Gandalf* says that!', 262, 60, { anchor: 'tc', w: 320, fixed: true }),
    say('Dumbledore', 'Théoden, actually.', 560, 250, { w: 320, fixed: true })], { mood: 'candle', alt: 'Harry points, astonished.' });
 hS(440, 380, 560, 280, { turn: 0.4, expr: 'shock' },
   [say('Harry', 'You\'re *Muggle-born?*', 262, 120, { w: 340, fixed: true })], { d: away });
 ep.panel(800, { cam: at(800, 500, ...DBWH, 400, 560), bg: OF({}), blur: 2, actors: ROOM({ expr: { base: 'smile', eyes: { sparkle: true } }, pose: 'gesture', turn: -0.3 }) },
   [say('Dumbledore', 'I\'m afraid not. But my Muggle-born students tend to think alike in certain ways. I have no fewer than twenty copies of *The Lord of the Rings.*', 400, 60, { anchor: 'tc', w: 500, fixed: true })], { mood: 'candle' });
-ep.panel(1000, { cam: at(1000, 620, ...DBWH, 440, 560), bg: OF({}), actors: ROOM({ pose: 'wandUp', expr: 'determined', turn: -0.35, armB: { sh: 160, el: -12, hand: 'hold', prop: wand(240) }, armF: { sh: -70, el: -25, hand: 'splay' }, legF: { hip: -16 }, legB: { hip: 16 } }), over: (e) => { const h = e.toPanel(e.wa.dumbledore.handB); return FX.burst(e.w, e.h, h[0], h[1] - 120, { n: 24, op: 0.15 }) + K.glow(h[0] - 140, h[1] - 230, 80, '#fff3c9', 0.9); } },
+ep.panel(1000, { cam: at(1000, 620, ...DBWH, 440, 560), bg: OF({}), actors: ROOM({ pose: 'wandUp', expr: 'determined', turn: -0.35, armB: { sh: 160, el: -12, hand: 'hold', prop: wand(240) }, armF: { sh: -70, el: -25, hand: 'splay' }, legF: { hip: -16 }, legB: { hip: 16 } }), behind: (e) => { const h = e.toPanel(e.wa.dumbledore.handB); return FX.burst(e.w, e.h, h[0], h[1] - 120, { n: 24, op: 0.15 }); }, over: (e) => { const h = e.toPanel(e.wa.dumbledore.handB); return K.glow(h[0] - 140, h[1] - 230, 80, '#fff3c9', 0.9); } },
   [shout('Dumbledore', '*You cannot pass!* How does that look?', 400, 80, { anchor: 'tc', w: 420, fixed: true })], { mood: 'candle', alt: 'Dumbledore strikes a pose, wand aloft, in pink pyjamas.' });
 hS(460, 380, 560, 290, { turn: 0.4, expr: 'deadpan' },
   [say('Harry', 'Ah… I think you\'re missing a Balrog.', 262, 130, { w: 320, fixed: true })], { d: away });
@@ -211,7 +211,7 @@ ep.panel(760, { cam: at(760, 400, ...DBWH, 400, 540), bg: OF({}), blur: 3, actor
   [say('Dumbledore', 'And being mysterious at people. Knowing things I have no way of knowing. Making cryptic statements which can only be understood in hindsight.', 400, 60, { anchor: 'tc', w: 480, fixed: true })], { mood: 'candle' });
 ep.panel(820, { cam: at(820, 800, ...DBWH, 590, 400), bg: OF({}), actors: ROOM({ pose: 'present', expr: { base: 'smile', eyes: { sparkle: true } }, turn: -0.4 }, { expr: 'hopeful' }) },
   [say('Dumbledore', 'Speaking of which, Harry, I have a certain something to give you. Something which belonged to your father.', 400, 60, { anchor: 'tc', w: 500, fixed: true })], { mood: 'candle' });
-ep.panel(900, { cam: at(900, 820, ...DBS, 300, 360), bg: OF({}), actors: [DECOR, () => CS.dumbledoreThrone(1000), DB(DBstand({ x: 1060, pose: 'reach', armF: { sh: 45, el: 25, hand: 'open' }, armB: { sh: 40, el: 30, hand: 'open' }, expr: 'focus', turn: -0.35 })), () => CS.blackDesk(1000, 960, { rock: true }), HD({ expr: 'deadpan' })], over: (e) => { const r = e.toPanel([940, 620]); return FX.emanata(r[0], r[1], 100, { n: 4, a0: -200, a1: -150 }) + FX.emanata(r[0], r[1], 100, { n: 4, a0: -30, a1: 20 }); } },
+ep.panel(900, { cam: at(900, 820, ...DBS, 300, 360), bg: OF({}), actors: [DECOR, () => CS.dumbledoreThrone(1000), DB(DBstand({ x: 1060, pose: 'reach', armF: { sh: 0, el: 18, hand: 'open' }, armB: { sh: 30, el: 20, hand: 'open' }, expr: 'focus', turn: -0.35 })), () => CS.blackDesk(1000, 960, { rock: true }), HD({ expr: 'deadpan' })], over: (e) => { const r = e.toPanel([940, 640]); return FX.emanata(r[0], r[1], 125, { n: 3, a0: -200, a1: -165 }) + FX.emanata(r[0], r[1], 125, { n: 3, a0: -15, a1: 20 }); } },
   [say('Dumbledore', 'This was your father\'s rock.', 250, 60, { anchor: 'tc', w: 320, fixed: true }),
    sfx('THUNK', 280, 600, { size: 90, rot: -4 })], { mood: 'candle', alt: 'With some effort, Dumbledore heaves a large, grey, ordinary rock onto the desk.' });
 const RK = { rock: true };
@@ -228,7 +228,7 @@ hS(520, 400, 580, 330, { expr: 'what' },
 dbS(780, 420, 540, { expr: { base: 'grin', eyes: { sparkle: true } }, pose: 'gesture' },
   [say('Dumbledore', 'That might prove wise. Tell them I ordered you to do it. No-one will question that, since they all think I\'m insane.', 400, 60, { anchor: 'tc', w: 500, fixed: true })], { desk: RK });
 dbS(900, 560, 710, { expr: 'calm', pose: 'present' },
-  [say('Dumbledore', 'Ah, Harry. When we are young, we believe that if we see no explanation for something, then no explanation exists. When we are older, we realise that the whole universe works by a rhythm and a reason, even if we ourselves do not know it.', 400, 60, { anchor: 'tc', w: 520, fixed: true })], { desk: RK, blur: 1 });
+  [say('Dumbledore', 'Ah, Harry. When we are young, we believe that if we see no explanation for something, then no explanation exists. When we are older, we realise that the whole universe works by a rhythm and a reason, even if we ourselves do not know it.', 400, 60, { anchor: 'tc', w: 520, shape: 'box', fixed: true })], { desk: RK, blur: 1 });
 dbS(560, 380, 330, { expr: { base: 'calm', eyes: { soft: true } } },
   [say('Dumbledore', 'It is only our own ignorance which appears to us as insanity.', 60, 50, { anchor: 'tl', w: 300, fixed: true, tail: 'dumbledore' })], { desk: RK, tx: 560, blur: 3 });
 hS(500, 400, 560, 310, { expr: 'think' },
@@ -241,7 +241,7 @@ dbS(620, 400, 410, { expr: { base: 'grin', eyes: { sparkle: true } } },
   [say('Dumbledore', 'I can\'t think of a reason, actually.', 400, 60, { anchor: 'tc', w: 440, fixed: true })], { desk: RK });
 ep.panel(620, { cam: { on: ['harry'], fr: 'close' }, bg: OF({ rack: false }), blur: 3, actors: SET({}, { expr: 'deadpan' }, RK) },
   [say('Harry', '…you can\'t.', 400, 64, { anchor: 'tc', w: 200, fixed: true }),
-   cap('The instruments ticked on.', 44, 520, { w: 320, fixed: true })], { mood: 'candle' });
+   cap('The instruments ticked on.', 44, 548, { w: 320, fixed: true })], { mood: 'candle' });
 // Harry's argument, sketched: a million boxes and the work of finding the one; poor Mortimer Snodgrass
 hS(700, 400, 540, 470, { expr: 'rant', pose: 'lecture' },
   [say('Harry', 'Okay, that is simply not the correct way to deal with our admitted ignorance of the universe.', 330, 60, { anchor: 'tc', w: 420, fixed: true })], { desk: RK });
@@ -265,7 +265,7 @@ ep.panel(860, (ctx) => { let o = sketchPaper(ctx); const R = rng(9);
   [say('Harry', 'You can\'t just pluck one possibility out of thin air and promote it. Like a detective with no evidence saying, "Have we considered the possibility that Mortimer Snodgrass did it?"', 400, 60, { anchor: 'tc', w: 520, fixed: true, noTail: true })], { alt: 'Harry\'s sketch: a detective in a deerstalker points at random at one bewildered stick figure in a crowd: Mortimer Snodgrass.' });
 twoW(760, 760, 1130, 600, 400, 380, { expr: 'calm' }, { expr: 'rant', pose: 'point', turn: -0.5, armB: { sh: 128, el: 0, hand: 'point' } },
   [say('Harry', 'There are a million other things I could do besides carry around my father\'s rock!', 560, 60, { anchor: 'tc', w: 340, fixed: true })], { desk: RK });
-dbS(1000, 500, 740, { expr: 'think', pose: 'chin' },
+dbS(1000, 500, 740, { expr: 'think', pose: 'crossArms' },
   [say('Dumbledore', 'An interesting argument. But doesn\'t it break down when you compare a million murderers, only one of whom did it, with a million courses of action, many of which may all be wise? I do not say carrying your father\'s rock is the one best course. Only that it is wiser to do than not.', 400, 60, { anchor: 'tc', w: 520, fixed: true })], { desk: RK });
 hS(580, 400, 440, 270, { expr: { base: 'shock', mouth: { type: 'o' } } },
   [cap('Harry opened his mouth, and found he had no reply ready.', 44, 450, { w: 440, fixed: true })], { desk: RK });
@@ -286,7 +286,7 @@ const eatenLegs = () => { const P = '#e58aa8', S2 = '#c9607f', SL = '#b8262e';
 ep.panel(920, { cam: at(920, 700, 880, 700, 400, 600), bg: OF({}), actors: [DECOR, () => CS.dumbledoreThrone(1000), () => CS.blackDesk(1000, 960, { rock: true }), eatenLegs, HD({ expr: 'deadpan' })] },
   [cap('Dumbledore\'s head and shoulders and whole torso disappeared into the desk drawer, until only his legs were sticking out, as though the drawer were eating him.', 44, 30, { w: 630, fixed: true }),
    say('Dumbledore', 'oh, where *is* that thing!', 190, 640, { w: 260, fixed: true, tail: [300, 700] })], { mood: 'candle', alt: 'Only Dumbledore\'s pink-pyjama\'d legs stick up out of the desk drawer, kicking.' });
-const BOOKH = (e) => { const a = e.wa.dumbledore; if (!a) return ''; const h = a.handB; return g({ transform: `translate(${h[0] + 10},${h[1] - 50}) rotate(-8) scale(0.62)` }, P2.potionsBook(1)); };
+const BOOKH = (e) => { const a = e.wa.dumbledore; if (!a) return ''; const h = a.handB; return g({ transform: `translate(${h[0] + 6},${h[1] - 70}) rotate(-8) scale(0.62)` }, P2.potionsBook(1)); };
 dbS(900, 500, 680, { expr: 'stern', pose: 'holdUp', armB: { sh: 120, el: 20, hand: 'hold' } },
   [say('Dumbledore', 'This was your mother\'s fifth-year Potions textbook. *Which holds a terrible secret.* A secret so disastrous that I must ask you to swear never to tell anyone. And I do require you to swear it seriously.', 400, 60, { anchor: 'tc', w: 520, fixed: true })], { desk: RK, extra: [BOOKH] });
 hS(700, 440, 580, 470, { expr: 'suspicious' },
@@ -317,7 +317,7 @@ hS(480, 400, 560, 300, { expr: { base: 'grin', sweat: true } },
 ep.panel(820, { cam: at(820, 800, 2100, 640, 400, 440), bg: OF({}), actors: [DECOR, HD({ x: 1950, y: 1000, turn: 0.6, pose: 'walk', expr: { base: 'grin', sweat: true } })] },
   [say('Harry', 'Of course. You know it\'s actually getting rather late in the day and I\'m a bit hungry, so I should be going down to dinner, really…', 290, 60, { anchor: 'tc', w: 400, fixed: true })], { mood: 'candle', alt: 'Harry, wearing a fixed smile, makes a beeline for the door.' });
 const HDR = (o = {}) => HD({ x: 2300, y: 950, turn: 0.5, ...o });
-ep.panel(640, { cam: at(640, 520, 2330, 640, 380, 380), bg: OF({}), actors: [HDR({ x: 2270, y: 845, pose: 'stand', expr: 'horror', armB: { sh: 110, el: -5, hand: 'hold' } })] },
+ep.panel(640, { cam: at(640, 520, 2330, 640, 380, 380), bg: OF({}), actors: [HDR({ x: 2270, y: 845, pose: 'stand', expr: 'horror', armB: { sh: 122, el: -5, hand: 'hold' } })] },
   [cap('The doorknob entirely failed to turn.', 44, 30, { w: 440, fixed: true })], { mood: 'candle', alt: 'Harry yanks at the doorknob. It will not turn.' });
 const DBD = (o = {}) => ({ def: dumbledorePJ, id: 'dumbledore', x: 2040, y: 960, turn: 0.4, pose: 'stand', expr: 'sad', ...o });
 ep.panel(760, { cam: at(760, 440, 2040, 465, 380, 520), bg: OF({}), blur: 2, actors: [DBD({ pose: 'slump' }), HDR({ turn: -0.5, expr: 'horror' })] },
@@ -399,7 +399,7 @@ ep.panel(800, { cam: at(800, 480, 960, 465, 400, 560), bg: OF({}), blur: 2, acto
 ep.panel(620, { cam: at(620, 560, 830, 400, 400, 330), bg: OF({}), actors: [DBP({ expr: { base: 'calm', eyes: { lookX: -0.8, lookY: 0.2 } }, pose: 'stand' })] },
   [say('Dumbledore', 'Hm… looking a little peaky there, I\'d say.', 560, 60, { anchor: 'tc', w: 300, fixed: true })], { mood: 'candle', alt: 'Dumbledore peers at the chicken.' });
 const BLAZE = () => g({ transform: 'translate(700,382)' }, K.glow(0, -80, 320, '#ff9a3a', 0.6), path('M-110,0 Q-150,-120 -70,-220 Q-60,-140 -20,-290 Q10,-170 40,-240 Q60,-150 100,-210 Q150,-110 110,0Z', { fill: '#ff8a2a', stroke: '#b9501a', 'stroke-width': 3 }), path('M-70,0 Q-90,-80 -30,-150 Q-20,-90 10,-190 Q30,-110 60,-150 Q90,-70 70,0Z', { fill: '#ffd060' }), path('M-30,0 Q-40,-40 0,-90 Q30,-40 30,0Z', { fill: '#fff3c0' }), g({ transform: 'translate(0,-4) scale(1.1)', opacity: 0.9 }, P2.chicken(1)), path('M-70,0 Q-60,-50 -40,-30 Q-30,-70 -10,-40 Q0,-80 20,-40 Q40,-70 50,-30 Q70,-50 70,0Z', { fill: '#ffb040', opacity: 0.9 }), path('M-60,-60 q-10,-30 6,-50 M60,-70 q14,-30 -2,-54', { stroke: '#ffd060', 'stroke-width': 8, fill: 'none', 'stroke-linecap': 'round' }));
-ep.bleed(1000, { cam: at(1000, 800, 720, 470, 400, 520, true), bg: OF({ bird: 'fire' }), actors: [DECOR, DBP({ pose: 'stand', expr: 'calm' }), BLAZE, HP({ expr: 'horror', pose: 'panic' })], over: (e) => { const c = e.toPanel([700, 280]); return FX.burst(e.w, e.h, c[0], c[1], { n: 26, op: 0.18 }); } },
+ep.bleed(1000, { cam: at(1000, 800, 720, 470, 400, 520, true), bg: OF({ bird: 'fire' }), actors: [DECOR, DBP({ pose: 'stand', expr: 'calm' }), BLAZE, HP({ expr: 'horror', pose: 'panic' })], behind: (e) => { const c = e.toPanel([700, 280]); return FX.burst(e.w, e.h, c[0], c[1], { n: 26, op: 0.18 }); } },
   [cap('By the time this statement registered fully in Harry\'s mind, the chicken was already on fire.', 44, 50, { w: 620, fixed: true })], { alt: 'The chicken bursts into flame.' });
 ep.panel(760, { cam: at(760, 420, 720, 330, 400, 470), bg: OF({ bird: 'ash' }), actors: [() => g({ opacity: 0.5 }, path('M690,300 q-20,-40 10,-80 q10,40 30,20 q-10,-40 20,-60', { fill: 'none', stroke: '#9a9590', 'stroke-width': 5, 'stroke-linecap': 'round' }))] },
   [cap('The blaze was brief, intense, and entirely self-contained. And then it died down, leaving a tiny, pathetic heap of ashes on the golden perch.', 44, 30, { w: 620, fixed: true })], { mood: 'candle', alt: 'A tiny, pathetic heap of ashes on the golden perch.' });
@@ -420,11 +420,11 @@ hS(680, 440, 590, 480, { expr: 'yell', pose: 'fists' },
 dbS(640, 440, 440, { expr: 'confused' },
   [say('Dumbledore', 'They aren\'t? Not even a *little* wicked? That doesn\'t fit the pattern…', 400, 60, { anchor: 'tc', w: 460, fixed: true })], { of: EG });
 ep.panel(820, (ctx) => HG.mindscape(ctx.w, ctx.h, 'warm', 6) + shot({ cam: at(820, 600, 1000, 614, 400, 480), actors: [MINI('s', 'yell', 1000, 'panic', 0.1), scarf('s')] })(ctx),
-  [shout('ms', '*SHUT UP YOU IDIOT HE\'LL TAKE YOU AWAY FROM THEM!*', 400, 84, { anchor: 'tc', w: 540, fixed: true })], { mood: 'candle', alt: 'Harry\'s inner Slytherin screams at the top of its mental lungs.' });
+  [shout('ms', '*SHUT UP YOU IDIOT HE\'LL TAKE YOU AWAY FROM THEM!*', 400, 100, { anchor: 'tc', w: 540, fixed: true })], { mood: 'candle', alt: 'Harry\'s inner Slytherin screams at the top of its mental lungs.' });
 hS(840, 460, 580, 600, { expr: { base: 'grin', sweat: true }, pose: 'shrug' },
   [say('Harry', 'No, no, I was just trying to spare your feelings. They\'re actually very wicked. They, ah, I have to do dishes and wash problems and they don\'t let me read a lot of books and…', 360, 60, { anchor: 'tc', w: 500, fixed: true })], { of: EG });
 dbS(900, 500, 680, { expr: { base: 'warm', eyes: { soft: true } } },
-  [say('Dumbledore', 'Ah, good, that\'s good to hear. I apologise for *that*, then. I\'m sorry to say, Harry, that I am responsible for virtually everything bad that has ever happened to you. I know that this will probably make you very angry.', 400, 60, { anchor: 'tc', w: 520, fixed: true })], { of: EG });
+  [say('Dumbledore', 'Ah, good, that\'s good to hear. I apologise for *that*, then. I\'m sorry to say, Harry, that I am responsible for virtually everything bad that has ever happened to you. I know that this will probably make you very angry.', 400, 60, { anchor: 'tc', w: 520, shape: 'box', fixed: true })], { of: EG });
 hS(900, 580, 400, 380, { expr: 'angry', pose: 'fists' },
   [say('Harry', 'Yes, I\'m very angry! Grrr!', 400, 60, { anchor: 'tc', w: 400, fixed: true }),
    cap('Harry\'s Internal Critic promptly awarded him the All-Time Award for the Worst Acting in the History of Ever.', 44, 680, { w: 440, fixed: true })], { of: EG });
@@ -437,18 +437,18 @@ hS(640, 440, 580, 440, { expr: 'angry' },
 dbS(900, 500, 680, { expr: { base: 'calm', eyes: { sparkle: true } }, pose: 'lecture' },
   [say('Dumbledore', 'One last thing, then. You are *not* to attempt the forbidden door on the third-floor corridor. I doubt you could so much as open the first door, since it\'s locked, and you don\'t know the spell *Alohomora…*', 400, 60, { anchor: 'tc', w: 520, fixed: true })], { of: EG });
 // he flees
-ep.bleed(860, { cam: at(860, 720, 820, 640, 400, 520, true), bg: GC({ open: true }), actors: [stairDoor, { def: harryRaven, id: 'harry', x: 700, y: 960, s: 1.1, turn: -0.8, pose: 'run', expr: 'horror' }], over: (e) => FX.speedLines(e.w, e.h, { n: 40 }) + FX.emanata(e.toPanel(e.wa.harry.head)[0] + 90, e.toPanel(e.wa.harry.head)[1] + 60, 120, { n: 5, a0: -40, a1: 40 }) },
+ep.bleed(860, { cam: at(860, 720, 820, 640, 400, 520, true), bg: GC({ open: true }), actors: [stairDoor, { def: harryRaven, id: 'harry', x: 700, y: 960, s: 1.1, turn: -0.8, pose: 'run', expr: 'horror' }], behind: (e) => FX.speedLines(e.w, e.h, { n: 40 }), over: (e) => FX.emanata(e.toPanel(e.wa.harry.head)[0] + 90, e.toPanel(e.wa.harry.head)[1] + 60, 120, { n: 5, a0: -40, a1: 40 }) },
   [cap('Harry spun around and bolted for the exit at top speed. The doorknob turned agreeably. He raced down the spiral stairs even as they turned, and fired out of the stairwell like a cannonball…', 44, 50, { w: 620, fixed: true })], { alt: 'Harry shoots out of the stairwell at full speed.' });
 // McGonagall
 const papers = () => [[-190, 20, -40], [-40, -70, 20], [120, 10, 50], [260, -40, -20], [40, 60, 80], [330, 50, 10]].map(([dx, dy, r]) => g({ transform: `translate(${1070 + dx},${940 + dy}) rotate(${r})` }, rect(-40, -28, 80, 56, { fill: '#efe3c4', stroke: C.ink, 'stroke-width': 2 }), line(-28, -12, 24, -12, { stroke: '#8a7a6a', 'stroke-width': 2 }), line(-28, 0, 20, 0, { stroke: '#8a7a6a', 'stroke-width': 2 }))).join('');
 const MGF = (o = {}) => ({ def: mcgonagall, id: 'mcgonagall', x: 1250, y: 1000, turn: -0.3, pose: 'fallBack', expr: 'shock', ...o });
 const HGF = (o = {}) => ({ def: harryRaven, id: 'harry', x: 900, y: 1010, s: 1.1, turn: 0.3, pose: 'fallBack', expr: 'horror', ...o });
-ep.bleed(820, { cam: at(820, 900, 1080, 700, 400, 470, true), bg: GC({ open: true }), actors: [MGF(), HGF(), papers], over: (e) => { const c = e.toPanel([1080, 800]); return FX.burst(e.w, e.h, c[0], c[1], { n: 26, op: 0.2 }); } },
+ep.bleed(820, { cam: at(820, 900, 1080, 700, 400, 470, true), bg: GC({ open: true }), actors: [MGF(), HGF(), papers], behind: (e) => { const c = e.toPanel([1080, 800]); return FX.burst(e.w, e.h, c[0], c[1], { n: 26, op: 0.2 }); } },
   [cap('…directly into Minerva McGonagall, as she was turning the corner on her way to the Headmaster\'s office.', 44, 50, { w: 620, fixed: true })], { alt: 'Harry and Professor McGonagall collide and go down; her parchments scatter everywhere.' });
 ep.panel(920, { cam: at(920, 760, 1080, 780, 400, 630), bg: GC({ open: true }), actors: [papers, MGF({ pose: 'sitFloor', expr: 'yell' }), HGF({ pose: 'sitFloor', expr: 'horror' })] },
   [shout('McGonagall', 'Harry Potter! *What were you doing in the Headmaster\'s office?*', 440, 96, { anchor: 'tc', w: 380, fixed: true }),
    say('Harry', 'Nothing!', 130, 440, { w: 160, fixed: true })], { mood: 'candle' });
-ep.panel(760, { cam: at(760, 420, 1290, 752, 400, 510), bg: GC({ open: true }), blur: 2, actors: [MGF({ pose: 'sitFloor', expr: { base: 'yell', brows: { raise: -0.6, inner: -0.8 } } })] },
+ep.panel(760, { cam: at(760, 420, 1290, 752, 400, 565), bg: GC({ open: true }), blur: 2, actors: [MGF({ pose: 'sitFloor', expr: { base: 'yell', brows: { raise: -0.6, inner: -0.8 } } })] },
   [shout('McGonagall', '*Were you talking about the Defence Professor?*', 400, 84, { anchor: 'tc', w: 380, fixed: true })], { mood: 'candle' });
 ep.panel(760, { cam: at(760, 420, 872, 819, 440, 520), bg: GC({ open: true }), blur: 2, actors: [HGF({ pose: 'sitFloor', expr: 'pleading' })] },
   [say('Harry', 'No! Dumbledore called me up there and gave me this big rock, and said it was my father\'s, and I should carry it everywhere!', 400, 50, { anchor: 'tc', w: 500, fixed: true })], { mood: 'candle' });
@@ -464,7 +464,7 @@ ep.panel(820, { cam: at(820, 440, 1202, 503, 400, 580), bg: GC({}), blur: 2, act
 ep.panel(780, { cam: at(780, 440, 882, 694, 520, 560), bg: GC({}), blur: 2, actors: [HM({ expr: 'hopeful', pose: 'gesture' })] },
   [say('Harry', 'I was thinking that once I know how, I could Transfigure the rock into a ring, and wear it on my finger…', 400, 50, { anchor: 'tc', w: 500, fixed: true })], { mood: 'candle' });
 ep.panel(1080, { cam: at(1080, 380, 1202, 503, 450, 790), bg: GC({}), actors: [MG({ expr: { base: 'stern', eyes: { lookX: -0.4 } }, pose: 'lecture', turn: -0.2 }), (e) => { const h = e.wa.mcgonagall.handB; return K.glow(h[0], h[1] - 40, 70, '#f7dc8c', 0.5) + g({ transform: `translate(${h[0]},${h[1] - 44}) scale(1.4)` }, P2.ring(1)); }] },
-  [say('McGonagall', 'It is good that you asked me first. If you lost control, the reversal would cut off your finger. But I can have a ring forged for you, with a setting for a *small* jewel. Keep a safe Transfiguration going for a full month, even in your sleep, and I will allow you to Transfigure, ah, your father\'s rock…', 400, 80, { anchor: 'tc', w: 560, fixed: true })], { mood: 'candle' });
+  [say('McGonagall', 'It is good that you asked me first. If you lost control, the reversal would cut off your finger. But I can have a ring forged for you, with a setting for a *small* jewel. Keep a safe Transfiguration going for a full month, even in your sleep, and I will allow you to Transfigure, ah, your father\'s rock…', 400, 80, { anchor: 'tc', w: 560, shape: 'box', fixed: true })], { mood: 'candle' });
 ep.panel(640, { cam: at(640, 380, 1202, 503, 400, 420), bg: GC({}), blur: 3, actors: [MG({ expr: 'confused', turn: -0.1 })] },
   [say('McGonagall', 'Did the Headmaster *really…*', 400, 40, { anchor: 'tc', w: 400, fixed: true })], { mood: 'candle' });
 ep.panel(820, { cam: at(820, 800, 1060, 600, 400, 520), bg: GC({ open: true }), actors: [stairDoor, MG({ x: 1080, expr: { base: 'stern', eyes: { soft: true } }, turn: -0.4 }), HM({ x: 760, expr: 'worried' })] },

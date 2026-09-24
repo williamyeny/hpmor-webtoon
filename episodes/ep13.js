@@ -53,11 +53,11 @@ ep.panel(480, { cam: { on: ['harry'], fr: 'close', dx: 0.6 }, bg: RT, blur: 3, a
   [inner('Harry', '*Yeah. So, no.*', 560, 240, { w: 260, fixed: true })], { mood: 'candle', alt: 'He puts the can away, very firmly.' });
 
 // the Quidditch line
-ep.panel(760, { cam: { on: ['dumbledore'], fr: 'waist', dy: -0.2 }, bg: STAFF, actors: [DUMB({ pose: 'relaxed' }), LECTERN] },
+ep.panel(760, { cam: { on: ['dumbledore'], fr: 'waist', dy: -0.5 }, bg: STAFF, actors: [DUMB({ pose: 'relaxed' }), LECTERN] },
   [say('Dumbledore', 'Quidditch trials will be held in the second week of term. Anyone interested in playing for their House teams should contact Madam Hooch.', 400, 64, { anchor: 'tc',  w: 540, fixed: true })], { mood: 'candle' });
 ep.panel(640, { cam: { on: ['dumbledore'], fr: 'close', dy: 0.1 }, bg: STAFF, blur: 3, actors: [DUMB({ turn: 0.02, expr: { base: 'warm', eyes: { sparkle: true } } }), LECTERN] },
   [say('Dumbledore', 'And anyone interested in reformulating the *entire game* of Quidditch should contact Harry Potter.', 400, 64, { anchor: 'tc',  w: 560, fixed: true })], { mood: 'candle' });
-ep.bleed(820, { cam: { on: ['harry'], fr: 'bust', zoom: 0.62, dy: 0.2 }, bg: RT, actors: TABLE({ h: { expr: 'yell', pose: 'panic' }, he: { expr: 'shock', turn: 0.5 }, t: { expr: 'shock', turn: -0.6 }, p: { expr: 'gasp' } }), over: (e) => { const a = e.anchors.harry; return a ? FX.burst(e.w, e.h, a.mouth[0], a.mouth[1], { n: 26, col: '#f8f0dc', op: 0.35 }) + g({ transform: `translate(${a.mouth[0] + 20},${a.mouth[1] + 4})` }, P2.splat(0.25, 'cherry', 4).replace(/#b81f2e/g, '#e8f0f4').replace(/#e8b86a/g, '#ffffff')) : ''; } },
+ep.bleed(820, { cam: { on: ['harry'], fr: 'bust', zoom: 0.62, dy: 0.2 }, bg: RT, actors: TABLE({ h: { expr: 'yell', pose: 'panic' }, he: { expr: 'shock', turn: 0.5 }, t: { expr: 'shock', turn: -0.6 }, p: { expr: 'gasp' } }), behind: (e) => { const a = e.anchors.harry; return a ? FX.burst(e.w, e.h, a.mouth[0], a.mouth[1], { n: 26, col: '#f8f0dc', op: 0.35 }) : ''; }, over: (e) => { const a = e.anchors.harry; return a ? g({ transform: `translate(${a.mouth[0] + 20},${a.mouth[1] + 4})` }, P2.splat(0.25, 'cherry', 4).replace(/#b81f2e/g, '#e8f0f4').replace(/#e8b86a/g, '#ffffff')) : ''; } },
   [sfx('KHHK!', 250, 170, { size: 90, rot: -8 }),
    cap('Harry inhaled his own saliva.', 290, 700, { w: 480, fixed: true })], { mood: 'candle', alt: 'Harry chokes on nothing at all, spraying, as every head at the Ravenclaw table turns to stare.' });
 ep.panel(700, { cam: { on: ['harry'], fr: 'close', dy: -0.05 }, bg: RT, blur: 3, actors: TABLE({ h: { expr: { base: 'horror', mouth: { type: 'o' } } } }) },
@@ -65,13 +65,13 @@ ep.panel(700, { cam: { on: ['harry'], fr: 'close', dy: -0.05 }, bg: RT, blur: 3,
 ep.panel(520, { cam: { on: ['dumbledore'], fr: 'eyes' }, bg: STAFF, blur: 3, actors: [DUMB({ turn: 0, expr: { base: 'warm', eyes: { sparkle: true, lookX: 0.3 } } })], over: (e) => { const a = e.anchors.dumbledore; return a ? FX.sparkles([[a.head[0] + a.hr * 0.3, a.head[1] - a.hr * 0.1]], { r: 22 }) : ''; } },
   [cap('Dumbledore was looking straight at him.', 44, 30, { w: 560, fixed: true })], { mood: 'candle', alt: 'Dumbledore\'s eyes over his half-moon spectacles, twinkling, fixed on Harry.' });
 
-ep.panel(780, { cam: { on: ['dumbledore'], fr: 'waist', dy: -0.2 }, bg: STAFF, actors: [DUMB({ pose: 'relaxed', expr: 'calm' }), LECTERN] },
+ep.panel(780, { cam: { on: ['dumbledore'], fr: 'waist', dy: -0.45 }, bg: STAFF, actors: [DUMB({ pose: 'relaxed', expr: 'calm' }), LECTERN] },
   [say('Dumbledore', 'Additionally, this year, the third-floor corridor on the right-hand side is out of bounds to everyone who does not wish to die a very painful death.', 400, 64, { anchor: 'tc',  w: 560, fixed: true })], { mood: 'candle' });
 ep.panel(480, { cam: { on: ['harry'], fr: 'close' }, bg: RT, blur: 3, actors: TABLE({ h: { expr: 'blank' } }) },
   [cap('Harry was numb at this point.', 44, 30, { w: 400, fixed: true })], { mood: 'candle' });
 // the Defence Professor notice (ch. 12): McGonagall cites it in Ep 18
-ep.panel(960, { cam: { on: ['dumbledore'], fr: 'waist', dy: -0.75 }, bg: STAFF, actors: [DUMB({ pose: 'gesture', expr: { base: 'calm', eyes: { lookX: 0.3 } } }), LECTERN] },
-  [say('Dumbledore', 'I hope all students will extend Professor Quirrell the utmost courtesy and *tolerance* due his extraordinary service to this school, and that you *will not pester us* with any *niggling complaints* about him, unless *you* want to try doing his job.', 400, 50, { anchor: 'tc', w: 600, fixed: true })], { mood: 'candle', alt: 'Dumbledore\'s gaze moves searchingly across the students.' });
+ep.panel(1000, { cam: { on: ['dumbledore'], fr: 'waist', dy: -0.9 }, bg: STAFF, actors: [DUMB({ pose: 'gesture', expr: { base: 'calm', eyes: { lookX: 0.3 } } }), LECTERN] },
+  [say('Dumbledore', 'I hope all students will extend Professor Quirrell the utmost courtesy and *tolerance* due his extraordinary service to this school, and that you *will not pester us* with any *niggling complaints* about him, unless *you* want to try doing his job.', 400, 70, { anchor: 'tc', w: 540, fixed: true })], { mood: 'candle', alt: 'Dumbledore\'s gaze moves searchingly across the students.' });
 ep.panel(420, { cam: { on: ['harry'], fr: 'close' }, bg: RT, blur: 3, actors: TABLE({ h: { expr: 'suspicious' } }) },
   [inner('Harry', '*What was* that *about?*', 400, 40, { anchor: 'tc', w: 360, fixed: true })], { mood: 'candle' });
 ep.panel(960, { cam: { on: ['dumbledore'], fr: 'waist', dy: -1.05, zoom: 0.85 }, bg: STAFF, actors: [DUMB({ pose: 'armsUp', expr: 'laugh' }), LECTERN] },
@@ -85,8 +85,8 @@ ep.bleed(1000, { cam: { x: 800, y: 560, w: 1500 }, bg: () => HG.greatHallWide(),
     return o; } },
   [], { alt: 'The whole Hall sings the school song, every student to a different tune; words in every style fly through the air.' });
 // his send-off (ch. 12's banquet opener): Harry borrows it in Ep 18
-ep.panel(760, { cam: { on: ['dumbledore'], fr: 'waist', dy: -0.6 }, bg: STAFF, actors: [DUMB({ pose: 'armsUp', expr: 'bigGrin' }), LECTERN] },
-  [shout('Dumbledore', 'Happy happy boom boom swamp swamp swamp! Thank you, and good night!', 400, 40, { anchor: 'tc', w: 460, fixed: true })], { mood: 'candle' });
+ep.panel(830, { cam: { on: ['dumbledore'], fr: 'waist', dy: -1.0 }, bg: STAFF, actors: [DUMB({ pose: 'armsUp', expr: 'bigGrin' }), LECTERN] },
+  [shout('Dumbledore', 'Happy happy boom boom swamp swamp swamp! Thank you, and good night!', 400, 92, { anchor: 'tc', w: 460, fixed: true })], { mood: 'candle' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: RT, blur: 3, actors: TABLE({ h: { expr: 'exasperated' } }) },
   [inner('Harry', '*Note to self: do not mess with Dumbledore.*', 400, 64, { anchor: 'tc',  w: 540, fixed: true })], { mood: 'candle' });
 
@@ -132,12 +132,12 @@ ep.multi(1180, [
   { alt: 'Five views: the empty dorm; rumpled beds; sunlight slanting in high; the Quieter slider at maximum; the alarm clock at 9:52.' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'bust', dy: -0.3 }, bg: MORN(), blur: 2, actors: [HPJ({ expr: 'shock', pose: 'sit' })] },
   [cap('He\'d missed breakfast. And his very first class at Hogwarts, Herbology, had started one hour and twenty-two minutes ago.', 44, 30, { w: 620, fixed: true })], { mood: 'warm' });
-ep.panel(820, { cam: { on: ['harry'], fr: 'close', dy: 0.2 }, bg: MORN(), blur: 3, actors: [HPJ({ expr: 'cold' })], over: (e) => FX.frost(e.w, e.h, 0.3, 21) },
-  [cold('Harry', 'Oh, what a nice little prank. Turn off his alarm. Turn up the Quieter. Let Mr Bigshot Harry Potter miss his first class.', 400, 64, { anchor: 'tc',  w: 560, fixed: true }),
+ep.panel(820, { cam: { on: ['harry'], fr: 'close', dy: -0.05 }, bg: MORN(), blur: 3, actors: [HPJ({ expr: 'cold' })], over: (e) => FX.frost(e.w, e.h, 0.3, 21) },
+  [cold('Harry', 'Oh, what a nice little prank. Turn off his alarm. Turn up the Quieter. Let Mr Bigshot Harry Potter miss his first class.', 400, 44, { anchor: 'tc',  w: 560, fixed: true }),
    inner('Harry', '*When Harry found out who\'d done this…*', 400, 700, { w: 460, fixed: true })], { mood: 'cold', alt: 'Frost creeps in at the edges as Harry\'s face goes flat and cold.' });
 ep.panel(900, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: MORN(), blur: 2, actors: [HPJ({ expr: 'hurt' })] },
   [inner('Harry', '*No. This could only have been done by all twelve of the other boys. All of them would have seen him asleep. All of them had let him sleep through breakfast.*', 400, 40, { anchor: 'tc',  w: 610, fixed: true }),
-   inner('Harry', '*They\'d* liked *him. He\'d thought.*', 400, 780, { w: 360, fixed: true })], { mood: 'warm', alt: 'The anger drains out of him, leaving a wounded look.' });
+   inner('Harry', '*They\'d* liked *him. He\'d thought.*', 340, 836, { w: 360, fixed: true })], { mood: 'warm', alt: 'The anger drains out of him, leaving a wounded look.' });
 
 // the note on the headboard
 ep.panel(1000, { cam: { x: 1070, y: 520, w: 380 }, bg: MORN({ harryNote: true }) },
@@ -146,7 +146,7 @@ ep.panel(1000, { cam: { x: 1070, y: 520, w: 380 }, bg: MORN({ harryNote: true })
 ep.panel(820, { cam: { on: ['harry'], fr: 'close', dy: 0.15 }, bg: MORN(), blur: 3, actors: [HPJ({ expr: { base: 'horror', mouth: { type: 'o' } } })], over: (e) => FX.frost(e.w, e.h, 0.45, 23) },
   [cap('It was in his own handwriting. In his own mechanical pencil.', 44, 30, { w: 360, fixed: true }),
    cap('And he didn\'t remember writing it.', 440, 680, { w: 270, fixed: true })], { mood: 'cold', alt: 'Ice water in his veins.' });
-ep.panel(880, { cam: { on: ['harry'], fr: 'bust', dy: -0.25 }, bg: MORN(), blur: 2, actors: [HPJ({ expr: 'think', pose: 'chin', armB: { sh: 8, el: 8, hand: 'open' } })] },
+ep.panel(880, { cam: { on: ['harry'], fr: 'bust', dy: -0.25 }, bg: MORN(), blur: 2, actors: [HPJ({ expr: 'think', pose: 'think', turn: 0.25 })] },
   [inner('Harry', '*Had he been Obliviated? Had he stayed up late, done something, and then… but he didn\'t* know *the spell… had someone else…*', 400, 64, { anchor: 'tc',  w: 580, fixed: true }),
    inner('Harry', '*Wait. If he* had *known he was going to be Obliviated…*', 400, 760, { w: 380, fixed: true })], { mood: 'warm' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'waist', dy: -0.2 }, bg: MORN(), actors: [{ def: harryPJ, id: 'harry', x: 1100, y: 1010, s: 1.1, turn: 0.3, pose: 'crouch', expr: 'determined', armF: { sh: 20, el: 50, hand: 'open' }, armB: { sh: 60, el: 40, hand: 'hold', prop: g({ transform: 'translate(0,20)' }, pouch(0.8)) } }], fg: () => CS.trunkBox(1250, 1030, 1.1, '#7a4e2e') },
@@ -154,7 +154,7 @@ ep.panel(820, { cam: { on: ['harry'], fr: 'waist', dy: -0.2 }, bg: MORN(), actor
 ep.panel(700, { cam: { x: 400, y: 350, w: 800 }, bg: () => rect(-100, -100, 1000, 1200, { fill: '#6b5540' }) + K.floorboards(-100, -100, 1000, 1200, '#7a6048', 9) },
   [note('Dear Me,\n\nPlease play the game. You can only play the game once in a lifetime. This is an unrepeatable opportunity.\n\nRecognition code 927, I am a potato.\n\nYou.', 400, 350, { kind: 'hand', w: 560, rot: 1.5 })],
   { mood: 'warm', alt: 'The note from the pouch, in his own handwriting.' });
-ep.panel(900, { cam: { x: 1170, y: 700, w: 720 }, bg: () => rect(-500, -500, 3000, 2000, { fill: '#b9a27a' }) + rect(-500, 1000, 3000, 600, { fill: '#6e5536' }) + path('M-500,1000 L2500,1000', { stroke: C.ink, 'stroke-width': 3 }) + ellipse(1020, 1040, 230, 40, { fill: '#7a4e3a', opacity: 0.7 }) + g({ transform: 'translate(1350,640)' }, rect(-160, -130, 320, 250, { fill: '#3a3a3a', stroke: C.ink, 'stroke-width': 4, rx: 30 }), rect(-130, -104, 260, 196, { fill: '#9bc4e8', rx: 20 }), rect(-40, 120, 80, 250, { fill: '#6b4429', stroke: C.ink, 'stroke-width': 3 })), actors: [{ def: youngHarry, id: 'kid', x: 1000, y: 1000, s: 1.1, turn: 0.5, pose: 'sitFloor', expr: 'focus', armF: { hand: 'hold', prop: g({ transform: 'rotate(40)' }, rect(-3, -34, 6, 60, { fill: '#e7bb4f', stroke: C.ink, 'stroke-width': 1.4 })) } }], over: (e) => FX.memoryEdge(e.w, e.h) },
+ep.panel(900, { cam: { x: 1160, y: 730, w: 640 }, bg: () => rect(-500, -500, 3000, 2000, { fill: '#b9a27a' }) + rect(-500, 1000, 3000, 600, { fill: '#6e5536' }) + path('M-500,1000 L2500,1000', { stroke: C.ink, 'stroke-width': 3 }) + ellipse(1020, 1040, 230, 40, { fill: '#7a4e3a', opacity: 0.7 }) + g({ transform: 'translate(1350,640)' }, rect(-160, -130, 320, 250, { fill: '#3a3a3a', stroke: C.ink, 'stroke-width': 4, rx: 30 }), rect(-130, -104, 260, 196, { fill: '#9bc4e8', rx: 20 }), rect(-40, 120, 80, 250, { fill: '#6b4429', stroke: C.ink, 'stroke-width': 3 })), actors: [{ def: youngHarry, id: 'kid', x: 1000, y: 1000, s: 1.1, turn: 0.5, pose: 'sitFloor', expr: 'focus', armF: { sh: 55, el: 70, hand: 'hold', prop: g({ transform: 'rotate(40)' }, rect(-3, -34, 6, 60, { fill: '#e7bb4f', stroke: C.ink, 'stroke-width': 1.4 })) } }], over: (e) => FX.memoryEdge(e.w, e.h) },
   [cap('"Recognition code 927, I am a potato" was a message he\'d worked out years ago, in front of the television, that only he would ever know. In case he ever had to identify a duplicate of himself. Just in case.', 44, 30, { w: 620, fixed: true }),
    cap('*Be Prepared.*', 516, 620, { w: 200, fixed: true })], { mood: 'sepia', alt: 'Memory: eight-year-old Harry on the floor in front of the television, pencil in hand, very serious.' });
 ep.panel(900, { cam: { x: 400, y: 450, w: 800 }, bg: () => rect(-100, -100, 1000, 1400, { fill: '#6b5540' }) + K.floorboards(-100, -100, 1000, 1400, '#7a6048', 9) },
@@ -171,7 +171,7 @@ ep.panel(860, { cam: { on: ['harry'], fr: 'bust', dy: -0.05, zoom: 0.9 }, bg: MO
   [note('Attempt failed: −1 point\nCurrent points: 99\nPhysical state: Still hungry\nMental state: Confused', 400, 130, { w: 460, rot: 2 })], { mood: 'warm', alt: 'Out of the pouch: two tiny chocolate bars, not nearly a meal, and a note.' });
 ep.panel(520, { cam: { on: ['harry'], fr: 'close' }, bg: MORN(), blur: 3, actors: [HC({ expr: { base: 'blank', mouth: { type: 'o' } } })] },
   [say('Harry', 'Gleehhhhh.', 560, 64, { anchor: 'tc',  w: 200, fixed: true })], { mood: 'warm', alt: 'His mouth makes a noise without consulting him.' });
-ep.panel(820, { cam: { x: 1100, y: 640, w: 900 }, bg: MORN(), actors: [HC({ turn: -0.2, expr: 'wince', pose: 'shrug' })] },
+ep.panel(820, { cam: { x: 1100, y: 650, w: 740 }, bg: MORN(), actors: [HC({ turn: -0.2, expr: 'wince', pose: 'shrug' })] },
   [say('Harry', 'Ah… I don\'t suppose I could spend a point and get my box of cereal bars back?', 400, 64, { anchor: 'tc',  w: 520, fixed: true }),
    cap('There was only silence.', 44, 700, { w: 320, fixed: true })], { mood: 'warm', alt: 'Harry, in pyjamas, alone in the sunny dorm, asks the empty air.' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'bust', dy: 0.3, zoom: 0.9 }, bg: MORN(), blur: 3, actors: [HC({ expr: { base: 'unimpressed', eyes: { lookX: 0.4, lookY: 0.3 } }, pose: 'stand', armF: { sh: 5, el: 45, hr: 50, hand: 'hold', prop: g({ transform: 'translate(22,-8) rotate(-6)' }, P2.cerealBox(0.6, { open: true })) } })] },
@@ -186,7 +186,7 @@ ep.panel(540, { cam: { on: ['harry'], fr: 'close' }, bg: MORN(), blur: 3, actors
 ep.panel(820, { cam: { on: ['harry'], fr: 'waist', dy: -0.4, zoom: 0.85 }, bg: MORN(), actors: [HC({ pose: 'stand', expr: 'smug', turn: 0.3, armB: { sh: 115, el: 45, hand: 'point' } })] },
   [say('Harry', 'My guess is that the game is controlled by Dumbledore.', 400, 64, { anchor: 'tc',  w: 440, fixed: true }),
    cap('Maybe *this* time he could set a new land speed record for being quick on the uptake.', 44, 660, { w: 560, fixed: true })], { mood: 'warm' });
-ep.panel(680, { cam: { on: ['harry'], fr: 'full', dx: 0.35, zoom: 1.1 }, bg: MORN(), actors: [{ def: harryPJ, id: 'harry', x: 1100, y: 1060, s: 1.1, turn: 0.5, pose: 'crouch', expr: 'suspicious' }] },
+ep.panel(680, { cam: { on: ['harry'], fr: 'full', dx: 0.35, zoom: 1.1 }, bg: MORN(), actors: [{ def: harryPJ, id: 'harry', x: 1100, y: 1060, s: 1.1, turn: 0.5, pose: 'crouch', expr: 'suspicious', armF: { sh: 35, el: 10, hand: 'open' }, armB: { sh: 60, el: 15, hand: 'open' } }] },
   [cap('But he was starting to see the pattern: the note would be in the next place he looked. So he looked under his bed.', 44, 30, { w: 620, fixed: true })], { mood: 'warm' });
 ep.bleed(1180, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#2a1c14' }) + K.floorboards(0, 0, ctx.w, ctx.h, '#3a2a1e', 5),
   [note('**Ha! Ha ha ha ha ha!**\n**Ha ha ha ha ha ha!**\n**Ha! Ha! Ha! Ha! Ha! Ha!**\n\nDumbledore does not control the game\n\nBad guess\n\nVery bad guess\n\n−20 points\n\nAnd you are still wearing pyjamas\nit is your fourth move\nand you are still wearing pyjamas\n\nPyjama penalty: −2 points\nCurrent points: 75', 400, 590, { w: 560, rot: -1.5 })],
@@ -236,7 +236,7 @@ ep.multi(640, [
 ep.panel(820, { cam: { x: 1230, y: 430, w: 880 }, bg: LADY_BG(), actors: [LADY({ expr: 'calm' }), HOLE, HL({ expr: 'think' })], fg: LADYFG },
   [say('Lady', 'So I perceive, young raven. Where are you trying to go?', 250, 64, { anchor: 'tc',  w: 360, fixed: true }),
    say('Harry', 'I\'m not really sure.', 560, 330, { w: 240, fixed: true }),
-   say('Lady', 'Then perhaps you are already there.', 260, 650, { w: 300, fixed: true })], { mood: 'warm' });
+   say('Lady', 'Then perhaps you are already there.', 260, 650, { w: 300, fixed: true, tail: [250, 520] })], { mood: 'warm' });
 ep.panel(1120, { cam: { on: ['harry'], fr: 'bust', dy: -1.3 }, bg: LADY_BG(), blur: 2, actors: [HL({ expr: 'flustered', pose: 'gesture' })] },
   [say('Harry', 'Well, wherever I *am* trying to go, I don\'t think *this* is it… Okay, third try. I\'m playing a game, I don\'t know the rules, I\'m looking for opportunities to do good so I can score points, and all I have is this cryptic hint about how darkness is where the light needs to be, so I was trying to go *down* but I keep going *up*…', 400, 96, { anchor: 'tc', w: 530, fixed: true })], { mood: 'warm' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: LADY_BG(), blur: 3, actors: [HL({ expr: 'deadpan' })] },
@@ -244,22 +244,22 @@ ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: LADY_BG(), blur: 3, act
 ep.panel(1000, { cam: { x: 1230, y: 380, w: 880 }, bg: LADY_BG(), actors: [LADY({ expr: 'think' }), HOLE, HL({ expr: 'neutral' })], fg: LADYFG },
   [say('Lady', 'Would it be fair to say that you don\'t know where you\'re going, or why you\'re trying to get there?', 290, 56, { anchor: 'tc',  w: 360, fixed: true }),
    say('Harry', '*Entirely* fair.', 590, 500, { w: 220, fixed: true }),
-   say('Lady', 'I\'m not sure that being lost is your most important problem, young man.', 270, 830, { w: 380, fixed: true })], { mood: 'warm' });
+   say('Lady', 'I\'m not sure that being lost is your most important problem, young man.', 270, 830, { w: 380, fixed: true, tail: [262, 700] })], { mood: 'warm' });
 ep.panel(940, { cam: { on: ['harry'], fr: 'bust', dy: -1.0 }, bg: LADY_BG(), blur: 2, actors: [HL({ expr: 'awe', pose: 'think' })] },
   [say('Harry', 'True, but unlike the more important problems, it\'s a problem I can understand how to solve, and *wow* is this conversation turning into a metaphor for human existence, I didn\'t even realise that was happening until just now.', 400, 64, { anchor: 'tc',  w: 580, fixed: true })], { mood: 'warm' });
 ep.panel(820, { cam: { on: ['lady'], fr: 'bust', dy: -0.55 }, bg: LADY_BG(), actors: [LADY({ expr: 'smile' }), HOLE], fg: LADYFG },
   [say('Lady', 'You *are* a fine young raven, aren\'t you? Well then. As a general rule, if you keep on turning left, you\'re bound to keep going down.', 400, 64, { anchor: 'tc',  w: 520, fixed: true })], { mood: 'warm' });
 ep.panel(860, { cam: { x: 1230, y: 430, w: 880 }, bg: LADY_BG(), actors: [LADY({ expr: 'amused' }), HOLE, HL({ expr: 'hopeful', pose: 'gesture' })], fg: LADYFG },
   [say('Harry', 'Um… have you heard of a mysterious game where you can only play once, and they won\'t tell you the rules?', 528, 56, { anchor: 'tc',  w: 370, fixed: true }),
-   say('Lady', 'Life. That\'s one of the most obvious riddles I\'ve ever heard.', 258, 640, { w: 320, fixed: true })], { mood: 'warm' });
+   say('Lady', 'Life. That\'s one of the most obvious riddles I\'ve ever heard.', 232, 650, { w: 320, fixed: true })], { mood: 'warm' });
 ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', dy: -1.2 }, bg: LADY_BG(), blur: 2, actors: [HL({ expr: 'exasperated', pose: 'gesture' })] },
   [say('Harry', 'No. I mean an *actual* note, and somebody leaving me slips of paper about how many points I\'ve lost, like a minus-two-point penalty for wearing pyjamas! Do you know anyone crazy enough and powerful enough to do that? Besides Dumbledore?', 400, 90, { anchor: 'tc', w: 530, fixed: true })], { mood: 'warm' });
 ep.panel(1150, { cam: { on: ['lady'], fr: 'bust', dy: -0.4 }, bg: LADY_BG(), actors: [LADY({ expr: 'warm' }), HOLE], fg: LADYFG },
   [say('Lady', 'I\'m only a picture, young man. I remember Hogwarts as it was, not Hogwarts as it is.', 400, 64, { anchor: 'tc',  w: 520, fixed: true }),
    say('Lady', 'All I can tell you is that if this were a riddle, the answer would be that the game is life. And that while we do not make all the rules ourselves, the one who awards or takes points is always *you.*', 400, 940, { w: 560, fixed: true })], { mood: 'warm' });
-ep.panel(1060, { cam: { x: 1250, y: 480, w: 880 }, bg: LADY_BG(), actors: [LADY({ expr: 'smile', pose: 'bow', lean: -24, headTilt: -4 }), HOLE, HL({ x: 1480, expr: 'calm', pose: 'bowGrand' })], fg: LADYFG },
-  [say('Harry', 'Thank you, milady.', 610, 170, { anchor: 'tc',  w: 240, fixed: true }),
-   say('Lady', 'I wish I could say I\'ll remember you with fondness. But I probably won\'t remember you at all. Farewell, Harry Potter.', 238, 845, { w: 340, fixed: true })], { mood: 'warm', alt: 'Harry bows low to the painting; the painted lady curtseys back.' });
+ep.panel(1150, { cam: { x: 1250, y: 520, w: 880 }, bg: LADY_BG(), actors: [LADY({ expr: 'smile', pose: 'bow', lean: -24, headTilt: -4 }), HOLE, HL({ x: 1530, expr: 'calm', pose: 'bowGrand' })], fg: LADYFG },
+  [say('Harry', 'Thank you, milady.', 640, 360, { anchor: 'tc',  w: 240, fixed: true }),
+   say('Lady', 'I wish I could say I\'ll remember you with fondness. But I probably won\'t remember you at all. Farewell, Harry Potter.', 238, 900, { w: 340, fixed: true, tail: [240, 690] })], { mood: 'warm', alt: 'Harry bows low to the painting; the painted lady curtseys back.' });
 
 // Flubberwalt
 const FLUB_WALL = () => CS.corridor({ seed: 11, rubble: true, windows: [2300], torches: [400, 1200] });
@@ -284,12 +284,12 @@ ep.panel(1400, { cam: { on: ['flubberwalt'], fr: 'bust', dy: -0.35, zoom: 0.85 }
 ep.panel(900, { cam: { x: 900, y: 440, w: 900 }, bg: FLUB_BG, actors: [FLUB({ expr: 'shock', pose: 'armsUp' }), FHOLE, HF({ x: 1180, expr: 'think' })], fg: FLUBFG },
   [say('Harry', 'Um… I don\'t suppose you know where the message *originally* came from?', 578, 56, { anchor: 'tc',  w: 290, fixed: true }),
    say('Flubberwalt', 'It was spoken by a hollow voice that belled forth from a gap within the air itself, a gap that opened upon a fiery abyss! That\'s what they told me!', 300, 560, { w: 460, fixed: true })], { mood: 'warm' });
-ep.panel(1060, { cam: { on: ['harry'], fr: 'bust', dy: -0.55 }, bg: FLUB_BG, blur: 2, actors: [HF({ expr: 'focus', pose: 'hold', armF: { hand: 'hold', prop: g({ transform: 'translate(0,20)' }, pouch(0.8)) } })] },
+ep.panel(1060, { cam: { on: ['harry'], fr: 'bust', dy: -0.4 }, bg: FLUB_BG, blur: 2, actors: [HF({ expr: 'focus', pose: 'hold', armF: { hand: 'hold', prop: g({ transform: 'translate(0,20)' }, pouch(0.8)) } })] },
   [say('Harry', 'Pencil and mechanical paper. Er, cancel that. Paper and mechanical pencil.', 400, 64, { anchor: 'tc',  w: 480, fixed: true }),
    say('Flubberwalt', 'Spin round and go left, right, down, down, right, left, right, up, and left again! At least, that\'s how it was in *my* day. This *is* a Monday on an odd-numbered year, isn\'t it?', 400, 990, { anchor: 'bc', w: 580, fixed: true, tail: null })], { mood: 'warm' });
 
 // the green study room
-ep.bleed(1150, { cam: { x: 1800, y: 420, w: 1100 }, bg: () => CS.greenStudy(), actors: [{ def: harryRaven, id: 'harry', x: 2130, y: 900, s: 1.1, turn: 0.8, pose: 'stand', expr: 'focus' }] },
+ep.bleed(1150, { cam: { x: 1900, y: 440, w: 1040 }, bg: () => CS.greenStudy(), actors: [{ def: harryRaven, id: 'harry', x: 2130, y: 900, s: 1.1, turn: 0.8, pose: 'stand', expr: 'focus' }] },
   [cap('The green study room had comfortable chairs, and dragons in the stained glass, and sunlight coming through in green. Harry couldn\'t *actually* walk straight through it.', 44, 40, { w: 620, fixed: true }),
    cap('There were *bookshelves.* He had to read at least some of the titles, or lose his claim to the Verres family name.', 44, 950, { w: 440, fixed: true })], { alt: 'A lovely room lit green by stained-glass dragons. Harry has stopped dead at the bookshelf.' });
 
@@ -297,7 +297,7 @@ ep.bleed(1150, { cam: { x: 1800, y: 420, w: 1100 }, bg: () => CS.greenStudy(), a
 const COR = () => CS.corridor({ seed: 13, windows: [300, 2200], torches: [1200] });
 ep.panel(600, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: COR, blur: 2, actors: [{ def: harryRaven, id: 'harry', x: 700, y: 900, s: 1.1, turn: 0.6, pose: 'walk', expr: 'shock' }] },
   [whisper('Voice', 'Please! Give them b-back!', 560, 64, { anchor: 'tc',  w: 300, fixed: true, noTail: true })], { mood: 'warm', alt: 'A young boy\'s cry, from round the corner.' });
-ep.panel(620, { cam: { on: ['harry'], fr: 'full' }, bg: COR, actors: [{ def: harryRaven, id: 'harry', x: 900, y: 900, s: 1.1, turn: 0.8, pose: 'run', expr: 'determined' }], over: (e) => FX.speedLines(e.w, e.h, { n: 34 }) },
+ep.panel(620, { cam: { on: ['harry'], fr: 'full' }, bg: COR, actors: [{ def: harryRaven, id: 'harry', x: 900, y: 900, s: 1.1, turn: 0.8, pose: 'run', expr: 'determined' }], behind: (e) => FX.speedLines(e.w, e.h, { n: 44, col: '#fff6e0' }) },
   [], { mood: 'warm', alt: 'Harry sprints.' });
 const SCENE = (o = {}) => [
   ...[0, 1, 2, 3, 4, 5].map((i) => ({ def: i === 0 ? ernie : student(1340 + i, 'h'), id: i === 0 ? 'ernie' : 'h' + i, x: 200 + i * 95, y: 960 + (i % 2) * 30, s: 1.0, turn: 0.5, expr: i % 2 ? 'worried' : 'horror', pose: i === 2 ? 'cower' : 'stand' })),
@@ -310,7 +310,7 @@ const SCENE = (o = {}) => [
   ...(o.h ? [{ def: harryRaven, id: 'harry', x: 2000, y: 980, s: 1.1, turn: -0.6, pose: 'stand', expr: 'cold', ...o.h }] : []),
   () => g({}, ...[[1180, 1010, -20], [1330, 1030, 12], [1420, 1000, 40]].map(([x, y, r]) => g({ transform: `translate(${x},${y}) rotate(${r})` }, rect(-40, -10, 80, 20, { fill: '#6b2433', stroke: C.ink, 'stroke-width': 2 })))),
 ];
-ep.bleed(720, { cam: { x: 950, y: 600, w: 1700 }, bg: COR, actors: SCENE() },
+ep.bleed(660, { cam: { x: 940, y: 580, w: 1720 }, bg: COR, actors: SCENE() },
   [cap('Six first-year Hufflepuffs, huddled together, looking as if they desperately wanted to do something. Five older Slytherins, in a ring around another boy.', 44, 40, { w: 640, fixed: true })],
   { alt: 'A corridor: frightened Hufflepuffs on the left; five big Slytherin teenagers in a ring around a small boy whose books are scattered on the floor.' });
 ep.panel(780, { cam: { on: ['harry'], fr: 'bust', dy: -0.3 }, bg: COR, blur: 2, actors: SCENE({ h: { expr: 'yell', pose: 'fists' } }), over: (e) => FX.frost(e.w, e.h, 0.2, 31) },
@@ -325,11 +325,11 @@ ep.panel(620, { cam: { on: ['neville'], fr: 'bust', zoom: 0.75, dy: 0.3 }, bg: C
 ep.panel(760, { cam: { on: ['harry'], fr: 'close', dy: 0.2 }, bg: COR, blur: 3, actors: SCENE({ h: { expr: 'cold' } }), over: (e) => FX.frost(e.w, e.h, 0.35, 33) },
   [inner('Harry', '*Of course.*', 180, 64, { anchor: 'tc',  w: 200, fixed: true }),
    cold('Harry', 'He had decided to apologise to Neville. That meant Neville was *his.* How *dare* they?', 420, 650, { w: 520, fixed: true })], { mood: 'cold' });
-ep.panel(900, { cam: { x: 1420, y: 560, w: 1000 }, bg: COR, actors: SCENE({ nev: false, h: { x: 1330, turn: 0.3, pose: 'stand', expr: 'cold', armB: { sh: 75, el: 5, hand: 'fist' } } }).concat([{ def: nevilleHuff, id: 'neville', x: 1560, y: 990, s: 1.05, turn: 0.6, expr: 'shock', pose: 'fallBack' }]), over: (e) => FX.speedLines(e.w, e.h, { n: 20 }) },
+ep.panel(900, { cam: { x: 1420, y: 560, w: 1000 }, bg: COR, actors: SCENE({ nev: false, h: { x: 1330, turn: 0.3, pose: 'stand', expr: 'cold', armB: { sh: 75, el: 5, hand: 'fist' } } }).concat([{ def: nevilleHuff, id: 'neville', x: 1560, y: 990, s: 1.05, turn: 0.6, expr: 'shock', pose: 'fallBack' }]), behind: (e) => FX.speedLines(e.w, e.h, { n: 28, col: '#fff6e0' }) },
   [cap('Harry grabbed Neville by the wrist and *yanked* him out, and in nearly the same motion pushed his own way into the gap.', 44, 30, { w: 620, fixed: true })], { mood: 'warm', alt: 'Harry hauls Neville out of the ring so hard that Neville stumbles.' });
 ep.bleed(1180, { cam: { on: ['harry'], fr: 'full', zoom: 0.62, dy: -0.8 }, bg: COR, actors: SCENE({ nev: false, h: { x: 1250, y: 990, turn: 0, expr: 'cold', pose: 'stand' } }) },
   [say('Harry', 'Hello.', 610, 600, { w: 180, fixed: true }),
-   say('Harry', 'I\'m the Boy-Who-Lived.', 400, 1030, { w: 360, fixed: true })],
+   say('Harry', 'I\'m the Boy-Who-Lived.', 400, 1030, { w: 360, fixed: true, tail: [405, 950] })],
   { alt: 'Harry, small, stands in the middle of the ring of much bigger Slytherins, looking up at them.' });
 ep.end();
 export default ep;

@@ -43,7 +43,7 @@ ep.multi(1180, [
   { x: M, y: 506, w: 752, h: 656, mood: 'sepia', art: { cam: ON(HP({ pose: 'fists', seat: undefined, y: 1160 }), 640, 0, 100), bg: OF({}), blur: 4, actors: [HP({ pose: 'fists', seat: undefined, y: 1160, expr: 'rant', turn: 0.15 })], over: (e) => FX.memoryEdge(e.w, e.h) } },
 ], [inner('McGonagall', '*Harry, you promised you wouldn\'t bite any teachers!*', 620, 170, { w: 250, fixed: true }),
    cap('And in her mind she could see, very clearly, his angry face and outraged reply:', 44, 524, { w: 560, fixed: true }),
-   shout('Harry', '*I said I wouldn\'t bite anyone who didn\'t bite me FIRST!*', 400, 1112, { anchor: 'bc', size: 33, w: 440, fixed: true })]);
+   shout('Harry', '*I said I wouldn\'t bite anyone who didn\'t bite me FIRST!*', 400, 1082, { anchor: 'bc', size: 33, w: 440, fixed: true })]);
 ep.panel(920, { cam: { x: 2130, y: 610, w: 820 }, bg: OF({ doorOpen: 0.7 }), actors: [SN(), { def: harryRaven, id: 'harry', x: 2330, y: 1000, s: 1.1, turn: -0.5, pose: 'walk', expr: 'cold' }], over: (e) => FX.frost(e.w, e.h, 0.3, 121) },
   [cap('The door swept open, and Harry Potter entered. Minerva almost gasped out loud. The boy looked cool, collected, and utterly in control of himself.', 44, 30, { w: 620, fixed: true }),
    cold('Harry', 'Good mor…', 390, 470, { anchor: 'bc', w: 220, fixed: true })], { mood: 'candle' });
@@ -101,7 +101,7 @@ ep.multi(1240, [
    cold('Harry', 'You will explain to me why you allowed this man to hurt the children placed in your care. And if your explanation is not sufficient, then I will begin my newspaper campaign with *you* as the target.', 400, 614, { anchor: 'tc', w: 500, fixed: true })],
   { alt: 'The full, entire force of the old wizard\'s gaze, turned on the boy.' });
 ep.panel(800, { cam: { x: 1020, y: 590, w: 1260 }, bg: OF({}), actors: ROOM({ h: false, m: { expr: 'horror', lean: -9 }, s: { expr: 'shock' } }).filter((a) => a !== STOOL) },
-  [cap('Minerva\'s body swayed with the force of that blow, with the sheer raw *lèse-majesté.* Even Severus looked shocked.', 44, 764, { anchor: 'bl', w: 620, fixed: true })], { mood: 'candle' });
+  [cap('Minerva\'s body swayed with the force of that blow, with the sheer raw *lèse-majesté.* Even Severus looked shocked.', 44, 764, { anchor: 'bl', w: 520, fixed: true })], { mood: 'candle' });
 // reverse over-the-shoulder: Harry foreground left, facing Dumbledore and Snape
 const OTS2 = (o = {}) => [THRONE, DB(o.d), DESK, CHAIR(1520), SN(o.s), HO({ x: 660, turn: 0.7, ...(o.h || {}) })];
 ep.multi(1320, [
@@ -111,7 +111,7 @@ ep.multi(1320, [
    cold('Harry', 'This conversation grows private. Send him away.', 250, 1040, { anchor: 'bc', w: 340, fixed: true })]);
 ep.panel(1200, { cam: ON(HST(), 440, 0, 125), bg: OF({}), blur: 2, actors: SOLO({ pose: 'fists', seat: undefined, expr: { base: 'angry', mouth: { type: 'scream', open: 0.7 } } }) },
   [say('Dumbledore', 'Harry, did I not tell you that Severus Snape has my fullest confidence?', 400, 40, { anchor: 'tc', w: 460, fixed: true, noTail: true }),
-   shout('Harry', 'This man\'s bullying makes you *vulnerable!* I am not the only one who could start a newspaper campaign against you! This is insane! Why are you doing this?', 400, 1100, { anchor: 'bc', w: 420, size: 34, pad: 56, fixed: true })], { mood: 'candle' });
+   shout('Harry', 'This man\'s bullying makes you *vulnerable!* I am not the only one who could start a newspaper campaign against you! This is insane! Why are you doing this?', 400, 1070, { anchor: 'bc', w: 420, size: 34, pad: 56, fixed: true })], { mood: 'candle' });
 ep.multi(1180, [
   { x: M, y: 18, w: 752, h: 460, mood: 'candle', art: { cam: ON(DB(), 400, 0, -10), bg: OF({}), blur: 2, actors: D1({ expr: 'sad' }) } },
   { x: M, y: 496, w: 752, h: 666, mood: 'cold', art: { cam: ON(H1(), 500, 0, -120), bg: OF({}), blur: 3, actors: SOLO({ expr: 'cold' }), over: (e) => FX.frost(e.w, e.h, 0.4, 132) } },
@@ -143,7 +143,7 @@ const SNU = (o = {}) => SN({ pose: 'stand', seat: undefined, ...o });
 ep.panel(980, { cam: ON(SNU(), 420, 0, 60), bg: OF({}), blur: 2, actors: [CHAIR(1520), SNU({ pose: 'fists', expr: { base: 'angry', mouth: { type: 'scream', open: 0.7 }, eyes: { open: 1.1 } } })] },
   [shout('Snape', '*What in Merlin\'s name are you on about, Potter?*', 400, 82, { anchor: 'tc', w: 440, size: 35, fixed: true }),
    cold('Harry', 'Oh, so we *are* a Slytherin, then. I was starting to wonder.', 400, 930, { anchor: 'bc', w: 400, fixed: true, noTail: true })], { mood: 'candle', alt: 'Snape, in tones of sheer astonishment and outrage.' });
-ep.panel(640, { cam: { x: 1000, y: 700, w: 1500 }, bg: OF({}), actors: ROOM({ d: { expr: 'stern' }, m: { expr: 'sad' }, s: { expr: 'cold' }, h: false }).filter((a) => a !== STOOL).concat([HO({ expr: 'cold', y: 1700 })]) },
+ep.panel(640, { cam: { x: 1000, y: 700, w: 1500 }, bg: OF({}), actors: ROOM({ d: { expr: 'stern' }, m: { expr: 'sad' }, s: { expr: 'cold' }, h: false }).filter((a) => a !== STOOL).concat([HO({ expr: 'cold', x: 1200, y: 1700 })]) },
   [cap('And then there was silence.', 44, 30, { w: 360, fixed: true })], { mood: 'candle', alt: 'The four of them, very still.' });
 ep.panel(660, { cam: ON(MG(), 380, 20, -10), bg: OF({}), blur: 3, actors: [CHAIR(520), MG({ expr: { base: 'sad', eyes: { lookY: 0.7, open: 0.5 } }, headTilt: 10 })] },
   [whisper('McGonagall', 'I\'m sorry, Albus.', 560, 90, { anchor: 'tc', w: 260, size: 30, fixed: true })], { mood: 'candle' });
@@ -154,8 +154,8 @@ ep.multi(620, [
   { x: 408, y: 18, w: 368, h: 584, mood: 'candle', art: { cam: ON(SN(), 270, 0, -60), bg: OF({}), blur: 3, actors: [CHAIR(1520), SN({ expr: { base: 'cross', eyes: { lookX: -0.8, open: 0.55 } }, turn: -0.6 })] } },
 ], [say('McGonagall', 'And I told him that you, and I, and Severus were the only ones who knew.', 208, 52, { anchor: 'tc', w: 270, fixed: true })],
   { alt: 'Severus gives her a look of utter contempt. Minerva raises her chin and bears it.' });
-ep.panel(1000, { cam: { x: 930, y: 640, w: 1000 }, bg: OF({}), actors: OTS({ d: { expr: 'calm' }, m: { expr: 'sad' }, h: { expr: 'calm' } }) },
-  [say('Harry', 'Which she did to stop me going around asking questions. Threat\'s still on the table, and I do expect to be briefed *fully* at some point.', 500, 60, { anchor: 'tc', w: 420, fixed: true })], { mood: 'candle' });
+ep.panel(1160, { cam: { x: 930, y: 534, w: 1000 }, bg: OF({}), actors: OTS({ d: { expr: 'calm' }, m: { expr: 'sad' }, h: { expr: 'calm' } }) },
+  [say('Harry', 'Which she did to stop me going around asking questions. Threat\'s still on the table, and I do expect to be briefed *fully* at some point.', 528, 40, { anchor: 'tc', w: 370, shape: 'box', fixed: true, tail: [740, 900] })], { mood: 'candle' });
 ep.multi(1340, [
   { x: M, y: 18, w: 752, h: 500, mood: 'candle', art: { cam: ON(DB(), 400, 0, -45), bg: OF({}), blur: 2, actors: D1({ expr: { base: 'cold', cold: false } }), over: (e) => K.glow(e.w / 2, e.h * 0.55, 380, '#9bc4e8', 0.25) } },
   { x: M, y: 536, w: 752, h: 786, mood: 'cold', art: { cam: ON(HST(), 420, 0, -130), bg: OF({}), blur: 2, actors: SOLO({ pose: 'stand', seat: undefined, expr: 'cold' }), over: (e) => FX.frost(e.w, e.h, 0.4, 137) } },
@@ -172,11 +172,11 @@ ep.panel(780, { cam: ON(SN({ turn: 0.5 }), 300, 0, -35), bg: OF({}), blur: 3, ac
 ep.panel(980, { cam: ON(DB(), 440, 0, -130), bg: OF({}), blur: 2, actors: D1({ expr: 'calm' }) },
   [say('Dumbledore', 'I suppose that from your perspective it is a reasonable question. So, Mr Potter: if Professor Snape is to leave you alone henceforth, will that be the last time this issue arises?', 400, 58, { anchor: 'tc', w: 520, fixed: true })], { mood: 'candle' });
 const HURT = { base: 'angry', eyes: { teary: true, open: 1 }, mouth: { type: 'scream', open: 0.7 } };
-ep.panel(760, { cam: ON(HST(), 440, 0, -70), bg: OF({}), blur: 2, actors: SOLO({ pose: 'fists', seat: undefined, expr: { base: 'angry', mouth: { type: 'scream', open: 0.6 } } }) },
-  [shout('Harry', 'Leave *me* alone? I am not his only victim, and certainly not the most vulnerable!', 400, 80, { anchor: 'tc', w: 420, size: 34, pad: 50, fixed: true })], { mood: 'candle' });
+ep.panel(760, { cam: ON(HST(), 440, 0, -90), bg: OF({}), blur: 2, actors: SOLO({ pose: 'fists', seat: undefined, expr: { base: 'angry', mouth: { type: 'scream', open: 0.6 } } }) },
+  [shout('Harry', 'Leave *me* alone? I am not his only victim, and certainly not the most vulnerable!', 400, 104, { anchor: 'tc', w: 420, size: 34, pad: 50, fixed: true })], { mood: 'candle' });
 ep.panel(1240, { cam: ON(HST(), 400, 0, 20), bg: OF({}), blur: 3, actors: SOLO({ pose: 'fists', seat: undefined, expr: HURT }) },
   [shout('Harry', '*Have you forgotten how defenceless children are? How much they hurt?*', 400, 80, { anchor: 'tc', w: 420, size: 36, pad: 50, fixed: true }),
-   shout('Harry', 'Henceforth Severus will treat *every* student with professional courtesy, or you will find another Potions Master, or another hero!', 400, 1160, { anchor: 'bc', w: 420, size: 32, pad: 50, fixed: true })], { mood: 'candle' });
+   shout('Harry', 'Henceforth Severus will treat *every* student with professional courtesy, or you will find another Potions Master, or another hero!', 400, 1130, { anchor: 'bc', w: 420, size: 32, pad: 50, fixed: true })], { mood: 'candle' });
 const DLAUGH = (o = {}) => DB({ expr: 'laugh', headTilt: -8, ...o });
 ep.multi(1140, [
   { x: 0, y: 0, w: 800, h: 720, border: 'bleed', art: { cam: ON(DLAUGH(), 480, 40, 20), bg: OF({}), actors: [THRONE, DLAUGH(), DESK], over: (e) => K.glow(e.w / 2, e.h * 0.5, 380, '#ffcf75', 0.3) + FX.emanata(e.w / 2, e.h * 0.5, 230, { n: 10 }) } },
@@ -184,10 +184,10 @@ ep.multi(1140, [
 ], [cap('Dumbledore started laughing. Full-throated, warm, humorous laughter, as if Harry had just performed a comic dance.', 44, 40, { w: 620, fixed: true }),
    cold('Harry', 'You mistake me, Headmaster, if you think that this is a joke. This is not a request. This is your *punishment.*', 540, 776, { anchor: 'tc', w: 330, fixed: true })],
   { alt: 'Dumbledore, laughing.' });
-ep.panel(1260, { cam: ON(DB(), 560, 0, -190), bg: OF({}), blur: 2, actors: D1({ expr: 'laugh', headTilt: -6, armF: { sh: 20, el: 70, hand: 'fist' } }), over: (e) => FX.emanata(e.w * 0.46, e.h * 0.8, 90, { n: 7 }) },
+ep.panel(1360, { cam: ON(DB(), 560, 0, -153), bg: OF({}), blur: 2, actors: D1({ expr: 'laugh', headTilt: -6, armF: { sh: 30, el: 55, hand: 'fist' } }), over: (e) => { const [x, y] = e.toPanel(e.wa.dumbledore.handF); return FX.emanata(x, y, 70, { n: 7 }); } },
   [shout('Dumbledore', 'Oh, indeed, in very deed, this is my punishment if ever there was one!', 330, 96, { anchor: 'tc', w: 330, size: 32, pad: 50, fixed: true, noTail: true }),
    shout('Dumbledore', 'Of *course* you\'re in here blackmailing me to save your fellow students, not to save yourself! I can\'t imagine why I would have thought otherwise!', 420, 380, { anchor: 'tc', w: 420, size: 30, pad: 56, fixed: true }),
-   cap('He pounded his fist on the desk three times.', 44, 1210, { anchor: 'bl', w: 480, fixed: true })], { mood: 'candle' });
+   cap('He pounded his fist on the desk three times.', 744, 1310, { anchor: 'br', w: 480, fixed: true })], { mood: 'candle' });
 ep.multi(1000, [
   { x: M, y: 18, w: 752, h: 460, mood: 'candle', art: { cam: ON(H1({ turn: -0.7 }), 400, 90, -30), bg: OF({}), blur: 3, actors: SOLO({ expr: 'confused', turn: -0.7 }) } },
   { x: M, y: 496, w: 752, h: 486, mood: 'candle', art: { cam: ON(DB(), 440, -110, -60), bg: OF({}), blur: 3, actors: D1({ expr: 'happy' }) } },
@@ -203,10 +203,10 @@ ep.multi(1020, [
 ep.multi(1480, [
   { x: M, y: 18, w: 752, h: 320, mood: 'candle', art: { cam: ON(MG(), 330, -90, -10), bg: OF({}), blur: 3, actors: [CHAIR(520), MG({ expr: 'worried' })] } },
   { x: M, y: 356, w: 752, h: 620, mood: 'candle', art: { cam: ON(DB(), 380, 0, -70), bg: OF({}), blur: 3, actors: D1({ expr: { base: 'bigGrin' } }), over: (e) => K.glow(e.w / 2, e.h * 0.6, 360, '#ffcf75', 0.3) } },
-  { x: M, y: 994, w: 752, h: 466, mood: 'candle', art: { cam: { x: 1000, y: 820, w: 1450 }, bg: OF({}), actors: ROOM({ d: { expr: 'bigGrin' }, m: { expr: 'shock' }, s: { expr: 'shock' }, h: false }).filter((a) => a !== STOOL).concat([HO({ expr: 'shock', y: 1700 })]) } },
+  { x: M, y: 994, w: 752, h: 466, mood: 'candle', art: { cam: { x: 1000, y: 770, w: 1450 }, bg: OF({}), actors: ROOM({ d: { expr: 'bigGrin' }, m: { expr: 'shock' }, s: { expr: 'shock' }, h: false }).filter((a) => a !== STOOL).concat([HO({ expr: 'shock', y: 1700 })]) } },
 ], [say('McGonagall', 'Now what?', 180, 70, { anchor: 'tc', w: 200, fixed: true }),
    say('Dumbledore', 'Now what? Why, now the hero wins, of course.', 400, 380, { anchor: 'tc', w: 400, fixed: true }),
-   shout('All three', '*What?*', 620, 1016, { anchor: 'tc', w: 200, fixed: true, noTail: true })]);
+   shout('All three', '*What?*', 620, 1026, { anchor: 'tc', w: 200, fixed: true, noTail: true })]);
 ep.panel(1340, { cam: ON(DB(), 520, 0, -30), bg: OF({}), blur: 2, actors: D1({ expr: 'happy', pose: 'present' }) },
   [say('Dumbledore', 'He certainly seems to have backed us into a corner. But Hogwarts *does* need an evil Potions Master, or it just wouldn\'t be a proper magical school. So how about if Professor Snape is only awful to students in their *fifth year and higher?*', 400, 64, { anchor: 'tc', w: 520, fixed: true }),
    say('Dumbledore', 'To the others he will be scary, but not abusive. He will read minds only when a student\'s safety requires it. Hogwarts will have its evil Potions Master, and the most vulnerable victims, as you put it, will be safe.', 400, 1270, { anchor: 'bc', w: 520, fixed: true })], { mood: 'candle' });
@@ -217,8 +217,8 @@ ep.multi(960, [
   { x: 408, y: 456, w: 368, h: 486, mood: 'candle', art: { cam: ON(DLAUGH(), 380, 0, -35), bg: OF({}), blur: 3, actors: [THRONE, DLAUGH({ headTilt: -10 }), DESK], over: (e) => FX.emanata(e.w / 2, e.h * 0.62, 150, { n: 8 }) } },
 ], [say('Harry', 'I suppose that is acceptable.', 208, 40, { anchor: 'tc', w: 230, fixed: true }),
    say('Snape', 'You can\'t be serious.', 592, 40, { anchor: 'tc', w: 230, fixed: true }),
-   shout('Snape', 'This is *insanity!*', 208, 490, { anchor: 'tc', w: 200, size: 34, fixed: true }),
-   shout('Dumbledore', 'Bwah ha ha!', 592, 490, { anchor: 'tc', w: 200, size: 34, fixed: true })]);
+   shout('Snape', 'This is *insanity!*', 208, 510, { anchor: 'tc', w: 200, size: 34, fixed: true, tail: 'snape@2' }),
+   shout('Dumbledore', 'Bwah ha ha!', 592, 510, { anchor: 'tc', w: 200, size: 34, fixed: true })]);
 ep.multi(1000, [
   { x: M, y: 18, w: 752, h: 340, mood: 'candle', art: { cam: ON(H1(), 380, 110, -10), bg: OF({}), blur: 3, actors: SOLO({ expr: 'neutral' }) } },
   { x: M, y: 376, w: 752, h: 606, mood: 'candle', art: { cam: ON(MG(), 460, 120, -40), bg: OF({}), blur: 2, actors: [CHAIR(520), MG({ expr: 'stern', pose: 'lecture' })] } },
@@ -238,13 +238,13 @@ ep.multi(1300, [
 ], [say('McGonagall', 'And Mr Potter must publicly apologise for his actions today. The discipline of the school has been gravely injured, and it must be restored.', 530, 56, { anchor: 'tc', w: 340, fixed: true }),
    say('Harry', 'The first and last resort is the truth. The truth is that I shouldn\'t have got angry, and I set a bad example. The truth is *also* that Severus Snape behaved in a fashion unbecoming a Hogwarts professor. The two of us could both get up and speak the truth. I could live with that.', 400, 552, { anchor: 'tc', w: 520, fixed: true })]);
 ep.multi(1060, [
-  { x: M, y: 18, w: 368, h: 500, mood: 'candle', art: { cam: ON(SNU(), 290, 0, -60), bg: OF({}), blur: 3, actors: [CHAIR(1520), SNU({ pose: 'fists', expr: { base: 'angry', mouth: { type: 'scream', open: 0.6 } } })] } },
+  { x: M, y: 18, w: 368, h: 500, mood: 'candle', art: { cam: ON(SNU(), 290, 0, -72), bg: OF({}), blur: 3, actors: [CHAIR(1520), SNU({ pose: 'fists', expr: { base: 'angry', mouth: { type: 'scream', open: 0.6 } } })] } },
   { x: 408, y: 18, w: 368, h: 500, mood: 'candle', art: { cam: ON(DB(), 340, 0, -110), bg: OF({}), blur: 3, actors: D1({ expr: 'smile' }) } },
-  { x: M, y: 536, w: 368, h: 506, mood: 'candle', art: { cam: ON(H1(), 270, 0, -80), bg: OF({}), blur: 3, actors: SOLO({ expr: 'shock' }) } },
+  { x: M, y: 536, w: 368, h: 506, mood: 'candle', art: { cam: ON(H1(), 270, 0, -92), bg: OF({}), blur: 3, actors: SOLO({ expr: 'shock' }) } },
   { x: 408, y: 536, w: 368, h: 506, mood: 'candle', art: { cam: ON(DB(), 340, 0, -110), bg: OF({}), blur: 3, actors: D1({ expr: { base: 'smile', eyes: { lookX: 0.4 } } }) } },
-], [shout('Snape', 'In your *dreams*, Potter!', 208, 66, { anchor: 'tc', w: 200, size: 33, fixed: true }),
+], [shout('Snape', 'In your *dreams*, Potter!', 208, 78, { anchor: 'tc', w: 200, size: 33, fixed: true }),
    say('Dumbledore', 'Minerva is thinking that you\'re righter than you have any right to be.', 592, 54, { anchor: 'tc', w: 230, fixed: true }),
-   shout('Harry', 'Are *you* reading *her* mind?', 208, 584, { anchor: 'tc', w: 200, size: 33, fixed: true }),
+   shout('Harry', 'Are *you* reading *her* mind?', 208, 596, { anchor: 'tc', w: 200, size: 33, fixed: true }),
    say('Dumbledore', 'Common sense is often mistaken for Legilimency.', 592, 566, { anchor: 'tc', w: 230, fixed: true })]);
 ep.panel(1200, { cam: { x: 870, y: 340, w: 800 }, bg: OF({ bird: 'none' }), blur: 2, actors: [THRONE, DB({ expr: 'calm', pose: 'present' }), DESK, () => g({ transform: 'translate(700,340) scale(0.8)' }, P2.phoenix(1, { fly: true }))] },
   [say('Dumbledore', 'I shall talk this over with Severus. No apology will be required from you unless he apologises as well. Although, Harry, Minerva wishes to speak with you about an additional matter. That is not the result of any pressure on my part. Fawkes, accompany her, please.', 400, 58, { anchor: 'tc', w: 530, fixed: true })], { mood: 'candle', alt: 'Fawkes spreads his wings on the perch.' });
@@ -293,7 +293,7 @@ ep.panel(1240, { cam: { x: 900, y: 380, w: 700 }, bg: GAR, actors: [MGC({ x: 780
 const MGK = (o = {}) => MGS({ x: 950, y: 1000, turn: 0.55, pose: 'kneel', headTilt: 10, expr: 'cry', armF: { sh: 38, el: 45, hand: 'open' }, armB: { sh: 50, el: 40, hand: 'open' }, ...o });
 const HUGARM = (m) => () => '<defs><clipPath id="hugclip21"><rect x="1022" y="772" width="140" height="62"/></clipPath></defs>' + g({ 'clip-path': 'url(#hugclip21)' }, place(m.def, m).svg);
 ep.panel(1000, { cam: { x: 1010, y: 720, w: 460 }, bg: GAR, blur: 2, actors: [MGK(), HGC({ x: 1070, turn: -0.1, expr: { base: 'shock', mouth: { type: 'o', open: 0.3 } } }), HUGARM(MGK())] },
-  [cap('Minerva leaned down and hugged him. She hadn\'t meant to. She didn\'t seem to have much choice in the matter.', 44, 30, { w: 620, fixed: true })], { mood: 'candle', alt: 'McGonagall kneels and hugs Harry.' });
+  [cap('Minerva leaned down and hugged him. She hadn\'t meant to. She didn\'t seem to have much choice in the matter.', 44, 30, { w: 490, fixed: true })], { mood: 'candle', alt: 'McGonagall kneels and hugs Harry.' });
 ep.panel(1060, { cam: { x: 990, y: 700, w: 560 }, bg: GAR, blur: 2, actors: [MGS({ x: 900, y: 1000, turn: 0.5, pose: 'kneel', expr: 'teary' }), HGC({ x: 1080, turn: -0.3, expr: { base: 'sad', eyes: { lookY: 0.3 } } })] },
   [say('McGonagall', 'What happened today, Harry?', 220, 40, { anchor: 'tc', w: 280, fixed: true }),
    say('Harry', 'I don\'t know the answers to any of the important questions either. Aside from that, I\'d really rather not think about it for a while.', 496, 1000, { anchor: 'bc', w: 380, fixed: true })], { mood: 'candle' });
@@ -332,7 +332,7 @@ ep.multi(1160, [
   { x: M, y: 656, w: 752, h: 486, mood: 'warm', art: { cam: ON(MC(), 440, -110, -60), bg: MO, blur: 2, actors: MCS({ expr: 'stern' }) } },
 ], [shout('Harry', 'But I *need* it! What if there are Slytherins threatening me and I have to escape? It keeps me *safe…*', 400, 86, { anchor: 'tc', w: 420, size: 33, fixed: true }),
    say('McGonagall', 'Every other student in this castle runs the same risk, and I assure you that they survive. You will hand over your Time-Turner, and do so now.', 272, 700, { anchor: 'tc', w: 300, fixed: true })]);
-ep.panel(1000, { cam: { x: 1225, y: 600, w: 760 }, bg: MO, actors: [MC({ expr: 'focus', pose: 'wand', armB: { hand: 'hold', prop: g({ transform: 'translate(0,20)' }, rect(-3, -50, 6, 90, { fill: '#6b4429' })) } }), MDESK, HCH, HM({ expr: 'cry', pose: 'hold' }), () => g({ transform: 'translate(1160,600) scale(0.75)' }, P2.timeTurner(1, { shell: true, lock: true, chain: false }))], over: (e) => { const [x, y] = e.toPanel([1160, 575]); return FX.sparkles([[x, y]], { r: 40 }); } },
+ep.panel(1000, { cam: { x: 1225, y: 600, w: 760 }, bg: MO, actors: [() => g({ transform: 'translate(1220,578) scale(0.75)' }, P2.timeTurner(1, { shell: true, lock: true, chain: false })), MC({ expr: 'focus', pose: 'wand', armB: { hand: 'hold', prop: g({ transform: 'translate(0,20)' }, rect(-3, -50, 6, 90, { fill: '#6b4429' })) } }), MDESK, HCH, HM({ expr: 'cry', pose: 'hold' })], over: (e) => { const [x, y] = e.toPanel([1220, 553]); return FX.sparkles([[x, y]], { r: 40 }); } },
   [cap('Harry\'s face twisted in agony, but he drew out the Time-Turner and gave it to her. She snapped the cover into place around the hourglass, and laid her wand on it to complete the enchantment.', 44, 30, { w: 620, fixed: true })], { mood: 'warm', alt: 'The hourglass disappears inside a gold shell engraved IX–XII.' });
 const HMU = (o = {}) => HM({ pose: 'stand', seat: undefined, y: 1060, ...o });
 ep.panel(1060, { cam: ON(HMU(), 440, 0, -80), bg: MO, blur: 2, actors: [HCH, HMU({ pose: 'fists', expr: { base: 'angry', eyes: { teary: true }, mouth: { type: 'scream', open: 0.9 } } })] },
@@ -340,10 +340,10 @@ ep.panel(1060, { cam: ON(HMU(), 440, 0, -80), bg: MO, blur: 2, actors: [HCH, HMU
 const MCU = (o = {}) => MC({ pose: 'stand', seat: undefined, y: 960, ...o });
 ep.multi(1700, [
   { x: M, y: 18, w: 752, h: 820, mood: 'warm', art: { cam: ON(MCU(), 520, 0, 68), bg: MO, blur: 2, actors: [MCU({ expr: 'angry', pose: 'point', turn: 0.4 })] } },
-  { x: M, y: 856, w: 752, h: 826, mood: 'warm', art: { cam: ON(MCU(), 380, 0, -100), bg: MO, blur: 3, actors: [MCU({ expr: { base: 'angry', mouth: { type: 'shout', open: 0.7 } }, pose: 'point', turn: 0.4 })] } },
-], [cap('Maybe it was the wrong thing to do. And then again, maybe it was the right thing. There was an obstinate child in front of her, and that *didn\'t* mean the universe was broken.', 44, 30, { w: 620, fixed: true }),
-   shout('McGonagall', '*Fair,* Mr Potter? I have had to file *two reports* with the Ministry on public use of a Time-Turner in *two successive days!*', 400, 772, { anchor: 'bc', w: 390, size: 31, pad: 54, fixed: true }),
-   shout('McGonagall', 'Be *extremely* grateful you were allowed to keep it at all! The Headmaster made a Floo call to plead with them personally, and if you were not the Boy-Who-Lived, even that would not have sufficed!', 384, 950, { anchor: 'tc', w: 430, size: 31, pad: 56, fixed: true })]);
+  { x: M, y: 856, w: 752, h: 826, mood: 'warm', art: { cam: ON(MCU(), 380, 0, -115), bg: MO, blur: 3, actors: [MCU({ expr: { base: 'angry', mouth: { type: 'shout', open: 0.7 } }, pose: 'point', turn: 0.4 })] } },
+], [cap('Maybe it was the wrong thing to do. And then again, maybe it was the right thing. There was an obstinate child in front of her, and that *didn\'t* mean the universe was broken.', 44, 30, { w: 570, fixed: true }),
+   shout('McGonagall', '*Fair,* Mr Potter? I have had to file *two reports* with the Ministry on public use of a Time-Turner in *two successive days!*', 400, 750, { anchor: 'bc', w: 390, size: 31, pad: 54, fixed: true }),
+   shout('McGonagall', 'Be *extremely* grateful you were allowed to keep it at all! The Headmaster made a Floo call to plead with them personally, and if you were not the Boy-Who-Lived, even that would not have sufficed!', 384, 972, { anchor: 'tc', w: 430, size: 31, pad: 56, fixed: true })]);
 ep.panel(560, { cam: ON(HMU(), 220, 0, 10), bg: MO, blur: 3, actors: [HMU({ expr: 'shock' })] },
   [cap('Harry gaped at her. She knew that he was seeing the angry face of Professor McGonagall.', 44, 30, { w: 620, fixed: true })], { mood: 'warm' });
 ep.panel(520, { cam: ON(HMU(), 240, 0, 10), bg: MO, blur: 3, actors: [HMU({ expr: { base: 'hurt', eyes: { teary: true } } })] },
@@ -373,7 +373,7 @@ const RAVT = (o = {}) => [
 ];
 ep.panel(900, { cam: { x: 820, y: 720, w: 1000 }, bg: LT, actors: RAVT() },
   [cap('No-one was speaking to Harry. Some of the Ravenclaws shot him angry looks. Others sympathetic ones. A few of the youngest, admiring. Even Hermione hadn\'t tried to come over.', 44, 30, { w: 620, fixed: true }),
-   cap('It was probably the utterly expressionless look on his face.', 44, 860, { anchor: 'bl', w: 540, fixed: true })], { mood: 'day' });
+   cap('It was probably the utterly expressionless look on his face.', 44, 860, { anchor: 'bl', w: 470, fixed: true })], { mood: 'day' });
 ep.panel(1100, { cam: { on: ['harry'], fr: 'close', dy: 0.15 }, bg: LT, blur: 3, actors: RAVT({ h: { expr: { base: 'blank', mouth: { type: 'wobble' } } } }) },
   [cap('Harry was trying not to smile. Because if he smiled, he would start laughing. And if he started laughing, he wouldn\'t stop until the nice people in white jackets came to haul him away.', 44, 30, { w: 620, fixed: true }),
    cap('It was too much. His dark side had done things that seemed insane, won an impossible victory, and protected his friends. And the Time-Turner was gone, like a hole in his existence.', 44, 860, { w: 620, fixed: true })], { mood: 'day' });
@@ -390,7 +390,7 @@ ep.bleed(1300, { cam: { on: ['harry'], fr: 'waist', dy: -0.4 }, bg: DAIS, actors
 const RAV4 = (ex) => RAVT({ he: { x: 720, expr: ex.he }, who: { padma: { x: 500, expr: ex.padma }, terry: { x: 940, expr: ex.terry }, anthony: { x: 1160, expr: ex.anthony } } }).filter((a) => typeof a === 'function' || a.id !== 'harry');
 ep.panel(740, { cam: { x: 830, y: 740, w: 820 }, bg: LT, actors: RAV4({ he: 'sad', padma: 'sad', terry: 'sad', anthony: 'sad' }) },
   [cap('Many of the students now had solemn, unhappy looks, such as one might see at a ceremony marking the loss of a fallen champion.', 44, 30, { w: 620, fixed: true })], { mood: 'day' });
-ep.panel(900, { cam: { x: 650, y: 680, w: 400 }, bg: DAIS, actors: [HS({ expr: 'blank', armB: { sh: 25, el: 95, hand: 'fist' } })], over: (e) => { const [x, y] = e.toPanel([700, 700]); return K.glow(x, y, 60, '#fff3c9', 0.5) + FX.emanata(x, y, 46, { n: 6 }); } },
+ep.panel(900, { cam: { x: 650, y: 680, w: 400 }, bg: DAIS, actors: [HS({ expr: 'blank', armB: { sh: 25, el: 95, hand: 'fist' } })], over: (e) => { const [x, y] = e.toPanel(e.wa.harry.handB); return K.glow(x, y, 60, '#fff3c9', 0.5) + FX.emanata(x, y, 46, { n: 6 }); } },
   [cap('Until Harry raised his hand. Not high. He simply raised it to chest level, and softly snapped his fingers. A gesture seen more than heard.', 44, 30, { w: 620, fixed: true }),
    sfx('snap', 600, 410, { size: 56, font: "'Caveat', cursive" })], { mood: 'day', alt: 'A tiny snap of the fingers, at chest height.' });
 ep.multi(1020, [
@@ -422,11 +422,11 @@ ep.multi(1600, [
   { x: M, y: 1098, w: 368, h: 484, mood: 'day', art: { cam: ON(STU, 300, 0, -60), bg: () => HG.hallTable('h', { day: true }), blur: 2, actors: [STU, () => HG.tableFront()] } },
   { x: 408, y: 1098, w: 368, h: 484, mood: 'day', art: { cam: ON(SPR, 300, 0, -60), bg: DAIS, blur: 2, actors: [SPR, () => HG.staffTable()] } },
 ], [cap('There was an explosion of conversation. Two words were clearly identifiable. The first was "What…", beginning many different sentences. The second was "*Scourgify!*", as students cleaned dropped food and spat-out drinks from themselves, the tablecloth, and each other.', 44, 40, { w: 640, fixed: true }),
-   cap('Some students were weeping openly. So was Professor Sprout.', 400, 1116, { anchor: 'tc', w: 600, fixed: true })]);
+   cap('Some students were weeping openly. So was Professor Sprout.', 400, 1116, { anchor: 'tc', w: 390, fixed: true })]);
 const GT = () => HG.hallTable('g', { day: true });
-ep.panel(1100, { cam: { x: 800, y: 800, w: 640 }, bg: GT, actors: [{ def: fred, id: 'fred', x: 620, y: 1050, turn: 0.4, lean: 8, expr: 'awe' }, { def: george, id: 'george', x: 980, y: 1050, turn: -0.4, lean: 8, expr: 'awe' }, () => HG.tableFront(), () => g({ transform: 'translate(800,960) scale(1.15)' }, P2.cake(1, 51))] },
+ep.panel(980, { cam: { x: 800, y: 750, w: 640 }, bg: GT, actors: [{ def: george, id: 'george', x: 620, y: 1050, turn: 0.4, lean: 8, expr: 'awe' }, { def: fred, id: 'fred', x: 980, y: 1050, turn: -0.4, lean: 8, expr: 'awe' }, () => HG.tableFront(), () => g({ transform: 'translate(800,960) scale(1.15)' }, P2.cake(1, 51))] },
   [cap('At the Gryffindor table, where a cake waited with fifty-one unlit candles:', 44, 30, { w: 620, fixed: true }),
-   whisper('Fred', 'I think we may be out of our league here, George.', 340, 1062, { anchor: 'bc', w: 400, fixed: true })], { mood: 'day', alt: 'Fred and George, awed, over a cake crowded with fifty-one unlit candles.' });
+   whisper('Fred', 'I think we may be out of our league here, George.', 530, 160, { anchor: 'tc', w: 340, fixed: true })], { mood: 'day', alt: 'Fred and George, awed, over a cake crowded with fifty-one unlit candles.' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'close', dy: 0.1 }, bg: LT, blur: 3, actors: RAVT({ h: { expr: { base: 'blank', eyes: { lookX: 0.3 } } } }) },
   [capC('And from that day onward, no matter what Hermione tried to tell anyone, it was an accepted legend of Hogwarts that Harry Potter could make absolutely anything happen by snapping his fingers.', 400, 64, { anchor: 'tc', w: 600, fixed: true })], { mood: 'day' });
 ep.end();

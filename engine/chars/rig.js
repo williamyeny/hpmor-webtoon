@@ -21,10 +21,10 @@ export const POSES = {
   holdUp:     { armB: { sh: 168, el: 4, hand: 'hold' }, armF: { sh: -8, el: 20, hand: 'fist' }, legF: { hip: -6 }, legB: { hip: 6 }, lean: -3 },
   present:    { armB: { sh: 62, el: 30, hand: 'palm' }, armF: { sh: 10, el: 40, hand: 'open' }, legF: { hip: -3 }, legB: { hip: 5 } },
   shrug:      { armF: { sh: -40, el: 120, hand: 'palm' }, armB: { sh: 40, el: -120, hand: 'palm' }, legF: { hip: -4 }, legB: { hip: 4 } },
-  think:      { armF: { sh: 25, el: 135, hand: 'fist', hr: -20 }, armB: { sh: 30, el: 80, hand: 'fist' }, legF: { hip: -3 }, legB: { hip: 5 }, headTilt: 5 },
-  chin:       { armF: { sh: 20, el: 145, hand: 'point', hr: 170 }, armB: { sh: 35, el: 90, hand: 'fist' }, legF: { hip: -3 }, legB: { hip: 5 }, headTilt: -4 },
-  crossArms:  { armF: { sh: 18, el: 95, hand: 'fist' }, armB: { sh: 24, el: 90, hand: 'fist', front: false }, legF: { hip: -4 }, legB: { hip: 5 } },
-  facepalm:   { armF: { sh: 30, el: 150, hand: 'palm', hr: 160 }, armB: { sh: 10, el: -5 }, legF: { hip: -4 }, legB: { hip: 5 }, headTilt: 12, lean: 5 },
+  think:      { armF: { sh: 25, el: 135, hand: 'fist', hr: -20 }, armB: { sh: -8, el: -100, hand: 'fist', front: true }, legF: { hip: -3 }, legB: { hip: 5 }, headTilt: 5 },
+  chin:       { armF: { sh: 20, el: 145, hand: 'point', hr: 170 }, armB: { sh: -8, el: -100, hand: 'fist', front: true }, legF: { hip: -3 }, legB: { hip: 5 }, headTilt: -4 },
+  crossArms:  { armF: { sh: 18, el: 95, hand: 'fist' }, armB: { sh: -14, el: -100, hand: 'fist', front: true }, legF: { hip: -4 }, legB: { hip: 5 } },
+  facepalm:   { armF: { sh: 45, el: 140, hand: 'palm', hr: 0 }, armB: { sh: 10, el: -5 }, legF: { hip: -4 }, legB: { hip: 5 }, headTilt: 12, lean: 5 },
   hold:       { armF: { sh: 22, el: 70, hand: 'hold' }, armB: { sh: 30, el: 60, hand: 'hold' }, legF: { hip: -3 }, legB: { hip: 4 } },
   holdOne:    { armF: { sh: 30, el: 70, hand: 'hold' }, armB: { sh: 8, el: -6 }, legF: { hip: -3 }, legB: { hip: 4 } },
   reach:      { armF: { sh: 70, el: 10, hand: 'open' }, armB: { sh: 60, el: 20, hand: 'open' }, legF: { hip: -12, knee: 5 }, legB: { hip: 14 }, lean: 10 },
@@ -131,6 +131,7 @@ export function limbD(p0, p1, p2, w0, w1, w2, cap = true) {
 
 // ---------------------------------------------------------------- main
 export function drawCharacter(def, opts = {}) {
+  if (globalThis.__poseLog) globalThis.__poseLog.push({ pose: typeof opts.pose === 'string' ? opts.pose : 'custom', prop: !!(opts.armF?.prop || opts.armB?.prop), wide: !!def.outfit?.wideSleeves }); // work/tilesfor.mjs
   const B = def.body;
   const lw = opts.lw ?? 3.2;
   let pose = typeof opts.pose === 'string' ? POSES[opts.pose] : opts.pose;
@@ -295,13 +296,14 @@ export function drawCharacter(def, opts = {}) {
   if (O.over) layers.torso.push(O.over({ T, sw, ww, hw, tw, bt, B, lw, S, cx, R, hip, nm, nl, nr }));
 
   // ---- arms
+  const handAt = {}; // where each hand is actually drawn (past the cuff in wide sleeves), for the handF/handB anchors
   function arm(p, a, far) {
     const out = [];
     const sleeve = O.sleeve || topCol;
     const col = far ? shade(sleeve, -0.15) : sleeve;
     // dark sleeves (Hogwarts robes) vanish against the dark torso: give them a faint lighter rim just outside the ink line
     const hexL = (h) => { const m = /^#?([0-9a-f]{6})$/i.exec(h || ''); if (!m) return 1; const n = parseInt(m[1], 16); return (0.3 * (n >> 16) + 0.59 * ((n >> 8) & 255) + 0.11 * (n & 255)) / 255; };
-    const RS = hexL(col) < 0.2 ? { fill: 'none', stroke: shade(col, 0.55), 'stroke-width': lw * 2.9, 'stroke-linejoin': 'round', opacity: 0.6 } : null;
+    const RS = hexL(col) < 0.2 && (!far || a.front === true) ? { fill: 'none', stroke: shade(col, 0.55), 'stroke-width': lw * 2.6, 'stroke-linejoin': 'round', opacity: 0.42 } : null;
     const wide = O.wideSleeves;
     const w0 = B.armW * 1.05, w1 = B.armW * 0.95, w2 = wide ? B.armW * (O.cuffW ?? 2.1) : B.armW * 0.82;
     const side = far ? 1 : -1;
@@ -310,17 +312,20 @@ export function drawCharacter(def, opts = {}) {
     const handType = a.hand || 'open';
     const handR = B.handR;
     // in wide sleeves the hand comes out past the cuff instead of hiding inside it
-    const hp = wide ? add(p[2], mul([Math.sin(forearmAng), Math.cos(forearmAng)], handR * (O.handOut ?? 1.05))) : p[2];
+    // (not for folded arms, elbow bent ~90-125°: there the hand stays at the cuff)
+    const hp = wide ? add(p[2], mul([Math.sin(forearmAng), Math.cos(forearmAng)], handR * (O.handOut ?? (Math.abs(a.el || 0) > 80 && Math.abs(a.el || 0) < 125 ? 0.2 : 0.8)))) : p[2];
+    handAt[far ? 'B' : 'F'] = hp;
     const hand = g({ transform: `translate(${r2(hp[0])},${r2(hp[1])}) rotate(${r2(handRot)})` },
       a.under ? a.under : '',
-      handShape(handType, handR, lw * 0.9, far ? skinSh : skin, flip ? -side : side),
-      a.prop ? a.prop : '');
+      handShape(handType, handR, lw * 0.9, far ? skinSh : skin, flip ? -side : side));
+    // a held prop is drawn after the sleeve, so the cuff never swallows it
+    const propG = a.prop ? g({ transform: `translate(${r2(hp[0])},${r2(hp[1])}) rotate(${r2(handRot)})` }, a.prop) : '';
     if (O.shortSleeves) {
       out.push(path(limbD(p[0], p[1], p[2], B.armW * 0.75, B.armW * 0.65, B.armW * 0.55), S(far ? skinSh : skin)));
       const mid = mix(p[0], p[1], 0.55);
       out.push(capsule(p[0], mid, w0 * 1.1, w0 * 1.05, S(col)));
       out.push(hand);
-      return out.join('');
+      return out.join('') + propG;
     }
     if (!wide) {
       out.push(hand);
@@ -330,7 +335,7 @@ export function drawCharacter(def, opts = {}) {
       const cr = add(p[1], mul(norm(sub(p[2], p[0])), -2));
       out.push(path(`M${r2(cr[0] - 4)},${r2(cr[1] - 3)} q4,3 8,0`, { fill: 'none', stroke: shade(col, -0.4), 'stroke-width': lw * 0.5, opacity: 0.7 }));
       if (O.cuff) out.push(capsule(mix(p[1], p[2], 0.84), mix(p[1], p[2], 0.99), w2 * 1.08, w2 * 1.08, S(O.cuff)));
-      return out.join('');
+      return out.join('') + propG;
     }
     const lowerD = wide ? `M${p[1][0] - w1 / 2 * Math.cos(forearmAng)},${p[1][1] + w1 / 2 * Math.sin(forearmAng)} L${p[2][0] - w2 / 2 * Math.cos(forearmAng) + Math.sin(forearmAng) * 6},${p[2][1] + w2 / 2 * Math.sin(forearmAng) + Math.cos(forearmAng) * 6} Q${p[2][0] + Math.sin(forearmAng) * 14},${p[2][1] + Math.cos(forearmAng) * 14} ${p[2][0] + w2 / 2 * Math.cos(forearmAng) + Math.sin(forearmAng) * 6},${p[2][1] - w2 / 2 * Math.sin(forearmAng) + Math.cos(forearmAng) * 6} L${p[1][0] + w1 / 2 * Math.cos(forearmAng)},${p[1][1] - w1 / 2 * Math.sin(forearmAng)}Z` : '';
     const lower = wide ? path(lowerD, S(col)) : capsule(p[1], p[2], w1, w2, S(col));
@@ -349,7 +354,7 @@ export function drawCharacter(def, opts = {}) {
     }
     if (RS) out.push(capsule(p[0], p[1], w0, w1, RS));
     out.push(capsule(p[0], p[1], w0, w1, S(col)));
-    return out.join('');
+    return out.join('') + propG;
   }
   layers.armB.push(arm(armBp, aB, true));
   layers.armF.push(arm(armFp, aF, false));
@@ -380,7 +385,7 @@ export function drawCharacter(def, opts = {}) {
   if (flip) out = g({ transform: 'scale(-1,1)' }, out);
   // anchor points (in un-flipped local coords, mirrored if flipped) for props/bubbles
   const fx = (p) => [flip ? -p[0] : p[0], p[1]];
-  const anchors = { head: fx(headC), mouth: fx(add(headC, [H.mouthX, B.headRy * 0.55])), handF: fx(armFp[2]), handB: fx(armBp[2]), top: fx([headC[0], headC[1] - B.headRy * 1.25]), hip: fx(hip), neck: fx(neckTop) };
+  const anchors = { head: fx(headC), mouth: fx(add(headC, [H.mouthX, B.headRy * 0.55])), handF: fx(handAt.F || armFp[2]), handB: fx(handAt.B || armBp[2]), top: fx([headC[0], headC[1] - B.headRy * 1.25]), hip: fx(hip), neck: fx(neckTop) };
   return { svg: out, anchors };
 }
 

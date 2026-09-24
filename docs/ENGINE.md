@@ -85,6 +85,8 @@ Improving the rig or a background re-renders everywhere: just re-run the episode
 - **Shapes.** Shouts have a boxier spiky outline whose spike depth doesn't grow with width.
   `shape: 'box'` on a `say`/`whisper` gives a rounder rectangle that hugs long text (use it for long
   speeches in narrow panels; an ellipse is ~50px wider each side than its text).
+  Speech balloons of 5+ lines automatically get squarer corners (same size) so their first and last
+  lines keep a margin. A caption with `bg: 'transparent'` draws no shadow or inner rule.
 - **Warnings.** `render.mjs` prints lettering warnings per tile as `tile:warning,…`, where `i` is
   the balloon's index in the tile:
   - `border:i`: balloon *i*'s outline (tail included) crosses the frame of the panel holding its
@@ -109,13 +111,19 @@ Improving the rig or a background re-renders everywhere: just re-run the episode
 - **Arms:** `armB: { front: true }` draws the far arm in front of the body (reaching across the chest,
   a wand held in front). Anchors `handF` / `handB` give the hands' positions for aiming bolts or
   placing props. In wide sleeves the hand now comes out past the cuff (`outfit.handOut` tunes it).
-  Dark sleeves get a faint light rim so arms read against dark robes.
+  Dark sleeves get a faint light rim (only on arms drawn in front of the body) so arms read against
+  dark robes. Folded arms (elbow bent ~90-125°) keep the hand at the cuff. `armX.prop` is drawn on top
+  of the sleeve, at the drawn hand. Stock poses `crossArms`, `think` and `chin` fold the far arm across
+  the body (drawn in front); `facepalm` puts the palm on the face.
 - **Faces:** `glasses: false` (or `noGlasses: true`) on an actor hides their glasses. Mouth
   `'grimace'` = `'grit'`. The blue "cold" skin tint only applies to Harry (his dark side); set
   `coldTint: true` on another character's def to allow it. A deep bow no longer turns the face sideways.
 - **Effects behind characters:** `behind: (e) => FX.burst(e.w, e.h, …)` on a shot draws panel-space
   effects over the background but behind the actors (speed lines and bursts no longer cross faces).
   `under` is beneath the whole background and `over` is on top of everything, as before.
+- **Which tiles use a pose:** `node work/tilesfor.mjs ep04 crossArms,facepalm --props` lists the tile numbers
+  that draw a character in those poses (or holding a prop). `python3 work/wordcheck.py ep04` checks an
+  episode's lettering against git HEAD.
 - **Previews:** `render.mjs --file work/tests/foo.js --png` writes `scratch/foo-NNN.png`. Each render
   uses its own stage file, so several renders can run at once.
 

@@ -74,29 +74,29 @@ ep.panel(700, { cam: { on: ['derrick'], fr: 'bust', dy: -0.2 }, bg: COR, blur: 2
 ep.panel(820, { cam: { on: ['harry'], fr: 'close', dy: 0.15 }, bg: COR, blur: 3, actors: RING({ h: { expr: 'cold' } }), over: (e) => FX.frost(e.w, e.h, 0.3, 41) },
   [cold('Harry', 'Shut up.', 170, 64, { anchor: 'tc', w: 200, fixed: true }),
    inner('Harry', '*Keep them off balance. Don\'t do what they expect. Don\'t fall into a pattern that calls for them to bully you.*', 400, 640, { w: 560, fixed: true })], { mood: 'cold' });
-ep.panel(960, { cam: { x: 1310, y: 500, w: 640 }, bg: COR, blur: 2, actors: RING({ h: { turn: 0.4 }, d: { expr: 'angry', pose: 'stand' } }), over: (e) => FX.frost(e.w, e.h, 0.2, 43) },
-  [cold('Harry', 'Is this part of some incredibly clever plan that will gain you future advantage? Or is it as pointless a disgrace to the name of Salazar Slytherin as it—', 400, 44, { anchor: 'tc', w: 480, fixed: true })], { mood: 'cold' });
+ep.panel(960, { cam: { x: 1310, y: 680, w: 600 }, bg: COR, blur: 2, actors: RING({ h: { turn: 0.4 }, d: { expr: 'angry', pose: 'stand' } }), over: (e) => FX.frost(e.w, e.h, 0.2, 43) },
+  [cold('Harry', 'Is this part of some incredibly clever plan that will gain you future advantage? Or is it as pointless a disgrace to the name of Salazar Slytherin as it—', 400, 900, { anchor: 'bc', w: 480, fixed: true })], { mood: 'cold' });
 ep.bleed(820, { cam: { x: 1180, y: 670, w: 820 }, bg: COR, actors: RING({ h: { x: 1000, y: 1030, pose: 'fallBack', expr: 'shock', turn: 0.5 }, d: { pose: 'reach', expr: 'angry', turn: -0.6, armB: { sh: 62, el: 8, hand: 'open' } } }), over: (e) => FX.speedLines(e.w, e.h, { n: 30 }) },
   [sfx('SHOVE!', 390, 470, { size: 96, rot: -12 })], { alt: 'The biggest Slytherin shoves Harry hard. He goes sprawling across the stone floor.' });
 ep.panel(700, { cam: { x: 1290, y: 640, w: 1000 }, bg: COR, actors: RING({ h: { x: 1000, y: 1030, pose: 'fallBack', expr: 'hurt', turn: 0.5 }, s1: { expr: 'laugh' }, s3: { expr: 'laugh' }, s2: { expr: 'laugh' }, d: { expr: 'laugh' } }) },
   [cap('And the Slytherins laughed.', 44, 30, { w: 360, fixed: true })], { mood: 'warm' });
-ep.panel(900, { cam: { on: ['harry'], fr: 'waist', dy: -0.1 }, bg: COR, blur: 2, actors: RING({ h: { x: 1000, pose: 'stand', expr: 'cold', turn: 0.4 } }), over: (e) => FX.frost(e.w, e.h, 0.5, 45) },
+ep.panel(900, { cam: { on: ['harry'], fr: 'waist', dy: -0.1 }, bg: COR, blur: 2, actors: RING({ s1: { x: 640 }, s3: { x: 820 }, h: { x: 1000, pose: 'stand', expr: 'cold', turn: 0.4 } }), over: (e) => FX.frost(e.w, e.h, 0.5, 45) },
   [cap('Harry rose in what seemed to him like terribly slow motion.', 44, 30, { w: 500, fixed: true }),
    cap('He didn\'t know how to use his wand yet. But there was no reason to let that stop him.', 44, 740, { w: 620, fixed: true })], { mood: 'cold', alt: 'Harry gets up, face gone flat and cold. Frost at the edges.' });
 ep.panel(820, { cam: { x: 1220, y: 640, w: 600 }, bg: COR, blur: 2, actors: RING({ s1: { x: 640 }, s3: { x: 820 }, h: { x: 1000, pose: 'point', turn: 0.5, expr: 'cold', armB: { sh: 120, el: 4, hand: 'point' } } }), over: (e) => FX.frost(e.w, e.h, 0.45, 47) },
   [cold('Harry', 'I\'d like to pay *as many points as it takes* to get rid of this person.', 250, 44, { anchor: 'tc', w: 320, fixed: true })], { mood: 'cold' });
-ep.panel(760, { cam: { on: ['harry'], fr: 'waist', dx: 0.5, dy: -0.1 }, bg: COR, blur: 3, actors: RING({ h: { x: 1000, pose: 'wandUp', turn: 0.3, expr: 'cold', armB: { sh: 95, el: 70, hand: 'point' } } }), over: (e) => FX.frost(e.w, e.h, 0.45, 49) },
+ep.panel(760, { cam: { on: ['harry'], fr: 'waist', dx: 0.5, dy: -0.1 }, bg: COR, blur: 3, actors: RING({ s1: { x: 640 }, s3: { x: 820 }, h: { x: 1000, pose: 'wandUp', turn: 0.3, expr: 'cold', armB: { sh: 95, el: 70, hand: 'point' } } }), over: (e) => FX.frost(e.w, e.h, 0.45, 49) },
   [cold('Harry', 'Abracadabra.', 250, 64, { anchor: 'tc', w: 280, fixed: true }), sfx('SNAP', 600, 330, { size: 80, rot: -10 })], { mood: 'cold', alt: 'Harry lifts his other hand and snaps his fingers.' });
 ep.multi(640, [
   { x: M, y: 18, w: 368, h: 604, mood: 'warm', art: { cam: { x: 420, y: 745, w: 400 }, bg: COR, actors: RING({ n: { expr: 'horror', pose: 'cower' }, hf: { 1: { expr: 'horror', pose: 'panic' }, 2: { expr: 'horror' } } }) } },
-  { x: 408, y: 18, w: 368, h: 604, mood: 'warm', art: { cam: { x: 1390, y: 600, w: 620 }, bg: COR, actors: RING({ d: { expr: 'what' }, s1: { pose: 'fallBack', expr: 'horror', x: 1200, y: 1060, turn: -0.5 }, s3: { pose: 'panic', expr: 'horror', x: 1230, turn: -0.5 }, s2: { pose: 'fallBack', expr: 'horror', x: 1580, y: 1010, turn: 0.5 }, h: { x: 1000 } }), over: (e) => FX.speedLines(e.w, e.h, { n: 16 }) } },
-], [cap('Two of the Hufflepuffs screamed.', 44, 34, { w: 290, fixed: true }), cap('Three Slytherins leapt desperately out of the way.', 428, 34, { w: 270, fixed: true })],
+  { x: 408, y: 18, w: 368, h: 604, mood: 'warm', art: { cam: { x: 1390, y: 575, w: 620 }, bg: COR, actors: RING({ d: { expr: 'what' }, s1: { pose: 'fallBack', expr: 'horror', x: 1200, y: 1060, turn: -0.5 }, s3: { pose: 'panic', expr: 'horror', x: 1230, turn: -0.5 }, s2: { pose: 'fallBack', expr: 'horror', x: 1580, y: 1010, turn: 0.5 }, h: { x: 1000 } }), over: (e) => FX.speedLines(e.w, e.h, { n: 16 }) } },
+], [cap('Two of the Hufflepuffs screamed.', 44, 34, { w: 290, fixed: true }), cap('Three Slytherins leapt desperately out of the way.', 426, 34, { w: 215, fixed: true })],
   { alt: 'Neville and another Hufflepuff scream. Three Slytherins dive aside.' });
 ep.bleed(1000, { cam: { on: ['derrick'], fr: 'bust', dy: -0.1 }, bg: COR, blur: 2, actors: RING({ h: { x: 800 }, d: { expr: 'shock', pose: 'panic', turn: -0.1 } }), over: (e) => PIE_ON('derrick', 'cherry', 0, 0.1, 1.0)(e) + FX.burst(e.w, e.h, e.w / 2, e.h * 0.4, { n: 20, col: '#b81f2e', op: 0.25 }) },
   [sfx('SPLAT!', 400, 150, { size: 110, rot: -6 })], { alt: 'A cherry pie hits the biggest Slytherin square in the face.' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close', zoom: 0.85, dy: -0.2 }, bg: COR, blur: 3, actors: R2({ h: { x: 1000, expr: { base: 'shock', mouth: { type: 'flat' } } } }) },
   [cap('Harry had *not* been expecting *that.*', 44, 30, { w: 420, fixed: true })], { mood: 'warm' });
-ep.panel(760, { cam: { on: ['derrick'], fr: 'waist', dy: -0.3 }, bg: COR, actors: R2({ h: { x: 1080 }, d: { expr: 'blank', pose: 'stand', armB: { sh: 140, el: 20, hand: 'hold', prop: g({ transform: 'rotate(-30)' }, P2.pie(0.7)) } } }), over: (e) => PIE_ON('derrick', 'cherry', 0, 0.2, 0.9)(e) },
+ep.panel(760, { cam: { on: ['derrick'], fr: 'waist', dx: -0.2, dy: -0.3 }, bg: COR, actors: R2({ h: { x: 1080 }, d: { expr: 'blank', pose: 'stand', armB: { sh: 128, el: 30, hand: 'hold', prop: g({ transform: 'translate(0,40) rotate(-30)' }, P2.pie(0.7)) } } }), over: (e) => PIE_ON('derrick', 'cherry', 0, 0.2, 0.9)(e) },
   [cap('Slowly, the largest Slytherin reached up and peeled off the pan of cherry pie that had just draped itself over him.', 44, 30, { w: 540, fixed: true })], { mood: 'warm' });
 ep.panel(620, { cam: { x: 600, y: 760, w: 540 }, bg: COR, blur: 2, actors: RING({ hf: { 3: { expr: 'worried' }, 4: { expr: 'horror' }, 5: { expr: { base: 'bigGrin', blush: true }, pose: 'shrug', turn: -0.2 } } }) },
   [cap('It probably wasn\'t the best time in the world for one of the Hufflepuffs to start giggling. But that was exactly what one of the Hufflepuffs was doing.', 44, 30, { w: 620, fixed: true })], { mood: 'warm', alt: 'One of the Hufflepuffs has his hands over his mouth, giggling helplessly.' });
@@ -107,34 +107,34 @@ ep.panel(1120, { cam: { x: 1170, y: 735, w: 420 }, bg: COR, blur: 2, actors: R2(
   [shout('Harry', '*Look* at this! Can you believe I\'m being charged *30 points* for shipping and handling on one lousy pie?', 400, 90, { anchor: 'tc', w: 420, size: 34, fixed: true }),
    shout('Harry', 'I\'m turning a *loss* on the deal, even after rescuing an innocent boy in distress!', 400, 1010, { anchor: 'bc', w: 420, size: 34, fixed: true })], { mood: 'warm', alt: 'Harry brandishes the note from the bottom of the pie pan in the Slytherin\'s face.' });
 ep.panel(760, { cam: { on: ['derrick'], fr: 'close', dx: -0.5, dy: -0.4, zoom: 0.8 }, bg: COR, blur: 2, actors: R2({ h: { x: 1150 }, d: { expr: 'blank', turn: -0.3 } }), over: (e) => PIE_ON('derrick', 'cherry', 0, 0.2, 0.9)(e) },
-  [shout('Harry', 'Storage fees? Conveyance charges? How do you get *drayage costs* on a *pie?*', 310, 80, { anchor: 'tc', w: 300, size: 34, fixed: true })], { mood: 'warm', alt: 'The pie-smeared Slytherin stares blankly.' });
+  [shout('Harry', 'Storage fees? Conveyance charges? How do you get *drayage costs* on a *pie?*', 310, 100, { anchor: 'tc', w: 300, size: 34, fixed: true, tail: [30, 640] })], { mood: 'warm', alt: 'The pie-smeared Slytherin stares blankly.' });
 ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: COR, blur: 3, actors: R2({ h: { x: 1150, expr: 'menace', turn: 0.3 } }) },
   [say('Harry', 'Now go away, or I will just keep making your existence more and more surreal until you do.', 400, 64, { anchor: 'tc', w: 540, fixed: true }),
    say('Harry', 'Let me warn you… messing with *my* life tends to make *your* life… *a little hairy.* Get it?', 400, 960, { anchor: 'bc', w: 520, fixed: true })], { mood: 'warm' });
-ep.bleed(1000, { cam: { on: ['derrick'], fr: 'waist', dy: -0.25, zoom: 0.85 }, bg: COR, actors: R2({ h: { x: 1060 }, d: { expr: 'shock', pose: 'wand', turn: -0.4, armB: { sh: 120, el: -10, hand: 'hold', prop: wand(120) } } }), over: (e) => PIE_ON('derrick', 'cherry', 0, 0.2, 0.9)(e) + PIE_ON('derrick', 'blueberry', 1.05, -0.45, 0.9)(e) + FX.burst(e.w, e.h, e.w * 0.7, e.h * 0.3, { n: 18, col: '#3a3a8a', op: 0.25 }) },
+ep.bleed(1000, { cam: { on: ['derrick'], fr: 'waist', dy: -0.25, zoom: 0.85 }, bg: COR, actors: R2({ h: { x: 1060 }, d: { expr: 'shock', pose: 'wand', turn: -0.4, armB: { sh: 155, el: -25, hand: 'hold', prop: wand(120) } } }), over: (e) => PIE_ON('derrick', 'cherry', 0, 0.2, 0.9)(e) + PIE_ON('derrick', 'blueberry', 0.8, -0.62, 0.85)(e) + FX.burst(e.w, e.h, e.w * 0.7, e.h * 0.3, { n: 18, col: '#3a3a8a', op: 0.25 }) },
   [cap('In a single terrible motion, the largest Slytherin whipped out his wand. And in the same instant was hit on the other side of his head by another pie, this one bright blueberry.', 44, 30, { w: 620, fixed: true }),
    sfx('SPLAT!', 610, 300, { size: 90, rot: 12 })], { alt: 'A second pie, blueberry this time, smacks into the side of his head.' });
-ep.panel(760, { cam: { x: 1270, y: 560, w: 680 }, bg: COR, actors: R2({ h: { x: 1150, expr: 'smug', turn: 0.4, pose: 'point', armB: { sh: 115, el: 5, hand: 'point' } }, d: { expr: 'blank', turn: -0.2 } }), over: (e) => PIE_ON('derrick', 'cherry', 0, 0.2, 0.9)(e) + PIE_ON('derrick', 'blueberry', 1.05, -0.45, 0.9)(e) },
+ep.panel(760, { cam: { x: 1270, y: 560, w: 680 }, bg: COR, actors: R2({ h: { x: 1150, expr: 'smug', turn: 0.4, pose: 'point', armB: { sh: 115, el: 5, hand: 'point' } }, d: { expr: 'blank', turn: -0.2 } }), over: (e) => PIE_ON('derrick', 'cherry', 0, 0.2, 0.9)(e) + PIE_ON('derrick', 'blueberry', 0.8, -0.62, 0.85)(e) },
   [say('Harry', 'You might want to read the note on that pie. I think it\'s for you this time.', 232, 44, { anchor: 'tc', w: 300, fixed: true })], { mood: 'warm' });
 ep.panel(520, { cam: { x: 400, y: 500, w: 800 }, bg: () => CS.corridor({ seed: 13 }) },
   [note('**WARNING**\n\nNo magic may be used on the contestant\nwhile the Game is in progress\n\nFurther interference in the Game\nwill be reported to the Game Authorities', 400, 260, { w: 560, rot: -3 })], { mood: 'warm', alt: 'The note under the second pie.' });
 ep.panel(600, { cam: { on: ['harry'], fr: 'close' }, bg: COR, blur: 3, actors: R2({ h: { x: 1150, expr: 'grin' } }) },
   [cap('The look of sheer bafflement on the Slytherin\'s face was a work of art. Harry thought he might be starting to like this Game Controller.', 44, 30, { w: 620, fixed: true })], { mood: 'warm' });
-ep.panel(1000, { cam: { x: 1300, y: 405, w: 640 }, bg: COR, actors: R2({ h: { x: 1150, expr: 'neutral', turn: 0.4, pose: 'shrug' }, d: { expr: 'menace', turn: -0.3 } }), over: (e) => PIE_ON('derrick', 'cherry', 0, 0.2, 0.9)(e) + PIE_ON('derrick', 'blueberry', 1.05, -0.45, 0.9)(e) },
-  [say('Harry', 'Look. You want to call it a day? I think things are spiralling out of control here.', 208, 44, { anchor: 'tc', w: 262, fixed: true }),
-   say('Derrick', 'I\'ve got a better idea. How about if you *accidentally* break all your fingers?', 584, 176, { anchor: 'tc', w: 282, fixed: true })], { mood: 'warm' });
+ep.panel(1000, { cam: { x: 1300, y: 450, w: 700 }, bg: COR, actors: R2({ h: { x: 1150, expr: 'neutral', turn: 0.4, pose: 'shrug' }, d: { expr: 'menace', turn: -0.3 } }), over: (e) => PIE_ON('derrick', 'cherry', 0, 0.2, 0.9)(e) + PIE_ON('derrick', 'blueberry', 0.8, -0.62, 0.85)(e) },
+  [say('Harry', 'Look. You want to call it a day? I think things are spiralling out of control here.', 208, 48, { anchor: 'tc', w: 262, fixed: true }),
+   say('Derrick', 'I\'ve got a better idea. How about if you *accidentally* break all your fingers?', 584, 116, { anchor: 'tc', w: 282, fixed: true })], { mood: 'warm' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'bust', dy: -0.45, zoom: 0.9 }, bg: COR, blur: 2, actors: R2({ h: { x: 1150, expr: 'exasperated', turn: 0.3, pose: 'shrug' } }) },
   [say('Harry', 'How in Merlin\'s name do you stage a believable accident after making the threat in front of a dozen witnesses, you *idiot…*', 400, 40, { anchor: 'tc', w: 520, fixed: true })], { mood: 'warm' });
-ep.panel(900, { cam: { x: 1330, y: 540, w: 640 }, bg: COR, actors: R2({ h: { x: 1270, turn: 0.3, pose: 'stand', armB: { sh: 120, el: 10, hand: 'point' }, expr: 'determined' }, d: { x: 1390, y: 960, turn: -0.3, pose: 'stand', armF: { sh: 20, el: 20, hand: 'fist' }, armB: { sh: 0, el: 5, hand: 'fist' }, expr: 'menace' } }), over: (e) => PIE_ON('derrick', 'cherry', 0, 0.2, 0.9)(e) + PIE_ON('derrick', 'blueberry', 1.05, -0.45, 0.9)(e) },
+ep.panel(900, { cam: { x: 1330, y: 540, w: 640 }, bg: COR, actors: R2({ h: { x: 1270, turn: 0.3, pose: 'stand', armB: { sh: 120, el: 10, hand: 'point' }, expr: 'determined' }, s2: { x: 1610 }, d: { x: 1390, y: 960, turn: -0.3, pose: 'stand', armF: { sh: 20, el: 20, hand: 'fist' }, armB: { sh: 0, el: 5, hand: 'fist' }, expr: 'menace' } }), over: (e) => PIE_ON('derrick', 'cherry', 0, 0.2, 0.9)(e) + PIE_ON('derrick', 'blueberry', 0.8, -0.62, 0.85)(e) },
   [cap('The largest Slytherin slowly, deliberately, took Harry\'s right hand in one of his. And took Harry\'s index finger in the other.', 44, 30, { w: 620, fixed: true }),
    whisper('Conscience', 'Wait! Stop, you shouldn\'t actually do that!', 590, 800, { w: 300, fixed: true, noTail: true })], { mood: 'warm', alt: 'The big Slytherin holds Harry\'s hand and starts to bend his index finger back.' });
 ep.panel(700, { cam: { x: 1345, y: 690, w: 300 }, bg: COR, blur: 3, actors: [], over: FINGER },
   [cap('Slowly, the Slytherin started to bend the finger backwards.', 44, 30, { w: 520, fixed: true })], { mood: 'warm', alt: 'Close on the two hands: a big hand bending a small finger back.' });
-ep.panel(880, { cam: { on: ['harry'], fr: 'eyes', zoom: 0.8 }, bg: COR, blur: 3, actors: R2({ h: { x: 1250, expr: { base: 'cold', eyes: { lookX: 0.4, lookY: -0.4 } }, turn: 0.3 } }), over: (e) => FX.frost(e.w, e.h, 0.4, 51) },
+ep.panel(1000, { cam: { head: 'harry', hw: 0.72, hx: 0.5, hy: 0.5 }, bg: COR, blur: 3, actors: R2({ h: { x: 1250, expr: { base: 'cold', eyes: { lookX: 0.4, lookY: -0.4 } }, turn: 0.3 } }), over: (e) => FX.frost(e.w, e.h, 0.4, 51) },
   [inner('Harry', '*Part of him was screaming that this wasn\'t supposed to happen, this wasn\'t* allowed *to happen, grown-ups would never let something like this* actually *happen…*', 400, 64, { anchor: 'tc', w: 600, fixed: true }),
-   cold('Harry', 'He hasn\'t actually broken my finger. And it is beneath me to so much as flinch until he does.', 400, 820, { anchor: 'bc', w: 560, fixed: true })], { mood: 'cold', alt: 'Harry stares the Slytherin straight in the eyes, and does not flinch.' });
-ep.panel(760, { cam: { on: ['conscience'], fr: 'bust', dy: -0.1 }, bg: COR, blur: 2, actors: R2({ c: { expr: 'horror', pose: 'reach', turn: -0.3 } }) },
-  [shout('Conscience', 'Stop! Stop, this is a very bad idea!', 400, 64, { anchor: 'tc', w: 420, fixed: true }),
+   cold('Harry', 'He hasn\'t actually broken my finger. And it is beneath me to so much as flinch until he does.', 400, 950, { anchor: 'bc', w: 560, fixed: true })], { mood: 'cold', alt: 'Harry stares the Slytherin straight in the eyes, and does not flinch.' });
+ep.panel(760, { cam: { on: ['conscience'], fr: 'bust', dy: -0.1 }, bg: COR, blur: 2, actors: R2({ s2: { x: 1840 }, c: { expr: 'horror', pose: 'reach', turn: -0.3 } }) },
+  [shout('Conscience', 'Stop! Stop, this is a very bad idea!', 400, 84, { anchor: 'tc', w: 420, fixed: true }),
    say('Voice', 'I rather agree.', 560, 700, { w: 260, fixed: true, noTail: true })], { mood: 'warm' });
 
 // ---------------------------------------------------------------- Professor Sprout
@@ -162,9 +162,9 @@ ep.panel(860, { cam: { on: ['sprout', 'harry'], fr: 'waist', dy: -0.9 }, bg: COR
   [say('Harry', 'I don\'t even know the *words* to the Killing Curse. And I didn\'t have my wand out at any time.', 560, 50, { anchor: 'tc', w: 340, fixed: true }),
    say('Sprout', 'I suppose this boy hit *himself* with two pies, then.', 250, 800, { anchor: 'bc', w: 320, fixed: true })], { mood: 'warm' });
 ep.panel(700, { cam: { on: ['hufflepuff'], fr: 'bust', dy: -0.35, zoom: 0.8 }, bg: COR, blur: 2, actors: [SP({ x: 900, pose: 'crossArms', expr: 'suspicious' }), { def: harryRaven, id: 'harry', x: 1200, y: 990, s: 1.1, turn: -0.4, pose: 'shrug', expr: 'neutral' }, { def: ernie, id: 'hufflepuff', x: 1500, y: 990, s: 1.0, turn: -0.5, pose: 'point', expr: 'yell' }] },
-  [shout('Hufflepuff', 'He *didn\'t* use his wand! He just snapped his fingers and there was *pie!*', 400, 70, { anchor: 'tc', w: 420, size: 34, fixed: true })], { mood: 'warm' });
+  [shout('Hufflepuff', 'He *didn\'t* use his wand! He just snapped his fingers and there was *pie!*', 400, 90, { anchor: 'tc', w: 420, size: 34, fixed: true })], { mood: 'warm' });
 ep.panel(900, { cam: { on: ['sprout', 'harry'], fr: 'bust', dy: -0.7 }, bg: COR, actors: [SP({ x: 1000, pose: 'wand', expr: 'focus', armB: { sh: 42, el: 0, hand: 'hold', prop: wand(110) } }), { def: harryRaven, id: 'harry', x: 1260, y: 990, s: 1.1, turn: -0.4, pose: 'present', expr: 'neutral', armB: { hand: 'hold', prop: wand(110) } }], over: (e) => { const a = e.anchors.harry; return a ? FX.sparkles([[a.head[0] - a.hr * 1.8, a.head[1] + a.hr * 1.4]], { r: 30 }) : ''; } },
-  [say('Sprout', '*Prior Incantato.*', 200, 36, { anchor: 'tc', w: 260, fixed: true }),
+  [say('Sprout', '*Prior Incantato.*', 206, 46, { anchor: 'tc', w: 260, fixed: true }),
    say('Sprout', 'That\'s odd. Your wand doesn\'t seem to have been used at all.', 540, 110, { anchor: 'tc', w: 320, fixed: true }),
    say('Harry', 'It hasn\'t, actually. I only got my wand a few days ago.', 560, 860, { anchor: 'bc', w: 320, fixed: true })], { mood: 'warm' });
 ep.panel(840, { cam: { on: ['sprout'], fr: 'bust', dy: -0.5 }, bg: COR, blur: 2, actors: [SP({ x: 900, expr: 'calm', pose: 'stand' })] },
@@ -188,11 +188,14 @@ ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: COR, blur: 3, actors: [
 
 // ---------------------------------------------------------------- the Hufflepuffs
 // Neville hugging his books
-const NB = { pose: 'hold', armF: { sh: 4, el: 96, hand: 'hold', prop: g({ transform: 'rotate(-10)' }, bookHeld('#6b2433')) }, armB: { sh: 10, el: 92, hand: 'hold' } };
+const NB = { pose: 'crossArms', armF: { sh: 16, el: 100, hand: 'hold' }, armB: { sh: -12, el: -104, hand: 'hold', front: true, prop: g({ transform: 'translate(7,-18) rotate(70)' }, bookHeld('#6b2433', { w: 56, h: 74 })) } };
+// the book clutched to his chest, drawn over his folded arms
+const NBOOK = (e) => { const a = e.wa.neville; if (!a) return ''; const [x, y] = [(a.handF[0] + a.handB[0]) / 2, (a.handF[1] + a.handB[1]) / 2]; return g({ transform: `translate(${x},${y - 8})` }, bookHeld('#6b2433', { rot: -8, w: 64, h: 84 })); };
 const HUFFS = (o = {}) => [
   { def: ernie, id: 'ernie', x: 800, y: 1000, s: 1.0, turn: 0.5, expr: 'awe', ...(o.e || {}) },
   ...[1, 2, 3].map((i) => ({ def: student(1340 + i, 'h'), id: 'h' + i, x: 520 + i * 100 - (i === 3 ? 700 : 0) - (o.apart && i < 3 ? 260 : 0), y: 980, s: 0.95, turn: 0.4, expr: 'awe' })),
   { def: nevilleHuff, id: 'neville', x: 600, y: 1010, s: 1.05, turn: 0.4, expr: 'worried', ...(o.n || {}) },
+  ...((o.n || {}).book ? [NBOOK] : []),
   { def: harryRaven, id: 'harry', x: 1150, y: 990, s: 1.1, turn: -0.4, pose: 'stand', expr: 'smug', ...(o.h || {}) },
 ];
 ep.panel(1000, { cam: { x: 975, y: 609, w: 650 }, bg: COR, actors: HUFFS({ e: { pose: 'gesture' } }) },
@@ -240,7 +243,7 @@ ep.panel(620, { cam: { on: ['neville'], fr: 'close' }, bg: COR, blur: 3, actors:
 ep.panel(820, { cam: { on: ['harry'], fr: 'bust', dy: -0.5 }, bg: COR, blur: 2, actors: HUFFS({ apart: true, h: { expr: 'sad' } }) },
   [say('Harry', 'They wouldn\'t have done anything really bad in front of witnesses. Their main weapon is fear. I wanted to make you less afraid. Or that was what I told myself.', 400, 50, { anchor: 'tc', w: 520, fixed: true })], { mood: 'warm' });
 ep.panel(820, { cam: { on: ['neville'], fr: 'bust', dy: -0.4 }, bg: COR, blur: 2, actors: HUFFS({ apart: true, e: { x: 480 }, n: { x: 800, expr: 'teary', ...NB } }) },
-  [say('Harry', 'But the Sorting Hat told me I was lying to myself, and that I really did it because it was *fun.* So that\'s why I\'m apologising.', 400, 50, { anchor: 'tc', w: 520, fixed: true })], { mood: 'warm', alt: 'Neville listens, eyes wet.' });
+  [say('Harry', 'But the Sorting Hat told me I was lying to myself, and that I really did it because it was *fun.* So that\'s why I\'m apologising.', 400, 50, { anchor: 'tc', w: 520, fixed: true, tail: [746, 230] })], { mood: 'warm', alt: 'Neville listens, eyes wet.' });
 ep.panel(760, { cam: { on: ['neville'], fr: 'bust', dy: -0.45 }, bg: COR, blur: 2, actors: HUFFS({ apart: true, e: { x: 480 }, n: { x: 800, expr: 'hurt', ...NB } }) },
   [say('Neville', 'You hurt me. Just now. When you grabbed me and pulled me away from them.', 400, 50, { anchor: 'tc', w: 460, fixed: true })], { mood: 'warm' });
 ep.panel(800, { cam: { x: 990, y: 650, w: 500 }, bg: COR, actors: HUFFS({ apart: true, e: { x: 480 }, h: { x: 1120, expr: 'sad', turn: -0.3 }, n: { x: 860, expr: 'hurt', pose: 'present', armB: { sh: 70, el: 15, hand: 'open' } } }) },
@@ -268,15 +271,15 @@ ep.panel(1080, { cam: { on: ['harry'], fr: 'waist', dy: -0.35 }, bg: WALK, blur:
 ep.panel(820, { cam: { on: ['harry'], fr: 'close', dy: 0.2 }, bg: WALK, blur: 3, actors: [HW({ expr: 'worried' })], over: (e) => FX.frost(e.w, e.h, 0.18, 55) },
   [inner('Harry', '*The trouble was that he didn\'t* feel *out of control when he was angry. The cold made him feel* in *control.*', 400, 50, { anchor: 'tc', w: 610, fixed: true }),
    inner('Harry', '*It was only when he looked back that everything seemed to have blown up.*', 400, 780, { anchor: 'bc', w: 520, fixed: true })], { mood: 'warm' });
-ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: WALK, blur: 2, actors: [HW({ pose: 'chin', expr: 'suspicious' })] },
+ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: WALK, blur: 2, actors: [HW({ pose: 'think', expr: 'suspicious' })] },
   [inner('Harry', '*Had the Game Controller sent Professor Sprout? The note had threatened the Game Authorities, and there she was. Maybe Sprout* was *the Game Controller. The Head of Hufflepuff would be the* last *person anyone would suspect.*', 400, 64, { anchor: 'tc', w: 580, fixed: true }),
    say('Harry', 'So how am I doing in the game?', 400, 830, { anchor: 'bc', w: 360, fixed: true })], { mood: 'warm' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'waist', dy: -0.6 }, bg: WALK, actors: [HW({ pose: 'stand', turn: -0.6, expr: 'shock' }), (e) => { const a = e.wa.harry; return path(`M${a.head[0] - 200},${a.head[1] - 30} q140,-150 300,-95`, { fill: 'none', stroke: '#8a7a6a', 'stroke-width': 2.5, 'stroke-dasharray': '7 7' }) + g({ transform: `translate(${a.head[0] + 95},${a.head[1] - 118}) rotate(-20)` }, P2.slip(76, 52, { lines: 3 })); }] },
   [cap('A sheet of paper flew over his head, as if someone had thrown it from behind him. Harry spun around. There was no-one there.', 44, 30, { w: 620, fixed: true })], { mood: 'warm', alt: 'A note sails over Harry\'s head from nowhere.' });
 ep.panel(820, { cam: { x: 400, y: 560, w: 800 }, bg: () => CS.corridor({ seed: 19 }) },
   [note('Points for style: 10\nPoints for good thinking: −3,000,000\nRavenclaw House points bonus: 70\n\nCurrent points: −2,999,871\nTurns remaining: 2', 400, 410, { w: 580, rot: -1.5 })], { mood: 'warm', alt: 'The note.' });
-ep.panel(1200, { cam: { on: ['harry'], fr: 'waist', dy: -0.15, zoom: 0.8 }, bg: WALK, actors: [HW({ pose: 'armsUp', turn: 0.1, expr: 'rant' })] },
-  [shout('Harry', '*Minus three million points?* That seems excessive! I want to file an appeal with the Game Authorities!', 400, 80, { anchor: 'tc', w: 420, size: 34, fixed: true }),
+ep.panel(1200, { cam: { head: 'harry', hw: 0.28, hx: 0.5, hy: 0.5 }, bg: WALK, actors: [HW({ pose: 'armsUp', turn: 0.1, expr: 'rant' })] },
+  [shout('Harry', '*Minus three million points?* That seems excessive! I want to file an appeal with the Game Authorities!', 400, 100, { anchor: 'tc', w: 420, size: 34, fixed: true }),
    shout('Harry', 'And how am I supposed to make up three million points in the next two turns?', 400, 1130, { anchor: 'bc', w: 400, size: 34, fixed: true })], { mood: 'warm', alt: 'Harry shouting at the empty hallway.' });
 ep.panel(780, { cam: { x: 400, y: 560, w: 800 }, bg: () => CS.corridor({ seed: 19 }) },
   [note('Appeal: Failed\n\nAsking the wrong questions:\n−1,000,000,000,000 points\n\nCurrent points: −1,000,002,999,871\nTurns remaining: 1', 400, 390, { w: 580, rot: 2 })], { mood: 'warm', alt: 'Another note.' });
