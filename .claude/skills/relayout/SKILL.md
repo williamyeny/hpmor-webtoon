@@ -1,4 +1,9 @@
-Your job is to make sure the layout of the panels looks perfect. Don't forget: this is a medium for phones, which demands extra clarity.
+---
+name: relayout
+description: review the layout of the specified panel(s) and fix them as needed.
+---
+
+Your job is to make sure the layout of the panel(s) looks perfect. Don't forget: this is a medium for phones, which demands extra clarity.
 
 ## How to check
 
@@ -26,11 +31,13 @@ Look directly at the .webp images themselves.
 
 There are exceptions to the rule, especially for stylistic reasons. Use your judgement for the final call.
 
+If there is an issue that you've noticed and isn't in the above section, feel free to update this skill by adding it to the list (it should be its own commit).
+
 ## How to fix
 
-Move the elements around, resize them, etc. 
+Move the elements around, resize them, etc. Change the virtual camera -- "pan" up/down/left/right, "zoom" in/out.
 
-Do not be afraid to **majorly** redo a panel from scratch, especially if it would flow better. This includes but is not limited to: repositioning the characters, resizing the entire panel (increasing the height is a good technique to get around difficult overlaps or otherwise too crowded panels), adjusting the shot size/framing, splitting a panel into multiple panels, deleting/adding elements.
+Do not be afraid to **majorly** redo a panel from scratch, especially if it would flow better. This includes but is not limited to: repositioning the characters, resizing the entire panel (increasing the height is a good technique to get around difficult overlaps or otherwise too crowded panels), completely changing shot size/framing, splitting a panel into multiple panels, deleting/adding elements.
 
 ## Final verification
 
