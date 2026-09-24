@@ -160,7 +160,9 @@ const head = (title, rel, extra = '') => `<!doctype html><html lang="en"><head><
 <meta name="description" content="${esc(SERIES.tagline)}">
 <link rel="stylesheet" href="${rel}assets/style.css">${extra}</head>`;
 
-const ready = EPISODES.filter((e) => fs.existsSync(path.join(SITE, e.id, 'manifest.json')));
+// publish in order: an episode goes live only once every episode before it is rendered too
+const firstMissing = EPISODES.findIndex((e) => !fs.existsSync(path.join(SITE, e.id, 'manifest.json')));
+const ready = firstMissing < 0 ? EPISODES : EPISODES.slice(0, firstMissing);
 const seal = (n) => `<span class="seal n">${n}</span>`;
 
 // ---------- episode pages
