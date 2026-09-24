@@ -109,12 +109,14 @@ export function shot(o) {
 
 export const backdrop = (fill) => (ctx) => rect(0, 0, ctx.w, ctx.h, { fill });
 
-// Draw something at an actor's anchor (a prop in a hand, a mark on a face): atAnchor('harry', 'handB', svg, { dx, dy, rot, k }).
-// Use it in a shot's `actors` list or `fg` (world space), or with { space: 'panel' } in `over`. svg may be a function (a) => svg.
-// dx, dy are in the actor's own units and k scales with the actor, so the result follows the actor's size and the zoom.
-export const atAnchor = (id, part, svg, o = {}) => (e) => {
-  const a = (o.space === 'panel' ? e.anchors : e.wa)?.[id];
-  if (!a?.[part]) return '';
+// Draw with an actor's anchors if that actor is in the shot, else nothing: withActor('harry', (a, e) => svg).
+// World space (a shot's `actors` list or `fg`) by default; { space: 'panel' } for `over`.
+export const withActor = (id, fn, o = {}) => (e) => { const a = (o.space === 'panel' ? e.anchors : e.wa)?.[id]; return a ? fn(a, e) : ''; };
+// Draw something at one anchor (a prop in a hand, a mark on a face): atAnchor('harry', 'handB', svg, { dx, dy, rot, k }).
+// svg may be a function (a) => svg. dx, dy are in the actor's own units and k scales with the actor, so the result
+// follows the actor's size and the zoom.
+export const atAnchor = (id, part, svg, o = {}) => withActor(id, (a) => {
+  if (!a[part]) return '';
   const [x, y] = a[part], s = a.s * (o.k ?? 1);
   return g({ transform: `translate(${r2(x + (o.dx ?? 0) * a.s)},${r2(y + (o.dy ?? 0) * a.s)})${o.rot ? ` rotate(${o.rot})` : ''} scale(${r2(s)})` }, typeof svg === 'function' ? svg(a) : svg);
-};
+}, o);

@@ -274,7 +274,7 @@ ep.panel(560, { cam: { on: ['mcgonagall'], fr: 'close', dx: 0.6 }, bg: SA, blur:
 const fae = (ctx) => {
   const w = ctx.w, h = ctx.h;
   let out = rect(0, 0, w, h, { fill: '#f4ecd6' });
-  const T = (x, y, s, fs = 30, a = 'middle', col = '#2d2a4a') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': a, fill: col });
+  const T = (x, y, s, fs = 30, a, col) => FX.scrawl(x, y, s, fs, a, col);
   const stick = (x, y, kick) => g({ transform: `translate(${x},${y}) scale(1.45) translate(${-x},${-y})` }, path(`M${x},${y - 90} m-18,0 a18,18 0 1 0 36,0 a18,18 0 1 0 -36,0 M${x},${y - 72} L${x},${y - 20} M${x},${y - 60} L${x - 26},${y - 40} M${x},${y - 60} L${x + 26},${y - 44} M${x},${y - 20} L${x - 18},${y + 20} M${x},${y - 20} ${kick ? `L${x + 40},${y - 6}` : `L${x + 16},${y + 20}`}`, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 3.5, 'stroke-linecap': 'round' }));
   // laid out for a thought-cloud panel: everything kept clear of the cloud's rounded edge
   out += line(w / 2, h * 0.1, w / 2, h * 0.9, { stroke: '#b9ad92', 'stroke-width': 2, 'stroke-dasharray': '6 6' });

@@ -1,7 +1,7 @@
 // EPISODE 6 — The Planning Fallacy  (source: HPMOR ch. 6, first half)
 import { Episode, say, shout, whisper, inner, cold, cap, capC, dark, note, title, plain, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text } from '../engine/core/svg.js';
+import { g, rect, path, circle, ellipse, line } from '../engine/core/svg.js';
 import * as O from '../engine/bg/oxford.js';
 import * as L from '../engine/bg/london.js';
 import * as B from '../engine/bg/bank.js';
@@ -19,7 +19,7 @@ const DA = (o = {}) => () => L.diagonAlley({ seed: 7, ...o });
 const POUCH = { armF: { sh: 22, el: 75, hand: 'hold', prop: g({ transform: 'rotate(97) translate(24,-22)' }, pouch(0.85, { open: true })) }, armB: { sh: 6, el: 12 } };
 const HW = (o = {}) => ({ def: harry, id: 'harry', x: 900, y: 1080, s: 1.1, turn: 0.4, pose: 'hold', ...o });
 // Harry's pencil notes (the pouch lab book, the two ways, the planning-fallacy chart): Caveat on cream paper
-const T = (x, y, s, fs, a = 'middle', col = '#2d2a4a') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': a, fill: col });
+const T = FX.scrawl;
 const MW = (o = {}) => ({ def: mcgonagall, id: 'mcgonagall', x: 1150, y: 1090, turn: -0.4, pose: 'stand', expr: 'calm', ...o });
 
 // =============================================================== the pouch experiments

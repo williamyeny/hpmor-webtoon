@@ -237,8 +237,8 @@ ep.panel(640, { cam: { on: ['neville'], fr: 'bust', dy: -0.2 }, bg: () => HG.hal
   [cap('Across the Hall, at the Hufflepuff table, Neville Longbottom was smiling shyly at the older students making room for him.', 44, 30, { w: 620 })], { mood: 'candle' });
 ep.panel(460, { cam: { on: ['harry'], fr: 'eyes' }, bg: RT, blur: 3, actors: RAV({ h: { expr: 'pained' } }) }, [inner('Harry', '*Oh.*', 110, 392, { w: 140, fixed: true })], { mood: 'candle', alt: 'Harry understands.' });
 // Harry's handwriting on ruled paper
-const ruled = (w, h, step) => { let out = rect(0, 0, w, h, { fill: '#fbf6e6' }); for (let y = 40; y < h; y += step) out += line(0, y, w, y, { stroke: '#b9c9d8', 'stroke-width': 1 }); return out; };
-const scrawl = (x, y, s, fs, a = 'start', col = '#2d2a4a') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': a, fill: col });
+const ruled = (w, h, step) => FX.notebook(w, h, { fill: '#fbf6e6', top: 40, step, line: '#b9c9d8', lw: 1, margin: 0 });
+const scrawl = (x, y, s, fs, a = 'start', col) => FX.scrawl(x, y, s, fs, a, col);
 // the to-do list: a real sheet of paper lying on the page (torn edges, a little crooked)
 const todo = (lines, strike = []) => (ctx) => {
   let out = ruled(ctx.w, ctx.h, 36) + scrawl(60, 80, 'TO DO', 44);

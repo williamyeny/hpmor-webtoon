@@ -29,8 +29,8 @@ const ROOM = (m = {}, h = {}) => [MCG(m), DESK, HP(h)];
 const TWO = (H, bottom = 990) => ({ x: 1250, y: bottom - (H - 36) / 2, w: 760 });
 // standing two-shot (no desk): McGonagall x≈1000, Harry x≈1400
 const STAND2 = (H, bottom = 960) => ({ x: 1200, y: bottom - (H - 36) / 2 * (720 / 752), w: 720 });
-const PENCIL = (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#f3ead3' }) + [...Array(Math.ceil(ctx.h / 34)).keys()].map((k) => line(0, 20 + k * 34, ctx.w, 20 + k * 34, { stroke: '#b9c8d8', 'stroke-width': 1.4 })).join('') + line(70, 0, 70, ctx.h, { stroke: '#e2a0a0', 'stroke-width': 2 });
-const PT = (x, y, s, fs = 36, col = '#2d2a4a', a = 'middle', o = {}) => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, fill: col, 'text-anchor': a, ...o });
+const PENCIL = (ctx) => FX.notebook(ctx.w, ctx.h);
+const PT = (x, y, s, fs = 36, col, a, o) => FX.scrawl(x, y, s, fs, a, col, o);
 
 // the reader steps into her office through its doorway (wood arch)
 ep.panel(1120, { cam: { x: 1180, y: 470, w: 1400 }, bg: MO, actors: ROOM({ expr: 'worried' }, { expr: 'blank' }) },

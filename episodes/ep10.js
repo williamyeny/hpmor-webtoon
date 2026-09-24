@@ -2,7 +2,7 @@
 import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, note, title, plain, M } from '../engine/core/dsl.js';
 import { shot, atAnchor } from '../engine/core/scene.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text } from '../engine/core/svg.js';
+import { g, rect, path, circle, ellipse, line } from '../engine/core/svg.js';
 import * as S from '../engine/bg/station.js';
 import * as L from '../engine/bg/london.js';
 import * as K from '../engine/bg/kit.js';
@@ -151,7 +151,7 @@ ep.panel(920, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.08 }, bg: C
   [say('Harry', 'I did *warn* you that challenging my ingenuity makes your life surreal. Remember that, the next time I warn you about something.', 400, 141, { w: 540, fixed: true }),
    say('Harry', 'You think you have what it takes to be a scientist in your own right? Then let\'s see how *you* investigate a confusing phenomenon.', 400, 790, { w: 540, fixed: true })], { mood: 'day' });
 // the science-fair method
-const scrawl = (x, y, s, fs = 44, a = 'start', col = '#2d2a4a') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': a, fill: col });
+const scrawl = (x, y, s, fs = 44, a = 'start', col) => FX.scrawl(x, y, s, fs, a, col);
 const poster = (ctx) => {
   const w = ctx.w, h = ctx.h;
   let out = rect(0, 0, w, h, { fill: '#f4ecd6' });

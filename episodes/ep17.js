@@ -6,6 +6,7 @@ import { g, rect, path, circle, ellipse, line, rng } from '../engine/core/svg.js
 import * as CS from '../engine/bg/castle.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
+import { withActor } from '../engine/core/scene.js';
 import { quirrell, student } from '../engine/chars/cast.js';
 import { harryRaven, hermioneRaven, dracoSly, crabbe, goyle, terry, anthony, padma, michael, dean, zabini, ernie, nevilleHuff } from '../engine/chars/cast2.js';
 import { wand, bookHeld, bookOpen, quill } from '../engine/props/props.js';
@@ -19,7 +20,7 @@ dayBeat(ep, 'Wednesday.', 'If you wanted to be specific, 2:23 on Wednesday after
 
 // ---------------------------------------------------------------- staging
 // panel-space overlay drawn from one actor's anchors (nothing if the actor isn't in the shot)
-const onActor = (id, f) => (e) => { const a = e.anchors[id]; return a ? f(a, e) : ''; };
+const onActor = (id, f) => withActor(id, f, { space: 'panel' });
 // speed-line burst centred on an actor's head (inner: the clear space round it, in head radii)
 const headBurst = (id, n, op, inner) => onActor(id, (a, e) => FX.burst(e.w, e.h, a.head[0], a.head[1], { n, op, inner: a.hr * inner }));
 const ST = (o) => () => CS.defenceStage(o);

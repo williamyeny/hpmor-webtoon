@@ -245,7 +245,7 @@ ep.panel(620, { cam: { on: ['harry'], fr: 'close' }, bg: OF({ rack: false }), bl
 // Harry's argument, sketched: a million boxes and the work of finding the one; poor Mortimer Snodgrass
 hS(700, 400, 0.688, 0.68, { expr: 'rant', pose: 'lecture' },
   [say('Harry', 'Okay, that is simply not the correct way to deal with our admitted ignorance of the universe.', 330, 60, { anchor: 'tc', w: 420, fixed: true })], { desk: RK });
-const PT = (x, y, str, fs = 32, col = '#2d2a4a', anchor = 'middle') => text(x, y, str, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, fill: col, 'text-anchor': anchor });
+const PT = (x, y, str, fs = 32, col, anchor) => FX.scrawl(x, y, str, fs, anchor, col);
 const sketchPaper = (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#f3ead3' }) + [...Array(Math.ceil(ctx.h / 44)).keys()].map((k) => line(0, 30 + k * 44, ctx.w, 30 + k * 44, { stroke: '#b9c7d8', 'stroke-width': 1.2, opacity: 0.6 })).join('');
 ep.panel(780, (ctx) => { let o = sketchPaper(ctx); const R = rng(4); const x0 = 60, y0 = 290, cw = 42, ch = 40, HC = 10, HR = 4;
   for (let i = 0; i < 16 * 9; i++) { const c = i % 16, r = Math.floor(i / 16), x = x0 + c * cw + R.range(-2, 2), y = y0 + r * ch + R.range(-2, 2); const hit = c === HC && r === HR;

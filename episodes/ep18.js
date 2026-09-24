@@ -19,7 +19,7 @@ ep.setBg(C.paper);
 header(ep, 'EIGHTEEN', 'Do Not Mess With Time');
 dayBeat(ep, 'Thursday.', 'If you wanted to be specific, 7:24 on Thursday morning.');
 
-const PENCIL = (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#f3ead3' }) + [...Array(Math.ceil(ctx.h / 34)).keys()].map((k) => line(0, 20 + k * 34, ctx.w, 20 + k * 34, { stroke: '#b9c8d8', 'stroke-width': 1.4 })).join('') + line(70, 0, 70, ctx.h, { stroke: '#e2a0a0', 'stroke-width': 2 });
+const PENCIL = (ctx) => FX.notebook(ctx.w, ctx.h);
 const DORM = (o = {}) => () => CS.ravenclawDorm({ time: 'morning', ...o });
 
 // ---------------------------------------------------------------- the brilliant experiment

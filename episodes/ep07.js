@@ -13,7 +13,7 @@ const ep = new Episode({ id: 'ep07', number: 7, title: 'The Winner Shall Lose' }
 ep.setBg(C.paper);
 ep.beat(260, [plain('CHAPTER SEVEN', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Winner Shall Lose', 400, 170, { size: 48 })]);
 // Harry's pencil notes: Caveat on cream paper
-const T = (x, y, s, fs, a = 'middle', col = '#2d2a4a') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': a, fill: col });
+const T = FX.scrawl;
 const HWAND = g({ transform: 'translate(0,-4)' }, wand(104, '#8a5a2a')); // under the fist (gripped), pointing on past it
 
 // =============================================================== Ollivanders

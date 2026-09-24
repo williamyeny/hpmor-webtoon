@@ -162,3 +162,13 @@ export function crater(w = 400) {
 // a cut-out figure cropped above the feet fades into the page below (y0..y1 as fractions of the panel height).
 // Use as a shot's `over`: fg: FX.fadeOut() or over: FX.fadeOut(0.6, 0.95)
 export const fadeOut = (y0 = 0.62, y1 = 0.97) => (e) => { const id = uid('fo'), W0 = -400, WW = e.w + 800; return `<defs><linearGradient id="${id}" gradientUnits="userSpaceOnUse" x1="0" y1="${e.h * y0}" x2="0" y2="${e.h * y1}"><stop offset="0" stop-color="${C.paper}" stop-opacity="0"/><stop offset="1" stop-color="${C.paper}" stop-opacity="1"/></linearGradient><mask id="${id}m"><rect x="${W0}" y="0" width="${WW}" height="${e.h + 400}" fill="url(#${id})"/></mask></defs>` + rect(W0, 0, WW, e.h + 400, { fill: `url(#${id})` }) + g({ mask: `url(#${id}m)` }, rect(W0, 0, WW, e.h + 400, { filter: 'url(#grain)', opacity: 0.35, style: 'mix-blend-mode:multiply' })); };
+
+// Harry's pencil handwriting (Caveat, bold): notes, diagrams, the Game's clues in his own hand.
+export const scrawl = (x, y, str, size = 32, anchor = 'middle', col = '#2d2a4a', attrs = {}) => text(x, y, str, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': size, 'text-anchor': anchor, fill: col, ...attrs });
+// lined notebook paper filling (0,0)-(w,h): ruled lines every `step` from `top`, and a red margin line (margin: 0 for none)
+export const notebook = (w, h, o = {}) => {
+  const { fill = '#f3ead3', top = 20, step = 34, line: lc = '#b9c8d8', lw = 1.4, margin = 70 } = o;
+  let out = rect(0, 0, w, h, { fill });
+  for (let y = top; y < h; y += step) out += line(0, y, w, y, { stroke: lc, 'stroke-width': lw });
+  return out + (margin ? line(margin, 0, margin, h, { stroke: '#e2a0a0', 'stroke-width': 2 }) : '');
+};
