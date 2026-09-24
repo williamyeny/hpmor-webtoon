@@ -234,8 +234,6 @@ ep.panel(760, { cam: { x: 1220, y: 860, w: 620 }, bg: DS,
 ep.panel(820, { cam: { on: ['harry'], fr: 'knees' }, bg: () => O.bedroom(), actors: [{ def: harry, id: 'harry', x: 560, y: 960, s: 1.1, turn: 0.2, pose: 'hold', expr: 'awe', armF: { sh: 18, el: 62, hand: 'hold', prop: g({ transform: 'translate(10,40) scale(0.5)' }, envelope({})) }, armB: { sh: 22, el: 60, hand: 'hold' } }] },
   [inner('Harry', 'Magic is real.', 400, 90, { w: 300 }),
    inner('Harry', 'Which means I\'m going to need a *lot* more books.', 400, 700, { w: 420 })], { mood: 'candle', alt: 'That night, Harry holds the letter by candlelight, wide awake.' });
-ep.beat(420, [plain('To be continued', 400, 150, { font: "'IM Fell English SC', serif", size: 34, color: '#3a2a20' }),
-  plain('Next: *The Boy Who Lived*', 400, 230, { font: "'IM Fell English', serif", size: 28, color: '#5a4032' })],
-  { over: (t) => g({ transform: 'translate(400,330)' }, seal(0, 0, 34, 'H')) });
+ep.end();
 
 export default ep;

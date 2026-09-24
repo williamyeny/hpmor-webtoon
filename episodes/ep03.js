@@ -291,8 +291,6 @@ ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: DA({ start: 3 }), 
 ep.bleed(1300, { cam: { x: 1000, y: 230, w: 1500 }, bg: () => L.gringotts(),
   actors: [{ def: mcgonagall, id: 'mcgonagall', x: 880, y: 1090, s: 1, turn: 0.1, pose: 'stand', expr: 'calm' }, { def: harry, id: 'harry', x: 1060, y: 1100, s: 1.1, turn: -0.1, pose: 'stand', expr: 'awe' }] },
   [capC('They walked together in silence, until they came before a great white building with vast bronze doors.', 400, 1150, { w: 540 })], { mood: 'day', fadeTop: true, alt: 'Gringotts: a vast white marble bank with columns and bronze doors. Harry and McGonagall, tiny, at the foot of its steps.' });
-ep.beat(420, [plain('To be continued', 400, 150, { font: "'IM Fell English SC', serif", size: 34, color: '#3a2a20' }),
-  plain('Next: *The Efficient Market Hypothesis*', 400, 230, { font: "'IM Fell English', serif", size: 28, color: '#5a4032' })],
-  { over: (t) => g({ transform: 'translate(400,330)' }, seal(0, 0, 34, 'H')) });
+ep.end();
 
 export default ep;

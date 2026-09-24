@@ -17,8 +17,9 @@ a{color:inherit}
   backdrop-filter:blur(4px);transition:transform .25s ease;max-width:var(--col);margin:0 auto}
 .bar.hide{transform:translateY(-110%)}
 .bar a{text-decoration:none;display:flex;align-items:center;gap:.35rem;white-space:nowrap}
+.bar .chev{font-size:2.1em;line-height:.6;margin-top:-.12em}
 .bar .t{flex:1;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.85;font-style:italic}
-.seal{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c23a3f,#8a151b 70%);
+.seal{display:inline-flex;align-items:center;justify-content:center;line-height:1;width:1.7em;height:1.7em;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c23a3f,#8a151b 70%);
   color:#f3d7c0;font-family:'IM Fell English SC',serif;font-size:.8em;box-shadow:0 1px 2px rgba(0,0,0,.4) inset,0 1px 3px rgba(0,0,0,.4)}
 .strip{max-width:var(--col);margin:0 auto;background:var(--paper);line-height:0}
 .strip img{display:block;width:100%;height:auto;-webkit-user-select:none;user-select:none}

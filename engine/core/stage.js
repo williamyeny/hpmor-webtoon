@@ -81,6 +81,9 @@ window.layoutBubbles=async function(){
   await document.fonts.ready;
   const svg=document.getElementById('bsvg');
   const bubs=[...document.querySelectorAll('.bub')];
+  const tile=document.getElementById('tile');
+  const HEADS=JSON.parse(tile.dataset.heads||'[]'), PLACED=[];
+  const TW=tile.offsetWidth, TH=tile.offsetHeight;
   let seed=11;
   for(const b of bubs){
     const d=JSON.parse(b.dataset.b);seed+=7;
@@ -109,6 +112,25 @@ window.layoutBubbles=async function(){
     let left,top;
     if(d.anchor==='tl'){left=d.x;top=d.y;}else if(d.anchor==='tr'){left=d.x-W;top=d.y;}else if(d.anchor==='bl'){left=d.x;top=d.y-H;}else if(d.anchor==='br'){left=d.x-W;top=d.y-H;}
     else {left=d.x-W/2;top=d.y-H/2;}
+    // collision avoidance with real sizes: faces, other balloons, tile edges
+    if(!['sfx','plain','title','note','hatBig'].includes(d.type) && !d.fixed){
+      const PX=padX+6, PY=padY+6;
+      const R0=(l,t)=>({x:l-PX,y:t-PY,w:W+PX*2,h:H+PY*2});
+      const hitC=(r,c)=>{const cx=Math.max(r.x,Math.min(c[0],r.x+r.w)),cy=Math.max(r.y,Math.min(c[1],r.y+r.h));return Math.hypot(cx-c[0],cy-c[1])<c[2];};
+      const hitR=(a,b)=>a.x<b.x+b.w&&b.x<a.x+a.w&&a.y<b.y+b.h&&b.y<a.y+a.h;
+      const out=(r)=>r.x<4||r.y<4||r.x+r.w>TW-4||r.y+r.h>TH-4;
+      const bad=(l,t)=>{const r=R0(l,t);return out(r)?2:(HEADS.some(c=>hitC(r,c))||PLACED.some(p=>hitR(r,p)))?1:0;};
+      if(bad(left,top)){
+        let found=null;
+        const steps=[];for(let k=20;k<=420;k+=20)steps.push([k,0],[-k,0],[0,-k],[0,k],[k,-k*0.6],[-k,-k*0.6],[k,k*0.6],[-k,k*0.6]);
+        // first try: fully clean; else: just inside the tile
+        for(const [dx,dy] of steps){if(!bad(left+dx,top+dy)){found=[left+dx,top+dy];break;}}
+        if(!found){const bad2=(l,t)=>{const r=R0(l,t);return out(r)||PLACED.some(p=>hitR(r,p));};for(const [dx,dy] of steps){if(!bad2(left+dx,top+dy)){found=[left+dx,top+dy];break;}}}
+        if(!found){let r=R0(left,top);let l2=left,t2=top;if(r.x<4)l2+=4-r.x;if(r.x+r.w>TW-4)l2-=r.x+r.w-(TW-4);if(r.y<4)t2+=4-r.y;if(r.y+r.h>TH-4)t2-=r.y+r.h-(TH-4);found=[l2,t2];}
+        left=found[0];top=found[1];
+      }
+      PLACED.push(R0(left,top));
+    }
     b.style.left=left+'px';b.style.top=top+'px';b.style.visibility='visible';
     if(d.rot)b.style.transform='rotate('+d.rot+'deg)';
     const cx=left+W/2,cy=top+H/2;

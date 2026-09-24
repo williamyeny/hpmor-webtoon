@@ -2,6 +2,8 @@
 // episode files readable: `ep.panel(h, shotOpts, bubbles, panelOpts)`.
 import { shot } from './scene.js';
 import { C } from './palette.js';
+import { g } from './svg.js';
+import { seal } from '../props/props.js';
 
 export const M = 24; // standard side margin
 export const W = 800;
@@ -47,6 +49,10 @@ export class Episode {
   }
   // gutter-only beat (text between panels)
   beat(h, bubbles = [], o = {}) { return this.tile({ h, panels: [], bubbles, ...(o.bg ? { bg: o.bg } : {}), ...(o.over ? { over: o.over } : {}), ...(o.under ? { under: o.under } : {}) }); }
+  // closing tile: "To be continued" + wax seal (the site's next-episode card handles the rest)
+  end(text = 'To be continued') {
+    return this.beat(340, [plain(text, 400, 140, { font: "'IM Fell English SC', serif", size: 34, color: '#3a2a20' })], { over: () => g({ transform: 'translate(400,230)' }, seal(0, 0, 34, 'H')) });
+  }
   // multi-panel tile
   multi(h, panels, bubbles = [], o = {}) {
     return this.tile({ h, panels: panels.map((p) => ({ ...p, art: typeof p.art === 'function' || typeof p.art === 'string' ? p.art : shot(p.art) })), bubbles, ...(o.bg ? { bg: o.bg } : {}), ...(o.over ? { over: o.over } : {}) });

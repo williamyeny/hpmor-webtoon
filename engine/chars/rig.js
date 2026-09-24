@@ -266,6 +266,7 @@ export function drawCharacter(def, opts = {}) {
 
   // torso body
   layers.torso.push(path(torsoD, S(topCol)));
+  if (O.pattern) layers.torso.push(path(torsoD, { fill: `url(#pat-${O.pattern})`, opacity: 0.55 }));
   // cel shading on torso (far side)
   const tid = uid('ts');
   layers.torso.push(`<clipPath id="${tid}"><path d="${torsoD}"/></clipPath>`);

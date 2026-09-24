@@ -290,8 +290,6 @@ ep.bleed(1200, { cam: { x: 900, y: 380, w: 1500 }, bg: GD({ star: true }), actor
 ep.panel(620, { cam: { on: ['harry'], fr: 'close' }, bg: GD(), blur: 3, actors: [{ def: harry, id: 'harry', x: 780, y: 1030, s: 1.1, turn: 0, expr: 'what' }] },
   [say('Harry', 'What.', 560, 140, { w: 140, size: 34 })], { mood: 'dusk' });
 
-ep.beat(420, [plain('To be continued', 400, 150, { font: "'IM Fell English SC', serif", size: 34, color: '#3a2a20' }),
-  plain('Next: *Everything I Believe Is False*', 400, 230, { font: "'IM Fell English', serif", size: 28, color: '#5a4032' })],
-  { over: (t) => g({ transform: 'translate(400,330)' }, seal(0, 0, 34, 'H')) });
+ep.end();
 
 export default ep;

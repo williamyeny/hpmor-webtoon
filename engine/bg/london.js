@@ -246,3 +246,46 @@ export function shadowStage(col1 = '#7b2433', col2 = '#e7a95a', o = {}) {
   const id = uid('ss');
   return `<defs><radialGradient id="${id}" cx="0.5" cy="0.45" r="0.7"><stop offset="0" stop-color="${col2}"/><stop offset="1" stop-color="${col1}"/></radialGradient></defs>` + rect(-2000, -2000, 6000, 6000, { fill: `url(#${id})` });
 }
+
+// ---------------------------------------------------------------- Madam Malkin's, inside (2000 × 1100)
+// Two fitting footstools at x≈780 (Harry) and x≈1080 (Draco); the open door on the right at x 1700–1880.
+export function malkinInterior(o = {}) {
+  const R = rng(51);
+  let out = K.wallpaper(-200, -200, 2400, 1100, '#7a4a5a', { c2: '#6e4050', stripes: true });
+  out += K.wainscot(-200, 560, 2400, 340, '#5a3a2a');
+  // racks of robes (left)
+  out += line(-100, 250, 560, 250, bl(6));
+  for (let i = 0; i < 9; i++) { const x = -60 + i * 70; out += path(`M${x - 34},262 L${x + 34},262 L${x + 46},${620 + R.range(-20, 20)} L${x - 46},${620 + R.range(-20, 20)}Z`, { fill: R.pick(['#1d1a20', '#23202a', '#2f2a35', '#1f2a24', '#3a2030']), ...bl(1.4) }) + path(`M${x - 8},250 q8,-24 16,0`, { fill: 'none', ...bl(2) }); }
+  // bolts of fabric shelves
+  for (let s2 = 0; s2 < 3; s2++) { out += rect(1180, 120 + s2 * 140, 420, 14, { fill: '#6b4429', ...bl(1.4) }); for (let i = 0; i < 7; i++) out += ellipse(1210 + i * 58, 120 + s2 * 140 - 26, 26, 26, { fill: R.pick([C.burgundy, C.forest, C.navy, '#c9b48a', '#8a5a7a', C.mustardDark, '#1d1a20']), ...bl(1.4) }) + circle(1210 + i * 58, 120 + s2 * 140 - 26, 6, { fill: '#f1e6cc' }); }
+  // tall mirrors
+  for (const mx of [620, 1240]) out += path(`M${mx - 70},80 Q${mx},-10 ${mx + 70},80 L${mx + 70},560 L${mx - 70},560Z`, { fill: '#b9c9d0', stroke: '#b08d45', 'stroke-width': 10 }) + path(`M${mx - 40},120 L${mx - 10},500`, { stroke: '#fff', 'stroke-width': 8, opacity: 0.4 });
+  // the open door + street light
+  out += rect(1700, 180, 200, 720, { fill: '#e9d9b0', ...bl(2) }) + rect(1712, 196, 176, 704, { fill: '#f6e3b0' }) + K.lightShaft(1800, 200, 180, 1700, 1100, 380, '#fff2c8', 0.22);
+  out += rect(-200, FLOOR - 10, 2400, 12, { fill: '#2a1a10' }) + K.floorboards(-200, FLOOR, 2400, 400, '#6e4a2c', 52);
+  out += K.rug(930, FLOOR + 90, 700, 120, '#5a3a5a');
+  // footstools
+  for (const sx of [780, 1080]) out += rect(sx - 70, FLOOR + 30, 140, 50, { fill: '#6b4429', ...bl(2), rx: 8 }) + rect(sx - 76, FLOOR + 20, 152, 18, { fill: '#8a5a7a', ...bl(1.6), rx: 6 });
+  out += K.glow(900, 200, 900, C.candle, 0.2);
+  return out;
+}
+// animated tape measures, writhing around a point (panel-independent: world coords)
+export function tapeMeasures(x, y, s = 1, seed = 3) {
+  const R = rng(seed); let out = '';
+  for (let i = 0; i < 4; i++) {
+    const pts = []; let px = x + R.range(-40, 40) * s, py = y + R.range(-80, 80) * s;
+    for (let k = 0; k < 8; k++) { pts.push([px, py]); px += R.range(-50, 50) * s; py += R.range(-40, 40) * s; }
+    const d = smoothD(pts, false, 0.6);
+    out += path(d, { fill: 'none', stroke: '#2a1b14', 'stroke-width': 11 * s, 'stroke-linecap': 'round' }) + path(d, { fill: 'none', stroke: '#f0dca0', 'stroke-width': 8 * s, 'stroke-linecap': 'round' }) + path(d, { fill: 'none', stroke: '#8a6a3a', 'stroke-width': 8 * s, 'stroke-dasharray': `1 ${7 * s}` });
+  }
+  return out;
+}
+// the pub opposite (sign of a wooden keg), exterior strip
+export function kegPub(o = {}) {
+  let out = rect(-200, -300, 2000, 1500, { fill: '#b9c3cc' });
+  out += rect(200, -100, 900, 1000, { fill: '#8a6a4a', ...bl(2) }) + K.brickWall(204, -96, 892, 992, '#7a4a36', 61);
+  out += rect(420, 380, 220, 520, { fill: '#3a2618', ...bl(2) }) + rect(700, 380, 300, 260, { fill: '#f3c66f', ...bl(2) }) + K.glow(850, 510, 260, C.candle, 0.4);
+  out += line(1090, 100, 1260, 100, bl(4)) + g({ transform: 'translate(1180,190)' }, ellipse(0, 0, 60, 70, { fill: '#8a5a2a', ...bl(2) }), line(-58, -20, 58, -20, bl(3)), line(-58, 20, 58, 20, bl(3)));
+  out += rect(-200, 900, 2000, 500, { fill: '#7d7468' });
+  return out;
+}

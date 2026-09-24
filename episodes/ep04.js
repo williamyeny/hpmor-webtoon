@@ -269,8 +269,6 @@ ep.panel(700, { cam: { on: ['mcgonagall', 'harry'], fr: 'waist' }, bg: SA, actor
   [say('McGonagall', 'Let\'s get you to Madam Malkin\'s next. I fear your Muggle clothing may be attracting attention.', 250, 100, { w: 380 })], { mood: 'day' });
 ep.panel(820, { cam: { x: L.shopAt('Madam Malkin', { seed: 7 }), y: 520, w: 1000 }, bg: () => L.diagonAlley({ seed: 7 }) },
   [cap('Madam Malkin\'s Robes for All Occasions. A genuinely boring shop front: red brick, plain black robes in the window, and the door propped wide open as if to advertise that there was nothing to hide.', 44, 34, { w: 500 })], { mood: 'day', alt: 'Madam Malkin\'s robe shop, plain and respectable.' });
-ep.beat(420, [plain('To be continued', 400, 150, { font: "'IM Fell English SC', serif", size: 34, color: '#3a2a20' }),
-  plain('Next: *Six Minutes*', 400, 230, { font: "'IM Fell English', serif", size: 28, color: '#5a4032' })],
-  { over: (t) => g({ transform: 'translate(400,330)' }, seal(0, 0, 34, 'H')) });
+ep.end();
 
 export default ep;

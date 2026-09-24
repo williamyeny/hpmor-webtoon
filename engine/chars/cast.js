@@ -1,7 +1,7 @@
 // The cast. Each entry is a character *design*: proportions, palette, face, hair, outfit.
 // Outfit variants (e.g. Harry at home vs. in robes) are separate entries built with `variant()`.
 import { C } from '../core/palette.js';
-import { path, ellipse, circle, g, smoothD, shade, lerp, rng, taperD } from '../core/svg.js';
+import { path, ellipse, circle, line, g, smoothD, shade, lerp, rng, taperD } from '../core/svg.js';
 import * as H from './hair.js';
 
 // ---------- body templates
@@ -281,3 +281,41 @@ export const griphook = goblin('griphook');
 export const oldMan = { ...makeExtra(301, { old: true, female: false, hairStyle: 'bald', robe: '#4a4a3a' }), name: 'oldMan' };
 export const mokeKeeper = { ...makeExtra(302, { female: true, old: false, hairStyle: 'bun', robe: '#d9c36a' }), name: 'mokeKeeper' };
 Object.assign(CAST, { griphook, oldMan, mokeKeeper });
+
+// ---------- Draco Malfoy: pointed, pale, platinum, smug — and trained
+export const draco = {
+  name: 'draco', body: { ...KID, headRx: 57, headRy: 58, shoulderW: 72 }, skin: '#f4e1d2', skinShade: '#d8bfae',
+  head: { jaw: 0.46, chin: 1.12, cheek: 0.9 },
+  face: kidFace({ eyeY: 12, eyeSpacing: 24, eye: { color: '#7d8a99', w: 23, h: 24, iris: 9.5, lash: 1.8 }, brow: { color: '#d9cba0', len: 21, w: 4.4 }, rosy: false, mouth: { w: 18 } }),
+  hair: { color: '#efe3bd', ...H.keyed({
+    front: { F: [[-61, -14], [-66, -36], [-54, -62], [-24, -78], [6, -82], [34, -78], [58, -62], [66, -36], [61, -14], [54, -26], [44, -44], [26, -52], [8, -54], [-10, -52], [-30, -48], [-48, -40], [-55, -28]],
+             S: [[-60, -8], [-70, -34], [-62, -62], [-30, -80], [4, -84], [34, -78], [56, -60], [58, -36], [54, -18], [48, -30], [40, -44], [24, -54], [8, -56], [-10, -54], [-30, -48], [-46, -38], [-54, -22]] },
+    back: { F: [[-64, 20], [-70, -20], [-50, -62], [0, -76], [50, -62], [70, -20], [64, 20], [0, 10]], S: [[-70, 26], [-78, -16], [-60, -62], [-6, -78], [44, -62], [56, -20], [50, 16], [-10, 12]] },
+    strands: { F: [[[-40, -40], [-20, -64], [10, -74]], [[-10, -46], [10, -66], [34, -70]], [[20, -46], [36, -60], [52, -56]]], S: [[[-34, -42], [-14, -66], [16, -76]], [[-4, -48], [16, -68], [38, -70]], [[24, -48], [38, -60], [50, -54]]] },
+    strandColor: '#c9b98a',
+  }) },
+  outfit: { top: '#1d1b22', robe: true, robeColor: '#1d1b22', robeLen: 0.95, wideSleeves: true, cuffW: 1.6, legs: '#2a2630', shoes: '#151012', robeTrim: '#8a9aa8', collar: '#f2ecde' },
+};
+export const dracoFitting = { ...draco, outfit: { ...draco.outfit, top: '#2a2830', robeColor: '#2a2830', pattern: 'checker', robeTrim: '#2a2830' } };
+
+// ---------- Lucius Malfoy: tall, cold, elegant, a silver-handled cane that looks like a weapon
+export const lucius = {
+  name: 'lucius', body: { ...ADULT_M, torsoH: 180, legU: 122, legL: 116, shoulderW: 116, waistW: 88, hipW: 90, headRx: 48, headRy: 60 }, skin: '#f0dccb', skinShade: '#cdb4a2',
+  head: { jaw: 0.46, chin: 1.1, cheek: 0.84 },
+  face: adultFace({ eye: { color: '#8a97a6', w: 19, h: 14, iris: 6.3, lash: 1.4 }, brow: { color: '#d9cba0', len: 22, w: 3.6 }, nose: 'long', noseLen: 24, mouth: { w: 18 }, cheekLines: true }),
+  hair: { color: '#efe3bd', ...H.long('lucius', { len: 2.4, part: 0 }) },
+  outfit: { top: '#111015', robe: true, robeColor: '#111015', robeLen: 1.02, flare: 1.35, wideSleeves: true, cuffW: 1.9, cuff: '#8a9aa8', legs: '#000', shoes: '#0a0808', robeTrim: '#a9b4c0',
+    torsoDetail: ({ T, B, lw }) => { const p = T(0, -B.torsoH + 18); return circle(p[0], p[1], 8, { fill: '#c9ced4', stroke: C.ink, 'stroke-width': lw * 0.6 }) + path(`M${p[0] - 4},${p[1] + 2} q4,-8 8,0`, { fill: 'none', stroke: '#4a5a4a', 'stroke-width': lw * 0.6 }); } },
+};
+export const malkin = {
+  name: 'malkin', body: { ...ADULT_F, torsoH: 140, legU: 96, legL: 92, headRx: 49, headRy: 52, waistW: 100, hipW: 112 }, skin: '#efcfb6', skinShade: '#cfa98f',
+  head: { jaw: 0.66, chin: 0.98, cheek: 0.96 },
+  face: adultFace({ eye: { color: '#6a5a4a', w: 17, h: 14, iris: 6.4 }, brow: { color: '#9d978f', len: 20, w: 3.4 }, nose: 'button', wrinkles: true, lips: '#b8676b', rosy: true }),
+  hair: { color: '#b9b4ab', ...H.bun('malkin', { soft: true, bunR: 0.44, bunY: 0.8, hairline: 0.55 }) },
+  glasses: { r: 12, shape: 'half', frame: 0.8, color: '#6b4a2a' },
+  outfit: { top: '#8a5a7a', robe: true, robeColor: '#8a5a7a', robeLen: 0.98, wideSleeves: true, cuffW: 1.6, legs: '#2a2630', shoes: '#2a1a12', robeTrim: '#6a3a5a',
+    torsoDetail: ({ T, B, lw }) => { const p = T(-10, -B.torsoH * 0.55); return circle(p[0], p[1], 10, { fill: '#c43a32', stroke: C.ink, 'stroke-width': lw * 0.6 }) + [0, 1, 2, 3].map((k) => line(p[0] - 6 + k * 4, p[1] - 12, p[0] - 4 + k * 4, p[1] - 4, { stroke: '#c9ced4', 'stroke-width': 1.5 })).join(''); } },
+};
+export const asst1 = { ...makeExtra(501, { female: true, old: false, hairStyle: 'pony', robe: '#6b5a70' }), name: 'asst1' };
+export const asst2 = { ...makeExtra(502, { female: true, old: false, hairStyle: 'long', robe: '#5a6a70' }), name: 'asst2' };
+Object.assign(CAST, { draco, dracoFitting, lucius, malkin, asst1, asst2 });

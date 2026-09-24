@@ -35,8 +35,9 @@ a{color:inherit}
   backdrop-filter:blur(4px);transition:transform .25s ease;max-width:var(--col);margin:0 auto}
 .bar.hide{transform:translateY(-110%)}
 .bar a{text-decoration:none;display:flex;align-items:center;gap:.35rem;white-space:nowrap}
+.bar .chev{font-size:2.1em;line-height:.6;margin-top:-.12em}
 .bar .t{flex:1;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.85;font-style:italic}
-.seal{display:inline-grid;place-items:center;width:1.7em;height:1.7em;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c23a3f,#8a151b 70%);
+.seal{display:inline-flex;align-items:center;justify-content:center;line-height:1;width:1.7em;height:1.7em;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c23a3f,#8a151b 70%);
   color:#f3d7c0;font-family:'IM Fell English SC',serif;font-size:.8em;box-shadow:0 1px 2px rgba(0,0,0,.4) inset,0 1px 3px rgba(0,0,0,.4)}
 .strip{max-width:var(--col);margin:0 auto;background:var(--paper);line-height:0}
 .strip img{display:block;width:100%;height:auto;-webkit-user-select:none;user-select:none}
@@ -102,14 +103,14 @@ for (let i = 0; i < ready.length; i++) {
   const imgs = m.tiles.map((t, k) => `<img src="${t.file}" width="1000" height="${Math.round(t.h * 1.25)}" alt="${esc(t.alt || '')}"${k > 2 ? ' loading="lazy"' : ''} decoding="async">`).join('\n');
   const html = `${head(`${e.number}. ${e.title} — ${SERIES.short}`, '../')}
 <body data-ep="${e.id}">
-<nav class="bar"><a href="../">${seal('✦')} Contents</a><span class="t">Ep. ${e.number} · ${esc(e.title)}</span></nav>
+<nav class="bar"><a href="../" aria-label="All episodes"><span class="chev">‹</span> All episodes</a><span class="t">Ep. ${e.number} · ${esc(e.title)}</span></nav>
 <main class="strip">
 ${imgs}
 </main>
 <section class="end">
 ${next ? `<a class="card" href="../${next.id}/"><div class="k">Next · Episode ${next.number}</div><div class="h">${esc(next.title)}</div><div class="b">${esc(next.blurb)}</div></a>`
     : upcoming ? `<div class="card"><div class="k">Coming next · Episode ${upcoming.number}</div><div class="h">${esc(upcoming.title)}</div><div class="b">${esc(upcoming.blurb)}</div></div>` : '<p class="muted">End of Book One.</p>'}
-<p><a class="muted" href="../">Back to contents</a></p>
+<p><a class="muted" href="../">All episodes</a></p>
 </section>
 <script src="../assets/reader.js"></script>
 </body></html>`;

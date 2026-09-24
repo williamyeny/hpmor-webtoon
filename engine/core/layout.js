@@ -123,7 +123,6 @@ function resolveBubbles(bubbles, panelsA, W = 800, H = 1000) {
     }
     return b;
   });
-  avoidFaces(pre, panelsA, W, H);
   return pre.map((b) => {
     const fix = (t) => {
       if (Array.isArray(t)) return t;
@@ -152,7 +151,7 @@ function bubbleHTML(b, i) {
   const data = {
     type: b.type || 'speech', x: b.x, y: b.y, w: b.w || 360, tail: b.tail || null, anchor: b.anchor || 'c',
     tails: b.tails || null, size: b.size || null, font: b.font || null, color: b.color || null, align: b.align || null,
-    rot: b.rot || 0, pad: b.pad ?? null, bg: b.bg || null, border: b.border || null, weight: b.weight || null,
+    rot: b.rot || 0, fixed: b.fixed || false, pad: b.pad ?? null, bg: b.bg || null, border: b.border || null, weight: b.weight || null,
   };
   const html = b.html ?? escText(b.text || '').replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>').replace(/\n/g, '<br>');
   return `<div class="bub t-${data.type}" data-b='${JSON.stringify(data).replace(/'/g, '&#39;')}'><div class="bt">${html}</div></div>`;
@@ -175,5 +174,7 @@ ${tile.gutterGrain === false ? '' : `<rect width="${W}" height="${H}" filter="ur
 ${under}${panels}${over}
 </svg>`;
   const bubbles = resolveBubbles(tile.bubbles, panelsA, W, H).map(bubbleHTML).join('');
-  return { W, H, html: `<div id="tile" style="position:relative;width:${W}px;height:${H}px;overflow:hidden">${svg}<svg id="bsvg" width="${W}" height="${H}" style="position:absolute;left:0;top:0;overflow:visible"></svg>${bubbles}</div>` };
+  const heads = [];
+  for (const A of panelsA) for (const id in A || {}) { const a = A[id]; if (a.head && a.hr) heads.push([Math.round(a.head[0]), Math.round(a.head[1] + a.hr * 0.15), Math.round(a.hr * 1.0)]); }
+  return { W, H, html: `<div id="tile" data-heads='${JSON.stringify(heads)}' style="position:relative;width:${W}px;height:${H}px;overflow:hidden">${svg}<svg id="bsvg" width="${W}" height="${H}" style="position:absolute;left:0;top:0;overflow:visible"></svg>${bubbles}</div>` };
 }
