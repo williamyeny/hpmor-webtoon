@@ -99,17 +99,12 @@ ol.eps li.read .n{background:radial-gradient(circle at 35% 30%,#a08868,#6b5840 7
 ol.eps li.read .tt,ol.eps li.read .bb{opacity:.6}
 ol.eps li.reading .n{box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--gold),0 1px 3px rgba(0,0,0,.4)}
 ol.eps li.reading{background:linear-gradient(90deg,rgba(201,162,74,.16),transparent)}
-/* progress: the Hogwarts Express puffing along a track towards the castle */
-ol.eps .bar2{position:relative;height:34px;margin:.8rem 24px 0 0}
-ol.eps .bar2:before{content:'';position:absolute;left:0;right:0;bottom:3px;height:7px;background:repeating-linear-gradient(90deg,#9c7c56 0 3px,transparent 3px 8px) 0 100%/100% 5px no-repeat,linear-gradient(#6e5238,#6e5238) 0 0/100% 2px no-repeat;opacity:.35}
-ol.eps .bar2:after{content:'';position:absolute;right:-24px;bottom:3px;width:20px;height:22px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2022%22%3E%3Cpath%20d%3D%22M1%2022V9h2V7h2v2h2V5l3-4%203%204v4h2V7h2v2h2v13Z%22%20fill%3D%22%235a4032%22%2F%3E%3Crect%20x%3D%228.6%22%20y%3D%2215%22%20width%3D%222.8%22%20height%3D%227%22%20rx%3D%221.4%22%20fill%3D%22%23f2d58a%22%2F%3E%3Crect%20x%3D%223%22%20y%3D%2212%22%20width%3D%221.6%22%20height%3D%222.4%22%20fill%3D%22%23f2d58a%22%2F%3E%3Crect%20x%3D%2215.4%22%20y%3D%2212%22%20width%3D%221.6%22%20height%3D%222.4%22%20fill%3D%22%23f2d58a%22%2F%3E%3Cpath%20d%3D%22M10%201v-1h3l-1%201.2%201%201.2h-3%22%20fill%3D%22%238e1b24%22%2F%3E%3C%2Fsvg%3E") center/contain no-repeat}
-ol.eps .bar2 i{position:absolute;left:0;bottom:3px;height:7px;background:repeating-linear-gradient(90deg,#9c7c56 0 3px,transparent 3px 8px) 0 100%/100% 5px no-repeat,linear-gradient(#6e5238,#6e5238) 0 0/100% 2px no-repeat}
-ol.eps .bar2 b{position:absolute;bottom:4px;width:44px;height:28px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2044%2028%22%3E%3Crect%20x%3D%223%22%20y%3D%2220%22%20width%3D%2236%22%20height%3D%222.4%22%20fill%3D%22%232a1b14%22%2F%3E%3Crect%20x%3D%224%22%20y%3D%227%22%20width%3D%2212%22%20height%3D%2213.5%22%20rx%3D%221%22%20fill%3D%22%237e1720%22%2F%3E%3Crect%20x%3D%222%22%20y%3D%224.5%22%20width%3D%2216%22%20height%3D%223%22%20rx%3D%221%22%20fill%3D%22%232a1b14%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%229.5%22%20width%3D%226%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f2d58a%22%2F%3E%3Crect%20x%3D%2215%22%20y%3D%2210%22%20width%3D%2222%22%20height%3D%2210.5%22%20rx%3D%224.5%22%20fill%3D%22%23a8222d%22%2F%3E%3Crect%20x%3D%2221%22%20y%3D%2210%22%20width%3D%221.6%22%20height%3D%2210.5%22%20fill%3D%22%23d9b25a%22%2F%3E%3Crect%20x%3D%2228%22%20y%3D%2210%22%20width%3D%221.6%22%20height%3D%2210.5%22%20fill%3D%22%23d9b25a%22%2F%3E%3Crect%20x%3D%2230.5%22%20y%3D%223.5%22%20width%3D%224%22%20height%3D%227%22%20fill%3D%22%232a1b14%22%2F%3E%3Crect%20x%3D%2229.5%22%20y%3D%222%22%20width%3D%226%22%20height%3D%222.2%22%20rx%3D%221%22%20fill%3D%22%232a1b14%22%2F%3E%3Ccircle%20cx%3D%2237.6%22%20cy%3D%2213.5%22%20r%3D%221.5%22%20fill%3D%22%23ffd88a%22%2F%3E%3Cpath%20d%3D%22M37%2020.5%20L42%2024.5%20L37%2024.5Z%22%20fill%3D%22%232a1b14%22%2F%3E%3Ccircle%20cx%3D%229.5%22%20cy%3D%2224%22%20r%3D%223.6%22%20fill%3D%22%232a1b14%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2224%22%20r%3D%223.6%22%20fill%3D%22%232a1b14%22%2F%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2224%22%20r%3D%223.6%22%20fill%3D%22%232a1b14%22%2F%3E%3Ccircle%20cx%3D%229.5%22%20cy%3D%2224%22%20r%3D%221.1%22%20fill%3D%22%23d9b25a%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2224%22%20r%3D%221.1%22%20fill%3D%22%23d9b25a%22%2F%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2224%22%20r%3D%221.1%22%20fill%3D%22%23d9b25a%22%2F%3E%3C%2Fsvg%3E") center/contain no-repeat;animation:chug .5s steps(2) infinite}
-ol.eps .bar2 b:before,ol.eps .bar2 b:after{content:'';position:absolute;left:30px;top:-2px;width:9px;height:9px;border-radius:50%;background:#fffaf0;box-shadow:0 0 0 1px rgba(90,64,50,.25);opacity:0;animation:puff 1.6s ease-out infinite}
-ol.eps .bar2 b:after{animation-delay:.8s}
-@keyframes chug{0%{transform:translateY(0)}100%{transform:translateY(-1px)}}
-@keyframes puff{0%{opacity:.95;transform:translate(0,0) scale(.5)}100%{opacity:0;transform:translate(-18px,-14px) scale(1.5)}}
-@media (prefers-reduced-motion:reduce){ol.eps .bar2 b,ol.eps .bar2 b:before,ol.eps .bar2 b:after{animation:none}}
+/* progress: the fore-edge of a book's pages, with a ribbon bookmark tucked in at your place (echoes the big book) */
+ol.eps .bar2{position:relative;height:30px;margin-top:.8rem}
+ol.eps .bar2:before{content:'';position:absolute;z-index:1;left:0;right:0;top:3px;height:9px;border-radius:2px;background:repeating-linear-gradient(90deg,#f7efdc 0 2px,#e6dbc2 2px 3px);box-shadow:0 1px 2px rgba(60,30,10,.18);opacity:.8}
+ol.eps .bar2 i{position:absolute;z-index:2;left:0;top:3px;height:9px;border-radius:2px 0 0 2px;background:repeating-linear-gradient(90deg,#e2c894 0 2px,#a68256 2px 3px);box-shadow:0 1px 2px rgba(60,30,10,.3)}
+ol.eps .bar2 b{position:absolute;z-index:0;top:6px;width:13px;height:26px;margin-left:-6.5px;transform-origin:50% 0;animation:sway 5s ease-in-out infinite;background:linear-gradient(90deg,#a8871f,#e2bf5a 45%,#b8952c);clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+@media (prefers-reduced-motion:reduce){ol.eps .bar2 b{animation:none}}
 ol.eps .soon .n{background:#9b8b6e}
 .foot{font-size:.85rem;color:#b9a888;text-align:center;padding:1.5rem 1rem 3rem;max-width:var(--col);margin:0 auto;line-height:1.5}
 .foot a{color:#d8c7a2}
@@ -141,7 +136,7 @@ const READER_JS = `
     if(s2.last&&E[s2.last]&&!E[s2.last].done)cur=s2.last;
     list.forEach(function(li){var id=li.dataset.id,e=E[id];
       if(e&&e.done){li.classList.add('read');}
-      else if(id===cur){li.classList.add('reading');var b=li.querySelector('.bar2');if(b){b.hidden=false;var pc=Math.max(4,Math.round((e.p||0)*100))+'%';b.querySelector('i').style.width=pc;b.querySelector('b').style.left='max(0px, calc('+pc+' - 42px))';}}
+      else if(id===cur){li.classList.add('reading');var b=li.querySelector('.bar2');if(b){b.hidden=false;var pc=Math.max(4,Math.round((e.p||0)*100))+'%';b.querySelector('i').style.width=pc;b.querySelector('b').style.left=pc;}}
     });
     var btn=document.getElementById('continue');
     if(btn){var target=cur,label='Continue';
