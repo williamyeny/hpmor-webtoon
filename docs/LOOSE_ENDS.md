@@ -1,11 +1,8 @@
 # Loose Ends — Plants & Payoffs Ledger
 
-Every setup from the adapted material that pays off (or might) **later**, including far outside
-arc one. Future arcs: before cutting or changing anything below, check this list; when you pay
-something off, fill in the "Paid off" column instead of deleting the row.
+Every setup from the adapted material that pays off (or might) **later**, including far outside arc one. Future arcs: before cutting or changing anything below, check this list; when you pay something off, fill in the "Paid off" column instead of deleting the row.
 
-Status keys: **KEPT** (on the page, as in HPMOR) · **SHARPENED** (on the page, made more visible)
-· **MOVED** · **CUT** (and why) · **ADDED** (new plant of ours).
+Status keys: **KEPT** (on the page, as in HPMOR) · **SHARPENED** (on the page, made more visible) · **MOVED** · **CUT** (and why) · **ADDED** (new plant of ours).
 
 | # | Plant | Where (webtoon) | Source ch. | Pays off (HPMOR) | Status |
 |---|---|---|---|---|---|
@@ -96,13 +93,7 @@ Status keys: **KEPT** (on the page, as in HPMOR) · **SHARPENED** (on the page, 
 
 ## Things deliberately left out of arc one (to be picked up later)
 
-- Dumbledore's feast speech ("Happy happy boom boom swamp swamp swamp"), the Quidditch notice,
-  the third-floor corridor warning, and the Comed-Tea-omnipotence gag (ch 12). *If a future arc
-  opens at the feast, use them — the Quidditch rant in Ep 8 is the plant for "Anyone interested in
-  reformulating the entire game of Quidditch should contact Harry Potter."*
-  **Book Two status:** the Quidditch notice, the third-floor warning and the Comed-Tea urge are
-  used in Ep 13. The omnipotence gag stays cut. "Happy happy boom boom swamp swamp swamp" is
-  now Dumbledore's send-off after the school song in Ep 13, so Ep 18 and Ep 19 can refer to it.
+- Dumbledore's feast speech ("Happy happy boom boom swamp swamp swamp"), the Quidditch notice, the third-floor corridor warning, and the Comed-Tea-omnipotence gag (ch 12). *If a future arc opens at the feast, use them — the Quidditch rant in Ep 8 is the plant for "Anyone interested in reformulating the entire game of Quidditch should contact Harry Potter."* **Book Two status:** the Quidditch notice, the third-floor warning and the Comed-Tea urge are used in Ep 13. The omnipotence gag stays cut. "Happy happy boom boom swamp swamp swamp" is now Dumbledore's send-off after the school song in Ep 13, so Ep 18 and Ep 19 can refer to it.
 - The ghosts Harry met before the Sorting (ch 9 mentions them only in passing).
 - Ron's full Quidditch explanation (condensed to a few panels).
 
@@ -110,30 +101,16 @@ Status keys: **KEPT** (on the page, as in HPMOR) · **SHARPENED** (on the page, 
 
 These were found while logging Book Two. Each is marked with how it was resolved.
 
-- **"Happy happy boom boom swamp swamp swamp."** Harry calls on it in Ep 18 and Dumbledore calls it
-  "the words of power and madness" in Ep 19, but Dumbledore saying it at the feast was cut from
-  Ep 12 and isn't in Ep 13. New readers won't know where Harry got it. Easy fix: one panel in the
-  Ep 13 cold open, or a line in the Ep 19 caption. **FIXED:** Ep 13 now ends the notices with
-  Dumbledore shouting it ("…Thank you, and good night!"), just before Harry's "do not mess with Dumbledore".
-- **Dumbledore's "no complaints about the Defence Professor" notice.** Ep 18 has McGonagall say
-  "Surely you heard the Headmaster tell the students not to bother us with any unimportant
-  complaints about the Defence Professor?", but that notice was cut from Ep 13. **FIXED:** the
-  notice is back in Ep 13 (after the third-floor warning), with Harry's "*What was* that *about?*".
-- **"Spat upon."** In Ep 22 Quirrell asks "Did you think less of *me*, when I told you I had been
-  spat upon?", but the spitting was cut from his dojo story for rating. Either restore a softer
-  version of that line in the story ("Some of them spat on me") or change the later line. **FIXED:**
-  the later line now reads "…when I told you I had been pushed to the ground?", matching the story.
+- **"Happy happy boom boom swamp swamp swamp."** Harry calls on it in Ep 18 and Dumbledore calls it "the words of power and madness" in Ep 19, but Dumbledore saying it at the feast was cut from Ep 12 and isn't in Ep 13. New readers won't know where Harry got it. Easy fix: one panel in the Ep 13 cold open, or a line in the Ep 19 caption. **FIXED:** Ep 13 now ends the notices with Dumbledore shouting it ("…Thank you, and good night!"), just before Harry's "do not mess with Dumbledore".
+- **Dumbledore's "no complaints about the Defence Professor" notice.** Ep 18 has McGonagall say "Surely you heard the Headmaster tell the students not to bother us with any unimportant complaints about the Defence Professor?", but that notice was cut from Ep 13. **FIXED:** the notice is back in Ep 13 (after the third-floor warning), with Harry's "*What was* that *about?*".
+- **"Spat upon."** In Ep 22 Quirrell asks "Did you think less of *me*, when I told you I had been spat upon?", but the spitting was cut from his dojo story for rating. Either restore a softer version of that line in the story ("Some of them spat on me") or change the later line. **FIXED:** the later line now reads "…when I told you I had been pushed to the ground?", matching the story.
 
 ## Things left out of Book Two (to be picked up later)
 
-- Quirrell points "will control the generalship of the armies" (ch 16). Re-seed when the armies
-  start (row 67).
-- The Cloak letter's "I shall have to get along with Disillusionment" (ch 14), a clue to the
-  sender (row 59).
-- Phoenixes "move between all places as easily as fire" (ch 17). Fawkes's flame-travel matters
-  later (anti-phœnix wards, ch 94).
+- Quirrell points "will control the generalship of the armies" (ch 16). Re-seed when the armies start (row 67).
+- The Cloak letter's "I shall have to get along with Disillusionment" (ch 14), a clue to the sender (row 59).
+- Phoenixes "move between all places as easily as fire" (ch 17). Fawkes's flame-travel matters later (anti-phœnix wards, ch 94).
 - The sleep-lengthening potion for students who can't have Time-Turners (ch 18).
-- Wizards resist impacts, so Bludgers are iron (ch 17). Still true on the page (Neville only breaks
-  his wrist) but never said.
+- Wizards resist impacts, so Bludgers are iron (ch 17). Still true on the page (Neville only breaks his wrist) but never said.
 - Dumbledore telling Madam Pince to let Harry have Occlumency books (ch 20).
 

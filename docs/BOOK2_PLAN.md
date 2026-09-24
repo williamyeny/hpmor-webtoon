@@ -1,11 +1,8 @@
 # Book Two — episode beat sheet (working plan)
 
-Design reasoning: `STORY_DESIGN.md` → "Book Two". This file is the scene-by-scene plan the scripts
-are written from. Once an episode is scripted, its final changes are logged in `ADAPTATION.md`
-and this file is kept as the record of intent.
+Design reasoning: `STORY_DESIGN.md` → "Book Two". This file is the scene-by-scene plan the scripts are written from. Once an episode is scripted, its final changes are logged in `ADAPTATION.md` and this file is kept as the record of intent.
 
-Every episode opens on a day caption in the ch. 17 style: **"Thursday."** then small:
-*"If you wanted to be specific, 7:24 on Thursday morning."*
+Every episode opens on a day caption in the ch. 17 style: **"Thursday."** then small: *"If you wanted to be specific, 7:24 on Thursday morning."*
 
 Wide-audience edits used throughout (and why) are listed at the bottom.
 
@@ -13,452 +10,149 @@ Wide-audience edits used throughout (and why) are listed at the bottom.
 
 ## Ep 13 — The Game (ch. 12 tail + ch. 13 first half)
 
-**Change:** Harry goes from "I've got this place figured out" to lost, hungry, humiliated and
-playing a game he can't understand. **Question opened:** who is doing this to him?
+**Change:** Harry goes from "I've got this place figured out" to lost, hungry, humiliated and playing a game he can't understand. **Question opened:** who is doing this to him?
 
-1. **Cold open, Sunday 9:48 p.m., Great Hall.** Dumbledore's notices (Forbidden Forest → "the
-   Permitted Forest"). Harry's hand drifts to the Comed-Tea in his pouch; he stops himself ("…it is
-   overwhelmingly obvious I'll regret it one second after it's too late. *So, no.*"). Then:
-   *"Anyone interested in reformulating the entire game of Quidditch should contact Harry
-   Potter."* Harry chokes on his own spit with no drink at all; every head turns; he never told
-   anyone but Ron. Dumbledore's eyes twinkle straight at him. Third-floor corridor ("…does not wish
-   to die a very painful death"). School song: everyone picks their own tune (cacophony panel).
-   *Note to self: do not mess with Dumbledore.* **Plants:** Comed-Tea urge → comedy (Ep 15),
-   Dumbledore reads minds (Ep 23), third floor (Ep 19).
-2. **Dorm, 1 a.m.** Ravenclaw boys arguing in the background; the Quieter slider on the headboard;
-   Harry sets his mechanical alarm for 7:00; clock at 1:00 (26-hour cycle, Ep 2 plant). "Ask
-   McGonagall about his sleep. Tomorrow."
-3. **Monday, 9:52 a.m.** "It was quiet. *Too* quiet." Five small panels: empty dorm; unmade beds;
-   high sun; Quieter at max; alarm switched off. Herbology started 82 minutes ago. Frost flicker
-   ("When Harry found out who'd done this…") → hurt ("They'd *liked* him. He'd thought.").
-4. **The note on the headboard** in his own handwriting, which he doesn't remember writing. Ice.
-   Obliviated? → pouch: *"Note to myself."* → "Dear Me, Please play the game… Recognition code 927,
-   I am a potato. You." (tiny sepia inset: 8-year-old Harry inventing the code in front of the TV).
-   Flip side, typeset by a Quotes Quill: the five "you do not know" lines. *You start with 100
-   points. Begin.*
-5. **The notes comedy.** Snack bars → two tiny chocolates, "Attempt failed −1 / Physical state:
-   Still hungry / Mental state: Confused". "Gleehhhhh." Empty cereal box (−1). Cabinet: six bars
-   + "Do not eat while wearing your pyjamas. You will get a Pyjama Penalty." "*And now I know that
-   whoever controls the game is insane.*" "My guess is that the game is controlled by Dumbledore."
-   Under the bed: "Ha! Ha ha ha ha ha!… Dumbledore does not control the game. Bad guess. Very bad
-   guess. −20 points… Pyjama penalty −2. Current points: 75." Drawer: "How can I earn more
-   points?" → "Opportunities to do good are everywhere / but darkness is where the light needs to
-   be… Nice underwear. Did your mother pick them out?" (Harry scarlet.) **Fair-play clue:** the
-   rubbish bin holds a crumpled envelope and red-and-green wrapping paper.
-6. **Lost.** Moving stairs change under his feet; "twelve flights down and somehow *higher*"; a
-   window showing clouds *below* the castle. "Can, um, the spirit of the Hogwarts castle help me?"
-   **The old lady's portrait:** "I don't think this castle has a spirit. Life, perhaps, but not
-   spirit." The handshake he offers a painting. "Would it be fair to say that you don't know where
-   you're going or why?" "*Entirely* fair." "…wow is this conversation turning into a metaphor for
-   human existence." The Game? "Life. That's one of the most obvious riddles I've ever heard… the
-   one who awards or takes points is always you." Bow and curtsey. "I probably won't remember you
-   at all."
-7. **Cornelion Flubberwalt** (loud pink robes, a hat with an actual fish on it): "A hint! It will
-   only cost you three points!… Minus ten points for being slow! Now you have 61 points!" The
-   message came from "a hollow voice that belled forth from a gap within the air itself, a gap that
-   opened upon a fiery abyss!" (Harry will say this line himself in Ep 15.) Directions ("…is this a
-   Monday on an odd-numbered year?"). "Pencil and mechanical paper. Er, cancel that."
+1. **Cold open, Sunday 9:48 p.m., Great Hall.** Dumbledore's notices (Forbidden Forest → "the Permitted Forest"). Harry's hand drifts to the Comed-Tea in his pouch; he stops himself ("…it is overwhelmingly obvious I'll regret it one second after it's too late. *So, no.*"). Then: *"Anyone interested in reformulating the entire game of Quidditch should contact Harry Potter."* Harry chokes on his own spit with no drink at all; every head turns; he never told anyone but Ron. Dumbledore's eyes twinkle straight at him. Third-floor corridor ("…does not wish to die a very painful death"). School song: everyone picks their own tune (cacophony panel). *Note to self: do not mess with Dumbledore.* **Plants:** Comed-Tea urge → comedy (Ep 15), Dumbledore reads minds (Ep 23), third floor (Ep 19).
+2. **Dorm, 1 a.m.** Ravenclaw boys arguing in the background; the Quieter slider on the headboard; Harry sets his mechanical alarm for 7:00; clock at 1:00 (26-hour cycle, Ep 2 plant). "Ask McGonagall about his sleep. Tomorrow."
+3. **Monday, 9:52 a.m.** "It was quiet. *Too* quiet." Five small panels: empty dorm; unmade beds; high sun; Quieter at max; alarm switched off. Herbology started 82 minutes ago. Frost flicker ("When Harry found out who'd done this…") → hurt ("They'd *liked* him. He'd thought.").
+4. **The note on the headboard** in his own handwriting, which he doesn't remember writing. Ice. Obliviated? → pouch: *"Note to myself."* → "Dear Me, Please play the game… Recognition code 927, I am a potato. You." (tiny sepia inset: 8-year-old Harry inventing the code in front of the TV). Flip side, typeset by a Quotes Quill: the five "you do not know" lines. *You start with 100 points. Begin.*
+5. **The notes comedy.** Snack bars → two tiny chocolates, "Attempt failed −1 / Physical state: Still hungry / Mental state: Confused". "Gleehhhhh." Empty cereal box (−1). Cabinet: six bars
+   + "Do not eat while wearing your pyjamas. You will get a Pyjama Penalty." "*And now I know that whoever controls the game is insane.*" "My guess is that the game is controlled by Dumbledore." Under the bed: "Ha! Ha ha ha ha ha!… Dumbledore does not control the game. Bad guess. Very bad guess. −20 points… Pyjama penalty −2. Current points: 75." Drawer: "How can I earn more points?" → "Opportunities to do good are everywhere / but darkness is where the light needs to be… Nice underwear. Did your mother pick them out?" (Harry scarlet.) **Fair-play clue:** the rubbish bin holds a crumpled envelope and red-and-green wrapping paper.
+6. **Lost.** Moving stairs change under his feet; "twelve flights down and somehow *higher*"; a window showing clouds *below* the castle. "Can, um, the spirit of the Hogwarts castle help me?" **The old lady's portrait:** "I don't think this castle has a spirit. Life, perhaps, but not spirit." The handshake he offers a painting. "Would it be fair to say that you don't know where you're going or why?" "*Entirely* fair." "…wow is this conversation turning into a metaphor for human existence." The Game? "Life. That's one of the most obvious riddles I've ever heard… the one who awards or takes points is always you." Bow and curtsey. "I probably won't remember you at all."
+7. **Cornelion Flubberwalt** (loud pink robes, a hat with an actual fish on it): "A hint! It will only cost you three points!… Minus ten points for being slow! Now you have 61 points!" The message came from "a hollow voice that belled forth from a gap within the air itself, a gap that opened upon a fiery abyss!" (Harry will say this line himself in Ep 15.) Directions ("…is this a Monday on an odd-numbered year?"). "Pencil and mechanical paper. Er, cancel that."
 8. **The green study room** (dragon stained glass); he *has* to read the shelf titles.
-9. **A boy cries out.** Sprint. Six Hufflepuffs huddled; five older Slytherins in a ring. "*Excuse
-   me!*" It's Neville. "Of course." He yanks Neville out and steps into the ring himself.
-   **End:** "Hello. I'm the Boy-Who-Lived."
+9. **A boy cries out.** Sprint. Six Hufflepuffs huddled; five older Slytherins in a ring. "*Excuse me!*" It's Neville. "Of course." He yanks Neville out and steps into the ring himself. **End:** "Hello. I'm the Boy-Who-Lived."
 
 ## Ep 14 — Minus Infinity (ch. 13 second half)
 
-**Change:** Harry wins the fight, loses the boy he saved, and loses the Game. **Question:** why
-does his own handwriting send him to McGonagall?
+**Change:** Harry wins the fight, loses the boy he saved, and loses the Game. **Question:** why does his own handwriting send him to McGonagall?
 
-1. The awkward pause. Neville's books on the floor. "Did 'oo want the widdle books—" "Shut up."
-   (Cold.) "…or is it as pointless a disgrace to the name of Salazar Slytherin as it—" SHOVE.
-   Laughter.
-2. Harry rises slowly. "I'd like to pay *as many points as it takes* to get rid of this person."
-   "Abracadabra." SNAP. Two Hufflepuffs scream; three Slytherins dive; **SPLAT**, cherry pie.
-   (Harry had *not* been expecting that.) The giggling Hufflepuff.
-3. The note under the pan: "*30 points* for shipping and handling! … *Drayage costs?* How do you get
-   drayage costs on a *pie?*" "Messing with *my* life tends to make *your* life… *a little hairy.*
-   Get it?" Wand out → **blueberry pie** → "WARNING: No magic may be used on the contestant while
-   the Game is in progress."
-4. The finger. Derrick takes Harry's index finger and starts to bend it; Harry does not flinch
-   ("…beneath me to flinch until he does"). One Slytherin: "Stop, this is a very bad idea!"
-   (Remember his face; he is the one missing in Ep 22.) Sprout: "I rather agree."
-5. Sprout's justice. "He threatened to kill us!" "If I was going to kill you I wouldn't make
-   public threats first!" (one Slytherin laughs; glares). *Prior Incantato*: the wand has never
-   been used. Accidental magic. 3 points each, 6 from Derrick; 7 to Ravenclaw. *Maybe he should
-   have gone to Hufflepuff. Sprout was cool.*
-6. Ernie: "How did you *do* that?" "I can make anything happen by snapping my fingers." "*Really?*"
-   "No." The Killing Curse is… *Avada Kedavra.* "*Well of course it is.*" (Never tell Dad.)
-7. **The apology.** The brick in his throat. "I'm, sor, ry." Neville: "Why does *everyone* do that
-   to me, even the Boy-Who-Lived?" "…the monsters give you chocolate…" "But there *is*. You saw it
-   today, there *is!*" "You hurt me. Just now." (the bruise) **"I think you're going to be really
-   cool some day. But right now, you're not."**
+1. The awkward pause. Neville's books on the floor. "Did 'oo want the widdle books—" "Shut up." (Cold.) "…or is it as pointless a disgrace to the name of Salazar Slytherin as it—" SHOVE. Laughter.
+2. Harry rises slowly. "I'd like to pay *as many points as it takes* to get rid of this person." "Abracadabra." SNAP. Two Hufflepuffs scream; three Slytherins dive; **SPLAT**, cherry pie. (Harry had *not* been expecting that.) The giggling Hufflepuff.
+3. The note under the pan: "*30 points* for shipping and handling! … *Drayage costs?* How do you get drayage costs on a *pie?*" "Messing with *my* life tends to make *your* life… *a little hairy.* Get it?" Wand out → **blueberry pie** → "WARNING: No magic may be used on the contestant while the Game is in progress."
+4. The finger. Derrick takes Harry's index finger and starts to bend it; Harry does not flinch ("…beneath me to flinch until he does"). One Slytherin: "Stop, this is a very bad idea!" (Remember his face; he is the one missing in Ep 22.) Sprout: "I rather agree."
+5. Sprout's justice. "He threatened to kill us!" "If I was going to kill you I wouldn't make public threats first!" (one Slytherin laughs; glares). *Prior Incantato*: the wand has never been used. Accidental magic. 3 points each, 6 from Derrick; 7 to Ravenclaw. *Maybe he should have gone to Hufflepuff. Sprout was cool.*
+6. Ernie: "How did you *do* that?" "I can make anything happen by snapping my fingers." "*Really?*" "No." The Killing Curse is… *Avada Kedavra.* "*Well of course it is.*" (Never tell Dad.)
+7. **The apology.** The brick in his throat. "I'm, sor, ry." Neville: "Why does *everyone* do that to me, even the Boy-Who-Lived?" "…the monsters give you chocolate…" "But there *is*. You saw it today, there *is!*" "You hurt me. Just now." (the bruise) **"I think you're going to be really cool some day. But right now, you're not."**
 8. Walking blindly. The anger: he never *feels* out of control, only afterwards. (Yoda gag.)
-9. "So how am I doing in the game?" Paper flies over his head (no one there): style +10, good
-   thinking −3,000,000, Ravenclaw bonus 70 (clue: ten times Sprout's seven). Appeal: failed.
-   *Asking the wrong questions: −1,000,000,000,000.* Last turn: "My guess is that the game
-   represents life." FINAL NOTE: *Failed Failed Failed / Aiiiieeee / Current points: minus
-   Infinity / You have lost the game / Final instruction: go to Professor McGonagall's office* —
-   the last line in his own handwriting. **End:** he knocks. "Come in."
+9. "So how am I doing in the game?" Paper flies over his head (no one there): style +10, good thinking −3,000,000, Ravenclaw bonus 70 (clue: ten times Sprout's seven). Appeal: failed. *Asking the wrong questions: −1,000,000,000,000.* Last turn: "My guess is that the game represents life." FINAL NOTE: *Failed Failed Failed / Aiiiieeee / Current points: minus Infinity / You have lost the game / Final instruction: go to Professor McGonagall's office* — the last line in his own handwriting. **End:** he knocks. "Come in."
 
 ## Ep 15 — The Time-Turner (ch. 14)
 
-**Change:** Harry gets a time machine and learns he is the Game Controller. **Close:** the
-mystery. **Open:** what is wrong with him?
+**Change:** Harry gets a time machine and learns he is the Game Controller. **Close:** the mystery. **Open:** what is wrong with him?
 
-1. McGonagall's office (cubbyholes; a locked back door). "Mr Potter? What is this about?" Blank.
-   Privacy spells. (The Comed-Tea voice again: *shut up.*)
-2. He reports the Slytherin whisper (Ep 12's choice pays off). Her mouth open. "…you decided to come
-   to me right away." The Chamber: "I would close the entrance and report to you at once so a team
-   of experienced magical archæologists could be assembled… photographs." "It's obvious if you're
-   not a Gryffindor." "You *far* underestimate the rarity of common sense." "A Hufflepuff would've
-   said the same thing." "Sorting Hat offered me Hufflepuff." "*Did it really?*" "Five decades ago
-   was the last time a student died within these walls… and the last time someone heard that
-   message." The Quietus patch.
-3. He refuses the points: carrying Ravenclaw on his back would be too sad; unfair to Terry Boot.
-   **"I see why the Sorting Hat offered you Hufflepuff."** (Harry chokes up: he thought he wasn't
-   worthy.) "I have greatly wronged you in my thoughts."
-4. The necklace. Spimster wicket / Spontaneous Duplication ("the work of a *competent* Slytherin").
-   "It's a Time-Turner… so you should always be able to get to sleep at the same time." (Inset:
-   the Ep 2 clock and hourglass.)
-5. **Meltdown, triple escalation**: "*You're giving me a time machine to treat my sleep
-   disorder.*" ×3, bigger each time. "Ehehehehhheheh…" Holding it away "as though it were a time
-   machine". Imagined: a smoking crater where Scotland used to be. Gutenberg and the horse cart.
-   "An endlessly repeating loop of Thursdays." → *a protective shell* ("I shall inform the
-   Ministry"). "Oh, you can't *change* time!… What if someone tried to change their test scores?"
-   Step aside and close your eyes. "I think I'd remember hearing if *that* had ever happened."
-   "*HAVEN'T YOU PEOPLE EVER HEARD OF THE ANTHROPIC PRINCIPLE?*" McGonagall laughs: "Another 'you
-   turned into a cat' moment… quite endearingly cute." (Mirror the Ep 2 splash composition.)
-6. "…*ISN'T TURING COMPUTABLE!*" → **Realisation 1: Comed-Tea.** Pencil diagram, arrow drawn
-   *backwards in time*: the comedy makes you drink (callback: Ep 13's saliva). **Realisation 2**
-   (a strangled kitten noise): who put the note on his bed. "…even if they're all wrong."
-   "Glehhahhh." Outside: "Gaahhhrrrraa."
+1. McGonagall's office (cubbyholes; a locked back door). "Mr Potter? What is this about?" Blank. Privacy spells. (The Comed-Tea voice again: *shut up.*)
+2. He reports the Slytherin whisper (Ep 12's choice pays off). Her mouth open. "…you decided to come to me right away." The Chamber: "I would close the entrance and report to you at once so a team of experienced magical archæologists could be assembled… photographs." "It's obvious if you're not a Gryffindor." "You *far* underestimate the rarity of common sense." "A Hufflepuff would've said the same thing." "Sorting Hat offered me Hufflepuff." "*Did it really?*" "Five decades ago was the last time a student died within these walls… and the last time someone heard that message." The Quietus patch.
+3. He refuses the points: carrying Ravenclaw on his back would be too sad; unfair to Terry Boot. **"I see why the Sorting Hat offered you Hufflepuff."** (Harry chokes up: he thought he wasn't worthy.) "I have greatly wronged you in my thoughts."
+4. The necklace. Spimster wicket / Spontaneous Duplication ("the work of a *competent* Slytherin"). "It's a Time-Turner… so you should always be able to get to sleep at the same time." (Inset: the Ep 2 clock and hourglass.)
+5. **Meltdown, triple escalation**: "*You're giving me a time machine to treat my sleep disorder.*" ×3, bigger each time. "Ehehehehhheheh…" Holding it away "as though it were a time machine". Imagined: a smoking crater where Scotland used to be. Gutenberg and the horse cart. "An endlessly repeating loop of Thursdays." → *a protective shell* ("I shall inform the Ministry"). "Oh, you can't *change* time!… What if someone tried to change their test scores?" Step aside and close your eyes. "I think I'd remember hearing if *that* had ever happened." "*HAVEN'T YOU PEOPLE EVER HEARD OF THE ANTHROPIC PRINCIPLE?*" McGonagall laughs: "Another 'you turned into a cat' moment… quite endearingly cute." (Mirror the Ep 2 splash composition.)
+6. "…*ISN'T TURING COMPUTABLE!*" → **Realisation 1: Comed-Tea.** Pencil diagram, arrow drawn *backwards in time*: the comedy makes you drink (callback: Ep 13's saliva). **Realisation 2** (a strangled kitten noise): who put the note on his bed. "…even if they're all wrong." "Glehhahhh." Outside: "Gaahhhrrrraa."
 7. One quiet beat: a blank map is not a blank territory, but this mystery might be *permanent*.
-8. **"Five hours earlier."** He sneaks in with his robe over his head. A present by his bed, red
-   and green paper, gold ribbon. **The letter** (legible parchment): the Cloak of Ignotus Peverell;
-   "If Dumbledore saw a chance to possess one of the Deathly Hallows, he would never let it escape
-   his grasp…"; "A Very Merry Christmas to you." Unsigned. Terry Boot and the oath with no loopholes
-   ("you should be a lawyer"); Penelope Clearwater: "…five months older and dressed in a loincloth
-   and covered in snow and *that's if you stay inside the castle*." Harry pulls the Cloak off the
-   sleeping Harry-1 and puts it in Harry-1's pouch.
-9. **Montage of the set-up** (the loop closing, beat for beat against Ep 13–14): the notes; the
-   bars under the robes; the aristocrat portrait ("I was told that it was spoken by a hollow voice
-   that belled forth…"); two pies from breakfast ("That's *everyone's* dessert!"); Professor
-   Sprout warned in advance ("Please be careful with yourself, Harry Potter. And… thank you.");
-   notes thrown over his own head.
-10. Under the Cloak, he watches himself yank Neville. *Way too much force.* "Hello," Harry Potter
-    said coldly. "I'm the Boy-Who-Lived." Seen from outside: eight first-year boys, one with a scar,
-    not acting like the others. Burns ("O wad some Power the giftie gie us / To see oursels as
-    others see us!"). **End:** *There was something wrong with Harry Potter.*
+8. **"Five hours earlier."** He sneaks in with his robe over his head. A present by his bed, red and green paper, gold ribbon. **The letter** (legible parchment): the Cloak of Ignotus Peverell; "If Dumbledore saw a chance to possess one of the Deathly Hallows, he would never let it escape his grasp…"; "A Very Merry Christmas to you." Unsigned. Terry Boot and the oath with no loopholes ("you should be a lawyer"); Penelope Clearwater: "…five months older and dressed in a loincloth and covered in snow and *that's if you stay inside the castle*." Harry pulls the Cloak off the sleeping Harry-1 and puts it in Harry-1's pouch.
+9. **Montage of the set-up** (the loop closing, beat for beat against Ep 13–14): the notes; the bars under the robes; the aristocrat portrait ("I was told that it was spoken by a hollow voice that belled forth…"); two pies from breakfast ("That's *everyone's* dessert!"); Professor Sprout warned in advance ("Please be careful with yourself, Harry Potter. And… thank you."); notes thrown over his own head.
+10. Under the Cloak, he watches himself yank Neville. *Way too much force.* "Hello," Harry Potter said coldly. "I'm the Boy-Who-Lived." Seen from outside: eight first-year boys, one with a scar, not acting like the others. Burns ("O wad some Power the giftie gie us / To see oursels as others see us!"). **End:** *There was something wrong with Harry Potter.*
 
 ## Ep 16 — Of Course This Means War (ch. 15)
 
-**Change:** Harry is outclassed at real magic, and declares war on the girl who beats him. Light
-episode after two heavy ones.
+**Change:** Harry is outclassed at real magic, and declares war on the girl who beats him. Light episode after two heavy ones.
 
-1. Charms, *Frigideiro*. He deliberately makes himself angry (frost) and… nothing. "He wanted a
-   *refund* on his dark side." Hermione's glass rimmed with ice. Flitwick: "Stupendous!" He asks
-   her for help; "a terrible light of helpfulness". She gets a point for helping him. *"I know
-   exactly what I am doing with two extra hours every day."* (Time-Turner overuse, plant for
-   Ep 21.)
-2. **Transfiguration.** Desk → pig → desk. "Would you care to guess…?" "In Transfiguration you do
-   *not* care to guess." "I'm not sure" is always allowed. Board: **Transfiguration is not
-   permanent!** Wood into water, drunk: Harry's pessimistic imagination. Textbook pages (shown via
-   the class's faces, and page 6: a Dementor, as a cold silhouette). The chanted rules, getting
-   louder: never liquid or gas; never food; never to be burned; never money (the goblins send an
-   *army*); never a living subject. Animagus ≠ free Transfiguration; *Crystferrium*. Golden hair →
-   hair falls out; adult form → death. "…a static target such as a coin—no, excuse me, let's just
-   say a steel ball." "In a day you would be dead." **The last rules:** *"Even if the current Defence
-   Professor tells me a Transfiguration is safe… I will not try it myself."* Matches to needles:
-   only Hermione's turns silvery.
-3. **The war.** "I earned two points today. But that wasn't as good as your *seven*. I guess I'm just
-   not as intelligent as you." (eyelashes) "…until Thursday." Stare-down. **"Of course you realise
-   this means war." "I didn't know we'd been at peace."** McGonagall, sweetly: Madam Pomfrey
-   approved his suggestion for the Spimster wickets: ten points. A record: seventeen. "An
-   announcement at dinner." "*PROFESSOR!*" ×2. They storm out, trailed by hypnotised Ravenclaws.
-   "Are we still on for after dinner?" "Of course. I wouldn't want you to fall further behind."
-   "…eight, times four, divided by zero?" "…10:47 on Sunday." "I did it in *three* days,
-   actually." "2:47 on Saturday it is, then. **I'm sure I'll find the time somewhere.**"
+1. Charms, *Frigideiro*. He deliberately makes himself angry (frost) and… nothing. "He wanted a *refund* on his dark side." Hermione's glass rimmed with ice. Flitwick: "Stupendous!" He asks her for help; "a terrible light of helpfulness". She gets a point for helping him. *"I know exactly what I am doing with two extra hours every day."* (Time-Turner overuse, plant for Ep 21.)
+2. **Transfiguration.** Desk → pig → desk. "Would you care to guess…?" "In Transfiguration you do *not* care to guess." "I'm not sure" is always allowed. Board: **Transfiguration is not permanent!** Wood into water, drunk: Harry's pessimistic imagination. Textbook pages (shown via the class's faces, and page 6: a Dementor, as a cold silhouette). The chanted rules, getting louder: never liquid or gas; never food; never to be burned; never money (the goblins send an *army*); never a living subject. Animagus ≠ free Transfiguration; *Crystferrium*. Golden hair → hair falls out; adult form → death. "…a static target such as a coin—no, excuse me, let's just say a steel ball." "In a day you would be dead." **The last rules:** *"Even if the current Defence Professor tells me a Transfiguration is safe… I will not try it myself."* Matches to needles: only Hermione's turns silvery.
+3. **The war.** "I earned two points today. But that wasn't as good as your *seven*. I guess I'm just not as intelligent as you." (eyelashes) "…until Thursday." Stare-down. **"Of course you realise this means war." "I didn't know we'd been at peace."** McGonagall, sweetly: Madam Pomfrey approved his suggestion for the Spimster wickets: ten points. A record: seventeen. "An announcement at dinner." "*PROFESSOR!*" ×2. They storm out, trailed by hypnotised Ravenclaws. "Are we still on for after dinner?" "Of course. I wouldn't want you to fall further behind." "…eight, times four, divided by zero?" "…10:47 on Sunday." "I did it in *three* days, actually." "2:47 on Saturday it is, then. **I'm sure I'll find the time somewhere.**"
 4. **End:** the castle at dusk. *And there was evening and there was morning, the first day.*
 
 ## Ep 17 — The Most Dangerous Student (ch. 16)
 
-**Change:** Harry is finally taken seriously by a teacher, as a killer. **Question:** is Quirrell
-right about him? And what is the doom?
+**Change:** Harry is finally taken seriously by a teacher, as a killer. **Question:** is Quirrell right about him? And what is the doom?
 
-1. "Wednesday. 2:23 p.m." (His watch says 11:23.) The Defence auditorium; white rectangles on
-   every desk; Quirrell slumped and drooling. *Now what does that remind me of…?*
-2. **Minions.** "Draco? What are *you* doing in oh my god you have *minions*." Crabbe and Goyle
-   looming (toothpick, knuckles); "*I told you not to do this in front of Harry Potter!*" "I think
-   they're acting exactly the way I'd want *my* minions to act." "Hey, Gregory, you don' think he's
-   tryna lure us away from the boss?" "What's *he* doin' in Ravenclaw?" Draco: the pies, Derrick,
-   "you're confusing everyone"; Saturday; "Granger. The mudblood who thinks she's Merlin."
-3. **2:35: every screen lights with Quirrell's face** (Harry's pang of homesickness for TV).
-   Battle Magic. The Horntail; **the Mountain Troll** (regenerates; fire and acid slow it) — keep
-   it word-for-word, it's a plant; the Dementor; "the single most dangerous monster in all the
-   world… the Dark Wizard". "There is no defence without offence!" "Welcome to your first year of
-   Battle Magic!" One boy claps. No homework. Armies. Quirrell points. **The Christmas wish.**
-   (Harry: a three-way wedding: him, the Time-Turner, Professor Quirrell.)
-4. **Ma-ha-su.** Red bolts, blue spheres, *bing*. His first real magic: *FEAR ME, LAWS OF
-   PHYSICS.*
-5. **Who's the Most Dangerous Student.** Hermione, fastest, is ordered to hex anyone. Harry taps
-   his chest: *pick me*. **"No."** (loses a point; shoulders straight; Harry wants to clap). Draco:
-   "Fire." → Hermione: "Ow!" "Why her?" "Because she stood out the most."
-6. **Harry.** "Give me ten unaccustomed uses of objects in this room for combat!" The list pours
-   out, escalating, with the class's faces going from impressed to horrified. Extra credit (robes,
-   wand, watch). Terry Boot: "He's… creative?" **"WRONG!"** Every idea offensive, every one
-   fatal. "Hit them on the neck with the edge of a chair." **Intent to kill.** "I have it. Harry
-   Potter has it." *I'm not a psychopath, I'm just very creative* (which sounds worse).
-7. "Mr Potter. Fire." He turns to the Slytherins, meets Draco's eyes, "only one *obvious*
-   choice"… and hexes himself. "One point from Ravenclaw for showing off." **"Just kidding!
-   RAVENCLAW!"**
+1. "Wednesday. 2:23 p.m." (His watch says 11:23.) The Defence auditorium; white rectangles on every desk; Quirrell slumped and drooling. *Now what does that remind me of…?*
+2. **Minions.** "Draco? What are *you* doing in oh my god you have *minions*." Crabbe and Goyle looming (toothpick, knuckles); "*I told you not to do this in front of Harry Potter!*" "I think they're acting exactly the way I'd want *my* minions to act." "Hey, Gregory, you don' think he's tryna lure us away from the boss?" "What's *he* doin' in Ravenclaw?" Draco: the pies, Derrick, "you're confusing everyone"; Saturday; "Granger. The mudblood who thinks she's Merlin."
+3. **2:35: every screen lights with Quirrell's face** (Harry's pang of homesickness for TV). Battle Magic. The Horntail; **the Mountain Troll** (regenerates; fire and acid slow it) — keep it word-for-word, it's a plant; the Dementor; "the single most dangerous monster in all the world… the Dark Wizard". "There is no defence without offence!" "Welcome to your first year of Battle Magic!" One boy claps. No homework. Armies. Quirrell points. **The Christmas wish.** (Harry: a three-way wedding: him, the Time-Turner, Professor Quirrell.)
+4. **Ma-ha-su.** Red bolts, blue spheres, *bing*. His first real magic: *FEAR ME, LAWS OF PHYSICS.*
+5. **Who's the Most Dangerous Student.** Hermione, fastest, is ordered to hex anyone. Harry taps his chest: *pick me*. **"No."** (loses a point; shoulders straight; Harry wants to clap). Draco: "Fire." → Hermione: "Ow!" "Why her?" "Because she stood out the most."
+6. **Harry.** "Give me ten unaccustomed uses of objects in this room for combat!" The list pours out, escalating, with the class's faces going from impressed to horrified. Extra credit (robes, wand, watch). Terry Boot: "He's… creative?" **"WRONG!"** Every idea offensive, every one fatal. "Hit them on the neck with the edge of a chair." **Intent to kill.** "I have it. Harry Potter has it." *I'm not a psychopath, I'm just very creative* (which sounds worse).
+7. "Mr Potter. Fire." He turns to the Slytherins, meets Draco's eyes, "only one *obvious* choice"… and hexes himself. "One point from Ravenclaw for showing off." **"Just kidding! RAVENCLAW!"**
 8. He heads for Quirrell to talk — *WRONG / DON'T / BAD IDEA* (the doom effect, full strength).
    **End.**
 
 ## Ep 18 — Do Not Mess With Time (ch. 17 first half)
 
-**Change:** Harry wins in public with the Time-Turner and McGonagall names his flaw. **Question:**
-why did the Remembrall blaze red for *him*?
+**Change:** Harry wins in public with the Time-Turner and McGonagall names his flaw. **Question:** why did the Remembrall blaze red for *him*?
 
-1. **Thursday 7:24 a.m.** A brilliant experimental test. Anthony multiplies two primes: 181,429.
-   The trunk's cavern; eyes shut; footsteps; a folded paper on the floor. The algorithm as a pencil
-   flowchart. Paper-2 reads, shakily: **DO NOT MESS WITH TIME.** He copies it out, shakily. *The
-   scariest experimental result in the history of science.*
-2. **Thursday 3:32 p.m. Flying.** "A *line segment*?" "UP!" — his broom leaps into his hand (first
-   in class, for once). A broom shoots skyward, spinning; a boy thrown. *Wingardium Leviosa* fails.
-   Thud. **The healer's kit** (Ep 6) and a syringe of liquid fire. "Broken wrist! Calm *down*,
-   boy!" It's Neville again.
-3. Slytherins giggling; Harry memorises faces. Draco's advice on looking in control. Ernie's
-   thanks; Draco's jab at Hufflepuff. **Goyle and the Remembrall**, on a broom: "Come and get it,
-   Hufflepuffle!" Draco frozen ("Everyone in Slytherin would think I'm *weak*!" "Your *father* is
-   going to think you're a *moron*!"). **Wands out — four panels, four House colours:** Hufflepuff,
-   Slytherin, Gryffindor, "*Wands out, Ravenclaw!*" (Michael Corner, feeling left out).
-4. "*I challenge you to a contest for possession of Neville's Remembrall!*" The terms. "*I call
-   upon the insanity of Hogwarts! Happy happy boom boom swamp swamp swamp!*" SNAP. Nothing. Dean
-   digs. Nothing. (His plan failed; he improvises.) Ernie searches where Neville fell and finds…
-   the Remembrall, while Goyle still holds one. "It's a plot hole." "The Slytherin is strong with
-   this one." Draco rules. Ernie tosses it; Harry catches it; **it blazes red like a miniature sun.**
-5. **5:09, McGonagall's office.** "*You are not to use the Time-Turner in that fashion!*" "…if I'd
-   picked arm-wrestling I would have lost!" **"*Then you should have picked wrestling!*"** "But then
-   I'd have *lost*—" He stops. *Intent to win.* "I'm sorry. For my pride and my stupidity." "One more
-   display like that and you will be returning that Time-Turner." The Remembrall: "that puzzles me
-   as well."
-6. The sense of doom: "*You must not finish that sentence!*" The jinx: last year's professors (see
-   edits below). "…he could assassinate the Prime Minister on live television and get away with it
-   so far as you're concerned." "Before the Ides of May… I will string you up by the gates of
-   Hogwarts with your own intestines and pour fire beetles into your nose." "What do I get if I can
-   make it happen on the last day of the school year?" **"*Get out of my office!*"**
+1. **Thursday 7:24 a.m.** A brilliant experimental test. Anthony multiplies two primes: 181,429. The trunk's cavern; eyes shut; footsteps; a folded paper on the floor. The algorithm as a pencil flowchart. Paper-2 reads, shakily: **DO NOT MESS WITH TIME.** He copies it out, shakily. *The scariest experimental result in the history of science.*
+2. **Thursday 3:32 p.m. Flying.** "A *line segment*?" "UP!" — his broom leaps into his hand (first in class, for once). A broom shoots skyward, spinning; a boy thrown. *Wingardium Leviosa* fails. Thud. **The healer's kit** (Ep 6) and a syringe of liquid fire. "Broken wrist! Calm *down*, boy!" It's Neville again.
+3. Slytherins giggling; Harry memorises faces. Draco's advice on looking in control. Ernie's thanks; Draco's jab at Hufflepuff. **Goyle and the Remembrall**, on a broom: "Come and get it, Hufflepuffle!" Draco frozen ("Everyone in Slytherin would think I'm *weak*!" "Your *father* is going to think you're a *moron*!"). **Wands out — four panels, four House colours:** Hufflepuff, Slytherin, Gryffindor, "*Wands out, Ravenclaw!*" (Michael Corner, feeling left out).
+4. "*I challenge you to a contest for possession of Neville's Remembrall!*" The terms. "*I call upon the insanity of Hogwarts! Happy happy boom boom swamp swamp swamp!*" SNAP. Nothing. Dean digs. Nothing. (His plan failed; he improvises.) Ernie searches where Neville fell and finds… the Remembrall, while Goyle still holds one. "It's a plot hole." "The Slytherin is strong with this one." Draco rules. Ernie tosses it; Harry catches it; **it blazes red like a miniature sun.**
+5. **5:09, McGonagall's office.** "*You are not to use the Time-Turner in that fashion!*" "…if I'd picked arm-wrestling I would have lost!" **"*Then you should have picked wrestling!*"** "But then I'd have *lost*—" He stops. *Intent to win.* "I'm sorry. For my pride and my stupidity." "One more display like that and you will be returning that Time-Turner." The Remembrall: "that puzzles me as well."
+6. The sense of doom: "*You must not finish that sentence!*" The jinx: last year's professors (see edits below). "…he could assassinate the Prime Minister on live television and get away with it so far as you're concerned." "Before the Ides of May… I will string you up by the gates of Hogwarts with your own intestines and pour fire beetles into your nose." "What do I get if I can make it happen on the last day of the school year?" **"*Get out of my office!*"**
 
 ## Ep 19 — Your Father's Rock (ch. 17 second half)
 
-**Change:** Harry meets the most powerful wizard alive and cannot tell if he's mad or wise.
-Dumbledore apologises for "everything that will" happen.
+**Change:** Harry meets the most powerful wizard alive and cannot tell if he's mad or wise. Dumbledore apologises for "everything that will" happen.
 
-1. "There must have been something about Thursdays." Flitwick: "…never hurt a student… keep that
-   in mind and you'll be sure not to panic!" (*This was not helping.*) The walking gargoyle; the
-   spiral that shouldn't go anywhere.
-2. **The office splash:** whirring instruments, sleeping portraits, the Sorting Hat on a rack with
-   two umbrellas and three red left slippers, an unremarkable bird on a golden perch, and
-   Dumbledore in three layers of pink pyjamas and a hat like a squashed mushroom.
-3. "Just call me Heh." "I'll be sure to, Heh." "…the first person who's ever taken me up on that."
-   The Time-Turner jab ("…all that on just thirty hours a day"). "It's best to come to our points
-   quickly." The pies → an invisibility cloak → *the* Cloak. "May I see it, Harry?" (The note
-   flashes.) He freezes. **"Harry, if you don't want to, you can just say no."** "It seems that you're
-   afraid of me." The promise. He hands over the pouch (and bites his lip: Ep 7's anti-Obliviation
-   signal). "…like a song forever being sung without anyone to hear it." Handed back. The note
-   confessed; "game pieces of the same colour".
-4. "Some you call friends… charming… always ready with a favour—" "Oh, *Draco Malfoy!* …I'm turning
-   *him*." Dumbledore *howls*. "Oft evil will shall evil mar." Tolkien; "*You cannot pass!*" "I think
-   you're missing a Balrog." "There have been precious few Balrogs in my life of late."
-5. **The rock.** *Thunk.* "Keep it close about your person at all times." **Privileging the
-   hypothesis** in three panels (a million boxes; detectors; Mortimer Snodgrass). Dumbledore's
-   rejoinder. "Ravenclaw means you want to know, not that you're clever."
-6. **Lily's potions book** (see edits). "I'm feeling thirsty, and that is not at all a good sign."
-   Harry flees; **the door won't open.** "You wound me, Harry." "If you ever want me to trust you
-   again, open the door." It opens. "There were more things I planned to say…"
-7. **The Government of Harry**: four tiny Harrys in House scarves arguing (Gryffindor, Hufflepuff,
-   Slytherin: "*I bet he's got a reaallly interesting book collection*"). He closes the door
-   himself. "Please don't do that again. I don't like being trapped." The rock into the pouch (it
-   burps). "…before I put the quest items in my inventory."
-8. **The tour.** "This is my desk. This is my chair." The cube that says *blorple*. The dial that
-   counts sneezes by left-handed witches in France. The golden wibblers. The Hat: never again on
-   Harry's head (fourteenth ever; Baba Yaga). **Fawkes.** Harry's inner voice: *anything but
-   "Fawkes is a chicken"*. "Looking a little peaky…" The chicken bursts into flame. Ashes. From his
-   pocket, Dumbledore produces an egg: "Look, here's an egg!" "Oh… wow… amazing."
-9. **The apology.** "…your wicked step-parents—" "My step-parents aren't wicked! My *parents*, I
-   mean!" (Inner Slytherin: *SHUT UP HE'LL TAKE YOU AWAY FROM THEM*) "…they're actually very
-   wicked." "I am responsible for virtually everything bad that has ever happened to you." "Yes,
-   I'm very angry! Grrr!" (*Worst Acting in the History of Ever.*) Then, sincerely, wet-eyed:
-   **"I am truly, truly sorry. For everything that has already happened, and everything that
-   will."**
-10. The third floor… *Alohomora*… Harry bolts; crashes into McGonagall. "*Were you talking about
-    the Defence Professor?*" The rock. "Do you think I should carry my father's rock everywhere?" The
-    **ring** (a small jewel; sustain a marshmallow for a month first). **End**, as the gargoyle
-    closes: "*Professor McGonagall the Headmaster set fire to a chicken!*" "He *wha—*"
+1. "There must have been something about Thursdays." Flitwick: "…never hurt a student… keep that in mind and you'll be sure not to panic!" (*This was not helping.*) The walking gargoyle; the spiral that shouldn't go anywhere.
+2. **The office splash:** whirring instruments, sleeping portraits, the Sorting Hat on a rack with two umbrellas and three red left slippers, an unremarkable bird on a golden perch, and Dumbledore in three layers of pink pyjamas and a hat like a squashed mushroom.
+3. "Just call me Heh." "I'll be sure to, Heh." "…the first person who's ever taken me up on that." The Time-Turner jab ("…all that on just thirty hours a day"). "It's best to come to our points quickly." The pies → an invisibility cloak → *the* Cloak. "May I see it, Harry?" (The note flashes.) He freezes. **"Harry, if you don't want to, you can just say no."** "It seems that you're afraid of me." The promise. He hands over the pouch (and bites his lip: Ep 7's anti-Obliviation signal). "…like a song forever being sung without anyone to hear it." Handed back. The note confessed; "game pieces of the same colour".
+4. "Some you call friends… charming… always ready with a favour—" "Oh, *Draco Malfoy!* …I'm turning *him*." Dumbledore *howls*. "Oft evil will shall evil mar." Tolkien; "*You cannot pass!*" "I think you're missing a Balrog." "There have been precious few Balrogs in my life of late."
+5. **The rock.** *Thunk.* "Keep it close about your person at all times." **Privileging the hypothesis** in three panels (a million boxes; detectors; Mortimer Snodgrass). Dumbledore's rejoinder. "Ravenclaw means you want to know, not that you're clever."
+6. **Lily's potions book** (see edits). "I'm feeling thirsty, and that is not at all a good sign." Harry flees; **the door won't open.** "You wound me, Harry." "If you ever want me to trust you again, open the door." It opens. "There were more things I planned to say…"
+7. **The Government of Harry**: four tiny Harrys in House scarves arguing (Gryffindor, Hufflepuff, Slytherin: "*I bet he's got a reaallly interesting book collection*"). He closes the door himself. "Please don't do that again. I don't like being trapped." The rock into the pouch (it burps). "…before I put the quest items in my inventory."
+8. **The tour.** "This is my desk. This is my chair." The cube that says *blorple*. The dial that counts sneezes by left-handed witches in France. The golden wibblers. The Hat: never again on Harry's head (fourteenth ever; Baba Yaga). **Fawkes.** Harry's inner voice: *anything but "Fawkes is a chicken"*. "Looking a little peaky…" The chicken bursts into flame. Ashes. From his pocket, Dumbledore produces an egg: "Look, here's an egg!" "Oh… wow… amazing."
+9. **The apology.** "…your wicked step-parents—" "My step-parents aren't wicked! My *parents*, I mean!" (Inner Slytherin: *SHUT UP HE'LL TAKE YOU AWAY FROM THEM*) "…they're actually very wicked." "I am responsible for virtually everything bad that has ever happened to you." "Yes, I'm very angry! Grrr!" (*Worst Acting in the History of Ever.*) Then, sincerely, wet-eyed: **"I am truly, truly sorry. For everything that has already happened, and everything that will."**
+10. The third floor… *Alohomora*… Harry bolts; crashes into McGonagall. "*Were you talking about the Defence Professor?*" The rock. "Do you think I should carry my father's rock everywhere?" The **ring** (a small jewel; sustain a marshmallow for a month first). **End**, as the gargoyle closes: "*Professor McGonagall the Headmaster set fire to a chicken!*" "He *wha—*"
 
 ## Ep 20 — Dominance Hierarchies (ch. 18 first half)
 
 **Change:** the cold takes over and wins, and Harry *chooses* to stay cold. **Low point begins.**
 
-1. **Friday breakfast.** Ernie's warning. Another. Another. Fred and George: a cake, one candle per
-   point lost. "Fired?" "You mean, let go?" (hunter-gatherer calculus frowns). Binns in one panel
-   (a ghost droning; Harry with earplugs). "…eight and a half percent as bad as Oxford."
-2. "Dungeons! These are not dungeons! This is a *basement*!" The classroom: jars; a spider
-   Hermione won't look at.
-3. **The assassin sweeps in.** "Sit down. Now." "Our new… *celebrity*." "The celebrity is
-   present, *sir*." The speech. Asphodel and wormwood; "Fame clearly isn't everything." "You drink
-   it and turn into a celebrity?" The bezoar. The trivia study → carbon's outer electrons. "Four."
-   −10 backchat. "I know of nothing which I have done to earn your enmity—" "Shut up, Potter. Ten
-   more."
-4. **The cold arrives** (mood shifts; frost at the panel edges). Hermione: "stop, please, we won't
-   count it—" "Talking in class, Granger? Three—" The formal complaint. "Detention for one month."
-   **"I decline to recognise your authority as a teacher."** "Then you will be—" "Expelled, were you
-   about to say?" Private tutors; double the salary; Lucius. "How was it that you managed to stay
-   out of my House?" Eye contact → he looks away: "*So it was you the Sorting Hat was warning me
-   about!*"
-5. He stands; the door won't open (echo of Dumbledore's). "You are making me feel threatened, and
-   that is a mistake." "What do you intend to do about it, little boy?" **The raised hand**:
-   Neville dives under his desk; "*HARRY DON'T!*" "I was just going to blow up the door." (Inner:
-   explosives are exactly what McGonagall forbade.) *Silencio.* Ten, ten, ten, **fifty**.
-6. Fingers spell M-A-R-K-E-R. The sign: **I'M LEAVING / DOES ANYONE ELSE / NEED TO GET OUT?**
-   "You're insane, Potter." A bow. The cupboard. Slam. A muffled snap. Snape yanks it open: empty.
-7. **"One hour earlier."** C-L-O-A-K. The hallway. *What he'd just done.* The imagined expulsion,
-   parents shouting, McGonagall's face; he can't bear it. **He chooses the cold on purpose**
-   (*Tut, tut. Fame clearly isn't everything.*). "So this is my dark side, is it? My light side
-   seems more selfish and cowardly." **End:** *The question wasn't how to protect himself. The
-   question was how to destroy this Potions professor.*
+1. **Friday breakfast.** Ernie's warning. Another. Another. Fred and George: a cake, one candle per point lost. "Fired?" "You mean, let go?" (hunter-gatherer calculus frowns). Binns in one panel (a ghost droning; Harry with earplugs). "…eight and a half percent as bad as Oxford."
+2. "Dungeons! These are not dungeons! This is a *basement*!" The classroom: jars; a spider Hermione won't look at.
+3. **The assassin sweeps in.** "Sit down. Now." "Our new… *celebrity*." "The celebrity is present, *sir*." The speech. Asphodel and wormwood; "Fame clearly isn't everything." "You drink it and turn into a celebrity?" The bezoar. The trivia study → carbon's outer electrons. "Four." −10 backchat. "I know of nothing which I have done to earn your enmity—" "Shut up, Potter. Ten more."
+4. **The cold arrives** (mood shifts; frost at the panel edges). Hermione: "stop, please, we won't count it—" "Talking in class, Granger? Three—" The formal complaint. "Detention for one month." **"I decline to recognise your authority as a teacher."** "Then you will be—" "Expelled, were you about to say?" Private tutors; double the salary; Lucius. "How was it that you managed to stay out of my House?" Eye contact → he looks away: "*So it was you the Sorting Hat was warning me about!*"
+5. He stands; the door won't open (echo of Dumbledore's). "You are making me feel threatened, and that is a mistake." "What do you intend to do about it, little boy?" **The raised hand**: Neville dives under his desk; "*HARRY DON'T!*" "I was just going to blow up the door." (Inner: explosives are exactly what McGonagall forbade.) *Silencio.* Ten, ten, ten, **fifty**.
+6. Fingers spell M-A-R-K-E-R. The sign: **I'M LEAVING / DOES ANYONE ELSE / NEED TO GET OUT?** "You're insane, Potter." A bow. The cupboard. Slam. A muffled snap. Snape yanks it open: empty.
+7. **"One hour earlier."** C-L-O-A-K. The hallway. *What he'd just done.* The imagined expulsion, parents shouting, McGonagall's face; he can't bear it. **He chooses the cold on purpose** (*Tut, tut. Fame clearly isn't everything.*). "So this is my dark side, is it? My light side seems more selfish and cowardly." **End:** *The question wasn't how to protect himself. The question was how to destroy this Potions professor.*
 
 ## Ep 21 — Phoenix Song (ch. 18 second half)
 
 **Change:** Harry beats Snape and Dumbledore, and loses the Time-Turner and McGonagall's approval.
 **Low point.**
 
-1. McGonagall's POV: three adults and an empty stool. *Harry, you promised you wouldn't bite any
-   teachers!* (her imagined Harry: "*I said I wouldn't bite anyone who didn't bite me first!*")
-2. Harry enters, cold and collected, and sees **Fawkes, the phoenix, on the same perch.** Jaw
-   drops. **Dumbledore winks.** (Fear, anger, calm, in three frames.)
-3. The confrontation, beat by beat (see ch. 18): Lucius; the newspaper campaign ("Some of the
-   younger students cried while they told me. *I almost cried*."); "Declined."; "This is your
-   punishme—"; "…part of the pattern." "That does sound like the sort of thing I would do,
-   doesn't it?" **"Either this man goes, or I do."** "Send him—" he stops. "You told him. You utter
-   fool." "…That the Dark Lord is alive." Snape's perfect outrage. "Oh, so we *are* a Slytherin."
-   **McGonagall: "I'm sorry, Albus."** "I am not a meek little Frodo. This is *my* quest…" "I am
-   beginning to doubt your suitability as the hero." **"I am beginning to doubt your suitability as
-   my Gandalf. What is this *Nazgûl* doing in my Fellowship?"** (Snape, turned away, smiling.)
-   "*Have you forgotten how defenceless children are? How much they hurt?*" Dumbledore laughing.
-   "This is not a request. This is your punishment." "Please continue with the blackmail." "Now
-   what?" **"Why, now the hero wins, of course."** The compromise. "Bwah ha ha!" "They must not be
-   given back" (McGonagall). "Leave Minerva alone…" The truth, from both of them. "Minerva is
-   thinking that you're righter than you have any right to be." "Common sense is often mistaken for
-   Legilimency."
-4. **The stairs.** Fawkes on McGonagall's shoulder; the song (drawn as warm light and firelit
-   notes, no words). Harry's face turned away, agonised; she is holding his hand. At the bottom,
-   Fawkes hovers: **"What am I to do, Fawkes? I couldn't have protected them if I hadn't been
-   angry."** Flash. Gone. "Are phoenixes people?… Where can I get one?" She hugs him. "What happened
-   today, Harry?" "I don't know the answers to any of the important questions either."
-5. **Her office.** "I need to see your Time-Turner." Panic. The protective shell has arrived (his
-   own suggestion, Ep 15); it will open only from 9 to midnight. How many hours since Monday? The
-   children who get addicted. "You should have simply sat in Professor Snape's class. And
-   watched." "*This isn't fair!*" "*Fair*, Mr Potter? I have had to file *two reports* with the
-   Ministry…" His eyes fill. **"I'm, sorry, to have, disappointed you…"** "I'm sorry too, Mr
-   Potter. You may go." He runs, sobbing. Alone: **"I'm sorry too, Harry."**
-6. **Lunch.** Nobody speaks to him; he is trying not to laugh hysterically. The spoon. Harry's
-   speech ("Speak the truth, even if your voice trembles"), then the tiny snap at chest height.
-   Snape's apology ("…how easily injured are the feelings of the young and immature"); a single
-   clap → *Quietus!* "Carry on!" *Scourgify* everywhere; Sprout weeping. **End:** Fred and George,
-   the cake, fifty-one unlit candles: "I think we may be out of our league here, George." *From
-   that day on, it was an accepted legend of Hogwarts that Harry Potter could make anything happen
-   by snapping his fingers.*
+1. McGonagall's POV: three adults and an empty stool. *Harry, you promised you wouldn't bite any teachers!* (her imagined Harry: "*I said I wouldn't bite anyone who didn't bite me first!*")
+2. Harry enters, cold and collected, and sees **Fawkes, the phoenix, on the same perch.** Jaw drops. **Dumbledore winks.** (Fear, anger, calm, in three frames.)
+3. The confrontation, beat by beat (see ch. 18): Lucius; the newspaper campaign ("Some of the younger students cried while they told me. *I almost cried*."); "Declined."; "This is your punishme—"; "…part of the pattern." "That does sound like the sort of thing I would do, doesn't it?" **"Either this man goes, or I do."** "Send him—" he stops. "You told him. You utter fool." "…That the Dark Lord is alive." Snape's perfect outrage. "Oh, so we *are* a Slytherin." **McGonagall: "I'm sorry, Albus."** "I am not a meek little Frodo. This is *my* quest…" "I am beginning to doubt your suitability as the hero." **"I am beginning to doubt your suitability as my Gandalf. What is this *Nazgûl* doing in my Fellowship?"** (Snape, turned away, smiling.) "*Have you forgotten how defenceless children are? How much they hurt?*" Dumbledore laughing. "This is not a request. This is your punishment." "Please continue with the blackmail." "Now what?" **"Why, now the hero wins, of course."** The compromise. "Bwah ha ha!" "They must not be given back" (McGonagall). "Leave Minerva alone…" The truth, from both of them. "Minerva is thinking that you're righter than you have any right to be." "Common sense is often mistaken for Legilimency."
+4. **The stairs.** Fawkes on McGonagall's shoulder; the song (drawn as warm light and firelit notes, no words). Harry's face turned away, agonised; she is holding his hand. At the bottom, Fawkes hovers: **"What am I to do, Fawkes? I couldn't have protected them if I hadn't been angry."** Flash. Gone. "Are phoenixes people?… Where can I get one?" She hugs him. "What happened today, Harry?" "I don't know the answers to any of the important questions either."
+5. **Her office.** "I need to see your Time-Turner." Panic. The protective shell has arrived (his own suggestion, Ep 15); it will open only from 9 to midnight. How many hours since Monday? The children who get addicted. "You should have simply sat in Professor Snape's class. And watched." "*This isn't fair!*" "*Fair*, Mr Potter? I have had to file *two reports* with the Ministry…" His eyes fill. **"I'm, sorry, to have, disappointed you…"** "I'm sorry too, Mr Potter. You may go." He runs, sobbing. Alone: **"I'm sorry too, Harry."**
+6. **Lunch.** Nobody speaks to him; he is trying not to laugh hysterically. The spoon. Harry's speech ("Speak the truth, even if your voice trembles"), then the tiny snap at chest height. Snape's apology ("…how easily injured are the feelings of the young and immature"); a single clap → *Quietus!* "Carry on!" *Scourgify* everywhere; Sprout weeping. **End:** Fred and George, the cake, fifty-one unlit candles: "I think we may be out of our league here, George." *From that day on, it was an accepted legend of Hogwarts that Harry Potter could make anything happen by snapping his fingers.*
 
 ## Ep 22 — How to Lose (ch. 19)
 
-**Change:** Harry learns to lose, in public, and wins the school's respect. **Turn toward the
-climax.**
+**Change:** Harry learns to lose, in public, and wins the school's respect. **Turn toward the climax.**
 
-1. Draco: "Talk." ("Yeah! Talk!") The Churchill parody. Promoted to "Harry". Minions sent away
-   ("I'm just not sure I can believe everything you believe about your father"). Slytherin's three
-   waves of reaction; "…*you've got the secret!*" Lucius's owl in Draco's father-voice. "Dumbledore
-   might simply have you killed." **"You need an advisor… Like *me*!"** "You shouldn't trust me,
-   it's too soon. See? I'll give you good advice even if it hurts me." "Push Granger into a wall—"
-   "That is *not* how it works in Ravenclaw!"
-2. **Quirrell:** "Is it your ambition to become the next Dark Lord?" "I wanted to be the next Dark
-   Lord when *I* was a young Slytherin." The list; Harry's guesses; #1: "I will not go around
-   provoking strong, vicious enemies." "It wasn't *Dark!*" "You, Mr Potter, are an idiot. But then so
-   was I at your age."
-3. **Goyle vs. Quirrell** (sixth dan): a blur; Quirrell flies, lands, rolls: "Stop! You win!" "The
-   vitally important technique I demonstrated was how to lose."
-4. **The dojo** (sepia; a mountain school; the Master): Quirrell's own humiliation, lined up, "I
-   lose!". Then the Dark Lord, red eyes: "demanded to be taught". "He had no patience." What
-   followed told only through the empty dojo, a fallen practice sword, and the survivor's silhouette.
-   "Dark Wizards cannot keep their tempers… the Dark Lord did *not* win that day."
-5. "What *precisely* did you do wrong today?" Dominance contests, claws sheathed (stags, cats).
-   "You *escalated*, and then you escalated *again*." Harry finishes it himself: "I would have
-   taken the slap, waited, and picked the best time… But that would have meant *losing*."
-   "Today you are going to learn how to lose." "Can we do this some other time?" "No. Saturday,
-   Sunday, Monday, Tuesday, Wednesday… we do *not* have time to wait." Five hands; "absolute
-   idiots"; "I swear never to take vengeance…" "…hunt you down and *tickle* you."
-6. **Draco:** "It is also not my own ambition to become a stupid Dark Lord… I want to be fully as
-   strong as you." "Does anyone else wish to become strong?" Silence.
-7. **The mat.** Wand and pouch on the desk. Boxing gloves refused. *I will not go for their eyes.*
-   Thirteen older Slytherins; Derrick in front; the one who said *stop* is missing. "Meet Mr Peregrine
-   Derrick. He is better than you." "Please don't hurt me" (sounds like an insult). Bump. Push.
-   A foot. "This is *fun*." The cold rises; the world goes crystal; a clean strike available…
-   "Try again," and Harry whirls on *Quirrell*: **"You have no patience."** He freezes (the old
-   Master's silhouette). Sat on. "*Stop! Please stop!*" "Better. That even sounded sincere." "Lose."
-   "I, lose." Shoved around the ring; crying; "A, l-loser, I lose, I give up—" He falls. **"ENOUGH!"**
-8. The Slytherins are told (gasps); Draco's Lucius-voice dressing-down. Harry stands: "No-one's to
-   take any revenge on them." **"You lost. And are you yet alive?"** "Will you be able to lose?" "I…
-   think so…" A bow to the floor: **"Congratulations, Harry Potter, you win."**
-9. **Applause** — all four Houses at once, Gryffindors standing on desks. "Did you think less of
-   *me*?" **"Fifty-one points to Ravenclaw."** (Harry, for one frame: *there should have been a
-   cost*.) Three cheers for Slytherin; Draco's thumbs-up; Zabini calculating. "Idiot," fondly. "The
-   third door on the left… a bed, snacks, and some extremely light reading." **End.**
+1. Draco: "Talk." ("Yeah! Talk!") The Churchill parody. Promoted to "Harry". Minions sent away ("I'm just not sure I can believe everything you believe about your father"). Slytherin's three waves of reaction; "…*you've got the secret!*" Lucius's owl in Draco's father-voice. "Dumbledore might simply have you killed." **"You need an advisor… Like *me*!"** "You shouldn't trust me, it's too soon. See? I'll give you good advice even if it hurts me." "Push Granger into a wall—" "That is *not* how it works in Ravenclaw!"
+2. **Quirrell:** "Is it your ambition to become the next Dark Lord?" "I wanted to be the next Dark Lord when *I* was a young Slytherin." The list; Harry's guesses; #1: "I will not go around provoking strong, vicious enemies." "It wasn't *Dark!*" "You, Mr Potter, are an idiot. But then so was I at your age."
+3. **Goyle vs. Quirrell** (sixth dan): a blur; Quirrell flies, lands, rolls: "Stop! You win!" "The vitally important technique I demonstrated was how to lose."
+4. **The dojo** (sepia; a mountain school; the Master): Quirrell's own humiliation, lined up, "I lose!". Then the Dark Lord, red eyes: "demanded to be taught". "He had no patience." What followed told only through the empty dojo, a fallen practice sword, and the survivor's silhouette. "Dark Wizards cannot keep their tempers… the Dark Lord did *not* win that day."
+5. "What *precisely* did you do wrong today?" Dominance contests, claws sheathed (stags, cats). "You *escalated*, and then you escalated *again*." Harry finishes it himself: "I would have taken the slap, waited, and picked the best time… But that would have meant *losing*." "Today you are going to learn how to lose." "Can we do this some other time?" "No. Saturday, Sunday, Monday, Tuesday, Wednesday… we do *not* have time to wait." Five hands; "absolute idiots"; "I swear never to take vengeance…" "…hunt you down and *tickle* you."
+6. **Draco:** "It is also not my own ambition to become a stupid Dark Lord… I want to be fully as strong as you." "Does anyone else wish to become strong?" Silence.
+7. **The mat.** Wand and pouch on the desk. Boxing gloves refused. *I will not go for their eyes.* Thirteen older Slytherins; Derrick in front; the one who said *stop* is missing. "Meet Mr Peregrine Derrick. He is better than you." "Please don't hurt me" (sounds like an insult). Bump. Push. A foot. "This is *fun*." The cold rises; the world goes crystal; a clean strike available… "Try again," and Harry whirls on *Quirrell*: **"You have no patience."** He freezes (the old Master's silhouette). Sat on. "*Stop! Please stop!*" "Better. That even sounded sincere." "Lose." "I, lose." Shoved around the ring; crying; "A, l-loser, I lose, I give up—" He falls. **"ENOUGH!"**
+8. The Slytherins are told (gasps); Draco's Lucius-voice dressing-down. Harry stands: "No-one's to take any revenge on them." **"You lost. And are you yet alive?"** "Will you be able to lose?" "I… think so…" A bow to the floor: **"Congratulations, Harry Potter, you win."**
+9. **Applause** — all four Houses at once, Gryffindors standing on desks. "Did you think less of *me*?" **"Fifty-one points to Ravenclaw."** (Harry, for one frame: *there should have been a cost*.) Three cheers for Slytherin; Draco's thumbs-up; Zabini calculating. "Idiot," fondly. "The third door on the left… a bed, snacks, and some extremely light reading." **End.**
 
 ## Ep 23 — The Stars (ch. 20) — Book finale
 
-**Change:** Harry chooses his first mentor. **Answers:** can he lose? ("You win.") Can anyone handle
-him? (Yes: the wrong one.)
+**Change:** Harry chooses his first mentor. **Answers:** can he lose? ("You win.") Can anyone handle him? (Yes: the wrong one.)
 
-1. The little room, sweets, triumph; he sees the parallel: *he left Potions without a single
-   lesson*, just like the Dark Lord at the dojo. The knock; **Quirrell's footsteps move away before
-   Harry opens the door** (he feels it too).
-2. "Am I off the path now?" "A performance which is *too* perfect." "*You can't have every possible
-   observation confirm your theory!*" "…raise your right hand." (Evidence: an act means what makes it
-   *more probable*.) "Was that thought a true impulse to forgiveness?" Silence. Quirrell doesn't ask
-   him to give up the ambition; he offers the library. Harry lies flat on the marble.
-3. **The confession:** "I think what you're seeing is my mysterious dark side." (the cold; the
-   solar plexus; the bitten maths teacher). Quirrell's very strange expression. "…needs to be
-   trained." The Hat: Quirrell is sure Dumbledore rigged it (wrong, but rational).
-4. "Why *not* be a Dark Lord?" "People would get hurt?" "What have they done for you?" The *Atlas
-   Shrugged* gag ("So I need to make my traps less obvious? I can work on that."). **"My parents took
-   me in when my parents died, because they were *good people*."** "When I was your age, that
-   thought could not ever have come to me." "I resolved my parental issues to my own satisfaction."
-5. The ambition: understand everything, become omnipotent, rewrite reality. "Are you *sure* you did
-   not just confess to wanting to be a Dark Lord?" "Light Lord." "Step one is to become a
-   scientist." (Quirrell, looking as if Harry turned into a cat.) The nuclear rant ("There are gates
-   you do not open"). "Space travel." "I'm a big fan of the space programme too."
-6. **The stars.** The oath. The floor and walls vanish; a small circle of marble in an endless field
-   of stars; the Milky Way. "Are we… in space?" "No. But it is a true image." Harry wiping his eyes
-   so he won't miss it. Quirrell: "Sometimes, when this flawed world seems unusually hateful, I
-   wonder whether there might be some other place, far away, where I should have been…" "Please
-   let me stay here awhile." *A time of no time* (a tall silent panel).
-7. **The doors blast off their hinges.** "*Quirinus! How dare you!*" Harry goes cold; Quirrell
-   slams the desk: "*Mr Potter!* This is the *Headmaster!*" (Neither of them smiles.) "I was
-   teaching him how to lose." "What did you have for lunch?" → Quirrell forces it out: Dumbledore
-   just read his mind. **"Legilimency is sometimes mistaken for common sense."** Occlumency; a
-   neutral tutor; Harry's money ideas end the argument instantly. "I hope you will not object if I
-   go on making him a particular focus of my attentions."
-8. **Dumbledore:** "If you choose this man as your teacher and your friend, your first mentor, then
-   one way or another you will lose him, and the manner in which you lose him may or may not allow
-   you to ever get him back." Quirrell: "Probably. But he will have the full use of me while I
-   last." Dumbledore leaves, slowly.
-9. "Can you cast it again?" "Not today." Pioneer: the golden plaque. Quirrell (violating rule
-   two): "I sneaked into NASA, I did, and I cast a lovely little spell on that lovely golden
-   plaque which will make it last a lot longer than it otherwise would." … … … **"'You win' seems
-   appropriate." "You win."** "We can only imagine what giant heap of trouble you'd have landed in if
-   you had been unable to say that." Both laugh. The ghost-in-the-plaque idea; Quirrell sharp:
-   Dark Arts. "Thank you. For everything." Quirrell leaning harder on his desk.
-10. **Silent epilogue.** Deep space. Pioneer 11, tiny, its plaque catching starlight, with the
-    faint colour-split shimmer of Quirrell's "wrongness" motif on it for one panel. *End of Book
-    Two.*
+1. The little room, sweets, triumph; he sees the parallel: *he left Potions without a single lesson*, just like the Dark Lord at the dojo. The knock; **Quirrell's footsteps move away before Harry opens the door** (he feels it too).
+2. "Am I off the path now?" "A performance which is *too* perfect." "*You can't have every possible observation confirm your theory!*" "…raise your right hand." (Evidence: an act means what makes it *more probable*.) "Was that thought a true impulse to forgiveness?" Silence. Quirrell doesn't ask him to give up the ambition; he offers the library. Harry lies flat on the marble.
+3. **The confession:** "I think what you're seeing is my mysterious dark side." (the cold; the solar plexus; the bitten maths teacher). Quirrell's very strange expression. "…needs to be trained." The Hat: Quirrell is sure Dumbledore rigged it (wrong, but rational).
+4. "Why *not* be a Dark Lord?" "People would get hurt?" "What have they done for you?" The *Atlas Shrugged* gag ("So I need to make my traps less obvious? I can work on that."). **"My parents took me in when my parents died, because they were *good people*."** "When I was your age, that thought could not ever have come to me." "I resolved my parental issues to my own satisfaction."
+5. The ambition: understand everything, become omnipotent, rewrite reality. "Are you *sure* you did not just confess to wanting to be a Dark Lord?" "Light Lord." "Step one is to become a scientist." (Quirrell, looking as if Harry turned into a cat.) The nuclear rant ("There are gates you do not open"). "Space travel." "I'm a big fan of the space programme too."
+6. **The stars.** The oath. The floor and walls vanish; a small circle of marble in an endless field of stars; the Milky Way. "Are we… in space?" "No. But it is a true image." Harry wiping his eyes so he won't miss it. Quirrell: "Sometimes, when this flawed world seems unusually hateful, I wonder whether there might be some other place, far away, where I should have been…" "Please let me stay here awhile." *A time of no time* (a tall silent panel).
+7. **The doors blast off their hinges.** "*Quirinus! How dare you!*" Harry goes cold; Quirrell slams the desk: "*Mr Potter!* This is the *Headmaster!*" (Neither of them smiles.) "I was teaching him how to lose." "What did you have for lunch?" → Quirrell forces it out: Dumbledore just read his mind. **"Legilimency is sometimes mistaken for common sense."** Occlumency; a neutral tutor; Harry's money ideas end the argument instantly. "I hope you will not object if I go on making him a particular focus of my attentions."
+8. **Dumbledore:** "If you choose this man as your teacher and your friend, your first mentor, then one way or another you will lose him, and the manner in which you lose him may or may not allow you to ever get him back." Quirrell: "Probably. But he will have the full use of me while I last." Dumbledore leaves, slowly.
+9. "Can you cast it again?" "Not today." Pioneer: the golden plaque. Quirrell (violating rule two): "I sneaked into NASA, I did, and I cast a lovely little spell on that lovely golden plaque which will make it last a lot longer than it otherwise would." … … … **"'You win' seems appropriate." "You win."** "We can only imagine what giant heap of trouble you'd have landed in if you had been unable to say that." Both laugh. The ghost-in-the-plaque idea; Quirrell sharp: Dark Arts. "Thank you. For everything." Quirrell leaning harder on his desk.
+10. **Silent epilogue.** Deep space. Pioneer 11, tiny, its plaque catching starlight, with the faint colour-split shimmer of Quirrell's "wrongness" motif on it for one panel. *End of Book Two.*
 
 ---
 

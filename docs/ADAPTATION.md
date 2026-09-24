@@ -1,27 +1,14 @@
 # Adaptation Log
 
-Episode by episode: what changed from HPMOR and why. Source chapter numbers refer to `hpmor/chapters`.
-Guiding rule (from the brief): *change only when the change is a marked improvement* — for a
-wide audience, reading on a phone, in a visual medium.
+Episode by episode: what changed from HPMOR and why. Source chapter numbers refer to `hpmor/chapters`. Guiding rule (from the brief): *change only when the change is a marked improvement* — for a wide audience, reading on a phone, in a visual medium.
 
 General conversions applied everywhere:
 
-- **Internal monologue → visible.** HPMOR lives in Harry's head. Webtoon readers skim; long
-  thought-paragraphs become (a) short `inner` captions in Harry's voice, (b) pencil-note
-  diagrams (Caveat handwriting) for his calculations, (c) visual metaphors (physics going down a
-  drain; frost for the cold).
-- **Lectures → one line + one picture.** Science references are kept when they're funny or
-  characterful, cut when they're just citations. A rule of thumb: one science idea per scene, and
-  it must *do* something to the scene.
-- **Show the told.** Several beats HPMOR tells in summary are shown (Harry biting the maths
-  teacher, Petunia's potion, Dad's bookshop raid, the Neville prank).
-- **Emotional beats get space.** Silent panels, tall panels, and gutters are used where the prose
-  lingers (the garden silence, the story of the Potters).
-- **Em dashes: the book's, not ours** (the user's rule). Lines we wrote or reworded use em dashes
-  rarely: full stops, commas or ellipses instead, and a dash only for a real cut-off. Lines that quote
-  HPMOR word for word keep the book's own dashes ("I—I don't know", "Unless—this is just a guess,
-  mind—you're trying to take over the world?"). `work/restore_dashes.py epXX` finds verbatim lines
-  whose book dashes went missing (a 5+ word run matching the chapter text) and puts them back.
+- **Internal monologue → visible.** HPMOR lives in Harry's head. Webtoon readers skim; long thought-paragraphs become (a) short `inner` captions in Harry's voice, (b) pencil-note diagrams (Caveat handwriting) for his calculations, (c) visual metaphors (physics going down a drain; frost for the cold).
+- **Lectures → one line + one picture.** Science references are kept when they're funny or characterful, cut when they're just citations. A rule of thumb: one science idea per scene, and it must *do* something to the scene.
+- **Show the told.** Several beats HPMOR tells in summary are shown (Harry biting the maths teacher, Petunia's potion, Dad's bookshop raid, the Neville prank).
+- **Emotional beats get space.** Silent panels, tall panels, and gutters are used where the prose lingers (the garden silence, the story of the Potters).
+- **Em dashes: the book's, not ours** (the user's rule). Lines we wrote or reworded use em dashes rarely: full stops, commas or ellipses instead, and a dash only for a real cut-off. Lines that quote HPMOR word for word keep the book's own dashes ("I—I don't know", "Unless—this is just a guess, mind—you're trying to take over the world?"). `work/restore_dashes.py epXX` finds verbatim lines whose book dashes went missing (a 5+ word run matching the chapter text) and puts them back.
 
 ---
 
@@ -163,25 +150,15 @@ Renamed from "The Fundamental Attribution Error" (that idea is now delivered in 
 
 # Book Two
 
-Episodes 13–23: HPMOR ch. 12 (the feast notices Book One skipped) through ch. 20, one week of
-school. Design reasoning: `STORY_DESIGN.md` → "Book Two". Scene plan: `BOOK2_PLAN.md`. This log
-records what the scripts actually do.
+Episodes 13–23: HPMOR ch. 12 (the feast notices Book One skipped) through ch. 20, one week of school. Design reasoning: `STORY_DESIGN.md` → "Book Two". Scene plan: `BOOK2_PLAN.md`. This log records what the scripts actually do.
 
 General conversions added for Book Two:
 
-- **Day captions.** Every episode opens on a day and time in the style HPMOR only uses in ch. 17
-  ("Thursday." / "If you wanted to be specific, 7:24 on Thursday morning."). The reader always
-  knows where they are in the week, and can feel it speeding up.
-- **The Game's notes are lettered paper.** Harry's own notes are pencil handwriting; the Quotes
-  Quill notes are a regular printed face. HPMOR's clue ("perfectly regular, hence artificial")
-  becomes something you can see.
-- **Portraits are drawn as people.** Painted characters are full rigged actors behind a gilt frame
-  (see `ENGINE.md`), so they can act, bow and curtsey.
-- **Quirrell's "wrongness" at full strength.** The colour-split and hum from Book One now carry
-  lettering when Harry gets too close (WRONG / DON'T / BAD IDEA, Ep 17), as in the source.
-- **New titles.** Only Ep 20 keeps its HPMOR chapter title. The others take a line or image from
-  the episode, because HPMOR's titles ("Locating the Hypothesis", "Bayes's Theorem") name the
-  idea, not the promise.
+- **Day captions.** Every episode opens on a day and time in the style HPMOR only uses in ch. 17 ("Thursday." / "If you wanted to be specific, 7:24 on Thursday morning."). The reader always knows where they are in the week, and can feel it speeding up.
+- **The Game's notes are lettered paper.** Harry's own notes are pencil handwriting; the Quotes Quill notes are a regular printed face. HPMOR's clue ("perfectly regular, hence artificial") becomes something you can see.
+- **Portraits are drawn as people.** Painted characters are full rigged actors behind a gilt frame (see `ENGINE.md`), so they can act, bow and curtsey.
+- **Quirrell's "wrongness" at full strength.** The colour-split and hum from Book One now carry lettering when Harry gets too close (WRONG / DON'T / BAD IDEA, Ep 17), as in the source.
+- **New titles.** Only Ep 20 keeps its HPMOR chapter title. The others take a line or image from the episode, because HPMOR's titles ("Locating the Hypothesis", "Bayes's Theorem") name the idea, not the promise.
 - **Wide-audience edits** are tagged *(wide audience)* in the tables and collected at the end.
 
 ## Episode 13 — The Game (ch. 12 tail + ch. 13 first half)
@@ -361,5 +338,4 @@ General conversions added for Book Two:
 | Ep 22 | "a quick hit in the groin" | "a quick hit" | Added in scripting |
 | Ep 22 | "blood pouring from his mouth" | "what had been done to him" | Added in scripting |
 
-Kept on purpose: Draco's "mudblood" when he says it himself (Ep 17, 22), because it defines him;
-Harry's "Hot damn" (Ep 17); the Killing Curse named aloud (Ep 14, 17).
+Kept on purpose: Draco's "mudblood" when he says it himself (Ep 17, 22), because it defines him; Harry's "Hot damn" (Ep 17); the Killing Curse named aloud (Ep 14, 17).
