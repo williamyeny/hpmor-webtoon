@@ -55,5 +55,6 @@ export const MOODS = {
   cold:   { tint: '#7fa6c9', tintOp: 0.28, vig: '#0b1624', vigOp: 0.55, desat: 0.55 },
   dusk:   { tint: '#ff8a5c', tintOp: 0.14, vig: '#2a1224', vigOp: 0.4 },
   sepia:  { tint: '#b98a4f', tintOp: 0.2, vig: '#2b1a0e', vigOp: 0.45, desat: 0.8 },
+  dread:  { tint: '#b01818', tintOp: 0.32, vig: '#1a0000', vigOp: 0.75 },
   none:   { tint: '#000', tintOp: 0, vig: '#000', vigOp: 0 },
 };

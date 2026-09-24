@@ -263,3 +263,21 @@ export const darkLord = {
   hat: ({ rx, ry, s, lw }) => path(`M${-rx * 1.3},${ry * 0.9} Q${-rx * 1.6},${-ry * 1.1} ${s * 20},${-ry * 1.55} Q${rx * 1.6},${-ry * 1.1} ${rx * 1.3},${ry * 0.9} Q${rx * 0.9},${ry * 0.2} ${rx * 0.95},${-ry * 0.4} Q0,${-ry * 1.05} ${-rx * 0.95},${-ry * 0.4} Q${-rx * 0.9},${ry * 0.2} ${-rx * 1.3},${ry * 0.9}Z`, { fill: '#0b0a0d', stroke: '#000', 'stroke-width': lw }),
 };
 Object.assign(CAST, { tom, doris, quirrell, james, lilyAdult, darkLord });
+
+// ---------- Griphook and the goblins of Gringotts
+export const goblin = (seed = 'griphook', o = {}) => {
+  const R = rng(seed);
+  return {
+    name: seed, body: { ...KID, torsoH: 84, legU: 40, legL: 38, headRx: 56, headRy: 54, shoulderW: 70, waistW: 66, hipW: 62, armW: 17, legW: 20, foot: 34 },
+    skin: o.skin || R.pick(['#b9b58a', '#a9ad86', '#c2b590']), skinShade: '#8f8a62',
+    head: { jaw: 0.72, chin: 0.92, cheek: 0.98 }, ears: { pointy: true, y: 0, r: 14 },
+    face: adultFace({ eyeY: 0, eyeSpacing: 22, eye: { color: '#2a2418', w: 16, h: 12, iris: 5.5, lash: 1.4 }, brow: { color: '#d8d4c8', len: 22, w: 6, gap: 4 }, nose: 'goblin', noseY: 20, mouthY: 44, mouth: { w: 28 }, wrinkles: true, cheekLines: true }),
+    hair: { color: '#d8d4c8', ...H.bald({ fringe: true, wisps: R.chance(0.5) }) },
+    outfit: { top: o.coat || '#7b2433', legs: '#1d1a20', shoes: '#1d1410', collar: '#efe6d2', hem: false,
+      torsoDetail: ({ T, B, lw }) => [0.2, 0.45, 0.7].map((k) => { const p = T(0, -B.torsoH * k); return circle(p[0], p[1], 3.5, { fill: '#e7bb4f', stroke: C.ink, 'stroke-width': lw * 0.4 }); }).join('') },
+  };
+};
+export const griphook = goblin('griphook');
+export const oldMan = { ...makeExtra(301, { old: true, female: false, hairStyle: 'bald', robe: '#4a4a3a' }), name: 'oldMan' };
+export const mokeKeeper = { ...makeExtra(302, { female: true, old: false, hairStyle: 'bun', robe: '#d9c36a' }), name: 'mokeKeeper' };
+Object.assign(CAST, { griphook, oldMan, mokeKeeper });

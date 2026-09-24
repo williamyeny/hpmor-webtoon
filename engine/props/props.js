@@ -142,3 +142,14 @@ export function owl(o = {}) {
 export function tankard(s = 1) {
   return g({ transform: `scale(${s})` }, rect(-14, -34, 28, 38, { fill: '#8a8f96', stroke: INK, 'stroke-width': 2, rx: 3 }), path('M14,-26 q14,2 12,14 q-2,8 -12,8', { fill: 'none', stroke: INK, 'stroke-width': 3 }), ellipse(0, -34, 14, 5, { fill: '#f3e6c0', stroke: INK, 'stroke-width': 1.6 }), path('M-8,-28 L-8,0', { stroke: '#c9ced4', 'stroke-width': 3 }));
 }
+export function cane(len = 300) {
+  return g({}, path(`M0,0 L0,${len}`, { stroke: '#4a2e1b', 'stroke-width': 9, 'stroke-linecap': 'round' }), path('M0,0 q0,-26 -26,-24', { fill: 'none', stroke: '#4a2e1b', 'stroke-width': 9, 'stroke-linecap': 'round' }));
+}
+export function pouch(s = 1, o = {}) {
+  return g({ transform: `scale(${s})` }, path('M-34,-10 Q-44,40 0,48 Q44,40 34,-10Z', { fill: '#8a6a4a', stroke: INK, 'stroke-width': 2.2 }),
+    path('M-30,-6 Q-38,30 0,38', { fill: 'none', stroke: '#a9885f', 'stroke-width': 3, 'stroke-dasharray': '2 5' }),
+    ellipse(0, -12, 36, 10, { fill: o.open ? '#1a120a' : '#6a4a2a', stroke: INK, 'stroke-width': 2 }), path('M-20,-14 q20,-10 40,0', { fill: 'none', stroke: '#c9a24a', 'stroke-width': 3 }));
+}
+export function coinBag(s = 1) {
+  return g({ transform: `scale(${s})` }, path('M-26,-4 Q-36,34 0,40 Q36,34 26,-4 Q14,-14 0,-10 Q-14,-14 -26,-4Z', { fill: '#b09a6a', stroke: INK, 'stroke-width': 2 }), path('M-12,-12 L-16,-26 L16,-26 L12,-12', { fill: '#b09a6a', stroke: INK, 'stroke-width': 2 }), path('M-14,-14 L14,-14', { stroke: '#8a5a2a', 'stroke-width': 4 }), text(0, 22, 'G', { 'font-family': 'IM Fell English SC', 'font-size': 20, 'text-anchor': 'middle', fill: '#6a4a1a' }));
+}

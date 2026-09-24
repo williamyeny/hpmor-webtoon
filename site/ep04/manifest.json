@@ -1,0 +1,416 @@
+{
+ "id": "ep04",
+ "title": "The Efficient Market Hypothesis",
+ "number": 4,
+ "subtitle": "",
+ "tiles": [
+  {
+   "file": "001.webp",
+   "w": 800,
+   "h": 260,
+   "alt": "CHAPTER FOUR / The Efficient Market Hypothesis"
+  },
+  {
+   "file": "002.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "The great marble banking hall of Gringotts, lit by tall windows and candle chandeliers. Goblin clerks scribble at a long high counter. / Inside, it was marble and gold and hush, and the clerks were not human."
+  },
+  {
+   "file": "003.webp",
+   "w": 800,
+   "h": 660,
+   "alt": "One of them looked down at Harry over his spectacles as if pricing him."
+  },
+  {
+   "file": "004.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "A mine cart hurtles through dark caverns. Harry has both arms up, thrilled. McGonagall grips her hat. Somewhere in the dark, something large with an orange eye watches. / Harry: IS THIS A ROLLER COASTER?! / clatter clatter clatter"
+  },
+  {
+   "file": "005.webp",
+   "w": 800,
+   "h": 1200,
+   "alt": "The Potter vault: mountains of gold coins glittering in torchlight, and Harry, very small, staring. / Heaps of gold Galleons. Stacks of silver Sickles. Piles of bronze Knuts."
+  },
+  {
+   "file": "006.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "From the doorway, Professor McGonagall watched him—leaning casually against the wall, but with her eyes intent. / Being plopped in front of a giant heap of gold coins was a test of character so pure it was archetypal."
+  },
+  {
+   "file": "007.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Harry: Are these coins the pure metal?"
+  },
+  {
+   "file": "008.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "Griphook: Are you questioning the integrity of Gringotts, Mr Potter-Evans-Verres?"
+  },
+  {
+   "file": "009.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Harry: No! Not at all. Sorry if that came out wrong, sir. I just have no idea how your financial system works. / Harry: Can anyone coin Galleons? Or are they issued by a monopoly that thereby collects seigniorage?"
+  },
+  {
+   "file": "010.webp",
+   "w": 800,
+   "h": 420,
+   "alt": "McGonagall: What? / Griphook: Only a fool would trust any but goblin coin!"
+  },
+  {
+   "file": "011.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: Suppose I came in here with a ton of silver. Could I get a ton of Sickles made from it? / Griphook: For a fee, Mr Potter-Evans-Verres. For a certain fee. Where would you find a ton of silver, I wonder?"
+  },
+  {
+   "file": "012.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: I was speaking hypothetically. Give me a wild guess—what fraction would you charge? / Griphook: A twentieth part of the metal would well pay for the coining."
+  },
+  {
+   "file": "013.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry's pencil diagram: silver → Sickles → Galleons → gold sold in Muggle London → more silver than you started with. Repeat forever. / So not only is the wizarding economy almost completely decoupled from the Muggle economy—no-one here has ever heard of arbitrage."
+  },
+  {
+   "file": "014.webp",
+   "w": 800,
+   "h": 300,
+   "alt": "One competent hedge fund manager could probably own the whole wizarding world within a week. Harry filed the notion away, in case he ever ran out of money, or had a week free."
+  },
+  {
+   "file": "015.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "McGonagall: I think that will be more than enough to pay for your school supplies, Mr Potter. / Harry: Hm? Hold on, I'm doing a Fermi calculation."
+  },
+  {
+   "file": "016.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "McGonagall: A what?"
+  },
+  {
+   "file": "017.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Harry's Fermi estimate in pencil: twenty Galleons weigh about a tenth of a kilo, so a Galleon is about fifty pounds; five pyramid-shaped mounds come to about two million pounds."
+  },
+  {
+   "file": "018.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Not bad. / Harry: That's the last time I ever mow a lawn for one lousy pound."
+  },
+  {
+   "file": "019.webp",
+   "w": 800,
+   "h": 860,
+   "alt": "Harry: Pardon me for asking, Professor, but is this a usual amount of money for a young couple to have? / McGonagall: Your father was the last heir of an old family. And… some of it may be from bounties placed on You-Know-Who. / McGonagall: Payable to whoever might defeat him."
+  },
+  {
+   "file": "020.webp",
+   "w": 800,
+   "h": 740,
+   "alt": "Harry: Interesting… So some of this really is, in a sense, mine. Earned by me. Sort of. Possibly. / Harry: That makes me feel less guilty about spending a very tiny fraction of it! / Harry: DON'T PANIC, PROFESSOR McGONAGALL!"
+  },
+  {
+   "file": "021.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "McGonagall: Mr Potter! You are a minor! You will only be allowed to make reasonable withdrawals—"
+  },
+  {
+   "file": "022.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: I am all about reasonable! I am totally on board with fiscal prudence and impulse control! / Harry: But I did see some things on the way here which would constitute sensible, grown-up purchases…"
+  },
+  {
+   "file": "023.webp",
+   "w": 800,
+   "h": 360,
+   "alt": "… / …"
+  },
+  {
+   "file": "024.webp",
+   "w": 800,
+   "h": 420,
+   "alt": "McGonagall: Like what?"
+  },
+  {
+   "file": "025.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Harry: Trunks whose insides hold more than their outsides? / Harry: When I'm an adult I'll want one anyway. And I can afford one. It's the same money either way, right?"
+  },
+  {
+   "file": "026.webp",
+   "w": 800,
+   "h": 580,
+   "alt": "McGonagall: And just what would you keep in a trunk like that, Mr Potter—"
+  },
+  {
+   "file": "027.webp",
+   "w": 800,
+   "h": 360,
+   "alt": "Harry: Books. / McGonagall: Of course."
+  },
+  {
+   "file": "028.webp",
+   "w": 800,
+   "h": 740,
+   "alt": "Harry: And I'll make the deal sweeter! Hogwarts can keep some of the books I bring, for the library. It's okay to bribe people with books, right? That's a—"
+  },
+  {
+   "file": "029.webp",
+   "w": 800,
+   "h": 360,
+   "alt": "McGonagall: Family tradition. / Harry: Yes, exactly!"
+  },
+  {
+   "file": "030.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "McGonagall: I cannot deny the sense of your words, though I much wish I could. I will allow you an additional hundred Galleons. / McGonagall: I know that I shall regret this, and I am doing it anyway."
+  },
+  {
+   "file": "031.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: That's the spirit! And does a \"mokeskin pouch\" do what I think it does? / Harry: It would be like Batman's utility belt of holding! I could have the top three books I'm reading on me at all times! It's for the sake of children's reading, the best of all possible causes!"
+  },
+  {
+   "file": "032.webp",
+   "w": 800,
+   "h": 440,
+   "alt": "McGonagall: …I suppose you may add another ten Galleons. / Griphook was favouring Harry with a gaze of frank respect."
+  },
+  {
+   "file": "033.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: And a little spending money, like you mentioned earlier. I think I remember seeing one or two other things—"
+  },
+  {
+   "file": "034.webp",
+   "w": 800,
+   "h": 420,
+   "alt": "McGonagall: Don't push it, Mr Potter."
+  },
+  {
+   "file": "035.webp",
+   "w": 800,
+   "h": 860,
+   "alt": "Harry: But oh, Professor McGonagall, why rain on my parade? Surely this is a happy day, when I discover all things wizarding for the first time! / Harry: Why not smile and remember your own innocent childhood, watching the delight upon my young face as I buy a few toys using an insignificant fraction of the wealth I earned by defeating the most terrible wizard Britain has ever known—not that I'm accusing you of being ungrateful or anything—"
+  },
+  {
+   "file": "036.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "McGonagall's face, backlit in red, is fearsome and terrible. / McGonagall: You."
+  },
+  {
+   "file": "037.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry squeaked, stepped back, and sprawled backwards into a heap of money. Griphook put a palm over his face."
+  },
+  {
+   "file": "038.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "McGonagall: I would be doing a great service to wizarding Britain, Mr Potter, if I locked you in this vault and left you here."
+  },
+  {
+   "file": "039.webp",
+   "w": 800,
+   "h": 300,
+   "alt": "And they left without any more trouble."
+  },
+  {
+   "file": "040.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Close on Harry's trouser pocket, bulging with gold coins he scooped up when he fell. / clink / Not quite without any more trouble."
+  },
+  {
+   "file": "041.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "A tiny shop crammed with hanging pouches. A nervous young witch in faded yellow robes shows Harry a furry pouch. / The Moke Shop was a quaint little shop behind a vegetable stall behind a glove shop, down an alleyway off a side street of Diagon Alley. / Keeper: The Moke Super Pouch QX31! Widening Lip and an Undetectable Extension Charm."
+  },
+  {
+   "file": "042.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Harry: Can I try this for a bit? To make sure it works, um, reliably? / He widened his eyes in an expression of boyish, playful innocence."
+  },
+  {
+   "file": "043.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "\"bag of gold\" / \"bag of gold\" / \"bag of gold\" / After ten repetitions, Professor McGonagall wandered off to examine the other items in the shop, and the shopkeeper turned to watch her."
+  },
+  {
+   "file": "044.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: The golden coins were his. But they were still stolen. Self-stolen? Auto-thieved? / Harry: About thirty Galleons, he guessed."
+  },
+  {
+   "file": "045.webp",
+   "w": 800,
+   "h": 600,
+   "alt": "As they leave, the shop door grows a wooden hand and waves. / The door formed a hand and waved goodbye to them, which made Harry feel a bit queasy."
+  },
+  {
+   "file": "046.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "An old man with a cane, one huge tear on his cheek. / Old man: Are you really Harry Potter? You wouldn't lie about that, would you? / Old man: Only I'd heard rumours that you didn't really survive, and that's why no-one ever heard from you again."
+  },
+  {
+   "file": "047.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Professor McGonagall yanked Harry into the nearest alleyway. / Harry: I only know what other people have told me. It's not like I remember being born."
+  },
+  {
+   "file": "048.webp",
+   "w": 800,
+   "h": 740,
+   "alt": "Harry: If there's already sufficient cause to postulate a conspiracy, there's no reason they wouldn't just find another orphan and raise him to believe he was Harry Potter—"
+  },
+  {
+   "file": "049.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "McGonagall: You look just about exactly like your father, the year he first came to Hogwarts. / McGonagall: And I can attest on the basis of personality alone that you are related to the Scourge of Gryffindor."
+  },
+  {
+   "file": "050.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: She could be in on it too."
+  },
+  {
+   "file": "051.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Old man: No. She's right. You have your mother's eyes."
+  },
+  {
+   "file": "052.webp",
+   "w": 800,
+   "h": 360,
+   "alt": "Harry: Hmm. I suppose you could be in on it too— / McGonagall: Enough, Mr Potter."
+  },
+  {
+   "file": "053.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Old man: I'm just glad that you're alive. Thank you, Harry Potter. Thank you for what you did. / Old man: I'll leave you alone now."
+  },
+  {
+   "file": "054.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "The old man taps slowly away out of the alley. / tap… tap… tap…"
+  },
+  {
+   "file": "055.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "McGonagall: That was not well done. I know you're not used to this, Mr Potter, but people do care about you. Please be kind to them. / Harry: They shouldn't. Care about me, I mean."
+  },
+  {
+   "file": "056.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "McGonagall: You saved them from You-Know-Who. How should they not care?"
+  },
+  {
+   "file": "057.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: I suppose there's no chance that if I said \"fundamental attribution error\" you'd have any idea what that meant."
+  },
+  {
+   "file": "058.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "McGonagall: No. But please explain, Mr Potter, if you would be so kind."
+  },
+  {
+   "file": "059.webp",
+   "w": 800,
+   "h": 260,
+   "alt": "\"When we look at other people, we see personality traits. When we look at ourselves, we see circumstances.\""
+  },
+  {
+   "file": "060.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Pencil diagram: on the left a stick figure kicking a desk, labelled \"what an angry person!\"; on the right, the same man being shoved into a wall on his way to work."
+  },
+  {
+   "file": "061.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: People think I saved them from You-Know-Who because I have some kind of permanent, enduring destroy-the-Dark-Lord trait. / Harry: I was fifteen months old! They don't care about me. They want to shake hands with a bad explanation."
+  },
+  {
+   "file": "062.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry: Do you know what really happened?"
+  },
+  {
+   "file": "063.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "McGonagall: I have formed an idea… After meeting you, that is. / Harry: Yes?"
+  },
+  {
+   "file": "064.webp",
+   "w": 800,
+   "h": 740,
+   "alt": "McGonagall: You triumphed over the Dark Lord by being more awful than he was, and survived the Killing Curse by being more terrible than Death."
+  },
+  {
+   "file": "065.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Ha. Ha. Ha."
+  },
+  {
+   "file": "066.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "McGonagall: Let's get you to Madam Malkin's next. I fear your Muggle clothing may be attracting attention."
+  },
+  {
+   "file": "067.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Madam Malkin's robe shop, plain and respectable. / Madam Malkin's Robes for All Occasions. A genuinely boring shop front: red brick, plain black robes in the window, and the door propped wide open as if to advertise that there was nothing to hide."
+  },
+  {
+   "file": "068.webp",
+   "w": 800,
+   "h": 420,
+   "alt": "To be continued / Next: Six Minutes"
+  }
+ ]
+}

@@ -39,7 +39,7 @@ export const POSES = {
   kneel:      { armF: { sh: 30, el: 40, hand: 'open' }, armB: { sh: 20, el: 30 }, legF: { hip: 85, knee: -85 }, legB: { hip: 0, knee: -90 }, hipY: 'kneel' },
   crouch:     { armF: { sh: 40, el: 50 }, armB: { sh: 30, el: 40 }, legF: { hip: 70, knee: -120 }, legB: { hip: 50, knee: -110 }, hipY: 'crouch', lean: 20 },
   bow:        { armF: { sh: 0, el: 20 }, armB: { sh: 30, el: 20 }, legF: { hip: -3 }, legB: { hip: 4 }, lean: 35, headTilt: 10 },
-  bowGrand:   { armF: { sh: 70, el: 60, hand: 'open' }, armB: { sh: -60, el: -10, hand: 'open' }, legF: { hip: 12 }, legB: { hip: -6 }, lean: 30, headTilt: 5 },
+  bowGrand:   { armF: { sh: -70, el: -20, hand: 'open' }, armB: { sh: 80, el: 30, hand: 'palm' }, legF: { hip: 12 }, legB: { hip: -6 }, lean: 30, headTilt: 5 },
   slump:      { armF: { sh: 3, el: 2 }, armB: { sh: -3, el: 2 }, legF: { hip: -2 }, legB: { hip: 3 }, lean: 8, headTilt: 12 },
   fists:      { armF: { sh: 10, el: 60, hand: 'fist' }, armB: { sh: -10, el: -60, hand: 'fist' }, legF: { hip: -6 }, legB: { hip: 6 } },
   gesture:    { armB: { sh: 45, el: 55, hand: 'palm', hr: -20 }, armF: { sh: -4, el: 10 }, legF: { hip: -3 }, legB: { hip: 5 } },
@@ -439,8 +439,9 @@ export function drawHead(def, o) {
     out.push(path(`M${tip[0]},${tip[1]} Q${tip[0] + dir * 1.5},${tip[1] + L2 * 0.16} ${base[0]},${base[1]}`, { fill: 'none', stroke: nc, 'stroke-width': lw * 0.95, 'stroke-linecap': 'round' }));
     if (a < 0.6) out.push(path(`M${bx - dir * 7 - 2},${noseY + L2 * 0.42} q3,3 6,1`, { fill: 'none', stroke: nc, 'stroke-width': lw * 0.7, 'stroke-linecap': 'round', opacity: 0.8 }));
   } else if (F.nose === 'goblin') {
-    const tip = [nz.x + s * 30 + 10 * Math.sign(s || 1), noseY + 14];
-    out.push(path(`M${nz.x - 6},${noseY - 14} Q${nz.x + s * 20 + 14},${noseY - 10} ${tip[0]},${tip[1]} Q${tip[0] - 8},${tip[1] + 10} ${nz.x - 8},${noseY + 10}Z`, { fill: skin, stroke: C.ink, 'stroke-width': lw * 0.9 }));
+    const dir = s >= 0 ? 1 : -1, a = Math.min(1, Math.abs(s) / 0.5);
+    const tip = [nz.x + dir * (10 + 26 * a), noseY + 20];
+    out.push(path(`M${nz.x - dir * 4},${noseY - 18} Q${nz.x + dir * (8 + 14 * a)},${noseY - 12} ${tip[0]},${tip[1]} Q${tip[0] - dir * 6},${tip[1] + 6} ${nz.x - dir * 2},${noseY + 16} Q${nz.x - dir * 10},${noseY + 10} ${nz.x - dir * 8},${noseY + 2}`, { fill: skin, stroke: C.ink, 'stroke-width': lw * 0.9, 'stroke-linejoin': 'round' }));
   } else {
     out.push(path(`M${nz.x + s * 5 - 2},${noseY - 4} q${3 + s * 4},${6} ${-2 + s * 4},${9}`, { fill: 'none', stroke: skinSh, 'stroke-width': lw * 1.0, 'stroke-linecap': 'round' }));
   }

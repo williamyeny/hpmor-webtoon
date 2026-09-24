@@ -106,6 +106,10 @@ function avoidFaces(bubbles, panelsA, W, H) {
       for (const [dx, dy] of steps) { const cand = { ...b, x: b.x + dx, y: b.y + dy }; if (!bad(cand)) { best = cand; break; } }
       if (best) { b.x = best.x; b.y = best.y; }
     }
+    // keep inside the tile
+    const r = rectOf(b, sz);
+    if (r.y < 8) b.y += 8 - r.y; else if (r.y + r.h > H - 8) b.y -= r.y + r.h - (H - 8);
+    if (r.x < 6) b.x += 6 - r.x; else if (r.x + r.w > W - 6) b.x -= r.x + r.w - (W - 6);
     placed.push(rectOf(b, sz));
   }
   return bubbles;

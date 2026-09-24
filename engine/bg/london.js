@@ -181,6 +181,14 @@ export function shopfront(x, w, shop, seed, o = {}) {
   if (R.chance(0.5)) out += line(x + w - 10, sy - 30, x + w + 60, sy - 30, bl(3)) + rect(x + w + 10, sy - 26, 70, 56, { fill: '#e8d9b8', ...bl(1.6), rx: 6 });
   return g({ transform: `rotate(${r2(tilt)} ${x + w / 2} ${FLOOR})` }, out);
 }
+export function alleyLayout(o = {}) {
+  const R = rng('lay' + (o.seed || 42));
+  const out = [];
+  let x = -200, i = o.start || 0;
+  while (x < (o.width || 4000)) { const w = R.range(260, 380); out.push({ x, w, shop: SHOPS[i % SHOPS.length], i }); x += w + R.range(-6, 10); i++; }
+  return out;
+}
+export const shopAt = (name, o = {}) => { const L = alleyLayout(o).find((l) => l.shop.n.startsWith(name)); return L ? L.x + L.w / 2 : 0; };
 export function diagonAlley(o = {}) {
   const R = rng(o.seed || 42);
   let out = '';
@@ -192,9 +200,7 @@ export function diagonAlley(o = {}) {
   for (let k = 0; k < 6; k++) { const ox = R.range(0, 3800), oy = R.range(-500, -150), sc = R.range(0.3, 0.6); out += g({ transform: `translate(${ox},${oy}) scale(${sc})` }, path('M0,0 Q-40,-40 -90,-10 Q-40,-20 -10,10 Q30,-30 80,-14 Q40,-40 0,0Z', { fill: '#3a2a22', opacity: 0.8 }), circle(0, 6, 16, { fill: '#3a2a22', opacity: 0.8 })); }
   // far roofs silhouette
   for (let i = 0; i < 30; i++) { const x = -400 + i * 170; const hh = R.range(260, 480); out += path(`M${x},${FLOOR - 540 - hh * 0.2} L${x + 85},${FLOOR - 640 - hh * 0.3} L${x + 170},${FLOOR - 540 - hh * 0.2}Z`, { fill: '#8a7f8a', opacity: 0.5 }); }
-  let x = -200;
-  let i = o.start || 0;
-  while (x < (o.width || 4000)) { const w = R.range(260, 380); out += shopfront(x, w, SHOPS[i % SHOPS.length], i); x += w + R.range(-6, 10); i++; }
+  for (const L of alleyLayout(o)) out += shopfront(L.x, L.w, L.shop, L.i);
   // bunting
   for (let b = 0; b < 3; b++) { const y0 = FLOOR - 470 - b * 10; let d = `M-200,${y0}`; for (let k = 0; k < 12; k++) d += ` Q${-200 + k * 380 + 190},${y0 + 60} ${-200 + (k + 1) * 380},${y0}`; out += path(d, { fill: 'none', stroke: '#3e2a1f', 'stroke-width': 2 }); for (let k = 0; k < 60; k++) { const px = -200 + k * 76 + b * 20, py = y0 + 30 * Math.sin(((k % 5) / 5) * Math.PI) + 8; out += polygon([[px - 12, py], [px + 12, py], [px, py + 26]], { fill: [C.burgundy, C.mustard, C.forest, C.navy][k % 4], ...bl(1) }); } }
   // cobbles
