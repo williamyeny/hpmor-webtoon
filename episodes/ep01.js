@@ -49,19 +49,33 @@ ep.setBg(C.paper);
 ep.panel(660, { cam: { x: 800, y: 580, w: 1500 }, bg: () => O.houseExterior() },
   [cap('Oxford, England. The wettest July anyone could remember.', 44, 36, { w: 340 })], { mood: 'rainy', alt: 'A row of Victorian brick houses in the rain. One window glows warm.' });
 
-ep.panel(620, { cam: { x: 560, y: 600, w: 1100 }, bg: LR() },
-  [cap('Every inch of wall space is covered by a bookcase.', 44, 36, { w: 330 }),
-   cap('And it still isn\'t enough.', 440, 330, { w: 300 })],
-  { mood: 'warm', alt: 'A cosy living room drowning in books: shelves to the ceiling, more books heaped under the rain-streaked window.' });
+// We look in through the lit front window from the rainy street: the panel IS that window (cream sash, rain on the glass),
+// set in the wet brick of the house front seen in the tile above.
+const WIN = { x: 70, y: 52, w: 660, h: 540 };
+const winFront = (t) => g({}, K.brickWall(-20, -10, 840, t.H + 20, '#8a4a36', 21), rect(0, 0, t.W, t.H, { fill: '#1b2338', opacity: 0.38 }),
+  K.glow(400, 330, 520, C.candle, 0.28),
+  rect(WIN.x - 22, WIN.y - 22, WIN.w + 44, WIN.h + 44, { fill: '#e9e0cc', stroke: C.ink, 'stroke-width': 2.5 }),
+  rect(WIN.x - 40, WIN.y + WIN.h + 18, WIN.w + 80, 22, { fill: '#8a8276', stroke: C.ink, 'stroke-width': 2 }),
+  K.rainOverlay(800, t.H, 7, 1.1, 0.5));
+const winGlass = (ctx) => { let o = ''; for (const k of [1, 2]) o += rect(ctx.w * k / 3 - 5, 0, 10, ctx.h, { fill: '#e9e0cc', stroke: C.ink, 'stroke-width': 1.6 });
+  return path(`M0,${ctx.h * 0.55} L${ctx.w * 0.55},0 L${ctx.w * 0.75},0 L0,${ctx.h * 0.85}Z`, { fill: '#fff', opacity: 0.06 }) + K.rainOverlay(ctx.w, ctx.h, 12, 0.5, 0.4) + o; };
+ep.panel(640, { cam: { x: 560, y: 590, w: 1080 }, bg: LR() },
+  [cap('Every inch of wall space is covered by a bookcase.', 98, 76, { w: 330 }),
+   cap('And it still isn\'t enough.', 406, 352, { w: 300 })],
+  { mood: 'warm', x: WIN.x, y: WIN.y, w: WIN.w, ph: WIN.h, overlay: winGlass, border: 'none', tile: { under: winFront },
+    alt: 'Through the rain-streaked front window: a cosy living room drowning in books, shelves to the ceiling, more books heaped under the far window.' });
 
 ep.panel(760, { cam: { x: 1170, y: 700, w: 1000 }, bg: LR(),
   actors: [DAD({ pose: 'gesture', expr: 'unimpressed' }), MUM({ pose: 'hold', expr: 'worried' }), chairBack, HARRY_CHAIR(), chairFront] },
   [cap('This is the home of Professor Michael Verres-Evans, his wife Petunia Evans-Verres, and their adopted son, Harry James Potter-Evans-Verres.', 44, 36, { w: 610 })],
   { mood: 'warm', alt: 'A man and a woman stand arguing by the fire. A small boy with messy black hair and round glasses reads in an armchair.' });
 
-ep.panel(560, { cam: { x: 990, y: 860, w: 290 }, bg: LR(), blur: 0 },
+// the letter itself, no frame: lying on the reader's own page
+ep.cutout(560, (ctx) => g({ transform: 'translate(430,345) rotate(-5)' },
+    rect(-236, -148, 490, 322, { fill: '#3a2a1a', opacity: 0.28, filter: 'url(#blur3)', transform: 'translate(10,14)' }),
+    envelope({ w: 480, h: 312 })),
   [cap('There is a letter on the table. Yellowish parchment. Emerald ink. No stamp.', 44, 30, { w: 440 })],
-  { mood: 'warm', alt: 'Close on the coffee table: a parchment envelope addressed in emerald ink to Mr H. Potter.' });
+  { x: 0, y: 0, w: 800, ph: 560, alt: 'The letter itself: a yellowish parchment envelope addressed in emerald ink to Mr H. Potter, The Smallest Bedroom. No stamp.' });
 
 ep.panel(760, { cam: { on: ['dad', 'mum'], fr: 'waist' }, bg: LR(), actors: [DAD({ expr: 'unimpressed', pose: 'crossArms' }), MUM({ expr: 'determined', pose: 'fists' })] },
   [say('Dad', 'You\'re joking.', 190, 90, { w: 220 }),
@@ -89,7 +103,13 @@ ep.panel(760, { cam: { on: ['mum'], fr: 'bust', dy: -0.3 }, bg: LR(), actors: [M
    say('Mum', 'Michael. I wasn\'t—always like this—', 250, 630, { w: 300 })], { mood: 'warm' });
 
 // ---- Petunia's memory (sepia)
-const MEM = { mood: 'sepia', overlay: (ctx) => FX.memoryEdge(ctx.w, ctx.h) };
+// the memory has no frame: its edges dissolve into the page, like a recollection that won't hold still
+const memDissolve = (ctx) => { const { w, h } = ctx, F = 70, id = 'md' + ctx.id;
+  const lg = (n, x1, y1, x2, y2) => `<linearGradient id="${id}${n}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"><stop offset="0" stop-color="${C.paper}"/><stop offset="1" stop-color="${C.paper}" stop-opacity="0"/></linearGradient>`;
+  return FX.memoryEdge(w, h) + `<defs>${lg('t', 0, 0, 0, 1)}${lg('b', 0, 1, 0, 0)}${lg('l', 0, 0, 1, 0)}${lg('r', 1, 0, 0, 0)}</defs>` +
+    rect(0, 0, w, F, { fill: `url(#${id}t)` }) + rect(0, h - F, w, F, { fill: `url(#${id}b)` }) + rect(0, 0, F, h, { fill: `url(#${id}l)` }) + rect(w - F, 0, F, h, { fill: `url(#${id}r)` }) +
+    rect(0, 0, w, h, { filter: 'url(#grain)', opacity: 0.35, style: 'mix-blend-mode:multiply' }); }; // same grain as the page, so the edge vanishes
+const MEM = { mood: 'sepia', overlay: memDissolve, border: 'none', panel: { grain: false } };
 const gardenMem = (env) => rect(-400, -400, 3000, 3000, { fill: '#cdb68a' }) + K.brickWall(-400, 200, 3000, 700, '#9a6a52', 3) + rect(-400, 900, 3000, 900, { fill: '#8aa070' });
 ep.panel(760, { cam: { on: ['lily', 'pet'], fr: 'knees', dy: -1.2 }, bg: gardenMem,
   actors: [{ def: petuniaTeen, id: 'pet', x: 660, y: 1100, turn: 0.45, expr: 'sad', pose: 'crossArms' }, { def: lilyTeen, id: 'lily', x: 1100, y: 1100, turn: -0.4, expr: 'delight', pose: 'present' }],
@@ -129,9 +149,9 @@ ep.panel(760, { cam: { on: ['mum'], fr: 'bust', dy: -0.45 }, bg: LR(), actors: [
 // ---- DAD! MUM!
 ep.panel(900, { cam: { on: ['harry'], fr: 'full', dy: -0.2 }, bg: LR(), blur: 1,
   actors: [chairBack, { def: harry, id: 'harry', x: 1520, y: 925, s: 1.12, turn: -0.2, pose: 'fists', expr: 'yell' }, chairFront,
-    g({ transform: 'translate(1420,860) rotate(-35)' }, bookHeld('#274060', { w: 60, h: 80 }))],
+    g({ transform: 'translate(1415,800) rotate(-35)' }, bookHeld('#274060', { w: 60, h: 80 }))],
   mid: (e) => g({ transform: `translate(${e.cam.x - e.w / 2 / e.z},${e.cam.y - e.h / 2 / e.z}) scale(${1 / e.z})` }, FX.burst(e.w, e.h, e.w / 2, e.h * 0.35, { bg: '#f3e2b8', col: '#d9a55a', op: 0.9 })) },
-  [shout('Harry', 'DAD! MUM!', 400, 110, { w: 400, size: 56 })], { mood: 'warm', alt: 'Harry leaps up on the armchair, fists clenched, book flying.' });
+  [shout('Harry', 'DAD! MUM!', 400, 96, { w: 400, size: 56, fixed: true })], { mood: 'warm', shape: 'burst', points: 18, seed: 11, alt: 'Harry leaps up on the armchair, fists clenched, book flying.' });
 
 ep.panel(730, { cam: { on: ['dad', 'mum'], fr: 'bust', dy: -0.9, zoom: 1.25 }, bg: LR(), actors: [DAD({ expr: 'gasp', turn: 0.8 }), MUM({ expr: 'gasp', turn: 0.6 })] },
   [cap('They looked at him as though they\'d forgotten there was a third person in the room.', 44, 30, { w: 600 })], { mood: 'warm' });
@@ -159,9 +179,10 @@ ep.panel(760, { cam: { on: ['harry'], fr: 'close' }, bg: LR(), blur: 3, actors: 
   [cap('Harry was given anything reasonable he wanted. Books. Tutors. Every maths competition he cared to enter.', 44, 30, { w: 420 }),
    cap('Anything, except the slightest shred of respect.', 360, 610, { w: 360 })], { mood: 'warm' });
 
-ep.panel(600, { cam: { head: 'harry', hw: 0.75, hx: 0.5, hy: 0.64 }, bg: LR(), blur: 3, actors: [{ def: harry, id: 'harry', x: 1400, y: 1010, s: 1.12, turn: -0.1, expr: 'cold' }],
+// eyes-only: the panel narrows to an almond around the cold stare
+ep.panel(640, { cam: { head: 'harry', hw: 1.0, hx: 0.5, hy: 0.375 }, bg: LR(), blur: 3, actors: [{ def: harry, id: 'harry', x: 1400, y: 1010, s: 1.12, turn: -0.1, expr: 'cold' }],
   over: (e) => FX.frost(e.w, e.h, 0.5, 3) },
-  [inner('Harry', '*Sometimes Harry wanted to scream at his father.*', 400, 24, { w: 420, anchor: 'tc' })], { mood: 'cold', alt: 'Extreme close-up on Harry\'s eyes, gone flat and cold. Frost creeps at the edges of the panel.' });
+  [inner('Harry', '*Sometimes Harry wanted to scream at his father.*', 400, 18, { w: 420, anchor: 'tc' })], { mood: 'cold', shape: 'eye', y: 104, ph: 520, alt: 'Extreme close-up on Harry\'s eyes, gone flat and cold. Frost creeps at the edges of the panel.' });
 
 ep.panel(900, { cam: { x: 1200, y: 520, w: 900 }, bg: LR(),
   actors: [DAD({ x: 900, expr: 'cross', pose: 'lecture' }), MUM({ x: 1180, expr: 'cross', pose: 'fists' }), { def: harry, id: 'harry', x: 1500, y: 1040, s: 1.12, turn: -0.6, pose: 'slump', expr: 'sad' }] },
@@ -193,18 +214,35 @@ ep.panel(680, { cam: { on: ['harry'], fr: 'close' }, bg: HB(), blur: 2, actors: 
   [say('Harry', 'Well. You know what you do with a testable hypothesis?', 250, 90, { w: 380 }),
    say('Harry', 'You go and *test* it.', 610, 570, { w: 260 })], { mood: 'candle' });
 
-// letter-writing sequence (three small panels)
+// letter-writing sequence: two small desk panels, then the letter itself lies on the reader's page,
+// one sheet running on across the two tiles (ruled lines continue across the seam)
 const deskTop = (inner2) => (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#6e4a2c' }) + K.glow(ctx.w * 0.8, ctx.h * 0.1, 400, C.candle, 0.35) + inner2(ctx);
-ep.multi(680, [
+const LTR = { x0: 52, x1: 748, rule0: 374, gap: 34, seam: 576 };
+// the part of the sheet between y0 and y1 (tile coords; top/bottom edge drawn only if inside the tile); lines = [[k, text, size?]]
+const letterPart = (off, y0, y1, lines) => {
+  const { x0, x1 } = LTR; let o = '';
+  o += rect(x0 + 8, y0 + 12, x1 - x0, y1 - y0, { fill: '#3a2a1a', opacity: 0.22, filter: 'url(#blur3)' });
+  o += rect(x0, y0, x1 - x0, y1 - y0, { fill: '#fbf7ec' });
+  for (let k = 0; k < 40; k++) { const y = LTR.rule0 + k * LTR.gap - off; if (y > (y0 > 0 ? y0 + 30 : -5) && y < y1 - 14) o += line(x0 + 6, y, x1 - 6, y, { stroke: '#9fb6d0', 'stroke-width': 1.2, opacity: 0.8 }); }
+  o += line(x0 + 44, Math.max(y0 + 4, -5), x0 + 44, y1 - 4, { stroke: '#d98a8a', 'stroke-width': 1.4 });
+  for (const [k, t, size] of lines) o += text(x0 + 58, LTR.rule0 + k * LTR.gap - off - 7, t, { 'font-family': 'Caveat', 'font-size': size ?? 27, fill: '#2d2a4a' });
+  // ink edges: sides always, top/bottom only where the sheet ends inside this tile
+  const ink = { stroke: C.ink, 'stroke-width': 2, fill: 'none', 'stroke-linecap': 'round' };
+  o += line(x0, y0, x0, y1, ink) + line(x1, y0, x1, y1, ink);
+  if (y0 > 0) o += line(x0, y0, x1, y0, ink);
+  return g({ filter: 'url(#wobble)' }, o);
+};
+ep.multi(LTR.seam, [
   { x: M, y: 18, w: 360, h: 280, mood: 'candle', art: deskTop((c) => g({ transform: `translate(${c.w / 2},${c.h / 2}) rotate(-6)` }, sheet({ w: 280, h: 200, ruled: true, lines: [{ t: 'Dear Deputy Headmistress', size: 24 }], top: 50 }))) },
   { x: 400, y: 18, w: 376, h: 280, mood: 'candle', art: deskTop((c) => g({ transform: `translate(${c.w * 0.4},${c.h * 0.36})` }, crumpledBall(40, 2)) + g({ transform: `translate(${c.w * 0.72},${c.h * 0.3}) rotate(40)` }, pencil(120))) },
-  { x: M, y: 316, w: 752, h: 346, mood: 'candle', art: deskTop((c) => g({ transform: `translate(${c.w / 2},${385}) scale(1.4) rotate(-2)` }, sheet({ w: 560, h: 520, parchment: false, ruled: true, top: 50, size: 21, lh: 1.05, lines: [
-    { t: 'Dear Deputy Headmistress Minerva McGonagall,', size: 23 }, 'Or Whomsoever It May Concern:', '',
-    'I recently received your letter of acceptance to Hogwarts,', 'addressed to Mr H. Potter. I am extremely interested in', 'attending Hogwarts, conditional on such a place actually existing.'] }))) },
-], [cap('This called for careful calligraphy.', 428, 184, { w: 270, fixed: true })], {});
-ep.panel(600, (ctx) => deskTop((c) => g({ transform: `translate(${c.w / 2},${420}) scale(1.45) rotate(-2)` }, sheet({ w: 540, h: 540, ruled: true, top: 44, size: 21, lh: 1.08, lines: [
-  'Mother mentioned that you sent a Hogwarts representative', 'to Lily Potter (then Lily Evans) in order to demonstrate to', 'her family that magic was real. If you could do this for my', 'own family it would be extremely helpful.', '', { t: 'Harry James Potter-Evans-Verres', size: 26 }] })))(ctx),
-  [cap('P.S. My father is highly sceptical. I myself am uncertain.', 330, 420, { w: 370, fixed: true })], { mood: 'candle', alt: 'Harry\'s letter to Hogwarts, in careful handwriting.' });
+], [cap('This called for careful calligraphy.', 428, 184, { w: 270, fixed: true })], {
+  over: (t) => letterPart(0, 330, t.H + 20, [[0, 'Dear Deputy Headmistress Minerva McGonagall,', 30], [1, 'Or Whomsoever It May Concern:', 30],
+    [3, 'I recently received your letter of acceptance to Hogwarts,'], [4, 'addressed to Mr H. Potter. I am extremely interested in'], [5, 'attending Hogwarts, conditional on such a place actually existing.']]) });
+ep.beat(410, [cap('P.S. My father is highly sceptical. I myself am uncertain.', 300, 236, { w: 370, fixed: true })], {
+  under: (t) => letterPart(LTR.seam, -20, 362, [[7, 'Mother mentioned that you sent a Hogwarts representative'], [8, 'to Lily Potter (then Lily Evans) in order to demonstrate to'],
+    [9, 'her family that magic was real. If you could do this for my'], [10, 'own family it would be extremely helpful.'], [12, 'Harry James Potter-Evans-Verres', 33]]) +
+    line(LTR.x0, 362, LTR.x1, 362, { stroke: C.ink, 'stroke-width': 2, filter: 'url(#wobble)' }) });
+ep.tiles[ep.tiles.length - 1].alt = 'Harry\'s letter to Hogwarts, in careful handwriting, lying on the page.';
 
 ep.panel(700, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#5e3e25' }) + K.glow(ctx.w * 0.7, ctx.h * 0.3, 500, C.candle, 0.5) +
   g({ transform: `translate(${ctx.w * 0.42},${ctx.h * 0.62}) scale(2.3) rotate(-8)` }, envelope({ back: true, sealText: 'H.J.P.E.V.' })) +
@@ -240,9 +278,11 @@ const GD = (o = {}) => (env) => O.garden(o);
 ep.panel(760, { cam: { x: 840, y: 700, w: 1250 }, bg: GD(), actors: [{ def: harry, id: 'harry', x: 780, y: 1030, s: 1.1, turn: 0.3, pose: 'holdOne', expr: 'worried', armF: { under: g({ transform: 'translate(0,30) scale(0.35) rotate(90)' }, envelope({ back: true })) } }] },
   [cap('Standing in your own back garden, about to shout for an owl, it occurs to you that this is… actually pretty embarrassing.', 44, 34, { w: 460 })], { mood: 'dusk', alt: 'The back garden at dusk after rain. Harry stands alone on the wet lawn holding the envelope.' });
 
-ep.panel(700, { cam: { on: ['harry'], fr: 'bust' }, bg: GD(), blur: 2, actors: [{ def: harry, id: 'harry', x: 780, y: 1030, s: 1.1, turn: 0.2, pose: 'fists', expr: 'determined' }] },
-  [inner('Harry', '*No.* I\'m better than Dad.', 250, 80, { w: 320 }),
-   inner('Harry', 'I will use the scientific method *even if it makes me feel stupid.*', 520, 594, { w: 380 })], { mood: 'dusk' });
+// his resolve, no frame: Harry squares up on the reader's own page
+ep.cutout(720, { cam: { head: 'harry', hw: 0.27, hx: 0.68, hy: 0.27 },
+  actors: [{ def: harry, id: 'harry', x: 780, y: 1030, s: 1.1, turn: 0.15, pose: 'handsHips', expr: 'determined' }] },
+  [inner('Harry', '*No.* I\'m better than Dad.', 200, 150, { w: 340 }),
+   inner('Harry', 'I will use the scientific method *even if it makes me feel stupid.*', 206, 470, { w: 290 })], { alt: 'Harry squares up, hands on hips, jaw set.' });
 
 ep.panel(460, { cam: { on: ['harry'], fr: 'close' }, bg: GD(), blur: 2, actors: [{ def: harry, id: 'harry', x: 780, y: 1030, s: 1.1, turn: 0.1, expr: 'embarrassed' }] },
   [whisper('Harry', 'Letter…', 560, 110, { w: 160, size: 22 })], { mood: 'dusk' });

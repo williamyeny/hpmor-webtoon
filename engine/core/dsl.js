@@ -42,7 +42,7 @@ export class Episode {
     if (o.light !== undefined) p.light = o.light;
     if (o.overlay) p.overlay = o.overlay;
     // special frames (engine/core/frames.js): shape, frame style, breakout, cutout and their parameters
-    for (const k of ['shape', 'frame', 'breakout', 'cutout', 'spring', 'slant', 'cutTop', 'cutBottom', 'seed', 'tear', 'points', 'glow', 'shadow', 'rotate']) if (o[k] !== undefined) p[k] = o[k];
+    for (const k of ['shape', 'frame', 'breakout', 'cutout', 'spring', 'slant', 'cutTop', 'cutBottom', 'seed', 'tear', 'points', 'glow', 'shadow', 'rotate', 'borderWidth', 'borderColor', 'feather', 'jag']) if (o[k] !== undefined) p[k] = o[k];
     return this.tile({ h, panels: [p], bubbles, ...(o.tile || {}), ...(o.bg ? { bg: o.bg } : {}), ...(o.alt ? { alt: o.alt } : {}) });
   }
   // a figure (or object) with no frame and no background, standing on the page itself

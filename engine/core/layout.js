@@ -68,11 +68,16 @@ export function composePanel(p, tileCtx) {
     const R = { top: [-far, -far, 2 * far + w, far + m], bottom: [-far, h - m, 2 * far + w, far], left: [-far, -far, far + m, 2 * far + h], right: [w - m, -far, far, 2 * far + h] };
     const cid = `${id}bo`;
     const actorsOnly = p.art({ ...ctx, layer: 'actors' });
-    pop = `<clipPath id="${cid}">${edges.map((e) => R[e] ? `<rect x="${R[e][0]}" y="${R[e][1]}" width="${R[e][2]}" height="${R[e][3]}"/>` : '').join('')}</clipPath>` +
-      g({ 'clip-path': `url(#${cid})` }, g({ filter: wob }, g({ filter: mood.desat ? `url(#${id}ds)` : null }, actorsOnly)));
+    // the part beyond the frame gets the panel's mood tint too (multiplied onto the figure only), so no colour step at the edge
+    const tint = mood.tintOp ? `<filter id="${id}pt"><feFlood flood-color="${mood.tint}" flood-opacity="${Math.min(1, mood.tintOp * 1.2)}" result="f"/><feComposite in="f" in2="SourceGraphic" operator="in" result="fc"/><feBlend in="fc" in2="SourceGraphic" mode="multiply"/></filter>` : '';
+    pop = `<clipPath id="${cid}">${edges.map((e) => R[e] ? `<rect x="${R[e][0]}" y="${R[e][1]}" width="${R[e][2]}" height="${R[e][3]}"/>` : '').join('')}</clipPath>${tint}` +
+      g({ 'clip-path': `url(#${cid})` }, g({ filter: wob }, g({ filter: mood.desat ? `url(#${id}ds)` : null }, g({ filter: tint ? `url(#${id}pt)` : null }, actorsOnly))));
   }
   const shadow = p.shadow ? `<path d="${shape.d}" fill="#000" opacity="0.25" filter="url(#blur3)" transform="translate(4,8)"/>` : '';
-  const body = bleed ? g({ mask: `url(#${id}fm)` }, inner) : inner;
+  // dissolve frame: feather every edge into the page (memories, a hug, a moment that shouldn't have hard edges)
+  const fz = p.frame === 'dissolve' ? (p.feather ?? Math.min(w, h) * 0.12) : 0;
+  const dz = fz ? `<filter id="${id}df" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="${r2(fz / 2)}"/></filter><mask id="${id}dm"><rect x="${r2(fz)}" y="${r2(fz)}" width="${r2(w - 2 * fz)}" height="${r2(h - 2 * fz)}" fill="#fff" filter="url(#${id}df)"/></mask>` : '';
+  const body = bleed ? g({ mask: `url(#${id}fm)` }, inner) : fz ? dz + g({ mask: `url(#${id}dm)` }, inner) : inner;
   const svg = `<g transform="translate(${r2(p.x)},${r2(p.y)})${p.rotate ? ` rotate(${p.rotate} ${w / 2} ${h / 2})` : ''}"><defs>${defs}</defs>${shadow}${body}${border}${pop}</g>`;
   const anchors = {};
   for (const k in ctx.anchors || {}) {

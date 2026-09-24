@@ -17,21 +17,25 @@ const WAND_OUT = g({ transform: 'translate(0,4)' }, wand(120, '#4a2e1b')); // po
 
 // =============================================================== August
 ep.beat(260, [plain('CHAPTER THREE', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Boy Who Lived', 400, 170, { size: 50 })]);
+// the calendar hangs on the page itself (no wall, no frame): an object in the reader's own room
 const calendar = (ctx) => {
-  const B = ctx.h - 170; // calendar bottom; the caption sits in the band below it
-  let out = rect(0, 0, ctx.w, ctx.h, { fill: '#3e4d66' }) + rect(ctx.w * 0.18, 30, ctx.w * 0.64, B - 30, { fill: '#f4ecd8', stroke: C.ink, 'stroke-width': 3 });
-  out += text(ctx.w / 2, 100, 'AUGUST 1991', { 'font-family': 'IM Fell English SC', 'font-size': 40, 'text-anchor': 'middle', fill: C.ink });
-  const x0 = ctx.w * 0.2, cw = ctx.w * 0.6 / 7, y0 = 130, ch = (B - 160) / 5;
+  const B = ctx.h - 168; // calendar bottom; the caption sits on the page below it
+  const X0 = ctx.w * 0.12, CW = ctx.w * 0.76, T = 58;
+  let cal = rect(X0 + 10, T + 14, CW, B - T, { fill: '#2a1a10', opacity: 0.22, filter: 'url(#blur3)' }) + rect(X0, T, CW, B - T, { fill: '#f4ecd8', stroke: C.ink, 'stroke-width': 3 });
+  cal += rect(X0, T, CW, 26, { fill: C.burgundy, stroke: C.ink, 'stroke-width': 3 }); // the binding strip
+  cal += path(`M${ctx.w / 2 - 70},${T + 4} L${ctx.w / 2},${T - 44} L${ctx.w / 2 + 70},${T + 4}`, { fill: 'none', stroke: '#5a4032', 'stroke-width': 2.5 }) + circle(ctx.w / 2, T - 46, 7, { fill: '#8a7d68', stroke: C.ink, 'stroke-width': 2 });
+  cal += text(ctx.w / 2, T + 88, 'AUGUST 1991', { 'font-family': 'IM Fell English SC', 'font-size': 44, 'text-anchor': 'middle', fill: C.ink });
+  const x0 = X0 + CW * 0.03, cw = CW * 0.94 / 7, y0 = T + 118, ch = (B - y0 - 20) / 5;
   for (let d = 0; d < 31; d++) {
     const c = (d + 3) % 7, r = Math.floor((d + 3) / 7);
     const x = x0 + c * cw, y = y0 + r * ch;
-    out += rect(x, y, cw, ch, { fill: 'none', stroke: '#b9ad92', 'stroke-width': 1 }) + text(x + 8, y + 26, String(d + 1), { 'font-family': 'Alegreya', 'font-size': 20, fill: '#5a4032' });
-    if (d < 28) out += path(`M${x + 10},${y + 10} L${x + cw - 10},${y + ch - 10} M${x + cw - 10},${y + 10} L${x + 10},${y + ch - 10}`, { stroke: '#c43a32', 'stroke-width': 3, 'stroke-linecap': 'round', opacity: 0.85 });
-    if (d === 28) out += circle(x + cw / 2, y + ch / 2 + 6, cw * 0.42, { fill: 'none', stroke: '#1d5a3a', 'stroke-width': 4 }) + text(x + cw / 2, y + ch - 8, 'D.A.!', { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': 22, fill: '#1d5a3a', 'text-anchor': 'middle' });
+    cal += rect(x, y, cw, ch, { fill: 'none', stroke: '#b9ad92', 'stroke-width': 1 }) + text(x + 8, y + 26, String(d + 1), { 'font-family': 'Alegreya', 'font-size': 22, fill: '#5a4032' });
+    if (d < 28) cal += path(`M${x + 10},${y + 10} L${x + cw - 10},${y + ch - 10} M${x + cw - 10},${y + 10} L${x + 10},${y + ch - 10}`, { stroke: '#c43a32', 'stroke-width': 3.5, 'stroke-linecap': 'round', opacity: 0.85 });
+    if (d === 28) cal += circle(x + cw / 2, y + ch / 2 + 6, cw * 0.42, { fill: 'none', stroke: '#1d5a3a', 'stroke-width': 4 }) + text(x + cw / 2, y + ch - 8, 'D.A.!', { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': 24, fill: '#1d5a3a', 'text-anchor': 'middle' });
   }
-  return out;
+  return g({ transform: `rotate(-1.5 ${ctx.w / 2} ${T})` }, cal);
 };
-ep.panel(820, calendar, [capC('Thirty days is a very long time to wait, when you\'ve just found out that magic is real.', 400, 718, { w: 640, fixed: true })], { alt: 'A wall calendar for August 1991, every day crossed off in red up to the 29th, which is circled: "D.A.!"' });
+ep.cutout(820, calendar, [capC('Thirty days is a very long time to wait, when you\'ve just found out that magic is real.', 400, 732, { w: 640, fixed: true })], { alt: 'A wall calendar for August 1991, every day crossed off in red up to the 29th, which is circled: "D.A.!"' });
 ep.multi(780, [
   { x: M, y: 18, w: 752, h: 360, mood: 'candle', art: { cam: { on: ['harry'], fr: 'waist', dx: -0.6, dy: 0.3 }, bg: () => O.bedroom(), actors: [{ def: harry, id: 'harry', x: 560, y: 960, s: 1.1, turn: 0.3, pose: 'sitRead', expr: 'focus', armF: { prop: bookHeld('#2f5a40', { rot: 200 }) }, armB: { sh: 0, el: 55, hand: 'hold' } }] } },
   { x: M, y: 396, w: 752, h: 366, mood: 'warm', art: { cam: { on: ['harry'], fr: 'waist', dx: 1.2 }, bg: () => O.bedroom({ night: false }), actors: [{ def: harry, id: 'harry', x: 560, y: 960, s: 1.1, turn: 0.2, pose: 'wand', expr: 'determined', armB: { sh: 92, el: -8, hand: 'hold', under: g({ transform: 'translate(0,34) rotate(180)' }, pencil(90)) } }] } },
@@ -73,10 +77,11 @@ ep.panel(720, { cam: { x: 1070, y: 600, w: 1360 }, bg: LI,
   [cap('It was dark, and shabby, and full of people in pointed hats.', 44, 34, { w: 380 })], { mood: 'candle', alt: 'Inside the Leaky Cauldron: dim, wood-beamed, smoky. Witches and wizards at small tables, an old barman behind the bar, and in the far corner by the fire, a pale young man.' });
 ep.panel(600, { cam: { on: ['tom'], fr: 'bust', dx: -0.45, dy: -0.25 }, bg: LI, fg: COUNTER, actors: [TOM({ expr: 'shock', pose: 'hold' })] },
   [say('Tom', 'Good Lord. Is this—can this be…?', 250, 120, { w: 300, fixed: true })], { mood: 'candle' });
-ep.panel(760, { cam: { on: ['harry'], fr: 'waist', dx: -0.88, zoom: 0.85 }, bg: LI, blur: 2, mid: COUNTER, actors: [HAR({ x: 1420, y: 1080, expr: { base: 'smug', eyes: { open: 0.8 } }, pose: 'present' })] },
+// his very best: Harry steps out of the pub onto the page for his big entrance (cut-out)
+ep.cutout(760, { cam: { on: ['harry'], fr: 'full', dx: -1.1, zoom: 0.84 }, actors: [HAR({ x: 1420, y: 1080, expr: { base: 'smug', eyes: { open: 0.8 } }, pose: 'present' })] },
   [cap('A question like *that* deserved his very best.', 44, 30, { w: 330 }),
-   say('Harry', 'Am I—could I be—maybe—you never know—if I\'m *not*—but then the question is…', 284, 264, { w: 340, fixed: true }),
-   say('Harry', '*Who?*', 300, 560, { w: 140 })], { mood: 'candle' });
+   say('Harry', 'Am I—could I be—maybe—you never know—if I\'m *not*—but then the question is…', 250, 296, { w: 340, fixed: true, shape: 'box' }),
+   say('Harry', '*Who?*', 250, 560, { w: 140 })], { mood: 'candle' });
 ep.panel(620, { cam: { on: ['tom'], fr: 'close' }, bg: LI, blur: 2, actors: [TOM({ expr: 'awe' })], fg: COUNTER },
   [whisper('Tom', 'Bless my soul. Harry Potter… what an honour.', 260, 110, { w: 320, size: 28 })], { mood: 'candle' });
 ep.panel(820, { cam: { x: 1290, y: 545, w: 760 }, bg: LI, blur: 1, actors: [MCG({ expr: 'stern', pose: 'handsHips' }), HAR({ expr: 'smug', pose: 'gesture' })] },
@@ -108,10 +113,17 @@ ep.panel(620, { cam: { on: ['harry'], fr: 'close', dx: -0.75 }, bg: LI, blur: 2,
 ep.panel(700, { cam: { x: 1010, y: 610, w: 1300 }, bg: LI, mid: COUNTER,
   actors: [...crowd({ stand: true, e: 'hopeful', xs: [600, 900, 1060, 430] }), { def: doris, id: 'doris', x: 1230, y: 1060, turn: 0.4, pose: 'stand', expr: 'teary' }, { def: patrons[4], id: 'p4', x: 760, y: 1050, turn: 0.5, pose: 'reach', expr: 'delight' }, HAR({ x: 1440, turn: -0.3, expr: 'shock', pose: 'cower' }), MCG({ x: 1560, turn: -0.3, expr: 'stern' })] },
   [cap('Chairs scraped. The whole room was rising.', 44, 34, { w: 560 })], { mood: 'candle' });
-ep.bleed(900, { cam: { on: ['mcgonagall'], fr: 'full', zoom: 0.85, dy: 0.1 }, bg: LI, blur: 2, actors: [MCG({ x: 1560, turn: -0.2, expr: 'menace', pose: 'stand', armF: { sh: -18, el: 14, hand: 'fist' }, armB: { sh: 18, el: -14, hand: 'fist' }, legF: { hip: -10, knee: 30 } })],
-  under: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.95, { bg: '#2a1a10', col: '#f3c66f', op: 0.5, n: 70 }),
+// the stamp: the panel's own edges crack like the sound (a jagged shock frame; a custom shape, see JOLT)
+const JOLT = (w, h, p) => {
+  const R = rng(p.seed ?? 12), pts = [];
+  const edge = (x0, y0, x1, y1, nx, ny) => { const L = Math.hypot(x1 - x0, y1 - y0), n = Math.round(L / 44); for (let i = 0; i < n; i++) { const t = i / n, d = i % 2 ? 6 + R() * 18 : R() * 3; pts.push([x0 + (x1 - x0) * t + nx * d, y0 + (y1 - y0) * t + ny * d]); } };
+  edge(0, 0, w, 0, 0, 1); edge(w, 0, w, h, -1, 0); edge(w, h, 0, h, 0, -1); edge(0, h, 0, 0, 1, 0);
+  return 'M' + pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' L') + 'Z';
+};
+ep.panel(900, { cam: { on: ['mcgonagall'], fr: 'full', zoom: 0.85, dy: -0.12 }, bg: LI, blur: 2, actors: [MCG({ x: 1560, turn: -0.2, expr: 'menace', pose: 'stand', armF: { sh: -18, el: 14, hand: 'fist' }, armB: { sh: 18, el: -14, hand: 'fist' }, legF: { hip: -10, knee: 30 } })],
+  behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.9, { col: '#f3c66f', op: 0.3, n: 70, inner: 200 }),
   over: (e) => FX.sfxText(e.w * 0.5, e.h * 0.93, 'CRACK', { size: 120, fill: '#f6e3b0' }) },
-  [cap('Professor McGonagall slammed her foot down. It gave Harry a new referent for the phrase "Crack of Doom".', 44, 34, { w: 600, fixed: true })], { mood: 'candle', fadeBottom: false, alt: 'McGonagall stamps her foot; the sound is enormous; everyone freezes.' });
+  [cap('Professor McGonagall slammed her foot down. It gave Harry a new referent for the phrase "Crack of Doom".', 56, 50, { w: 600, fixed: true })], { mood: 'candle', shape: JOLT, alt: 'McGonagall stamps her foot; the sound is enormous; everyone freezes.' });
 ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'close', dx: -0.55 }, bg: LI, blur: 2, actors: [MCG({ x: 1560, turn: -0.3, expr: 'calm' })] },
   [say('McGonagall', 'We\'re in a hurry.', 215, 150, { w: 300, fixed: true }), cap('…in a voice that sounded perfectly, utterly normal.', 44, 440, { w: 320 })], { mood: 'candle' });
 
@@ -119,8 +131,9 @@ ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'close', dx: -0.55 }, bg: LI, blu
 ep.panel(760, { cam: { on: ['quirrell'], fr: 'bust' }, bg: LI, blur: 1, actors: [QUI({ expr: { base: 'twitch', eyes: { lookX: 0.8 } }, pose: 'stand', turn: 0.3 })],
   over: (e) => FX.doom(e.w, e.h, 3) },
   [cap('In the corner, a pale young man with a twitching eye was watching him.', 44, 34, { w: 380 })], { mood: 'candle', panel: { filter: undefined }, alt: 'In the corner by the fire, a pale, thin, balding young man with a twitching eye watches Harry. The panel seems subtly wrong, its colours split.' });
-ep.panel(460, { cam: { on: ['harry'], fr: 'eyes' }, bg: LI, blur: 3, actors: [HAR({ x: 1440, turn: -0.5, expr: { base: 'worried', eyes: { lookX: -1 } } })], over: (e) => FX.doom(e.w, e.h, 5) },
-  [note('mmmmmmmmmm', 400, 62, { size: 64, color: '#f2c9dc', w: 600 })], { mood: 'candle', alt: 'Harry\'s eyes meet the stranger\'s. A low, wrong hum.' });
+// the stare: an eye-shaped panel; the hum leaks out of it onto the page
+ep.panel(540, { cam: { on: ['harry'], fr: 'eyes', zoom: 0.78 }, bg: LI, blur: 3, actors: [HAR({ x: 1440, turn: -0.5, expr: { base: 'worried', eyes: { lookX: -1 } } })], over: (e) => FX.doom(e.w, e.h, 5) },
+  [note('mmmmmmmmmm', 400, 52, { size: 64, color: '#9a4a6e', w: 600 })], { mood: 'candle', shape: 'eye', y: 96, ph: 428, alt: 'Harry\'s eyes meet the stranger\'s. A low, wrong hum.' });
 
 // =============================================================== the courtyard
 const CY = () => L.courtyard();
@@ -178,13 +191,14 @@ ep.panel(720, { cam: { x: 890, y: 660, w: 900 }, bg: DA(), mid: () => L.stall(70
   actors: [{ def: merch, id: 'merch', x: 520, y: 1060, turn: 0.4, pose: 'present', expr: 'bigGrin' }] },
   [shout('merch', '"Made with real Flubber!"', 250, 120, { w: 280, size: 28 }),
    say('?', 'Spoons with a +4 bonus!', 600, 170, { w: 240, tail: [1000 * 0 + 700, 400] })], { mood: 'day' });
-ep.panel(880, (ctx) => {
-  const s = shot({ cam: { on: ['harry'], fr: 'bust', dy: -0.05 }, bg: DA(), blur: 3, actors: [{ def: harry, id: 'harry', x: 1300, y: 1150, s: 1.2, turn: 0, expr: 'delight' }] })(ctx);
+// the spinning head winds itself right out of the top of the panel (breakout)
+ep.panel(920, (ctx) => {
+  const s = shot({ cam: { head: 'harry', hw: 0.36, hx: 0.64, hy: 0.165 }, bg: DA(), blur: 3, actors: [{ def: harry, id: 'harry', x: 1300, y: 1150, s: 1.2, turn: 0, expr: 'delight' }] })(ctx);
   const a = ctx.anchors?.harry; const hx = a ? a.head[0] : ctx.w / 2, hy = a ? a.head[1] - a.hr * 0.2 : ctx.h * 0.45, R = a ? a.hr * 1.18 : 170;
-  let arcs = ''; for (let i = 0; i < 4; i++) arcs += path(`M${hx - R - i * 20},${hy} A${R + i * 20},${R * 0.95 + i * 18} 0 0 1 ${hx + R + i * 20},${hy}`, { fill: 'none', stroke: '#fff3d0', 'stroke-width': 5, opacity: 0.95 - i * 0.18, 'stroke-linecap': 'round', 'stroke-dasharray': '40 16' });
+  let arcs = ''; for (let i = 0; i < 4; i++) { const d = `M${hx - R - i * 20},${hy} A${R + i * 20},${R * 0.95 + i * 18} 0 0 1 ${hx + R + i * 20},${hy}`; arcs += path(d, { fill: 'none', stroke: '#5a4032', 'stroke-width': 9, opacity: (0.95 - i * 0.18) * 0.55, 'stroke-linecap': 'round', 'stroke-dasharray': '40 16' }) + path(d, { fill: 'none', stroke: '#fff3d0', 'stroke-width': 5, opacity: 0.95 - i * 0.18, 'stroke-linecap': 'round', 'stroke-dasharray': '40 16' }); }
   return s + arcs;
-}, [cap('Harry\'s head kept rotating, like it was trying to wind itself off his neck.', 44, 30, { w: 450 }),
-    inner('Harry', 'It\'s like the magic items section of a *Dungeons & Dragons* rulebook! What if one of these is one of the three you need to complete the cycle of infinite *wish* spells?!', 400, 770, { w: 540 })], { mood: 'day' });
+}, [cap('Harry\'s head kept rotating, like it was trying to wind itself off his neck.', 44, 380, { w: 250 }),
+    inner('Harry', 'It\'s like the magic items section of a *Dungeons & Dragons* rulebook! What if one of these is one of the three you need to complete the cycle of infinite *wish* spells?!', 400, 800, { w: 540 })], { mood: 'day', breakout: 'top', y: 100, ph: 802 });
 ep.panel(760, { cam: { x: 3000 * 0 + 520, y: 620, w: 700 }, bg: DA({ start: 0 }), actors: [{ def: harry, id: 'harry', x: 560, y: 1060, s: 1.1, turn: 0.4, pose: 'walk', expr: 'awe' }, { def: mcgonagall, id: 'mcgonagall', x: 820, y: 1080, turn: -0.3, pose: 'handsHips', expr: 'stern' }] },
   [cap('Harry had veered off, entirely without thinking, toward a shop with fiery letters in the window.', 44, 34, { w: 370 }),
    say('McGonagall', 'Mr Potter?', 610, 130, { w: 180 })], { mood: 'day' });
@@ -229,23 +243,28 @@ const masked = (x, s = 1) => ({ def: makeExtra(90 + x, { robe: '#111' }), id: 'm
 ep.panel(700, { cam: { x: 800, y: 600, w: 1400 }, bg: stage('#2a1a2a', '#8a5a6a'), actors: [masked(300), masked(520, 1.1), masked(760, 1.2), masked(1000, 1.1), masked(1240)],
   over: (e) => { let o = ''; for (const id in e.anchors) { if (!id.startsWith('m')) continue; const [x, y0] = e.anchors[id].head; const k = e.anchors[id].hr / 50, y = y0 + 6 * k; o += g({ transform: `translate(${x},${y}) scale(${k})` }, path('M-30,-34 Q0,-54 30,-34 Q28,26 0,40 Q-28,26 -30,-34Z', { fill: '#d9d4c8', stroke: '#000', 'stroke-width': 2 }), ellipse(-11, -8, 7, 4, { fill: '#000' }), ellipse(11, -8, 7, 4, { fill: '#000' }), path('M-14,-30 Q0,-20 14,-30 M-6,12 L6,12', { stroke: '#8a857a', 'stroke-width': 2, fill: 'none' })); } return o; } },
   [dark('The Death Eaters followed in his wake. They wielded more than wands: wealth, and power, and secrets held in blackmail.', 400, 90, { w: 600 })], { border: 'none', alt: 'Five masked figures in a row, their pale masks the only light in them.' });
-ep.panel(840, (ctx) => {
+// the article itself, torn and nailed up: a paper-shaped panel on the dark page
+ep.panel(870, (ctx) => {
   const w = ctx.w, h = ctx.h;
-  let out = rect(0, 0, w, h, { fill: '#e8dcc0' }) + rect(0, h * 0.72, w, h, { fill: '#b9a47e' });
-  out += rect(w * 0.1, h * 0.12, w * 0.8, h * 0.6, { fill: '#d9c9a4', stroke: C.ink, 'stroke-width': 4 });
-  out += g({ transform: `translate(${w * 0.5},${h * 0.4}) rotate(-4)` }, rect(-140, -120, 280, 220, { fill: '#f4ecd8', stroke: C.ink, 'stroke-width': 3 }), text(0, -76, 'THE DAILY PROPHET', { 'font-family': 'UnifrakturMaguntia', 'font-size': 22, 'text-anchor': 'middle', fill: C.ink }), text(0, -20, 'ENOUGH!', { 'font-family': 'IM Fell English SC', 'font-size': 44, 'text-anchor': 'middle', fill: C.ink }), text(0, 20, 'by Yermy Wibble', { 'font-family': 'IM Fell English', 'font-size': 20, 'text-anchor': 'middle', fill: C.ink }), path('M-120,50 L120,50 M-120,66 L100,66 M-120,82 L110,82', { stroke: '#8a7d68', 'stroke-width': 3 }));
-  out += circle(w * 0.5 - 130, h * 0.4 - 110, 7, { fill: '#555', stroke: C.ink, 'stroke-width': 2 }) + circle(w * 0.5 + 125, h * 0.4 - 125, 7, { fill: '#555', stroke: C.ink, 'stroke-width': 2 });
-  out += rect(0, 0, w, h, { fill: '#2a0a0a', opacity: 0.25 });
+  let out = rect(0, 0, w, h, { fill: '#efe4c8' });
+  out += text(w / 2, 88, 'THE DAILY PROPHET', { 'font-family': 'UnifrakturMaguntia', 'font-size': 32, 'text-anchor': 'middle', fill: C.ink });
+  out += path(`M40,106 L${w - 40},106 M40,113 L${w - 40},113`, { stroke: C.ink, 'stroke-width': 2 });
+  out += text(w / 2, 196, 'ENOUGH!', { 'font-family': 'IM Fell English SC', 'font-size': 76, 'text-anchor': 'middle', fill: C.ink });
+  out += text(w / 2, 248, 'by Yermy Wibble', { 'font-family': 'IM Fell English', 'font-size': 30, 'text-anchor': 'middle', fill: C.ink });
+  for (let c = 0; c < 2; c++) for (let i = 0; i < 7; i++) { const x = 40 + c * (w / 2 - 20), L = w / 2 - 70 - (i % 3) * 18; out += path(`M${x},${290 + i * 22} L${x + L},${290 + i * 22}`, { stroke: '#8a7d68', 'stroke-width': 4 }); }
+  for (const [x, y] of [[30, 34], [w - 30, 30]]) out += path(`M${x},${y} q3,22 -2,48`, { stroke: '#7a2a1e', 'stroke-width': 3, fill: 'none', opacity: 0.55 }) + circle(x, y, 10, { fill: '#555', stroke: C.ink, 'stroke-width': 2.5 }) + circle(x - 3, y - 3, 3, { fill: '#999' });
+  out += rect(0, 0, w, h, { fill: '#2a0a0a', opacity: 0.12 });
   return out;
-}, [dark('A journalist named Yermy Wibble called for everyone to stand together. It was absurd, he wrote, for the many to cower in fear of the few.', 400, 80, { w: 600 }),
-    dark('The next morning, they found what was left of him, his wife, and his two daughters, nailed to the newsroom wall.', 400, 730, { w: 600 })],
-  { border: 'none', mood: 'night', alt: 'An empty newsroom. A single newspaper, "ENOUGH!" by Yermy Wibble, is nailed to the wall.' });
+}, [dark('A journalist named Yermy Wibble called for everyone to stand together. It was absurd, he wrote, for the many to cower in fear of the few.', 400, 96, { w: 600, fixed: true }),
+    dark('The next morning, they found what was left of him, his wife, and his two daughters, nailed to the newsroom wall.', 400, 776, { w: 600, fixed: true })],
+  { shape: 'torn', seed: 6, tear: 12, frame: 'paper', rotate: -3, x: 150, w: 500, y: 196, ph: 470, alt: 'An empty newsroom. A single newspaper, "ENOUGH!" by Yermy Wibble, is nailed to the wall.' });
 ep.panel(460, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#120c0a' }), [dark('Whoever stood out the most became the next example.', 400, 150, { w: 500 }), dark('Until the names of James and Lily Potter rose to the top of that list.', 400, 300, { w: 560 })], { border: 'none' });
-ep.panel(860, { cam: { x: 795, y: 700, w: 820 }, bg: stage('#3a2a14', '#e9b86a'),
+// the family portrait: James and Lily in a gilt oval, the one warm picture in the dark story
+ep.panel(1010, { cam: { x: 795, y: 800, w: 640 }, bg: stage('#3a2a14', '#e9b86a'),
   actors: [{ def: james, x: 690, y: 1080, turn: 0.4, pose: 'hug', ...SIL }, { def: lilyAdult, id: 'lily', x: 900, y: 1080, turn: -0.4, pose: 'hold', ...SIL }],
   over: (e) => { const a = e.anchors?.lily; let o = ember(e); if (a) { const [x, y] = a.handF; const k = a.hr / 40; o += g({ transform: `translate(${x - 10 * k},${y + 4 * k}) scale(${k})` }, ellipse(0, 0, 34, 24, { fill: '#f1e6cc', stroke: '#000', 'stroke-width': 2 }), circle(16, -10, 12, { fill: '#f3d2b5', stroke: '#000', 'stroke-width': 2 }), path('M8,-18 q6,-8 14,-2', { stroke: '#000', 'stroke-width': 2, fill: 'none' })) + K.glow(x, y, 120 * k, '#fff3c9', 0.5); } return o; } },
-  [dark('They might have died with their wands in their hands and not regretted it, for they *were* heroes.', 400, 90, { w: 600 }),
-   dark('But they had an infant son.', 400, 770, { w: 400 })], { border: 'none', alt: 'Silhouettes: a young man with untidy hair and glasses, and a young woman holding a baby.' });
+  [dark('They might have died with their wands in their hands and not regretted it, for they *were* heroes.', 400, 72, { w: 600, fixed: true }),
+   dark('But they had an infant son.', 400, 946, { w: 400, fixed: true })], { shape: 'oval', frame: 'gilt', x: 130, w: 540, y: 150, ph: 740, alt: 'Silhouettes: a young man with untidy hair and glasses, and a young woman holding a baby.' });
 
 // Harry breaks
 ep.setBg(C.paper);
@@ -272,8 +291,9 @@ const hollow = (flash = false) => (ctx) => {
   return out;
 };
 ep.panel(820, hollow(false), [dark('"The Dark Lord came to Godric\'s Hollow. You should have been hidden. But you were betrayed."', 400, 90, { w: 560 })], { border: 'none', alt: 'A cottage at night in a village. Warm lamplight in the windows.' });
-ep.panel(820, hollow(true), [dark('"He killed James. He killed Lily. And he came, in the end, to you. To your cot."', 400, 90, { w: 560 }),
-  dark('"He cast the Killing Curse."', 400, 700, { w: 360 })], { border: 'none', alt: 'The same cottage, its windows blazing with sickly green light.' });
+// the curse: the panel itself bursts, edged in green light
+ep.panel(1000, hollow(true), [dark('"He killed James. He killed Lily. And he came, in the end, to you. To your cot."', 400, 66, { w: 560, fixed: true }),
+  dark('"He cast the Killing Curse."', 400, 942, { w: 360, fixed: true })], { shape: 'burst', points: 24, seed: 9, frame: 'glow', glow: '#6dff8a', y: 136, ph: 740, alt: 'The same cottage, its windows blazing with sickly green light.' });
 ep.panel(760, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#050807' }) + K.glow(ctx.w / 2, ctx.h / 2, 300, '#6dff8a', 0.6) + circle(ctx.w / 2, ctx.h / 2, 26, { fill: '#e9ffe9' }),
   [dark('"The Killing Curse is formed of pure hate. It strikes directly at the soul. It cannot be blocked, and whomever it strikes, they die."', 400, 110, { w: 560 }),
    dark('"But you survived. You are the only person ever to survive."', 400, 640, { w: 540 })], { border: 'none' });

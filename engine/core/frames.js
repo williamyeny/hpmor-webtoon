@@ -29,6 +29,8 @@ export const SHAPES = {
   torn: (w, h, p) => { const R = rng(p.seed ?? 5), a = p.tear ?? 9, pts = []; const edge = (x0, y0, x1, y1, n) => { for (let i = 0; i < n; i++) { const t = i / n; pts.push([x0 + (x1 - x0) * t + (R() - 0.5) * a * (y0 === y1 ? 0.3 : 1), y0 + (y1 - y0) * t + (R() - 0.5) * a * (x0 === x1 ? 0.3 : 1)]); } }; const nx = Math.round(w / 22), ny = Math.round(h / 22); edge(a / 2, a / 2, w - a / 2, a / 2, nx); edge(w - a / 2, a / 2, w - a / 2, h - a / 2, ny); edge(w - a / 2, h - a / 2, a / 2, h - a / 2, nx); edge(a / 2, h - a / 2, a / 2, a / 2, ny); return P(pts); },
   // jagged burst: shock, a spell hitting, a scream (the panel itself explodes)
   burst: (w, h, p) => { const R = rng(p.seed ?? 7), n = p.points ?? 22, pts = []; for (let i = 0; i < n * 2; i++) { const a = (i / (n * 2)) * Math.PI * 2 - Math.PI / 2, out = i % 2 === 0, k = out ? 1 : 0.84 + R() * 0.06; pts.push([w / 2 + Math.cos(a) * w / 2 * k, h / 2 + Math.sin(a) * h / 2 * k]); } return P(pts); },
+  // jagged rectangle: a crack, a stamp, a jolt that still fits captions in its corners. p.jag = tooth depth px
+  jag: (w, h, p) => { const R = rng(p.seed ?? 11), a = p.jag ?? 12, pts = []; const edge = (x0, y0, x1, y1, n, nx, ny) => { for (let i = 0; i < n; i++) { const t = i / n, d = (i % 2 ? 1 : 0.2 + R() * 0.3) * a; pts.push([x0 + (x1 - x0) * t + nx * d, y0 + (y1 - y0) * t + ny * d]); } }; const nx = Math.max(6, Math.round(w / 34)), ny = Math.max(6, Math.round(h / 34)); edge(0, 0, w, 0, nx, 0, 1); edge(w, 0, w, h, ny, -1, 0); edge(w, h, 0, h, nx, 0, -1); edge(0, h, 0, 0, ny, 1, 0); return P(pts); },
   // soft cloud: daydreams, imagined scenes, what-ifs
   cloud: (w, h, p) => { const R = rng(p.seed ?? 3), n = Math.max(10, Math.round((w + h) / 70)); let d = ''; const pts = []; for (let i = 0; i < n; i++) { const a = (i / n) * Math.PI * 2; pts.push([w / 2 + Math.cos(a) * (w / 2 - 22), h / 2 + Math.sin(a) * (h / 2 - 22)]); } d = `M${f(pts[0][0])},${f(pts[0][1])}`; for (let i = 0; i < n; i++) { const A = pts[i], B = pts[(i + 1) % n], mx = (A[0] + B[0]) / 2, my = (A[1] + B[1]) / 2, dx = mx - w / 2, dy = my - h / 2, L = Math.hypot(dx, dy) || 1, bl = 18 + R() * 8; d += ` Q${f(mx + dx / L * bl)},${f(my + dy / L * bl)} ${f(B[0])},${f(B[1])}`; } return d + 'Z'; },
   // a screen: Quirrell's face on every desk, a TV memory
@@ -51,6 +53,8 @@ export const STYLES = {
   // double rule: formal documents, the Hat's verdicts
   double: (d) => `<path d="${d}" fill="none" stroke="#2b2226" stroke-width="3" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#2b2226" stroke-width="1.2" stroke-linejoin="round" transform="translate(0,0)" opacity="0.6" stroke-dasharray="1 0"/>`,
   none: () => '',
+  // dissolve: no line at all; the panel's edges fade softly into the page on every side (layout.js masks it). p.feather = px
+  dissolve: () => '',
 };
 
 export function shapeD(p) {

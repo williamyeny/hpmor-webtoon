@@ -20,4 +20,8 @@ ep.multi(520, [
   { x: 18, y: 18, w: 370, h: 484, shape: 'oval', frame: 'gilt', art: { cam: { on: ['mcg'], fr: 'bust' }, bg: () => CS.defenceStage({}), actors: [{ def: mcgonagall, id: 'mcg', x: 1000, y: 900, turn: 0.2, expr: 'smile' }] } },
   { x: 410, y: 60, w: 372, h: 400, shape: 'cloud', border: 'none', frame: 'none', mood: 'sepia', art: { cam: { on: ['harry'], fr: 'bust' }, bg: () => CS.corridor({}), actors: [H({ expr: 'smile' })] } },
 ]);
+ep.multi(520, [
+  { x: 18, y: 18, w: 370, h: 484, shape: 'jag', art: { cam: { on: ['harry'], fr: 'bust' }, bg: () => CS.corridor({}), actors: [H({ expr: 'shock' })] } },
+  { x: 410, y: 18, w: 372, h: 484, frame: 'dissolve', mood: 'sepia', art: { cam: { on: ['harry'], fr: 'bust' }, bg: () => CS.corridor({}), actors: [H({ expr: 'smile' })] } },
+]);
 export default ep;
