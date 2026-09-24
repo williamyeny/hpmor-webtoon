@@ -196,9 +196,10 @@ export function mouth(mx, my, m, st, k, lw, skin) {
     case 'grit': case 'grimace': {
       const h = W * 0.32;
       const d = `M${lx},${my - h / 2 + curve * -3} L${rx},${my - h / 2 + curve * -3} Q${rx + 3},${my} ${rx},${my + h / 2} L${lx},${my + h / 2} Q${lx - 3},${my} ${lx},${my - h / 2 + curve * -3}Z`;
+      // one gap line and two tooth lines, thin, so small adult mouths read as teeth, not a zip
       let lines = `M${lx + 2},${my} L${rx - 2},${my}`;
-      for (let i = 1; i < 4; i++) lines += ` M${lx + (W / 4) * i},${my - h / 2} L${lx + (W / 4) * i},${my + h / 2}`;
-      return path(d, { fill: teeth, ...S }) + path(lines, { fill: 'none', stroke: INK, 'stroke-width': lw * 0.6 });
+      for (let i = 1; i < 3; i++) lines += ` M${lx + (W / 3) * i},${my - h / 2} L${lx + (W / 3) * i},${my + h / 2}`;
+      return path(d, { fill: teeth, ...S, 'stroke-width': lw * 1.05 }) + path(lines, { fill: 'none', stroke: INK, 'stroke-width': lw * 0.45, opacity: 0.8 });
     }
     case 'pout':
       return path(`M${mx - W * 0.25},${my + 2} Q${mx},${my - 5} ${mx + W * 0.25},${my + 2}`, { fill: 'none', ...S });

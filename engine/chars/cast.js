@@ -1,7 +1,7 @@
 // The cast. Each entry is a character *design*: proportions, palette, face, hair, outfit.
 // Outfit variants (e.g. Harry at home vs. in robes) are separate entries built with `variant()`.
 import { C } from '../core/palette.js';
-import { path, ellipse, circle, line, g, smoothD, shade, lerp, rng, taperD } from '../core/svg.js';
+import { path, ellipse, circle, line, g, smoothD, shade, lerp, rng, taperD, mixHex } from '../core/svg.js';
 import * as H from './hair.js';
 
 // ---------- body templates
@@ -209,7 +209,7 @@ export function makeExtra(seed, o = {}) {
   const robe = o.robe ?? R.pick(ROBES);
   const body = kid ? { ...KID, torsoH: KID.torsoH * R.range(0.95, 1.05), legU: KID.legU * R.range(0.95, 1.08) } : { ...(female ? ADULT_F : ADULT_M), waistW: (female ? ADULT_F : ADULT_M).waistW * R.range(0.95, 1.3) };
   const face = kid ? kidFace({ eye: { color: R.pick(['#5b4632', '#3d6a8a', '#3f6b4f', '#6a4a2a']) }, brow: { color: hc }, rosy: true, freckles: R.chance(0.2) })
-    : adultFace({ eye: { color: R.pick(['#5b4632', '#3d6a8a', '#3f6b4f', '#6a4a2a']), w: 19, h: 16, iris: 7 }, brow: { color: hc }, nose: R.pick(['long', 'button', 'long']), wrinkles: old, cheekLines: old, lips: female ? '#b8676b' : undefined, rosy: R.chance(0.4) });
+    : adultFace({ eye: { color: R.pick(['#5b4632', '#3d6a8a', '#3f6b4f', '#6a4a2a']), w: 19, h: 16, iris: 7 }, brow: { color: hc }, nose: R.pick(['long', 'button', 'long']), wrinkles: old, cheekLines: old, lips: female ? mixHex(skin, '#a8454f', 0.45) : undefined /* tinted from her own skin */, rosy: R.chance(0.4) });
   return {
     name: 'extra' + seed, body, skin, skinShade, head: { jaw: R.range(0.5, 0.7), chin: R.range(0.98, 1.06), cheek: R.range(0.86, 0.96) }, face,
     hair: { color: hc, ...hair }, glasses: R.chance(0.15) ? { r: kid ? 16 : 13, shape: R.pick(['round', 'square']), frame: 0.8 } : undefined,

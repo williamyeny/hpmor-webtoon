@@ -315,9 +315,11 @@ export function drawCharacter(def, opts = {}) {
     // (not for folded arms, elbow bent ~90-125°: there the hand stays at the cuff)
     const hp = wide ? add(p[2], mul([Math.sin(forearmAng), Math.cos(forearmAng)], handR * (O.handOut ?? (Math.abs(a.el || 0) > 80 && Math.abs(a.el || 0) < 125 ? 0.2 : 0.8)))) : p[2];
     handAt[far ? 'B' : 'F'] = hp;
+    // hanging hands show mirrored thumbs; hands held out roughly level show both thumbs the same way (up)
+    const thumbSide = Math.abs(Math.sin(forearmAng)) > 0.8 ? 1 : (flip ? -side : side);
     const hand = g({ transform: `translate(${r2(hp[0])},${r2(hp[1])}) rotate(${r2(handRot)})` },
       a.under ? a.under : '',
-      handShape(handType, handR, lw * 0.9, far ? skinSh : skin, flip ? -side : side));
+      handShape(handType, handR, lw * 0.9, far ? skinSh : skin, thumbSide));
     // a held prop is drawn after the sleeve, so the cuff never swallows it
     const propG = a.prop ? g({ transform: `translate(${r2(hp[0])},${r2(hp[1])}) rotate(${r2(handRot)})` }, a.prop) : '';
     if (O.shortSleeves) {
@@ -341,12 +343,16 @@ export function drawCharacter(def, opts = {}) {
     const lower = wide ? path(lowerD, S(col)) : capsule(p[1], p[2], w1, w2, S(col));
     if (wide) {
       out.push(hand);
-      if (RS) out.push(path(lowerD, RS));
-      out.push(lower);
+      if (RS) out.push(path(lowerD, RS), capsule(p[0], p[1], w0, w1, RS));
+      // one outline round the whole sleeve: both pieces stroked double-width, then both filled on top,
+      // so the fills hide the seam at the elbow and only the outer half of the stroke shows
+      const S2 = S(col, { 'stroke-width': lw * 2 }), F = { fill: col, stroke: 'none' };
+      out.push(path(lowerD, S2), capsule(p[0], p[1], w0, w1, S2), path(lowerD, F), capsule(p[0], p[1], w0, w1, F));
       // dark sleeve mouth
       const mouthC = add(p[2], mul([Math.sin(forearmAng), Math.cos(forearmAng)], 8));
       out.push(ellipse(mouthC[0], mouthC[1], w2 * 0.42, w2 * 0.16, { fill: shade(col, -0.55), transform: `rotate(${r2(-forearmAng * 180 / Math.PI)} ${r2(mouthC[0])} ${r2(mouthC[1])})`, opacity: 0.9 }));
       if (O.cuff) out.push(path(taperD([add(p[2], mul(perp([Math.sin(forearmAng), Math.cos(forearmAng)]), -w2 * 0.48)), add(p[2], mul(perp([Math.sin(forearmAng), Math.cos(forearmAng)]), w2 * 0.48))].map((q) => add(q, mul([Math.sin(forearmAng), Math.cos(forearmAng)], 4))), lw * 2.2), { fill: O.cuff, stroke: 'none' }));
+      return out.join('') + propG;
     } else {
       out.push(lower);
       if (O.cuff) out.push(capsule(mix(p[1], p[2], 0.86), p[2], w2 * 1.02, w2 * 1.02, S(O.cuff)));
@@ -358,6 +364,20 @@ export function drawCharacter(def, opts = {}) {
   }
   layers.armB.push(arm(armBp, aB, true));
   layers.armF.push(arm(armFp, aF, false));
+  // seamless shoulders: paint the sleeve colour over the arm's rounded top where it overlaps the body, so the
+  // cap's outline disappears into the torso; the arm's edges further down (over the chest) stay
+  const shoulderPatch = (P, far) => {
+    if (O.shortSleeves) return '';
+    const col = far ? shade(O.sleeve || topCol, -0.15) : (O.sleeve || topCol);
+    const u = norm(sub(P[1], P[0])), r0 = B.armW * 1.05 / 2 + lw * 1.2;
+    const cut = add(P[0], mul(u, B.armW * 0.25)), ang = Math.atan2(u[1], u[0]) * 180 / Math.PI;
+    const hid = uid('sh'), cid = uid('shc');
+    // keep the half of the cap circle on the far side of the joint (away from the elbow), inside the torso
+    return `<clipPath id="${cid}"><path d="${torsoD}"/></clipPath><clipPath id="${hid}"><rect x="${r2(-400)}" y="${r2(-200)}" width="400" height="400" transform="translate(${r2(cut[0])},${r2(cut[1])}) rotate(${r2(ang)})"/></clipPath>` +
+      g({ 'clip-path': `url(#${cid})` }, g({ 'clip-path': `url(#${hid})` }, circle(P[0][0], P[0][1], r0, { fill: col })));
+  };
+  layers.armF.push(shoulderPatch(armFp, false));
+  if (aB.front === true) layers.armB.push(shoulderPatch(armBp, true));
 
   // ---- head
   const H = drawHead(def, { turn: ht, expr, lw, light, tilt: hTilt, extras: opts.extras || {}, noGlasses: opts.noGlasses || opts.glasses === false || (opts.extras || {}).glasses === false, hatOff: opts.hatOff, hairOverride: opts.hair, mask: opts.mask });
@@ -476,7 +496,7 @@ export function drawHead(def, o) {
   const mSt = expr.mouth || { type: 'line' };
   out.push(mouth(mz.x + s * 3, F.mouthY, F.mouth || { w: 20 }, mSt, Math.min(1, 0.6 + mz.k * 0.4), lw, skin));
   if (F.buckTeeth && ['line', 'smirk', 'wobble', 'flat', 'smile2', 'pout'].includes(mSt.type) && (mSt.curve ?? 0) > -0.3) { const tx = mz.x + s * 3; out.push(path(`M${tx - 3.5},${F.mouthY + 1.5} L${tx - 3.5},${F.mouthY + 5.5} L${tx + 3.5},${F.mouthY + 5.5} L${tx + 3.5},${F.mouthY + 1.5}Z M${tx},${F.mouthY + 1.5} L${tx},${F.mouthY + 5.5}`, { fill: '#fffaf0', stroke: C.ink, 'stroke-width': lw * 0.45, 'stroke-linejoin': 'round' })); }
-  if (F.lips && !['shout', 'scream', 'grin', 'laugh', 'smile', 'o', 'open'].includes(mSt.type)) { const lw2 = (F.mouth?.w ?? 20) * 0.5, lx0 = mz.x + s * 3; out.push(path(`M${lx0 - lw2 * 0.6},${F.mouthY + 3.5} Q${lx0},${F.mouthY + 8} ${lx0 + lw2 * 0.6},${F.mouthY + 3.5}`, { fill: 'none', stroke: F.lips, 'stroke-width': lw * 1.3, 'stroke-linecap': 'round', opacity: 0.7 })); }
+  if (F.lips && !['shout', 'scream', 'grin', 'laugh', 'smile', 'o', 'open', 'grit', 'grimace', 'frown-open', 'wobble'].includes(mSt.type)) { const lw2 = (F.mouth?.w ?? 20) * 0.5, lx0 = mz.x + s * 3; out.push(path(`M${lx0 - lw2 * 0.6},${F.mouthY + 3.5} Q${lx0},${F.mouthY + 8} ${lx0 + lw2 * 0.6},${F.mouthY + 3.5}`, { fill: 'none', stroke: F.lips, 'stroke-width': lw * 1.3, 'stroke-linecap': 'round', opacity: 0.7 })); }
   // extras
   if (expr.blush) for (const side of [-1, 1]) { const p = onSphere(side * sp * 1.15, rx, t); if (p.vis) out.push(blush(p.x, eyeY + F.eye.h * 0.75, 10 * p.k + 3, lw, expr.blush === 'strong')); }
   if (expr.tears === 'stream') for (const side of [-1, 1]) { const p = side < 0 ? pL : pR; if (p.vis) out.push(tearStream(p.x, eyeY + 6, ry * 0.8, lw)); }
