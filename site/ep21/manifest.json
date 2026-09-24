@@ -31,8 +31,8 @@
   {
    "file": "005.webp",
    "w": 800,
-   "h": 920,
-   "alt": "The door swept open, and Harry Potter entered. Minerva almost gasped out loud. The boy looked cool, collected, and utterly in control of himself. / Harry: Good mor…"
+   "h": 900,
+   "alt": "The doorway: Harry steps through it, cool and collected. / The door swept open, and Harry Potter entered. / Minerva almost gasped out loud. The boy looked cool, collected, and utterly in control of himself. / Harry: Good mor…"
   },
   {
    "file": "006.webp",
@@ -44,7 +44,7 @@
    "file": "007.webp",
    "w": 800,
    "h": 1000,
-   "alt": "Harry turned to stare at Dumbledore. / Dumbledore winked at him. / Fear. / Anger. / Then calm again."
+   "alt": "Harry stares. Dumbledore winks. Harry's face goes from fear, to anger, to cold calm. / Harry turned to stare at Dumbledore. / Dumbledore winked at him. / Fear. / Anger. / Then calm again."
   },
   {
    "file": "008.webp",
@@ -104,7 +104,7 @@
    "file": "017.webp",
    "w": 800,
    "h": 1240,
-   "alt": "Dumbledore: This is not a request, Mr Potter. This is your punishme… / Harry: You will explain to me why you allowed this man to hurt the children placed in your care. And if your explanation is not sufficient, then I will begin my newspaper campaign with you as the target."
+   "alt": "The full, entire force of the old wizard's gaze, turned on the boy. / Dumbledore: This is not a request, Mr Potter. This is your punishme… / Harry: You will explain to me why you allowed this man to hurt the children placed in your care. And if your explanation is not sufficient, then I will begin my newspaper campaign with you as the target."
   },
   {
    "file": "018.webp",
@@ -151,8 +151,8 @@
   {
    "file": "025.webp",
    "w": 800,
-   "h": 460,
-   "alt": "Something strange flickered in Severus's eyes."
+   "h": 520,
+   "alt": "Snape's eyes, very close. Something strange flickers in them. / Something strange flickered in Severus's eyes."
   },
   {
    "file": "026.webp",
@@ -187,7 +187,7 @@
   {
    "file": "031.webp",
    "w": 800,
-   "h": 980,
+   "h": 1000,
    "alt": "Snape, in tones of sheer astonishment and outrage. / Snape: What in Merlin's name are you on about, Potter? / Harry: Oh, so we are a Slytherin, then. I was starting to wonder."
   },
   {
@@ -212,7 +212,7 @@
    "file": "035.webp",
    "w": 800,
    "h": 620,
-   "alt": "McGonagall: And I told him that you, and I, and Severus were the only ones who knew."
+   "alt": "Severus gives her a look of utter contempt. Minerva raises her chin and bears it. / McGonagall: And I told him that you, and I, and Severus were the only ones who knew."
   },
   {
    "file": "036.webp",
@@ -224,7 +224,7 @@
    "file": "037.webp",
    "w": 800,
    "h": 1340,
-   "alt": "Dumbledore: And you threaten to abandon us to Voldemort if we do not comply with your wishes. / Harry: I regret to inform you that you are not the centre of the universe. I'm not threatening to walk out on magical Britain. I'm threatening to walk out on you. I am not a meek little Frodo. This is my quest, and if you want in, you will play by my rules."
+   "alt": "Dumbledore's eyes, as cold as they have been since the day his brother died. / Dumbledore: And you threaten to abandon us to Voldemort if we do not comply with your wishes. / Harry: I regret to inform you that you are not the centre of the universe. I'm not threatening to walk out on magical Britain. I'm threatening to walk out on you. I am not a meek little Frodo. This is my quest, and if you want in, you will play by my rules."
   },
   {
    "file": "038.webp",
@@ -265,8 +265,8 @@
   {
    "file": "044.webp",
    "w": 800,
-   "h": 1140,
-   "alt": "Dumbledore started laughing. Full-throated, warm, humorous laughter, as if Harry had just performed a comic dance. / Harry: You mistake me, Headmaster, if you think that this is a joke. This is not a request. This is your punishment."
+   "h": 1090,
+   "alt": "Dumbledore, laughing. / Dumbledore started laughing. Full-throated, warm, humorous laughter, as if Harry had just performed a comic dance. / Harry: You mistake me, Headmaster, if you think that this is a joke. This is not a request. This is your punishment."
   },
   {
    "file": "045.webp",
@@ -356,7 +356,7 @@
    "file": "059.webp",
    "w": 800,
    "h": 1360,
-   "alt": "It was tender, and soft, like a fireplace would sound if it had melody. It washed over the mind, easing, soothing, gentling what it touched. / Harry: What is that? / McGonagall: The song of the phœnix. It, too, heals."
+   "alt": "Fawkes, glowing, sings on McGonagall's shoulder. / It was tender, and soft, like a fireplace would sound if it had melody. It washed over the mind, easing, soothing, gentling what it touched. / Harry: What is that? / McGonagall: The song of the phœnix. It, too, heals."
   },
   {
    "file": "060.webp",
@@ -373,7 +373,7 @@
   {
    "file": "062.webp",
    "w": 800,
-   "h": 900,
+   "h": 1000,
    "alt": "There was no sound but the beating of the wings. Then a flash, like a fire flaring up and going out. And Fawkes was gone."
   },
   {
@@ -457,7 +457,7 @@
   {
    "file": "076.webp",
    "w": 800,
-   "h": 1700,
+   "h": 1760,
    "alt": "Maybe it was the wrong thing to do. And then again, maybe it was the right thing. There was an obstinate child in front of her, and that didn't mean the universe was broken. / McGonagall: Fair, Mr Potter? I have had to file two reports with the Ministry on public use of a Time-Turner in two successive days! / McGonagall: Be extremely grateful you were allowed to keep it at all! The Headmaster made a Floo call to plead with them personally, and if you were not the Boy-Who-Lived, even that would not have sufficed!"
   },
   {
@@ -470,13 +470,13 @@
    "file": "078.webp",
    "w": 800,
    "h": 520,
-   "alt": "Harry's eyes filled up with tears."
+   "alt": "Harry's eyes, very close, filling with tears. / Harry's eyes filled up with tears."
   },
   {
    "file": "079.webp",
    "w": 800,
-   "h": 900,
-   "alt": "Harry: I'm, sorry, to have, disappointed you…"
+   "h": 720,
+   "alt": "Harry alone, head bowed, tears streaming. / Harry: I'm, sorry, to have, disappointed you…"
   },
   {
    "file": "080.webp",
@@ -529,7 +529,7 @@
   {
    "file": "088.webp",
    "w": 800,
-   "h": 900,
+   "h": 820,
    "alt": "A tiny snap of the fingers, at chest height. / Until Harry raised his hand. Not high. He simply raised it to chest level, and softly snapped his fingers. A gesture seen more than heard. / snap"
   },
   {
