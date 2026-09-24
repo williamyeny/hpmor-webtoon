@@ -67,10 +67,13 @@ export function doom(w, h, seed = 3) {
 
 // a thin line of silver catching moonlight
 export function silverThread(x1, y1, x2, y2, o = {}) {
+  // the glint always sits ON the thread: pick it by x (o.gx) or by fraction along the line (o.t)
+  const t = o.gx != null ? (o.gx - x1) / (x2 - x1) : (o.t ?? 0.5);
+  const gx = x1 + (x2 - x1) * t, gy = y1 + (y2 - y1) * t;
   return line(x1, y1, x2, y2, { stroke: '#fff', 'stroke-width': o.w ?? 1.4, opacity: 0.95 }) +
     line(x1, y1, x2, y2, { stroke: '#dfe8ff', 'stroke-width': (o.w ?? 1.4) * 6, opacity: 0.18, filter: 'url(#glowSm)' }) +
-    circle(o.gx ?? (x1 + x2) / 2, o.gy ?? (y1 + y2) / 2, 5, { fill: '#fff', filter: 'url(#glowXs)' }) +
-    path(`M${(o.gx ?? (x1 + x2) / 2) - 26},${o.gy ?? (y1 + y2) / 2} L${(o.gx ?? (x1 + x2) / 2) + 26},${o.gy ?? (y1 + y2) / 2} M${o.gx ?? (x1 + x2) / 2},${(o.gy ?? (y1 + y2) / 2) - 26} L${o.gx ?? (x1 + x2) / 2},${(o.gy ?? (y1 + y2) / 2) + 26}`, { stroke: '#fff', 'stroke-width': 1.2, opacity: 0.9 });
+    circle(gx, gy, 5, { fill: '#fff', filter: 'url(#glowXs)' }) +
+    path(`M${gx - 26},${gy} L${gx + 26},${gy} M${gx},${gy - 26} L${gx},${gy + 26}`, { stroke: '#fff', 'stroke-width': 1.2, opacity: 0.9 });
 }
 
 // black robes tumbling through the air like crows

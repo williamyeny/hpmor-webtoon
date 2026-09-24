@@ -24,7 +24,7 @@ const HARRY_CHAIR = (o = {}) => ({ def: harry, id: 'harry', x: 1520, y: 972, s: 
 // =============================================================== COLD OPEN
 ep.setBg(NIGHT);
 ep.bleed(1000, { cam: { x: 800, y: 700, w: 900 }, bg: () => O.moonNight({ moonX: 980, moonY: 455 }),
-  over: (e) => FX.silverThread(-20, e.h * 0.86, e.w + 20, e.h * 0.34, { gx: e.w * 0.62, gy: e.h * 0.55 }) },
+  over: (e) => FX.silverThread(-20, e.h * 0.86, e.w + 20, e.h * 0.34, { gx: e.w * 0.62 }) },
   [dark('Beneath the moonlight glints a tiny fragment of silver, a fraction of a line…', 400, 100, { w: 560 })],
   { fadeTop: false, alt: 'A moonlit night sky. A single hair-thin silver thread catches the light.' });
 ep.bleed(900, { cam: { x: 800, y: 800, w: 1000 }, bg: () => O.moonNight({ moonX: 1300, moonY: 300, seed: 5 }),
