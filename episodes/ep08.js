@@ -116,7 +116,7 @@ ep.panel(460, { cam: { on: ['mum'], fr: 'close' }, bg: KX, blur: 3, actors: [MK(
 ep.panel(760, { cam: { on: ['molly', 'harry'], fr: 'waist' }, bg: KX, actors: [...WZ().slice(0, 1), HK({ x: 1280, turn: 0.4, expr: 'pleading', pose: 'gesture' })] },
   [say('Harry', 'Excuse me, but it would be *extremely* helpful if you could tell me how to get to Platform Nine-and-Three-Quarters *right now.*', 250, 100, { w: 380, size: 28 }),
    say('Molly', 'Just walk straight at the barrier between platforms nine and ten. Don\'t stop, and don\'t be scared you\'ll crash into it. That\'s very important.', 560, 580, { w: 360, size: 27 })], { mood: 'day' });
-ep.panel(620, { cam: { on: ['fred', 'molly'], fr: 'bust' }, bg: KX, blur: 2, actors: WZ({ fred: { expr: 'scheme' }, molly: { expr: 'cross' } }).slice(0, 2) },
+ep.panel(1040, { cam: { on: ['fred', 'molly'], fr: 'bust' }, bg: KX, blur: 2, actors: WZ({ fred: { expr: 'scheme' }, molly: { expr: 'cross' } }).slice(0, 2) },
   [say('Fred', 'And whatever you do, don\'t think of an elephant.', 560, 100, { w: 300 }),
    say('Molly', '*George!* Ignore him, Harry dear, there\'s no reason not to think of an elephant.', 250, 480, { w: 330 }),
    say('Fred', 'I\'m Fred, Mum, not George—', 580, 620, { w: 260 })], { mood: 'day' });
@@ -155,7 +155,7 @@ ep.panel(620, { cam: { on: ['ron'], fr: 'bust' }, bg: P9, blur: 2, actors: [RP({
   [say('Ron', 'Okay, Mister Spoo—', 280, 90, { w: 240 }), say('Ron', 'I can\'t do that, it makes me feel stupid.', 600, 520, { w: 300 })], { mood: 'day' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: P9, blur: 3, actors: [HP({ expr: 'unimpressed' })] },
   [inner('Harry', '*That\'s not just a feeling.*', 400, 440, { w: 360 }), say('Harry', 'Okay. *You* pick a name.', 400, 100, { w: 280 })], { mood: 'day' });
-ep.panel(760, { cam: { on: ['ron'], fr: 'waist' }, bg: P9, actors: [RP({ expr: 'delight', pose: 'armsUp' })], under: (e) => FX.sparkles([[100, 200, 18], [700, 160, 14], [680, 560, 16]], { col: '#ffb070' }) },
+ep.panel(920, { cam: { on: ['ron'], fr: 'waist' }, bg: P9, actors: [RP({ expr: 'delight', pose: 'armsUp' })], under: (e) => FX.sparkles([[100, 200, 18], [700, 160, 14], [680, 560, 16]], { col: '#ffb070' }) },
   [say('Ron', 'Mr Cannon! For the Chudley Cannons!', 280, 90, { w: 320 }),
    say('Harry', 'Who or what are the Chudley Cannons?', 560, 560, { w: 300, tail: [790, 600] }),
    cap('Asking this was a mistake.', 44, 690, { w: 300 })], { mood: 'day' });
@@ -215,7 +215,7 @@ const HD = (o = {}) => HP({ x: 1000, turn: -0.4, mask: 'scarfDown', ...o });
 ep.panel(760, { cam: { on: ['draco', 'harry'], fr: 'waist' }, bg: P9, actors: [DP({ expr: 'calm', pose: 'gesture' }), HD({ expr: 'focus' })] },
   [say('Draco', 'If you really were raised by Muggles, you mightn\'t know what it\'s like to be famous. People will take up *all* your time. You *have* to learn to say no.', 250, 110, { w: 400, size: 27 }),
    say('Draco', 'Decide who you *want* to be seen with, Potter. Everyone\'s going to judge you by it.', 250, 600, { w: 360 })], { mood: 'day' });
-ep.panel(620, { cam: { on: ['harry', 'draco'], fr: 'bust' }, bg: P9, actors: [DP({ expr: 'smug' }), HD({ expr: 'think' })] },
+ep.panel(820, { cam: { on: ['harry', 'draco'], fr: 'bust' }, bg: P9, actors: [DP({ expr: 'smug' }), HD({ expr: 'think' })] },
   [say('Harry', 'How did you recognise me, if you don\'t mind my asking?', 560, 90, { w: 300 }),
    say('Draco', 'I *have* met you, remember. I saw someone going around with a scarf wrapped round his head, looking absolutely ridiculous. So I took a *guess.*', 250, 520, { w: 380, size: 27 })], { mood: 'day' });
 ep.panel(700, { cam: { on: ['harry'], fr: 'bust' }, bg: P9, blur: 2, actors: [HD({ expr: 'sad', pose: 'bow' })] },

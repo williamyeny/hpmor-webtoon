@@ -114,7 +114,7 @@ ep.panel(460, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: DA({ start: 5 }), 
   [note('(fixed smile)', 520, 400, { size: 30 })], { mood: 'dusk' });
 ep.panel(460, { cam: { on: ['harry'], fr: 'close' }, bg: DA({ start: 5 }), blur: 3, actors: [HS({ expr: 'rant', pose: 'stand' })] },
   [shout('Harry', 'Oh, you have *got* to be kidding me.', 400, 100, { w: 440, size: 32 })], { mood: 'dusk' });
-ep.panel(620, { cam: { on: ['harry', 'mcgonagall'], fr: 'bust' }, bg: DA({ start: 5 }), actors: [HS({ expr: 'cross', pose: 'crossArms' }), MS({ expr: 'worried', pose: 'stand' })] },
+ep.panel(820, { cam: { on: ['harry', 'mcgonagall'], fr: 'bust' }, bg: DA({ start: 5 }), actors: [HS({ expr: 'cross', pose: 'crossArms' }), MS({ expr: 'worried', pose: 'stand' })] },
   [say('McGonagall', 'Mr Potter, you shouldn\'t go inventing things to worry about—', 560, 90, { w: 300 }),
    say('Harry', 'Are you *actually* going to tell me that? Imagine my reaction later, when I find out there *was* something to worry about after all.', 250, 520, { w: 360 })], { mood: 'dusk' });
 ep.panel(760, { cam: { x: 1250, y: 700, w: 1200 }, bg: DA({ start: 5 }), actors: [HS({ expr: 'suspicious', pose: 'stand', turn: 0.6 }), MS({ expr: 'suspicious', pose: 'stand', turn: 0.6 }), { def: orangeMan, id: 'orange', x: 1600, y: 1070, turn: -0.6, pose: 'walk', s: 0.95 }] },
@@ -159,7 +159,7 @@ ep.panel(760, { cam: { on: ['harry'], fr: 'bust' }, bg: DA({ start: 5 }), blur: 
 ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: DA({ start: 5 }), blur: 2, actors: [MS({ expr: 'pained', pose: 'slump' })] },
   [say('McGonagall', 'I wasn\'t thinking of Obliviating you, Mr Potter. But why would you have *invented* such a signal, if you didn\'t know about—', 540, 110, { w: 380, size: 28 }),
    say('Harry', 'Muggle science fiction. *Just in case.* And no, I won\'t tell you the signal. I\'m not dumb.', 250, 540, { w: 360, tail: [30, 600] })], { mood: 'dusk' });
-ep.panel(820, { cam: { on: ['mcgonagall'], fr: 'waist' }, bg: DA({ start: 5 }), actors: [MS({ expr: 'sad', pose: 'slump', lean: 10 })] },
+ep.panel(1260, { cam: { on: ['mcgonagall'], fr: 'waist' }, bg: DA({ start: 5 }), actors: [MS({ expr: 'sad', pose: 'slump', lean: 10 })] },
   [cap('She seemed to fold in on herself, and suddenly looked very old, and very tired.', 44, 34, { w: 420 }),
    say('McGonagall', 'This has been an exhausting day, Mr Potter. I will trust you not to speak of this until I have had time to think.', 540, 520, { w: 380, size: 28 }),
    say('McGonagall', 'Keep in mind that only two other people in the whole world know about this: Headmaster Albus Dumbledore, and Professor Severus Snape.', 400, 740, { w: 560, size: 26 })], { mood: 'dusk' });

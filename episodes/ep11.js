@@ -136,7 +136,7 @@ ep.panel(760, { cam: { on: ['snape'], fr: 'close' }, bg: STAFF, blur: 3, actors:
    cap('He was looking at Harry Potter—not the Gryffindor table. And his hands held the crumpled remains of a former wine goblet.', 300, 580, { w: 440 })], { mood: 'candle', alt: 'Snape, faintly smiling, looking straight at Harry, a crushed silver goblet in his hands.' });
 ep.panel(460, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: DAIS, blur: 3, actors: [MCG({ expr: 'horror', turn: -0.3 })] }, [cap('(Surely he realised the Potter boy had no idea who that was about—)', 44, 30, { w: 440 })], { mood: 'candle' });
 // Harry's resolve
-ep.panel(900, { cam: { on: ['harry'], fr: 'bust' }, bg: () => HG.greatHallWide(), blur: 3, actors: [{ def: harryRobes, id: 'harry', x: 800, y: 1150, s: 1.3, turn: 0.1, pose: 'walk', expr: { base: 'smile', eyes: { teary: true } } }] },
+ep.panel(1100, { cam: { on: ['harry'], fr: 'bust' }, bg: () => HG.greatHallWide(), blur: 3, actors: [{ def: harryRobes, id: 'harry', x: 800, y: 1150, s: 1.3, turn: 0.1, pose: 'walk', expr: { base: 'smile', eyes: { teary: true } } }] },
   [inner('Harry', 'They were cheering him for a job he\'d done when he was one year old. A job he hadn\'t really finished. Somewhere, somehow, the Dark Lord was still alive. Would they cheer so hard if they knew?', 400, 120, { w: 560, size: 27 }),
    inner('Harry', 'He couldn\'t stand to let it be false. To flash and fade like so many child prodigies. To be a disappointment.', 400, 560, { w: 540 }),
    inner('Harry', 'He would fulfil their expectations. And then exceed them—so that people wondered, looking back, that they had once asked so little of him.', 400, 790, { w: 560, size: 27 })], { mood: 'candle' });

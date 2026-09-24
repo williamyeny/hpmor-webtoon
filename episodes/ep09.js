@@ -119,7 +119,7 @@ ep.panel(760, { cam: { on: ['harry'], fr: 'waist' }, bg: P9(), actors: [HP({ exp
    say('Harry', 'Quick check, Draco. Have wizards ever been to the Moon? You know—*that* thing?', 400, 580, { w: 460 })], { mood: 'day' });
 ep.panel(620, { cam: { on: ['draco'], fr: 'bust' }, bg: P9(), blur: 2, actors: [DP({ expr: 'confused', pose: 'pointUp' })] },
   [say('Draco', 'Go to the—it\'s just a—you can\'t Apparate to somewhere you\'ve never *been.* How would anyone get to the Moon in the *first* place?', 280, 120, { w: 420, size: 28 })], { mood: 'day' });
-ep.panel(760, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#3a2618' }) + K.glow(ctx.w * 0.5, ctx.h * 0.3, 500, C.candle, 0.4) +
+ep.panel(920, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#3a2618' }) + K.glow(ctx.w * 0.5, ctx.h * 0.3, 500, C.candle, 0.4) +
   g({}, ...Array.from({ length: 16 }, (_, i) => rect(40 + (i % 6) * 125, ctx.h - 60 - Math.floor(i / 6) * 130 - 110, 115, 110, { fill: '#b9955e', stroke: C.ink, 'stroke-width': 3 }))) +
   shot({ cam: { on: ['harry'], fr: 'full' }, actors: [{ def: harryRobes, id: 'harry', x: 400, y: 1000, s: 1.1, turn: 0.6, pose: 'run', expr: 'determined', mask: 'scarfDown' }] })(ctx) + FX.speedLines(ctx.w, ctx.h, { n: 20 }),
   [say('Harry', 'Hold on—I\'d like to show you a book—I think I remember which box it\'s in—', 400, 90, { w: 480 }),

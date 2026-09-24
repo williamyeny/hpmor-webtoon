@@ -45,8 +45,9 @@ export async function renderTile(page, tile) {
   await page.setViewportSize({ width: TILE_W, height: Math.max(100, Math.ceil(H)) });
   await page.evaluate((h) => { document.getElementById('root').innerHTML = h; }, html);
   await page.evaluate(() => window.layoutBubbles());
+  const warn = await page.evaluate(() => window.__warn || []);
   const buf = await page.locator('#tile').screenshot({ type: 'png', animations: 'disabled' });
-  return { buf, H };
+  return { buf, H, warn };
 }
 
 function altText(tile) {
@@ -84,11 +85,13 @@ async function main() {
   let manifest = { id: epId, title: ep.title, number: ep.number, subtitle: ep.subtitle || '', tiles: [] };
   if (!png && pick && fs.existsSync(manifestPath)) manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
   const t0 = Date.now();
+  const WARN = [];
   for (let i = 0; i < tiles.length; i++) {
     const n = i + 1;
     if (pick && !pick.has(n)) continue;
     const tile = tiles[i];
-    const { buf, H } = await renderTile(page, tile);
+    const { buf, H, warn } = await renderTile(page, tile);
+    if (warn.length) WARN.push(`${n}:${warn.join(',')}`);
     const name = `${String(n).padStart(3, '0')}`;
     if (coverMode) { await sharp(buf).webp({ quality: 84 }).toFile(path.join(ROOT, 'site', 'cover.webp')); continue; }
     if (png) {
@@ -105,6 +108,7 @@ async function main() {
     manifest.tiles = manifest.tiles.slice(0, tiles.length);
     fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 1));
   }
+  if (WARN.length) console.log(`\nLETTERING WARNINGS ${epId}: ${WARN.join(' | ')}`);
   console.log(`\ndone in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
   await browser.close();
 }

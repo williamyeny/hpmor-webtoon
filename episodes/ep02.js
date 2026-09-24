@@ -107,7 +107,7 @@ ep.panel(520, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: LR(), blur: 2, act
   [say('McGonagall', 'It\'s only a Transfiguration. An Animagus transformation, to be exact.', 520, 100, { w: 360 })], { mood: 'warm' });
 
 // the meltdown
-ep.bleed(1300, { cam: { on: ['harry'], fr: 'waist' }, bg: LR(), blur: 3,
+ep.bleed(1540, { cam: { on: ['harry'], fr: 'waist' }, bg: LR(), blur: 3,
   actors: [{ def: harry, id: 'harry', x: 1380, y: 1050, s: 1.12, turn: -0.1, pose: 'panic', expr: 'rant' }],
   under: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.45, { bg: '#f6e0b0', col: '#c9922e', op: 0.7, n: 110 }) },
   [shout('Harry', 'You turned into a cat! A *SMALL* cat! You violated Conservation of Energy!', 400, 150, { w: 560, size: 36 }),

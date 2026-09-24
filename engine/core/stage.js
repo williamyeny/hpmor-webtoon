@@ -96,6 +96,7 @@ function tailD(cx,cy,rx,ry,tx,ty,wid,n){ // wedge from ellipse edge to tip, slig
   const ctrl=[mx+(tx-mx)*0.55+(ty-my)*bend,my+(ty-my)*0.55-(tx-mx)*bend];
   return 'M'+a1[0].toFixed(1)+','+a1[1].toFixed(1)+' Q'+ctrl[0].toFixed(1)+','+ctrl[1].toFixed(1)+' '+tx+','+ty+' Q'+(ctrl[0]*0.9+mx*0.1).toFixed(1)+','+(ctrl[1]*0.9+my*0.1).toFixed(1)+' '+a2[0].toFixed(1)+','+a2[1].toFixed(1)+'Z';}
 
+const TEXT_SCALE=36/31, TEXT_MIN=34; // dialogue 31→36px on the 800px canvas = 18px on a 400px-wide phone; nothing below 17px
 window.layoutBubbles=async function(){
   await document.fonts.ready;
   const svg=document.getElementById('bsvg');
@@ -108,11 +109,14 @@ window.layoutBubbles=async function(){
     const d=JSON.parse(b.dataset.b);seed+=7;
     const t=b.querySelector('.bt');
     if(d.size)t.style.fontSize=d.size+'px';
+    // global lettering scale + minimum size (readability on phones: 800px tile → ~390px screen)
+    const SCALABLE=!['sfx','plain','title','hatBig','hiss'].includes(d.type);
+    if(SCALABLE){const base=parseFloat(getComputedStyle(t).fontSize);const fs=Math.max(TEXT_MIN,base*TEXT_SCALE);t.style.fontSize=fs+'px';}
     if(d.font)t.style.fontFamily=d.font;
     if(d.color)t.style.color=d.color;
     if(d.align)t.style.textAlign=d.align;
     if(d.weight)t.style.fontWeight=d.weight;
-    t.style.maxWidth=d.w+'px';
+    const wScale=SCALABLE?1.12:1; t.style.maxWidth=Math.min(d.w*wScale, 740)+'px';
     t.style.display='inline-block';
     // balance lines: shrink width while line count stays the same
     let r=t.getBoundingClientRect();
@@ -141,10 +145,11 @@ window.layoutBubbles=async function(){
       const LAST=PLACED[PLACED.length-1]; const order=(r)=>LAST&&r.y<LAST.y-8&&r.x<LAST.x+LAST.w&&LAST.x<r.x+r.w; const bad=(l,t)=>{const r=R0(l,t);return out(r)?2:(HEADS.some(c=>hitC(r,c))||PLACED.some(p=>hitR(r,p))||order(r))?1:0;};
       if(bad(left,top)){
         let found=null;
-        const steps=[];for(let k=20;k<=420;k+=20)steps.push([k,0],[-k,0],[0,-k],[0,k],[k,-k*0.6],[-k,-k*0.6],[k,k*0.6],[-k,k*0.6]);
-        // first try: fully clean; else: just inside the tile
-        for(const [dx,dy] of steps){if(!bad(left+dx,top+dy)){found=[left+dx,top+dy];break;}}
-        if(!found){const bad2=(l,t)=>{const r=R0(l,t);return out(r)||PLACED.some(p=>hitR(r,p))||order(r);};for(const [dx,dy] of steps){if(!bad2(left+dx,top+dy)){found=[left+dx,top+dy];break;}}}
+        // grid search over the whole tile for the nearest acceptable spot; moving up costs more (reading order)
+        const cost=(l,t)=>{const dx=l-left,dy=t-top;return Math.hypot(dx,dy<0?dy*2.2:dy);};
+        const search=(test,maxD)=>{let best=null,bc=maxD||1e9;for(let t=-TH;t<=TH;t+=16){for(let l=-TW;l<=TW;l+=16){const L=left+l,Tt=top+t;const c=cost(L,Tt);if(c>=bc)continue;if(!test(L,Tt)){best=[L,Tt];bc=c;}}}return best;};
+        const bad2=(l,t)=>{const r=R0(l,t);return out(r)||PLACED.some(p=>hitR(r,p))||order(r);};
+        found=search(bad,280)||search(bad2,220)||search(bad)||search(bad2);
         if(!found){let r=R0(left,top);let l2=left,t2=top;if(r.x<4)l2+=4-r.x;if(r.x+r.w>TW-4)l2-=r.x+r.w-(TW-4);if(r.y<4)t2+=4-r.y;if(r.y+r.h>TH-4)t2-=r.y+r.h-(TH-4);found=[l2,t2];}
         left=found[0];top=found[1];
       }
@@ -196,6 +201,11 @@ window.layoutBubbles=async function(){
     }
     if(d.rot)g.setAttribute('transform','rotate('+d.rot+' '+cx+' '+cy+')');
   }
+  // overflow report: balloons past the tile edge or overlapping each other
+  const warn=[];const rs=bubs.map(b=>b.getBoundingClientRect());const T=tile.getBoundingClientRect();
+  rs.forEach((r,i)=>{if(r.left<T.left+2||r.right>T.right-2||r.top<T.top+2||r.bottom>T.bottom-2)warn.push('edge:'+i);
+    rs.forEach((q,j)=>{if(j>i&&r.left<q.right-6&&q.left<r.right-6&&r.top<q.bottom-6&&q.top<r.bottom-6)warn.push('overlap:'+i+'/'+j);});});
+  window.__warn=warn;
   return true;
 };
 })();

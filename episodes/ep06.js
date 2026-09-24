@@ -47,10 +47,10 @@ ep.panel(620, { cam: { on: ['harry'], fr: 'bust' }, bg: DA({ start: 2 }), blur: 
   [shout('Harry', 'That\'s just a *word!* Even after you say it, I can\'t make any new predictions! It\'s exactly like saying "phlogiston"!', 400, 110, { w: 520, size: 30 })], { mood: 'day' });
 ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: DA({ start: 2 }), blur: 2, actors: [MW({ expr: 'suspicious', pose: 'crossArms' })] },
   [say('McGonagall', 'With respect, Mr Potter, I\'m quite sure I don\'t understand what you\'re trying to do. Unless—this is just a guess, mind—you\'re trying to take over the world?', 280, 110, { w: 420, size: 28 })], { mood: 'day' });
-ep.multi(420, [
-  { x: M, y: 18, w: 368, h: 384, mood: 'day', art: { cam: { on: ['harry'], fr: 'close' }, bg: DA(), blur: 3, actors: [HW({ expr: 'flustered' })] } },
-  { x: 408, y: 18, w: 368, h: 384, mood: 'day', art: { cam: { on: ['mcgonagall'], fr: 'close' }, bg: DA(), blur: 3, actors: [MW({ expr: 'unimpressed' })] } },
-], [say('Harry', 'No! I mean yes—well, *no!*', 190, 70, { w: 260 }), say('McGonagall', 'I think I should perhaps be alarmed that you have trouble answering the question.', 600, 90, { w: 300, size: 24 })]);
+ep.multi(520, [
+  { x: M, y: 18, w: 368, h: 484, mood: 'day', art: { cam: { on: ['harry'], fr: 'close' }, bg: DA(), blur: 3, actors: [HW({ expr: 'flustered' })] } },
+  { x: 408, y: 18, w: 368, h: 484, mood: 'day', art: { cam: { on: ['mcgonagall'], fr: 'close' }, bg: DA(), blur: 3, actors: [MW({ expr: 'unimpressed' })] } },
+], [say('Harry', 'No! I mean yes—well, *no!*', 190, 70, { w: 300 }), say('McGonagall', 'I think I should perhaps be alarmed that you have trouble answering the question.', 590, 330, { w: 330 })]);
 // ten Muggle-born a year
 ep.panel(620, { cam: { on: ['harry', 'mcgonagall'], fr: 'bust' }, bg: DA({ start: 4 }), actors: [HW({ expr: 'focus', pose: 'walk', armF: undefined }), MW({ expr: 'calm', pose: 'walk2', turn: 0.4 })] },
   [say('Harry', 'How many Muggle-raised children *do* you get at Hogwarts every year?', 250, 100, { w: 340 }),
@@ -302,7 +302,7 @@ ep.panel(560, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: QA, blur: 3, actor
 ep.panel(620, { cam: { on: ['harry'], fr: 'close' }, bg: QA, blur: 3, actors: [HA({ expr: 'smile' })] },
   [say('Harry', 'On the contrary, Professor McGonagall. I shall take it as a very great compliment.', 400, 100, { w: 460 }),
    say('Harry', 'But may I offer an alternative explanation?', 400, 500, { w: 380 })], { mood: 'day' });
-ep.panel(900, { cam: { on: ['harry'], fr: 'waist' }, bg: QA, actors: [HA({ expr: 'sad', pose: 'slump' })] },
+ep.panel(1120, { cam: { on: ['harry'], fr: 'waist' }, bg: QA, actors: [HA({ expr: 'sad', pose: 'slump' })] },
   [say('Harry', 'Children aren\'t meant to be too much smarter than their parents. Or too much saner. I\'m too smart, Professor. I\'ve got nothing to say to normal children. Adults don\'t respect me enough to really talk to me.', 400, 130, { w: 580, size: 27 }),
    say('Harry', 'I\'m *isolated.* I\'ve been isolated my whole life. Maybe that has some of the same effects as being locked in a cellar.', 400, 520, { w: 540, size: 28 }),
    say('Harry', 'And I also have an anger management problem. But I\'m working on it. That\'s all.', 400, 790, { w: 480, size: 28 })], { mood: 'day' });

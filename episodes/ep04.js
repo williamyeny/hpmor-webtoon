@@ -49,7 +49,7 @@ ep.multi(420, [
   { x: M, y: 18, w: 368, h: 384, mood: 'candle', art: { cam: { on: ['mcgonagall'], fr: 'close' }, bg: () => B.vaultDoor(true), blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1150, y: 1070, turn: -0.3, expr: 'confused' }] } },
   { x: 408, y: 18, w: 368, h: 384, mood: 'candle', art: { cam: { on: ['griphook'], fr: 'close' }, bg: VA, blur: 2, actors: [GH({ expr: 'bigGrin' })] } },
 ], [say('McGonagall', 'What?', 120, 60, { w: 130 }), say('Griphook', 'Only a fool would trust any but goblin coin!', 600, 70, { w: 300, size: 27 })]);
-ep.panel(760, { cam: { on: ['harry', 'griphook'], fr: 'bust' }, bg: VA, actors: [HV({ expr: 'scheme', pose: 'gesture' }), GH({ expr: 'suspicious' })] },
+ep.panel(940, { cam: { on: ['harry', 'griphook'], fr: 'bust' }, bg: VA, actors: [HV({ expr: 'scheme', pose: 'gesture' }), GH({ expr: 'suspicious' })] },
   [say('Harry', 'Suppose I came in here with a ton of silver. Could I get a ton of Sickles made from it?', 250, 90, { w: 340 }),
    say('Griphook', 'For a fee, Mr Potter-Evans-Verres. For a certain *fee.* Where would you find a ton of silver, I wonder?', 550, 560, { w: 360 })], { mood: 'candle' });
 ep.panel(620, { cam: { on: ['harry', 'griphook'], fr: 'bust' }, bg: VA, actors: [HV({ expr: 'smug', pose: 'stand' }), GH({ expr: 'focus' })] },
@@ -96,14 +96,14 @@ ep.panel(620, { cam: { on: ['harry'], fr: 'close' }, bg: VA, blur: 2, actors: [H
    inner('Harry', 'That\'s the last time I ever mow a lawn for one lousy pound.', 420, 540, { w: 480 })], { mood: 'candle' });
 
 // where did it come from?
-ep.panel(860, { cam: { on: ['harry', 'mcgonagall'], fr: 'waist' }, bg: VA, actors: [HV({ expr: 'think', pose: 'gesture' }), { def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.4, pose: 'stand', expr: 'calm' }] },
+ep.panel(1060, { cam: { on: ['harry', 'mcgonagall'], fr: 'waist' }, bg: VA, actors: [HV({ expr: 'think', pose: 'gesture' }), { def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.4, pose: 'stand', expr: 'calm' }] },
   [say('Harry', 'Pardon me for asking, Professor, but is this a *usual* amount of money for a young couple to have?', 250, 90, { w: 360 }),
    say('McGonagall', 'Your father was the last heir of an old family. And… some of it may be from bounties placed on You-Know-Who.', 560, 560, { w: 360 }),
    say('McGonagall', 'Payable to whoever might defeat him.', 520, 700, { w: 300 })], { mood: 'candle', tile: {} });
-ep.panel(740, { cam: { on: ['harry'], fr: 'bust' }, bg: VA, blur: 2, actors: [HV({ expr: 'scheme', pose: 'present' })] },
+ep.panel(920, { cam: { on: ['harry'], fr: 'bust' }, bg: VA, blur: 2, actors: [HV({ expr: 'scheme', pose: 'present' })] },
   [say('Harry', 'Interesting… So some of this really is, in a sense, *mine.* Earned by me. Sort of. Possibly.', 270, 90, { w: 360 }),
    say('Harry', 'That makes me feel less guilty about spending a *very tiny fraction of it!*', 280, 470, { w: 360 }),
-   shout('Harry', 'DON\'T PANIC, PROFESSOR McGONAGALL!', 520, 650, { w: 360, size: 28 })], { mood: 'candle' });
+   shout('Harry', 'DON\'T PANIC, PROFESSOR McGONAGALL!', 430, 800, { w: 420, size: 28 })], { mood: 'candle' });
 ep.panel(640, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: VA, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.3, pose: 'point', expr: 'angry' }] },
   [shout('McGonagall', 'Mr Potter! You are a *minor!* You will only be allowed to make *reasonable* withdrawals—', 290, 120, { w: 440, size: 30 })], { mood: 'candle' });
 ep.panel(620, { cam: { on: ['harry'], fr: 'bust' }, bg: VA, blur: 2, actors: [HV({ expr: 'delight', pose: 'handsHips' })] },
@@ -191,7 +191,7 @@ ep.multi(760, [
   { x: M, y: 18, w: 240, h: 360, art: hands(0), mood: 'warm' }, { x: 280, y: 18, w: 240, h: 360, art: hands(1), mood: 'warm' }, { x: 536, y: 18, w: 240, h: 360, art: hands(2), mood: 'warm' },
   { x: M, y: 396, w: 752, h: 346, mood: 'warm', art: { cam: { on: ['mcgonagall', 'keeper'], fr: 'bust' }, bg: MK, blur: 1, actors: [KEEP({ x: 900, expr: { base: 'neutral', eyes: { lookX: 1 } }, turn: 0.4, pose: 'stand' }), { def: mcgonagall, id: 'mcgonagall', x: 1120, y: 1120, turn: 0.5, pose: 'stand', expr: { base: 'calm', eyes: { lookX: 1 } } }] } },
 ], [note('"bag of gold"', 150, 330, { size: 28 }), note('"bag of gold"', 400, 330, { size: 28 }), note('"bag of gold"', 650, 330, { size: 28 }),
-  cap('After ten repetitions, Professor McGonagall wandered off to examine the other items in the shop, and the shopkeeper turned to watch her.', 44, 610, { w: 460 })],
+  cap('After ten repetitions, Professor McGonagall wandered off to examine the other items in the shop, and the shopkeeper turned to watch her.', 44, 578, { w: 600, fixed: true })],
   { alt: 'Close on Harry\'s hands: left hand dips the bag of gold into the pouch; right hand, fist full of loose coins from his pocket, sneaks in behind it. McGonagall and the shopkeeper are looking the other way.' });
 ep.panel(620, { cam: { on: ['harry'], fr: 'close' }, bg: MK, blur: 3, actors: [{ def: harry, id: 'harry', x: 460, y: 1110, s: 1.1, turn: 0.3, expr: 'wince' }] },
   [inner('Harry', 'The golden coins were his. But they were still stolen. Self-stolen? *Auto-thieved?*', 400, 110, { w: 520 }),

@@ -60,9 +60,11 @@ ep.panel(760, { cam: { on: ['hermione'], fr: 'bust' }, bg: CP(), blur: 2, actors
   [shout('Hermione', '*Harry Potter!* You\'re in *Modern Magical History* and *The Rise and Fall of the Dark Arts* and *Great Wizarding Events of the Twentieth Century!*', 400, 130, { w: 560, size: 28 }),
    cap('It was the very first time in her whole life that she\'d *met* someone from inside a *book.* It was rather an odd feeling.', 44, 600, { w: 460, size: 26 })], { mood: 'day' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: CP(), blur: 3, actors: [HAR({ expr: 'blank' })] }, [say('Harry', 'I\'m in *books?* Wait—of course I\'m in books… What a strange thought.', 400, 110, { w: 460 })], { mood: 'day' });
-ep.panel(620, { cam: { on: ['hermione', 'harry'], fr: 'bust' }, bg: CP(), actors: [HER({ expr: 'unimpressed' }), HAR({ expr: 'deadpan' })] },
-  [say('Hermione', 'Goodness, didn\'t you know? I\'d have found out everything I could, if it was me.', 250, 100, { w: 340 }),
-   say('Harry', 'Miss Granger, it has been less than seventy-two hours since I discovered my claim to fame. *Believe me*, I intend to find out everything I can. What *do* the books say about me?', 560, 560, { w: 380, size: 26 })], { mood: 'day' });
+ep.panel(560, { cam: { on: ['hermione'], fr: 'bust' }, bg: CP(), blur: 2, actors: [HER({ expr: 'unimpressed' })] },
+  [say('Hermione', 'Goodness, didn\'t you know? I\'d have found out everything I could, if it was me.', 400, 100, { w: 460 })], { mood: 'day' });
+ep.panel(680, { cam: { on: ['harry'], fr: 'bust' }, bg: CP(), blur: 2, actors: [HAR({ expr: 'deadpan' })] },
+  [say('Harry', 'Miss Granger, it has been less than seventy-two hours since I discovered my claim to fame. *Believe me*, I intend to find out everything I can.', 400, 110, { w: 520 }),
+   say('Harry', 'What *do* the books say about me?', 400, 560, { w: 360 })], { mood: 'day' });
 ep.panel(960, { cam: { on: ['hermione'], fr: 'waist' }, bg: CP(), actors: [HER({ expr: { base: 'focus', eyes: { lookY: -0.8, lookX: 0.4 } }, pose: 'lecture' })], under: (e) => rect(0, 0, e.w, e.h, { fill: '#f6e3b0', opacity: 0.2 }) },
   [say('Hermione', 'You\'re the only one who\'s ever survived the Killing Curse, so you\'re called the Boy-Who-Lived. Born the thirty-first of July, 1980. On the thirty-first of October 1981, He-Who-Must-Not-Be-Named—though I don\'t know why not—attacked your home.', 400, 150, { w: 580, size: 26 }),
    say('Hermione', '*The Rise and Fall of the Dark Arts* claims you survived because of your mother\'s love, that your scar contains all of the Dark Lord\'s magical power, and that the centaurs fear you. But *Modern Magical History* warns that there are lots of crackpot theories about you.', 400, 760, { w: 580, size: 26 })], { mood: 'day', alt: 'Hermione recites, rapid-fire, eyes rolled up as if reading from memory.' });
@@ -81,7 +83,7 @@ ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: CP(), blur: 3, actors: 
 ep.panel(460, { cam: { on: ['hermione'], fr: 'close' }, bg: CP(), blur: 3, actors: [HER({ expr: 'suspicious' })] }, [say('Hermione', 'A *proposition?*', 400, 100, { w: 220 }), cap('Girls weren\'t supposed to listen to those.', 44, 400, { w: 360 })], { mood: 'day' });
 
 // the Comed-Tea & "take over the universe"
-ep.panel(700, { cam: { on: ['harry', 'hermione'], fr: 'bust' }, bg: CP(), actors: [HER({ expr: 'smile', pose: 'holdOne', armF: { sh: 110, el: 40, hand: 'hold', prop: g({ transform: 'translate(0,8)' }, comedCan(1)) } }), HAR({ expr: 'scheme', pose: 'present' })] },
+ep.panel(900, { cam: { on: ['harry', 'hermione'], fr: 'bust' }, bg: CP(), actors: [HER({ expr: 'smile', pose: 'holdOne', armF: { sh: 110, el: 40, hand: 'hold', prop: g({ transform: 'translate(0,8)' }, comedCan(1)) } }), HAR({ expr: 'scheme', pose: 'present' })] },
   [say('Harry', 'Can I offer you something to drink?', 560, 100, { w: 280 }),
    cap('Hermione politely accepted the fizzy drink. As she started to drink, the boy said:', 44, 480, { w: 400, size: 26 }),
    say('Harry', 'I\'d like you to help me take over the universe.', 560, 640, { w: 320 })], { mood: 'day' });
@@ -166,7 +168,7 @@ ep.bleed(820, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#5a3a22' }) + K.glow(ct
   [cap('Hermione\'s jaw dropped.', 44, 40, { w: 300 })], { alt: 'The note reads: "Three real numbers in increasing order, lowest to highest."' });
 ep.panel(620, { cam: { on: ['hermione'], fr: 'close' }, bg: CP(), blur: 3, actors: [HER({ expr: 'shock' })] },
   [inner('Hermione', 'She had the distinct feeling that something terribly unfair had been done to her, that the boy was a dirty rotten cheating liar—but when she cast her mind back, she couldn\'t think of a single wrong answer he\'d given.', 400, 120, { w: 560, size: 27 })], { mood: 'day' });
-ep.panel(900, { cam: { on: ['harry'], fr: 'waist' }, bg: CP(), actors: [HAR({ expr: 'warm', pose: 'lecture' })] },
+ep.panel(1120, { cam: { on: ['harry'], fr: 'waist' }, bg: CP(), actors: [HAR({ expr: 'warm', pose: 'lecture' })] },
   [say('Harry', 'What you\'ve just discovered is called *positive bias.* You had a rule in your mind, and you kept thinking of triplets that should make it say "Yes". You never tested any that should make it say "No".', 400, 130, { w: 580, size: 27 }),
    say('Harry', 'You have to learn to look on the negative side of things. Stare into the darkness.', 400, 520, { w: 500 }),
    say('Harry', 'Now. Do you want another shot at the original problem?', 400, 760, { w: 440 })], { mood: 'day' });

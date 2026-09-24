@@ -1,6 +1,6 @@
 import { openStage } from '../engine/render.mjs';
 import { composeTile } from '../engine/core/layout.js';
-const ep = (await import('../episodes/ep06.js')).default;
+const ep = (await import('../episodes/' + (process.argv[3] || 'ep06') + '.js')).default;
 const n = +process.argv[2];
 const { browser, page } = await openStage();
 const { html, H } = composeTile(ep.tiles[n - 1]);

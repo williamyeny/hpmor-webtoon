@@ -76,7 +76,7 @@ ep.panel(560, { cam: { on: ['harry'], fr: 'close', dy: 0.15 }, bg: LR(), blur: 2
   actors: [chairBack, HARRY_CHAIR({ expr: { base: 'focus', eyes: { lookX: -0.9, open: 0.9 } }, turn: -0.2, armF: { sh: 40, el: 118, hand: 'hold', prop: bookHeld('#274060', { rot: 180, w: 150, h: 170 }) }, armB: { sh: 30, el: 110, hand: 'hold' } }), chairFront] },
   [note('…', 560, 120, { size: 60 })], { mood: 'warm', alt: 'Harry peers over the top of a large book, eyes darting between his parents.' });
 
-ep.panel(760, { cam: { on: ['dad'], fr: 'waist', dx: 0.6 }, bg: LR(), actors: [DAD({ expr: 'smug', pose: 'lecture', turn: 0.4 })] },
+ep.panel(980, { cam: { on: ['dad'], fr: 'waist', dx: 0.6 }, bg: LR(), actors: [DAD({ expr: 'smug', pose: 'lecture', turn: 0.4 })] },
   [say('Dad', 'Dear, I understand you\'re not familiar with the sceptical literature.', 520, 90, { w: 380 }),
    say('Dad', 'A trained magician can fake almost anything. Remember how I taught Harry to bend spoons?', 520, 590, { w: 400 })], { mood: 'warm' });
 
