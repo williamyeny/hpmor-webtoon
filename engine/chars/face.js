@@ -40,7 +40,6 @@ export function eye(cx, cy, e, st, side, k, lw, ids) {
   const open = st.open ?? 1;
   const out = [];
   const style = st.style || 'normal';
-  const tiltSign = side; // outer corner direction
   const INK = C.ink;
   if (k < 0.12) return '';
   if (style === 'happy' || style === 'closed' || style === 'shut' || style === 'wince' || style === 'line') {

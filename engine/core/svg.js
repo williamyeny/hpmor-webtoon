@@ -106,7 +106,6 @@ export const quad = (a, c, b, t) => [
 ];
 
 // ellipse point, angle in radians (0 = +x, clockwise since y is down)
-export const ePt = (cx, cy, rx, ry, a) => [cx + Math.cos(a) * rx, cy + Math.sin(a) * ry];
 
 
 // Rounded rect path with optional wobble

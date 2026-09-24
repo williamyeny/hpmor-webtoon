@@ -177,7 +177,6 @@ export function door(x, y, w, h, col = '#5a3a24', o = {}) {
 // ---------------------------------------------------------------- furniture
 export function armchair(x, y, s = 1, col = C.burgundy, o = {}) {
   // x,y = floor centre
-  const f = (d) => d;
   const W = 190 * s, H = 170 * s;
   let out = '';
   out += path(`M${x - W * 0.42},${y - H * 0.45} Q${x - W * 0.45},${y - H * 1.05} ${x},${y - H * 1.05} Q${x + W * 0.45},${y - H * 1.05} ${x + W * 0.42},${y - H * 0.45}Z`, { fill: col, ...bl(2.2) }); // back

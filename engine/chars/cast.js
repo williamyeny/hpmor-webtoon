@@ -359,8 +359,6 @@ trunkSeller.facialHair = ({ rx, ry, s, lw, F, mz }) => path(`M${mz.x - 16},${F.m
 export const orangeMan = { ...makeExtra(702, { robe: '#d9772a', witchHat: true }), name: 'orangeMan' };
 Object.assign(CAST, { ollivander, dumbledore, trunkSeller, orangeMan });
 
-// ---------- the Weasleys
-const weasleyHair = (seed) => ({ color: '#c65a24', ...H.neat(seed, { part: 0.2, fringe: true }) });
 export const molly = {
   name: 'molly', body: { ...ADULT_F, torsoH: 140, legU: 96, legL: 92, headRx: 51, headRy: 54, waistW: 118, hipW: 128 }, skin: '#f1cfb4', skinShade: '#d4a88c',
   head: { jaw: 0.68, chin: 0.98, cheek: 0.98 },

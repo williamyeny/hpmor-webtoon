@@ -405,7 +405,7 @@ export function drawCharacter(def, opts = {}) {
   layers.armF.push(arm(armFp, aF, false));
 
   // ---- head
-  const H = drawHead(def, { turn: ht, expr, lw, light, tilt: hTilt, extras: opts.extras || {}, noGlasses: opts.noGlasses || opts.glasses === false || (opts.extras || {}).glasses === false, hatOff: opts.hatOff, hairOverride: opts.hair, mask: opts.mask });
+  const H = drawHead(def, { turn: ht, expr, lw, light, tilt: hTilt, extras: opts.extras || {}, noGlasses: opts.glasses === false || (opts.extras || {}).glasses === false, hatOff: opts.hatOff, hairOverride: opts.hair, mask: opts.mask });
   const headG = g({ transform: `translate(${r2(headC[0])},${r2(headC[1])}) rotate(${r2(lean * 0.6 + headTilt)})` }, H.main);
   const headBack = g({ transform: `translate(${r2(headC[0])},${r2(headC[1])}) rotate(${r2(lean * 0.6 + headTilt)})` }, H.back);
   // neck

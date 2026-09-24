@@ -93,13 +93,6 @@ function stdTail(cx,cy,rx,ry,n,tx,ty,k){
   const patch='M'+f(pa[0])+','+f(pa[1])+' L'+f(pt[0]+px*(B*0.45),)+','+f(pt[1]+py*(B*0.45))+' L'+f(pt[0]-px*(B*0.35))+','+f(pt[1]-py*(B*0.35))+' L'+f(pb[0])+','+f(pb[1])+'Z';
   return {outer,patch,th,ex,ey,ux,uy};
 }
-function tailD(cx,cy,rx,ry,tx,ty,wid,n){ // wedge from ellipse edge to tip, slightly curved
-  const ang=Math.atan2((ty-cy)/ry,(tx-cx)/rx);const w=wid||0.2;
-  const pOn=a=>{const c=Math.cos(a),s=Math.sin(a);return [cx+rx*Math.sign(c)*Math.pow(Math.abs(c),2/(n||2.6))*0.94,cy+ry*Math.sign(s)*Math.pow(Math.abs(s),2/(n||2.6))*0.94];};
-  const a1=pOn(ang-w),a2=pOn(ang+w);
-  const mx=(a1[0]+a2[0])/2,my=(a1[1]+a2[1])/2;const bend=0.18;
-  const ctrl=[mx+(tx-mx)*0.55+(ty-my)*bend,my+(ty-my)*0.55-(tx-mx)*bend];
-  return 'M'+a1[0].toFixed(1)+','+a1[1].toFixed(1)+' Q'+ctrl[0].toFixed(1)+','+ctrl[1].toFixed(1)+' '+tx+','+ty+' Q'+(ctrl[0]*0.9+mx*0.1).toFixed(1)+','+(ctrl[1]*0.9+my*0.1).toFixed(1)+' '+a2[0].toFixed(1)+','+a2[1].toFixed(1)+'Z';}
 
 const TEXT_SCALE=36/31, TEXT_MIN=34; // dialogue 31→36px on the 800px canvas = 18px on a 400px-wide phone; nothing below 17px
 window.layoutBubbles=async function(){
