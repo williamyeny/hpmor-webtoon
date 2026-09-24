@@ -10,11 +10,13 @@ node engine/render.mjs ep03 --png            # preview every tile of an episode 
 node engine/render.mjs ep03 --png 4-9,12     # preview a subset
 node engine/contact.mjs ep03 440 2600        # stack previews into scratch/sheet-ep03-NN.png for review
 node engine/render.mjs ep03                  # final render → site/ep03/NNN.webp + manifest.json
-node engine/render.mjs cover --cover         # site/cover.webp
+node engine/render.mjs --file episodes/cover.js --cover   # site/cover.webp
 node engine/build-site.mjs                   # regenerate all site HTML from episodes/catalog.js
+work/render-all.sh                           # after an engine change: every episode + cover + site
+node engine/render.mjs --file work/tests/poses.js --png   # reference galleries in work/tests/
 ```
 
-Improving the rig or a background re-renders everywhere: just re-run the episode renders.
+After an engine change, `work/render-all.sh` re-renders everything; rendering is deterministic, so `git status site/` lists exactly the tiles whose pixels changed. Reference galleries in `work/tests/`: poses, faces, turnaround, cast, sets, frames, lettering.
 
 ## Layout
 
@@ -71,8 +73,8 @@ Improving the rig or a background re-renders everywhere: just re-run the episode
 
 Why and when: `docs/ART_BIBLE.md` → "Panel frames" (about 1 in 5 panels, only where it deepens immersion).
 
-- **Shape:** `shape` on any panel. In `ep.panel`/`ep.bleed` pass it in the panel options (4th argument): `ep.panel(900, shot, bubbles, { shape: 'arch', frame: 'stone' })`. In `ep.multi` put it on the panel object. Shapes: `arch` (round top; `spring` = where the curve starts, 0-1 of h), `gothic` (pointed arch), `oval`, `circle`, `eye` (almond), `keyhole`, `diamond`, `slant` (`slant` px, + leans right), `cut` (diagonal top/bottom: `cutTop`, `cutBottom` px), `torn` (`seed`, `tear`), `burst` (`points`, `seed`), `jag` (jagged rectangle: `jag` tooth depth, `seed`), `cloud`, `screen`, plus the older `poly` (`pts` as 0-1 fractions) and a function `(w, h, p) => pathD`.
-- **Frame style:** `frame`: `ink` (default), `gilt`, `stone`, `wood`, `glow` (`glow` colour), `paper`, `double`, `none`, `dissolve` (no line; every edge fades softly into the page, `feather` px). `borderColor` / `borderWidth` tune the ink line. Thick styles (stone, gilt, wood) eat ~10px inside the edge: keep balloons clear of it.
+- **Shape:** `shape` on any panel. In `ep.panel`/`ep.bleed` pass it in the panel options (4th argument): `ep.panel(900, shot, bubbles, { shape: 'arch', frame: 'stone' })`. In `ep.multi` put it on the panel object. Shapes: `arch` (round top; `spring` = where the curve starts, 0-1 of h), `gothic` (pointed arch), `oval` (fills the panel), `circle` (a true circle, centred), `eye` (almond), `keyhole`, `diamond`, `slant` (`slant` px, + leans right), `cut` (diagonal top/bottom: `cutTop`, `cutBottom` px), `torn` (`seed`, `tear`), `burst` (`points`, `seed`), `jag` (jagged rectangle: `jag` tooth depth, `seed`), `cloud`, `screen`, `poly` (`pts` as 0-1 fractions) and a function `(w, h, p) => pathD`.
+- **Frame style:** `frame`: `ink` (default), `gilt`, `stone`, `wood`, `glow` (`glow` colour), `paper`, `none`, `dissolve` (no line; every edge fades softly into the page, `feather` px). `borderColor` / `borderWidth` tune the ink line. Thick styles (stone, gilt, wood) eat ~10px inside the edge: keep balloons clear of it.
 - **Cut-out:** `ep.cutout(h, shot, bubbles, opts)`: no frame, no background (the shot's `bg` is skipped), a soft shadow at each actor's feet (`ground: false` on the shot to drop it). `fg`, `mid`, `behind` and `over` still draw. Frame the camera so the whole figure (or the part you want) fits: nothing is clipped, so anything outside the panel box spills onto the page. Balloons are free-floating (no panel frame to stay inside).
 - **Breakout:** `breakout: 'top' | 'bottom' | 'left' | 'right'` (or an array) redraws the actors, unclipped, beyond that edge, so a hat, an arm or a leaping figure crosses the frame line. Only the characters break out, not the background. `breakoutOnly: ['harry']` limits it to the named actors. Aim the camera so the part that should cross actually extends past the edge.
 - **Inset / overlap:** in `ep.multi`, later panels draw on top of earlier ones; give an inset `shadow: true`.
@@ -80,7 +82,7 @@ Why and when: `docs/ART_BIBLE.md` → "Panel frames" (about 1 in 5 panels, only 
 
 ## Camera, poses and effects (engine pass, after Book Two)
 
-- **Aim at a head:** `cam: { head: 'harry', hw: 0.34, hx: 0.5, hy: 0.42 }` puts Harry's head centre at (hx, hy) as fractions of the panel, with the head hw × the panel width across. Use it instead of `fr: 'close'/'bust'` in narrow or very tall panels, and to leave a set amount of room for a balloon. (Allow for tall hats yourself: Dumbledore's hat rises well above his head centre.)
+- **Aim at a head:** `cam: { head: 'harry', hw: 0.34, hx: 0.5, hy: 0.42 }` puts Harry's head centre at (hx, hy) as fractions of the panel, with the head hw × the panel width across. Give `w` (world units) instead of `hw` for a fixed zoom, and `dx`/`dy` (world units) to shift the camera off the head. Use it instead of `fr: 'close'/'bust'` in narrow or very tall panels, and to leave a set amount of room for a balloon. (Allow for tall hats yourself: Dumbledore's hat rises well above his head centre.)
 - **Tilt:** any cam may add `roll` in degrees for a Dutch angle, e.g. `{ on: ['snape'], fr: 'bust', roll: -8 }`. The picture zooms just enough to hide empty corners; anchors and tails follow the tilt.
 - **Rotation:** an actor's `rot` turns the whole figure about its feet, and now its anchors (head, mouth, hands) turn too, so tails and cameras aim correctly. Pose `'lie'` lies a character down (head left; `rot: 90` for head right).
 - **Arms:** `armB: { front: true }` draws the far arm in front of the body (reaching across the chest, a wand held in front). Anchors `handF` / `handB` give the hands' positions for aiming bolts or placing props. In wide sleeves the hand now comes out past the cuff (`outfit.handOut` tunes it). Dark sleeves get a faint light rim (only on arms drawn in front of the body) so arms read against dark robes. Folded arms (elbow bent ~90-125°) keep the hand at the cuff. `armX.prop` is drawn on top of the sleeve, at the drawn hand. Stock poses `crossArms`, `think` and `chin` fold the far arm across the body (drawn in front); `facepalm` puts the palm on the face.

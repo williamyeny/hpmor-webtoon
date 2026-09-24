@@ -24,6 +24,9 @@ export const hat = (text, x, y, o = {}) => ({ type: 'hat', who: 'Sorting Hat', t
 export const title = (text, x, y, o = {}) => ({ type: 'title', text, x, y, w: o.w ?? 700, ...o });
 export const plain = (text, x, y, o = {}) => ({ type: 'plain', text, x, y, w: o.w ?? 600, ...o });
 
+// tile-level options, dropping the ones that weren't given
+const tileOpts = (o) => Object.fromEntries(Object.entries(o).filter(([, v]) => v !== undefined && v !== null && v !== ''));
+
 export class Episode {
   constructor({ id, number, title, subtitle = '' }) {
     Object.assign(this, { id, number, title, subtitle });
@@ -33,17 +36,13 @@ export class Episode {
   setBg(bg) { this.bg = bg; return this; }
   // raw tile
   tile(t) { this.tiles.push({ bg: this.bg, ...t }); return this; }
-  // one panel in a tile. h = tile height. opts.panel overrides panel rect; shotOpts → scene.shot
+  // one panel in a tile. h = tile height; shotOpts → scene.shot (or a function drawing the art).
+  // Layout options: pad, x, y, w, ph (panel height), panel (raw overrides); tile options: bg, alt, tile.
+  // Every other option (mood, border, shape, frame, breakout…) is a panel property, see layout.js and frames.js.
   panel(h, shotOpts, bubbles = [], o = {}) {
-    const pad = o.pad ?? 18;
-    const p = { x: o.x ?? M, y: o.y ?? pad, w: o.w ?? W - 2 * M, h: o.ph ?? h - 2 * pad, art: typeof shotOpts === 'function' ? shotOpts : shot(shotOpts), ...o.panel };
-    if (o.mood) p.mood = o.mood;
-    if (o.border) p.border = o.border;
-    if (o.light !== undefined) p.light = o.light;
-    if (o.overlay) p.overlay = o.overlay;
-    // special frames (engine/core/frames.js): shape, frame style, breakout, cutout and their parameters
-    for (const k of ['shape', 'frame', 'breakout', 'breakoutOnly', 'cutout', 'spring', 'slant', 'cutTop', 'cutBottom', 'seed', 'tear', 'points', 'glow', 'shadow', 'rotate', 'borderWidth', 'borderColor', 'feather', 'jag']) if (o[k] !== undefined) p[k] = o[k];
-    return this.tile({ h, panels: [p], bubbles, ...(o.tile || {}), ...(o.bg ? { bg: o.bg } : {}), ...(o.alt ? { alt: o.alt } : {}) });
+    const { pad = 18, x = M, y = pad, w = W - 2 * M, ph = h - 2 * pad, panel = {}, tile = {}, bg, alt, over, under, ...props } = o;
+    const p = { ...props, x, y, w, h: ph, art: typeof shotOpts === 'function' ? shotOpts : shot(shotOpts), ...panel };
+    return this.tile({ h, panels: [p], bubbles, ...tile, ...tileOpts({ bg, alt }) });
   }
   // a figure (or object) with no frame and no background, standing on the page itself
   cutout(h, shotOpts, bubbles = [], o = {}) { return this.panel(h, shotOpts, bubbles, { ...o, cutout: true, border: 'none' }); }
@@ -52,13 +51,13 @@ export class Episode {
     return this.panel(h, shotOpts, bubbles, { ...o, x: 0, w: W, pad: 0, ph: h, border: 'bleed', panel: { fadeTop: o.fadeTop, fadeBottom: o.fadeBottom, ...(o.panel || {}) } });
   }
   // gutter-only beat (text between panels)
-  beat(h, bubbles = [], o = {}) { return this.tile({ h, panels: [], bubbles, ...(o.bg ? { bg: o.bg } : {}), ...(o.over ? { over: o.over } : {}), ...(o.under ? { under: o.under } : {}) }); }
+  beat(h, bubbles = [], o = {}) { return this.tile({ h, panels: [], bubbles, ...tileOpts({ bg: o.bg, over: o.over, under: o.under }) }); }
   // closing tile: "To be continued" + wax seal (the site's next-episode card handles the rest)
   end(text = 'To be continued') {
     return this.beat(340, [plain(text, 400, 140, { font: "'IM Fell English SC', serif", size: 34, color: '#3a2a20' })], { over: () => g({ transform: 'translate(400,230)' }, seal(0, 0, 34, 'H')) });
   }
   // multi-panel tile
   multi(h, panels, bubbles = [], o = {}) {
-    return this.tile({ h, panels: panels.map((p) => ({ ...p, art: typeof p.art === 'function' || typeof p.art === 'string' ? p.art : shot(p.art) })), bubbles, ...(o.bg ? { bg: o.bg } : {}), ...(o.over ? { over: o.over } : {}), ...(o.alt ? { alt: o.alt } : {}) });
+    return this.tile({ h, panels: panels.map((p) => ({ ...p, art: typeof p.art === 'function' || typeof p.art === 'string' ? p.art : shot(p.art) })), bubbles, ...tileOpts({ bg: o.bg, over: o.over, alt: o.alt }) });
   }
 }

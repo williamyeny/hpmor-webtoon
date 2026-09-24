@@ -4,7 +4,7 @@ import * as P2 from '../../engine/props/props2.js';
 import { g, rect } from '../../engine/core/svg.js';
 const row = (defs, w = 2600) => ({ h: 560, panels: [{ x: 20, y: 20, w: 760, h: 520, mood: 'warm', art: shot({ cam: { x: w / 2 - 150, y: 520, w }, bg: () => rect(-500, -500, 4000, 2000, { fill: '#d9c9a8' }), actors: defs.map((d, i) => ({ def: d, id: 'a' + i, x: i * (w / defs.length), y: 1000, s: d.body.headRy > 57 && d.body.torsoH < 110 ? 1.1 : 1, turn: 0.2, pose: 'stand', expr: 'neutral' })) }) }] });
 const props = (items) => ({ h: 560, panels: [{ x: 20, y: 20, w: 760, h: 520, mood: 'warm', art: (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#d9c9a8' }) + items.map(([fn, x, y, s]) => g({ transform: `translate(${x},${y}) scale(${s})` }, fn)).join('') }] });
-export default { title: 'b2cast', tiles: [
+export default { title: 'cast', tiles: [
   row([K2.hermioneRaven, K2.nevilleHuff, K2.dracoSly, K2.ernie, K2.terry, K2.anthony, K2.padma]),
   row([K2.michael, K2.dean, K2.zabini, K2.crabbe, K2.goyle, K2.derrick, K2.slyTeen(1)]),
   row([K2.hooch, K2.dumbledorePJ, K2.oldLady, K2.flubberwalt, K2.aristocrat, K2.master, K2.youngQuirrell], 3200),

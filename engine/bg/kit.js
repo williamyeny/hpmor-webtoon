@@ -304,8 +304,3 @@ export function rainOverlay(w, h, seed = 3, density = 1, op = 0.5) {
   for (let i = 0; i < (w * h / 2500) * density; i++) { const x = R() * w, y = R() * h, L = R.range(20, 46); out += line(x, y, x - L * 0.25, y + L, { stroke: '#d9e6ef', 'stroke-width': R.range(1, 2), opacity: R.range(0.25, op) }); }
   return out;
 }
-export function snowOverlay(w, h, seed = 3, density = 1) {
-  const R = rng(seed); let out = '';
-  for (let i = 0; i < (w * h / 3000) * density; i++) out += circle(R() * w, R() * h, R.range(1.5, 4.5), { fill: '#fff', opacity: R.range(0.5, 0.95) });
-  return out;
-}

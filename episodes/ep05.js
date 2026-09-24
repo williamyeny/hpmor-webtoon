@@ -185,7 +185,7 @@ ep.panel(620, (ctx) => {
   out += path('M322,340 q-3,16 0,26', { stroke: '#9a1c30', 'stroke-width': 9, 'stroke-linecap': 'round', fill: 'none' }) + drop(322, 402, 10) + drop(322, 462, 8);
   out += ellipse(324, 530, 118, 24, { fill: '#7a1426', stroke: C.ink, 'stroke-width': 3 }) + ellipse(300, 524, 40, 7, { fill: '#c84a5a', opacity: 0.6 });
   return out;
-}, [note('drip', 530, 410, { size: 48, color: '#f6e7cf' }), note('drip', 515, 480, { size: 40, color: '#f6e7cf' })], { mood: 'warm', shape: 'circle', x: 110, w: 580, alt: 'Close on McGonagall\'s hand: the forgotten wine glass tilts, dripping red wine into a small puddle on the floor.' });
+}, [note('drip', 530, 410, { size: 48, color: '#f6e7cf' }), note('drip', 515, 480, { size: 40, color: '#f6e7cf' })], { mood: 'warm', shape: 'oval', x: 110, w: 580, alt: 'Close on McGonagall\'s hand: the forgotten wine glass tilts, dripping red wine into a small puddle on the floor.' });
 ep.panel(700, { cam: { on: ['mcgonagall', 'malkin'], fr: 'bust' }, bg: MI, actors: [MAL({ x: 1300, turn: 0.4, expr: 'calm', pose: 'stand' }), { def: mcgonagall, id: 'mcgonagall', x: 1560, y: 1010, turn: -0.4, pose: 'stand', expr: 'calm' }] },
   [say('McGonagall', 'Madam Malkin. What has been happening here?', 560, 90, { w: 300 })], { mood: 'warm' });
 ep.multi(360, [0, 1, 2, 3].map((i) => ({ x: M + i * 190, y: 18, w: 176, h: 324, mood: 'warm', art: { cam: { on: ['malkin'], fr: 'close' }, bg: MI, blur: 3, actors: [MAL({ x: 1300, turn: 0.2, expr: i < 3 ? 'calm' : { base: 'calm', mouth: { type: 'wobble' } } })] } })),

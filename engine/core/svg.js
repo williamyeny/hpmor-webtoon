@@ -48,8 +48,6 @@ export const rot = (p, ang, c = [0, 0]) => {
   const x = p[0] - c[0], y = p[1] - c[1];
   return [c[0] + x * co - y * s, c[1] + x * s + y * co];
 };
-// polar: angle in degrees, 0 = straight down (+y), positive = counter-clockwise toward +x
-export const polarDown = (o, l, angDeg) => [o[0] + Math.sin(deg(angDeg)) * l, o[1] + Math.cos(deg(angDeg)) * l];
 
 // ---------- deterministic randomness ----------
 export function rng(seed = 1) {
@@ -106,22 +104,10 @@ export const quad = (a, c, b, t) => [
   (1 - t) * (1 - t) * a[0] + 2 * (1 - t) * t * c[0] + t * t * b[0],
   (1 - t) * (1 - t) * a[1] + 2 * (1 - t) * t * c[1] + t * t * b[1],
 ];
-export const quadPts = (a, c, b, n = 8) => Array.from({ length: n + 1 }, (_, i) => quad(a, c, b, i / n));
 
 // ellipse point, angle in radians (0 = +x, clockwise since y is down)
 export const ePt = (cx, cy, rx, ry, a) => [cx + Math.cos(a) * rx, cy + Math.sin(a) * ry];
 
-// A slightly irregular ("hand-drawn") closed blob around a center
-export function blobD(cx, cy, rx, ry, seed = 1, wob = 0.06, n = 14) {
-  const R = rng(seed);
-  const pts = [];
-  for (let i = 0; i < n; i++) {
-    const a = (i / n) * Math.PI * 2;
-    const k = 1 + (R() - 0.5) * 2 * wob;
-    pts.push(ePt(cx, cy, rx * k, ry * k, a));
-  }
-  return smoothD(pts, true);
-}
 
 // Rounded rect path with optional wobble
 export function rrectD(x, y, w, h, r, seed = 0, wob = 0) {

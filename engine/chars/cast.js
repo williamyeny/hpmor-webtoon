@@ -55,8 +55,6 @@ export const harry = { ...harryBase, outfit: { top: '#c9922e', legs: '#4b4a55', 
   } } };
 export const harryRobes = { ...harryBase, outfit: { top: '#23202a', robe: true, robeColor: '#23202a', robeLen: 0.95, wideSleeves: true, cuffW: 1.7, legs: '#3b3a45', shoes: '#3a2418', collar: '#f2ecde', neckline: true, robeTrim: '#3a3744' } };
 export const harryRaven = { ...harryRobes, outfit: { ...harryRobes.outfit, robeTrim: '#2f4f86', cuff: '#2f4f86', tie: '#2f4f86' } };
-// the Mr Bronze disguise: scarf wrapped over the face
-export const harryScarf = { ...harryRobes, extraFront: 'scarf' };
 
 // ---------- McGonagall
 export const mcgonagall = {

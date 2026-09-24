@@ -5,6 +5,8 @@
 import { C } from '../core/palette.js';
 import { g, path, rect, circle, ellipse, line, polygon, text, smoothD, rng, shade, mixHex, uid, r2 } from '../core/svg.js';
 import * as K from './kit.js';
+import * as P2c from '../props/props2.js';
+import { sortingHat } from './hogwarts.js';
 const bl = K.bl;
 export const FLOOR = 900;
 export const HOUSE = { g: '#9a2a2a', s: '#2f5a40', r: '#2f4f86', h: '#d6a33a' };
@@ -432,8 +434,6 @@ export const broomUnder = (id, S = 60, rot = 0, s = 1.1) => (e) => { const a = e
 // ---------------------------------------------------------------- Dumbledore's office (Book Two): whirring instruments, sleeping portraits,
 // the hat rack (Sorting Hat, two umbrellas, three red left slippers), a golden perch whose bird is o.bird:
 // 'chicken' | 'fire' | 'ash' | 'egg' | 'phoenix' | 'none'. Desk centre x = 1000; throne behind; door at x ≈ 2200.
-import * as P2c from '../props/props2.js';
-import { sortingHat } from './hogwarts.js';
 export function dumbledoreOffice(o = {}) {
   const R = rng(233);
   let out = rect(-800, -900, 4000, 2200, { fill: '#2a2440' });

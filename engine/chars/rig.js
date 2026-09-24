@@ -9,6 +9,9 @@ import { resolveExpr, deepMerge } from './expressions.js';
 // ---------------------------------------------------------------- poses
 // Angles in degrees from straight down; + rotates toward screen-right (the facing direction).
 // arm: {sh, el, hand, hr}  leg: {hip, knee}  plus lean, headTilt, hipY (for sitting/crouching)
+// hooks.onDraw(def, opts) is called for every character drawn (work/tilesfor.mjs uses it to find tiles by pose)
+export const hooks = { onDraw: null };
+
 export const POSES = {
   stand:      { armF: { sh: -6, el: 4 }, armB: { sh: 8, el: -4 }, legF: { hip: -3 }, legB: { hip: 4 } },
   relaxed:    { armF: { sh: -3, el: 10, hand: 'open' }, armB: { sh: 5, el: 8 }, legF: { hip: -5 }, legB: { hip: 6 } },
@@ -131,7 +134,7 @@ export function limbD(p0, p1, p2, w0, w1, w2, cap = true) {
 
 // ---------------------------------------------------------------- main
 export function drawCharacter(def, opts = {}) {
-  if (globalThis.__poseLog) globalThis.__poseLog.push({ pose: typeof opts.pose === 'string' ? opts.pose : 'custom', prop: !!(opts.armF?.prop || opts.armB?.prop), wide: !!def.outfit?.wideSleeves }); // work/tilesfor.mjs
+  if (hooks.onDraw) hooks.onDraw(def, opts);
   const B = def.body;
   const lw = opts.lw ?? 3.2;
   let pose = typeof opts.pose === 'string' ? POSES[opts.pose] : opts.pose;
@@ -143,7 +146,7 @@ export function drawCharacter(def, opts = {}) {
   const bt = Math.abs(bodyTurn), bsgn = bodyTurn >= 0 ? 1 : -1;
   // everything is built facing right (bt ≥ 0) and mirrored if the turn is negative or flip is set
   const flip = (opts.flip ? 1 : 0) ^ (bodyTurn < 0 ? 1 : 0);
-  const ht = headTurn * (bodyTurn < 0 ? -1 : 1) * (opts.flip ? 1 : 1);
+  const ht = headTurn * (bodyTurn < 0 ? -1 : 1);
   const light = (opts.light ?? -0.6) * (flip ? -1 : 1);
   const skin = def.skin, skinSh = def.skinShade || shade(def.skin, -0.18);
   const O = def.outfit || {};

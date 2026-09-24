@@ -3,7 +3,7 @@ import * as CS from '../../engine/bg/castle.js';
 import * as K from '../../engine/chars/cast.js';
 const P = (bg, cam, actors = [], mood = 'warm', fg) => ({ h: 620, panels: [{ x: 20, y: 20, w: 760, h: 580, mood, art: shot({ cam, bg, actors, fg }) }] });
 const H = (o = {}) => ({ def: K.harryRaven, id: 'harry', x: 1100, y: 1000, s: 1.1, turn: 0.2, expr: 'neutral', pose: 'stand', ...o });
-export default { title: 'b2sets', tiles: [
+export default { title: 'sets', tiles: [
   P(() => CS.ravenclawDorm({ time: 'night' }), { x: 1100, y: 450, w: 2200 }, [H({ x: 1100, y: 880, pose: 'sit', expr: 'asleep' })], 'candle', () => CS.dormBlanket()),
   P(() => CS.ravenclawDorm({ time: 'late', empty: true, harryNote: true, quiet: 1 }), { x: 1100, y: 450, w: 2000 }, [], 'warm'),
   P(() => CS.trunkCavern(), { x: 1000, y: 450, w: 2200 }, [H({ x: 900 })]),

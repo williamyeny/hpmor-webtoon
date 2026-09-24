@@ -396,7 +396,7 @@ ep.panel(940, { cam: at(940, 780, 730, 420, 400, 500), bg: OF({}), actors: [DECO
   [say('Dumbledore', 'And of course, most people who come to my office want to see *Fawkes.* Fawkes is a phœnix. Very rare, very powerful magical creatures.', 400, 60, { anchor: 'tc', w: 500, fixed: true })], { mood: 'candle', alt: 'On the golden perch sits an ordinary brown chicken.' });
 // Harry's stare: a round spy-glass view, tight on the bird
 ep.panel(680, { cam: { x: 740, y: 300, w: 250 }, bg: OF({}) },
-  [cap('Harry stared into the tiny, beady black eyes, which showed not the slightest sign of power or intelligence. He was pretty sure he recognised the shape of the bird. It was pretty hard to miss.', 44, 24, { w: 620, fixed: true })], { mood: 'candle', shape: 'circle', x: 190, w: 420, y: 230, ph: 420, alt: 'Close on the bird: an ordinary brown chicken with tiny, beady black eyes.' });
+  [cap('Harry stared into the tiny, beady black eyes, which showed not the slightest sign of power or intelligence. He was pretty sure he recognised the shape of the bird. It was pretty hard to miss.', 44, 24, { w: 620, fixed: true })], { mood: 'candle', shape: 'oval', x: 190, w: 420, y: 230, ph: 420, alt: 'Close on the bird: an ordinary brown chicken with tiny, beady black eyes.' });
 ep.panel(1000, { cam: at(1000, 360, 472, 714, 400, 560), bg: OF({}), blur: 3, actors: [HP({ expr: 'pained' })] },
   [inner('Harry', '*Say something intelligent!*', 60, 40, { anchor: 'tl', w: 300, fixed: true }),
    inner('Harry', '*Well what the heck am I supposed to say?*', 740, 170, { anchor: 'tr', w: 300, fixed: true }),

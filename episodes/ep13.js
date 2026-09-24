@@ -129,7 +129,7 @@ ep.multi(1180, [
   { x: M, y: 396, w: 368, h: 360, mood: 'warm', art: { cam: { x: 560, y: 660, w: 480 }, bg: MORN() } },
   { x: 408, y: 396, w: 368, h: 360, mood: 'warm', art: { cam: { x: 1180, y: 20, w: 560 }, bg: MORN() } },
   { x: M, y: 774, w: 368, h: 388, mood: 'warm', art: { cam: { x: 1201, y: 530, w: 260 }, bg: MORN() } },
-  { x: 408, y: 830, w: 368, h: 332, shape: 'circle', mood: 'warm', art: { cam: { x: 1348, y: 690, w: 190 }, bg: MORN({ clock: [9, 52] }) } },
+  { x: 408, y: 830, w: 368, h: 332, shape: 'oval', mood: 'warm', art: { cam: { x: 1348, y: 690, w: 190 }, bg: MORN({ clock: [9, 52] }) } },
 ], [cap('The dorm: empty.', 44, 34, { w: 240, fixed: true }), cap('The beds: unmade.', 44, 412, { w: 250, fixed: true }), cap('The sun: rather high.', 426, 412, { w: 290, fixed: true }),
   cap('His Quieter: turned all the way up.', 40, 790, { w: 220, fixed: true }), cap('His alarm: switched off.', 424, 790, { w: 270, fixed: true })],
   { alt: 'Five views: the empty dorm; rumpled beds; sunlight slanting in high; the Quieter slider at maximum; the alarm clock at 9:52.' });

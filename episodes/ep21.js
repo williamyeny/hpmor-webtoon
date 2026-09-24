@@ -349,7 +349,7 @@ const TTA = [() => g({ transform: 'translate(1220,578) scale(0.75)' }, P2.timeTu
 const TTSPARK = (r) => (e) => { const [x, y] = e.toPanel([1183, 553]), [x2, y2] = e.toPanel([1262, 530]); return FX.sparkles([[x, y, r], [x2, y2, r * 0.6]]); };
 ep.multi(1000, [
   { x: M, y: 18, w: 752, h: 964, mood: 'warm', art: { cam: { x: 1225, y: 600, w: 760 }, bg: MO, actors: TTA, over: TTSPARK(14) } },
-  { x: 44, y: 630, w: 300, h: 300, shape: 'circle', frame: 'glow', glow: '#ffcf75', shadow: true, mood: 'warm', art: { cam: { x: 1212, y: 572, w: 190 }, bg: MO, blur: 3, actors: TTA, over: (e) => K.glow(e.w / 2, e.h / 2, 150, '#ffe9a8', 0.35) + TTSPARK(24)(e) } },
+  { x: 44, y: 630, w: 300, h: 300, shape: 'oval', frame: 'glow', glow: '#ffcf75', shadow: true, mood: 'warm', art: { cam: { x: 1212, y: 572, w: 190 }, bg: MO, blur: 3, actors: TTA, over: (e) => K.glow(e.w / 2, e.h / 2, 150, '#ffe9a8', 0.35) + TTSPARK(24)(e) } },
 ], [cap('Harry\'s face twisted in agony, but he drew out the Time-Turner and gave it to her. She snapped the cover into place around the hourglass, and laid her wand on it to complete the enchantment.', 44, 30, { w: 620, fixed: true })], { alt: 'The hourglass disappears inside a gold shell engraved IX–XII.' });
 const HMU = (o = {}) => HM({ pose: 'stand', seat: undefined, y: 1060, ...o });
 ep.panel(1060, { cam: ON(HMU(), 440, 0, -80), bg: MO, blur: 2, actors: [HCH, HMU({ pose: 'fists', expr: { base: 'angry', eyes: { teary: true }, mouth: { type: 'scream', open: 0.9 } } })] },

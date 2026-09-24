@@ -2,7 +2,7 @@
 // A tile = gutter background + panels (SVG art, clipped + textured + bordered) + lettering (HTML, laid out in-page).
 import { baseDefs } from './filters.js';
 import { C, MOODS } from './palette.js';
-import { uid, rect, g, el, r2, rrectD, polyD, escText } from './svg.js';
+import { uid, rect, g, el, r2, rrectD, escText } from './svg.js';
 import { shapeD, STYLES } from './frames.js';
 
 export const TILE_W = 800;
@@ -17,13 +17,9 @@ function gutterFill(bg, id) {
   };
 }
 
+// the panel's outline: a named or custom shape (frames.js), else a rounded rectangle
 function panelShape(p) {
-  const { w, h } = p;
-  if (p.shape === 'poly' && p.pts) return { d: polyD(p.pts.map(([x, y]) => [x * w, y * h]), true) };
-  if (p.shape === 'circle') return { d: `M${w / 2},0 A${w / 2},${h / 2} 0 1 1 ${w / 2 - 0.01},0Z` };
-  const named = p.shape && shapeD(p); if (named) return { d: named }; // frames.js: arch, gothic, keyhole, torn, burst…
-  const rad = p.round ?? 5;
-  return { d: rrectD(0, 0, w, h, rad) };
+  return { d: (p.shape && shapeD(p)) || rrectD(0, 0, p.w, p.h, p.round ?? 5) };
 }
 
 export function composePanel(p, tileCtx) {

@@ -106,7 +106,6 @@ export function slytherinRoom(o = {}) {
   out += K.glow(1350, 760, 420, C.ember, 0.4) + K.glow(780, 720, 260, C.candle, 0.35);
   return out;
 }
-export const slyDesk = () => rect(200, 620, 700, 34, { fill: '#3a2618', ...bl(2) }) + rect(230, 654, 640, 400, { fill: '#2e1e12', ...bl(2) }) + K.candle(780, 620, 1.2, true);
 
 // ---------------------------------------------------------------- inside a train compartment (1600 × 1100)
 // Window centred at x 800; bench L (Hermione) seat front edge at x≈420, bench R at x≈1180; seat height y≈760.

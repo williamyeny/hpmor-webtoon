@@ -5,6 +5,7 @@
 //   dx, dy (in head-heights), zoom (multiplier), bias ('top'…)}.
 // Or aimed at one head: {head: 'harry', hw: 0.34, hx: 0.5, hy: 0.42}: the head is hw × the panel's width
 //   across, with its centre at (hx, hy) as fractions of the panel. Works the same in tall, narrow or wide panels.
+//   Give w (world units) instead of hw for a fixed zoom, and dx, dy (world units) to nudge the camera off the head.
 // Any cam may add roll: degrees of tilt (a Dutch angle), e.g. {on: ['snape'], fr: 'bust', roll: -8}.
 import { g, r2, rect, ellipse } from './svg.js';
 import { place } from '../chars/rig.js';
@@ -17,9 +18,9 @@ export function headCam(cam, placed, ctx) {
   const p = placed.find((q) => q.id === cam.head);
   if (!p) return { x: 400, y: 300, w: ctx.w };
   const [hx, hy] = p.anchors.head;
-  const w = (p.def.body.headRx * 2 * p.s) / (cam.hw ?? 0.34);
+  const w = cam.w ?? (p.def.body.headRx * 2 * p.s) / (cam.hw ?? 0.34);
   const h = w * ctx.h / ctx.w;
-  return { x: hx + (0.5 - (cam.hx ?? 0.5)) * w, y: hy + (0.5 - (cam.hy ?? 0.42)) * h, w };
+  return { x: hx + (0.5 - (cam.hx ?? 0.5)) * w + (cam.dx ?? 0), y: hy + (0.5 - (cam.hy ?? 0.42)) * h + (cam.dy ?? 0), w };
 }
 
 export function autoCam(cam, placed, ctx) {

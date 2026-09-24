@@ -36,7 +36,7 @@ ep.panel(900, { cam: { x: 790, y: 700, w: 1050, roll: -6 }, bg: () => B.tunnel({
 // =============================================================== the vault
 // the reveal, seen through the round vault door
 ep.panel(900, { cam: { x: 900, y: 700, w: 1100 }, bg: () => B.vault(), actors: [{ def: harry, id: 'harry', x: 900, y: 1300, s: 1.6, turn: 0, pose: 'stand', expr: 'awe' }] },
-  [capC('Heaps of gold Galleons. Stacks of silver Sickles. Piles of bronze Knuts.', 400, 66, { w: 560, fixed: true })], { shape: 'circle', frame: 'stone', panel: { x: 32, y: 136, w: 736, h: 736 }, mood: 'candle', alt: 'The Potter vault: mountains of gold coins glittering in torchlight, and Harry, very small, staring.' });
+  [capC('Heaps of gold Galleons. Stacks of silver Sickles. Piles of bronze Knuts.', 400, 66, { w: 560, fixed: true })], { shape: 'oval', frame: 'stone', panel: { x: 32, y: 136, w: 736, h: 736 }, mood: 'candle', alt: 'The Potter vault: mountains of gold coins glittering in torchlight, and Harry, very small, staring.' });
 ep.panel(800, { cam: { on: ['mcgonagall'], fr: 'waist', dx: -0.6 }, bg: () => B.vaultDoor(true), actors: [{ def: mcgX, id: 'mcgonagall', x: 1150, y: 1070, turn: -0.2, pose: 'crossArms', expr: { base: 'calm', eyes: { lookX: -0.4, lookY: 0.3 } } }] },
   [cap('From the doorway, Professor McGonagall watched him. She was leaning casually against the wall, but with her eyes intent.', 44, 34, { w: 330 }),
    cap('Being plopped in front of a giant heap of gold coins was a test of character so pure it was archetypal.', 44, 612, { w: 440 })], { mood: 'candle' });

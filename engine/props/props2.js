@@ -81,7 +81,6 @@ export function cloak(w = 300, h = 200, o = {}) {
 
 // ---------- Charms & Transfiguration
 export function match(s = 1, silver = 0) { return g({ transform: `scale(${s})` }, rect(-3, -40, 6, 70, S(silver ? '#c9ced4' : '#d9b27a', 1.2)), silver ? path('M0,-40 L0,-50', { stroke: '#c9ced4', 'stroke-width': 2 }) : ellipse(0, -42, 5, 8, S('#9a2a2a', 1.2))); }
-export function needle(s = 1) { return g({ transform: `scale(${s})` }, path('M0,-44 L2,30 L0,36 L-2,30Z', S('#c9ced4', 1.2)), ellipse(0, -36, 1.5, 4, { fill: '#555' })); }
 // a pig (McGonagall's desk). o.pose 'stand'; facing right
 export function pig(s = 1, o = {}) {
   let out = ellipse(0, -80, 130, 72, S('#f0b7ae', 2.6));

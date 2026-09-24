@@ -5,12 +5,14 @@
 //
 // Use on any panel: { shape: 'arch', frame: 'stone' }  (in ep.panel/bleed opts: panel: { shape, frame })
 // Shapes take (w, h, p) and return an SVG path in panel coordinates (0,0)-(w,h).
-import { rng, r2 } from './svg.js';
+import { rng, r2, polyD } from './svg.js';
 
 const f = (n) => r2(n);
 const P = (pts) => 'M' + pts.map(([x, y]) => `${f(x)},${f(y)}`).join(' L') + 'Z';
 
 export const SHAPES = {
+  // any polygon: p.pts as [x, y] fractions of the panel (diagonal seams, lopsided panels)
+  poly: (w, h, p) => polyD(p.pts.map(([x, y]) => [x * w, y * h]), true),
   // round-topped arch: doorways, the Leaky Cauldron's wall, castle windows. p.spring = where the curve starts (0-1 of h)
   arch: (w, h, p) => { const s = h * (p.spring ?? Math.min(0.5, (w / 2) / h)); return `M0,${f(h)} L0,${f(s)} A${f(w / 2)},${f(s)} 0 0 1 ${f(w)},${f(s)} L${f(w)},${f(h)}Z`; },
   // pointed (gothic) arch: Hogwarts corridors, the Great Hall windows
@@ -43,15 +45,13 @@ export const STYLES = {
   // gilt: portraits, mirrors, the Headmaster's office
   gilt: (d) => `<path d="${d}" fill="none" stroke="#2b2226" stroke-width="16" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#c9a24a" stroke-width="12" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#f0d27e" stroke-width="3" stroke-linejoin="round" opacity="0.8"/><path d="${d}" fill="none" stroke="#7a5a1e" stroke-width="1.5" stroke-dasharray="2 7" stroke-linejoin="round"/>`,
   // stone: arches, castle windows
-  stone: (d) => `<path d="${d}" fill="none" stroke="#2b2226" stroke-width="22" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#8a8378" stroke-width="18" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#b7ad9c" stroke-width="18" stroke-dasharray="26 5" stroke-linejoin="round" opacity="0.7"/><path d="${d}" fill="none" stroke="#2b2226" stroke-width="2" stroke-linejoin="round" transform="translate(0,0)"/>`,
+  stone: (d) => `<path d="${d}" fill="none" stroke="#2b2226" stroke-width="22" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#8a8378" stroke-width="18" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#b7ad9c" stroke-width="18" stroke-dasharray="26 5" stroke-linejoin="round" opacity="0.7"/><path d="${d}" fill="none" stroke="#2b2226" stroke-width="2" stroke-linejoin="round"/>`,
   // wood: doors, window frames, the trunk
   wood: (d) => `<path d="${d}" fill="none" stroke="#2b2226" stroke-width="16" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#6b4429" stroke-width="12" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#8a5d38" stroke-width="3" stroke-dasharray="30 12" stroke-linejoin="round"/>`,
   // glow: magic, the stars, a screen switched on
   glow: (d, p) => `<path d="${d}" fill="none" stroke="${p.glow || '#bfe3ff'}" stroke-width="12" opacity="0.35" filter="url(#blur3)"/><path d="${d}" fill="none" stroke="${p.glow || '#bfe3ff'}" stroke-width="3"/>`,
   // paper: torn notes and letters (thin, no wobble)
   paper: (d) => `<path d="${d}" fill="none" stroke="#6a5030" stroke-width="1.6" stroke-linejoin="round"/>`,
-  // double rule: formal documents, the Hat's verdicts
-  double: (d) => `<path d="${d}" fill="none" stroke="#2b2226" stroke-width="3" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#2b2226" stroke-width="1.2" stroke-linejoin="round" transform="translate(0,0)" opacity="0.6" stroke-dasharray="1 0"/>`,
   none: () => '',
   // dissolve: no line at all; the panel's edges fade softly into the page on every side (layout.js masks it). p.feather = px
   dissolve: () => '',

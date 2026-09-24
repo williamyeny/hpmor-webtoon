@@ -83,28 +83,6 @@ export function bushy(seed = 'herm') {
   };
 }
 
-// ---------- slicked back (Draco; Lucius uses long:true)
-export function slick(seed = 'draco', o = {}) {
-  return {
-    back(ctx) {
-      const { rx, ry, s, lw, color } = ctx;
-      if (!o.long) return '';
-      const d = `M${-rx * 1.0 + s * 4},${-ry * 0.3} Q${-rx * 1.25},${ry * 1.2} ${-rx * 0.9},${ry * 2.6} L${rx * 0.9},${ry * 2.6} Q${rx * 1.25},${ry * 1.2} ${rx * 1.0 + s * 4},${-ry * 0.3}Z`;
-      return path(d, { fill: shade(color, -0.12), ...ink(lw) }) +
-        path(`M${-rx * 0.6},${ry * 0.6} Q${-rx * 0.7},${ry * 1.6} ${-rx * 0.5},${ry * 2.5} M${rx * 0.6},${ry * 0.6} Q${rx * 0.7},${ry * 1.6} ${rx * 0.5},${ry * 2.5}`, { fill: 'none', stroke: shade(color, -0.3), 'stroke-width': lw * 0.7 });
-    },
-    front(ctx) {
-      const { rx, ry, s, lw, color } = ctx;
-      const hl = o.hairline ?? -0.42;
-      const pts = [[-rx * 1.04, ry * 0.05], [-rx * 1.1, -ry * 0.55], [-rx * 0.6 + s * 4, -ry * 1.12], [s * 10, -ry * 1.2], [rx * 0.7 + s * 4, -ry * 1.1], [rx * 1.1, -ry * 0.55], [rx * 1.04, ry * 0.05],
-        [rx * 0.86, -ry * 0.1], [rx * 0.45 + s * 10, ry * hl], [s * 14, ry * (hl - 0.05)], [-rx * 0.5 + s * 10, ry * hl], [-rx * 0.86, -ry * 0.1]];
-      let comb = '';
-      for (let i = 0; i < 6; i++) { const x = lerp(-rx * 0.7, rx * 0.7, i / 5) + s * 10; comb += `M${x},${ry * (hl - 0.02)} Q${x * 0.9},${-ry * 0.85} ${x * 0.6 - rx * 0.1},${-ry * 1.12} `; }
-      return path(smoothD(pts, true, 0.4), { fill: color, ...ink(lw) }) +
-        path(comb, { fill: 'none', stroke: shade(color, -0.25), 'stroke-width': lw * 0.6, opacity: 0.7 }) + shine(ctx, -ry * 0.78, 0.5, '#ffffff');
-    },
-  };
-}
 
 // ---------- hair pulled into a bun (McGonagall, Mum)
 export function bun(seed = 'bun', o = {}) {
