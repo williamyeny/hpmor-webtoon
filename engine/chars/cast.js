@@ -390,3 +390,25 @@ export const ginny = { ...makeExtra(801, { kid: true, female: true, hairStyle: '
 export const stallMan = { ...makeExtra(802, { old: false, female: false, hairStyle: 'bald', robe: '#5a4a3a' }), name: 'stallMan' };
 stallMan.facialHair = ({ rx, ry, s, lw, F, mz }) => path(smoothD([[-rx * 0.85, ry * 0.3], [-rx * 0.7, ry * 1.1], [mz.x, ry * 1.5], [rx * 0.7, ry * 1.1], [rx * 0.85, ry * 0.3], [mz.x + 16, F.mouthY + 8], [mz.x - 16, F.mouthY + 8]], true, 0.4), { fill: '#6a4a2a', stroke: C.ink, 'stroke-width': lw * 0.9 });
 Object.assign(CAST, { molly, fred, george, ron, ginny, stallMan });
+
+// ---------- Neville Longbottom: small, round, frightened
+export const neville = {
+  name: 'neville', body: { ...KID_SMALL, headRx: 62, headRy: 58, waistW: 70, hipW: 70 }, skin: '#f4d8c2', skinShade: '#dab29a',
+  head: { jaw: 0.74, chin: 0.96, cheek: 1.0 },
+  face: kidFace({ eyeY: 14, eye: { color: '#6a5a4a', w: 22, h: 24, iris: 9 }, brow: { color: '#8a6a44', len: 18, w: 4 }, rosy: true, mouth: { w: 18 } }),
+  hair: { color: '#9a7a4a', ...H.neat('nev', { part: 0.1, fringe: true }) },
+  outfit: { top: '#6a7a5a', legs: '#4a4a55', shoes: '#3a2418', ribbed: true, collar: '#f2ecde' },
+};
+// the Lords of Chaos: a figure with a darkened, blurred scarf "grave shroud" over the head
+export const chaosLord = (base, seed) => ({ ...base, name: 'chaos' + seed, hat: ({ rx, ry, s, lw }) => g({ filter: 'url(#blur1)' }, path(smoothD([[-rx * 1.25, ry * 1.4], [-rx * 1.35, -ry * 0.4], [0, -ry * 1.5], [rx * 1.35, -ry * 0.4], [rx * 1.25, ry * 1.4]], false, 0.5) + 'Z', { fill: '#141018', stroke: '#2b2a3a', 'stroke-width': lw }), ellipse(-rx * 0.35 + s * 20, -ry * 0.05, 8, 5, { fill: '#e6f0ff', opacity: 0.8 }), ellipse(rx * 0.35 + s * 20, -ry * 0.05, 8, 5, { fill: '#e6f0ff', opacity: 0.8 })), hatTop: 0.6 });
+Object.assign(CAST, { neville });
+
+// ---------- Hermione Granger: bushy hair, bright brown eyes, slightly large front teeth, brand-new robes
+export const hermione = {
+  name: 'hermione', body: { ...KID, headRx: 58, headRy: 58 }, skin: '#f3d6c0', skinShade: '#d9ae95',
+  head: { jaw: 0.56, chin: 1.04, cheek: 0.9 },
+  face: kidFace({ eye: { color: '#7a4a24', w: 24, h: 27, iris: 10.5, lash: 2.0 }, brow: { color: '#6a3e1e', len: 21, w: 4.6 }, rosy: true, buckTeeth: true, mouth: { w: 19 } }),
+  hair: { color: '#7a4a28', ...H.bushy('hermione') },
+  outfit: { top: '#1f1d24', robe: true, robeColor: '#1f1d24', robeLen: 0.95, wideSleeves: true, cuffW: 1.6, legs: '#2a2630', shoes: '#3a2418', collar: '#f2ecde', robeTrim: '#35323c' },
+};
+Object.assign(CAST, { hermione });

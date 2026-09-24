@@ -93,3 +93,51 @@ export function quibblerPage(o = {}) {
   for (let i = 0; i < 6; i++) out += line(-180, 160 + i * 16, 180 - (i % 3) * 40, 160 + i * 16, { stroke: '#8a7d68', 'stroke-width': 4 });
   return out;
 }
+
+// ---------------------------------------------------------------- a Slytherin private room (1600 × 1100)
+export function slytherinRoom(o = {}) {
+  let out = rect(-300, -300, 2200, 1600, { fill: '#1a2a22' });
+  out += K.stoneWall(-300, -300, 2200, 1200, '#4a5a50', 41, { bh: 64 });
+  out += rect(-300, -300, 2200, 1200, { fill: '#08140e', opacity: 0.4 });
+  out += path('M1180,-300 Q1300,-100 1250,300 L1400,300 Q1380,-100 1500,-300Z', { fill: '#2f5a40', ...bl(1.6) });
+  out += K.fireplace(1350, 900, 340, 320, { candles: false });
+  out += rect(-300, 900, 2200, 400, { fill: '#2a241e' }) + K.rug(600, 1020, 800, 120, '#2f5a40');
+  if (o.desk !== false) out += rect(200, 620, 700, 34, { fill: '#3a2618', ...bl(2) }) + rect(230, 654, 640, 360, { fill: '#2e1e12', ...bl(2) }) + K.candle(780, 620, 1.2, true);
+  out += K.glow(1350, 760, 420, C.ember, 0.4) + K.glow(780, 720, 260, C.candle, 0.35);
+  return out;
+}
+export const slyDesk = () => rect(200, 620, 700, 34, { fill: '#3a2618', ...bl(2) }) + rect(230, 654, 640, 400, { fill: '#2e1e12', ...bl(2) }) + K.candle(780, 620, 1.2, true);
+
+// ---------------------------------------------------------------- inside a train compartment (1600 × 1100)
+// Window centred at x 800; bench L (Hermione) seat front edge at x≈420, bench R at x≈1180; seat height y≈760.
+// Corridor door on the far left (x 0–160). o.view: 'hills' | 'dusk' | 'night'
+export function compartment(o = {}) {
+  const R = rng(o.seed || 3);
+  const view = o.view || 'hills';
+  const sky = view === 'dusk' ? ['#e8905a', '#f6d08a'] : view === 'night' ? ['#0f1a33', '#2c3f63'] : ['#9fb8d0', '#e8eef0'];
+  const id = uid('cp');
+  let out = `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${sky[0]}"/><stop offset="1" stop-color="${sky[1]}"/></linearGradient><clipPath id="${id}w"><rect x="480" y="160" width="640" height="420" rx="20"/></clipPath></defs>`;
+  out += rect(-300, -300, 2200, 1600, { fill: '#6e4a2c' });
+  out += K.wallpaper(-300, -300, 2200, 1100, '#7b3a3a', { stripes: true, c2: '#6e3232' });
+  // window view (countryside streaking past)
+  let v = rect(480, 160, 640, 420, { fill: `url(#${id})` });
+  if (view !== 'night') { v += path('M480,430 Q640,360 800,420 Q960,470 1120,390 L1120,580 L480,580Z', { fill: view === 'dusk' ? '#6a5a3a' : '#6f8f5a' }) + path('M480,480 Q700,440 900,500 Q1020,520 1120,470 L1120,580 L480,580Z', { fill: view === 'dusk' ? '#4a3a2a' : '#4f7045' }); for (let i = 0; i < 6; i++) { const tx = 500 + R() * 600; v += circle(tx, 470 + R() * 30, 22, { fill: view === 'dusk' ? '#3a2a1a' : '#3a5a38' }) + rect(tx - 3, 480, 6, 30, { fill: '#3a2a1a' }); } for (let i = 0; i < 12; i++) { const y = 180 + R() * 260; v += line(480, y, 1120, y, { stroke: '#fff', 'stroke-width': 1, opacity: 0.25 }); } }
+  else { for (let i = 0; i < 30; i++) v += circle(480 + R() * 640, 170 + R() * 300, R.range(0.6, 2), { fill: '#e9eed8', opacity: 0.8 }); v += path('M480,500 Q700,460 900,510 Q1020,530 1120,480 L1120,580 L480,580Z', { fill: '#0a0f1a' }); }
+  out += g({ 'clip-path': `url(#${id}w)` }, v);
+  out += rect(470, 150, 660, 440, { fill: 'none', stroke: '#4a2e1b', 'stroke-width': 20, rx: 24 }) + rect(470, 580, 660, 24, { fill: '#5a3a22', ...bl(1.6) });
+  // luggage racks
+  out += rect(-100, 60, 540, 14, { fill: '#b08d45', ...bl(1.4) }) + rect(1160, 60, 540, 14, { fill: '#b08d45', ...bl(1.4) });
+  for (let x = -80; x < 440; x += 40) out += line(x, 74, x, 110, { stroke: '#b08d45', 'stroke-width': 2 });
+  for (let x = 1180; x < 1700; x += 40) out += line(x, 74, x, 110, { stroke: '#b08d45', 'stroke-width': 2 });
+  // corridor door (sliding, with a window)
+  if (o.door !== false) out += rect(-280, 120, 300, 800, { fill: '#5a3a22', ...bl(2) }) + rect(-240, 170, 220, 280, { fill: '#c9b48a', opacity: 0.7, ...bl(1.6) });
+  // benches in profile: high back + short deep seat (actors sit ON them: place feet y=900, seat: 150, hip x≈300 / 1300)
+  for (const [bx, dir] of [[230, 1], [1370, -1]]) {
+    const back = dir > 0 ? rect(bx - 40, 330, 60, 430, { fill: '#9a2a2a', ...bl(2.2), rx: 16 }) : rect(bx - 20, 330, 60, 430, { fill: '#9a2a2a', ...bl(2.2), rx: 16 });
+    const sx0 = dir > 0 ? bx - 40 : bx - 150, sx1 = dir > 0 ? bx + 150 : bx + 40;
+    out += back + rect(sx0, 736, sx1 - sx0, 40, { fill: '#b03232', ...bl(2.2), rx: 12 }) + rect(sx0 + 10, 776, sx1 - sx0 - 20, 124, { fill: '#5a2a1e', ...bl(2) });
+    for (let i = 0; i < 3; i++) out += circle(bx + dir * -10, 420 + i * 110, 5, { fill: '#6a1a1a' });
+  }
+  out += rect(-300, 900, 2200, 400, { fill: '#4a3222' });
+  return out;
+}

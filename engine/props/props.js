@@ -178,3 +178,31 @@ export function spray(x, y, dir = 1, s = 1) {
   for (let i = 0; i < 16; i++) { const a = (R.range(-0.5, 0.5)) + (dir > 0 ? 0 : Math.PI); const d = R.range(20, 140) * s; out += ellipse(x + Math.cos(a) * d, y + Math.sin(a) * d, R.range(4, 12) * s, R.range(3, 7) * s, { fill: '#8aff6a', stroke: '#2a8a2a', 'stroke-width': 1, opacity: 0.9 }); }
   return out;
 }
+// The photograph: Earth seen from the Moon (drawn as a printed book plate), centred, ~ w×h
+export function earthrise(w = 400, h = 300) {
+  const id = uid('er');
+  let out = `<clipPath id="${id}"><rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}"/></clipPath>`;
+  let inner = rect(-w / 2, -h / 2, w, h, { fill: '#05060a' });
+  const R = rng(9); for (let i = 0; i < 40; i++) inner += circle(-w / 2 + R() * w, -h / 2 + R() * h * 0.6, R.range(0.5, 1.4), { fill: '#fff', opacity: 0.7 });
+  inner += circle(w * 0.18, -h * 0.2, h * 0.16, { fill: '#2f5f9a' }) + path(`M${w * 0.1},${-h * 0.28} q20,-10 30,10 q-10,20 -30,6Z M${w * 0.2},${-h * 0.1} q14,4 10,16 q-16,0 -10,-16Z`, { fill: '#7fa06a' }) + path(`M${w * 0.06},${-h * 0.24} q40,-20 70,10`, { fill: 'none', stroke: '#fff', 'stroke-width': 4, opacity: 0.8 }) + path(`M${w * 0.18 - h * 0.16},${-h * 0.2} A${h * 0.16},${h * 0.16} 0 0 0 ${w * 0.18 + h * 0.16},${-h * 0.2}`, { fill: '#05060a', opacity: 0.55 });
+  inner += path(`M${-w / 2},${h * 0.12} Q${-w * 0.2},${h * 0.02} 0,${h * 0.1} Q${w * 0.25},${h * 0.18} ${w / 2},${h * 0.08} L${w / 2},${h / 2} L${-w / 2},${h / 2}Z`, { fill: '#9d9a92' });
+  for (let i = 0; i < 12; i++) inner += ellipse(-w / 2 + R() * w, h * 0.2 + R() * h * 0.28, R.range(6, 24), R.range(2, 6), { fill: '#7d7a72' });
+  // two suited figures & a flag
+  for (const [x, sc] of [[-w * 0.18, 1], [w * 0.02, 0.8]]) inner += g({ transform: `translate(${x},${h * 0.22}) scale(${sc})` }, rect(-12, -46, 24, 34, { fill: '#f1efe8', stroke: INK, 'stroke-width': 1.2, rx: 6 }), circle(0, -54, 12, { fill: '#f1efe8', stroke: INK, 'stroke-width': 1.2 }), ellipse(0, -54, 8, 6, { fill: '#c9a24a' }), rect(-12, -12, 10, 20, { fill: '#f1efe8', stroke: INK, 'stroke-width': 1 }), rect(2, -12, 10, 20, { fill: '#f1efe8', stroke: INK, 'stroke-width': 1 }));
+  inner += line(-w * 0.32, h * 0.2, -w * 0.32, -h * 0.05, { stroke: '#ccc', 'stroke-width': 2 }) + rect(-w * 0.32, -h * 0.05, 34, 22, { fill: '#e8e4dc', stroke: INK, 'stroke-width': 1 });
+  out += g({ 'clip-path': `url(#${id})` }, inner) + rect(-w / 2, -h / 2, w, h, { fill: 'none', stroke: INK, 'stroke-width': 2 });
+  return out;
+}
+export function rocketPlate(w = 300, h = 400, o = {}) {
+  let out = rect(-w / 2, -h / 2, w, h, { fill: '#9fb8d8', stroke: INK, 'stroke-width': 2 });
+  const hh = h * 0.8, bw = w * 0.12;
+  const x = 0, top = -hh / 2;
+  out += path(`M${x},${top} L${x + bw},${top + hh * 0.12} L${x + bw},${top + hh} L${x - bw},${top + hh} L${x - bw},${top + hh * 0.12}Z`, { fill: '#f1efe8', stroke: INK, 'stroke-width': 2 });
+  for (const f of [0.35, 0.6, 0.8]) out += rect(x - bw, top + hh * f, bw * 2, hh * 0.03, { fill: '#1b1b1b' });
+  out += path(`M${x - bw},${top + hh} l-18,20 l18,-4Z M${x + bw},${top + hh} l18,20 l-18,-4Z`, { fill: '#1b1b1b' });
+  if (o.fire !== false) out += path(`M${x - bw},${top + hh + 10} Q${x},${h / 2 + 40} ${x + bw},${top + hh + 10}Z`, { fill: '#f0a13c' }) + ellipse(x, h / 2 - 10, w * 0.45, 30, { fill: '#f4f1ea', opacity: 0.8 });
+  if (o.speck) out += circle(x + bw + 20, top + hh - 4, 2.5, { fill: INK });
+  return out;
+}
+export function foldedNote(s = 1) { return g({ transform: `scale(${s})` }, path('M-20,-14 L20,-14 L22,14 L-18,16Z', { fill: '#f7f3e8', stroke: INK, 'stroke-width': 1.6 }), line(-18, 0, 20, -1, { stroke: '#b9ad92', 'stroke-width': 1 })); }
+export function toad(s = 1) { return g({ transform: `scale(${s})` }, ellipse(0, 0, 30, 20, { fill: '#7a8a4a', stroke: INK, 'stroke-width': 2 }), circle(-14, -14, 8, { fill: '#8a9a5a', stroke: INK, 'stroke-width': 2 }), circle(14, -14, 8, { fill: '#8a9a5a', stroke: INK, 'stroke-width': 2 }), circle(-14, -15, 3, { fill: INK }), circle(14, -15, 3, { fill: INK }), path('M-10,4 Q0,10 10,4', { fill: 'none', stroke: INK, 'stroke-width': 1.6 })); }

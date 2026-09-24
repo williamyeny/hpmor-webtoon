@@ -69,6 +69,25 @@ function rectD(x,y,w,h,j,seed){const R=rng(seed);const q=()=>(R()-.5)*j;
   return 'M'+(x+q())+','+(y+q())+' L'+(x+w+q())+','+(y+q())+' L'+(x+w+q())+','+(y+h+q())+' L'+(x+q())+','+(y+h+q())+'Z';}
 function angularD(x,y,w,h,c){return 'M'+(x+c)+','+y+' L'+(x+w-c*0.3)+','+y+' L'+(x+w)+','+(y+c)+' L'+(x+w)+','+(y+h-c*0.3)+' L'+(x+w-c)+','+(y+h)+' L'+(x+c*0.3)+','+(y+h)+' L'+x+','+(y+h-c)+' L'+x+','+(y+c*0.3)+'Z';}
 function el(tag,a){const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);return e;}
+// Standard tail: identical size on every balloon (fixed base width, fixed visible length);
+// only its attachment point on the rim and its angle change, pointing from the centre toward (tx,ty).
+const TAIL_BASE=30, TAIL_LEN=38, TAIL_IN=12;
+function rimR(rx,ry,n,th){const c=Math.abs(Math.cos(th))/rx,s=Math.abs(Math.sin(th))/ry;return 1/Math.pow(Math.pow(c,n)+Math.pow(s,n),1/n);}
+function stdTail(cx,cy,rx,ry,n,tx,ty,k){
+  k=k||1;const th=Math.atan2(ty-cy,tx-cx);const ux=Math.cos(th),uy=Math.sin(th);const px=-uy,py=ux;
+  const r=rimR(rx,ry,n,th);const ex=cx+ux*r,ey=cy+uy*r;           // rim point
+  const bx=ex-ux*TAIL_IN,by=ey-uy*TAIL_IN;                           // base centre, a little inside
+  const L=TAIL_LEN*k,B=TAIL_BASE*k/2;
+  const tipx=ex+ux*L+px*L*0.18,tipy=ey+uy*L+py*L*0.18;               // gentle consistent lean
+  const a=[bx+px*B,by+py*B],b=[bx-px*B,by-py*B];
+  const ca=[ex+ux*L*0.45+px*B*0.55,ey+uy*L*0.45+py*B*0.55],cb=[ex+ux*L*0.5-px*B*0.2,ey+uy*L*0.5-py*B*0.2];
+  const f=v=>v.toFixed(1);
+  const outer='M'+f(a[0])+','+f(a[1])+' Q'+f(ca[0])+','+f(ca[1])+' '+f(tipx)+','+f(tipy)+' Q'+f(cb[0])+','+f(cb[1])+' '+f(b[0])+','+f(b[1])+'Z';
+  // seam patch: same base, stops just outside the rim, no stroke
+  const pa=[bx+px*(B-3),by+py*(B-3)],pb=[bx-px*(B-3),by-py*(B-3)],pt=[ex+ux*5,ey+uy*5];
+  const patch='M'+f(pa[0])+','+f(pa[1])+' L'+f(pt[0]+px*(B*0.45),)+','+f(pt[1]+py*(B*0.45))+' L'+f(pt[0]-px*(B*0.35))+','+f(pt[1]-py*(B*0.35))+' L'+f(pb[0])+','+f(pb[1])+'Z';
+  return {outer,patch,th,ex,ey,ux,uy};
+}
 function tailD(cx,cy,rx,ry,tx,ty,wid,n){ // wedge from ellipse edge to tip, slightly curved
   const ang=Math.atan2((ty-cy)/ry,(tx-cx)/rx);const w=wid||0.2;
   const pOn=a=>{const c=Math.cos(a),s=Math.sin(a);return [cx+rx*Math.sign(c)*Math.pow(Math.abs(c),2/(n||2.6))*0.94,cy+ry*Math.sign(s)*Math.pow(Math.abs(s),2/(n||2.6))*0.94];};
@@ -148,18 +167,16 @@ window.layoutBubbles=async function(){
       const sw=d.type==='whisper'?2.2:(d.type==='cold'?2:2.8);
       const dash=d.type==='whisper'?'7 6':'';
       if(d.type==='hat'){g.appendChild(el('path',{d:superD(cx+4,cy+6,rx,ry,3.2,0.03,seed),fill:'rgba(0,0,0,0.35)'}));}
-      // tails (stroked), then body (stroked), then body fill again to hide tail seams
-      for(const tp of tails){
-        if(d.type==='thought'){const n=3;for(let i=1;i<=n;i++){const f=0.45+i*0.17;const x=cx+(tp[0]-cx)*f,y=cy+(tp[1]-cy)*f;
-          const rad=11-i*2.5; g.appendChild(el('ellipse',{cx:x,cy:y,rx:rad*1.3,ry:rad,fill:fill,stroke:stroke,'stroke-width':2.4}));}continue;}
-        g.appendChild(el('path',{d:tailD(cx,cy,rx,ry,tp[0],tp[1],d.type==='shout'?0.14:0.17),fill:fill,stroke:stroke,'stroke-width':sw,'stroke-linejoin':'round','stroke-dasharray':dash}));
-      }
+      // tails (stroked), then body (stroked), then an unstroked patch to merge tail into body
+      const rimN=d.type==='cold'?6:d.type==='shout'?2.4:d.type==='thought'?2.2:(d.type==='hat'?3.4:3.1);
+      const rimK=d.type==='shout'?1.12:d.type==='thought'?1.08:1;
+      const T=tails.map(tp=>stdTail(cx,cy,rx*rimK,ry*rimK,rimN,tp[0],tp[1],d.type==='whisper'?0.9:1));
+      tails.forEach((tp,i)=>{
+        if(d.type==='thought'){const t=T[i];[[14,9],[32,6.5],[46,4.5]].forEach(([dd,rad])=>g.appendChild(el('ellipse',{cx:t.ex+t.ux*dd,cy:t.ey+t.uy*dd,rx:rad*1.3,ry:rad,fill:fill,stroke:stroke,'stroke-width':2.4})));return;}
+        g.appendChild(el('path',{d:T[i].outer,fill:fill,stroke:stroke,'stroke-width':sw,'stroke-linejoin':'round','stroke-dasharray':dash}));
+      });
       g.appendChild(el('path',{d:shape,fill:fill,stroke:stroke,'stroke-width':sw,'stroke-linejoin':'round','stroke-dasharray':dash}));
-      for(const tp of tails){ if(d.type==='thought')continue;
-        g.appendChild(el('path',{d:tailD(cx,cy,rx,ry,tp[0],tp[1],(d.type==='shout'?0.14:0.17)*0.8).replace(/Q[^Q]*$/,'Z'),fill:fill,stroke:'none'}));
-        const inner=tailD(cx,cy,rx*0.93,ry*0.9,cx+(tp[0]-cx)*0.8,cy+(tp[1]-cy)*0.8,0.12);
-        g.appendChild(el('path',{d:inner,fill:fill,stroke:'none'}));
-      }
+      tails.forEach((tp,i)=>{ if(d.type==='thought')return; g.appendChild(el('path',{d:T[i].patch,fill:fill,stroke:'none'})); });
       if(d.type==='hat'){g.appendChild(el('path',{d:superD(cx,cy,rx-8,ry-8,3.2,0.02,seed+1),fill:'none',stroke:'#c9a878','stroke-width':1.6,'stroke-dasharray':'6 5',opacity:0.8}));}
       if(d.type==='cold'){g.appendChild(el('path',{d:angularD(cx-rx+5,cy-ry+5,rx*2-10,ry*2-10,14),fill:'none',stroke:'#fff',opacity:0.6,'stroke-width':1.5}));}
     } else if(['caption','captionC','letter'].includes(d.type)){

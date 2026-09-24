@@ -49,37 +49,36 @@ export function messy(seed = 'harry', o = {}) {
   };
 }
 
-// ---------- Hermione: a tremendous bushy cloud
+// ---------- Hermione: a tremendous bushy cloud (irregular big curls, wider at the bottom)
+function curlCloud(cx, cy, rx, ry, R, n, amp) {
+  const pts = [];
+  for (let i = 0; i < n; i++) {
+    const a = (i / n) * Math.PI * 2 - Math.PI / 2;
+    const lower = Math.sin(a) > 0 ? 1 + Math.sin(a) * 0.35 : 1;
+    const k = 1 + (i % 2 ? amp * (0.6 + R() * 0.8) : -amp * 0.2);
+    pts.push([cx + Math.cos(a) * rx * k * lower, cy + Math.sin(a) * ry * k]);
+  }
+  return pts;
+}
 export function bushy(seed = 'herm') {
-  const cloud = (ctx, scale, R) => {
-    const { rx, ry, s } = ctx;
-    const pts = [];
-    const n = 26;
-    for (let i = 0; i < n; i++) {
-      const a = (i / n) * Math.PI * 2 - Math.PI / 2;
-      const down = Math.sin(a) > 0.3 ? 1.1 : 1; // longer at the bottom sides
-      const k = (1.28 + (i % 2 ? 0.1 + R() * 0.12 : 0)) * scale * down;
-      pts.push([s * 6 + Math.cos(a) * rx * k * 1.05, -ry * 0.02 + Math.sin(a) * ry * k * (Math.sin(a) > 0 ? 1.05 : 0.95)]);
-    }
-    return pts;
-  };
   return {
     back(ctx) {
-      const { lw, color } = ctx; const R = rng(seed + 'b');
-      const pts = cloud(ctx, 1.08, R).filter((p) => p[1] > -ctx.ry * 2);
-      return path(smoothD(pts, true, 0.6), { fill: shade(color, -0.12), ...ink(lw) }) +
-        path(smoothD(cloud(ctx, 0.9, rng(seed + 'c')), true, 0.6), { fill: 'none', stroke: shade(color, -0.35), 'stroke-width': lw * 0.7, opacity: 0.6 });
+      const { rx, ry, s, lw, color } = ctx; const R = rng(seed + 'b');
+      const pts = curlCloud(s * 6, ry * 0.12, rx * 1.45, ry * 1.32, R, 22, 0.13);
+      let curls = ''; const R2 = rng(seed + 'k');
+      for (let i = 0; i < 14; i++) { const a = R2() * Math.PI * 2, d = R2.range(0.95, 1.3); const x = s * 6 + Math.cos(a) * rx * 1.3 * d, y = ry * 0.1 + Math.sin(a) * ry * 1.2 * d; curls += `M${x},${y} q${6 + R2() * 6},${-8} ${12},${2} `; }
+      return path(smoothD(pts, true, 0.55), { fill: shade(color, -0.12), ...ink(lw) }) + path(curls, { fill: 'none', stroke: shade(color, -0.4), 'stroke-width': lw * 0.7, opacity: 0.7 });
     },
     front(ctx) {
       const { rx, ry, s, lw, color } = ctx; const R = rng(seed);
-      const top = arcPts(s * 8, -ry * 0.05, rx * 1.05, ry * 1.0, Math.PI * 0.95, Math.PI * 2.05, 14, (i) => (i % 2 ? 1.2 + R() * 0.1 : 1.08));
-      const part = s * rx * 0.25 + rx * 0.15;
-      const pts = [[-rx * 1.12, ry * 0.25], ...top, [rx * 1.12, ry * 0.25], [rx * 0.9, -ry * 0.05], [part + rx * 0.25, -ry * 0.42], [part, -ry * 0.55], [part - rx * 0.4, -ry * 0.4], [-rx * 0.9, -ry * 0.05]];
+      const top = arcPts(s * 8, -ry * 0.02, rx * 1.08, ry * 1.02, Math.PI * 0.92, Math.PI * 2.08, 12, (i) => (i % 2 ? 1.16 + R() * 0.12 : 1.05));
+      const part = s * rx * 0.25 + rx * 0.3;
+      // side-parted fringe sweeping across the forehead, with curly ends
+      const pts = [[-rx * 1.15, ry * 0.3], ...top, [rx * 1.15, ry * 0.3], [rx * 0.95, ry * 0.0], [rx * 0.8, -ry * 0.28], [part + rx * 0.1, -ry * 0.52], [part - rx * 0.1, -ry * 0.62], [part - rx * 0.55, -ry * 0.45], [-rx * 0.62, -ry * 0.3], [-rx * 0.85, -ry * 0.05], [-rx * 0.92, ry * 0.2]];
       let curls = '';
       const R2 = rng(seed + 'q');
-      for (let i = 0; i < 9; i++) { const a = Math.PI * (1.05 + i * 0.1); const x = Math.cos(a) * rx * 1.02 + s * 8, y = Math.sin(a) * ry * 0.95; curls += `M${x},${y} q${(R2() - 0.5) * 10},${8} ${(R2() - 0.5) * 6},${14} `; }
-      return path(smoothD(pts, true, 0.45), { fill: color, ...ink(lw) }) +
-        path(curls, { fill: 'none', stroke: shade(color, -0.35), 'stroke-width': lw * 0.7, opacity: 0.7 }) + shine(ctx, -ry * 0.82, 0.45, shade(color, 0.45));
+      for (let i = 0; i < 8; i++) { const a = Math.PI * (1.05 + i * 0.11); const x = Math.cos(a) * rx * 0.95 + s * 8, y = Math.sin(a) * ry * 0.9; curls += `M${x},${y} q${(R2() - 0.5) * 12},${10} ${(R2() - 0.5) * 8},${18} `; }
+      return path(smoothD(pts, true, 0.5), { fill: color, ...ink(lw) }) + path(curls, { fill: 'none', stroke: shade(color, -0.35), 'stroke-width': lw * 0.7, opacity: 0.75 });
     },
   };
 }
