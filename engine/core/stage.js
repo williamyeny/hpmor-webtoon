@@ -114,7 +114,7 @@ window.layoutBubbles=async function(){
     else {left=d.x-W/2;top=d.y-H/2;}
     // collision avoidance with real sizes: faces, other balloons, tile edges
     if(!['sfx','plain','title','note','hatBig'].includes(d.type) && !d.fixed){
-      const PX=padX+6, PY=padY+6;
+      const isB=['speech','whisper','shout','thought','cold','hat'].includes(d.type); const PX=isB?W*0.08+padX*0.55+6:padX+6, PY=isB?H*0.1+padY*0.7+6:padY+6;
       const R0=(l,t)=>({x:l-PX,y:t-PY,w:W+PX*2,h:H+PY*2});
       const hitC=(r,c)=>{const cx=Math.max(r.x,Math.min(c[0],r.x+r.w)),cy=Math.max(r.y,Math.min(c[1],r.y+r.h));return Math.hypot(cx-c[0],cy-c[1])<c[2];};
       const hitR=(a,b)=>a.x<b.x+b.w&&b.x<a.x+a.w&&a.y<b.y+b.h&&b.y<a.y+a.h;
@@ -139,12 +139,12 @@ window.layoutBubbles=async function(){
     const stroke=d.border||({cold:'#314c68',hat:'#2a170c',dark:'#000'}[d.type]||INK);
     const tails=d.tails||(d.tail?[d.tail]:[]);
     if(['speech','whisper','shout','thought','cold','hat'].includes(d.type)){
-      const rx=W/2+padX, ry=H/2+padY;
+      const sq=d.type==='shout'?1:1; const rx=W/2*1.16+padX*0.55, ry=H/2*1.2+padY*0.7;
       let shape;
       if(d.type==='shout')shape=spikyD(cx,cy,rx,ry,seed);
       else if(d.type==='thought')shape=cloudD(cx,cy,rx,ry,seed);
       else if(d.type==='cold')shape=angularD(cx-rx,cy-ry,rx*2,ry*2,18);
-      else shape=superD(cx,cy,rx,ry,d.type==='hat'?3.2:2.7,0.035,seed);
+      else shape=superD(cx,cy,rx,ry,d.type==='hat'?3.4:3.1,0.03,seed);
       const sw=d.type==='whisper'?2.2:(d.type==='cold'?2:2.8);
       const dash=d.type==='whisper'?'7 6':'';
       if(d.type==='hat'){g.appendChild(el('path',{d:superD(cx+4,cy+6,rx,ry,3.2,0.03,seed),fill:'rgba(0,0,0,0.35)'}));}

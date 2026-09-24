@@ -153,3 +153,20 @@ export function pouch(s = 1, o = {}) {
 export function coinBag(s = 1) {
   return g({ transform: `scale(${s})` }, path('M-26,-4 Q-36,34 0,40 Q36,34 26,-4 Q14,-14 0,-10 Q-14,-14 -26,-4Z', { fill: '#b09a6a', stroke: INK, 'stroke-width': 2 }), path('M-12,-12 L-16,-26 L16,-26 L12,-12', { fill: '#b09a6a', stroke: INK, 'stroke-width': 2 }), path('M-14,-14 L14,-14', { stroke: '#8a5a2a', 'stroke-width': 4 }), text(0, 22, 'G', { 'font-family': 'IM Fell English SC', 'font-size': 20, 'text-anchor': 'middle', fill: '#6a4a1a' }));
 }
+// the Emergency Healing Pack Plus, open, with its absurd contents labelled
+export function healerKit(s = 1, o = {}) {
+  const T = (x, y, t, fs = 11) => text(x, y, t, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': 'middle', fill: '#2d2a4a' });
+  let out = rect(-120, -70, 240, 140, { fill: '#7b2433', stroke: INK, 'stroke-width': 2.4, rx: 8 }) + rect(-110, -60, 220, 120, { fill: '#e9dcc0', stroke: INK, 'stroke-width': 1.6, rx: 4 });
+  out += path('M-8,-66 h16 v-10 h-16Z', { fill: '#c9a24a', stroke: INK, 'stroke-width': 1.4 });
+  // tourniquets, syringe of fire, numbing cloth, chocolate, bafflesnaffle egg
+  out += path('M-96,-40 q20,-14 40,0 q-20,14 -40,0Z M-96,-14 q20,-14 40,0 q-20,14 -40,0Z', { fill: '#5a6a4a', stroke: INK, 'stroke-width': 1.2 });
+  out += rect(-40, -46, 56, 12, { fill: '#e8773a', stroke: INK, 'stroke-width': 1.2, rx: 4 }) + line(16, -40, 30, -40, { stroke: '#8a8f96', 'stroke-width': 2 }) + circle(-12, -40, 8, { fill: '#ffd26a', opacity: 0.6, filter: 'url(#glowXs)' });
+  out += rect(40, -48, 60, 30, { fill: '#f7f3e8', stroke: INK, 'stroke-width': 1.2 });
+  out += rect(-96, 16, 70, 32, { fill: '#5a3a22', stroke: INK, 'stroke-width': 1.2, rx: 3 }) + path('M-90,22 h58 M-90,32 h58', { stroke: '#7a5236', 'stroke-width': 2 });
+  out += ellipse(62, 30, 16, 20, { fill: '#e8dcc0', stroke: INK, 'stroke-width': 1.2 });
+  if (o.labels) out += T(-76, -52, 'tourniquets') + T(-12, -52, 'liquid fire') + T(70, -54, 'numbing cloth') + T(-60, 60, '"Dementor Exposure Treatment"', 10) + T(62, 60, 'Bafflesnaffle Counter', 10);
+  return g({ transform: `scale(${s})` }, out);
+}
+export function wandBox(s = 1) {
+  return g({ transform: `scale(${s})` }, rect(-70, -14, 140, 28, { fill: '#4a3a5a', stroke: INK, 'stroke-width': 2, rx: 3 }), rect(-70, -14, 30, 28, { fill: '#6a5a7a', stroke: INK, 'stroke-width': 1.4 }));
+}

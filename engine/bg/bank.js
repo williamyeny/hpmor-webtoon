@@ -103,9 +103,10 @@ export const mokeCounter = () => rect(200, 640, 700, 60, { fill: '#6b4429', ...b
 
 // ---------------------------------------------------------------- a narrow side alley (1400 × 1200)
 export function sideAlley(o = {}) {
+  // o.dirt: dead-ends in a wall of solid black earth (the Quietus alley)
   let out = rect(-300, -400, 2000, 1800, { fill: '#b9c3cc' });
   out += K.brickWall(-300, -300, 700, 1200, '#6a4a3a', 71) + K.brickWall(1000, -300, 700, 1200, '#7a4a3a', 72);
-  out += rect(400, -300, 600, 1200, { fill: '#8a8074' }) + K.brickWall(400, 100, 600, 800, '#5a4034', 73);
+  out += rect(400, -300, 600, 1200, { fill: '#8a8074' }) + (o.dirt ? path('M400,100 Q520,40 700,90 Q860,50 1000,110 L1000,900 L400,900Z', { fill: '#3a2a1c', ...bl(2) }) + Array.from({ length: 40 }, (_, i) => circle(420 + (i * 137) % 560, 140 + (i * 91) % 740, 4 + (i % 4), { fill: '#2a1c12' })).join('') : K.brickWall(400, 100, 600, 800, '#5a4034', 73));
   out += rect(400, 100, 600, 800, { fill: '#1a1210', opacity: 0.35 });
   out += rect(-300, -300, 700, 1200, { fill: '#1a1210', opacity: 0.2 }) + rect(1000, -300, 700, 1200, { fill: '#1a1210', opacity: 0.3 });
   out += rect(-300, 900, 2000, 500, { fill: '#6d665c' });

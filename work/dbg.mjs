@@ -1,0 +1,11 @@
+import { openStage } from '../engine/render.mjs';
+import { composeTile } from '../engine/core/layout.js';
+const ep = (await import('../episodes/ep06.js')).default;
+const n = +process.argv[2];
+const { browser, page } = await openStage();
+const { html, H } = composeTile(ep.tiles[n - 1]);
+await page.setViewportSize({ width: 800, height: H });
+await page.evaluate((h) => { document.getElementById('root').innerHTML = h; }, html);
+await page.evaluate(() => window.layoutBubbles());
+console.log(await page.evaluate(() => [...document.querySelectorAll('.bub')].map(b => { const r = b.getBoundingClientRect(); return [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height), b.dataset.b.slice(0, 80)]; })), H);
+await browser.close();

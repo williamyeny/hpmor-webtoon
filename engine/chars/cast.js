@@ -319,3 +319,6 @@ export const malkin = {
 export const asst1 = { ...makeExtra(501, { female: true, old: false, hairStyle: 'pony', robe: '#6b5a70' }), name: 'asst1' };
 export const asst2 = { ...makeExtra(502, { female: true, old: false, hairStyle: 'long', robe: '#5a6a70' }), name: 'asst2' };
 Object.assign(CAST, { draco, dracoFitting, lucius, malkin, asst1, asst2 });
+export const della = { ...makeExtra(601, { female: true, old: false, hairStyle: 'pony', robe: '#6b4a6e' }), name: 'della', body: { ...TEEN } };
+export const youngHarry = { ...harry, name: 'youngHarry', body: { ...KID, torsoH: 78, legU: 42, legL: 40, headRx: 58, headRy: 56 }, glasses: { r: 17, shape: 'round', frame: 0.85 }, outfit: { ...harry.outfit, top: '#6a7fa0' } };
+Object.assign(CAST, { della, youngHarry });
