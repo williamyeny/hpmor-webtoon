@@ -298,6 +298,6 @@ ep.panel(620, { cam: { on: ['quirrell'], fr: 'close' }, bg: STAFF, blur: 3, acto
   [cap('And at the High Table, the new Defence Professor was watching him.', 44, 30, { w: 440 })], { mood: 'candle', alt: 'Quirrell\'s eyes, steady and cold, watching Harry.' });
 ep.setBg(C.paper);
 ep.tile({ h: 160, panels: [], bubbles: [], bg: { top: '#0a1020', bottom: C.paper } });
-ep.beat(460, [plain('End of Part One', 400, 150, { font: "'IM Fell English SC', serif", size: 40, color: '#3a2a20' }), plain('*The story continues…*', 400, 230, { font: "'IM Fell English', serif", size: 28, color: '#5a4032' })],
+ep.beat(460, [plain('End of Book One', 400, 150, { font: "'IM Fell English SC', serif", size: 40, color: '#3a2a20' }), plain('*The story continues…*', 400, 230, { font: "'IM Fell English', serif", size: 28, color: '#5a4032' })],
   { over: (t) => g({ transform: 'translate(400,340)' }, K.candle(0, 20, 1.6, true)) });
 export default ep;

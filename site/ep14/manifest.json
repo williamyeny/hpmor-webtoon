@@ -1,0 +1,530 @@
+{
+ "id": "ep14",
+ "title": "Minus Infinity",
+ "number": 14,
+ "subtitle": "",
+ "tiles": [
+  {
+   "file": "001.webp",
+   "w": 800,
+   "h": 330,
+   "alt": "BOOK TWO · THE FIRST WEEK / CHAPTER FOURTEEN / Minus Infinity"
+  },
+  {
+   "file": "002.webp",
+   "w": 800,
+   "h": 300,
+   "alt": "Monday. / Still."
+  },
+  {
+   "file": "003.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry stands where Neville stood, looking up at five much bigger Slytherins. Neville huddles with the Hufflepuffs. / There was a rather awkward pause. No-one seemed to know where the conversation was supposed to go from there."
+  },
+  {
+   "file": "004.webp",
+   "w": 800,
+   "h": 500,
+   "alt": "Harry's eyes dropped to the books scattered on the floor. Oh. The old game where you let a boy try to pick up his books, and then knock them out of his hands again."
+  },
+  {
+   "file": "005.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Derrick: Ooh, did 'oo want the widdle books…"
+  },
+  {
+   "file": "006.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry: Shut up. / Harry: Keep them off balance. Don't do what they expect. Don't fall into a pattern that calls for them to bully you."
+  },
+  {
+   "file": "007.webp",
+   "w": 800,
+   "h": 960,
+   "alt": "Harry: Is this part of some incredibly clever plan that will gain you future advantage? Or is it as pointless a disgrace to the name of Salazar Slytherin as it—"
+  },
+  {
+   "file": "008.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "The biggest Slytherin shoves Harry hard. He goes sprawling across the stone floor. / SHOVE!"
+  },
+  {
+   "file": "009.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "And the Slytherins laughed."
+  },
+  {
+   "file": "010.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry gets up, face gone flat and cold. Frost at the edges. / Harry rose in what seemed to him like terribly slow motion. / He didn't know how to use his wand yet. But there was no reason to let that stop him."
+  },
+  {
+   "file": "011.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry: I'd like to pay as many points as it takes to get rid of this person."
+  },
+  {
+   "file": "012.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry lifts his other hand and snaps his fingers. / Harry: Abracadabra. / SNAP"
+  },
+  {
+   "file": "013.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "Two of the Hufflepuffs screamed. / Three Slytherins leapt desperately out of the way."
+  },
+  {
+   "file": "014.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "A cherry pie hits the biggest Slytherin square in the face. / SPLAT!"
+  },
+  {
+   "file": "015.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry had not been expecting that."
+  },
+  {
+   "file": "016.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Slowly, the largest Slytherin reached up and peeled off the pan of cherry pie that had just draped itself over him."
+  },
+  {
+   "file": "017.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "One of the Hufflepuffs has his hands over his mouth, giggling helplessly. / It probably wasn't the best time in the world for one of the Hufflepuffs to start giggling. But that was exactly what one of the Hufflepuffs was doing."
+  },
+  {
+   "file": "018.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: Hold on, this note's for me, I think… / Derrick: You. Are. Going. To…"
+  },
+  {
+   "file": "019.webp",
+   "w": 800,
+   "h": 1120,
+   "alt": "Harry brandishes the note from the bottom of the pie pan in the Slytherin's face. / Harry: Look at this! Can you believe I'm being charged 30 points for shipping and handling on one lousy pie? / Harry: I'm turning a loss on the deal, even after rescuing an innocent boy in distress!"
+  },
+  {
+   "file": "020.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "The pie-smeared Slytherin stares blankly. / Harry: Storage fees? Conveyance charges? How do you get drayage costs on a pie?"
+  },
+  {
+   "file": "021.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Harry: Now go away, or I will just keep making your existence more and more surreal until you do. / Harry: Let me warn you… messing with my life tends to make your life… a little hairy. Get it?"
+  },
+  {
+   "file": "022.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "A second pie, blueberry this time, smacks into the side of his head. / In a single terrible motion, the largest Slytherin whipped out his wand. And in the same instant was hit on the other side of his head by another pie, this one bright blueberry. / SPLAT!"
+  },
+  {
+   "file": "023.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: You might want to read the note on that pie. I think it's for you this time."
+  },
+  {
+   "file": "024.webp",
+   "w": 800,
+   "h": 520,
+   "alt": "The note under the second pie. / WARNING  No magic may be used on the contestant while the Game is in progress  Further interference in the Game will be reported to the Game Authorities"
+  },
+  {
+   "file": "025.webp",
+   "w": 800,
+   "h": 600,
+   "alt": "The look of sheer bafflement on the Slytherin's face was a work of art. Harry thought he might be starting to like this Game Controller."
+  },
+  {
+   "file": "026.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Harry: Look. You want to call it a day? I think things are spiralling out of control here. / Derrick: I've got a better idea. How about if you accidentally break all your fingers?"
+  },
+  {
+   "file": "027.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: How in Merlin's name do you stage a believable accident after making the threat in front of a dozen witnesses, you idiot…"
+  },
+  {
+   "file": "028.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "The big Slytherin holds Harry's hand and starts to bend his index finger back. / The largest Slytherin slowly, deliberately, took Harry's right hand in one of his. And took Harry's index finger in the other. / Conscience: Wait! Stop, you shouldn't actually do that!"
+  },
+  {
+   "file": "029.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Close on the two hands: a big hand bending a small finger back. / Slowly, the Slytherin started to bend the finger backwards."
+  },
+  {
+   "file": "030.webp",
+   "w": 800,
+   "h": 880,
+   "alt": "Harry stares the Slytherin straight in the eyes, and does not flinch. / Harry: Part of him was screaming that this wasn't supposed to happen, this wasn't allowed to happen, grown-ups would never let something like this actually happen… / Harry: He hasn't actually broken my finger. And it is beneath me to so much as flinch until he does."
+  },
+  {
+   "file": "031.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Conscience: Stop! Stop, this is a very bad idea! / Voice: I rather agree."
+  },
+  {
+   "file": "032.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "A dumpy little witch with messy grey curls and earth-stained robes stalks in, pointing an accusing finger. / The largest Slytherin let go of Harry's hand and jumped backwards as if burned. / Hufflepuff: Professor Sprout!"
+  },
+  {
+   "file": "033.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Sprout: Explain yourselves. What are you doing with my Hufflepuffs and… / Sprout: …my fine student, Harry Potter."
+  },
+  {
+   "file": "034.webp",
+   "w": 800,
+   "h": 520,
+   "alt": "Harry: Uh oh. It was her class he'd missed this morning."
+  },
+  {
+   "file": "035.webp",
+   "w": 800,
+   "h": 960,
+   "alt": "Conscience: He threatened to kill us! / Harry: What? I did not! If I was going to kill you, I wouldn't make public threats first!"
+  },
+  {
+   "file": "036.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "One Slytherin snorts with laughter; the others glare at him. / One Slytherin laughed helplessly, and stopped abruptly under the others' glares."
+  },
+  {
+   "file": "037.webp",
+   "w": 800,
+   "h": 600,
+   "alt": "Sprout: What death threat would this be, exactly?"
+  },
+  {
+   "file": "038.webp",
+   "w": 800,
+   "h": 680,
+   "alt": "Conscience: The Killing Curse! He pretended to use the Killing Curse on us!"
+  },
+  {
+   "file": "039.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Sprout: Yes, quite a terrible threat from an eleven-year-old boy. Though still not something you should ever dream of pretending, Harry Potter."
+  },
+  {
+   "file": "040.webp",
+   "w": 800,
+   "h": 860,
+   "alt": "Harry: I don't even know the words to the Killing Curse. And I didn't have my wand out at any time. / Sprout: I suppose this boy hit himself with two pies, then."
+  },
+  {
+   "file": "041.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Hufflepuff: He didn't use his wand! He just snapped his fingers and there was pie!"
+  },
+  {
+   "file": "042.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Sprout: Prior Incantato. / Sprout: That's odd. Your wand doesn't seem to have been used at all. / Harry: It hasn't, actually. I only got my wand a few days ago."
+  },
+  {
+   "file": "043.webp",
+   "w": 800,
+   "h": 840,
+   "alt": "Sprout: Then we have a clear case of accidental magic from a boy who felt threatened. And the rules plainly state that you are not to be held responsible. / Sprout: As for you…"
+  },
+  {
+   "file": "044.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Her eyes dropped, deliberately, to Neville's books lying on the floor. There was a long silence."
+  },
+  {
+   "file": "045.webp",
+   "w": 800,
+   "h": 1060,
+   "alt": "Sprout: Three points from Slytherin, each. And six from him. / Sprout: Don't you ever meddle with my Hufflepuffs again, or my student Harry Potter either. Now go."
+  },
+  {
+   "file": "046.webp",
+   "w": 800,
+   "h": 580,
+   "alt": "The Slytherins walk away very quickly, the biggest still dripping pie. / She didn't have to repeat herself."
+  },
+  {
+   "file": "047.webp",
+   "w": 800,
+   "h": 660,
+   "alt": "Neville kneels to gather his books; the other Hufflepuffs crouch to help. / Neville went to pick up his books. He seemed to be crying, but only a little. It might have been delayed shock. Or it might have been because the other boys were helping him."
+  },
+  {
+   "file": "048.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Sprout: Thank you very much, Harry Potter. Seven points to Ravenclaw, one for each Hufflepuff you helped protect. / Sprout: And I won't say anything more. / Harry had been expecting a lecture. And a rather severe scolding for missing his very first class."
+  },
+  {
+   "file": "049.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry: Maybe he should have gone to Hufflepuff. Sprout was cool."
+  },
+  {
+   "file": "050.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Ernie: How did you do that? / Harry: I can make anything I want happen just by snapping my fingers. / Ernie: Really? / Harry: No."
+  },
+  {
+   "file": "051.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry: But when you're telling everyone this story, be sure to share it with Hermione Granger in first-year Ravenclaw. She has an anecdote you might find amusing. / He had absolutely no clue what was happening. But he wasn't about to pass up an opportunity to add to his growing legend."
+  },
+  {
+   "file": "052.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Ernie whispers, holding his empty hands well away from his sides. / Harry: Oh, and what was all that about the Killing Curse? / Ernie: You really don't know? / Ernie: The words to the Killing Curse are… Avada Kedavra."
+  },
+  {
+   "file": "053.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry: Well of course they are."
+  },
+  {
+   "file": "054.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Imagined: Dad's face, if he ever found out. / Harry added it to his growing list of things never to tell his father. It was bad enough being the only person to survive the fearsome Killing Curse, without admitting that the Killing Curse was \"Abracadabra\"."
+  },
+  {
+   "file": "055.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Ernie: I'm Ernie Macmillan. Honoured to meet you. / Harry: Pleased to meet you. Skip the honoured thing. / Then the other boys crowded round, and there was a sudden flood of introductions."
+  },
+  {
+   "file": "056.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry: Um… if everyone would excuse me… I have something to say to Neville. / Neville: I suppose you're going to say I should've been braver…"
+  },
+  {
+   "file": "057.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Harry: Oh, no, nothing like that! It's just, um, something the Sorting Hat told me…"
+  },
+  {
+   "file": "058.webp",
+   "w": 800,
+   "h": 600,
+   "alt": "Something seemed to be blocking Harry's throat. As though he'd swallowed a large brick, and it was stuck."
+  },
+  {
+   "file": "059.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "Harry: I'm, sor, ry."
+  },
+  {
+   "file": "060.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry, head down, apologises to Neville, who clutches his books. / Harry: For what I did the other day. You don't have to be gracious about it or anything. I'll understand if you just hate me. This isn't about me trying to look cool. What I did was wrong."
+  },
+  {
+   "file": "061.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Neville clutches his books to his chest, blinking back tears. / Neville: Why did you do it? / Neville: Why does everyone do that to me, even the Boy-Who-Lived?"
+  },
+  {
+   "file": "062.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry suddenly felt smaller than he ever had in his life."
+  },
+  {
+   "file": "063.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Harry: I'm sorry. It's just… you looked so scared, it was like there was a sign over your head saying victim. And I wanted to show you that things don't always turn out badly. That sometimes the monsters give you chocolate…"
+  },
+  {
+   "file": "064.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Neville: But there is. You saw it today. There is!"
+  },
+  {
+   "file": "065.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry: They wouldn't have done anything really bad in front of witnesses. Their main weapon is fear. I wanted to make you less afraid. Or that was what I told myself."
+  },
+  {
+   "file": "066.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Neville listens, eyes wet. / Harry: But the Sorting Hat told me I was lying to myself, and that I really did it because it was fun. So that's why I'm apologising."
+  },
+  {
+   "file": "067.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Neville: You hurt me. Just now. When you grabbed me and pulled me away from them."
+  },
+  {
+   "file": "068.webp",
+   "w": 800,
+   "h": 800,
+   "alt": "Neville holds out his arm, where Harry grabbed him. Harry looks at it. / Neville: I might have a bruise here later, from how hard you pulled. You hurt me worse than anything the Slytherins did, actually."
+  },
+  {
+   "file": "069.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Ernie: Neville! He was trying to save you! / Harry: I'm sorry. When I saw that I just got… really angry…"
+  },
+  {
+   "file": "070.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Neville looks at him steadily. / Neville: So you yanked me out really hard, and put yourself in where I was, and went, \"Hello, I'm the Boy-Who-Lived.\""
+  },
+  {
+   "file": "071.webp",
+   "w": 800,
+   "h": 480,
+   "alt": "Harry nodded."
+  },
+  {
+   "file": "072.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Neville: I think you're going to be really cool some day."
+  },
+  {
+   "file": "073.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Neville: But right now, you're not."
+  },
+  {
+   "file": "074.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "A long, empty corridor. A small figure walking away down it. / Harry swallowed the sudden knot in his throat, and walked away."
+  },
+  {
+   "file": "075.webp",
+   "w": 800,
+   "h": 1080,
+   "alt": "Harry: What was he supposed to do here? Never get angry? He wasn't sure he could have done anything without being angry. And who knew what would have happened to Neville then? / Harry: He'd read enough fantasy books to know how this one went. He'd try to suppress the anger, and fail, and at the end of a long journey of self-discovery he'd learn that it was a part of him. Fine. He'd skip the journey and go straight to the end."
+  },
+  {
+   "file": "076.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry: The trouble was that he didn't feel out of control when he was angry. The cold made him feel in control. / Harry: It was only when he looked back that everything seemed to have blown up."
+  },
+  {
+   "file": "077.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Harry: Had the Game Controller sent Professor Sprout? The note had threatened the Game Authorities, and there she was. Maybe Sprout was the Game Controller. The Head of Hufflepuff would be the last person anyone would suspect. / Harry: So how am I doing in the game?"
+  },
+  {
+   "file": "078.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "A note sails over Harry's head from nowhere. / A sheet of paper flew over his head, as if someone had thrown it from behind him. Harry spun around. There was no-one there."
+  },
+  {
+   "file": "079.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "The note. / Points for style: 10 Points for good thinking: −3,000,000 Ravenclaw House points bonus: 70  Current points: −2,999,871 Turns remaining: 2"
+  },
+  {
+   "file": "080.webp",
+   "w": 800,
+   "h": 1200,
+   "alt": "Harry shouting at the empty hallway. / Harry: Minus three million points? That seems excessive! I want to file an appeal with the Game Authorities! / Harry: And how am I supposed to make up three million points in the next two turns?"
+  },
+  {
+   "file": "081.webp",
+   "w": 800,
+   "h": 780,
+   "alt": "Another note. / Appeal: Failed  Asking the wrong questions: −1,000,000,000,000 points  Current points: −1,000,002,999,871 Turns remaining: 1"
+  },
+  {
+   "file": "082.webp",
+   "w": 800,
+   "h": 840,
+   "alt": "Harry gave up. With one turn remaining, all he could do was take his best shot. / Harry: My guess is that the game represents life."
+  },
+  {
+   "file": "083.webp",
+   "w": 800,
+   "h": 1320,
+   "alt": "The final note: \"You have lost the game.\" And under it, in his own handwriting: go to Professor McGonagall's office. / Attempt failed  Failed Failed Failed  Aiiiiiiiiiieeeeeeeeeeeeee  Current points: minus Infinity  You have lost the game  Final instruction: / go to Professor McGonagall's office"
+  },
+  {
+   "file": "084.webp",
+   "w": 800,
+   "h": 520,
+   "alt": "The last line was in his own handwriting."
+  },
+  {
+   "file": "085.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Harry outside Professor McGonagall's office door, raising his hand to knock. / Harry: If she was the Game Controller… / Harry: Harry had absolutely no idea how he would feel about that. His mind was drawing a complete blank. It was, literally, unimaginable. / knock knock"
+  },
+  {
+   "file": "086.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "The closed door. / McGonagall: Come in."
+  },
+  {
+   "file": "087.webp",
+   "w": 800,
+   "h": 340,
+   "alt": "To be continued"
+  }
+ ]
+}

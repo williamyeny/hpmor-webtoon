@@ -3,7 +3,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import url from 'node:url';
-import { SERIES, EPISODES } from '../episodes/catalog.js';
+import { SERIES, EPISODES, BOOKS } from '../episodes/catalog.js';
+const bookOf = (e) => [...BOOKS].reverse().find((b) => e.number >= b.from);
 import { FONT_DIR } from './core/fonts.js';
 
 const ROOT = path.join(path.dirname(url.fileURLToPath(import.meta.url)), '..');
@@ -177,7 +178,7 @@ ${imgs}
 </main>
 <section class="end">
 ${next ? `<a class="card" href="../${next.id}/"><div class="k">Next · Episode ${next.number}</div><div class="h">${esc(next.title)}</div><div class="b">${esc(next.blurb)}</div></a>`
-    : upcoming ? `<div class="card"><div class="k">Coming next · Episode ${upcoming.number}</div><div class="h">${esc(upcoming.title)}</div><div class="b">${esc(upcoming.blurb)}</div></div>` : '<p class="muted">End of Book One.</p>'}
+    : upcoming ? `<div class="card"><div class="k">Coming next · Episode ${upcoming.number}</div><div class="h">${esc(upcoming.title)}</div><div class="b">${esc(upcoming.blurb)}</div></div>` : `<p class="muted">End of ${esc(bookOf(e).title)}.</p>`}
 <p><a class="muted" href="../">All episodes</a></p>
 </section>
 <script src="../assets/reader.js"></script>
@@ -187,12 +188,15 @@ ${next ? `<a class="card" href="../${next.id}/"><div class="k">Next · Episode $
 
 // ---------- contents / cover
 const hasCover = fs.existsSync(path.join(SITE, 'cover.webp'));
-const list = EPISODES.map((e) => {
+const li = (e) => {
   const ok = ready.find((r) => r.id === e.id);
   const inner = `${seal(e.number)}<span><div class="tt">${esc(e.title)}</div><div class="bb">${esc(e.blurb)}</div></span>`;
   const inner2 = `${seal(e.number)}<span><div class="tt">${esc(e.title)}</div><div class="bb">${esc(e.blurb)}</div><div class="bar2" hidden><i></i><b></b></div></span>`;
   return ok ? `<li data-id="${e.id}"><a href="${e.id}/">${inner2}</a></li>` : `<li><span class="soon">${inner}</span></li>`;
-}).join('\n');
+};
+// one divider + list per book
+const books = BOOKS.map((b) => ({ b, eps: EPISODES.filter((e) => bookOf(e) === b) })).filter((x) => x.eps.length)
+  .map(({ b, eps }) => `<div class="arc">${esc(b.title)}</div>\n<ol class="eps">\n${eps.map(li).join('\n')}\n</ol>`).join('\n');
 const index = `${head(SERIES.title, '', '<link rel="preload" as="image" href="cover.webp">')}
 <body>
 <div class="col">
@@ -205,10 +209,7 @@ ${ready.length ? `<a class="book" id="continue" href="${ready[0].id}/" aria-labe
 
 </a>` : ''}
 </header>
-<div class="arc">${esc(SERIES.arc)}</div>
-<ol class="eps">
-${list}
-</ol>
+${books}
 </div>
 <p class="foot">An unofficial, non-commercial webtoon adaptation of <a href="https://hpmor.com">Harry Potter and the Methods of Rationality</a> by Eliezer Yudkowsky, itself a fan work of J.K. Rowling's Harry Potter. Every image is drawn by code.</p>
 <script src="assets/reader.js"></script>
