@@ -38,8 +38,9 @@ a{color:inherit}
 .head h1{font-family:'IM Fell English',serif;font-weight:400;font-size:2.1rem;margin:.2rem 0 .4rem;letter-spacing:.3px}
 .head h1 small{display:block;font-size:1.05rem;font-style:italic;color:var(--ink2)}
 .head p{font-style:italic;color:var(--ink2);margin:.4rem auto 1rem;max-width:30rem;font-size:1.05rem}
-.btn{display:inline-block;text-decoration:none;font-family:'IM Fell English SC',serif;font-size:1.15rem;background:var(--wax);color:#f7e6cf;
-  padding:.65rem 1.4rem;border-radius:999px;box-shadow:0 2px 0 #5d0f13,0 5px 14px rgba(90,20,20,.35)}
+.btn{display:inline-block;text-decoration:none;font-family:'IM Fell English SC',serif;font-size:1.15rem;color:#f7e6cf;
+  background:radial-gradient(ellipse 120% 160% at 35% 20%,#c23a3f,#8a151b 70%);
+  padding:.65rem 1.4rem;border-radius:999px;box-shadow:0 1px 2px rgba(0,0,0,.4) inset,0 2px 0 #5d0f13,0 5px 14px rgba(90,20,20,.35)}
 .arc{font-family:'IM Fell English SC',serif;text-align:center;color:var(--ink2);margin:1.6rem 0 .4rem;font-size:1rem;letter-spacing:.5px}
 .arc:before,.arc:after{content:'';display:inline-block;width:3rem;height:1px;background:#bda981;vertical-align:middle;margin:0 .7rem}
 ol.eps{list-style:none;margin:0;padding:0 1rem 2rem}
@@ -49,6 +50,16 @@ ol.eps .n{flex:none;width:2.4rem;height:2.4rem;font-size:1rem}
 ol.eps .tt{font-family:'IM Fell English',serif;font-size:1.2rem;line-height:1.2}
 ol.eps .bb{font-style:italic;color:var(--ink2);font-size:.95rem;line-height:1.3;margin-top:.15rem}
 ol.eps .soon{opacity:.45}
+ol.eps .st{display:block;width:fit-content;font-family:'IM Fell English SC',serif;font-size:.78rem;letter-spacing:.3px;margin:0 0 .2rem;padding:.02rem .5rem;border-radius:999px}
+ol.eps .st:empty{display:none}
+ol.eps li.read .n{background:radial-gradient(circle at 35% 30%,#a08868,#6b5840 70%);color:#f1e6cc}
+ol.eps li.read .tt,ol.eps li.read .bb{opacity:.6}
+ol.eps li.read .st{background:#d9ccae;color:#5a4a36}
+ol.eps li.reading .n{box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--gold),0 1px 3px rgba(0,0,0,.4)}
+ol.eps li.reading .st{background:var(--gold);color:#2a1b14}
+ol.eps li.reading{background:linear-gradient(90deg,rgba(201,162,74,.16),transparent)}
+ol.eps .bar2{height:3px;background:#dccfae;border-radius:2px;margin-top:.35rem;overflow:hidden}
+ol.eps .bar2 i{display:block;height:100%;background:var(--gold)}
 ol.eps .soon .n{background:#9b8b6e}
 .foot{font-size:.85rem;color:#b9a888;text-align:center;padding:1.5rem 1rem 3rem;max-width:var(--col);margin:0 auto;line-height:1.5}
 .foot a{color:#d8c7a2}

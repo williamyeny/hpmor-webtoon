@@ -56,8 +56,9 @@ a{color:inherit}
 .head h1{font-family:'IM Fell English',serif;font-weight:400;font-size:2.1rem;margin:.2rem 0 .4rem;letter-spacing:.3px}
 .head h1 small{display:block;font-size:1.05rem;font-style:italic;color:var(--ink2)}
 .head p{font-style:italic;color:var(--ink2);margin:.4rem auto 1rem;max-width:30rem;font-size:1.05rem}
-.btn{display:inline-block;text-decoration:none;font-family:'IM Fell English SC',serif;font-size:1.15rem;background:var(--wax);color:#f7e6cf;
-  padding:.65rem 1.4rem;border-radius:999px;box-shadow:0 2px 0 #5d0f13,0 5px 14px rgba(90,20,20,.35)}
+.btn{display:inline-block;text-decoration:none;font-family:'IM Fell English SC',serif;font-size:1.15rem;color:#f7e6cf;
+  background:radial-gradient(ellipse 120% 160% at 35% 20%,#c23a3f,#8a151b 70%);
+  padding:.65rem 1.4rem;border-radius:999px;box-shadow:0 1px 2px rgba(0,0,0,.4) inset,0 2px 0 #5d0f13,0 5px 14px rgba(90,20,20,.35)}
 .arc{font-family:'IM Fell English SC',serif;text-align:center;color:var(--ink2);margin:1.6rem 0 .4rem;font-size:1rem;letter-spacing:.5px}
 .arc:before,.arc:after{content:'';display:inline-block;width:3rem;height:1px;background:#bda981;vertical-align:middle;margin:0 .7rem}
 ol.eps{list-style:none;margin:0;padding:0 1rem 2rem}
@@ -67,6 +68,16 @@ ol.eps .n{flex:none;width:2.4rem;height:2.4rem;font-size:1rem}
 ol.eps .tt{font-family:'IM Fell English',serif;font-size:1.2rem;line-height:1.2}
 ol.eps .bb{font-style:italic;color:var(--ink2);font-size:.95rem;line-height:1.3;margin-top:.15rem}
 ol.eps .soon{opacity:.45}
+ol.eps .st{display:block;width:fit-content;font-family:'IM Fell English SC',serif;font-size:.78rem;letter-spacing:.3px;margin:0 0 .2rem;padding:.02rem .5rem;border-radius:999px}
+ol.eps .st:empty{display:none}
+ol.eps li.read .n{background:radial-gradient(circle at 35% 30%,#a08868,#6b5840 70%);color:#f1e6cc}
+ol.eps li.read .tt,ol.eps li.read .bb{opacity:.6}
+ol.eps li.read .st{background:#d9ccae;color:#5a4a36}
+ol.eps li.reading .n{box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--gold),0 1px 3px rgba(0,0,0,.4)}
+ol.eps li.reading .st{background:var(--gold);color:#2a1b14}
+ol.eps li.reading{background:linear-gradient(90deg,rgba(201,162,74,.16),transparent)}
+ol.eps .bar2{height:3px;background:#dccfae;border-radius:2px;margin-top:.35rem;overflow:hidden}
+ol.eps .bar2 i{display:block;height:100%;background:var(--gold)}
 ol.eps .soon .n{background:#9b8b6e}
 .foot{font-size:.85rem;color:#b9a888;text-align:center;padding:1.5rem 1rem 3rem;max-width:var(--col);margin:0 auto;line-height:1.5}
 .foot a{color:#d8c7a2}
@@ -75,13 +86,40 @@ fs.writeFileSync(path.join(SITE, 'assets', 'style.css'), CSS);
 
 const READER_JS = `
 (function(){
+  // progress model: localStorage 'hpmor-state' = {last:'ep03', eps:{ep01:{p:1,done:true}, ep03:{p:0.42,y:1234}}}
+  var KEY='hpmor-state';
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){return {};}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
   var bar=document.querySelector('.bar'),last=0,ep=document.body.dataset.ep;
-  addEventListener('scroll',function(){var y=scrollY;if(bar){if(y>last&&y>80)bar.classList.add('hide');else bar.classList.remove('hide');}last=y;
-    if(ep){try{var h=document.documentElement.scrollHeight-innerHeight;localStorage.setItem('hpmor-progress',JSON.stringify({ep:ep,y:y,p:h>0?y/h:0,t:Date.now()}));}catch(e){}}
-  },{passive:true});
-  if(ep){try{var s=JSON.parse(localStorage.getItem('hpmor-progress')||'null');if(s&&s.ep===ep&&location.hash==='#continue'){addEventListener('load',function(){scrollTo(0,s.y)});}}catch(e){}}
-  var cont=document.getElementById('continue');
-  if(cont){try{var s2=JSON.parse(localStorage.getItem('hpmor-progress')||'null');if(s2&&s2.ep){var a=document.querySelector('[data-id="'+s2.ep+'"]');if(a){cont.href=s2.ep+'/#continue';cont.textContent='Continue · Episode '+Number(s2.ep.slice(2));}}}catch(e){}}
+  if(ep){
+    var st=load();st.eps=st.eps||{};
+    var t=0;
+    addEventListener('scroll',function(){var y=scrollY;if(bar){if(y>last&&y>80)bar.classList.add('hide');else bar.classList.remove('hide');}last=y;
+      if(t)return;t=setTimeout(function(){t=0;var h=document.documentElement.scrollHeight-innerHeight,p=h>0?Math.min(1,y/h):0;
+        var e=st.eps[ep]||{};e.y=y;e.p=Math.max(e.p||0,p);if(p>0.97)e.done=true;st.eps[ep]=e;st.last=ep;save(st);},250);
+    },{passive:true});
+    if(location.hash==='#continue'){var e0=st.eps[ep];if(e0&&e0.y&&!e0.done)addEventListener('load',function(){scrollTo(0,e0.y)});}
+    var end=document.querySelector('.end');
+    if(end&&'IntersectionObserver' in window)new IntersectionObserver(function(en){if(en[0].isIntersecting){var e=st.eps[ep]||{};e.done=true;e.p=1;st.eps[ep]=e;save(st);}}).observe(end);
+  }
+  var list=document.querySelectorAll('ol.eps li[data-id]');
+  if(list.length){
+    var s2=load(),E=s2.eps||{},cur=null;
+    // "currently reading" = the last episode opened, if unfinished; otherwise the first unread after it
+    if(s2.last&&E[s2.last]&&!E[s2.last].done)cur=s2.last;
+    list.forEach(function(li){var id=li.dataset.id,e=E[id],tag=li.querySelector('.st');
+      if(e&&e.done){li.classList.add('read');tag.textContent='\u2713 Read';}
+      else if(id===cur){li.classList.add('reading');tag.textContent='Reading';var b=li.querySelector('.bar2');if(b){b.hidden=false;b.firstChild.style.width=Math.round((e.p||0)*100)+'%';}}
+    });
+    var btn=document.getElementById('continue');
+    if(btn){var target=cur,label='Continue';
+      if(!target){var ids=[].map.call(list,function(li){return li.dataset.id;});var anyRead=ids.some(function(i){return E[i]&&E[i].done;});
+        target=ids.filter(function(i){return !(E[i]&&E[i].done);})[0];label=anyRead?'Next':'Begin reading';
+        if(!target){target=ids[0];label='Read again';}}
+      if(target&&!(label==='Begin reading')){btn.href=target+'/'+(label==='Continue'?'#continue':'');btn.textContent=label+' \u00b7 Episode '+Number(target.slice(2));}
+      else if(target){btn.href=target+'/';}
+    }
+  }
 })();`;
 fs.writeFileSync(path.join(SITE, 'assets', 'reader.js'), READER_JS);
 
@@ -122,7 +160,8 @@ const hasCover = fs.existsSync(path.join(SITE, 'cover.webp'));
 const list = EPISODES.map((e) => {
   const ok = ready.find((r) => r.id === e.id);
   const inner = `${seal(e.number)}<span><div class="tt">${esc(e.title)}</div><div class="bb">${esc(e.blurb)}</div></span>`;
-  return `<li>${ok ? `<a href="${e.id}/" data-id="${e.id}">${inner}</a>` : `<span class="soon">${inner}</span>`}</li>`;
+  const inner2 = `${seal(e.number)}<span><span class="st"></span><div class="tt">${esc(e.title)}</div><div class="bb">${esc(e.blurb)}</div><div class="bar2" hidden><i></i></div></span>`;
+  return ok ? `<li data-id="${e.id}"><a href="${e.id}/">${inner2}</a></li>` : `<li><span class="soon">${inner}</span></li>`;
 }).join('\n');
 const index = `${head(SERIES.title, '', '<link rel="preload" as="image" href="cover.webp">')}
 <body>

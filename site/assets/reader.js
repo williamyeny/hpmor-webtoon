@@ -1,10 +1,37 @@
 
 (function(){
+  // progress model: localStorage 'hpmor-state' = {last:'ep03', eps:{ep01:{p:1,done:true}, ep03:{p:0.42,y:1234}}}
+  var KEY='hpmor-state';
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){return {};}}
+  function save(s){try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
   var bar=document.querySelector('.bar'),last=0,ep=document.body.dataset.ep;
-  addEventListener('scroll',function(){var y=scrollY;if(bar){if(y>last&&y>80)bar.classList.add('hide');else bar.classList.remove('hide');}last=y;
-    if(ep){try{var h=document.documentElement.scrollHeight-innerHeight;localStorage.setItem('hpmor-progress',JSON.stringify({ep:ep,y:y,p:h>0?y/h:0,t:Date.now()}));}catch(e){}}
-  },{passive:true});
-  if(ep){try{var s=JSON.parse(localStorage.getItem('hpmor-progress')||'null');if(s&&s.ep===ep&&location.hash==='#continue'){addEventListener('load',function(){scrollTo(0,s.y)});}}catch(e){}}
-  var cont=document.getElementById('continue');
-  if(cont){try{var s2=JSON.parse(localStorage.getItem('hpmor-progress')||'null');if(s2&&s2.ep){var a=document.querySelector('[data-id="'+s2.ep+'"]');if(a){cont.href=s2.ep+'/#continue';cont.textContent='Continue · Episode '+Number(s2.ep.slice(2));}}}catch(e){}}
+  if(ep){
+    var st=load();st.eps=st.eps||{};
+    var t=0;
+    addEventListener('scroll',function(){var y=scrollY;if(bar){if(y>last&&y>80)bar.classList.add('hide');else bar.classList.remove('hide');}last=y;
+      if(t)return;t=setTimeout(function(){t=0;var h=document.documentElement.scrollHeight-innerHeight,p=h>0?Math.min(1,y/h):0;
+        var e=st.eps[ep]||{};e.y=y;e.p=Math.max(e.p||0,p);if(p>0.97)e.done=true;st.eps[ep]=e;st.last=ep;save(st);},250);
+    },{passive:true});
+    if(location.hash==='#continue'){var e0=st.eps[ep];if(e0&&e0.y&&!e0.done)addEventListener('load',function(){scrollTo(0,e0.y)});}
+    var end=document.querySelector('.end');
+    if(end&&'IntersectionObserver' in window)new IntersectionObserver(function(en){if(en[0].isIntersecting){var e=st.eps[ep]||{};e.done=true;e.p=1;st.eps[ep]=e;save(st);}}).observe(end);
+  }
+  var list=document.querySelectorAll('ol.eps li[data-id]');
+  if(list.length){
+    var s2=load(),E=s2.eps||{},cur=null;
+    // "currently reading" = the last episode opened, if unfinished; otherwise the first unread after it
+    if(s2.last&&E[s2.last]&&!E[s2.last].done)cur=s2.last;
+    list.forEach(function(li){var id=li.dataset.id,e=E[id],tag=li.querySelector('.st');
+      if(e&&e.done){li.classList.add('read');tag.textContent='✓ Read';}
+      else if(id===cur){li.classList.add('reading');tag.textContent='Reading';var b=li.querySelector('.bar2');if(b){b.hidden=false;b.firstChild.style.width=Math.round((e.p||0)*100)+'%';}}
+    });
+    var btn=document.getElementById('continue');
+    if(btn){var target=cur,label='Continue';
+      if(!target){var ids=[].map.call(list,function(li){return li.dataset.id;});var anyRead=ids.some(function(i){return E[i]&&E[i].done;});
+        target=ids.filter(function(i){return !(E[i]&&E[i].done);})[0];label=anyRead?'Next':'Begin reading';
+        if(!target){target=ids[0];label='Read again';}}
+      if(target&&!(label==='Begin reading')){btn.href=target+'/'+(label==='Continue'?'#continue':'');btn.textContent=label+' · Episode '+Number(target.slice(2));}
+      else if(target){btn.href=target+'/';}
+    }
+  }
 })();
