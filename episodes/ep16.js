@@ -2,7 +2,7 @@
 // Real magic turns out to be hard. Hermione is better at it. McGonagall's rules (which matter at the very end of HPMOR).
 import { Episode, say, shout, whisper, inner, cold, cap, capC, plain, title, sfx, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
+import { g, rect, path, circle, ellipse, line, text, rng, uid } from '../engine/core/svg.js';
 import * as HG from '../engine/bg/hogwarts.js';
 import * as CS from '../engine/bg/castle.js';
 import * as K from '../engine/bg/kit.js';
@@ -15,6 +15,10 @@ import { dayBeat, header } from './b2.js';
 
 const ep = new Episode({ id: 'ep16', number: 16, title: 'Of Course This Means War' });
 ep.setBg(C.paper);
+// rays for frameless (cut-out) panels: they fade out before the tile edges so nothing ends in a hard line
+const RAYS = (col, op, cx = 0.5, cy = 0.45, inner = 170) => (e) => { const id = uid('ry'); return `<defs><radialGradient id="${id}g" cx="${cx}" cy="${cy}" r="0.5"><stop offset="0.6" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><mask id="${id}"><rect width="${e.w}" height="${e.h}" fill="url(#${id}g)"/></mask></defs>` + g({ mask: `url(#${id})` }, FX.burst(e.w, e.h, e.w * cx, e.h * cy, { col, op, inner })); };
+// a cut-out figure fades into the page below the waist (from ep08)
+const fadeOut = (y0 = 0.62, y1 = 0.97) => (e) => { const id = uid('fo'), W0 = -400, WW = e.w + 800; return `<defs><linearGradient id="${id}" gradientUnits="userSpaceOnUse" x1="0" y1="${e.h * y0}" x2="0" y2="${e.h * y1}"><stop offset="0" stop-color="${C.paper}" stop-opacity="0"/><stop offset="1" stop-color="${C.paper}" stop-opacity="1"/></linearGradient><mask id="${id}m"><rect x="${W0}" y="0" width="${WW}" height="${e.h + 400}" fill="url(#${id})"/></mask></defs>` + rect(W0, 0, WW, e.h + 400, { fill: `url(#${id})` }) + g({ mask: `url(#${id}m)` }, rect(W0, 0, WW, e.h + 400, { filter: 'url(#grain)', opacity: 0.35, style: 'mix-blend-mode:multiply' })); };
 header(ep, 'SIXTEEN', 'Of Course This Means War');
 dayBeat(ep, 'Monday.', 'If you wanted to be specific, 1:30 on Monday afternoon. Charms.');
 
@@ -33,7 +37,7 @@ ep.panel(720, { cam: { on: ['harry'], fr: 'waist', dy: 0.1, dx: 0.6, zoom: 0.8 }
   [cap('Harry dipped a finger in his glass. It should have been cool. But lukewarm it was, and lukewarm it had stayed.', 44, 30, { w: 620, fixed: true })], { mood: 'warm', alt: 'Harry\'s finger in a perfectly lukewarm glass of water.' });
 ep.panel(1000, { cam: { on: ['harry'], fr: 'close', dy: -0.05 }, bg: CH, blur: 3, actors: [HS({ expr: 'cold', turn: 0.2 })], over: (e) => FX.frost(e.w, e.h, 0.55, 71) },
   [cap('He had read a great many fantasy novels. And it was starting to look like he had a mysterious dark side. So he glanced around to make sure no-one was watching, took a deep breath, and made himself angry.', 44, 30, { w: 620, fixed: true }),
-   cold('Harry', '*Frigideiro.*', 400, 940, { anchor: 'bc', w: 250, fixed: true })], { mood: 'cold', alt: 'Harry thinks of the bullies, of Draco, and lets the cold rise. Frost at the edges. He says the spell in icy tones.' });
+   cold('Harry', '*Frigideiro.*', 400, 940, { anchor: 'bc', w: 250, fixed: true })], { mood: 'cold', shape: 'jag', jag: 22, seed: 5, frame: 'glow', glow: '#8fc4ee', alt: 'Harry thinks of the bullies, of Draco, and lets the cold rise. Frost at the edges. He says the spell in icy tones.' });
 ep.panel(620, { cam: { on: ['harry'], fr: 'waist', dy: 0.1, dx: 0.6, zoom: 0.8 }, bg: CH, actors: ATDESK({ turn: 0.3, pose: 'wand', expr: 'blank', armB: { sh: 55, el: 35, hand: 'hold', prop: wand(100) } }, { drop: 40, gx: 105 }) },
   [cap('Absolutely nothing happened.', 44, 30, { w: 360, fixed: true })], { mood: 'warm' });
 ep.panel(860, { cam: { on: ['harry'], fr: 'close', dy: -0.3 }, bg: CH, blur: 3, actors: [HS({ expr: 'deadpan', turn: 0 })] },
@@ -48,8 +52,9 @@ const PAIR = (h = {}, he = {}, st = 'warm') => [HS({ x: 1400, ...h }), HE({ x: 1
 ep.panel(820, { cam: { on: ['harry', 'hermione'], fr: 'bust', dy: -0.5, zoom: 0.9 }, bg: CH, actors: PAIR({ turn: 0.45, pose: 'stand', expr: 'pained' }, { turn: -0.2, pose: 'relaxed', armB: {}, expr: 'focus' }) },
   [cap('It was the obvious role for her in the scheme of things. Harry swallowed hard.', 44, 30, { w: 620, fixed: true }),
    say('Harry', 'Hermione? Do you have any idea what I might be doing wrong?', 240, 772, { anchor: 'bc', w: 330, fixed: true })], { mood: 'warm' });
-ep.panel(760, { cam: { on: ['hermione'], fr: 'close', dy: 0.1 }, bg: CH, blur: 3, actors: [HE({ turn: -0.2, pose: 'stand', expr: { base: 'delight', eyes: { sparkle: true } } })], over: (e) => FX.sparkles([[e.w * 0.36, e.h * 0.44], [e.w * 0.62, e.h * 0.44]], { r: 30 }) },
-  [cap('Hermione\'s eyes lit up with a terrible light of helpfulness. And something in the back of Harry\'s brain screamed in desperate humiliation.', 44, 30, { w: 620, fixed: true })], { mood: 'warm' });
+// Hermione turns her full helpfulness on Harry, and on the reader: no frame, just her face on the page (cut-out)
+ep.cutout(860, { cam: { head: 'hermione', hw: 0.46, hx: 0.5, hy: 0.54 }, actors: [HE({ turn: -0.1, pose: 'stand', expr: { base: 'delight', eyes: { sparkle: true } } })], behind: RAYS('#dba53a', 0.9, 0.5, 0.54, 240), over: fadeOut(0.88, 0.995) },
+  [cap('Hermione\'s eyes lit up with a terrible light of helpfulness. And something in the back of Harry\'s brain screamed in desperate humiliation.', 44, 30, { w: 620, fixed: true })], { mood: 'warm', alt: 'Hermione beams straight out of the page, eyes alight with helpfulness.' });
 ep.panel(900, { cam: { on: ['harry', 'hermione'], fr: 'bust', dy: -0.3, zoom: 0.9 }, bg: CH, actors: PAIR({ turn: -0.25, pose: 'wand', expr: 'wince' }, { x: 1620, turn: -0.4, pose: 'lecture', expr: 'smile' }, 'cool') },
   [cap('Five minutes later…', 44, 30, { w: 260, fixed: true }),
    say('Hermione', 'Much better! Just pronounce it more *carefully* next time.', 560, 260, { w: 320, fixed: true }),
@@ -77,10 +82,11 @@ const CLASS = (o = {}) => [
 ep.bleed(920, { cam: { x: 1130, y: 420, w: 1000 }, bg: TR([]), actors: [MG({ x: 1440, pose: 'stand', turn: -0.3 }), TDESK, ...CLASS()] },
   [say('McGonagall', 'Transfiguration is some of the most complex and dangerous magic you will learn at Hogwarts. Anyone messing around in my class will leave and not come back.', 400, 64, { anchor: 'tc', w: 580, fixed: true }),
    say('McGonagall', 'You have been warned.', 400, 470, { w: 250, fixed: true })], { fadeTop: false, alt: 'The Transfiguration classroom: stern, tidy, a polished wooden board, a tartan hanging. There is no trace of levity on the witch\'s face.' });
+// the desk turns into a pig across one slanted seam, the way a transformation snaps from one thing to the next
 ep.multi(700, [
-  { x: M, y: 18, w: 368, h: 664, mood: 'warm', art: { cam: { x: 1110, y: 640, w: 560 }, bg: TR([]), actors: [MG({ x: 1290, pose: 'wand', expr: 'stern', turn: -0.4, armB: { hand: 'hold', prop: wand(110) } }), TDESK] } },
-  { x: 408, y: 18, w: 368, h: 664, mood: 'warm', art: { cam: { x: 1110, y: 640, w: 560 }, bg: TR([]), actors: [MG({ x: 1290, pose: 'wand', expr: 'stern', turn: -0.4, armB: { hand: 'hold', prop: wand(110) } }), () => g({ transform: 'translate(960,930)' }, P2.pig(1.2, { confused: true }))] } },
-], [cap('*Tap.*', 44, 34, { w: 120, fixed: true }), cap('Her desk became a pig.', 428, 34, { w: 280, fixed: true })],
+  { x: M, y: 18, w: 420, h: 664, mood: 'warm', shape: 'poly', pts: [[0, 0], [1, 0], [0.8, 1], [0, 1]], art: { cam: { x: 1180, y: 640, w: 640 }, bg: TR([]), actors: [MG({ x: 1290, pose: 'wand', expr: 'stern', turn: -0.4, armB: { hand: 'hold', prop: wand(110) } }), TDESK] } },
+  { x: 362, y: 18, w: 420, h: 664, mood: 'warm', shape: 'poly', pts: [[0.23, 0], [1, 0], [1, 1], [0.03, 1]], art: { cam: { x: 1070, y: 640, w: 640 }, bg: TR([]), actors: [MG({ x: 1290, pose: 'wand', expr: 'stern', turn: -0.4, armB: { hand: 'hold', prop: wand(110) } }), () => g({ transform: 'translate(1000,930)' }, P2.pig(1.2, { confused: true }))] } },
+], [cap('*Tap.*', 44, 34, { w: 120, fixed: true }), cap('Her desk became a pig.', 478, 34, { w: 280, fixed: true })],
   { alt: 'McGonagall taps her desk with her wand; it becomes a confused pig. Then a desk again.' });
 const PIG = (x = 1150) => () => g({ transform: `translate(${x},930)` }, P2.pig(1.2, { confused: true }));
 ep.panel(900, { cam: { x: 1325, y: 460, w: 800 }, bg: TR([]), actors: [MG({ x: 1560, pose: 'point', turn: -0.5, expr: 'stern' }), PIG()] },
@@ -112,15 +118,17 @@ ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: TR(NOTPERM), 
 ep.panel(940, { cam: mgCam(940, 620, 0.5, 150), bg: TR(NOTPERM), actors: [MG({ x: 1500, expr: 'stern', pose: 'present', turn: -0.4, armB: { sh: 35, el: 55, hand: 'hold', prop: bookOpen({ w: 150, h: 100, col: '#6a2a2a' }) } })] },
   [say('McGonagall', 'As Mr Potter has correctly reasoned, he would become extremely sick, and require immediate Flooing to St Mungo\'s if he was to have any chance of survival.', 320, 64, { anchor: 'tc', w: 440, fixed: true }),
    say('McGonagall', 'Please turn your textbooks to page five.', 205, 470, { w: 240, fixed: true })], { mood: 'warm' });
-ep.panel(620, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#5a4030' }) + g({ transform: 'translate(30,32)' }, P2.textbookPage('victim', 350, 520)) + FX.burst(360, 380, 205, 195, { n: 18, op: 0.25 }),
-  [cap('Even without any sound in the moving picture, you could tell the woman with the discoloured skin was screaming.', 428, 200, { w: 290, fixed: true })],
-  { mood: 'warm', alt: 'A textbook page with a moving picture of a poisoned woman, screaming.' });
+// the textbook page itself, lying on the reader's own page (cut-out): no panel between us and the picture
+ep.cutout(640, (ctx) => rect(62, 70, 350, 520, { fill: '#3a2a1a', opacity: 0.28, filter: 'url(#blur3)', transform: 'rotate(-3 225 320)' }) + g({ transform: 'translate(50,52) rotate(-3 175 260)' }, P2.textbookPage('victim', 350, 520) + '<clipPath id="tbv"><rect x="28" y="31" width="294" height="322"/></clipPath>' + g({ 'clip-path': 'url(#tbv)' }, FX.burst(350, 360, 175, 160, { n: 18, op: 0.25, inner: 70 }))),
+  [cap('Even without any sound in the moving picture, you could tell the woman with the discoloured skin was screaming.', 430, 210, { w: 290, fixed: true })],
+  { alt: 'A textbook page with a moving picture of a poisoned woman, screaming.' });
 ep.panel(740, { cam: { x: 1037, y: 690, w: 560 }, bg: TR(NOTPERM), blur: 2, actors: CLASS({ h: { expr: 'horror' }, he: { expr: 'horror' } }) },
   [say('McGonagall', 'The criminal who Transfigured gold into wine and gave it to this woman to drink, "in payment of the debt", received ten years in Azkaban.', 400, 64, { anchor: 'tc', w: 540, fixed: true, noTail: true })],
   { mood: 'warm', alt: 'Harry and Hermione stare at the page in horror.' });
-ep.panel(1060, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#5a4030' }) + g({ transform: `translate(${ctx.w / 2 - 200},290)` }, P2.textbookPage('dementor', 400, 500)) + FX.frost(ctx.w, ctx.h, 0.35, 16),
+// the Dementor page: the panel's edges drain away into the page, like everything near a Dementor (dissolve)
+ep.panel(1060, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#262a36' }) + g({ transform: `translate(${ctx.w / 2 - 200},290)` }, P2.textbookPage('dementor', 400, 500)) + FX.frost(ctx.w, ctx.h, 0.35, 16),
   [say('McGonagall', 'Page six. That is a Dementor. They are the guardians of Azkaban. They suck away at your magic, your life, and any happy thoughts you try to have.', 400, 64, { anchor: 'tc', w: 540, fixed: true, noTail: true }),
-   say('McGonagall', 'The picture on page seven is of the criminal, ten years later, on his release. You will note that he is dead.', 400, 1010, { anchor: 'bc', w: 520, fixed: true, noTail: true })], { alt: 'Page six: a tall, hooded, cold shape. A Dementor.' });
+   say('McGonagall', 'The picture on page seven is of the criminal, ten years later, on his release. You will note that he is dead.', 400, 1010, { anchor: 'bc', w: 520, fixed: true, noTail: true })], { frame: 'dissolve', feather: 60, alt: 'Page six: a tall, hooded, cold shape. A Dementor.' });
 ep.panel(700, { cam: { x: 1010, y: 690, w: 620 }, bg: TR(NOTPERM), actors: CLASS({ h: { pose: 'raiseHand', expr: 'worried', turn: 0.2, armF: { sh: -142, el: -12, hand: 'palm' }, armB: { sh: 20, el: 60 } } }) },
   [say('Harry', 'Professor, if the worst happens in a case like that, is there any way of *maintaining* the Transfiguration?', 520, 50, { anchor: 'tc', w: 360, fixed: true })], { mood: 'warm' });
 ep.panel(780, { cam: mgCam(780, 540, 0.55, -150), bg: TR(NOTPERM), actors: [MG({ x: 1500, pose: 'gesture', turn: 0.3, expr: 'stern' })] },
@@ -132,8 +140,9 @@ ep.panel(900, { cam: { x: 880, y: 560, w: 940 }, bg: TR(NOTPERM), actors: [MG({ 
 ep.panel(640, { cam: { x: 1000, y: 790, w: 860 }, bg: TR(NOTPERM), actors: CLASS({ h: { expr: 'worried' }, he: { expr: 'determined' } }) },
   [say('Harry', 'Yes.', 260, 64, { anchor: 'tc', w: 100, fixed: true }), say('Hermione', 'Yes!', 560, 64, { anchor: 'tc', w: 100, fixed: true }),
    cap('Said Harry, Hermione, and a few others. The rest seemed to be speechless.', 44, 520, { w: 620, fixed: true })], { mood: 'warm' });
-ep.panel(900, { cam: mgCam(900, 300, 0.74), bg: TR(NOTPERM), blur: 3, actors: [MG({ x: 1500, expr: 'yell', pose: 'fists', turn: 0 })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.55, { n: 30, op: 0.2 }) },
-  [shout('McGonagall', '*IS THAT WELL UNDERSTOOD BY EVERY SINGLE STUDENT?*', 400, 84, { anchor: 'tc', w: 470, fixed: true })], { mood: 'warm' });
+// the one time she roars: the panel itself explodes (burst)
+ep.panel(960, { cam: mgCam(960, 300, 0.72), bg: TR(NOTPERM), blur: 3, actors: [MG({ x: 1500, expr: 'yell', pose: 'fists', turn: 0 })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.55, { n: 30, op: 0.2 }) },
+  [shout('McGonagall', '*IS THAT WELL UNDERSTOOD BY EVERY SINGLE STUDENT?*', 400, 150, { anchor: 'tc', w: 440, fixed: true })], { mood: 'warm', shape: 'burst', points: 26, seed: 4, ph: 940, pad: 10 });
 // the chant
 const CHANT = (t, y, o = {}) => capC(t, 400, y, { w: 620, fixed: true, ...o });
 const CHORUS = { h: { expr: 'determined' }, he: { expr: 'determined' }, c: [{ expr: 'worried' }, { expr: 'shock' }, { expr: 'worried' }] };
@@ -156,7 +165,8 @@ ep.panel(700, { cam: mgCam(700, 420, 0.62, 120), bg: TR(NOTPERM), blur: 2, actor
 ep.panel(700, { cam: { x: 1010, y: 720, w: 620 }, bg: TR(NOTPERM), actors: CLASS({ h: RAISED, he: { expr: 'unimpressed' } }) },
   [say('McGonagall', 'Mr Potter is currently holding up his hand, because he has seen an Animagus transformation. But an Animagus transformation is not *free* Transfiguration.', 400, 50, { anchor: 'tc', w: 560, fixed: true, noTail: true })], { mood: 'warm', alt: 'Harry, hand up.' });
 const SW = [160, 160, 236, 160], SX = [M, M + 172, M + 344, M + 592];
-ep.multi(346, [0, 1, 2, 3].map((k) => ({ x: SX[k], y: 18, w: SW[k], h: 310, mood: 'warm', art: (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#b89a6a' }) + g({ transform: `translate(${ctx.w / 2},${ctx.h * 0.34}) scale(1.35)` },
+// the demonstration objects sit on the bare page (cut-outs), one after another, no boxes in the way
+ep.multi(346, [0, 1, 2, 3].map((k) => ({ x: SX[k], y: 18, w: SW[k], h: 310, cutout: true, border: 'none', art: (ctx) => ellipse(ctx.w / 2 + 4, ctx.h * 0.34 + (k === 0 || k === 3 ? 44 : 56), 56, 8, { fill: '#3a2a1a', opacity: 0.22, filter: 'url(#blur3)' }) + (k === 2 ? K.glow(ctx.w / 2, ctx.h * 0.34, 110, '#fff6d8', 0.9) : '') + g({ transform: `translate(${ctx.w / 2},${ctx.h * 0.34}) scale(1.35)` },
     k === 0 || k === 3 ? rect(-40, -30, 80, 60, { fill: '#a8784c', stroke: C.ink, 'stroke-width': 3 }) + line(-30, -10, 30, -12, { stroke: '#7a4e2e', 'stroke-width': 2 }) + line(-26, 8, 28, 6, { stroke: '#7a4e2e', 'stroke-width': 2 }) :
     k === 1 ? circle(0, 0, 40, { fill: '#dfeef5', stroke: C.ink, 'stroke-width': 3, opacity: 0.9 }) + circle(-13, -13, 9, { fill: '#fff' }) :
     circle(0, 0, 40, { fill: '#8a929c', stroke: C.ink, 'stroke-width': 3 }) + circle(-13, -13, 9, { fill: '#e9eef2' })) })),
@@ -205,13 +215,18 @@ ep.panel(620, { cam: { on: ['hermione'], fr: 'close', dy: 0.1 }, bg: TR(NOTPERM)
 ep.panel(860, { cam: { x: 1110, y: 760, w: 480 }, bg: TR(NOTPERM), blur: 2, actors: WAR({}, { expr: 'smug', pose: 'handsHips' }) },
   [say('Hermione', 'We have lessons every day, though. I wonder how long it will take you to find some more Hufflepuffs to rescue?', 260, 64, { anchor: 'tc', w: 370, fixed: true }),
    say('Hermione', 'Today is Monday. So that gives you until Thursday.', 225, 800, { anchor: 'bc', w: 300, fixed: true })], { mood: 'warm' });
-ep.multi(600, [
-  { x: M, y: 96, w: 752, h: 236, mood: 'warm', art: { cam: { on: ['harry'], fr: 'eyes' }, bg: TR(NOTPERM), blur: 3, actors: WAR({ expr: { base: 'suspicious', eyes: { open: 0.55 } }, turn: 0.4 }) } },
-  { x: M, y: 346, w: 752, h: 236, mood: 'warm', art: { cam: { on: ['hermione'], fr: 'eyes' }, bg: TR(NOTPERM), blur: 3, actors: WAR({}, { expr: { base: 'smug', eyes: { open: 0.55 } }, turn: -0.4 }) } },
+// the stare-down, eye to eye: each panel is an eye (almond)
+ep.multi(640, [
+  { x: M, y: 96, w: 752, h: 256, mood: 'warm', shape: 'eye', art: { cam: { on: ['harry'], fr: 'eyes' }, bg: TR(NOTPERM), blur: 3, actors: WAR({ expr: { base: 'suspicious', eyes: { open: 0.55 } }, turn: 0.4 }) } },
+  { x: M, y: 366, w: 752, h: 256, mood: 'warm', shape: 'eye', art: { cam: { on: ['hermione'], fr: 'eyes' }, bg: TR(NOTPERM), blur: 3, actors: WAR({}, { expr: { base: 'smug', eyes: { open: 0.55 } }, turn: -0.4 }) } },
 ], [cap('The two of them stared into each other\'s eyes, unblinking.', 44, 22, { w: 700, fixed: true })], { alt: 'Eye to eye.' });
-ep.bleed(860, { cam: { x: 1040, y: 800, w: 460 }, bg: TR(NOTPERM), actors: WAR({ expr: 'menace', turn: 0.4 }, { expr: 'determined', turn: -0.4 }), behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.45, { n: 30, op: 0.25 }) },
-  [say('Harry', 'Of course you realise this means war.', 220, 60, { anchor: 'tc', w: 300, fixed: true }),
-   say('Hermione', 'I didn\'t know we\'d been at peace.', 590, 820, { anchor: 'bc', w: 300, fixed: true })], { alt: 'Harry and Hermione, eye to eye across the desk.' });
+// the declaration of war: one diagonal battle line splits the tile between them
+const WARLINE = { x: M, y: 18, w: 764, h: 824 };
+ep.multi(860, [
+  { ...WARLINE, mood: 'warm', shape: 'poly', pts: [[0, 0], [0.7, 0], [0.3, 1], [0, 1]], art: { cam: { head: 'harry', hw: 0.3, hx: 0.24, hy: 0.52 }, bg: TR(NOTPERM), blur: 2, actors: WAR({ expr: 'menace', turn: 0.4 }, { expr: 'determined', turn: -0.4 }), behind: (e) => FX.burst(e.w, e.h, e.w * 0.24, e.h * 0.52, { n: 30, op: 0.25 }) } },
+  { ...WARLINE, mood: 'warm', shape: 'poly', pts: [[0.727, 0], [1, 0], [1, 1], [0.327, 1]], art: { cam: { head: 'hermione', hw: 0.3, hx: 0.76, hy: 0.5 }, bg: TR(NOTPERM), blur: 2, actors: WAR({ expr: 'menace', turn: 0.4 }, { expr: 'determined', turn: -0.4 }), behind: (e) => FX.burst(e.w, e.h, e.w * 0.76, e.h * 0.5, { n: 30, op: 0.25 }) } },
+], [say('Harry', 'Of course you realise this means war.', 220, 60, { anchor: 'tc', w: 300, fixed: true, tail: 'harry@0' }),
+   say('Hermione', 'I didn\'t know we\'d been at peace.', 590, 820, { anchor: 'bc', w: 300, fixed: true, tail: 'hermione@1' })], { alt: 'Harry and Hermione, eye to eye, a diagonal line between them.' });
 ep.panel(840, { cam: { x: 1100, y: 610, w: 980 }, bg: TR(NOTPERM), actors: [MG({ x: 1510, pose: 'handsHips', turn: -0.5, expr: 'smile' }), { def: padma, id: 'padma', x: 640, y: 1080, s: 1.05, turn: 0.4, pose: 'sit', seat: 140, expr: 'awe' }, { def: anthony, id: 'anthony', x: 1440, y: 1080, s: 1.05, turn: -0.4, pose: 'sit', seat: 140, expr: 'awe' }, () => CS.deskRow(1120, { h: 200, x0: 1330 }), ...WAR({ expr: 'menace' }, { expr: 'determined' })] },
   [cap('All of the other students were now watching with fascinated eyes. All of the other students, plus, unfortunately, Professor McGonagall.', 44, 30, { w: 620, fixed: true })], { mood: 'warm' });
 ep.panel(740, { cam: mgCam(740, 560, 0.56, -150), bg: TR(NOTPERM), actors: [MG({ x: 1500, pose: 'present', expr: 'happy', turn: 0.3 })] },
@@ -241,8 +256,9 @@ ep.panel(560, { cam: { x: 1150, y: 800, w: 520 }, bg: TR(NOTPERM), actors: HUP({
   [shout('Hermione', '*Professor!*', 290, 130, { w: 240, fixed: true })], { mood: 'warm' });
 ep.panel(600, { cam: mgCam(600, 400, 0.52, -120), bg: TR(NOTPERM), blur: 3, actors: [MG({ x: 1500, pose: 'stand', turn: 0.2, expr: 'smile' })] },
   [say('McGonagall', 'My, I wonder how long it will take before Miss *Granger* does something deserving of a dinner-time announcement? I look forward to seeing it.', 525, 290, { w: 340, shape: 'box', fixed: true })], { mood: 'warm' });
-ep.bleed(640, { cam: { x: 930, y: 610, w: 900 }, bg: () => CS.corridor({ seed: 31, windows: [400, 1600], torches: [1000] }), actors: [{ def: harryRaven, id: 'harry', x: 1250, y: 900, s: 1.1, turn: 0.7, pose: 'walk', expr: 'angry' }, { def: hermioneRaven, id: 'hermione', x: 1050, y: 900, s: 1.1, turn: 0.7, pose: 'walk', expr: 'cross' }, ...[0, 1, 2, 3].map((i) => ({ def: [padma, anthony, terry, michael][i], id: 'r' + i, x: 800 - i * 170, y: 900, s: 1.05, turn: 0.6, pose: 'walk', expr: 'awe' }))] },
-  [cap('Harry and Hermione, by unspoken mutual consent, turned and stormed out of the classroom. They were followed by a trail of hypnotised Ravenclaws.', 44, 40, { w: 620, fixed: true })], { alt: 'Harry and Hermione storm down the corridor side by side; a line of Ravenclaws trails behind, entranced.' });
+// they storm out so fast that Harry marches straight out of the panel (breakout)
+ep.panel(640, { cam: { x: 776, y: 600, w: 820 }, bg: () => CS.corridor({ seed: 31, windows: [400, 1600], torches: [1000] }), actors: [{ def: harryRaven, id: 'harry', x: 1250, y: 900, s: 1.1, turn: 0.7, pose: 'walk', expr: 'angry' }, { def: hermioneRaven, id: 'hermione', x: 1050, y: 900, s: 1.1, turn: 0.7, pose: 'walk', expr: 'cross' }, ...[0, 1, 2, 3].map((i) => ({ def: [padma, anthony, terry, michael][i], id: 'r' + i, x: 800 - i * 170, y: 900, s: 1.05, turn: 0.6, pose: 'walk', expr: 'awe' }))] },
+  [cap('Harry and Hermione, by unspoken mutual consent, turned and stormed out of the classroom. They were followed by a trail of hypnotised Ravenclaws.', 40, 30, { w: 610, fixed: true })], { breakout: 'right', w: 640, alt: 'Harry and Hermione storm down the corridor side by side; a line of Ravenclaws trails behind, entranced.' });
 const HW = (o = {}) => ({ def: harryRaven, id: 'harry', x: 1250, y: 900, s: 1.1, turn: -0.3, pose: 'walk', expr: 'neutral', ...o });
 const HEW = (o = {}) => ({ def: hermioneRaven, id: 'hermione', x: 950, y: 900, s: 1.1, turn: 0.3, pose: 'walk', expr: 'neutral', ...o });
 const COR = () => CS.corridor({ seed: 31, windows: [400, 1600], torches: [1000] });
@@ -264,7 +280,8 @@ ep.panel(1000, { cam: { on: ['harry'], fr: 'waist', dy: -0.3 }, bg: COR, actors:
    say('Harry', '10:47 on Sunday.', 400, 940, { anchor: 'bc', w: 260, fixed: true })], { mood: 'warm' });
 ep.panel(620, { cam: { on: ['hermione'], fr: 'close' }, bg: COR, blur: 3, actors: [HEW({ expr: 'smug' })] },
   [say('Hermione', 'I did it in *three* days, actually.', 400, 64, { anchor: 'tc', w: 360, fixed: true })], { mood: 'warm' });
-ep.panel(900, { cam: { on: ['harry'], fr: 'close', dy: 0.1 }, bg: COR, blur: 3, actors: [HW({ expr: { base: 'scheme', eyes: { lookX: 0.3 } }, turn: -0.1 })], over: (e) => { const a = e.anchors.harry; return a ? K.glow(a.head[0] - a.hr * 0.2, a.head[1] + a.hr * 2.2, 60, '#ffe9a8', 0.9) + g({ transform: `translate(${a.head[0] - a.hr * 0.2},${a.head[1] + a.hr * 2.2}) scale(${a.hr / 200})` }, P2.timeTurner(1, { chain: false })) : ''; } },
+// Harry leans out of the comic to share his secret with the reader (cut-out): only we can see the Time-Turner
+ep.cutout(940, { cam: { head: 'harry', hw: 0.42, hx: 0.5, hy: 0.4 }, actors: [HW({ expr: { base: 'scheme', eyes: { lookX: 0.3 } }, turn: -0.1 })], over: (e) => { const a = e.anchors.harry; return fadeOut(0.84, 0.99)(e) + (a ? K.glow(a.head[0] - a.hr * 0.2, a.head[1] + a.hr * 2.2, 60, '#ffe9a8', 0.9) + g({ transform: `translate(${a.head[0] - a.hr * 0.2},${a.head[1] + a.hr * 2.2}) scale(${a.hr / 200})` }, P2.timeTurner(1, { chain: false })) : ''); } },
   [say('Harry', '2:47 on Saturday it is, then.', 400, 64, { anchor: 'tc', w: 340, fixed: true }),
    say('Harry', 'I\'m sure I\'ll find the time somewhere.', 630, 790, { w: 230, fixed: true })], { mood: 'warm', alt: 'Harry smiles. Something glints gold under his robes.' });
 ep.setBg('#2a2440');

@@ -371,10 +371,14 @@ export function drawCharacter(def, opts = {}) {
     const col = far ? shade(O.sleeve || topCol, -0.15) : (O.sleeve || topCol);
     const u = norm(sub(P[1], P[0])), r0 = B.armW * 1.05 / 2 + lw * 1.2;
     const cut = add(P[0], mul(u, B.armW * 0.25)), ang = Math.atan2(u[1], u[0]) * 180 / Math.PI;
-    const hid = uid('sh'), cid = uid('shc');
+    const hid = uid('sh'), cid = uid('shc'), mid = uid('shm');
     // keep the half of the cap circle on the far side of the joint (away from the elbow), inside the torso
     return `<clipPath id="${cid}"><path d="${torsoD}"/></clipPath><clipPath id="${hid}"><rect x="${r2(-400)}" y="${r2(-200)}" width="400" height="400" transform="translate(${r2(cut[0])},${r2(cut[1])}) rotate(${r2(ang)})"/></clipPath>` +
-      g({ 'clip-path': `url(#${cid})` }, g({ 'clip-path': `url(#${hid})` }, circle(P[0][0], P[0][1], r0, { fill: col })));
+      g({ 'clip-path': `url(#${cid})` }, g({ 'clip-path': `url(#${hid})` }, circle(P[0][0], P[0][1], r0, { fill: col }))) +
+      // the patch also covers the inner half of the torso's own outline there: redraw that outline on top, except where
+      // the arm itself lies over it (masked out), so the shoulder silhouette keeps its full line
+      `<mask id="${mid}" maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="4000" height="4000"><g clip-path="url(#${hid})">${circle(P[0][0], P[0][1], r0 + lw * 2, { fill: '#fff' })}</g>${capsule(P[0], P[1], B.armW * 1.05 - lw * 1.2, B.armW * 0.95 - lw * 1.2, { fill: '#000' })}</mask>` +
+      g({ mask: `url(#${mid})` }, path(torsoD, { fill: 'none', stroke: C.ink, 'stroke-width': lw, 'stroke-linejoin': 'round' }));
   };
   layers.armF.push(shoulderPatch(armFp, false));
   if (aB.front === true) layers.armB.push(shoulderPatch(armBp, true));

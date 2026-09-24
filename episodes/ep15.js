@@ -30,9 +30,10 @@ const STAND2 = (H, bottom = 960) => ({ x: 1200, y: bottom - (H - 36) / 2 * (720 
 const PENCIL = (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#f3ead3' }) + [...Array(Math.ceil(ctx.h / 34)).keys()].map((k) => line(0, 20 + k * 34, ctx.w, 20 + k * 34, { stroke: '#b9c8d8', 'stroke-width': 1.4 })).join('') + line(70, 0, 70, ctx.h, { stroke: '#e2a0a0', 'stroke-width': 2 });
 const PT = (x, y, s, fs = 36, col = '#2d2a4a', a = 'middle', o = {}) => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, fill: col, 'text-anchor': a, ...o });
 
-ep.panel(900, { cam: { x: 1180, y: 440, w: 1500 }, bg: MO, actors: ROOM({ expr: 'worried' }, { expr: 'blank' }) },
-  [cap('Professor McGonagall\'s office was clean and well organised. A wall of cubbyholes, each with its scrolls, each meaning something to her and no-one else. A single parchment on the desk. Behind it, a door barred with several locks.', 44, 30, { w: 620, fixed: true }),
-   say('McGonagall', 'Mr Potter? What is this about?', 490, 360, { w: 300, fixed: true })], { mood: 'warm', alt: 'McGonagall\'s office. She sits on a backless stool behind a tidy desk, looking at Harry with slight apprehension.' });
+// the reader steps into her office through its doorway (wood arch)
+ep.panel(1120, { cam: { x: 1180, y: 470, w: 1400 }, bg: MO, actors: ROOM({ expr: 'worried' }, { expr: 'blank' }) },
+  [cap('Professor McGonagall\'s office was clean and well organised. A wall of cubbyholes, each with its scrolls, each meaning something to her and no-one else. A single parchment on the desk. Behind it, a door barred with several locks.', 44, 24, { w: 620, fixed: true }),
+   say('McGonagall', 'Mr Potter? What is this about?', 480, 610, { w: 300, fixed: true })], { mood: 'warm', y: 252, ph: 850, shape: 'arch', spring: 0.34, frame: 'wood', alt: 'Through the doorway of McGonagall\'s office. She sits on a backless stool behind a tidy desk, looking at Harry with slight apprehension.' });
 ep.panel(620, { cam: { on: ['harry'], fr: 'close' }, bg: MO, blur: 3, actors: ROOM({}, { expr: 'blank' }) },
   [cap('Harry\'s mind went blank. The Game had sent him here. He\'d been expecting *her* to have something in mind…', 44, 30, { w: 620, fixed: true })], { mood: 'warm' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'waist', dy: 0.1 }, bg: MO, blur: 2, actors: ROOM({}, { expr: 'think', pose: 'raiseHand', armB: { sh: 128, el: 45, hand: 'palm' } }) },
@@ -88,7 +89,7 @@ ep.panel(900, { cam: { on: ['mcgonagall'], fr: 'close', dy: 0.1 }, bg: MO, blur:
   [say('McGonagall', 'I see why the Sorting Hat offered you Hufflepuff.', 400, 64, { anchor: 'tc', w: 440, fixed: true }),
    cap('She was eyeing him with a strange respect.', 44, 800, { w: 600, fixed: true })], { mood: 'warm' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'close', dy: -0.05 }, bg: MO, blur: 3, actors: ROOM({}, { expr: 'teary' }) },
-  [cap('That made Harry choke up a bit. He\'d honestly thought he wasn\'t worthy of Hufflepuff. That the Hat had just been trying to shove him anywhere but Ravenclaw, into a House whose virtues he didn\'t have…', 44, 30, { w: 620, fixed: true })], { mood: 'warm' });
+  [cap('That made Harry choke up a bit. He\'d honestly thought he wasn\'t worthy of Hufflepuff. That the Hat had just been trying to shove him anywhere but Ravenclaw, into a House whose virtues he didn\'t have…', 44, 30, { w: 620, fixed: true })], { mood: 'warm', frame: 'dissolve', feather: 60 });
 ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'bust', dy: 0.1 }, bg: MO, blur: 2, actors: ROOM({ expr: 'smile' }) },
   [say('McGonagall', 'And if I tried to give you *ten* points…?', 400, 50, { anchor: 'tc', w: 480, fixed: true })], { mood: 'warm' });
 ep.panel(1150, { cam: { on: ['harry'], fr: 'waist', dy: -1.0 }, bg: MO, blur: 2, actors: ROOM({}, { expr: 'smile', pose: 'lecture' }) },
@@ -100,8 +101,9 @@ ep.panel(760, { cam: { x: 1430, y: 590, w: 900 }, bg: MO, actors: [DESK, HP({ x:
   [cap('She went to the locked back door, waved her wand, and a blurry curtain sprang up around her. Harry could neither see nor hear what was going on.', 44, 30, { w: 620, fixed: true })], { mood: 'warm', alt: 'A blur, like a frosted-glass curtain, hides McGonagall at the locked door.' });
 
 // the necklace
-ep.bleed(900, { cam: { x: 400, y: 470, w: 800 }, bg: (e) => rect(-100, -100, 1000, 1200, { fill: '#3a2a22' }) + K.glow(400, 480, 400, '#ffe9a8', 0.35) + g({ transform: 'translate(400,520)' }, P2.timeTurner(2.4, { rot: 0 })) },
-  [cap('In one hand, she held a necklace: a thin golden chain bearing a silver circle, and within the circle, the device of an hourglass.', 44, 40, { w: 620, fixed: true })], { alt: 'The Time-Turner: a silver ring with a tiny hourglass inside, on a fine gold chain.' });
+// the key object, out of the frame and on the page itself
+ep.cutout(800, (ctx) => K.glow(ctx.w / 2, 500, 340, '#ffd76a', 0.45) + g({ transform: `translate(${ctx.w / 2},500)` }, P2.timeTurner(2.4, { rot: 0 })),
+  [cap('In one hand, she held a necklace: a thin golden chain bearing a silver circle, and within the circle, the device of an hourglass.', 44, 30, { w: 620, fixed: true })], { alt: 'The Time-Turner, alone on the page: a silver ring with a tiny hourglass inside, on a fine gold chain.' });
 ep.panel(820, { cam: { x: 1230, y: 607, w: 620 }, bg: MO, actors: [MCG({ x: 1060, y: 1000, pose: 'present', seat: undefined, turn: 0.4, expr: 'stern', armB: { sh: 80, el: 10, hand: 'hold', prop: g({ transform: 'translate(0,46) scale(0.45)' }, P2.timeTurner(1)) } }), HP({ x: 1400, expr: 'bigGrin', pose: 'reach', armB: { sh: 118, el: 12, hand: 'open' }, armF: { sh: 25, el: 35, hand: 'open' } })] },
   [inner('Harry', '*Wow! A neat magical item as a quest reward! So refusing money until you got a magic item actually worked in real life, not just in computer games.*', 400, 50, { anchor: 'tc', w: 580, fixed: true })], { mood: 'warm' });
 ep.panel(1000, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.25 }, bg: MO, blur: 2, actors: [MCG({ x: 1060, y: 1000, pose: 'lecture', seat: undefined, turn: 0.3, expr: 'stern' })] },
@@ -115,8 +117,8 @@ ep.panel(840, { cam: { on: ['harry'], fr: 'bust', dy: 0.05 }, bg: MO, blur: 2, a
 ep.panel(1150, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.2 }, bg: MO, blur: 2, actors: [MCG({ x: 1060, y: 1000, pose: 'stand', seat: undefined, turn: 0.3, expr: 'calm' })] },
   [say('McGonagall', 'It\'s a Time-Turner. Each spin of the hourglass sends you one hour back in time.', 400, 64, { anchor: 'tc', w: 480, fixed: true }),
    say('McGonagall', 'So if you use it to go back two hours every day, you should always be able to get to sleep at the same time.', 400, 1105, { anchor: 'bc', w: 520, fixed: true })], { mood: 'warm' });
-ep.panel(700, { cam: { x: 400, y: 330, w: 800 }, bg: () => rect(-100, -100, 1000, 1000, { fill: '#e9dcc0' }) + g({ transform: 'translate(400,380)' }, circle(0, 0, 220, { fill: '#f6efdc', stroke: C.ink, 'stroke-width': 4 }), ...[...Array(26).keys()].map((k) => { const a = k / 26 * Math.PI * 2; return line(Math.sin(a) * 200, -Math.cos(a) * 200, Math.sin(a) * 180, -Math.cos(a) * 180, { stroke: C.ink, 'stroke-width': 3 }); }), line(0, 0, 0, -150, { stroke: C.ink, 'stroke-width': 6 }), line(0, 0, 110, 60, { stroke: C.ink, 'stroke-width': 5 }), g({ transform: 'translate(170,-170) scale(0.5)' }, P2.timeTurner(1, { chain: false }))), over: (e) => FX.memoryEdge(e.w, e.h) },
-  [cap('*(Back at his parents\' house, she had promised him a solution "in time".)*', 44, 30, { w: 420, fixed: true })], { mood: 'sepia', alt: 'Memory: the 26-hour clock diagram from his first day, and the tiny hourglass beside it.' });
+ep.panel(820, { cam: { x: 400, y: 370, w: 800 }, bg: () => rect(-100, -100, 1000, 1000, { fill: '#e9dcc0' }) + g({ transform: 'translate(400,380)' }, circle(0, 0, 220, { fill: '#f6efdc', stroke: C.ink, 'stroke-width': 4 }), ...[...Array(26).keys()].map((k) => { const a = k / 26 * Math.PI * 2; return line(Math.sin(a) * 200, -Math.cos(a) * 200, Math.sin(a) * 180, -Math.cos(a) * 180, { stroke: C.ink, 'stroke-width': 3 }); }), line(0, 0, 0, -150, { stroke: C.ink, 'stroke-width': 6 }), line(0, 0, 110, 60, { stroke: C.ink, 'stroke-width': 5 }), g({ transform: 'translate(170,-170) scale(0.5)' }, P2.timeTurner(1, { chain: false }))) },
+  [cap('*(Back at his parents\' house, she had promised him a solution "in time".)*', 44, 24, { w: 420, fixed: true })], { mood: 'sepia', y: 124, ph: 680, shape: 'cloud', seed: 4, alt: 'Memory: the 26-hour clock diagram from his first day, and the tiny hourglass beside it.' });
 // the meltdown
 ep.panel(460, { cam: { on: ['harry'], fr: 'close' }, bg: MO, blur: 3, actors: [HP({ x: 1400, expr: 'blank' })] },
   [inner('Harry', '*You\'re giving me a time machine to treat my sleep disorder.*', 400, 64, { anchor: 'tc', w: 520, fixed: true })], { mood: 'warm' });
@@ -124,15 +126,15 @@ ep.panel(680, { cam: { head: 'harry', hw: 0.74, hx: 0.5, hy: 0.6 }, bg: MO, blur
   [inner('Harry', '*You\'re giving me a time machine to treat my sleep disorder.*', 400, 64, { anchor: 'tc', w: 520, size: 36, fixed: true })], { mood: 'warm' });
 ep.panel(860, { cam: { head: 'harry', hw: 1.1, hx: 0.5, hy: 0.58 }, bg: MO, blur: 3, actors: [HP({ x: 1400, expr: { base: 'horror', eyes: { open: 1.3 } } })], over: (e) => FX.burst(e.w, e.h, e.w / 2, e.h / 2, { n: 30, op: 0.2 }) },
   [shout('Harry', '*YOU\'RE GIVING ME A TIME MACHINE TO TREAT MY SLEEP DISORDER.*', 400, 96, { anchor: 'tc', w: 470, fixed: true, noTail: true })], { mood: 'warm', alt: 'Harry\'s eyes, getting wider and wider.' });
-ep.panel(900, { cam: { on: ['harry'], fr: 'waist', dy: -0.2, dx: -0.7, zoom: 0.85 }, bg: MO, actors: [HP({ x: 1400, expr: { base: 'laugh', eyes: { open: 1.2 } }, pose: 'holdUp', armB: { sh: 110, el: 0, hand: 'hold', prop: g({ transform: 'translate(0,40) scale(0.3)' }, P2.timeTurner(1)) } })] },
-  [say('Harry', 'Ehehehehhheheh…', 470, 70, { anchor: 'tc', w: 300, fixed: true }),
-   cap('He was now holding the necklace away from himself as though it were a live bomb. No: that didn\'t begin to describe it. He was holding it away from himself as though it were a *time machine.*', 44, 700, { w: 620, fixed: true })], { mood: 'warm' });
+ep.panel(1000, { cam: { head: 'harry', hw: 0.4, hx: 0.47, hy: 0.3 }, bg: MO, actors: [HP({ x: 1400, expr: { base: 'laugh', eyes: { open: 1.2 } }, pose: 'holdUp', armB: { sh: 110, el: 0, hand: 'hold', prop: g({ transform: 'translate(0,40) scale(0.3)' }, P2.timeTurner(1)) } })] },
+  [say('Harry', 'Ehehehehhheheh…', 560, 60, { anchor: 'tc', w: 300, fixed: true }),
+   cap('He was now holding the necklace away from himself as though it were a live bomb. No: that didn\'t begin to describe it. He was holding it away from himself as though it were a *time machine.*', 170, 704, { w: 500, fixed: true })], { mood: 'warm', x: 140, w: 642, breakout: 'left' });
 ep.panel(1050, (ctx) => PENCIL(ctx) + g({ transform: 'translate(260,560)' },
     path('M-60,-340 L-10,-380 L40,-330 L20,-270 L70,-230 L40,-160 L90,-110 L60,-40 L110,20 L80,120 L30,150 L-20,100 L-60,160 L-100,120 L-80,40 L-120,-20 L-70,-80 L-110,-160 L-60,-220 L-90,-280Z', { fill: '#dcd2b6', stroke: '#2d2a4a', 'stroke-width': 3 }),
     circle(-10, -250, 110, { fill: '#5a4a3a', stroke: '#2d2a4a', 'stroke-width': 3 }), circle(-10, -250, 70, { fill: '#2a1b14' }),
     ...[0, 1, 2, 3].map((k) => path(`M${-40 + k * 25},-330 q-20,-60 10,-120 q30,-40 0,-90`, { fill: 'none', stroke: '#8a8a8a', 'stroke-width': 6, opacity: 0.7 }))) +
     PT(385, 300, '← where Scotland', 40, '#9a1f1f', 'start') + PT(425, 345, 'used to be', 40, '#9a1f1f', 'start') + PT(560, 480, 'time-reversed matter', 34) + PT(560, 522, '= ANTIMATTER', 44, '#9a1f1f') + PT(560, 610, 'me: 41 kg', 36) + PT(560, 680, '41 kg + 41 kg', 34) + PT(560, 725, '→ ~43 megatons of TNT', 34),
-  [inner('Harry', '*Say, Professor McGonagall, did you know that time-reversed ordinary matter looks just like antimatter?*', 400, 1000, { anchor: 'bc', w: 560, fixed: true })], { alt: 'Harry\'s pencil sketch: Britain, with a giant smoking crater where Scotland used to be.' });
+  [inner('Harry', '*Say, Professor McGonagall, did you know that time-reversed ordinary matter looks just like antimatter?*', 400, 1000, { anchor: 'bc', w: 560, fixed: true })], { shape: 'torn', frame: 'paper', seed: 8, tear: 12, alt: 'Harry\'s pencil sketch, on a torn-out page: Britain, with a giant smoking crater where Scotland used to be.' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'bust', dy: -0.25, dx: -0.45, zoom: 0.9 }, bg: MO, blur: 2, actors: [HP({ x: 1400, expr: 'yell', pose: 'holdUp', armB: { sh: 110, el: 0, hand: 'hold', prop: g({ transform: 'translate(0,40) scale(0.3)' }, P2.timeTurner(1)) } })] },
   [shout('Harry', 'Excuse me, but this sounds really really *really REALLY DANGEROUS!*', 400, 84, { anchor: 'tc', w: 480, fixed: true })], { mood: 'warm' });
 ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.1 }, bg: MO, blur: 2, actors: [MCG({ x: 1060, y: 1000, pose: 'stand', seat: undefined, turn: 0.3, expr: 'warm' })] },
@@ -160,7 +162,8 @@ ep.panel(1350, { cam: STAND2(1350), bg: MO, actors: [MCG({ x: 1000, y: 1000, pos
   [say('McGonagall', 'Wizards *are* advised to avoid being seen by their past selves. The first version of you should step aside and close his eyes at a known time. It\'s all in the pamphlet.', 300, 76, { anchor: 'tc', w: 380, fixed: true, tail: [150, 470] }),
    say('Harry', 'And it doesn\'t, say, create a paradox that destroys the universe.', 575, 445, { anchor: 'tc', w: 330, fixed: true }),
    say('McGonagall', 'Mr Potter, I think I\'d remember hearing if *that* had ever happened.', 232, 612, { anchor: 'tc', w: 300, fixed: true })], { mood: 'warm' });
-ep.bleed(1180, { cam: { head: 'harry', hw: 0.3, hx: 0.5, hy: 0.72 }, bg: MO, actors: [HP({ x: 1400, expr: 'yell', pose: 'panic' })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.72, { n: 34, op: 0.25 }) },
+// out of the frame entirely: at full volume, at the reader
+ep.cutout(1420, { cam: { head: 'harry', hw: 0.27, hx: 0.5, hy: 0.655 }, actors: [HP({ x: 1400, expr: 'yell', pose: 'panic' })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.66, { n: 34, op: 0.3 }) },
   [shout('Harry', '*THAT IS NOT REASSURING! HAVEN\'T YOU PEOPLE EVER HEARD OF THE ANTHROPIC PRINCIPLE? AND WHAT IDIOT EVER BUILT ONE OF THESE THINGS FOR THE FIRST TIME?*', 400, 150, { anchor: 'tc', w: 440, size: 36, fixed: true })], { alt: 'Harry, arms flailing, at full volume.' });
 ep.panel(1150, { cam: { on: ['mcgonagall'], fr: 'bust', dy: 0.25 }, bg: MO, blur: 2, actors: [MCG({ x: 1000, y: 1000, pose: 'stand', seat: undefined, turn: 0.3, expr: 'laugh' })] },
   [cap('Professor McGonagall actually laughed. It was a pleasant, glad sound that seemed surprisingly out of place on that stern face.', 44, 30, { w: 620, fixed: true }),
@@ -168,8 +171,9 @@ ep.panel(1150, { cam: { on: ['mcgonagall'], fr: 'bust', dy: 0.25 }, bg: MO, blur
 ep.panel(1100, { cam: { on: ['harry'], fr: 'bust', dy: -0.78 }, bg: MO, blur: 2, actors: [HP({ x: 1400, expr: 'rant', pose: 'gesture' })] },
   [say('Harry', 'Turning into a cat doesn\'t even *begin* to compare to this! A Turing machine could simulate going back to a moment and computing a different future. But what you\'re saying is that reality somehow computes itself in one sweep, using information that hasn\'t… happened… *yet…*', 400, 76, { anchor: 'tc', w: 540, fixed: true })], { mood: 'warm' });
 // realisation 1
-ep.bleed(820, { cam: { on: ['harry'], fr: 'close', zoom: 0.9 }, bg: MO, actors: [HP({ x: 1400, expr: { base: 'shock', eyes: { open: 1.3 } } })], behind: (e) => K.glow(e.w / 2, e.h * 0.4, 500, '#ffe9a8', 0.4) + FX.burst(e.w, e.h, e.w / 2, e.h * 0.4, { n: 40, col: '#fff3c9', op: 0.35 }) },
-  [cap('Realisation struck Harry a pile-driver blow.', 44, 40, { w: 380, fixed: true })], { alt: 'Light bursts behind Harry\'s wide eyes.' });
+// the first pile-driver: the panel itself bursts
+ep.panel(940, { cam: { on: ['harry'], fr: 'close', zoom: 0.9 }, bg: MO, actors: [HP({ x: 1400, expr: { base: 'shock', eyes: { open: 1.3 } } })], behind: (e) => K.glow(e.w / 2, e.h * 0.42, 500, '#ffe9a8', 0.4) + FX.burst(e.w, e.h, e.w / 2, e.h * 0.42, { n: 40, col: '#fff3c9', op: 0.35 }) },
+  [cap('Realisation struck Harry a pile-driver blow.', 44, 24, { w: 380, fixed: true })], { mood: 'warm', y: 96, ph: 830, shape: 'burst', points: 26, seed: 4, frame: 'glow', glow: '#f2b63c', alt: 'Light bursts behind Harry\'s wide eyes; the panel itself bursts.' });
 ep.panel(1380, (ctx) => PENCIL(ctx) +
     g({ transform: 'translate(0,525)' }, rect(90, 120, 260, 110, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 4, rx: 14 }), PT(220, 165, 'drink the', 34), PT(220, 205, 'Comed-Tea', 38),
       rect(450, 120, 260, 110, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 4, rx: 14 }), PT(580, 165, 'something', 34), PT(580, 205, 'funny happens', 34),
@@ -177,13 +181,13 @@ ep.panel(1380, (ctx) => PENCIL(ctx) +
       rect(90, 420, 260, 110, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 4, rx: 14 }), PT(220, 465, 'sudden urge', 34), PT(220, 505, 'to drink', 34),
       rect(450, 420, 260, 110, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 4, rx: 14 }), PT(580, 465, 'something funny', 34), PT(580, 505, '(about to happen)', 30),
       path('M580,540 Q580,680 400,690 Q220,680 220,545 M205,562 L220,540 L238,562', { fill: 'none', stroke: '#1f3a8a', 'stroke-width': 6 }), PT(400, 740, 'causal arrow pointing', 36, '#1f3a8a'), PT(400, 782, 'BACKWARDS IN TIME', 44, '#1f3a8a')),
-  [shout('Harry', '*So THAT\'S how the Comed-Tea works!* The spell doesn\'t *make* funny things happen. It makes you feel an urge to drink right *before* something funny is going to happen *anyway!*', 400, 150, { anchor: 'tc', w: 420, size: 34, fixed: true, noTail: true })], { alt: 'Harry\'s diagram: "drink Comed-Tea → funny thing" crossed out; instead "funny thing (about to happen)" with an arrow pointing backwards in time to "sudden urge to drink".' });
+  [shout('Harry', '*So THAT\'S how the Comed-Tea works!* The spell doesn\'t *make* funny things happen. It makes you feel an urge to drink right *before* something funny is going to happen *anyway!*', 400, 150, { anchor: 'tc', w: 420, size: 34, fixed: true, noTail: true })], { shape: 'torn', frame: 'paper', seed: 3, tear: 12, alt: 'Harry\'s diagram: "drink Comed-Tea → funny thing" crossed out; instead "funny thing (about to happen)" with an arrow pointing backwards in time to "sudden urge to drink".' });
 ep.panel(900, { cam: { on: ['harry'], fr: 'bust', dy: -0.2 }, bg: MO, blur: 2, actors: [HP({ x: 1400, expr: 'rant', pose: 'raiseHand', armB: { sh: 112, el: 40, hand: 'palm' } })] },
   [say('Harry', 'I\'m such a fool! Last night I felt the urge to drink, *didn\'t*, and choked on my own spit anyway! The comedy causes the drinking! It all makes sense once you draw the causal arrows going *backwards in time!*', 400, 64, { anchor: 'tc', w: 580, fixed: true })], { mood: 'warm' });
 // realisation 2
-ep.panel(820, { cam: { on: ['harry'], fr: 'eyes', zoom: 0.62, dy: 0.1 }, bg: MO, blur: 3, actors: [HP({ x: 1400, expr: { base: 'horror', eyes: { open: 1.2 }, mouth: { type: 'wobble' } } })] },
-  [cap('Realisation struck Harry the *second* pile-driver.', 44, 30, { w: 460, fixed: true }),
-   cap('This one he managed to keep quiet, making only a small strangled sound, like a dying kitten, as he realised who had put the note on his bed this morning.', 44, 650, { w: 620, fixed: true })], { mood: 'warm' });
+ep.panel(850, { cam: { head: 'harry', hw: 0.8, hx: 0.55, hy: 0.42 }, bg: MO, blur: 3, actors: [HP({ x: 1400, expr: { base: 'horror', eyes: { open: 1.2 }, mouth: { type: 'wobble' } } })] },
+  [cap('Realisation struck Harry the *second* pile-driver.', 44, 24, { w: 460, fixed: true }),
+   cap('This one he managed to keep quiet, making only a small strangled sound, like a dying kitten, as he realised who had put the note on his bed this morning.', 44, 664, { w: 620, fixed: true })], { mood: 'warm', y: 118, ph: 530, shape: 'eye' });
 ep.panel(1100, { cam: STAND2(1100), bg: MO, actors: [MCG({ x: 1000, y: 1000, pose: 'present', seat: undefined, turn: 0.4, expr: 'delight' }), HP({ x: 1400, expr: 'blank', pose: 'slump' })] },
   [say('McGonagall', 'After you graduate, or possibly even before, you really *must* teach some of these Muggle theories at Hogwarts, Mr Potter. They sound quite fascinating, even if they\'re all wrong.', 330, 76, { anchor: 'tc', w: 440, fixed: true }),
    say('Harry', 'Glehhahhh…', 580, 650, { anchor: 'tc', w: 220, fixed: true })], { mood: 'warm' });
@@ -191,9 +195,10 @@ ep.panel(820, { cam: { x: 1560, y: 600, w: 720 }, bg: () => CS.corridor({ seed: 
   [cap('Somehow Harry found himself standing outside her office, with the door closed firmly behind him.', 44, 30, { w: 620, fixed: true }),
    say('Harry', 'Gaahhhrrrraa…', 560, 520, { w: 260, fixed: true }),
    cap('Why yes, his mind *was* blown.', 44, 740, { w: 360, fixed: true })], { mood: 'warm' });
-ep.panel(1000, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#e9dcc0' }) + g({ transform: `translate(${ctx.w / 2},${ctx.h * 0.52})` }, path('M-300,-240 L300,-240 L320,240 L-280,250Z', { fill: '#f3ead3', stroke: C.ink, 'stroke-width': 3 }), path('M-300,-240 q-30,20 0,40 M300,-240 q30,20 0,40', { fill: '#e2d3ae', stroke: C.ink, 'stroke-width': 2 }), PT(0, 10, '?', 200, '#c9b48a')),
+// the blank map lies on the page itself: no frame around the unknown
+ep.cutout(1000, (ctx) => g({ transform: `translate(${ctx.w / 2},${ctx.h * 0.52})` }, path('M-300,-240 L300,-240 L320,240 L-280,250Z', { fill: '#f3ead3', stroke: C.ink, 'stroke-width': 3 }), path('M-300,-240 q-30,20 0,40 M300,-240 q30,20 0,40', { fill: '#e2d3ae', stroke: C.ink, 'stroke-width': 2 }), PT(0, 10, '?', 200, '#c9b48a')),
   [cap('He had always believed that if you were ignorant about something, that was a fact about *you,* not about the thing. A blank map did not mean a blank territory. There were mysterious questions, but never mysterious answers.', 44, 30, { w: 620, fixed: true }),
-   cap('Now, for the first time, he faced a mystery that might be *permanent.* His brain was made of neurons that only ran forwards in time. There might be nothing it could ever do to understand this.', 44, 800, { w: 620, fixed: true })], { alt: 'An empty map with a single faint question mark.' });
+   cap('Now, for the first time, he faced a mystery that might be *permanent.* His brain was made of neurons that only ran forwards in time. There might be nothing it could ever do to understand this.', 44, 800, { w: 620, fixed: true })], { alt: 'An empty map, alone on the page, with a single faint question mark.' });
 
 // ---------------------------------------------------------------- five hours earlier
 ep.setBg('#1c2233');
@@ -243,7 +248,7 @@ ep.panel(1150, { cam: { on: ['harry'], fr: 'waist', dy: -0.2 }, bg: () => CS.gre
    say('Harry', 'I\'ll distract them until you get there. I don\'t think they\'ll dare seriously hurt the Boy-Who-Lived. But I\'d appreciate it if you didn\'t dawdle.', 400, 1095, { anchor: 'bc', w: 500, fixed: true })], { mood: 'warm' });
 ep.panel(820, { cam: { on: ['sprout'], fr: 'bust', dy: -0.2 }, bg: () => CS.greenhouse(), blur: 2, actors: [{ def: sprout, id: 'sprout', x: 700, y: 900, turn: 0.4, pose: 'stand', expr: { base: 'warm', eyes: { soft: true } } }] },
   [cap('Professor Sprout looked at him for a long moment. Then her face softened.', 44, 30, { w: 540, fixed: true }),
-   say('Sprout', 'Please be careful with yourself, Harry Potter. And… thank you.', 400, 780, { anchor: 'bc', w: 460, fixed: true })], { mood: 'warm' });
+   say('Sprout', 'Please be careful with yourself, Harry Potter. And… thank you.', 400, 780, { anchor: 'bc', w: 460, fixed: true })], { mood: 'warm', frame: 'dissolve', feather: 60 });
 
 // under the Cloak
 const COR = () => CS.corridor({ seed: 13, windows: [300, 2200], torches: [1200] });
@@ -254,7 +259,7 @@ ep.panel(820, { cam: { x: 1060, y: 650, w: 1000 }, bg: COR, actors: [
     { def: slyTeen(1), id: 's1', x: 1010, y: 930, s: 1.3, turn: 0.2, expr: 'laugh' }, { def: derrick, id: 'derrick', x: 1400, y: 940, s: 1.4, turn: -0.3, expr: 'smug', pose: 'crossArms' },
     { def: nevilleHuff, id: 'neville', x: 1050, y: 1000, s: 1.05, turn: 0.4, expr: 'shock', pose: 'fallBack' }, { def: harryRaven, id: 'harry1', x: 1250, y: 990, s: 1.1, turn: -0.2, pose: 'reach', expr: 'cold', armB: { sh: 100, el: 20, hand: 'fist' } },
     () => CS.invisible(1800, 1000, 1.1)], over: (e) => FX.speedLines(e.w, e.h, { n: 14 }) },
-  [cap('It was horrible, watching himself yank Neville out of the circle of Slytherins. Neville had been right. He\'d used too much force. *Way* too much force.', 44, 30, { w: 620, fixed: true })], { mood: 'warm', alt: 'From the invisible Harry\'s point of view: the other Harry yanking Neville out of the ring, much too hard.' });
+  [cap('It was horrible, watching himself yank Neville out of the circle of Slytherins. Neville had been right. He\'d used too much force. *Way* too much force.', 44, 30, { w: 620, fixed: true })], { mood: 'warm', shape: 'slant', slant: -90, alt: 'From the invisible Harry\'s point of view: the other Harry yanking Neville out of the ring, much too hard.' });
 ep.bleed(960, { cam: { x: 1070, y: 800, w: 1480 }, bg: COR, actors: [
     ...[0, 1, 2, 3, 4, 5].map((i) => ({ def: i === 0 ? ernie : student(1340 + i, 'h'), id: 'h' + i, x: 420 + i * 92, y: 960 + (i % 2) * 20, s: 1.0, turn: 0.5, expr: 'worried' })),
     { def: nevilleHuff, id: 'neville', x: 900, y: 980, s: 1.05, turn: 0.4, expr: 'cry' },
@@ -268,9 +273,10 @@ ep.beat(700, [
   capC('*O wad some Power the giftie gie us*\n*To see oursels as ithers see us!*\n*It wad frae mony a blunder free us,*\n*An\' foolish notion.*', 400, 260, { w: 560, bg: 'transparent', border: 'transparent', color: '#e9dcc0' }),
   plain('Robert Burns', 400, 470, { font: "'IM Fell English SC', serif", size: 24, color: '#9a8a70' }),
 ]);
-ep.bleed(820, { cam: { on: ['harry1'], fr: 'close', zoom: 0.9 }, bg: COR, actors: [{ def: harryRaven, id: 'harry1', x: 1250, y: 990, s: 1.1, turn: 0.05, pose: 'stand', expr: 'cold' }], over: (e) => rect(0, 0, e.w, e.h, { fill: '#0c1428', opacity: 0.35 }) + FX.frost(e.w, e.h, 0.5, 63) },
-  [cap('Professor McGonagall was right. The Sorting Hat was right. It was clear, once you saw it from the outside.', 44, 40, { w: 620, fixed: true }),
-   capC('There was something wrong with Harry Potter.', 400, 700, { w: 560, fixed: true })], { mood: 'cold', alt: 'Harry\'s cold face, seen as the others see it.' });
+// after Burns: the others' view of him, framed like a looking-glass
+ep.panel(990, { cam: { on: ['harry1'], fr: 'close', zoom: 0.9 }, bg: COR, actors: [{ def: harryRaven, id: 'harry1', x: 1250, y: 990, s: 1.1, turn: 0.05, pose: 'stand', expr: 'cold' }], over: (e) => rect(0, 0, e.w, e.h, { fill: '#0c1428', opacity: 0.35 }) + FX.frost(e.w, e.h, 0.5, 63) },
+  [cap('Professor McGonagall was right. The Sorting Hat was right. It was clear, once you saw it from the outside.', 44, 24, { w: 620, fixed: true }),
+   capC('There was something wrong with Harry Potter.', 400, 920, { w: 560, fixed: true })], { mood: 'cold', x: 90, w: 620, y: 156, ph: 700, shape: 'oval', borderColor: '#aab8c8', borderWidth: 7, alt: 'Harry\'s cold face in an oval like a looking-glass, seen as the others see it.' });
 ep.setBg(C.paper);
 ep.end();
 export default ep;

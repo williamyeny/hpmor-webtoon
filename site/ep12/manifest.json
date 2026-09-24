@@ -13,14 +13,14 @@
   {
    "file": "002.webp",
    "w": 800,
-   "h": 760,
-   "alt": "In the dark library of Harry's mind: Harry, very small, facing the enormous Hat. / Harry: What? / Sorting Hat: I seem to have become self-aware."
+   "h": 820,
+   "alt": "Through a tall wooden arch into the dark library of Harry's mind: Harry, very small, facing the enormous Hat. / Harry: What? / Sorting Hat: I seem to have become self-aware."
   },
   {
    "file": "003.webp",
    "w": 800,
-   "h": 820,
-   "alt": "Harry, in his own head, panics. / Harry: WHAT?"
+   "h": 780,
+   "alt": "Harry, in his own head, panics: no frame, just Harry on the dark page. / Harry: WHAT?"
   },
   {
    "file": "004.webp",
@@ -91,8 +91,8 @@
   {
    "file": "015.webp",
    "w": 800,
-   "h": 900,
-   "alt": "Harry in cold blue light, frost over everything. / Sorting Hat: You don't like yourself when you're angry. It is like wielding a sword whose hilt is sharp enough to draw blood from your own hand. Like looking at the world through a monocle of ice that freezes your eye even as it sharpens your vision."
+   "h": 935,
+   "alt": "Harry's cold face seen through a round lens of ice, rimmed with pale blue light. / Sorting Hat: You don't like yourself when you're angry. It is like wielding a sword whose hilt is sharp enough to draw blood from your own hand. Like looking at the world through a monocle of ice that freezes your eye even as it sharpens your vision."
   },
   {
    "file": "016.webp",
@@ -163,8 +163,8 @@
   {
    "file": "027.webp",
    "w": 800,
-   "h": 820,
-   "alt": "The Hat, enormous, looming close. / Sorting Hat: Yes, you are. You really, really are."
+   "h": 900,
+   "alt": "The Hat, enormous, with no frame around it at all, looming out of the page. / Sorting Hat: Yes, you are. You really, really are."
   },
   {
    "file": "028.webp",
@@ -175,8 +175,8 @@
   {
    "file": "029.webp",
    "w": 800,
-   "h": 1110,
-   "alt": "Sorting Hat: That was not your first thought. You remembered considering lining up all the blood purists and guillotining them. You tell yourself you weren't serious. You were. / Sorting Hat: Or what you did this morning to Neville Longbottom. Deep inside you knew it was wrong, but you did it anyway. Because it was fun, and you had a good excuse, and you thought the Boy-Who-Lived could get away with it—"
+   "h": 1170,
+   "alt": "Two memories: the imagined guillotine in freezing blue; and Neville, terrified, surrounded by shrouded, laughing figures. / Sorting Hat: That was not your first thought. You remembered considering lining up all the blood purists and guillotining them. You tell yourself you weren't serious. You were. / Sorting Hat: Or what you did this morning to Neville Longbottom. Deep inside you knew it was wrong, but you did it anyway. Because it was fun, and you had a good excuse, and you thought the Boy-Who-Lived could get away with it—"
   },
   {
    "file": "030.webp",
@@ -254,7 +254,7 @@
    "file": "042.webp",
    "w": 800,
    "h": 900,
-   "alt": "Harry screams it with his whole mind. / Harry: I DON'T KNOW! BUT I KNOW THAT IT'S BAD!"
+   "alt": "Harry screams it with his whole mind: the panel bursts like an explosion. / Harry: I DON'T KNOW! BUT I KNOW THAT IT'S BAD!"
   },
   {
    "file": "043.webp",
@@ -284,7 +284,7 @@
    "file": "047.webp",
    "w": 800,
    "h": 900,
-   "alt": "Harry's answer, final and freezing. / Harry: NO, AND THAT'S FINAL!"
+   "alt": "Harry's answer, final and freezing: the panel is a jagged shard of ice. / Harry: NO, AND THAT'S FINAL!"
   },
   {
    "file": "048.webp",
@@ -302,7 +302,7 @@
    "file": "050.webp",
    "w": 800,
    "h": 820,
-   "alt": "The Hat sighed a terrible, sad sigh. / Sorting Hat: And so before too long you will become another memory, to be felt and never known, in the next warning that I give…"
+   "alt": "The Hat, eyes closed, sighing; the whole panel fades softly into the dark like a memory. / The Hat sighed a terrible, sad sigh. / Sorting Hat: And so before too long you will become another memory, to be felt and never known, in the next warning that I give…"
   },
   {
    "file": "051.webp",
@@ -410,13 +410,13 @@
    "file": "068.webp",
    "w": 800,
    "h": 1300,
-   "alt": "The Hat bellows: SLYTHERIN! / SLYTHERIN!"
+   "alt": "The Hat bellows SLYTHERIN! It is so big its tip bursts out through the top of the panel. / SLYTHERIN!"
   },
   {
    "file": "069.webp",
    "w": 800,
    "h": 900,
-   "alt": "Hagrid gasped in horror. / McGonagall staggered. / Students screamed. People fell off their benches."
+   "alt": "Reactions: Hagrid, aghast; McGonagall staggering; students screaming. / Hagrid gasped in horror. / McGonagall staggered. / Students screamed. People fell off their benches."
   },
   {
    "file": "070.webp",
@@ -428,7 +428,7 @@
    "file": "071.webp",
    "w": 800,
    "h": 900,
-   "alt": "Harry sat frozen, his life in ruins, wishing wretchedly that he had made any other choices, for any other reasons. That he had done something, anything differently, before it was too late to turn back."
+   "alt": "Harry's face in frozen horror; and, inset, Neville on the platform that morning, wearing exactly the same face. / Harry sat frozen, his life in ruins, wishing wretchedly that he had made any other choices, for any other reasons. That he had done something, anything differently, before it was too late to turn back."
   },
   {
    "file": "072.webp",
@@ -584,13 +584,13 @@
    "file": "097.webp",
    "w": 800,
    "h": 1500,
-   "alt": "Final image: Harry at the Ravenclaw table beside Hermione, among other students, gazing up at the enchanted ceiling full of stars and floating candles. / In a back garden in Oxford, not so long ago, he had held a letter up to an empty sky and shouted, and nothing had answered. / Now he sat at a long table among the others of his own kind, under a ceiling full of stars."
+   "alt": "Final image, with no frame edges (the starry ceiling fades out into the page on every side): Harry at the Ravenclaw table beside Hermione, among other students, gazing up at the enchanted ceiling full of stars and floating candles. / In a back garden in Oxford, not so long ago, he had held a letter up to an empty sky and shouted, and nothing had answered. / Now he sat at a long table among the others of his own kind, under a ceiling full of stars."
   },
   {
    "file": "098.webp",
    "w": 800,
-   "h": 620,
-   "alt": "Quirrell's eyes, steady and cold, watching Harry. / And at the High Table, the new Defence Professor was watching him."
+   "h": 640,
+   "alt": "An eye-shaped panel: Quirrell's eyes, steady and cold, watching Harry. / And at the High Table, the new Defence Professor was watching him."
   },
   {
    "file": "099.webp",

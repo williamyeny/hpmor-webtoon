@@ -221,7 +221,7 @@ window.layoutBubbles=async function(){
     let bb;try{bb=gs[i].getBBox();}catch(e){return;}const tr=rs[i];const cx=tr.left-T.left+tr.width/2,cy=tr.top-T.top+tr.height/2;
     if(bb.x<0||bb.y<0||bb.x+bb.width>TW||bb.y+bb.height>TH)warn.push('outline-edge:'+i);
     // text sitting on a face (heads are [x, y, r] face circles); tails are allowed to approach
-    const tx0=tr.left-T.left,ty0=tr.top-T.top;if(HEADS.some(c=>c[0]>0&&c[0]<TW&&c[1]>0&&c[1]<TH&&Math.hypot(Math.max(tx0,Math.min(c[0],tx0+tr.width))-c[0],Math.max(ty0,Math.min(c[1],ty0+tr.height))-c[1])<c[2]*0.8))warn.push('face:'+i);
+    const tx0=tr.left-T.left,ty0=tr.top-T.top;if(HEADS.some(c=>{if(!(c[0]>0&&c[0]<TW&&c[1]>0&&c[1]<TH))return false;const qx=Math.max(tx0,Math.min(c[0],tx0+tr.width)),qy=Math.max(ty0,Math.min(c[1],ty0+tr.height));if(Math.hypot(qx-c[0],qy-c[1])>=c[2]*0.8)return false;/* only where the face can actually be seen: inside its own panel */return c.length<7||(qx>=c[3]&&qx<=c[3]+c[5]&&qy>=c[4]&&qy<=c[4]+c[6]);}))warn.push('face:'+i);
     const p=panelOf(cx,cy);if(p&&(bb.x<p[0]-12||bb.y<p[1]-12||bb.x+bb.width>p[0]+p[2]+12||bb.y+bb.height>p[1]+p[3]+12))warn.push('border:'+i);});
   rs.forEach((r,i)=>{if(r.left<T.left+2||r.right>T.right-2||r.top<T.top+2||r.bottom>T.bottom-2)warn.push('edge:'+i);
     rs.forEach((q,j)=>{if(j>i&&r.left<q.right-6&&q.left<r.right-6&&r.top<q.bottom-6&&q.top<r.bottom-6)warn.push('overlap:'+i+'/'+j);});});

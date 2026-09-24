@@ -217,6 +217,6 @@ ${under}${panels}${over}
   const bubbles = resolveBubbles(tile.bubbles, panelsA, W, H, rects).map(bubbleHTML).join('');
   const heads = [];
   // faces the balloons avoid: only heads that are actually visible inside their own panel
-  panelsA.forEach((A, k) => { const [px, py, pw, ph] = rects[k] || [0, 0, W, H]; for (const id in A || {}) { const a = A[id]; if (a.head && a.hr && a.head[0] > px && a.head[0] < px + pw && a.head[1] > py && a.head[1] < py + ph) heads.push([Math.round(a.head[0]), Math.round(a.head[1] + a.hr * 0.28), Math.round(a.hr * 0.78)]); } });
+  panelsA.forEach((A, k) => { const [px, py, pw, ph] = rects[k] || [0, 0, W, H]; for (const id in A || {}) { const a = A[id]; if (a.head && a.hr && a.head[0] > px && a.head[0] < px + pw && a.head[1] > py && a.head[1] < py + ph) heads.push([Math.round(a.head[0]), Math.round(a.head[1] + a.hr * 0.28), Math.round(a.hr * 0.78), ...[px, py, pw, ph].map(Math.round)]); } }); // face circle + its panel box
   return { W, H, html: `<div id="tile" data-heads='${JSON.stringify(heads)}' data-panels='${JSON.stringify(rects.map((r) => r.map((v) => Math.round(v))))}' style="position:relative;width:${W}px;height:${H}px;overflow:hidden">${svg}<svg id="bsvg" width="${W}" height="${H}" style="position:absolute;left:0;top:0;overflow:visible"></svg>${bubbles}</div>` };
 }
