@@ -48,13 +48,13 @@ ep.panel(460, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: DS, blur: 2, actor
 // =============================================================== ground rules
 ep.panel(780, { cam: { x: 1110, y: 600, w: 1120 }, bg: LR(),
   actors: [DAD({ pose: 'crossArms', expr: 'unimpressed' }), MCG({ pose: 'stand', expr: 'calm', turn: -0.2 }), MUM({ pose: 'hold', expr: 'worried', x: 1540 }), HAR({ pose: 'lecture', expr: 'focus', x: 1270, turn: -0.45 })] },
-  [say('Harry', 'Now, just to be clear. If the Professor levitates you, Dad, and you know you haven\'t been attached to any wires—that\'s sufficient evidence.', 470, 130, { w: 470, tail: 'harry' })], { mood: 'warm', alt: 'The living room: Dad, arms crossed; the tall witch; Mum; and Harry, lecturing.' });
+  [say('Harry', 'Now, just to be clear. If the Professor levitates you, Dad, and you know you haven\'t been attached to any wires, that\'s sufficient evidence.', 470, 130, { w: 470, tail: 'harry' })], { mood: 'warm', alt: 'The living room: Dad, arms crossed; the tall witch; Mum; and Harry, lecturing.' });
 ep.panel(700, { cam: { on: ['harry'], fr: 'bust', dx: -0.5 }, bg: LR(), actors: [HAR({ pose: 'gesture', expr: 'focus', x: 1460, turn: -0.45 })] },
   [say('Harry', 'No turning round afterwards and saying it was a magician\'s trick. If you feel that way, say so *now,* and we\'ll design a different experiment.', 250, 120, { w: 380 })], { mood: 'warm' });
 ep.panel(600, { cam: { on: ['dad'], fr: 'close', dx: -0.45 }, bg: LR(), blur: 2, actors: [DAD({ expr: { base: 'exasperated' } })] },
   [say('Dad', 'Yes, Harry.', 590, 90, { w: 180 }), cap('The Professor rolled his eyes.', 36, 380, { w: 190 })], { mood: 'warm' });
 ep.panel(820, { cam: { on: ['harry', 'mum'], fr: 'waist', dy: -0.8 }, bg: LR(), actors: [MUM({ expr: 'worried', pose: 'stand', x: 1180, turn: 0.4 }), HAR({ pose: 'point', expr: 'focus', x: 1480, turn: -0.5 })] },
-  [say('Harry', 'And Mum—if it *doesn\'t* happen, you admit you were mistaken. No saying magic doesn\'t work when people are sceptical.', 440, 110, { w: 520, tail: [640, 470] })], { mood: 'warm' });
+  [say('Harry', 'And Mum, if it *doesn\'t* happen, you admit you were mistaken. No saying magic doesn\'t work when people are sceptical.', 440, 110, { w: 520, tail: [640, 470] })], { mood: 'warm' });
 ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'waist', dx: -0.6, dy: -0.3 }, bg: LR(), blur: 1, actors: [MCG({ expr: { base: 'smile', mouth: { type: 'smirk' } }, pose: 'wand', armB: { sh: 80, el: 15, hand: 'hold', prop: g({ transform: 'translate(0,10)' }, wand(115, '#4a2e1b')) } })] },
   [say('McGonagall', 'Is that sufficient, Mr Potter? Shall I go ahead and demonstrate?', 540, 110, { w: 330 })], { mood: 'warm', alt: 'McGonagall, deeply amused, draws her wand.' });
 ep.panel(700, { cam: { on: ['harry'], fr: 'bust', dx: -0.6, dy: -0.2 }, bg: LR(), blur: 2, actors: [HAR({ expr: 'think', pose: 'chin' })] },
@@ -83,7 +83,7 @@ ep.panel(820, { cam: { on: ['harry'], fr: 'waist', dy: -0.45 }, bg: LR(), actors
 ep.panel(640, { cam: { on: ['dad', 'mcgonagall', 'mum'], fr: 'bust', padX: 1.05, dy: -0.3 }, bg: LR(), actors: [DAD({ expr: 'deadpan', x: 800 }), MCG({ expr: 'deadpan', turn: 0.3 }), MUM({ expr: 'deadpan', x: 1220 })] },
   [cap('Mum, the witch, and even Dad were giving him *that look* again.', 44, 30, { w: 500 })], { mood: 'warm' });
 ep.panel(460, { cam: { on: ['harry'], fr: 'close' }, bg: LR(), blur: 2, actors: [HAR({ expr: 'embarrassed', turn: -0.2 })] },
-  [say('Harry', 'I mean—with finding out that everything I believe is false.', 520, 100, { w: 320 })], { mood: 'warm' });
+  [say('Harry', 'I mean, with finding out that everything I believe is false.', 520, 100, { w: 320 })], { mood: 'warm' });
 
 ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: LR(), actors: [MCG({ expr: 'warm' })] },
   [say('McGonagall', 'Would you like a further demonstration, Mr Potter?', 540, 110, { w: 380 })], { mood: 'warm' });
@@ -126,17 +126,17 @@ ep.panel(600, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: LR(), blur: 2, act
 // physics goes down the drain
 ep.bleed(1250, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#1a2238' }) + FX.physicsDrain(ctx.w, ctx.h, ctx.w * 0.5, ctx.h * 0.55, { n: 22 }),
   [dark('A blur came over Harry\'s vision as his brain began to comprehend what had just broken.', 400, 120, { w: 560 }),
-   dark('Three thousand years of discovering that the music of the planets was the same tune as a falling apple. That the true laws were universal, with no exceptions anywhere. That the mind was the brain, and the brain was made of neurons—', 400, 1045, { w: 600 })],
+   dark('Three thousand years of discovering that the music of the planets was the same tune as a falling apple. That the true laws were universal, with no exceptions anywhere. That the mind was the brain, and the brain was made of neurons.', 400, 1045, { w: 600 })],
   { bg: C.paper, alt: 'Planets, a falling apple, atoms, a brain and a storm of equations swirl down into a dark drain.' });
 ep.beat(380, [capC('And then a woman turned into a cat. So much for all that.', 400, 190, { w: 520 })]);
 
 ep.panel(760, { cam: { on: ['harry'], fr: 'bust', zoom: 0.8, dy: -0.3, dx: -0.5 }, bg: LR(), actors: [{ def: harry, id: 'harry', x: 1380, y: 1050, s: 1.12, turn: -0.35, pose: 'gesture', expr: 'suspicious' }] },
-  [say('Harry', 'And—and what kind of incantation is *Wingardium Leviosa?* Who invents the words to these spells, nursery schoolers?', 410, 120, { w: 480 })], { mood: 'warm' });
+  [say('Harry', 'And… and what kind of incantation is *Wingardium Leviosa?* Who invents the words to these spells, nursery schoolers?', 410, 120, { w: 480 })], { mood: 'warm' });
 ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 0.75, dy: -0.2 }, bg: LR(), actors: [MCG({ expr: 'stern' })] },
   [say('McGonagall', 'That will do, Mr Potter.', 590, 100, { w: 260 }),
    say('McGonagall', 'If you wish to learn about magic, I suggest that we finalise the paperwork so that you can go to Hogwarts.', 578, 470, { w: 310, fixed: true })], { mood: 'warm' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'close', dx: 0.4, dy: -0.25 }, bg: LR(), blur: 2, actors: [{ def: harry, id: 'harry', x: 1380, y: 1050, s: 1.12, turn: -0.2, expr: 'determined' }] },
-  [inner('Harry', 'Right. The March of Reason would just have to start over, that was all. They still had the experimental method—that was the important thing.', 400, 110, { w: 620 }),
+  [inner('Harry', 'Right. The March of Reason would just have to start over, that was all. They still had the experimental method. That was the important thing.', 400, 110, { w: 620 }),
    say('Harry', 'How do I get to Hogwarts, then?', 610, 560, { w: 240 })], { mood: 'warm' });
 ep.panel(420, { cam: { on: ['mcgonagall'], fr: 'eyes' }, bg: LR(), blur: 2, actors: [MCG({ expr: 'laugh' })] },
   [cap('A choked laugh escaped Professor McGonagall, as if extracted from her by tweezers.', 44, 330, { w: 620 })], { mood: 'warm' });
@@ -164,7 +164,7 @@ ep.panel(700, { cam: { on: ['harry', 'mum'], fr: 'bust', dy: 0.25 }, bg: LR(), a
 ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 0.8 }, bg: LR(), actors: [MCG({ expr: 'think', pose: 'chin' })],
   over: (e) => g({ transform: `translate(${e.w * 0.9},${e.h * 0.86}) scale(1.5)`, opacity: 0.85 }, path('M-14,-24 L14,-24 L2,0 L14,24 L-14,24 L-2,0Z', { fill: '#f1e6cc', stroke: '#b08d45', 'stroke-width': 3 }), path('M-6,-14 L6,-14 L0,-4Z M-8,20 L8,20 L0,10Z', { fill: '#d9b35c' })) },
   [say('McGonagall', 'Hmmmm. I can\'t recall hearing of such a condition. I\'ll ask Madam Pomfrey…', 530, 110, { w: 360 }),
-   say('McGonagall', 'No—I\'m sure this won\'t be a problem. I\'ll find a solution *in time.*', 530, 440, { w: 340 })], { mood: 'warm' });
+   say('McGonagall', 'No. I\'m sure this won\'t be a problem. I\'ll find a solution *in time.*', 530, 440, { w: 340 })], { mood: 'warm' });
 ep.panel(600, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: LR(), blur: 2, actors: [MCG({ expr: 'suspicious' })] },
   [say('McGonagall', 'Now. What are these *other* reasons?', 540, 110, { w: 280 })], { mood: 'warm' });
 ep.panel(940, { cam: { on: ['harry'], fr: 'waist', zoom: 0.72, dx: -0.85, dy: 0.1 }, bg: LR(), actors: [HAR({ expr: 'determined', pose: 'handsHips', turn: -0.3 })] },
@@ -190,12 +190,12 @@ ep.panel(700, { cam: { on: ['mum'], fr: 'close', dy: -0.1 }, bg: LR(), blur: 2, 
 ep.panel(700, { cam: { on: ['harry', 'mcgonagall'], fr: 'bust', dy: 0.35 }, bg: LR(), actors: [MCG({ expr: 'twitch', x: 1150, turn: 0.3 }), HAR({ expr: 'cross', pose: 'point', x: 1420, turn: -0.5 })] },
   [say('Harry', 'There! You see what I have to deal with?', 560, 90, { w: 280 })], { mood: 'warm' });
 ep.panel(620, { cam: { on: ['mum'], fr: 'full' }, bg: GDX(), actors: [{ def: mum, id: 'mum', x: 360, y: 1000, turn: 0.6, pose: 'run', expr: 'laugh' }] },
-  [say('Mum', 'Excuse me—', 632, 80, { w: 200, fixed: true, tail: 'mum' })], { mood: 'dusk', alt: 'Mum flees out of the back door.', over: undefined });
+  [say('Mum', 'Excuse me!', 632, 80, { w: 200, fixed: true, tail: 'mum' })], { mood: 'dusk', alt: 'Mum flees out of the back door.', over: undefined });
 function GDX() { return () => O.garden(); }
 ep.beat(360, [], { over: (t) => FX.sfxText(330, 170, 'HAHAHAHA', { size: 90, rot: -6, fill: '#f6e3b0' }) + FX.sfxText(520, 290, 'HAHAHA', { size: 60, rot: 4, fill: '#f6e3b0' }) });
 
 ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: LR(), actors: [MCG({ expr: { base: 'stern', mouth: { type: 'wobble' } } })] },
-  [say('McGonagall', 'There—ah—there is to be no biting of teachers at Hogwarts. Is that quite clear, Mr Potter?', 520, 110, { w: 360 })], { mood: 'warm' });
+  [say('McGonagall', 'There… ah… there is to be no biting of teachers at Hogwarts. Is that quite clear, Mr Potter?', 520, 110, { w: 360 })], { mood: 'warm' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: LR(), blur: 2, actors: [HAR({ expr: 'unimpressed', turn: -0.2 })] },
   [say('Harry', 'Fine. I won\'t bite anyone who doesn\'t bite me first.', 280, 100, { w: 320 })], { mood: 'warm' });
 ep.beat(300, [capC('Professor Michael Verres-Evans also had to leave the room briefly upon hearing that.', 400, 150, { w: 560 })]);
@@ -230,11 +230,11 @@ ep.panel(880, { cam: { on: ['harry', 'mcgonagall'], fr: 'waist', dy: -1.1 }, bg:
   [say('Harry', 'Professor?', 150, 80, { w: 180 }),
    say('Harry', 'Thank you. For coming. For *showing* us, instead of just telling us.', 330, 250, { w: 440 })], { mood: 'night' });
 ep.panel(620, { cam: { on: ['mcgonagall'], fr: 'close' }, bg: DS, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1060, turn: -0.3, expr: 'warm' }] },
-  [cap('Something in her face softened—just for a moment.', 44, 34, { w: 400 }),
+  [cap('Something in her face softened, just for a moment.', 44, 34, { w: 400 }),
    say('McGonagall', 'Goodnight, Mr Potter.', 620, 500, { w: 220 })], { mood: 'night' });
 ep.panel(700, { cam: { x: 1230, y: 950, w: 480 }, bg: DS,
   actors: [g({ transform: 'translate(1320,1030) scale(0.8)' }, cat({ col: '#9b7a52', spectacles: true, flip: true }))] },
-  [cap('She stepped out into the rain—', 44, 34, { w: 440 }), cap('—and by the bottom step, there was only a tabby cat, trotting briskly away down the wet street.', 44, 555, { w: 640 })], { mood: 'night', alt: 'A tabby cat trots off into the rain.' });
+  [cap('She stepped out into the rain.', 44, 34, { w: 440 }), cap('And by the bottom step, there was only a tabby cat, trotting briskly away down the wet street.', 44, 555, { w: 640 })], { mood: 'night', alt: 'A tabby cat trots off into the rain.' });
 ep.panel(900, { cam: { on: ['harry'], fr: 'knees', dy: 0.1 }, bg: () => O.bedroom(), actors: [{ def: harry, id: 'harry', x: 560, y: 960, s: 1.1, turn: 0.2, pose: 'hold', expr: 'awe', armF: { sh: 18, el: 62, hand: 'hold', prop: g({ transform: 'translate(10,40) scale(0.5)' }, envelope({})) }, armB: { sh: 22, el: 60, hand: 'hold' } }] },
   [inner('Harry', 'Magic is real.', 400, 70, { w: 300 }),
    inner('Harry', 'Which means I\'m going to need a *lot* more books.', 400, 815, { w: 380, fixed: true })], { mood: 'candle', alt: 'That night, Harry holds the letter by candlelight, wide awake.' });

@@ -67,11 +67,11 @@ ep.panel(720, { cam: { x: 1070, y: 600, w: 1360 }, bg: LI,
   actors: [QUI({ x: 470, expr: 'neutral', pose: 'stand', s: 0.95 }), ...crowd({ xs: [730, 860, 990, 600] }), { def: doris, id: 'doris', x: 1110, y: 1000, turn: 0.4, pose: 'hold', expr: 'neutral' }, TOM({ expr: 'shock' }), COUNTER(), MCG({ x: 1260, y: 1100, turn: 0.5 }), HAR({ x: 1420, y: 1110, expr: 'awe' })] },
   [cap('It was dark, and shabby, and full of people in pointed hats.', 44, 34, { w: 380 })], { mood: 'candle', alt: 'Inside the Leaky Cauldron: dim, wood-beamed, smoky. Witches and wizards at small tables, an old barman behind the bar, and in the far corner by the fire, a pale young man.' });
 ep.panel(600, { cam: { on: ['tom'], fr: 'bust', dx: -0.45, dy: -0.25 }, bg: LI, fg: COUNTER, actors: [TOM({ expr: 'shock', pose: 'hold' })] },
-  [say('Tom', 'Good Lord. Is this—can this be—?', 250, 120, { w: 300, fixed: true })], { mood: 'candle' });
+  [say('Tom', 'Good Lord. Is this… can this be…?', 250, 120, { w: 300, fixed: true })], { mood: 'candle' });
 ep.panel(760, { cam: { on: ['harry'], fr: 'waist', dx: -0.75 }, bg: LI, blur: 2, mid: COUNTER, actors: [HAR({ x: 1420, y: 1080, expr: { base: 'smug', eyes: { open: 0.8 } }, pose: 'present' })] },
   [cap('A question like *that* deserved his very best.', 44, 30, { w: 360 }),
-   say('Harry', 'Am I—could I be—maybe—you never know—if I\'m *not*—but then the question is—', 250, 370, { w: 340 }),
-   say('Harry', '—*who?*', 300, 620, { w: 140 })], { mood: 'candle' });
+   say('Harry', 'Am I… could I be… maybe… you never know… if I\'m *not*… but then the question is…', 250, 370, { w: 340 }),
+   say('Harry', '*Who?*', 300, 620, { w: 140 })], { mood: 'candle' });
 ep.panel(620, { cam: { on: ['tom'], fr: 'close' }, bg: LI, blur: 2, actors: [TOM({ expr: 'awe' })], fg: COUNTER },
   [whisper('Tom', 'Bless my soul. Harry Potter… what an honour.', 260, 110, { w: 320, size: 28 })], { mood: 'candle' });
 ep.panel(820, { cam: { x: 1290, y: 545, w: 760 }, bg: LI, blur: 1, actors: [MCG({ expr: 'stern', pose: 'handsHips' }), HAR({ expr: 'smug', pose: 'gesture' })] },
@@ -156,7 +156,7 @@ ep.panel(640, { cam: { x: 930, y: 560, w: 700 }, bg: CY, actors: [MC({ x: 850, t
 ep.multi(620, [
   { x: M, y: 18, w: 368, h: 584, mood: 'day', art: { cam: { x: 1030, y: 540, w: 700 }, bg: CY, mid: () => L.archway(1) } },
   { x: 408, y: 18, w: 368, h: 584, mood: 'day', art: { cam: { x: 1030, y: 540, w: 700 }, bg: CY, mid: () => L.archway(2, alleyView) } },
-], [cap('The brick hollowed—', 44, 34, { w: 300 }), cap('—dilated, and shivered—', 450, 470, { w: 210 })]);
+], [cap('The brick hollowed.', 44, 34, { w: 300 }), cap('It dilated, and shivered…', 450, 470, { w: 210 })]);
 const archFrame = (e) => { const w = e.w, h = e.h, t = h * 0.1; return `<defs><clipPath id="afc"><path d="M0,0 L${w},0 L${w},${h} L${w * 0.93},${h} L${w * 0.93},${h * 0.32} Q${w * 0.93},${t} ${w / 2},${t} Q${w * 0.07},${t} ${w * 0.07},${h * 0.32} L${w * 0.07},${h} L0,${h}Z"/></clipPath></defs>` + g({ 'clip-path': 'url(#afc)' }, K.brickWall(0, 0, w, h, '#6a3a2c', 91), rect(0, 0, w, h, { fill: '#1a0e08', opacity: 0.45 })) + path(`M${w * 0.07},${h} L${w * 0.07},${h * 0.32} Q${w * 0.07},${t} ${w / 2},${t} Q${w * 0.93},${t} ${w * 0.93},${h * 0.32} L${w * 0.93},${h}`, { fill: 'none', stroke: '#2a1a10', 'stroke-width': 8 }); };
 ep.bleed(1300, { cam: { x: 1250, y: 330, w: 1150 }, bg: () => L.diagonAlley({ seed: 7 }), over: archFrame,
   actors: [...[51, 52, 53, 54, 55, 56, 57].map((sd, i) => ({ def: makeExtra(sd, { witchHat: i % 2 === 0 }), x: 600 + i * 230, y: 1020 + (i % 3) * 40, turn: i % 2 ? -0.6 : 0.6, pose: i % 2 ? 'walk' : 'walk2', s: 0.95 })),
@@ -218,7 +218,7 @@ ep.panel(300, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#e9f1f6' }), [inner('Ha
 // the war
 ep.panel(820, { cam: { x: 800, y: 620, w: 1400 }, bg: stage('#5a1a1a', '#d97a3a'),
   actors: [{ def: darkLord, x: 800, y: 1080, s: 1.3, turn: 0, pose: 'armsUp', ...SIL }, ...[81, 82, 83, 84].map((sd, i) => ({ def: makeExtra(sd, { witchHat: true }), x: 280 + i * 110 + (i > 1 ? 700 : 0), y: 1080, s: 0.8, turn: i > 1 ? -0.6 : 0.6, pose: 'cower', ...SIL }))] },
-  [dark('He raged upon wizarding Britain like a wilding wolf. Other countries wrung their hands, and hesitated—for whoever was first to oppose him would be his next target.', 400, 90, { w: 600 }),
+  [dark('He raged upon wizarding Britain like a wilding wolf. Other countries wrung their hands, and hesitated. Whoever was first to oppose him would be his next target.', 400, 90, { w: 600 }),
    note('bystander effect!', 600, 700, { color: '#f6e3b0', size: 32, rot: -4 })], { border: 'none', alt: 'Shadow-theatre: the Dark Lord towers, arms raised, over cowering figures.' });
 const masked = (x, s = 1) => ({ def: makeExtra(90 + x, { robe: '#111' }), id: 'm' + x, x, y: 1080, s, turn: 0.2, pose: 'stand', ...SIL });
 ep.panel(700, { cam: { x: 800, y: 600, w: 1400 }, bg: stage('#2a1a2a', '#8a5a6a'), actors: [masked(300), masked(520, 1.1), masked(760, 1.2), masked(1000, 1.1), masked(1240)],
@@ -233,8 +233,8 @@ ep.panel(840, (ctx) => {
   out += rect(0, 0, w, h, { fill: '#2a0a0a', opacity: 0.25 });
   return out;
 }, [dark('A journalist named Yermy Wibble called for everyone to stand together. It was absurd, he wrote, for the many to cower in fear of the few.', 400, 80, { w: 600 }),
-    dark('The next morning, they found what was left of him—and of his wife, and his two daughters—nailed to the newsroom wall.', 400, 730, { w: 600 })],
-  { border: 'none', mood: 'night', alt: 'An empty newsroom. A single newspaper — ENOUGH! by Yermy Wibble — is nailed to the wall.' });
+    dark('The next morning, they found what was left of him, his wife, and his two daughters, nailed to the newsroom wall.', 400, 730, { w: 600 })],
+  { border: 'none', mood: 'night', alt: 'An empty newsroom. A single newspaper, "ENOUGH!" by Yermy Wibble, is nailed to the wall.' });
 ep.panel(460, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#120c0a' }), [dark('Whoever stood out the most became the next example.', 400, 150, { w: 500 }), dark('Until the names of James and Lily Potter rose to the top of that list.', 400, 300, { w: 560 })], { border: 'none' });
 ep.panel(860, { cam: { x: 795, y: 700, w: 820 }, bg: stage('#3a2a14', '#e9b86a'),
   actors: [{ def: james, x: 690, y: 1080, turn: 0.4, pose: 'hug', ...SIL }, { def: lilyAdult, id: 'lily', x: 900, y: 1080, turn: -0.4, pose: 'hold', ...SIL }],
@@ -246,10 +246,10 @@ ep.panel(860, { cam: { x: 795, y: 700, w: 820 }, bg: stage('#3a2a14', '#e9b86a')
 ep.setBg(C.paper);
 ep.tile({ h: 140, panels: [], bubbles: [], bg: { top: '#1b1210', bottom: C.paper } });
 ep.panel(760, { cam: { on: ['harry'], fr: 'close' }, bg: DA({ start: 3 }), blur: 3, actors: [{ def: harry, id: 'harry', x: 700, y: 1060, s: 1.1, turn: 0.1, expr: 'teary' }] },
-  [inner('Harry', '*I didn\'t know those people. Not really. They aren\'t my parents now. It would be pointless to feel so sad for them—*', 400, 110, { w: 560 })], { mood: 'day' });
+  [inner('Harry', '*I didn\'t know those people. Not really. They aren\'t my parents now. It would be pointless to feel so sad for them.*', 400, 110, { w: 560 })], { mood: 'day' });
 ep.panel(900, { cam: { on: ['mcgonagall', 'harry'], fr: 'waist', padX: 1.05 }, bg: DA({ start: 3 }), blur: 2,
   actors: [{ def: mcgonagall, id: 'mcgonagall', x: 900, y: 1080, turn: -0.3, pose: 'stand', armF: { sh: 38, el: 62, hand: 'open' }, armB: { sh: 30, el: 70, hand: 'open' }, expr: 'teary' }, { def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.6, pose: 'stand', armF: { sh: 40, el: 30, hand: 'open' }, armB: { sh: 35, el: 30, hand: 'open' }, expr: 'sob' }] },
-  [cap('When Harry was done sobbing into the witch\'s robes, he looked up—and felt a little better to see tears in Professor McGonagall\'s eyes as well.', 44, 34, { w: 460 })], { mood: 'day', alt: 'Harry cries into McGonagall\'s robes. She holds him, and she is crying too.' });
+  [cap('When Harry was done sobbing into the witch\'s robes, he looked up, and felt a little better to see tears in Professor McGonagall\'s eyes as well.', 44, 34, { w: 460 })], { mood: 'day', alt: 'Harry cries into McGonagall\'s robes. She holds him, and she is crying too.' });
 ep.panel(700, { cam: { on: ['harry'], fr: 'bust' }, bg: DA({ start: 3 }), blur: 2, actors: [{ def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.4, expr: 'hurt' }] },
   [whisper('Harry', 'So what happened?', 555, 100, { w: 280, fixed: true })], { mood: 'day' });
 // Godric's Hollow
@@ -266,7 +266,7 @@ const hollow = (flash = false) => (ctx) => {
   out += rect(0, h * 0.9, w, h * 0.1, { fill: '#000' });
   return out;
 };
-ep.panel(820, hollow(false), [dark('"The Dark Lord came to Godric\'s Hollow. You should have been hidden—but you were betrayed."', 400, 90, { w: 560 })], { border: 'none', alt: 'A cottage at night in a village. Warm lamplight in the windows.' });
+ep.panel(820, hollow(false), [dark('"The Dark Lord came to Godric\'s Hollow. You should have been hidden. But you were betrayed."', 400, 90, { w: 560 })], { border: 'none', alt: 'A cottage at night in a village. Warm lamplight in the windows.' });
 ep.panel(820, hollow(true), [dark('"He killed James. He killed Lily. And he came, in the end, to you. To your cot."', 400, 90, { w: 560 }),
   dark('"He cast the Killing Curse."', 400, 700, { w: 360 })], { border: 'none', alt: 'The same cottage, its windows blazing with sickly green light.' });
 ep.panel(760, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#050807' }) + K.glow(ctx.w / 2, ctx.h / 2, 300, '#6dff8a', 0.6) + circle(ctx.w / 2, ctx.h / 2, 26, { fill: '#e9ffe9' }),
@@ -277,16 +277,16 @@ ep.panel(700, (ctx) => {
   let out = rect(0, 0, w, h, { fill: '#0c0f1a' });
   out += g({ transform: `translate(${w * 0.5},${h * 0.5}) scale(2.2)` }, path('M-10,-40 l20,20 l-16,8 l20,22', { fill: 'none', stroke: '#c43a32', 'stroke-width': 7, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }), K.glow(0, 0, 90, '#c43a32', 0.3));
   return out;
-}, [dark('"The curse rebounded, and struck the Dark Lord—leaving only the burnt hulk of his body, and a scar upon your forehead."', 400, 100, { w: 560 }),
+}, [dark('"The curse rebounded, and struck the Dark Lord, leaving only the burnt hulk of his body, and a scar upon your forehead."', 400, 100, { w: 560 }),
     dark('"That was the end of the terror. We were free. That is why people want to see your scar, and shake your hand."', 400, 590, { w: 560 })], { border: 'none', alt: 'A lightning-bolt scar, glowing faintly red in the dark.' });
 // the note of confusion
 ep.setBg(C.paper);
 ep.tile({ h: 140, panels: [], bubbles: [], bg: { top: '#0c0f1a', bottom: C.paper } });
 ep.beat(380, [plain('?', 680, 190, { font: "'IM Fell English', serif", size: 46, color: '#a08f70' }),
-  capC('(And somewhere in the back of his mind was a small, small note of confusion—a sense of something wrong about that story. But he was distracted.)', 360, 190, { w: 520, size: 25 })],
+  capC('(And somewhere in the back of his mind was a small, small note of confusion. A sense of something wrong about that story. But he was distracted.)', 360, 190, { w: 520, size: 25 })],
   { alt: 'A faint question mark sits alone in the margin.' });
 ep.panel(620, { cam: { on: ['harry'], fr: 'bust' }, bg: DA({ start: 3 }), blur: 2, actors: [{ def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.5, pose: 'slump', expr: 'sad' }] },
-  [say('Harry', 'I\'ll—have to think about this.', 560, 90, { w: 280 })], { mood: 'day' });
+  [say('Harry', 'I\'ll… have to think about this.', 560, 90, { w: 280 })], { mood: 'day' });
 ep.panel(880, { cam: { on: ['harry', 'mcgonagall'], fr: 'waist', dy: -0.2 }, bg: DA({ start: 3 }), blur: 2, actors: [{ def: harry, id: 'harry', x: 820, y: 1060, s: 1.1, turn: 0.4, pose: 'stand', expr: 'warm' }, { def: mcgonagall, id: 'mcgonagall', x: 1060, y: 1080, turn: -0.3, pose: 'stand', expr: 'sad' }] },
   [say('Harry', 'You can call them my parents, if you want. You don\'t have to say "genetic parents".', 262, 132, { w: 330, fixed: true }),
    say('Harry', 'I guess there\'s no reason I can\'t have two mothers and two fathers.', 275, 365, { w: 320, fixed: true, tail: 'harry' })], { mood: 'day' });

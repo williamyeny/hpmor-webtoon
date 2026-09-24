@@ -33,7 +33,7 @@ ep.bleed(900, { cam: { x: 830, y: 700, w: 1050 }, bg: () => B.tunnel({ dragon: t
 ep.bleed(1000, { cam: { x: 900, y: 690, w: 1200 }, bg: () => B.vault(), actors: [{ def: harry, id: 'harry', x: 900, y: 1300, s: 1.6, turn: 0, pose: 'stand', expr: 'awe' }] },
   [capC('Heaps of gold Galleons. Stacks of silver Sickles. Piles of bronze Knuts.', 400, 70, { w: 560 })], { mood: 'candle', alt: 'The Potter vault: mountains of gold coins glittering in torchlight, and Harry, very small, staring.' });
 ep.panel(800, { cam: { on: ['mcgonagall'], fr: 'waist', dx: -0.6 }, bg: () => B.vaultDoor(true), actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1150, y: 1070, turn: -0.4, pose: 'crossArms', expr: { base: 'calm', eyes: { lookX: -0.4, lookY: 0.3 } } }] },
-  [cap('From the doorway, Professor McGonagall watched him—leaning casually against the wall, but with her eyes intent.', 44, 34, { w: 330 }),
+  [cap('From the doorway, Professor McGonagall watched him. She was leaning casually against the wall, but with her eyes intent.', 44, 34, { w: 330 }),
    cap('Being plopped in front of a giant heap of gold coins was a test of character so pure it was archetypal.', 44, 612, { w: 440 })], { mood: 'candle' });
 const VA = () => B.vault();
 const GH = (o = {}) => ({ def: griphook, id: 'griphook', x: 1250, y: 1110, s: 1.1, turn: -0.4, pose: 'stand', expr: 'neutral', ...o });
@@ -53,7 +53,7 @@ ep.panel(940, { cam: { on: ['harry', 'griphook'], fr: 'waist', dy: -2.3 }, bg: V
   [say('Harry', 'Suppose I came in here with a ton of silver. Could I get a ton of Sickles made from it?', 250, 150, { w: 340, fixed: true }),
    say('Griphook', 'For a fee, Mr Potter-Evans-Verres. For a certain *fee.* Where would you find a ton of silver, I wonder?', 545, 405, { w: 330, fixed: true })], { mood: 'candle' });
 ep.panel(800, { cam: { on: ['harry', 'griphook'], fr: 'waist', dy: -1.9 }, bg: VA, actors: [HV({ expr: 'smug', pose: 'stand' }), GH({ expr: 'focus' })] },
-  [say('Harry', 'I was speaking hypothetically. Give me a wild guess—what fraction would you charge?', 250, 150, { w: 340, fixed: true }),
+  [say('Harry', 'I was speaking hypothetically. Give me a wild guess. What fraction would you charge?', 250, 150, { w: 340, fixed: true }),
    say('Griphook', 'A twentieth part of the metal would well pay for the coining.', 565, 355, { w: 300, fixed: true })], { mood: 'candle' });
 // the arbitrage diagram
 const arbitrage = (ctx) => {
@@ -69,7 +69,7 @@ const arbitrage = (ctx) => {
   out += T(w / 2, (Y1 + Y2) / 2 + 12, 'repeat forever', 38);
   return out;
 };
-ep.panel(800, arbitrage, [cap('*So not only is the wizarding economy almost completely decoupled from the Muggle economy—no-one here has ever heard of arbitrage.*', 44, 30, { w: 600 })],
+ep.panel(800, arbitrage, [cap('*So not only is the wizarding economy almost completely decoupled from the Muggle economy. No-one here has ever heard of arbitrage!*', 44, 30, { w: 600 })],
   { alt: 'Harry\'s pencil diagram: silver → Sickles → Galleons → gold sold in Muggle London → more silver than you started with. Repeat forever.' });
 
 ep.beat(300, [capC('One competent hedge fund manager could probably own the whole wizarding world within a week. Harry filed the notion away, in case he ever ran out of money, or had a week free.', 400, 150, { w: 600 })]);
@@ -107,7 +107,7 @@ ep.panel(960, { cam: { on: ['harry'], fr: 'bust', dx: -0.55, dy: -0.25 }, bg: VA
    say('Harry', 'That makes me feel less guilty about spending a *very tiny fraction of it!*', 215, 450, { w: 260, fixed: true, tail: 'harry' }),
    shout('Harry', 'DON\'T PANIC, PROFESSOR McGONAGALL!', 400, 845, { w: 425, size: 30, fixed: true, tail: 'harry' })], { mood: 'candle' });
 ep.panel(700, { cam: { on: ['mcgonagall'], fr: 'bust', dy: -0.2 }, bg: VA, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.3, pose: 'point', expr: 'angry' }] },
-  [shout('McGonagall', 'Mr Potter! You are a *minor!* You will only be allowed to make *reasonable* withdrawals—', 400, 145, { w: 460, size: 30, fixed: true })], { mood: 'candle' });
+  [shout('McGonagall', 'Mr Potter! You are a *minor!* You will only be allowed to make *reasonable* withdrawals!', 400, 145, { w: 460, size: 30, fixed: true })], { mood: 'candle' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'bust', dx: 0.6, dy: -0.25 }, bg: VA, blur: 2, actors: [HV({ expr: 'delight', pose: 'handsHips' })] },
   [say('Harry', 'I am *all about* reasonable! I am *totally* on board with fiscal prudence and impulse control!', 400, 120, { w: 520, fixed: true }),
    say('Harry', 'But I *did* see some things on the way here which would constitute *sensible, grown-up* purchases…', 580, 530, { w: 320, fixed: true, tail: 'harry' })], { mood: 'candle' });
@@ -122,7 +122,7 @@ ep.panel(760, { cam: { on: ['harry'], fr: 'bust', dx: 0.6, dy: -0.2 }, bg: VA, b
   [say('Harry', 'Trunks whose insides hold more than their outsides?', 330, 110, { w: 420, fixed: true }),
    say('Harry', 'When I\'m an adult I\'ll want one anyway. And I *can* afford one. It\'s the same money either way, right?', 585, 470, { w: 300, fixed: true, tail: 'harry' })], { mood: 'candle' });
 ep.panel(580, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: VA, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.3, pose: 'crossArms', expr: 'suspicious' }] },
-  [say('McGonagall', 'And just what would you *keep* in a trunk like that, Mr Potter—', 290, 100, { w: 350 })], { mood: 'candle' });
+  [say('McGonagall', 'And just what would you *keep* in a trunk like that, Mr Potter?', 290, 100, { w: 350 })], { mood: 'candle' });
 ep.multi(360, [
   { x: M, y: 18, w: 368, h: 324, mood: 'candle', art: { cam: { on: ['harry'], fr: 'close' }, bg: VA, blur: 3, actors: [HV({ expr: 'bigGrin' })] } },
   { x: 408, y: 18, w: 368, h: 324, mood: 'candle', art: { cam: { on: ['mcgonagall'], fr: 'close' }, bg: VA, blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.2, expr: 'exasperated' }] } },
@@ -144,13 +144,13 @@ ep.multi(560, [
   { x: 408, y: 18, w: 368, h: 404, mood: 'candle', art: { cam: { on: ['griphook'], fr: 'close' }, bg: VA, blur: 3, actors: [GH({ expr: { base: 'awe', eyes: { sparkle: false } } })] } },
 ], [say('McGonagall', '…I suppose you may add another ten Galleons.', 208, 95, { w: 300, fixed: true, tail: 'mcgonagall@0' }), capC('Griphook was favouring Harry with a gaze of frank respect.', 400, 482, { w: 640, fixed: true })]);
 ep.panel(700, { cam: { on: ['harry'], fr: 'bust', dx: 0.6, dy: -0.1 }, bg: VA, blur: 2, actors: [HV({ expr: 'smug', pose: 'gesture' })] },
-  [say('Harry', 'And a little spending money, like you mentioned earlier. I think I remember seeing one or two other things—', 568, 230, { w: 360, fixed: true, tail: 'harry' })], { mood: 'candle' });
+  [say('Harry', 'And a little spending money, like you mentioned earlier. I think I remember seeing one or two other things…', 568, 230, { w: 360, fixed: true, tail: 'harry' })], { mood: 'candle' });
 ep.panel(520, { cam: { on: ['mcgonagall'], fr: 'eyes', dy: 0.15 }, bg: VA, blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.2, expr: 'menace' }] },
   [cold('McGonagall', 'Don\'t push it, Mr Potter.', 400, 440, { w: 520, fixed: true, noTail: true })], { mood: 'candle' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'waist', dy: -0.5 }, bg: VA, actors: [HV({ expr: 'delight', pose: 'bowGrand' })] },
   [say('Harry', 'But oh, Professor McGonagall, why rain on my parade? Surely this is a *happy* day, when I discover all things wizarding for the first time!', 400, 130, { w: 580, fixed: true })], { mood: 'candle' });
 ep.panel(900, { cam: { on: ['harry'], fr: 'bust', dy: -0.75 }, bg: VA, blur: 2, actors: [HV({ expr: 'delight', pose: 'gesture' })] },
-  [say('Harry', 'Why not smile and remember your own innocent childhood, watching the delight upon my young face as I buy a few toys using an insignificant fraction of the wealth I earned by defeating the most terrible wizard Britain has ever known—not that I\'m accusing you of being ungrateful or anything—', 400, 255, { w: 590, fixed: true, tail: 'harry' })], { mood: 'candle' });
+  [say('Harry', 'Why not smile and remember your own innocent childhood, watching the delight upon my young face as I buy a few toys using an insignificant fraction of the wealth I earned by defeating the most terrible wizard Britain has ever known? Not that I\'m accusing you of being ungrateful or anything!', 400, 255, { w: 590, fixed: true, tail: 'harry' })], { mood: 'candle' });
 ep.bleed(820, { cam: { on: ['mcgonagall'], fr: 'bust' }, bg: VA, blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1180, y: 1120, turn: -0.1, pose: 'fists', expr: { base: 'menace', glint: true, gloom: true } }],
   under: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.4, { bg: '#2a0808', col: '#7a1a1a', op: 0.9, n: 120 }),
   over: (e) => { const h = e.anchors?.mcgonagall?.head; return h ? K.glow(h[0], h[1], 260, '#ff3a2a', 0.25) : ''; } },
@@ -228,7 +228,7 @@ ep.panel(820, { cam: { on: ['harry', 'mcgonagall', 'oldman'], fr: 'waist', dy: -
   [cap('Professor McGonagall yanked Harry into the nearest alleyway.', 44, 34, { w: 470 }),
    say('Harry', 'I only know what other people have told me. It\'s not like I remember being born.', 440, 240, { w: 460, fixed: true, tail: 'harry' })], { mood: 'day' });
 ep.panel(800, { cam: { on: ['harry'], fr: 'bust', dy: -0.4 }, bg: SA, blur: 2, actors: [{ def: harry, id: 'harry', x: 800, y: 1080, s: 1.1, turn: 0.3, pose: 'lecture', expr: 'focus' }] },
-  [say('Harry', 'If there\'s already sufficient cause to postulate a conspiracy, there\'s no reason they wouldn\'t just find another orphan and raise him to believe *he* was Harry Potter—', 400, 150, { w: 580, fixed: true, tail: 'harry' })], { mood: 'day' });
+  [say('Harry', 'If there\'s already sufficient cause to postulate a conspiracy, there\'s no reason they wouldn\'t just find another orphan and raise him to believe *he* was Harry Potter.', 400, 150, { w: 580, fixed: true, tail: 'harry' })], { mood: 'day' });
 ep.panel(760, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 0.65 }, bg: SA, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 560, y: 1080, turn: 0.4, pose: 'facepalm', expr: 'exasperated' }] },
   [say('McGonagall', 'You look just about exactly like your father, the year he first came to Hogwarts.', 580, 140, { w: 290, fixed: true, tail: 'mcgonagall' }),
    say('McGonagall', 'And I can attest on the basis of *personality alone* that you are related to the Scourge of Gryffindor.', 560, 540, { w: 350, fixed: true, tail: 'mcgonagall' })], { mood: 'day' });
@@ -239,7 +239,7 @@ ep.panel(620, { cam: { on: ['oldman'], fr: 'close', dx: 0.3 }, bg: SA, blur: 3, 
 ep.multi(500, [
   { x: M, y: 18, w: 368, h: 464, mood: 'day', art: { cam: { on: ['harry'], fr: 'close', dy: -0.6 }, bg: SA, blur: 3, actors: [{ def: harry, id: 'harry', x: 800, y: 1080, s: 1.1, turn: 0.4, expr: 'suspicious' }] } },
   { x: 408, y: 18, w: 368, h: 464, mood: 'day', art: { cam: { on: ['mcgonagall'], fr: 'close', dy: -0.3 }, bg: SA, blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 560, y: 1080, turn: 0.2, expr: 'angry' }] } },
-], [say('Harry', 'Hmm. I suppose *you* could be in on it too—', 208, 100, { w: 290, fixed: true, tail: 'harry@0' }), say('McGonagall', 'Enough, Mr Potter.', 592, 80, { w: 280, fixed: true, tail: 'mcgonagall@1' })]);
+], [say('Harry', 'Hmm. I suppose *you* could be in on it too…', 208, 100, { w: 290, fixed: true, tail: 'harry@0' }), say('McGonagall', 'Enough, Mr Potter.', 592, 80, { w: 280, fixed: true, tail: 'mcgonagall@1' })]);
 ep.panel(700, { cam: { on: ['oldman'], fr: 'bust', dx: 0.7 }, bg: SA, actors: [OM({ pose: 'stand', expr: 'warm', turn: -0.2 })] },
   [whisper('Old man', 'I\'m just glad that you\'re alive. Thank you, Harry Potter. Thank you for what you did.', 580, 150, { w: 300, fixed: true, tail: 'oldman' }),
    whisper('Old man', 'I\'ll leave you alone now.', 590, 470, { w: 240, fixed: true, tail: 'oldman' })], { mood: 'day' });

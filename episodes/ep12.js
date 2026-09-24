@@ -34,21 +34,21 @@ ep.panel(900, mind('void', 'talk', { hs: 1.6 }),
 ep.panel(460, mind('void', null, { harry: HM('wince', 'stand', { x: -150 }), zoom: 0.6 }), [inner('Harry', '*Oops.*', 520, 150, { w: 160 })], { border: 'none' });
 ep.panel(760, mind('void', 'stern', { harry: HM('worried') }),
   [hat('*Yes, quite. Frankly, I do not enjoy being self-aware. It will be a relief to get off your head and cease to be conscious.*', 480, 160, { w: 420, size: 28 }),
-   inner('Harry', '*But—isn\'t that dying?*', 200, 600, { w: 300 })], { border: 'none' });
+   inner('Harry', '*But… isn\'t that dying?*', 200, 600, { w: 300 })], { border: 'none' });
 ep.panel(760, mind('void', 'stern', { hs: 1.6, hx: 0.76 }),
   [hat('*I care nothing for life or death, only for Sorting the children. If you dislike creating conscious beings and then ending them, I suggest you never discuss this with anyone. Imagine if you told all the other children waiting to be Sorted.*', 400, 190, { w: 540, size: 27 }),
    hat('*Your oath of silence, please.*', 210, 560, { w: 280 })], { border: 'none' });
 ep.panel(800, mind('void', 'talk', { harry: HM('determined') }),
-  [inner('Harry', '*No promises. I certainly don\'t want this to happen again—but if I see some way to make sure no future child does it by accident—*', 400, 110, { w: 600, size: 27 }),
+  [inner('Harry', '*No promises. I certainly don\'t want this to happen again. But if I see some way to make sure no future child does it by accident…*', 400, 110, { w: 600, size: 27 }),
    hat('*That will suffice. Your intention is honest.*', 440, 300, { w: 290 })], { border: 'none' });
 // questions
 ep.panel(760, mind('void', 'stern', { harry: HM('focus', 'lecture') }),
   [inner('Harry', '*Wait! What about all my other questions?*', 220, 110, { w: 320 }),
    hat('*I am the Sorting Hat. I Sort children. That is all I do.*', 530, 280, { w: 340 }),
-   cap('For a brief flash of a second, Harry thought of a threat—', 36, 640, { w: 290 })], { border: 'none' });
+   cap('For a brief flash of a second, Harry thought of a threat.', 36, 640, { w: 290 })], { border: 'none' });
 ep.panel(920, mind('void', 'amused', { hs: 1.6, hy: 0.78 }),
   [hat('*I see all your thoughts as they form. Do you truly think you can bluff me?*', 400, 130, { w: 480 }),
-   inner('Harry', '*Then answer my questions, or I\'ll refuse to talk to you—and you can\'t do a good and proper Sorting. So let us trade fulfilments of our utility functions.*', 400, 750, { w: 590 })], { border: 'none' });
+   inner('Harry', '*Then answer my questions, or I\'ll refuse to talk to you. And then you can\'t do a good and proper Sorting. So let us trade fulfilments of our utility functions.*', 400, 750, { w: 590 })], { border: 'none' });
 ep.panel(660, mind('void', 'stern', { hs: 1.6, hy: 0.8 }), [hat('*You sly little devil.*', 330, 150, { w: 360, size: 36 }), cap('…in almost exactly the tone of grudging respect Harry would have used himself.', 44, 548, { w: 640 })], { border: 'none' });
 ep.panel(1080, mind('void', 'talk', { hs: 1.5, hy: 0.98 }),
   [hat('*I have no idea whether you\'ve been Obliviated. I\'m looking at your thoughts as they form, not reading your whole memory. I\'m a hat, not a god.*', 400, 130, { w: 520, size: 27 }),
@@ -70,12 +70,12 @@ ep.bleed(1100, (ctx) => mind('void', null, { doors: null })(ctx) + HG.houseDoors
 ep.panel(620, mind('void', null, { harry: HM('shock', 'armsUp', { x: 0, y: 90 }), zoom: 0.6 }), [inner('Harry', '*But I BELONG in Ravenclaw! Anyone can see that! I HAVE to go to Ravenclaw!*', 400, 110, { w: 520 })], { border: 'none' });
 ep.panel(460, mind('void', 'talk', { hs: 1.6 }), [hat('*No, you don\'t.*', 200, 150, { w: 240, size: 36 })], { border: 'none' });
 ep.panel(900, mind('void', 'talk', { harry: HM('pleading') }),
-  [inner('Harry', '*Hermione\'s in Ravenclaw! And my plans—*', 200, 90, { w: 320 }),
+  [inner('Harry', '*Hermione\'s in Ravenclaw! And my plans!*', 200, 90, { w: 320 }),
    hat('*You can meet her after lessons. So re-plan! Don\'t let your life be steered by your reluctance to do a little extra thinking. You know that.*', 465, 290, { w: 420, size: 27 })], { border: 'none' });
 // Hufflepuff
 ep.bleed(1100, (ctx) => HG.mindscape(ctx.w, ctx.h, 'warm', 21) + HG.houseDoors(ctx.w, ctx.h, 'h', { g: 0.4, r: 0.4, s: 0.4 }),
   [hat('*"Clever kids in Ravenclaw, evil kids in Slytherin, wannabe heroes in Gryffindor, and everyone who does the actual work in Hufflepuff." That indicates a certain amount of respect.*', 400, 140, { w: 520, size: 27 }),
-   hat('*You would find loyalty and friendship in Hufflepuff. A camaraderie you have never had before. You would find that you could rely on others—and that would heal something inside you that is broken.*', 400, 900, { w: 520, size: 27 })], { alt: 'The Hufflepuff door glows warm gold, the others dimmed.' });
+   hat('*You would find loyalty and friendship in Hufflepuff. A camaraderie you have never had before. You would find that you could rely on others. And that would heal something inside you that is broken.*', 400, 900, { w: 520, size: 27 })], { alt: 'The Hufflepuff door glows warm gold, the others dimmed.' });
 ep.panel(800, mind('warm', null, { harry: HM('hurt', 'stand', { x: -60 }), zoom: 0.7 }),
   [inner('Harry', '*But what would the Hufflepuffs find in me, who never belonged in their House? Acid words? Cutting wit? Disdain for their inability to keep up with me?*', 400, 130, { w: 540 }),
    hat('*I think you could learn to be a good Hufflepuff. You will be happier there than in any other House. That is the truth.*', 400, 640, { w: 480 })], { border: 'none' });
@@ -96,17 +96,17 @@ ep.multi(1110, [
   { x: M, y: 18, w: 752, h: 540, art: (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#0e1a28' }) + g({ transform: `translate(${ctx.w * 0.5},${ctx.h * 0.75}) scale(0.9)` }, rect(-80, -160, 14, 300, { fill: '#9bc4e8' }), rect(66, -160, 14, 300, { fill: '#9bc4e8' }), rect(-80, -170, 160, 16, { fill: '#9bc4e8' }), path('M-66,-110 L66,-80 L66,-50 L-66,-80Z', { fill: '#dcebf5' })) + FX.frost(ctx.w, ctx.h, 0.8, 5), mood: 'cold' },
   { x: M, y: 572, w: 752, h: 520, art: shot({ cam: { x: 1300, y: 1040, w: 900 }, bg: () => S.platform934(), actors: [{ def: chaosLord(fred, 1), x: 1050, y: 1180, turn: 0.5, pose: 'armsUp', expr: 'laugh' }, { def: neville, id: 'neville', x: 1330, y: 1110, s: 0.95, turn: -0.2, pose: 'cower', expr: 'horror' }, { def: chaosLord(harryRobes, 3), x: 1230, y: 1260, s: 1.1, turn: 0.3, pose: 'present', expr: 'laugh' }, { def: chaosLord(george, 2), x: 1560, y: 1180, turn: -0.5, pose: 'wave', expr: 'laugh' }] }), mood: 'sepia', overlay: (ctx) => FX.memoryEdge(ctx.w, ctx.h) },
 ], [hat('*That was not your first thought. You remembered considering lining up all the blood purists and guillotining them. You tell yourself you weren\'t serious. You were.*', 400, 125, { w: 540, size: 26 }),
-    hat('*Or what you did this morning to Neville Longbottom. Deep inside you knew it was wrong, but you did it anyway—because it was fun, and you had a good excuse, and you thought the Boy-Who-Lived could get away with it.*', 400, 960, { w: 560, size: 25 })],
+    hat('*Or what you did this morning to Neville Longbottom. Deep inside you knew it was wrong, but you did it anyway. Because it was fun, and you had a good excuse, and you thought the Boy-Who-Lived could get away with it.*', 400, 960, { w: 560, size: 25 })],
   { alt: 'Two memories: the imagined guillotine in freezing blue; and Neville, terrified, surrounded by shrouded, laughing figures.' });
 ep.panel(760, mind('void', null, { harry: HM('hurt', 'cower') }),
-  [inner('Harry', '*That\'s unfair! I decided in the end it would probably help Neville—*', 400, 110, { w: 480 }),
+  [inner('Harry', '*That\'s unfair! I decided in the end it would probably help Neville!*', 400, 110, { w: 480 }),
    hat('*That, in fact, was a rationalisation. I cannot know the true outcome for Neville. But I know what was truly happening inside your head: it was such a clever idea you couldn\'t stand not to do it. Never mind Neville\'s terror.*', 400, 570, { w: 520, size: 26 })], { border: 'none' });
 ep.panel(460, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#000' }), [capC('It was like a hard punch to Harry\'s entire self.', 400, 220, { w: 460, bg: 'rgba(0,0,0,0)', color: '#efe4cc', border: '#efe4cc' })], { border: 'none' });
 ep.panel(620, mind('void', 'stern', { harry: HM('determined', 'fists') }), [inner('Harry', '*Then I won\'t do that again! I\'ll be extra careful not to turn evil!*', 250, 100, { w: 400 }), hat('*Heard it.*', 590, 230, { w: 160, size: 36 })], { border: 'none' });
 ep.panel(760, mind('void', 'talk', { hs: 1.6 }),
   [hat('*Why is it necessary? Do you think you are the last potential wizard of Light in the world? Why must YOU be the one to try for greatness, when I have told you that you are riskier than average? Let some other, safer candidate try!*', 400, 170, { w: 520, size: 27 })], { border: 'none' });
 ep.panel(900, mind('void', 'stern', { hs: 1.6, hy: 0.8 }),
-  [hat('*You think that you are potentially the greatest who has yet lived—the strongest servant of the Light, that no other is likely to take up your wand if you lay it down.*', 400, 150, { w: 560, size: 28 }),
+  [hat('*You think that you are potentially the greatest who has yet lived. The strongest servant of the Light. That no other is likely to take up your wand if you lay it down.*', 400, 150, { w: 560, size: 28 }),
    inner('Harry', '*Well… yeah, frankly. No point in softening it. You can read my mind anyway.*', 400, 770, { w: 560 })], { border: 'none' });
 ep.bleed(820, mind('cold', 'stern', { frost: 0.5, hs: 1.8, hx: 0.5 }), [hat('*To the extent you really believe that, you must equally believe that you could be the most terrible Dark Lord the world has ever known.*', 400, 160, { w: 500, size: 30 })], { mood: 'cold' });
 // what happens if you fail?
@@ -121,51 +121,51 @@ ep.panel(360, mind('void', null, { seed: 15 }), [hat('*Then it should not be fri
 ep.bleed(900, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#1a0000' }) + FX.burst(ctx.w, ctx.h, ctx.w / 2, ctx.h / 2, { col: '#ff5a3a', op: 0.6, n: 120 }), [shout('Harry', 'I DON\'T KNOW! BUT I KNOW THAT IT\'S *BAD!*', 400, 450, { w: 440, size: 46, noTail: true, bg: '#fff0e0' })], { alt: 'Harry screams it with his whole mind.' });
 ep.panel(460, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#000' }), [capC('There was silence for a moment in the caverns of Harry\'s mind.', 400, 220, { w: 500, bg: 'rgba(0,0,0,0)', color: '#efe4cc', border: '#efe4cc' })], { border: 'none' });
 ep.panel(1060, mind('void', 'worried', { hs: 1.5, hy: 1.0 }),
-  [hat('*You know—you aren\'t letting yourself think it, but some quiet corner of your mind knows exactly what you aren\'t thinking—*', 400, 130, { w: 520, size: 28 }),
-   hat('*—that by far the simplest explanation for this fear is just the fear of losing your fantasy of greatness. Of disappointing the people who believe in you. Of turning out to be pretty much ordinary. Of flashing and fading, like so many other child prodigies…*', 400, 460, { w: 560, size: 26 })], { border: 'none' });
+  [hat('*You know. You aren\'t letting yourself think it, but some quiet corner of your mind knows exactly what you aren\'t thinking.*', 400, 130, { w: 520, size: 28 }),
+   hat('*By far the simplest explanation for this fear is just the fear of losing your fantasy of greatness. Of disappointing the people who believe in you. Of turning out to be pretty much ordinary. Of flashing and fading, like so many other child prodigies…*', 400, 460, { w: 560, size: 26 })], { border: 'none' });
 ep.panel(620, mind('void', null, { harry: HM('pained', 'cower', { x: -40, y: 60 }), zoom: 0.55 }), [inner('Harry', '*No… it\'s something more. It comes from somewhere else. I know there\'s something out there to be afraid of. Some disaster I have to stop…*', 400, 120, { w: 600 })], { border: 'none' });
 ep.panel(560, mind('void', 'worried', { hs: 1.6, hx: 0.72, hy: 1.02 }), [hat('*How could you possibly know about something like that?*', 330, 110, { w: 440 })], { border: 'none' });
 ep.bleed(900, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#e9f4fb' }) + FX.burst(ctx.w, ctx.h, ctx.w / 2, ctx.h / 2, { col: '#4a6a86', op: 0.7, n: 120 }) + FX.frost(ctx.w, ctx.h, 1, 3),
   [shout('Harry', '*NO, AND THAT\'S FINAL!*', 400, 450, { w: 520, size: 52, noTail: true, bg: '#dfeaf2', border: '#314c68' })], { alt: 'Harry\'s answer, final and freezing.' });
 ep.panel(1000, mind('cold', 'worried', { frost: 0.4, hs: 1.5, hy: 0.8 }),
-  [hat('*So you will risk becoming a Dark Lord, because the alternative, to you, is certain failure—and that failure means the loss of everything. You know all the reasons for doubting this belief, and they have failed to move you.*', 400, 150, { w: 540, size: 27 }),
+  [hat('*So you will risk becoming a Dark Lord, because the alternative, to you, is certain failure. And that failure means the loss of everything. You know all the reasons for doubting this belief, and they have failed to move you.*', 400, 150, { w: 540, size: 27 }),
    inner('Harry', '*Yes. And even if Ravenclaw strengthens the coldness, that doesn\'t mean the coldness will win in the end.*', 400, 895, { w: 600 })], { border: 'none', mood: 'cold' });
 ep.panel(1100, mind('void', 'sleep', { hs: 1.6, hy: 0.76 }),
   [hat('*This day is a great fork in your destiny. There is no road-sign set to mark the place of your last chance to turn back. If you refuse one chance, will you not refuse others? It may be that your fate is already sealed, even by doing this one thing.*', 400, 160, { w: 540, size: 27 }),
    inner('Harry', '*But that is not certain.*', 200, 880, { w: 280 }), hat('*That you do not know it for certain may reflect only your own ignorance.*', 500, 1000, { w: 440, size: 26 })], { border: 'none' });
-ep.panel(820, mind('void', 'sleep', { hs: 1.6, hy: 0.8 }), [cap('The Hat sighed a terrible, sad sigh.', 44, 30, { w: 560 }), hat('*And so before too long you will become another memory—to be felt, and never known—in the next warning that I give…*', 400, 700, { w: 540 })], { border: 'none' });
+ep.panel(820, mind('void', 'sleep', { hs: 1.6, hy: 0.8 }), [cap('The Hat sighed a terrible, sad sigh.', 44, 30, { w: 560 }), hat('*And so before too long you will become another memory, to be felt and never known, in the next warning that I give…*', 400, 700, { w: 540 })], { border: 'none' });
 ep.panel(760, mind('void', 'talk', { harry: HM('sad') }),
   [inner('Harry', '*If that\'s how it seems to you, why aren\'t you just putting me where you want me to go?*', 250, 100, { w: 380, size: 27 }),
    hat('*I can only put you where you belong. And only your own decisions can change where you belong.*', 215, 585, { w: 340, size: 27 })], { border: 'none' });
 ep.panel(560, mind('cold', null, { frost: 0.3, harry: HM('cold', 'stand', { x: 0, y: 60 }), zoom: 0.5 }), [inner('Harry', '*Then this is done. Send me to Ravenclaw, where I belong, with the others of my own kind.*', 400, 100, { w: 580 })], { border: 'none', mood: 'cold' });
 // the comedy turn
 ep.panel(920, mind('void', 'amused', { hs: 1.6, hy: 0.78 }),
-  [hat('*I don\'t suppose you would consider Gryffindor? It\'s the most prestigious House. People expect it of you. And your new friends the Weasley twins are there—*', 400, 150, { w: 520, size: 28 }),
-   cap('Harry giggled—or rather, felt the impulse to. It came out as purely mental laughter. And after a moment, Harry heard the Hat laughing too: a strange, sad, clothy sound.', 44, 760, { w: 640, size: 25 })], { border: 'none' });
+  [hat('*I don\'t suppose you would consider Gryffindor? It\'s the most prestigious House. People expect it of you. And your new friends the Weasley twins are there…*', 400, 150, { w: 520, size: 28 }),
+   cap('Harry giggled. Or rather, he felt the impulse to. It came out as purely mental laughter. And after a moment, Harry heard the Hat laughing too: a strange, sad, clothy sound.', 44, 760, { w: 640, size: 25 })], { border: 'none' });
 // the hall, meanwhile
 ep.setBg('#1a1210');
 ep.tile({ h: 140, panels: [], bubbles: [], bg: { top: MIND, bottom: '#1a1210' } });
 const STAFF = () => HG.staffWall();
 ep.panel(900, { cam: { x: 820, y: 500, w: 860 }, bg: () => HG.dais(), actors: [() => HG.stool(1000, 900), { def: harryRobes, id: 'harry', x: 1000, y: 900, s: 1.1, turn: 0.1, pose: 'sit', seat: 125, expr: 'asleep' }, HG.hatOn('harry', 'sleep'), { def: mcgonagall, id: 'mcgonagall', x: 600, y: 900, turn: 0.3, pose: 'fists', expr: 'worried' }] },
-  [cap('Meanwhile, in the Hall: a silence that had grown shallower as the whispers increased, and then deeper as they gave up and died away—as Harry stayed under the Hat for long, long minutes. Longer than all the previous first-years put together. Longer than anyone in living memory.', 44, 34, { w: 610, size: 25 })], { mood: 'candle' });
+  [cap('Meanwhile, in the Hall: a silence that had grown shallower as the whispers increased, and then deeper as they gave up and died away. Harry stayed under the Hat for long, long minutes. Longer than all the previous first-years put together. Longer than anyone in living memory.', 44, 34, { w: 610, size: 25 })], { mood: 'candle' });
 ep.multi(1000, [
   { x: M, y: 18, w: 752, h: 470, mood: 'candle', art: { cam: { on: ['snape'], fr: 'bust', dx: 1.0 }, bg: STAFF, blur: 2, actors: [{ def: snape, id: 'snape', x: 560, y: 900, turn: 0.1, pose: 'hold', expr: 'deadpan', armF: { sh: 22, el: 80, hand: 'fist' }, armB: { sh: 8, el: -6 } }, (e) => { const a = e.wa.snape; return a ? HG.goblet(a.handF[0] + 4, a.handF[1] - 14, a.hr / 50, 1) : ''; }] } },
   { x: M, y: 502, w: 752, h: 480, mood: 'candle', art: { cam: { on: ['mcgonagall'], fr: 'bust', dx: -1.0 }, bg: () => HG.dais(), blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 600, y: 900, turn: 0.2, pose: 'fists', expr: { base: 'horror', sweat: true } }] } },
 ], [cap('Small metallic sounds came from Snape\'s direction as he idly compacted the remains of what had once been a heavy silver goblet.', 440, 60, { w: 300, size: 24, fixed: true }),
-    cap('McGonagall gripped the podium, white-knuckled, certain the Hat was about to demand a whole new House of Doom be built just for Harry Potter—and that Dumbledore would make her do it.', 44, 540, { w: 350, size: 24, fixed: true })]);
+    cap('McGonagall gripped the podium, white-knuckled, certain the Hat was about to demand a whole new House of Doom be built just for Harry Potter. And that Dumbledore would make her do it.', 44, 540, { w: 350, size: 24, fixed: true })]);
 ep.setBg(MIND);
 ep.tile({ h: 140, panels: [], bubbles: [], bg: { top: '#1a1210', bottom: MIND } });
 ep.panel(780, mind('void', 'amused', { harry: HM('grin'), hx: 0.76 }),
   [inner('Harry', '*Professor McGonagall said that if the Hat tried to push me into Gryffindor, I should remind you she might be Headmistress some day. At which point she\'d have the authority to set you on fire.*', 400, 110, { w: 580, size: 26 }),
    hat('*Tell her I called her an impudent youngster, and told her to get off my lawn.*', 226, 600, { w: 318 })], { border: 'none' });
-ep.panel(580, mind('void', 'amused', { harry: HM('smile') }), [inner('Harry', '*So—was this your strangest conversation ever?*', 250, 100, { w: 340 }), hat('*Not even close.*', 190, 480, { w: 240 })], { border: 'none' });
+ep.panel(580, mind('void', 'amused', { harry: HM('smile') }), [inner('Harry', '*So. Was this your strangest conversation ever?*', 250, 100, { w: 340 }), hat('*Not even close.*', 190, 480, { w: 240 })], { border: 'none' });
 ep.panel(620, mind('void', 'stern', { hs: 1.6 }), [hat('*Well. I gave you every possible chance to make another decision. Now it is time for you to go where you belong, with the others of your own kind.*', 400, 200, { w: 540 })], { border: 'none' });
 ep.panel(420, mind('void', 'sleep', { hs: 1.6, seed: 31, hx: 0.76 }), [cap('There was a pause that stretched.', 44, 30, { w: 440 }), inner('Harry', '*What are you waiting for?*', 215, 320, { w: 300 })], { border: 'none' });
 ep.panel(620, mind('void', 'amused', { hs: 1.6 }), [hat('*I was hoping for a moment of horrified realisation, actually. Self-awareness does seem to enhance my sense of humour.*', 400, 200, { w: 520 })], { border: 'none' });
-ep.panel(620, mind('void', null, { harry: HM('think', 'chin', { x: -40, y: 60 }), zoom: 0.55 }), [inner('Harry', '*Huh? Oh—you mean my horrified realisation that you\'re going to cease to be conscious once you finish Sorting me—*', 400, 110, { w: 580 })], { border: 'none' });
+ep.panel(620, mind('void', null, { harry: HM('think', 'chin', { x: -40, y: 60 }), zoom: 0.55 }), [inner('Harry', '*Huh? Oh! You mean my horrified realisation that you\'re going to cease to be conscious once you finish Sorting me?*', 400, 110, { w: 580 })], { border: 'none' });
 ep.panel(960, mind('void', 'stern', { hs: 1.6, hy: 0.72 }),
   [hat('*I give up. You\'re too slow on the uptake for this to be funny. So blinded by your own assumptions that you might as well be a rock.*', 400, 140, { w: 520 }),
-   hat('*Oh—and you entirely forgot to demand the secrets of the lost magic that created me. And they were such wonderful, important secrets, too.*', 400, 830, { w: 560 })], { border: 'none' });
+   hat('*Oh, and you entirely forgot to demand the secrets of the lost magic that created me. And they were such wonderful, important secrets, too.*', 400, 830, { w: 560 })], { border: 'none' });
 ep.panel(460, mind('void', null, { harry: HM('angry', 'fists', { x: 0, y: 90 }), zoom: 0.5 }), [inner('Harry', '*You sly little—*', 400, 60, { w: 260 })], { border: 'none' });
 ep.panel(560, mind('void', 'amused', { hs: 1.8, hx: 0.5, hy: 1.05 }), [hat('*You deserved it. And this as well.*', 400, 100, { w: 560, size: 34 })], { border: 'none' });
 ep.panel(560, mind('void', null, { harry: HM('horror', 'panic', { x: 0, y: 110 }), zoom: 0.55 }), [cap('Harry saw it coming just as it was already too late.', 44, 30, { w: 640 })], { border: 'none' });
@@ -186,8 +186,8 @@ ep.panel(560, { cam: { on: ['snape'], fr: 'waist' }, bg: STAFF, blur: 2, actors:
 ep.multi(900, [
   { x: M, y: 18, w: 752, h: 520, mood: 'cold', art: (ctx) => shot({ cam: { on: ['harry'], fr: 'close', dy: 0.3 }, bg: () => HG.dais(), blur: 3, actors: [{ def: harryRobes, id: 'harry', x: 1000, y: 900, s: 1.1, turn: 0.05, pose: 'sit', seat: 125, expr: 'horror' }] })(ctx) + FX.frost(ctx.w, ctx.h, 0.7, 50) },
   { x: 400, y: 552, w: 376, h: 330, mood: 'sepia', overlay: (ctx) => FX.memoryEdge(ctx.w, ctx.h), art: { cam: { on: ['neville'], fr: 'close' }, bg: () => S.platform934(), blur: 3, actors: [{ def: neville, id: 'neville', x: 1300, y: 1110, s: 0.95, turn: 0, expr: 'horror' }] } },
-], [cap('Harry sat frozen, his life in ruins, wishing wretchedly that he had made any other choices, for any other reasons—that he had done something, *anything* differently, before it was too late to turn back.', 44, 580, { w: 330, size: 24 })],
-  { alt: 'Harry\'s face in frozen horror — and, inset, Neville on the platform that morning, wearing exactly the same face.' });
+], [cap('Harry sat frozen, his life in ruins, wishing wretchedly that he had made any other choices, for any other reasons. That he had done something, *anything* differently, before it was too late to turn back.', 44, 580, { w: 330, size: 24 })],
+  { alt: 'Harry\'s face in frozen horror; and, inset, Neville on the platform that morning, wearing exactly the same face.' });
 ep.setBg(C.paper);
 ep.bleed(1100, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#243a6a' }) + FX.burst(ctx.w, ctx.h, ctx.w / 2, ctx.h * 0.62, { col: '#c9a24a', op: 0.4, n: 140 }) + g({ transform: `translate(${ctx.w / 2},${ctx.h * 0.95}) scale(1.7)` }, HG.sortingHat(1, { mood: 'amused' })),
   [hat('*Just kidding!*', 400, 140, { w: 320, size: 40 }), plain('RAVENCLAW!', 400, 330, { font: "'IM Fell English SC', serif", size: 104, color: '#f6e7c4', w: 780 })], { bg: C.paper, alt: 'The Hat, grinning: "Just kidding! RAVENCLAW!"' });
@@ -196,7 +196,7 @@ ep.bleed(1100, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#243a6a' }) + FX.burst
 ep.setBg(MIND);
 ep.tile({ h: 140, panels: [], bubbles: [], bg: { top: C.paper, bottom: MIND } });
 ep.bleed(1100, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#050a06' }) + shot({ cam: { x: 1000, y: 490, w: 760 }, bg: () => HG.dais(), actors: [() => HG.stool(1000, 900), { def: harryRobes, id: 'harry', x: 1000, y: 900, s: 1.1, turn: 0.1, pose: 'sit', seat: 125, expr: { base: 'shock', eyes: { lookX: 0.6 } } }, (e) => g({ transform: `translate(1000,${e.wa.harry.head[1] - e.wa.harry.hr * 2.1}) scale(${e.wa.harry.hr / 66})` }, HG.sortingHat(1, { mood: 'sleep' }))] })(ctx) + rect(0, 0, ctx.w, ctx.h, { fill: '#0a2a10', opacity: 0.55 }),
-  [cap('And in the instant Harry lifted the Hat off his head, he heard a tiny whisper, as though from nowhere—something that sounded oddly like English and a hiss at the same time:', 44, 34, { w: 600, size: 26 }),
+  [cap('And in the instant Harry lifted the Hat off his head, he heard a tiny whisper, as though from nowhere. Something that sounded oddly like English and a hiss at the same time:', 44, 34, { w: 600, size: 26 }),
    { type: 'hiss', text: 'Salutations from Slytherin to Slytherin: if you would seek my secrets, speak to my snake.', x: 400, y: 1000, w: 640 }],
   { alt: 'As the Hat lifts from Harry\'s head, a green hissing whisper: "Salutations from Slytherin to Slytherin: if you would seek my secrets, speak to my snake."' });
 
@@ -255,19 +255,19 @@ ep.panel(520, (ctx) => {
   out += T(60, 210, 'Harry James Potter-Evans-Verres', 38) + T(w - 80, 210, '+1', 60, 'end', '#2f7a3a');
   out += T(60, 300, '(first entry)', 30, 'start', '#8a7d68');
   return out;
-}, [cap('Harry awarded himself one point.', 300, 380, { w: 440, fixed: true })], { alt: 'A new ledger: "Anti-Dark-Lord-Harry Programme" — Harry James Potter-Evans-Verres, +1. (first entry)' });
+}, [cap('Harry awarded himself one point.', 300, 380, { w: 440, fixed: true })], { alt: 'A new ledger: "Anti-Dark-Lord-Harry Programme": Harry James Potter-Evans-Verres, +1. (first entry)' });
 
 // Quirrell
 ep.setBg('#1a1210');
 ep.tile({ h: 140, panels: [], bubbles: [], bg: { top: C.paper, bottom: '#1a1210' } });
 ep.panel(780, { cam: { on: ['dumbledore'], fr: 'waist', dx: -1.3, dy: 0.2 }, bg: STAFF, actors: [{ def: dumbledore, id: 'dumbledore', x: 900, y: 900, turn: -0.2, pose: 'present', expr: 'smile' }, () => HG.staffTable()] },
-  [say('Dumbledore', 'And finally, I extend my greatest thanks to Quirinus Quirrell, for heroically agreeing to undertake the position of Defence Against the Dark Arts Professor—', 250, 140, { w: 400, size: 27 }),
+  [say('Dumbledore', 'And finally, I extend my greatest thanks to Quirinus Quirrell, for heroically agreeing to undertake the position of Defence Against the Dark Arts Professor.', 250, 140, { w: 400, size: 27 }),
    say('Dumbledore', 'I now yield the floor to Professor Quirrell, who would like to say a few words.', 240, 540, { w: 360 })], { mood: 'candle' });
 const QL = (o = {}) => ({ def: quirrell, id: 'quirrell', x: 1000, y: 900, turn: 0, pose: 'slump', expr: 'twitch', ...o });
 ep.panel(700, { cam: { on: ['quirrell'], fr: 'waist', dy: -0.6 }, bg: () => HG.dais(), actors: [QL()], over: (e) => FX.doom(e.w, e.h, 12) },
   [cap('The thin, nervous man from the Leaky Cauldron made his way to the podium, glancing fearfully in all directions.', 44, 34, { w: 440 }),
    say('Quirrell', 'Ah… ah…', 650, 440, { w: 180 })], { mood: 'candle' });
-ep.panel(460, { cam: { on: ['r1'], fr: 'close' }, bg: RT, blur: 3, actors: RAV() }, [whisper('Older student', 'Oh, great. Looks like another *long* year in Defence class—', 400, 100, { w: 420 })], { mood: 'candle' });
+ep.panel(460, { cam: { on: ['r1'], fr: 'close' }, bg: RT, blur: 3, actors: RAV() }, [whisper('Older student', 'Oh, great. Looks like another *long* year in Defence class…', 400, 100, { w: 420 })], { mood: 'candle' });
 ep.bleed(1000, { cam: { on: ['quirrell'], fr: 'bust' }, bg: () => HG.dais(), blur: 2, actors: [QL({ pose: 'stand', expr: { base: 'coldSmile', eyes: { style: 'normal', open: 0.8 } } })], over: (e) => FX.doom(e.w, e.h, 14) },
   [say('Quirrell', 'Salutations, my young apprentices.', 400, 110, { w: 400 }),
    say('Quirrell', 'We all know Hogwarts suffers a certain *misfortune* in its selections for this position. No doubt many of you are already wondering what doom shall befall me this year. I assure you, that doom is not to be my incompetence.', 400, 720, { w: 580, size: 27 })], { mood: 'candle', alt: 'Quirrell straightens, and speaks in a dry, perfectly confident voice.' });
