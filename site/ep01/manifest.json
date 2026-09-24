@@ -31,335 +31,341 @@
   {
    "file": "005.webp",
    "w": 800,
-   "h": 760,
+   "h": 660,
    "alt": "A row of Victorian brick houses in the rain. One window glows warm. / Oxford, England. The wettest July anyone could remember."
   },
   {
    "file": "006.webp",
    "w": 800,
-   "h": 1000,
-   "alt": "A cosy living room drowning in books: shelves to the ceiling, heaps under the window. A man and a woman stand arguing by the fire. A small boy with messy black hair and round glasses reads in an armchair. / Every inch of wall space is covered by a bookcase. / And it still isn't enough. / This is the home of Professor Michael Verres-Evans, his wife Petunia Evans-Verres, and their adopted son, Harry James Potter-Evans-Verres."
+   "h": 620,
+   "alt": "A cosy living room drowning in books: shelves to the ceiling, more books heaped under the rain-streaked window. / Every inch of wall space is covered by a bookcase. / And it still isn't enough."
   },
   {
    "file": "007.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "A man and a woman stand arguing by the fire. A small boy with messy black hair and round glasses reads in an armchair. / This is the home of Professor Michael Verres-Evans, his wife Petunia Evans-Verres, and their adopted son, Harry James Potter-Evans-Verres."
+  },
+  {
+   "file": "008.webp",
    "w": 800,
    "h": 560,
    "alt": "Close on the coffee table: a parchment envelope addressed in emerald ink to Mr H. Potter. / There is a letter on the table. Yellowish parchment. Emerald ink. No stamp."
   },
   {
-   "file": "008.webp",
+   "file": "009.webp",
    "w": 800,
    "h": 760,
    "alt": "Dad: You're joking. / Mum: My sister was a witch. / Mum: Her husband was a wizard."
   },
   {
-   "file": "009.webp",
+   "file": "010.webp",
    "w": 800,
    "h": 700,
    "alt": "Dad: This is absurd! They were at our wedding! They came for Christmas!"
   },
   {
-   "file": "010.webp",
+   "file": "011.webp",
    "w": 800,
    "h": 640,
    "alt": "Mum: I told them you weren't to know."
   },
   {
-   "file": "011.webp",
+   "file": "012.webp",
    "w": 800,
    "h": 560,
    "alt": "Harry peers over the top of a large book, eyes darting between his parents. / …"
   },
   {
-   "file": "012.webp",
+   "file": "013.webp",
    "w": 800,
    "h": 980,
    "alt": "Dad: Dear, I understand you're not familiar with the sceptical literature. / Dad: A trained magician can fake almost anything. Remember how I taught Harry to bend spoons?"
   },
   {
-   "file": "013.webp",
+   "file": "014.webp",
    "w": 800,
    "h": 700,
    "alt": "Mum: It wasn't bending spoons— / Mum: Michael. I wasn't… always like this."
   },
   {
-   "file": "014.webp",
+   "file": "015.webp",
    "w": 800,
    "h": 760,
    "alt": "Memory, in sepia: two teenage sisters. The red-haired one makes flowers bloom in her palm. The plainer one watches, arms crossed. / “Lily was always the pretty one. And then she got magic. Can you imagine how I felt?”"
   },
   {
-   "file": "015.webp",
+   "file": "016.webp",
    "w": 800,
    "h": 700,
    "alt": "“I begged her to use it on me. For years. She always said no—the most ridiculous excuses. A centaur told her not to…”"
   },
   {
-   "file": "016.webp",
-   "w": 800,
-   "h": 760,
-   "alt": "“Then I started going out with a boy called Vernon Dursley. He said he wanted a son, and he'd name him Dudley.” / Vernon: Dudley Dursley. Good strong name, that. / Petunia: Dudley… Dursley?"
-  },
-  {
    "file": "017.webp",
    "w": 800,
-   "h": 700,
-   "alt": "“So she gave in. I drank a potion. I was sick for weeks… and when I got better, I was beautiful.”"
+   "h": 900,
+   "alt": "“Then I started going out with a boy called Vernon Dursley. He said he wanted a son, and he'd name him Dudley.” / Vernon: Dudley Dursley. Good strong name, that. / Petunia: Dudley… Dursley?"
   },
   {
    "file": "018.webp",
    "w": 800,
    "h": 700,
-   "alt": "Mum: After that I couldn't hate her any more. Especially when I learned what her magic brought her in the end."
+   "alt": "“So she gave in. I drank a potion. I was sick for weeks… and when I got better, I was beautiful.”"
   },
   {
    "file": "019.webp",
    "w": 800,
-   "h": 760,
-   "alt": "Dad: Darling. You got sick, you rested in bed, and your skin cleared up on its own. / Mum: She was a witch. I saw it."
+   "h": 820,
+   "alt": "Mum: After that I couldn't hate her any more. Especially when I learned what her magic brought her in the end."
   },
   {
    "file": "020.webp",
    "w": 800,
-   "h": 700,
-   "alt": "Dad: Petunia. You know that can't be true. Do I really have to explain why?"
+   "h": 900,
+   "alt": "Dad: Darling. You got sick, you rested in bed, and your skin cleared up on its own. / Mum: She was a witch. I saw it."
   },
   {
    "file": "021.webp",
    "w": 800,
-   "h": 640,
-   "alt": "Mum: My love, I know I can't win arguments with you, but please, just this once—"
+   "h": 780,
+   "alt": "Dad: Petunia. You know that can't be true. Do I really have to explain why?"
   },
   {
    "file": "022.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Mum: My love, I know I can't win arguments with you, but please, just this once—"
+  },
+  {
+   "file": "023.webp",
    "w": 800,
    "h": 900,
    "alt": "Harry leaps up on the armchair, fists clenched, book flying. / Harry: DAD! MUM!"
   },
   {
-   "file": "023.webp",
+   "file": "024.webp",
    "w": 800,
-   "h": 620,
+   "h": 680,
    "alt": "They looked at him as though they'd forgotten there was a third person in the room."
   },
   {
-   "file": "024.webp",
+   "file": "025.webp",
    "w": 800,
    "h": 760,
    "alt": "Harry: Mum, your parents didn't have magic, did they? / Harry: So when Lily got her letter… how did they get convinced?"
   },
   {
-   "file": "025.webp",
-   "w": 800,
-   "h": 620,
-   "alt": "Mum: Ah… They didn't just send a letter. They sent a professor from Hogwarts. / Mum: She showed us some magic."
-  },
-  {
    "file": "026.webp",
    "w": 800,
-   "h": 820,
-   "alt": "Harry, lit up with the idea, spreads his hands. / Harry: Then you don't have to fight about this! / Harry: We get a Hogwarts professor here, and we look. If it's real, Dad admits it. If it isn't, Mum admits it. / Harry: That's what experiments are for! So we don't have to settle things by arguing!"
+   "h": 760,
+   "alt": "Mum: Ah… They didn't just send a letter. They sent a professor from Hogwarts. / Mum: She showed us some magic."
   },
   {
    "file": "027.webp",
    "w": 800,
-   "h": 760,
-   "alt": "Dad: Oh, come now, Harry. Really—magic? / Dad: I thought you'd know better than to take this seriously, son. Even if you're only ten."
+   "h": 960,
+   "alt": "Harry, lit up with the idea, spreads his hands. / Harry: Then you don't have to fight about this! / Harry: We get a Hogwarts professor here, and we look. If it's real, Dad admits it. If it isn't, Mum admits it. / Harry: That's what experiments are for! So we don't have to settle things by arguing!"
   },
   {
    "file": "028.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Dad: Oh, come now, Harry. Really—magic? / Dad: I thought you'd know better than to take this seriously, son. Even if you're only ten."
+  },
+  {
+   "file": "029.webp",
    "w": 800,
    "h": 760,
    "alt": "Harry was given anything reasonable he wanted. Books. Tutors. Every maths competition he cared to enter. / Anything, except the slightest shred of respect."
   },
   {
-   "file": "029.webp",
+   "file": "030.webp",
    "w": 800,
    "h": 520,
    "alt": "Extreme close-up on Harry's eyes, gone flat and cold. Frost creeps at the edges of the panel. / Harry: Sometimes Harry wanted to scream at his father."
   },
   {
-   "file": "030.webp",
-   "w": 800,
-   "h": 700,
-   "alt": "Mum: —just once, trust your wife who loves you— / Dad: —it isn't a question of trust, dear, it's a question of evidence— / Harry: I'm going to go to my room."
-  },
-  {
    "file": "031.webp",
    "w": 800,
-   "h": 760,
-   "alt": "Harry climbs the staircase alone; muffled argument drifts up from below. / Mum: —never listen— / Dad: —being hysterical— / And they went on fighting while Harry climbed the stairs."
+   "h": 800,
+   "alt": "Mum: —just once, trust your wife who loves you— / Dad: —it isn't a question of trust, dear, it's a question of evidence— / Harry: I'm going to go to my room."
   },
   {
    "file": "032.webp",
    "w": 800,
    "h": 760,
-   "alt": "Harry: The funny thing is, I should agree with Dad."
+   "alt": "Harry climbs the staircase alone; muffled argument drifts up from below. / Mum: —never listen— / Dad: —being hysterical— / And they went on fighting while Harry climbed the stairs."
   },
   {
    "file": "033.webp",
    "w": 800,
    "h": 760,
-   "alt": "Harry: No-one has ever seen real evidence of magic. It should be a clean case for Mum joking, lying, or being insane… / Harry: …in ascending order of awfulness."
+   "alt": "Harry: The funny thing is, I should agree with Dad."
   },
   {
    "file": "034.webp",
    "w": 800,
-   "h": 560,
-   "alt": "The Hogwarts envelope in the candlelight. / Harry: Except some part of me is utterly certain that magic is real. / Harry: Where do you come from, strange little prediction?"
+   "h": 760,
+   "alt": "Harry: No-one has ever seen real evidence of magic. It should be a clean case for Mum joking, lying, or being insane… / Harry: …in ascending order of awfulness."
   },
   {
    "file": "035.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "The Hogwarts envelope in the candlelight. / Harry: Except some part of me is utterly certain that magic is real. / Harry: Where do you come from, strange little prediction?"
+  },
+  {
+   "file": "036.webp",
    "w": 800,
    "h": 680,
    "alt": "Harry: Well. The thing to do with a testable hypothesis— / Harry: —is to go and test it."
   },
   {
-   "file": "036.webp",
+   "file": "037.webp",
    "w": 800,
-   "h": 620,
+   "h": 680,
    "alt": "This called for careful calligraphy."
   },
   {
-   "file": "037.webp",
+   "file": "038.webp",
    "w": 800,
-   "h": 560,
+   "h": 600,
    "alt": "Harry's letter to Hogwarts, in careful handwriting. / P.S. — My father is highly sceptical. I myself am uncertain."
   },
   {
-   "file": "038.webp",
+   "file": "039.webp",
    "w": 800,
    "h": 700,
    "alt": "Red wax drips onto the envelope flap; Harry has pressed his initials into it with a penknife: H.J.P.E.V. / If he was going to descend into this madness, he was going to do it with style."
   },
   {
-   "file": "039.webp",
+   "file": "040.webp",
    "w": 800,
    "h": 640,
    "alt": "His father was reading a book of higher maths, to show how smart he was. / His mother was cooking his father's favourite dinner, to show how loving she was."
   },
   {
-   "file": "040.webp",
+   "file": "041.webp",
    "w": 800,
    "h": 360,
    "alt": "As scary as arguments could be, not arguing was somehow much worse."
   },
   {
-   "file": "041.webp",
+   "file": "042.webp",
    "w": 800,
-   "h": 760,
+   "h": 800,
    "alt": "Harry: Mum, I'm going to test the hypothesis. According to your theory, how do I send an owl to Hogwarts? / Mum: I—I don't know. I think you just have to own a magic owl?"
   },
   {
-   "file": "042.webp",
+   "file": "043.webp",
    "w": 800,
-   "h": 760,
+   "h": 900,
    "alt": "Harry: Well, the letter got here somehow. I'll wave it around outside and ask for an owl. / Harry: Dad, do you want to come and watch?"
   },
   {
-   "file": "043.webp",
+   "file": "044.webp",
    "w": 800,
    "h": 520,
    "alt": "His father shook his head, minutely, and kept on reading."
   },
   {
-   "file": "044.webp",
+   "file": "045.webp",
    "w": 800,
    "h": 480,
    "alt": "Harry: Of course."
   },
   {
-   "file": "045.webp",
+   "file": "046.webp",
    "w": 800,
-   "h": 820,
+   "h": 760,
    "alt": "The back garden at dusk after rain. Harry stands alone on the wet lawn holding the envelope. / Standing in your own back garden, about to shout for an owl, it occurs to you that this is… actually pretty embarrassing."
   },
   {
-   "file": "046.webp",
+   "file": "047.webp",
    "w": 800,
    "h": 700,
    "alt": "Harry: No. I'm better than Dad. / Harry: I will use the scientific method even if it makes me feel stupid."
   },
   {
-   "file": "047.webp",
+   "file": "048.webp",
    "w": 800,
    "h": 460,
    "alt": "Harry: Letter—"
   },
   {
-   "file": "048.webp",
+   "file": "049.webp",
    "w": 800,
-   "h": 1250,
+   "h": 1150,
    "alt": "Low angle: Harry thrusts the envelope at the enormous evening sky and yells. / Harry: LETTER FOR HOGWARTS! CAN I GET AN OWL?"
   },
   {
-   "file": "049.webp",
+   "file": "050.webp",
    "w": 800,
    "h": 300,
    "alt": "?: Harry?"
   },
   {
-   "file": "050.webp",
+   "file": "051.webp",
    "w": 800,
    "h": 700,
    "alt": "Harry whipped his arm down and hid the envelope behind his back like it was drug money."
   },
   {
-   "file": "051.webp",
+   "file": "052.webp",
    "w": 800,
    "h": 820,
    "alt": "An old woman in a hairnet peers over the fence, a grey cat perched beside her. / Mrs Figg: What are you doing, Harry? / Harry: Nothing! Just—testing a really silly theory—"
   },
   {
-   "file": "052.webp",
+   "file": "053.webp",
    "w": 800,
    "h": 700,
    "alt": "Mrs Figg: Did you get your acceptance letter from Hogwarts?"
   },
   {
-   "file": "053.webp",
+   "file": "054.webp",
    "w": 800,
    "h": 560,
    "alt": "Harry, frozen."
   },
   {
-   "file": "054.webp",
+   "file": "055.webp",
    "w": 800,
-   "h": 760,
+   "h": 900,
    "alt": "Harry: …Yes. I got a letter from Hogwarts. They want my owl by the 31st of July, but— / Mrs Figg: But you don't have an owl! Poor dear. I can't imagine what someone was thinking, sending you just the standard letter."
   },
   {
-   "file": "055.webp",
+   "file": "056.webp",
    "w": 800,
    "h": 700,
    "alt": "A wrinkled hand reaches over the fence; Harry hands up the envelope. / Hardly thinking at all by now, Harry handed it over."
   },
   {
-   "file": "056.webp",
+   "file": "057.webp",
    "w": 800,
    "h": 760,
    "alt": "Mrs Figg: Just leave it to me, dear. In a jiffy or two I'll have someone over."
   },
   {
-   "file": "057.webp",
+   "file": "058.webp",
    "w": 800,
    "h": 560,
    "alt": "The old woman has gone. Her grey cat stays on the fence, looking straight at Harry. / And her face disappeared from over the fence. / The cat stayed."
   },
   {
-   "file": "058.webp",
+   "file": "059.webp",
    "w": 800,
    "h": 1200,
    "alt": "A wide, quiet shot: Harry alone on the lawn under a huge evening sky with a single first star. / There was a long silence in the garden."
   },
   {
-   "file": "059.webp",
+   "file": "060.webp",
    "w": 800,
    "h": 620,
    "alt": "Harry: What."
   },
   {
-   "file": "060.webp",
+   "file": "061.webp",
    "w": 800,
    "h": 340,
    "alt": "To be continued"
