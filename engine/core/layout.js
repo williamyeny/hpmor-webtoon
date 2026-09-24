@@ -175,6 +175,6 @@ ${under}${panels}${over}
 </svg>`;
   const bubbles = resolveBubbles(tile.bubbles, panelsA, W, H).map(bubbleHTML).join('');
   const heads = [];
-  for (const A of panelsA) for (const id in A || {}) { const a = A[id]; if (a.head && a.hr) heads.push([Math.round(a.head[0]), Math.round(a.head[1] + a.hr * 0.15), Math.round(a.hr * 1.0)]); }
+  for (const A of panelsA) for (const id in A || {}) { const a = A[id]; if (a.head && a.hr) heads.push([Math.round(a.head[0]), Math.round(a.head[1] + a.hr * 0.2), Math.round(a.hr * 1.15)]); }
   return { W, H, html: `<div id="tile" data-heads='${JSON.stringify(heads)}' style="position:relative;width:${W}px;height:${H}px;overflow:hidden">${svg}<svg id="bsvg" width="${W}" height="${H}" style="position:absolute;left:0;top:0;overflow:visible"></svg>${bubbles}</div>` };
 }
