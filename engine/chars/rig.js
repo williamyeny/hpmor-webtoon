@@ -270,7 +270,16 @@ export function drawCharacter(def, opts = {}) {
   }
 
   // torso body
-  layers.torso.push(path(torsoD, S(topCol)));
+  // Seamless shoulders, drawn in two passes like a union of shapes: first the torso's and each front arm's upper
+  // sleeve OUTLINES at double width, then the torso FILL over them (the arm's fill comes later with the arm).
+  // Where arm and body overlap, the fills hide the inner lines; only the outer half of the double line survives,
+  // at normal width. The arm's own outline (in arm()) is left out of its rounded top so no arc cuts across the body.
+  const seamArms = O.shortSleeves ? [] : [armFp, ...(aB.front === true ? [armBp] : [])];
+  if (seamArms.length) {
+    layers.torso.push(path(torsoD, { fill: 'none', stroke: C.ink, 'stroke-width': lw * 2, 'stroke-linejoin': 'round' }));
+    for (const P of seamArms) layers.torso.push(capOnly(P, sleeveShape(P, { fill: 'none', stroke: C.ink, 'stroke-width': lw * 2, 'stroke-linejoin': 'round' })));
+    layers.torso.push(path(torsoD, { fill: topCol }));
+  } else layers.torso.push(path(torsoD, S(topCol)));
   if (O.pattern) layers.torso.push(path(torsoD, { fill: `url(#pat-${O.pattern})`, opacity: 0.55 }));
   // cel shading on torso (far side)
   const tid = uid('ts');
@@ -296,9 +305,29 @@ export function drawCharacter(def, opts = {}) {
   if (O.over) layers.torso.push(O.over({ T, sw, ww, hw, tw, bt, B, lw, S, cx, R, hip, nm, nl, nr }));
 
   // ---- arms
+  // the sleeve's outline shape (same geometry arm() draws), and the shoulder cap region: a disk round the joint,
+  // on the far side of a line across the arm just below the shoulder
+  function sleeveShape(p, style) {
+    const w0 = B.armW * 1.05, w1 = B.armW * 0.95, w2 = O.wideSleeves ? B.armW * (O.cuffW ?? 2.1) : B.armW * 0.82;
+    return O.wideSleeves ? capsule(p[0], p[1], w0, w1, style) : path(limbD(p[0], p[1], p[2], w0, w1, w2 * 1.05), style);
+  }
+  function capDefs(p) {
+    const u = norm(sub(p[1], p[0])), cut = add(p[0], mul(u, B.armW * 0.35)), ang = Math.atan2(u[1], u[0]) * 180 / Math.PI;
+    const hid = uid('ch'), cid = uid('cc'), r = B.armW * 0.95 + lw * 3;
+    const defs = `<clipPath id="${hid}"><rect x="-400" y="-200" width="400" height="400" transform="translate(${r2(cut[0])},${r2(cut[1])}) rotate(${r2(ang)})"/></clipPath><clipPath id="${cid}">${circle(p[0][0], p[0][1], r, {})}</clipPath>`;
+    return { defs, hid, cid, r };
+  }
+  // draw content only inside the shoulder cap region
+  function capOnly(p, content) { const c = capDefs(p); return c.defs + g({ 'clip-path': `url(#${c.hid})` }, g({ 'clip-path': `url(#${c.cid})` }, content)); }
+  // draw content everywhere except the shoulder cap region
+  function capExcept(p, content) {
+    const c = capDefs(p), mid = uid('cm');
+    return c.defs + `<mask id="${mid}" maskUnits="userSpaceOnUse" x="-3000" y="-3000" width="6000" height="6000"><rect x="-3000" y="-3000" width="6000" height="6000" fill="#fff"/><g clip-path="url(#${c.hid})">${circle(p[0][0], p[0][1], c.r, { fill: '#000' })}</g></mask>` + g({ mask: `url(#${mid})` }, content);
+  }
   const handAt = {}; // where each hand is actually drawn (past the cuff in wide sleeves), for the handF/handB anchors
   function arm(p, a, far) {
     const out = [];
+    const seam = !O.shortSleeves && (!far || a.front === true); // arm drawn over the torso: its shoulder merges into it
     const sleeve = O.sleeve || topCol;
     const col = far ? shade(sleeve, -0.15) : sleeve;
     // dark sleeves (Hogwarts robes) vanish against the dark torso: give them a faint lighter rim just outside the ink line
@@ -331,8 +360,15 @@ export function drawCharacter(def, opts = {}) {
     }
     if (!wide) {
       out.push(hand);
-      if (RS) out.push(path(limbD(p[0], p[1], p[2], w0, w1, w2 * 1.05), RS));
-      out.push(path(limbD(p[0], p[1], p[2], w0, w1, w2 * 1.05), S(col)));
+      const armD = limbD(p[0], p[1], p[2], w0, w1, w2 * 1.05);
+      if (seam) {
+        // outline pass (double width, minus the shoulder cap, which the torso pass draws), then the fill over it
+        if (RS) out.push(capExcept(p, path(armD, RS)));
+        out.push(capExcept(p, path(armD, S(col, { fill: 'none', 'stroke-width': lw * 2 }))), path(armD, { fill: col }));
+      } else {
+        if (RS) out.push(path(armD, RS));
+        out.push(path(armD, S(col)));
+      }
       // elbow crease
       const cr = add(p[1], mul(norm(sub(p[2], p[0])), -2));
       out.push(path(`M${r2(cr[0] - 4)},${r2(cr[1] - 3)} q4,3 8,0`, { fill: 'none', stroke: shade(col, -0.4), 'stroke-width': lw * 0.5, opacity: 0.7 }));
@@ -343,11 +379,11 @@ export function drawCharacter(def, opts = {}) {
     const lower = wide ? path(lowerD, S(col)) : capsule(p[1], p[2], w1, w2, S(col));
     if (wide) {
       out.push(hand);
-      if (RS) out.push(path(lowerD, RS), capsule(p[0], p[1], w0, w1, RS));
+      if (RS) out.push(path(lowerD, RS), seam ? capExcept(p, capsule(p[0], p[1], w0, w1, RS)) : capsule(p[0], p[1], w0, w1, RS));
       // one outline round the whole sleeve: both pieces stroked double-width, then both filled on top,
       // so the fills hide the seam at the elbow and only the outer half of the stroke shows
       const S2 = S(col, { 'stroke-width': lw * 2 }), F = { fill: col, stroke: 'none' };
-      out.push(path(lowerD, S2), capsule(p[0], p[1], w0, w1, S2), path(lowerD, F), capsule(p[0], p[1], w0, w1, F));
+      out.push(path(lowerD, S2), seam ? capExcept(p, capsule(p[0], p[1], w0, w1, S2)) : capsule(p[0], p[1], w0, w1, S2), path(lowerD, F), capsule(p[0], p[1], w0, w1, F));
       // dark sleeve mouth
       const mouthC = add(p[2], mul([Math.sin(forearmAng), Math.cos(forearmAng)], 8));
       out.push(ellipse(mouthC[0], mouthC[1], w2 * 0.42, w2 * 0.16, { fill: shade(col, -0.55), transform: `rotate(${r2(-forearmAng * 180 / Math.PI)} ${r2(mouthC[0])} ${r2(mouthC[1])})`, opacity: 0.9 }));
@@ -364,24 +400,6 @@ export function drawCharacter(def, opts = {}) {
   }
   layers.armB.push(arm(armBp, aB, true));
   layers.armF.push(arm(armFp, aF, false));
-  // seamless shoulders: paint the sleeve colour over the arm's rounded top where it overlaps the body, so the
-  // cap's outline disappears into the torso; the arm's edges further down (over the chest) stay
-  const shoulderPatch = (P, far) => {
-    if (O.shortSleeves) return '';
-    const col = far ? shade(O.sleeve || topCol, -0.15) : (O.sleeve || topCol);
-    const u = norm(sub(P[1], P[0])), r0 = B.armW * 1.05 / 2 + lw * 1.2;
-    const cut = add(P[0], mul(u, B.armW * 0.25)), ang = Math.atan2(u[1], u[0]) * 180 / Math.PI;
-    const hid = uid('sh'), cid = uid('shc'), mid = uid('shm');
-    // keep the half of the cap circle on the far side of the joint (away from the elbow), inside the torso
-    return `<clipPath id="${cid}"><path d="${torsoD}"/></clipPath><clipPath id="${hid}"><rect x="${r2(-400)}" y="${r2(-200)}" width="400" height="400" transform="translate(${r2(cut[0])},${r2(cut[1])}) rotate(${r2(ang)})"/></clipPath>` +
-      g({ 'clip-path': `url(#${cid})` }, g({ 'clip-path': `url(#${hid})` }, circle(P[0][0], P[0][1], r0, { fill: col }))) +
-      // the patch also covers the inner half of the torso's own outline there: redraw that outline on top, except where
-      // the arm itself lies over it (masked out), so the shoulder silhouette keeps its full line
-      `<mask id="${mid}" maskUnits="userSpaceOnUse" x="-2000" y="-2000" width="4000" height="4000"><g clip-path="url(#${hid})">${circle(P[0][0], P[0][1], r0 + lw * 2, { fill: '#fff' })}</g>${capsule(P[0], P[1], B.armW * 1.05 - lw * 1.2, B.armW * 0.95 - lw * 1.2, { fill: '#000' })}</mask>` +
-      g({ mask: `url(#${mid})` }, path(torsoD, { fill: 'none', stroke: C.ink, 'stroke-width': lw, 'stroke-linejoin': 'round' }));
-  };
-  layers.armF.push(shoulderPatch(armFp, false));
-  if (aB.front === true) layers.armB.push(shoulderPatch(armBp, true));
 
   // ---- head
   const H = drawHead(def, { turn: ht, expr, lw, light, tilt: hTilt, extras: opts.extras || {}, noGlasses: opts.noGlasses || opts.glasses === false || (opts.extras || {}).glasses === false, hatOff: opts.hatOff, hairOverride: opts.hair, mask: opts.mask });

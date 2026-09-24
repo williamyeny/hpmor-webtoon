@@ -78,7 +78,7 @@ ep.panel(880, HC({ expr: 'hopeful' }, 560, 470, 560, 844, { fg: { px: 70, py: 33
 ep.panel(1000, QC({ expr: 'smile' }, 460, 300, 620, 964, { fg: { px: 650, py: 880, expr: 'hopeful' } }),
   [say('Quirrell', 'A word of advice, Mr Potter. There is such a thing as a performance which is *too* perfect. Real people who have just been beaten and humiliated for fifteen minutes do not stand up and graciously forgive their enemies.', 420, 80, { anchor: 'tc', w: 460, fixed: true })], { mood: 'candle' });
 ep.panel(880, HC({ expr: 'rant', pose: 'armsUp' }, 560, 400, 560, 844, { behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.64, { n: 30, op: 0.14 }) }),
-  [shout('Harry', '*I can\'t believe this! You can\'t have every possible observation confirm your theory!*', 400, 90, { anchor: 'tc', w: 400, fixed: true })], { mood: 'candle' });
+  [shout('Harry', '*I can\'t believe this! You can\'t have every possible observation confirm your theory!*', 400, 90, { anchor: 'tc', w: 400, fixed: true })], { mood: 'candle', shape: 'jag', jag: 14, seed: 23 });
 ep.panel(1060, { cam: { x: 1190, y: 330, w: 860 }, bg: ST, actors: TWO({ expr: 'smile', pose: 'relaxed' }, { x: 1360, expr: 'yell', pose: 'fists' }) },
   [say('Quirrell', 'And that was a *trifle* too much indignation.', 200, 80, { anchor: 'tc', w: 240, fixed: true }),
    shout('Harry', '*What on Earth do I have to do to convince you?*', 550, 350, { anchor: 'tc', w: 280, fixed: true })], { mood: 'candle' });
@@ -109,7 +109,9 @@ const SITG = { ...POSES.sitFloor, armB: { sh: 55, el: -70, hand: 'palm' } };
 const HSit = (o = {}) => H({ x: 1380, y: 960, turn: -0.4, pose: 'sitFloor', ...o });
 ep.panel(960, { cam: { x: 1200, y: 590, w: 800 }, bg: ST, actors: TWO({ expr: 'laugh', pose: 'relaxed' }, { y: 960, pose: 'sitFloor', expr: 'exasperated' }) },
   [shout('Harry', 'Oh, for crying out *loud.*', 560, 190, { anchor: 'tc', w: 260, fixed: true })], { mood: 'candle', alt: 'Harry drops to the floor in front of the desk. Quirrell laughs.' });
-ep.panel(860, { cam: AT(HLie(), 620, 420, 400, 824), bg: FLOORV, actors: [HLie()] },
+// cut-out: Harry flops flat onto the page itself (seen from above, no frame, no floor), with his own soft shadow
+const LIESHADOW = () => g({ transform: 'rotate(18 1380 900)' }, ellipse(1400, 720, 140, 240, { fill: '#6a5a48', opacity: 0.22, filter: 'url(#blur3)' }));
+ep.cutout(900, { cam: AT(HLie(), 590, 400, 440, 864), ground: false, mid: LIESHADOW, actors: [HLie()] },
   [cap('Harry sat down on the hard marble floor, and then lay back on it, staring at the distant arches of the ceiling. It was as close as he could come to collapsing in despair without hurting himself.', 48, 34, { w: 600, fixed: true })], { alt: 'Seen from above: Harry, flat on his back on the stage, arms flung out.' });
 ep.multi(1170, [
   P(18, 400, QC({ expr: { base: 'smile', eyes: { lookY: 0.5 } }, pose: 'relaxed', turn: 0.4 }, 440, 520, 250, 400)),
@@ -163,7 +165,7 @@ ep.multi(1500, [
    shout('Harry', 'Other people have done *huge* amounts for me! My parents took me in when my parents died, because they were *good people!* And to become a Dark Lord is to betray that!', 400, 580, { anchor: 'tc', w: 430, fixed: true })]);
 ep.panel(880, QC({ expr: { base: 'sad', eyes: { lookX: -0.4 } } }, 380, 420, 440, 844, { blur: 3, over: (e) => FX.doom(e.w, e.h, 175) }),
   [cap('Professor Quirrell was silent for a time.', 48, 34, { w: 560, fixed: true }),
-   whisper('Quirrell', 'I confess, when I was your age, that thought could not ever have come to me.', 400, 816, { anchor: 'bc', w: 460, fixed: true })], { mood: 'candle' });
+   whisper('Quirrell', 'I confess, when I was your age, that thought could not ever have come to me.', 400, 816, { anchor: 'bc', w: 460, fixed: true })], { mood: 'candle', frame: 'dissolve', feather: 70 });
 ep.multi(1560, [
   P(18, 330, HC({ expr: 'sad' }, 440, 560, 200, 330)),
   P(366, 700, QC({ expr: 'calm', turn: 0.3 }, 440, 580, 520, 700)),
@@ -183,9 +185,10 @@ ep.multi(1480, [
 ], [say('Quirrell', 'Forgive me if this is a stupid question, but are you *sure* you did not just confess to wanting to be a Dark Lord?', 240, 60, { anchor: 'tc', w: 340, fixed: true }),
    say('Harry', 'That\'s only if you use your power for evil. If you use the power for good, you\'re a *Light* Lord.', 560, 400, { anchor: 'tc', w: 300, fixed: true }),
    say('Quirrell', 'I see. I suppose I can work with that. And step one? A great fighting wizard? Minister of Magic?', 280, 1030, { anchor: 'tc', w: 360, fixed: true })]);
-ep.bleed(1000, { cam: BAT(H({ pose: 'armsUp' }), 470, 400, 430, 1000), bg: ST, blur: 2, actors: [H({ pose: 'armsUp', expr: { base: 'bigGrin', eyes: { sparkle: true } } })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.56, { n: 26, op: 0.18 }) },
+// cut-out: Harry's triumphant pose stands on the page itself, no frame and no stage
+ep.cutout(1300, { cam: PAT(H({ pose: 'armsUp' }), 460, 400, 405, 1300), actors: [H({ pose: 'armsUp', expr: { base: 'bigGrin', eyes: { sparkle: true } } })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.42, { n: 26, col: '#e8b850', op: 0.3, inner: 200 }) },
   [say('Harry', 'Step one is to become a scientist.', 400, 70, { anchor: 'tc', w: 360, fixed: true }),
-   shout('Harry', 'I shall achieve my objectives through the power… of *Science!*', 400, 928, { anchor: 'bc', w: 400, fixed: true })], { alt: 'Harry, arms flung up, triumphant.' });
+   shout('Harry', 'I shall achieve my objectives through the power… of *Science!*', 400, 1212, { anchor: 'bc', w: 400, fixed: true })], { alt: 'Harry, arms flung up, triumphant.' });
 ep.panel(820, QC({ expr: { base: 'shock', eyes: { open: 1.1 } } }, 380, 400, 470, 784, { blur: 3 }),
   [cap('Professor Quirrell was looking at Harry as if he\'d just turned into a cat.', 48, 34, { w: 600, fixed: true }),
    say('Quirrell', 'A *scientist?*', 400, 770, { anchor: 'bc', w: 220, fixed: true })], { mood: 'candle' });
@@ -196,7 +199,7 @@ ep.panel(900, QC({ expr: 'stern', pose: 'lecture', turn: 0.4 }, 620, 250, 590, 8
   [say('Quirrell', '*Fool.* You\'re a fool, Harry Potter. Or more likely you have not yet found your true ambition. May I strongly recommend that you try to become a Dark Lord instead? I will do anything I can to help, as a matter of public service.', 420, 70, { anchor: 'tc', w: 480, fixed: true })], { mood: 'candle' });
 ep.multi(1780, [
   P(18, 330, HC({ expr: 'think' }, 460, 580, 200, 330)),
-  P(366, 934, QC({ expr: 'rant', pose: 'point' }, 460, 424, 770, 934, { pw: 800, over: (e) => FX.doom(e.w, e.h, 179), behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.82, { n: 20, op: 0.12 }) }), { x: 0, w: 800, border: 'bleed', fadeTop: false, fadeBottom: false }),
+  P(366, 934, QC({ expr: 'rant', pose: 'point' }, 460, 424, 770, 934, { pw: 800, over: (e) => FX.doom(e.w, e.h, 179), behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.82, { n: 20, op: 0.12 }) }), { x: 0, w: 800, shape: 'burst', points: 20, seed: 23 }),
   P(1318, 444, QC({ expr: 'angry', pose: 'fists', turn: 0.4 }, 620, 560, 280, 444, { over: (e) => FX.doom(e.w, e.h, 176) })),
 ], [say('Harry', 'You don\'t like science. Why not?', 280, 110, { w: 300, fixed: true }),
    shout('Quirrell', 'Those fool Muggles will kill us all some day! They will end it! End *all* of it!', 330, 470, { anchor: 'tc', w: 320, fixed: true, noTail: true }),
@@ -217,7 +220,7 @@ ep.multi(1830, [
    say('Harry', 'I\'m a big fan of the space programme too. At least we have that much in common.', 276, 1520, { anchor: 'tc', w: 400, fixed: true })]);
 ep.panel(1000, QC({ expr: { base: 'calm', eyes: { soft: true } }, pose: 'wand' }, 520, 300, 300, 964),
   [cap('Something flickered in the professor\'s eyes.', 48, 34, { w: 560, fixed: true }),
-   say('Quirrell', 'I will have your word, your promise, and your oath never to speak of what follows. I will now cast a rare and powerful spell. Not on you: on the classroom around us. Stand still. Look only. And try not to fall over.', 400, 940, { anchor: 'bc', w: 510, fixed: true })], { mood: 'candle' });
+   say('Quirrell', 'I will have your word, your promise, and your oath never to speak of what follows. I will now cast a rare and powerful spell. Not on you: on the classroom around us. Stand still. Look only. And try not to fall over.', 400, 940, { anchor: 'bc', w: 510, fixed: true })], { mood: 'candle', frame: 'glow', glow: '#c8d4ff' });
 
 // ---------------------------------------------------------------- the stars
 ep.setBg('#020206');
@@ -288,12 +291,14 @@ const THC = (d = {}, q = {}, h = {}, cam = { x: 1350, y: 400, w: 1000 }) => ({ c
 ep.panel(900, { cam: { x: 1190, y: 380, w: 860 }, bg: ST, actors: TWO({ expr: 'calm', turn: 0.5 }, { expr: 'teary', turn: -0.2 }) },
   [say('Quirrell', 'I\'m sorry. But we\'re about to have company.', 220, 70, { anchor: 'tc', w: 300, fixed: true }),
    whisper('Harry', 'It\'s fine. It was enough.', 560, 360, { w: 260, fixed: true })], { mood: 'candle', alt: 'The classroom returns.' });
-ep.bleed(1200, { cam: { x: 1960, y: 400, w: 1100 }, bg: () => CS.defenceStage({}) + doorway() + smoke(), actors: [DB({ x: DX, y: 640, turn: -0.2, pose: 'point', expr: 'angry' }), () => leaf(1560, 820, -38, 1.25) + leaf(2440, 760, 52, 1.15) + splinters()], behind: (e) => FX.burst(e.w, e.h, e.w * 0.55, e.h * 0.4, { n: 34, op: 0.22 }) },
+// breakout: the blasted door leaves fly right out of the panel onto the page
+ep.panel(1200, { cam: { x: 1960, y: 400, w: 910 }, bg: () => CS.defenceStage({}) + doorway() + smoke(), actors: [DB({ x: DX, y: 640, turn: -0.2, pose: 'point', expr: 'angry' }), () => leaf(1530, 800, -38, 1.2) + leaf(2420, 700, 52, 1.1) + splinters()], behind: (e) => FX.burst(e.w, e.h, e.w * 0.55, e.h * 0.4, { n: 34, op: 0.22 }) },
   [sfx('BOOM', 230, 170, { size: 130, rot: -8 }),
-   shout('Dumbledore', '*QUIRINUS! HOW DARE YOU!*', 400, 1140, { anchor: 'bc', w: 380, fixed: true })], { alt: 'The heavy oak doors blast off their hinges. Like a vast thundercloud, Dumbledore blows into the room, incandescent with rage.' });
-ep.panel(1000, HDC({ turn: 0.6, expr: 'cold' }, 460, 400, 620, 964, { over: (e) => FX.frost(e.w, e.h, 0.45, 181) }),
+   shout('Dumbledore', '*QUIRINUS! HOW DARE YOU!*', 400, 1140, { anchor: 'bc', w: 380, fixed: true })], { breakout: ['left', 'right'], x: 84, w: 632, alt: 'The heavy oak doors blast off their hinges. Like a vast thundercloud, Dumbledore blows into the room, incandescent with rage.' });
+// eyes only: Harry's gaze goes flat and cold (the Ep 1 eye panel, again)
+ep.panel(820, { cam: { head: 'harry', hw: 1.0, hx: 0.5, hy: 0.37 }, bg: ST2, blur: 3, actors: [Hd({ turn: 0.12, expr: 'cold' })], over: (e) => FX.frost(e.w, e.h, 0.5, 181) },
   [cap('*None* of Harry\'s facets were happy about having their star-gazing interrupted.', 48, 34, { w: 600, fixed: true }),
-   cold('Harry', 'Headmaster Albus Percival…', 400, 950, { anchor: 'bc', w: 340, fixed: true })], { mood: 'cold' });
+   cold('Harry', 'Headmaster Albus Percival…', 400, 796, { anchor: 'bc', w: 340, fixed: true, noTail: true })], { mood: 'cold', shape: 'eye', y: 150, ph: 520, alt: 'Extreme close-up on Harry\'s eyes, gone flat and cold. Frost creeps at the edges.' });
 const SLAM = { armB: { sh: 28, el: -35, hand: 'fist' }, armF: { sh: -8, el: 10 }, legF: { hip: -4 }, legB: { hip: 4 }, lean: 6 };
 ep.bleed(1120, { cam: AT(Q({ pose: SLAM }), 560, 400, 560, 1120, 800), bg: () => CS.defenceStage({ desk: false }), actors: [Q({ pose: SLAM, expr: 'stern', turn: 0.3 }), () => CS.defenceDesk(1000, 660)], behind: (e) => FX.burst(e.w, e.h, 519, 880, { n: 26, op: 0.2 }) },
   [sfx('WHAM', 640, 960, { size: 90, rot: 6 }),
@@ -326,9 +331,9 @@ ep.panel(1000, { cam: { x: 1560, y: 470, w: 700 }, bg: ST2, actors: [Hd({ expr: 
 ep.panel(1100, THC({ expr: 'stern' }, { expr: 'coldSmile', pose: 'stand' }, { expr: 'confused', turn: 0 }, { x: 1350, y: 250, w: 1000 }), 
   [say('Quirrell', '*Ahem.* If you don\'t tell him, I will. Even if you fire me for it.', 250, 60, { anchor: 'tc', w: 300, fixed: true }),
    say('Dumbledore', 'I apologise for invading your mental privacy, Mr Potter. I had no purpose except to see whether Professor Quirrell had done the same.', 500, 290, { anchor: 'tc', w: 380, fixed: true })], { mood: 'candle', alt: 'Dumbledore and Quirrell lock eyes. Something passes between them.' });
-ep.bleed(900, { cam: BAT(Hd(), 420, 400, 480, 900), bg: ST2, blur: 2, actors: [Hd({ expr: 'yell' })], over: (e) => FX.frost(e.w, e.h, 0.4, 185), behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.53, { n: 20, op: 0.2 }) },
+ep.panel(900, { cam: PAT(Hd(), 400, 376, 462, 900), bg: ST2, blur: 2, actors: [Hd({ expr: 'yell' })], over: (e) => FX.frost(e.w, e.h, 0.4, 185), behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.53, { n: 20, op: 0.2 }) },
   [shout('Harry', '*YOU…!*', 400, 90, { anchor: 'tc', w: 200, fixed: true }),
-   shout('Harry', '*You should have asked first!*', 400, 830, { anchor: 'bc', w: 360, fixed: true })], { alt: 'The confusion lasts exactly as long as it takes Harry to understand what just happened.' });
+   shout('Harry', '*You should have asked first!*', 400, 830, { anchor: 'bc', w: 360, fixed: true })], { shape: 'jag', jag: 16, seed: 29, alt: 'The confusion lasts exactly as long as it takes Harry to understand what just happened.' });
 ep.panel(1060, DC({ expr: 'calm' }, 460, 400, 700, 1024),
   [say('Dumbledore', 'Legilimency is sometimes mistaken for common sense. But it leaves traces which another skilful Legilimens can detect. That was all I looked for, Mr Potter. I asked you an irrelevant question, so you wouldn\'t think of anything important while I looked.', 400, 90, { anchor: 'tc', w: 480, fixed: true }),
    cap('(*Common sense is often mistaken for Legilimency,* he had said, that very morning.)', 48, 930, { w: 600, fixed: true })], { mood: 'candle' });
@@ -359,8 +364,9 @@ ep.multi(1100, [
   P(596, 486, DC({ expr: { base: 'smile', eyes: { soft: true } } }, 460, 590, 320, 486)),
 ], [say('Quirrell', 'Probably. But he will have the full use of me while I last.', 280, 70, { anchor: 'tc', w: 360, fixed: true }),
    say('Dumbledore', 'I suppose it is economical, at least, since as the Defence Professor you\'re *already* doomed in some unknown fashion.', 290, 640, { anchor: 'tc', w: 380, fixed: true })]);
-ep.bleed(820, { cam: { x: 1500, y: 420, w: 1400 }, bg: ST2, actors: [Q({ expr: 'calm' }), QD, H({ expr: 'think', turn: 0.4 }), DB({ x: 1950, y: 620, s: 0.95, turn: 0.6, pose: 'walk', expr: 'sad' })] },
-  [cap('Dumbledore nodded to them both, and departed. Walking a bit slowly.', 48, 40, { w: 560, fixed: true })], { alt: 'Dumbledore walks out through the ruined doorway.' });
+// the panel takes the shape of the blasted doorway he walks out through
+ep.panel(1000, { cam: { x: 1560, y: 420, w: 1400 }, bg: ST2, actors: [Q({ expr: 'calm' }), QD, H({ expr: 'think', turn: 0.4 }), DB({ x: 1990, y: 600, s: 0.95, turn: 0.6, pose: 'walk', expr: 'sad' })] },
+  [cap('Dumbledore nodded to them both, and departed. Walking a bit slowly.', 48, 860, { w: 560, fixed: true })], { mood: 'candle', shape: 'arch', frame: 'stone', alt: 'Dumbledore walks out through the ruined doorway.' });
 
 // ---------------------------------------------------------------- Pioneer
 ep.multi(1632, [
@@ -370,9 +376,11 @@ ep.multi(1632, [
 ], [say('Harry', 'Can you cast the spell again?', 290, 150, { w: 300, fixed: true }),
    say('Quirrell', 'Not today, and not tomorrow either, I\'m afraid. It takes a lot out of me to cast. This time I cast it on impulse. Had I thought…', 290, 450, { anchor: 'tc', w: 380, fixed: true }),
    cap('Dumbledore was now Harry\'s least favourite person in the entire world. They both sighed.', 320, 1040, { w: 380, fixed: true })]);
-ep.multi(1500, [
+// the probe as Harry pictures it, in a daydream cloud below his words
+ep.multi(1960, [
   P(18, 420, HC({ expr: { base: 'smile', eyes: { soft: true } } }, 460, 606, 250, 420)),
   P(456, 1026, HC({ expr: { base: 'smile', eyes: { soft: true } }, pose: 'gesture' }, 560, 470, 830, 1026, { fg: { px: 30, py: 780, s: 2.3, expr: { base: 'calm', eyes: { soft: true } } } })),
+  { x: 70, y: 1484, w: 660, h: 460, shape: 'cloud', seed: 23, art: { cam: { x: 1000, y: 250, w: 900 }, bg: () => CS.deepSpace({ disc: false, k: 0.9 }), actors: [() => K.glow(1000, 320, 150, '#cfe0ff', 0.2) + g({ transform: 'translate(1000,300) rotate(-16)' }, P2.pioneer(0.85))] } },
 ], [say('Harry', 'Even if I only ever see it once, I will never stop being grateful to you.', 290, 60, { anchor: 'tc', w: 380, fixed: true }),
    say('Harry', 'Have you heard of the Pioneer programme? Probes that flew past the planets, taking pictures. Two of them would end up leaving the Solar System forever. So they put a golden plaque on each one, with a picture of a man, and a woman, and a map showing where to find our Sun.', 400, 530, { anchor: 'tc', w: 480, fixed: true, tail: [476, 1112] })]);
 ep.multi(1880, [
@@ -385,13 +393,14 @@ ep.multi(1880, [
 // Harry, speechless: the same face, three times, closer each time
 ep.multi(700, [0, 1, 2].map((k) => ({ x: M + k * 254, y: 18, w: 244, h: 664, mood: 'candle', art: { cam: AT(HR2(), [200, 140, 90][k], 122, [300, 330, 360][k], 664, 244), bg: REV, blur: 3, actors: [HR2({ expr: { base: 'awe', eyes: { open: 1 + k * 0.12, sparkle: true } } })] } })),
   [cap('…', 60, 34, { w: 60, fixed: true }), cap('…', 314, 34, { w: 60, fixed: true }), cap('…', 568, 34, { w: 60, fixed: true })], { alt: 'Harry, speechless, in three panels.' });
-ep.multi(1500, [
+// breakout: Quirrell, "about fifty feet taller", is too tall for his panel; his head rises over the top edge
+ep.multi(1640, [
   P(18, 900, TWOC({ expr: 'smug', pose: 'relaxed' }, { expr: { base: 'awe', mouth: { type: 'o' } } }, 300)),
-  P(936, 546, QC({ expr: 'smug', pose: 'relaxed', turn: 0.4 }, 620, 280, 330, 546, { fg: { px: 660, py: 500, expr: { base: 'awe', mouth: { type: 'o' } } } })),
+  P(1110, 512, QC({ expr: 'smug', pose: 'relaxed', turn: 0.4 }, 460, 250, -80, 512, { fg: { px: 640, py: 400, expr: { base: 'awe', mouth: { type: 'o' } } } }), { breakout: 'top' }),
 ], [say('Quirrell', 'Yes, I thought that was how you might react. Mr Potter?', 230, 60, { anchor: 'tc', w: 320, fixed: true }),
    say('Harry', '…I can\'t think of anything to say.', 560, 340, { anchor: 'tc', w: 280, fixed: true }),
-   say('Quirrell', '"You win" seems appropriate.', 440, 970, { anchor: 'tc', w: 300, fixed: true, tail: [340, 1180] }),
-   say('Harry', 'You win.', 520, 1200, { w: 180, fixed: true, tail: [610, 1340] })], { alt: 'Professor Quirrell, who now seems to be standing about fifty feet taller.' });
+   say('Quirrell', '"You win" seems appropriate.', 560, 1030, { anchor: 'tc', w: 300, fixed: true, tail: [410, 1062] }),
+   say('Harry', 'You win.', 400, 1370, { w: 180, fixed: true, tail: [540, 1470] })], { alt: 'Professor Quirrell, who now seems to be standing about fifty feet taller.' });
 ep.bleed(1000, { cam: { x: 1190, y: 330, w: 900 }, bg: ST2, actors: TWO({ expr: 'laugh', pose: 'relaxed' }, { expr: 'laugh', pose: 'armsUp' }) },
   [say('Quirrell', 'See? We can only imagine what giant heap of trouble you would have landed in if you had been unable to say that.', 290, 60, { anchor: 'tc', w: 400, fixed: true }),
    capC('They both laughed.', 400, 950, { anchor: 'bc', w: 280, fixed: true })], { alt: 'The two of them, laughing together on the empty stage.' });
