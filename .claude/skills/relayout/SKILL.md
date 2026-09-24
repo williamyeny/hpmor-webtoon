@@ -59,7 +59,7 @@ Everything is set in the episode file; `docs/ENGINE.md` lists the options (ballo
 
 Do not be afraid to **majorly** redo a panel from scratch, especially if it would flow better. This includes but is not limited to: repositioning the characters, resizing the entire panel (increasing the height is a good technique to get around difficult overlaps or otherwise too crowded panels), completely changing shot size/framing, splitting a panel into multiple panels, deleting/adding elements.
 
-In the case that it's an engine bug, definitely feel free to fix it. However, be mindful of how the change affects other panels -- you may need to relayout them. Re-render every episode after an engine change (`for f in episodes/ep[0-9]*.js; do node engine/render.mjs $(basename $f .js); done`) and look at what moved; `node work/tilesfor.mjs` helps find the tiles a pose change affects.
+In the case that it's an engine bug, definitely feel free to fix it. However, be mindful of how the change affects other panels -- you may need to relayout them. Re-render every episode after an engine change (`for f in episodes/ep[0-9]*.js; do node engine/render.mjs $(basename $f .js); done`) and the homepage cover (`node engine/render.mjs --file episodes/cover.js --cover`), and look at what moved; `node work/tilesfor.mjs` helps find the tiles a pose change affects.
 
 ## Final verification
 
