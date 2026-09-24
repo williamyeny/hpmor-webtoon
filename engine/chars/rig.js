@@ -344,7 +344,7 @@ export function drawCharacter(def, opts = {}) {
   layers.armF.push(arm(armFp, aF, false));
 
   // ---- head
-  const H = drawHead(def, { turn: ht, expr, lw, light, tilt: lean * 0.6 + headTilt, extras: opts.extras || {}, hatOff: opts.hatOff, hairOverride: opts.hair });
+  const H = drawHead(def, { turn: ht, expr, lw, light, tilt: lean * 0.6 + headTilt, extras: opts.extras || {}, hatOff: opts.hatOff, hairOverride: opts.hair, mask: opts.mask });
   const headG = g({ transform: `translate(${r2(headC[0])},${r2(headC[1])}) rotate(${r2(lean * 0.6 + headTilt)})` }, H.main);
   const headBack = g({ transform: `translate(${r2(headC[0])},${r2(headC[1])}) rotate(${r2(lean * 0.6 + headTilt)})` }, H.back);
   // neck
@@ -485,11 +485,27 @@ export function drawHead(def, o) {
   if (expr.sweat) { const p = onSphere(rx * 0.72, rx, t); main.push(sweat(p.x + 6, -ry * 0.25, 13, lw)); }
   if (expr.vein) main.push(vein(-rx * 0.45 + s * 20, -ry * 0.55, 7, lw));
   if (expr.gloom) main.push(gloom(rx, ry, lw));
+  if (o.mask) main.push(faceMask(o.mask, { rx, ry, t, s, lw, F: def.face }));
   if (def.hat && !o.hatOff) main.push(def.hat(hairCtx));
   return { main: main.join(''), back: back.join(''), mouthX: mz.x };
 }
 
 function mixCold(hex) { return shade(hex, 0.05); }
+
+// Harry's disguises. 'scarf' = winter scarf wrapped over the lower face and brow (eyes peeking out);
+// 'scarfDown' = pulled down to the chin (mouth free, e.g. to drink); 'sweatband' = band over the scar only.
+function faceMask(kind, { rx, ry, t, s, lw, F }) {
+  const col = '#7b2433', stripe = '#d6a33a';
+  const S = { fill: col, stroke: C.ink, 'stroke-width': lw, 'stroke-linejoin': 'round' };
+  let out = '';
+  const band = (y0, y1, bulge) => `M${-rx * 1.06},${y0} Q${s * rx * 0.3},${y0 - bulge} ${rx * 1.06},${y0} L${rx * 1.02},${y1} Q${s * rx * 0.3},${y1 + bulge * 0.6} ${-rx * 1.02},${y1}Z`;
+  if (kind === 'sweatband') return path(band(-ry * 0.58, -ry * 0.3, 8), { fill: '#f2ecde', stroke: C.ink, 'stroke-width': lw }) + path(`M${-rx},${-ry * 0.44} Q${s * rx * 0.3},${-ry * 0.5} ${rx},${-ry * 0.44}`, { fill: 'none', stroke: '#c43a32', 'stroke-width': lw * 1.4 });
+  const stripes = (y0, y1) => { let d = ''; for (let i = 0; i < 4; i++) { const y = y0 + (y1 - y0) * (i + 0.5) / 4; d += `M${-rx},${y} Q${s * rx * 0.3},${y - 4} ${rx},${y} `; } return path(d, { fill: 'none', stroke: stripe, 'stroke-width': lw * 1.1, opacity: 0.8 }); };
+  out += path(band(-ry * 0.62, -ry * 0.2, 10), S) + stripes(-ry * 0.58, -ry * 0.24);
+  if (kind === 'scarf') out += path(band(F.noseY - 12, ry * 1.08, 6), S) + stripes(F.noseY - 6, ry * 0.95);
+  else if (kind === 'scarfDown') out += path(band(ry * 0.8, ry * 1.15, 4), S);
+  return out;
+}
 
 function glasses(G, pL, pR, eyeY, F, t, lw, glint) {
   const out = [];

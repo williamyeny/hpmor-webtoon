@@ -170,3 +170,11 @@ export function healerKit(s = 1, o = {}) {
 export function wandBox(s = 1) {
   return g({ transform: `scale(${s})` }, rect(-70, -14, 140, 28, { fill: '#4a3a5a', stroke: INK, 'stroke-width': 2, rx: 3 }), rect(-70, -14, 30, 28, { fill: '#6a5a7a', stroke: INK, 'stroke-width': 1.4 }));
 }
+export function comedCan(s = 1) {
+  return g({ transform: `scale(${s})` }, rect(-13, -40, 26, 40, { fill: '#7dff5a', stroke: INK, 'stroke-width': 1.8, rx: 4 }), rect(-13, -28, 26, 9, { fill: '#2a8a2a' }), ellipse(0, -40, 13, 3.5, { fill: '#c9ced4', stroke: INK, 'stroke-width': 1.2 }));
+}
+export function spray(x, y, dir = 1, s = 1) {
+  const R = rng(Math.round(x + y)); let out = '';
+  for (let i = 0; i < 16; i++) { const a = (R.range(-0.5, 0.5)) + (dir > 0 ? 0 : Math.PI); const d = R.range(20, 140) * s; out += ellipse(x + Math.cos(a) * d, y + Math.sin(a) * d, R.range(4, 12) * s, R.range(3, 7) * s, { fill: '#8aff6a', stroke: '#2a8a2a', 'stroke-width': 1, opacity: 0.9 }); }
+  return out;
+}

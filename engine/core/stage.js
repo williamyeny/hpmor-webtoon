@@ -119,13 +119,13 @@ window.layoutBubbles=async function(){
       const hitC=(r,c)=>{const cx=Math.max(r.x,Math.min(c[0],r.x+r.w)),cy=Math.max(r.y,Math.min(c[1],r.y+r.h));return Math.hypot(cx-c[0],cy-c[1])<c[2];};
       const hitR=(a,b)=>a.x<b.x+b.w&&b.x<a.x+a.w&&a.y<b.y+b.h&&b.y<a.y+a.h;
       const out=(r)=>r.x<4||r.y<4||r.x+r.w>TW-4||r.y+r.h>TH-4;
-      const bad=(l,t)=>{const r=R0(l,t);return out(r)?2:(HEADS.some(c=>hitC(r,c))||PLACED.some(p=>hitR(r,p)))?1:0;};
+      const LAST=PLACED[PLACED.length-1]; const order=(r)=>LAST&&r.y<LAST.y-8&&r.x<LAST.x+LAST.w&&LAST.x<r.x+r.w; const bad=(l,t)=>{const r=R0(l,t);return out(r)?2:(HEADS.some(c=>hitC(r,c))||PLACED.some(p=>hitR(r,p))||order(r))?1:0;};
       if(bad(left,top)){
         let found=null;
         const steps=[];for(let k=20;k<=420;k+=20)steps.push([k,0],[-k,0],[0,-k],[0,k],[k,-k*0.6],[-k,-k*0.6],[k,k*0.6],[-k,k*0.6]);
         // first try: fully clean; else: just inside the tile
         for(const [dx,dy] of steps){if(!bad(left+dx,top+dy)){found=[left+dx,top+dy];break;}}
-        if(!found){const bad2=(l,t)=>{const r=R0(l,t);return out(r)||PLACED.some(p=>hitR(r,p));};for(const [dx,dy] of steps){if(!bad2(left+dx,top+dy)){found=[left+dx,top+dy];break;}}}
+        if(!found){const bad2=(l,t)=>{const r=R0(l,t);return out(r)||PLACED.some(p=>hitR(r,p))||order(r);};for(const [dx,dy] of steps){if(!bad2(left+dx,top+dy)){found=[left+dx,top+dy];break;}}}
         if(!found){let r=R0(left,top);let l2=left,t2=top;if(r.x<4)l2+=4-r.x;if(r.x+r.w>TW-4)l2-=r.x+r.w-(TW-4);if(r.y<4)t2+=4-r.y;if(r.y+r.h>TH-4)t2-=r.y+r.h-(TH-4);found=[l2,t2];}
         left=found[0];top=found[1];
       }
@@ -139,7 +139,7 @@ window.layoutBubbles=async function(){
     const stroke=d.border||({cold:'#314c68',hat:'#2a170c',dark:'#000'}[d.type]||INK);
     const tails=d.tails||(d.tail?[d.tail]:[]);
     if(['speech','whisper','shout','thought','cold','hat'].includes(d.type)){
-      const sq=d.type==='shout'?1:1; const rx=W/2*1.16+padX*0.55, ry=H/2*1.2+padY*0.7;
+      const sq=d.type==='shout'?1:1; const rx=W/2*1.2+padX*0.55, ry=H/2*1.2+padY*0.7;
       let shape;
       if(d.type==='shout')shape=spikyD(cx,cy,rx,ry,seed);
       else if(d.type==='thought')shape=cloudD(cx,cy,rx,ry,seed);

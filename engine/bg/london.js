@@ -289,3 +289,62 @@ export function kegPub(o = {}) {
   out += rect(-200, 900, 2000, 500, { fill: '#7d7468' });
   return out;
 }
+
+// ---------------------------------------------------------------- Ollivanders (1800 × 1100): walls of narrow boxes to the ceiling
+export function ollivanders(o = {}) {
+  const R = rng(81);
+  let out = rect(-200, -400, 2200, 1500, { fill: '#2a2018' });
+  for (let x = -180; x < 2000; x += 150) {
+    out += rect(x, -380, 140, 1270, { fill: '#3a2a1e', ...bl(1.4) });
+    for (let y = -370; y < 880; y += 30) out += rect(x + 6, y, 128, 26, { fill: R.pick(['#4a3a5a', '#3a4a3a', '#5a3a2a', '#4a4038', '#2f3a4a', '#6a5040']), ...bl(0.9), rx: 2 }) + (R() < 0.15 ? circle(x + 20, y + 13, 4, { fill: '#b08d45' }) : '');
+  }
+  out += K.lightShaft(1400, -400, 160, 1100, 900, 400, '#fff2c8', 0.12) + K.dustMotes(900, 100, 700, 700, 50, 3);
+  out += rect(300, 640, 900, 40, { fill: '#4a2e1b', ...bl(2) }) + rect(320, 680, 860, 360, { fill: '#3a2414', ...bl(2) });
+  out += K.candle(420, 640, 1.2, true) + K.candle(1080, 640, 1.2, true);
+  out += rect(-200, FLOOR + 40, 2200, 400, { fill: '#2a1c12' });
+  return out;
+}
+export const ollCounter = () => rect(300, 640, 900, 40, { fill: '#4a2e1b', ...bl(2) }) + rect(320, 680, 860, 400, { fill: '#3a2414', ...bl(2) });
+
+// ---------------------------------------------------------------- the trunk shop (2000 × 1100): polished, lush, ivory platforms
+export function trunkShop(o = {}) {
+  let out = K.wallpaper(-200, -300, 2400, 1200, '#3a4a3a', { c2: '#34443a' });
+  for (const cx of [100, 700, 1300, 1900]) out += path(`M${cx - 120},-300 Q${cx - 80},300 ${cx - 140},900 L${cx - 40},900 Q${cx - 20},300 ${cx - 40},-300Z`, { fill: C.burgundy, ...bl(1.6) }) + path(`M${cx + 40},-300 Q${cx + 20},300 ${cx + 40},900 L${cx + 140},900 Q${cx + 80},300 ${cx + 120},-300Z`, { fill: C.burgundy, ...bl(1.6) });
+  out += rect(-200, FLOOR - 10, 2400, 14, { fill: '#2a1a10' }) + K.floorboards(-200, FLOOR, 2400, 400, '#8a5a34', 91);
+  for (const [px, c] of [[260, '#6b2a2a'], [1550, '#2a3a5a']]) out += rect(px - 150, FLOOR - 30, 300, 40, { fill: '#efe8da', ...bl(2), rx: 6 }) + trunk(px, FLOOR - 30, 0.8, c, false);
+  out += K.glow(1000, 100, 900, C.candle, 0.25);
+  for (const lx of [500, 1000, 1500]) out += line(lx, -300, lx, -80, bl(2)) + ellipse(lx, -70, 70, 16, { fill: '#b08d45', ...bl(1.6) }) + K.glow(lx, -60, 200, C.candle, 0.4);
+  return out;
+}
+// the dragon trunk (x = centre, y = floor)
+export function trunk(x, y, s = 1, col = '#7a4e2e', dragon = true, o = {}) {
+  let out = rect(x - 170 * s, y - 190 * s, 340 * s, 190 * s, { fill: col, ...bl(2.4), rx: 10 * s });
+  out += path(`M${x - 176 * s},${y - 190 * s} Q${x},${y - 250 * s} ${x + 176 * s},${y - 190 * s}Z`, { fill: shade(col, 0.1), ...bl(2.4) });
+  for (const k of [-1, 1]) out += rect(x + k * 120 * s - 12 * s, y - 196 * s, 24 * s, 196 * s, { fill: '#b08d45', ...bl(1.4) });
+  for (let k = 0; k < 4; k++) out += rect(x - 60 * s + k * 34 * s, y - 180 * s, 20 * s, 14 * s, { fill: '#c9a24a', ...bl(1), rx: 3 });
+  if (dragon) out += path(`M${x - 80 * s},${y - 60 * s} Q${x - 40 * s},${y - 150 * s} ${x + 20 * s},${y - 110 * s} Q${x + 70 * s},${y - 150 * s} ${x + 90 * s},${y - 90 * s} Q${x + 40 * s},${y - 70 * s} ${x + 10 * s},${y - 40 * s} Q${x - 30 * s},${y - 80 * s} ${x - 80 * s},${y - 60 * s}Z`, { fill: shade(col, -0.25), stroke: shade(col, -0.5), 'stroke-width': 2 }) + circle(x + 60 * s, y - 118 * s, 6 * s, { fill: o.eyeOpen === false ? shade(col, -0.5) : '#e8a23a' });
+  if (o.stairs) out += rect(x - 60 * s, y - 20 * s, 120 * s, 30 * s, { fill: '#2a1a10', ...bl(1.6) }) + path(`M${x - 50 * s},${y + 10 * s} L${x - 50 * s},${y + 110 * s} M${x + 50 * s},${y + 10 * s} L${x + 50 * s},${y + 110 * s}`, bl(3));
+  return out;
+}
+
+// ---------------------------------------------------------------- the Headmaster's office (2000 × 1100): round, crammed with silver instruments
+export function headmasterOffice(o = {}) {
+  const R = rng(99);
+  let out = rect(-200, -400, 2400, 1600, { fill: '#2a2440' });
+  out += K.stoneWall(-200, -400, 2400, 1300, '#6a6070', 7, { bh: 60 });
+  out += rect(-200, -400, 2400, 1300, { fill: '#1a1030', opacity: 0.35 });
+  // portraits (sleeping headmasters)
+  for (let i = 0; i < 6; i++) { const x = -60 + i * 340, y = -300 + (i % 2) * 60; out += K.frame(x, y, 160, 200, rect(0, 0, 160, 200, { fill: R.pick(['#4a5a4a', '#5a4a3a', '#3a4a5a']) }) + circle(80, 90, 36, { fill: '#e0c8a8' }) + path('M56,86 q8,4 16,0 M88,86 q8,4 16,0', { stroke: C.ink, 'stroke-width': 2, fill: 'none' }) + path('M40,200 Q80,130 120,200Z', { fill: R.pick([C.burgundy, C.navy, C.forest]) }) + (i % 2 ? path('M50,80 Q80,20 110,80', { fill: '#ddd' }) : '')); }
+  // shelves of spindly silver instruments
+  for (let s2 = 0; s2 < 2; s2++) { out += rect(-100, 300 + s2 * 180, 700, 16, { fill: '#5a3a2a', ...bl(1.6) }); for (let i = 0; i < 7; i++) { const x = -60 + i * 95, y = 300 + s2 * 180; out += line(x, y, x, y - 90, { stroke: '#c9ced4', 'stroke-width': 3 }) + circle(x, y - 100, 16, { fill: 'none', stroke: '#c9ced4', 'stroke-width': 3 }) + circle(x + 18, y - 60, 8, { fill: '#c9ced4', opacity: 0.8 }) + path(`M${x - 20},${y - 40} q20,-20 40,0`, { fill: 'none', stroke: '#b08d45', 'stroke-width': 2 }); } }
+  // Fawkes on his perch
+  out += line(1600, 900, 1600, 360, { stroke: '#b08d45', 'stroke-width': 8 }) + line(1520, 360, 1680, 360, { stroke: '#b08d45', 'stroke-width': 8 });
+  out += path('M1560,360 Q1540,260 1600,240 Q1660,250 1650,320 Q1700,420 1640,470 L1600,380Z', { fill: '#c4321e', ...bl(2) }) + circle(1612, 268, 6, { fill: '#1a1a1a' }) + path('M1630,262 l18,8 l-16,6Z', { fill: '#e7bb4f', ...bl(1) }) + path('M1620,440 Q1660,560 1640,640 Q1610,560 1600,450Z', { fill: '#e7a23a', ...bl(1.4) });
+  // great desk
+  out += rect(500, 640, 1000, 50, { fill: '#6b4429', ...bl(2.4), rx: 6 }) + rect(530, 690, 940, 330, { fill: '#5a3a22', ...bl(2) });
+  out += K.bookPile(640, 640, 5, 17, 0.9) + K.candle(1380, 640, 1.2, true) + g({ transform: 'translate(1000,630)' }, ellipse(0, 0, 60, 14, { fill: '#b08d45', ...bl(1.4) }), ...[-30, -10, 10, 30].map((dx) => path(`M${dx},-6 q4,-10 8,0`, { fill: '#f0c050', stroke: C.ink, 'stroke-width': 1.4 })));
+  out += K.glow(1000, 400, 900, '#f0b060', 0.3);
+  out += rect(-200, FLOOR + 60, 2400, 400, { fill: '#3a2a4a' });
+  return out;
+}
+export const officeDesk = () => rect(500, 640, 1000, 50, { fill: '#6b4429', ...bl(2.4), rx: 6 }) + rect(530, 690, 940, 400, { fill: '#5a3a22', ...bl(2) }) + K.bookPile(640, 640, 5, 17, 0.9) + K.candle(1380, 640, 1.2, true);

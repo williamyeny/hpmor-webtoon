@@ -322,3 +322,71 @@ Object.assign(CAST, { draco, dracoFitting, lucius, malkin, asst1, asst2 });
 export const della = { ...makeExtra(601, { female: true, old: false, hairStyle: 'pony', robe: '#6b4a6e' }), name: 'della', body: { ...TEEN } };
 export const youngHarry = { ...harry, name: 'youngHarry', body: { ...KID, torsoH: 78, legU: 42, legL: 40, headRx: 58, headRy: 56 }, glasses: { r: 17, shape: 'round', frame: 0.85 }, outfit: { ...harry.outfit, top: '#6a7fa0' } };
 Object.assign(CAST, { della, youngHarry });
+
+// ---------- Ollivander: moon-pale eyes, wild white hair
+export const ollivander = {
+  name: 'ollivander', body: { ...ADULT_M, shoulderW: 100, waistW: 84, hipW: 86, headRx: 50, headRy: 58 }, skin: '#efe2d4', skinShade: '#cdbba9',
+  head: { jaw: 0.5, chin: 1.06, cheek: 0.86 },
+  face: adultFace({ eye: { color: '#c9d4dc', w: 23, h: 20, iris: 8.5, lash: 1.2 }, brow: { color: '#e8e6e0', len: 22, w: 4.4 }, nose: 'long', noseLen: 24, wrinkles: true, cheekLines: true }),
+  hair: { color: '#e8e6e0', ...H.bushy('olliv') },
+  outfit: { top: '#4a4038', robe: true, robeColor: '#4a4038', robeLen: 1.0, wideSleeves: true, cuffW: 1.7, legs: '#2a2630', shoes: '#1d1410', robeTrim: '#6a5a48' },
+};
+// ---------- Albus Dumbledore
+export const dumbledore = {
+  name: 'dumbledore', body: { ...ADULT_M, torsoH: 184, legU: 124, legL: 118, shoulderW: 110, waistW: 92, hipW: 96, headRx: 50, headRy: 60 }, skin: '#f0d9c4', skinShade: '#cfb19b',
+  head: { jaw: 0.52, chin: 1.04, cheek: 0.86 }, hatTop: 1.1,
+  face: adultFace({ eye: { color: '#4d7fb5', w: 19, h: 16, iris: 7.2, lash: 1.2 }, brow: { color: '#eeece6', len: 24, w: 5 }, nose: 'hook', noseLen: 27, wrinkles: true, rosy: true }),
+  hair: { color: '#eeece6', ...H.long('dumb', { len: 2.3, part: 0.1 }) },
+  glasses: { r: 13, shape: 'half', frame: 0.8, color: '#b08d45' },
+  facialHair: ({ rx, ry, s, lw, F, mz }) => {
+    const m = mz.x;
+    const d = smoothD([[-rx * 0.9 + s * rx * 0.2, ry * 0.25], [-rx * 0.8, ry * 1.2], [-rx * 0.5 + m * 0.3, ry * 2.6], [m, ry * 3.3], [rx * 0.5 + m * 0.3, ry * 2.6], [rx * 0.8, ry * 1.2], [rx * 0.9 + s * rx * 0.2, ry * 0.25], [m + 18, F.mouthY + 12], [m - 18, F.mouthY + 12]], true, 0.4);
+    let strands = ''; for (let i = -3; i <= 3; i++) strands += `M${m + i * 12},${F.mouthY + 30} Q${m + i * 16},${ry * 2} ${m + i * 10},${ry * 3} `;
+    return path(d, { fill: '#eeece6', stroke: C.ink, 'stroke-width': lw * 0.9 }) + path(strands, { fill: 'none', stroke: '#c9c6bd', 'stroke-width': lw * 0.6 }) +
+      path(`M${m - 22},${F.mouthY - 4} Q${m - 10},${F.mouthY - 14} ${m},${F.mouthY - 8} Q${m + 10},${F.mouthY - 14} ${m + 22},${F.mouthY - 4} Q${m + 26},${F.mouthY + 8} ${m + 30},${F.mouthY + 14} Q${m},${F.mouthY + 2} ${m - 30},${F.mouthY + 14} Q${m - 26},${F.mouthY + 8} ${m - 22},${F.mouthY - 4}Z`, { fill: '#f6f4ee', stroke: C.ink, 'stroke-width': lw * 0.7 });
+  },
+  hat: ({ rx, ry, s, lw }) => {
+    const brimY = -ry * 0.72, tilt = s * 10;
+    let st = ''; const R = rng('dstar'); for (let i = 0; i < 7; i++) { const x = R.range(-rx * 0.5, rx * 0.5) + tilt * (i / 7) * 3, y = brimY - 20 - i * ry * 0.3; st += `M${x},${y - 6} L${x + 2},${y - 1} L${x + 7},${y} L${x + 2},${y + 2} L${x},${y + 7} L${x - 2},${y + 2} L${x - 7},${y} L${x - 2},${y - 1}Z `; }
+    return path(`M${-rx * 1.6},${brimY + 8} Q0,${brimY + 24} ${rx * 1.6},${brimY + 4} Q${rx},${brimY - 14} 0,${brimY - 16} Q${-rx},${brimY - 12} ${-rx * 1.6},${brimY + 8}Z`, { fill: '#3a2a6a', stroke: C.ink, 'stroke-width': lw }) +
+      path(`M${-rx * 0.8},${brimY - 8} Q${-rx * 0.5 + tilt},${-ry * 2} ${rx * 0.3 + tilt * 3},${-ry * 3.0} Q${rx * 0.6 + tilt * 3},${-ry * 2.9} ${rx * 0.55 + tilt * 2},${-ry * 2.6} Q${rx * 0.4 + tilt},${-ry * 1.8} ${rx * 0.82},${brimY - 10}Z`, { fill: '#46337e', stroke: C.ink, 'stroke-width': lw }) +
+      path(st, { fill: '#f0d36a' });
+  },
+  outfit: { top: '#46337e', robe: true, robeColor: '#46337e', robeLen: 1.03, flare: 1.4, wideSleeves: true, cuffW: 2.3, cuff: '#d6a33a', legs: '#221d33', shoes: '#6b3a2a', robeTrim: '#d6a33a',
+    torsoDetail: ({ T, sw, B, lw }) => { const R = rng('drobe'); let st = ''; for (let i = 0; i < 12; i++) { const p = T(R.range(-sw, sw), -R.range(0, B.torsoH)); st += `M${p[0]},${p[1] - 5} L${p[0] + 1.5},${p[1] - 1} L${p[0] + 5},${p[1]} L${p[0] + 1.5},${p[1] + 1.5} L${p[0]},${p[1] + 5} L${p[0] - 1.5},${p[1] + 1.5} L${p[0] - 5},${p[1]} L${p[0] - 1.5},${p[1] - 1}Z `; } return path(st, { fill: '#f0d36a', opacity: 0.9 }); } },
+};
+export const trunkSeller = { ...makeExtra(701, { female: false, old: false, hairStyle: 'neat', robe: '#2a3a4a' }), name: 'trunkSeller' };
+trunkSeller.face = { ...trunkSeller.face, cheekLines: true };
+trunkSeller.facialHair = ({ rx, ry, s, lw, F, mz }) => path(`M${mz.x - 16},${F.mouthY - 4} Q${mz.x - 26},${F.mouthY - 10} ${mz.x - 30},${F.mouthY - 18} M${mz.x + 16},${F.mouthY - 4} Q${mz.x + 26},${F.mouthY - 10} ${mz.x + 30},${F.mouthY - 18}`, { fill: 'none', stroke: '#2a1a12', 'stroke-width': lw * 1.6, 'stroke-linecap': 'round' });
+export const orangeMan = { ...makeExtra(702, { robe: '#d9772a', witchHat: true }), name: 'orangeMan' };
+Object.assign(CAST, { ollivander, dumbledore, trunkSeller, orangeMan });
+
+// ---------- the Weasleys
+const weasleyHair = (seed) => ({ color: '#c65a24', ...H.neat(seed, { part: 0.2, fringe: true }) });
+export const molly = {
+  name: 'molly', body: { ...ADULT_F, torsoH: 140, legU: 96, legL: 92, headRx: 51, headRy: 54, waistW: 118, hipW: 128 }, skin: '#f1cfb4', skinShade: '#d4a88c',
+  head: { jaw: 0.68, chin: 0.98, cheek: 0.98 },
+  face: adultFace({ eye: { color: '#6a8a5a', w: 19, h: 16, iris: 7 }, brow: { color: '#b54a1e', len: 20, w: 3.8 }, nose: 'button', lips: '#c96a6f', rosy: true, freckles: true }),
+  hair: { color: '#c65a24', ...H.curlyShort('molly') },
+  outfit: { top: '#7a6a3a', skirt: '#5a4a6a', skirtLen: 0.92, bareLegs: true, socks: '#8a7f73', shoes: '#3a2a22', sleeve: '#c9923a', collar: '#efe6d2', pattern: 'pinstripe' },
+};
+const twinBase = (seed, knit) => ({
+  name: seed, body: { ...TEEN, torsoH: 136, legU: 94, legL: 90 }, skin: '#f3d6c0', skinShade: '#d9ae95',
+  head: { jaw: 0.6, chin: 1.04, cheek: 0.9 },
+  face: kidFace({ eyeY: 8, eyeSpacing: 22, eye: { color: '#5d7fa3', w: 20, h: 21, iris: 8.4 }, brow: { color: '#b54a1e', len: 20, w: 4.2 }, freckles: true, rosy: true, mouthY: 42 }),
+  hair: { color: '#c65a24', ...H.messy('twin', { fringeY: -0.4 }) },
+  outfit: { top: knit, legs: '#4a4a55', shoes: '#3a2418', ribbed: true, collar: '#f2ecde' },
+});
+export const fred = twinBase('fred', '#2f5a40');
+export const george = twinBase('george', '#2f5a40');
+export const ron = {
+  name: 'ron', body: { ...KID, torsoH: 96, legU: 60, legL: 58, headRx: 55, headRy: 60 }, skin: '#f3d6c0', skinShade: '#d9ae95',
+  head: { jaw: 0.56, chin: 1.08, cheek: 0.9 },
+  face: kidFace({ eye: { color: '#5d7fa3', w: 22, h: 23, iris: 9 }, brow: { color: '#b54a1e', len: 20, w: 4.4 }, nose: 'long', noseLen: 18, noseY: 30, freckles: true, rosy: true }),
+  hair: { color: '#c65a24', ...H.neat('ron', { part: -0.2, fringe: true }) },
+  outfit: { top: '#8a3a2a', legs: '#4a4a55', shoes: '#3a2418', ribbed: true, collar: '#f2ecde' },
+};
+export const ginny = { ...makeExtra(801, { kid: true, female: true, hairStyle: 'long' }), name: 'ginny', hair: { color: '#c65a24', ...H.long('ginny', { len: 1.6 }) } };
+export const stallMan = { ...makeExtra(802, { old: false, female: false, hairStyle: 'bald', robe: '#5a4a3a' }), name: 'stallMan' };
+stallMan.facialHair = ({ rx, ry, s, lw, F, mz }) => path(smoothD([[-rx * 0.85, ry * 0.3], [-rx * 0.7, ry * 1.1], [mz.x, ry * 1.5], [rx * 0.7, ry * 1.1], [rx * 0.85, ry * 0.3], [mz.x + 16, F.mouthY + 8], [mz.x - 16, F.mouthY + 8]], true, 0.4), { fill: '#6a4a2a', stroke: C.ink, 'stroke-width': lw * 0.9 });
+Object.assign(CAST, { molly, fred, george, ron, ginny, stallMan });

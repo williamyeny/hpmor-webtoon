@@ -1,0 +1,554 @@
+{
+ "id": "ep07",
+ "title": "The Winner Shall Lose",
+ "number": 7,
+ "subtitle": "",
+ "tiles": [
+  {
+   "file": "001.webp",
+   "w": 800,
+   "h": 260,
+   "alt": "CHAPTER SEVEN / The Winner Shall Lose"
+  },
+  {
+   "file": "002.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Ollivanders: a narrow, dim shop with walls made entirely of thin wand boxes stacked into the darkness. A pale old wizard behind the counter. / Later that day. Ollivanders: Makers of Fine Wands since 382 B.C. / The shop was narrow and dusty, and every wall was boxes, stacked up to the dark."
+  },
+  {
+   "file": "003.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Ollivander: Ah. Harry Potter. I wondered when I'd be seeing you. / Ollivander: Holly and phoenix feather. Eleven inches. Nice and supple. Give it a wave."
+  },
+  {
+   "file": "004.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry raises the wand."
+  },
+  {
+   "file": "005.webp",
+   "w": 800,
+   "h": 1300,
+   "alt": "A burst of multicoloured sparks pours from the wand. Harry's face is lit with wonder. / Multicoloured sparks."
+  },
+  {
+   "file": "006.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Abstract: an eye of golden light opening in darkness. / He had felt it: magic pouring up his arm. And in that instant he realised he had always had that sense—like having eyes, but keeping them always closed, so that you didn't even know you were seeing darkness. / And then one day, the eye opened."
+  },
+  {
+   "file": "007.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry: I can do magic. / Harry: Me. As in, me personally. I am a wizard."
+  },
+  {
+   "file": "008.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Ollivander: Curious. Very curious… / Ollivander: It is very curious indeed that you should be destined for this wand, when its brother—why, its brother gave you that scar."
+  },
+  {
+   "file": "009.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry's eyes widen."
+  },
+  {
+   "file": "010.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry's notes: a grid of hundreds of wand boxes, one circled in red. \"…and I get the brother of HIS? p(coincidence) ≈ 1/1000.\""
+  },
+  {
+   "file": "011.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "McGonagall: How peculiar. / …and that was all she said. In no imaginable world would Harry have just gone \"Hm\" and walked out without even trying to form a hypothesis."
+  },
+  {
+   "file": "012.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "McGonagall: You're a full wizard now. Congratulations. / McGonagall: And what do you think of the wizarding world?"
+  },
+  {
+   "file": "013.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: It's strange. I ought to be thinking about everything I've seen of magic. And instead I'm distracted by relative trivialities. Like the whole Boy-Who-Lived thing. / McGonagall: Really? You don't say."
+  },
+  {
+   "file": "014.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Imagined: two tiny silhouettes before a volcano, one of them a toddler throwing a glinting ring. / Harry: It's like you're Frodo Baggins, and you find out your parents took you to Mount Doom and had you toss in the Ring when you were one year old—and you don't even remember it."
+  },
+  {
+   "file": "015.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: It's almost enough to make me wish there were some loose ends from the quest. So I could say I really participated somehow."
+  },
+  {
+   "file": "016.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "McGonagall: Oh? What did you have in mind?"
+  },
+  {
+   "file": "017.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Well—you mentioned my parents were betrayed. Who betrayed them? / McGonagall: Sirius Black. He's in Azkaban. Wizarding prison."
+  },
+  {
+   "file": "018.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Harry: How probable is it that Sirius Black breaks out of prison and I have to defeat him in a spectacular duel? Or better yet, put a large bounty on his head and hide out in Australia while I wait for the results?"
+  },
+  {
+   "file": "019.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "McGonagall: Not likely. No-one has ever escaped from Azkaban."
+  },
+  {
+   "file": "020.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry: All right then, it's all nicely wrapped up. Or—maybe the Dark Lord didn't really die that night! His spirit lingers, whispering to people in nightmares, searching for a way back— / Harry: —and now, in accordance with the ancient prophecy, he and I are locked in a deadly duel where the winner shall lose and the loser shall win—"
+  },
+  {
+   "file": "021.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Professor McGonagall's head swivelled, and her eyes darted around, as though to search the street for listeners."
+  },
+  {
+   "file": "022.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: I'm joking, Professor. Sheesh, why do you always take everything so seriously—"
+  },
+  {
+   "file": "023.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "A slow sinking sensation began to dawn in the pit of Harry's stomach."
+  },
+  {
+   "file": "024.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "McGonagall wears a bright, fixed, perfectly controlled smile. / Professor McGonagall looked at Harry with a calm expression. A very, very calm expression. / McGonagall: Of course you are, Mr Potter."
+  },
+  {
+   "file": "025.webp",
+   "w": 800,
+   "h": 420,
+   "alt": "Aw crap. / Harry: Aw crap."
+  },
+  {
+   "file": "026.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: He's not dead, is he. / Harry: Of course he's alive. Just because someone said his body was burned to a crisp, I can't imagine why I thought he was dead. Clearly I have much to learn about proper pessimism."
+  },
+  {
+   "file": "027.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: At least tell me there's not really a prophecy…"
+  },
+  {
+   "file": "028.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "(fixed smile)"
+  },
+  {
+   "file": "029.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: Oh, you have got to be kidding me."
+  },
+  {
+   "file": "030.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "McGonagall: Mr Potter, you shouldn't go inventing things to worry about— / Harry: Are you actually going to tell me that? Imagine my reaction later, when I find out there was something to worry about after all."
+  },
+  {
+   "file": "031.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "A man in flowing orange robes passes. McGonagall watches him go. / Then both of them shut up, as a man in flowing orange robes appeared on the street and slowly passed them by. Professor McGonagall's eyes tracked him, unobtrusively."
+  },
+  {
+   "file": "032.webp",
+   "w": 800,
+   "h": 140,
+   "alt": ""
+  },
+  {
+   "file": "033.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Are you going to tell me the truth now, Professor? And don't bother trying to wave it off. I'm not stupid. / McGonagall: You're eleven years old, Mr Potter!"
+  },
+  {
+   "file": "034.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: And therefore subhuman. Sorry—for a moment there, I forgot."
+  },
+  {
+   "file": "035.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "McGonagall: These are dreadful and important matters! They are secret! It is a catastrophe that you, still a child, know even this much! / McGonagall: You must not tell anyone, do you understand? Absolutely no-one!"
+  },
+  {
+   "file": "036.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry's eyes, pupils shrunk to pinpricks. Frost grows over everything. / As sometimes happened when Harry got sufficiently angry, his blood went cold instead of hot. / And a terrible dark clarity descended over his mind, mapping out tactics and assessing their consequences with iron realism."
+  },
+  {
+   "file": "037.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Cold, blue captions list Harry's options and cross each out. / Harry: Point out that you have a right to know: failure. Children have no rights to know anything, in her eyes. / Harry: Say you won't be friends any more: failure. She does not value your friendship enough. / Harry: Point out you'll be in danger if you don't know: failure. Plans are already made around your ignorance."
+  },
+  {
+   "file": "038.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry: Justice and reason will both fail. You must find something you have that she wants—or something you can do that she fears. / Harry: Ah."
+  },
+  {
+   "file": "039.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry: Well then, Professor. It sounds like I have something you want. / Harry: You can tell me the truth—the whole truth—and in return, I will keep your secrets. Or you can try to keep me ignorant so you can use me as a pawn. In which case I will owe you nothing."
+  },
+  {
+   "file": "040.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "McGonagall: How dare you!"
+  },
+  {
+   "file": "041.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: How dare YOU."
+  },
+  {
+   "file": "042.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "McGonagall: You would blackmail me?"
+  },
+  {
+   "file": "043.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry: I am offering you a favour. If you refuse, I will have every natural motive to make inquiries elsewhere—not to spite you, but because I have to know! / Harry: Get past your pointless anger at a child who you think ought to obey you, and you'll realise any sane adult would do the same! How would you feel if it was you?"
+  },
+  {
+   "file": "044.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: You don't have to decide right away. / Harry: But I'll warn you of one thing: don't try that Obliviation spell on me. Some time ago I worked out a signal, and I have already sent it to myself. If I find that signal and I don't remember sending it…"
+  },
+  {
+   "file": "045.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "McGonagall: I wasn't thinking of Obliviating you, Mr Potter. But why would you have invented such a signal, if you didn't know about— / Harry: Muggle science fiction. Just in case. And no, I won't tell you the signal. I'm not dumb."
+  },
+  {
+   "file": "046.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "She seemed to fold in on herself, and suddenly looked very old, and very tired. / McGonagall: This has been an exhausting day, Mr Potter. I will trust you not to speak of this until I have had time to think. / McGonagall: Keep in mind that only two other people in the whole world know about this: Headmaster Albus Dumbledore, and Professor Severus Snape."
+  },
+  {
+   "file": "047.webp",
+   "w": 800,
+   "h": 140,
+   "alt": ""
+  },
+  {
+   "file": "048.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "New information. That was a peace offering. Harry accepted it, and slowly, his blood began to warm again. / Harry: So now I've got to find some way to kill an immortal Dark Wizard. I really wish you'd told me that before I started shopping."
+  },
+  {
+   "file": "049.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "A luxurious trunk shop. In the middle, a heavy wooden trunk carved with a guardian dragon. / The trunk shop was richer than any other shop Harry had visited—lush curtains, polished wood, trunks on ivory platforms—and the salesman spoke with exquisite, oily politeness."
+  },
+  {
+   "file": "050.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "The dragon trunk, with a hidden staircase glowing below it. / Charmed to be light. Shrinks on command. Sprouts small clawed tentacles and squirms after its owner. And—the important part—a handle on the bottom that slides out a staircase, down to a small lighted room that would hold around twelve bookcases. / Harry: If they made luggage like this, why did anyone bother owning a house?"
+  },
+  {
+   "file": "051.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Seller: One hundred and eight Galleons, young sir. Lightly used."
+  },
+  {
+   "file": "052.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Ninety-seven Galleons. That was how much was left in the bag."
+  },
+  {
+   "file": "053.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "McGonagall: I'm sorry, young man. This is entirely my fault. I would offer to take you back to Gringotts, but the bank will be closed for all but emergencies now. / McGonagall: Well. We may as well go, I suppose."
+  },
+  {
+   "file": "054.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: She hadn't lost it completely when a child dared defy her. She hadn't been happy—but she'd thought, instead of exploding. Most adults wouldn't have been capable of even that much…"
+  },
+  {
+   "file": "055.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: Professor?"
+  },
+  {
+   "file": "056.webp",
+   "w": 800,
+   "h": 1040,
+   "alt": "Harry: You thought a hundred Galleons would be more than enough. That's the sort of thing the studies show: people think they're leaving themselves a little error margin, and they're not pessimistic enough. / Harry: If it'd been up to me, I'd have taken two hundred. But I thought you'd be angry at me just for asking. Was I wrong? / McGonagall: I suppose I must confess that you are right. But, young man—"
+  },
+  {
+   "file": "057.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: That sort of thing is why I have trouble trusting adults. They get angry if you even try to reason with them. / Harry: So if I had anything really important to do, I couldn't trust you. Even if you listened with deep concern, you'd never change your actions because of anything I said."
+  },
+  {
+   "file": "058.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "The salesman was watching them both with unabashed fascination."
+  },
+  {
+   "file": "059.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "McGonagall: I can understand your point of view. If I sometimes seem too strict, please remember that I have been Head of Gryffindor House for what feels like several thousand years."
+  },
+  {
+   "file": "060.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: So—suppose I had a way to get more Galleons without going back to Gringotts, but it involved me violating the role of an obedient child. / Harry: Would it be all right, even though it would involve a child being insolent to an adult… in retrospect? / McGonagall: I… suppose…"
+  },
+  {
+   "file": "061.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry's hand comes out of the pouch holding eleven gold Galleons. / Harry: Eleven Galleons originally from my family vault."
+  },
+  {
+   "file": "062.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "McGonagall: Where did you get that— / Harry: From my family vault, like I said. / McGonagall: How?"
+  },
+  {
+   "file": "063.webp",
+   "w": 800,
+   "h": 420,
+   "alt": "Harry: Magic. / McGonagall: That's hardly an answer!"
+  },
+  {
+   "file": "064.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "…and then stopped, blinking."
+  },
+  {
+   "file": "065.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: No, it isn't, is it? I ought to claim I discovered the true secret of how the pouch works. But actually it's from when I fell into that pile of gold, and shoved some Galleons into my pocket. / Harry: So. Are you angry at me for defying your authority? Or glad that we succeeded in our important mission?"
+  },
+  {
+   "file": "066.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "The salesman's eyes were wide like saucers."
+  },
+  {
+   "file": "067.webp",
+   "w": 800,
+   "h": 300,
+   "alt": "The tall witch stood there, silent, for almost a full minute."
+  },
+  {
+   "file": "068.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "McGonagall: Discipline at Hogwarts must be enforced. For the sake of all the students. And that must include courtesy and obedience from you to all professors. / Harry: I understand, Professor McGonagall. / McGonagall: Good. Now let us buy that trunk, and go home."
+  },
+  {
+   "file": "069.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry's mental ledger, titled \"Adults who changed their actions because of something I said\": one entry — Minerva McGonagall, +1 — circled. \"(first entry)\". / That was the first time his careful reasoning had ever worked on anyone."
+  },
+  {
+   "file": "070.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: Thank you very much, Professor. Can you finish up the purchase for me? I've got to visit the lavatory. / Seller: May I inquire who that was, Madam McGonagall? I take it he is Slytherin—third-year, perhaps?—and from a prominent family—"
+  },
+  {
+   "file": "071.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "SLAM. Harry, alone, shaking and drenched in sweat. / Behind the locked lavatory door, Harry grabbed the magical self-cleaning towel and, with shaky hands, wiped the sweat off his forehead. His whole body was soaked."
+  },
+  {
+   "file": "072.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Sunset, in the leaf-dusted courtyard between Diagon Alley and the entire Muggle world. / McGonagall: This has been the strangest day of my life for… many a year. Since the day I learned that a child had defeated You-Know-Who."
+  },
+  {
+   "file": "073.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry: You think YOUR day was surreal? Try mine."
+  },
+  {
+   "file": "074.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Harry: I was very impressed with you today. I should have said so out loud. I was awarding you points in my head and everything. / McGonagall: Thank you, Mr Potter. If you had already been sorted into a House, I would have deducted so many points your grandchildren would still be losing the House Cup."
+  },
+  {
+   "file": "075.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry: Thank you, Professor. / It was probably too early to call her Minnie."
+  },
+  {
+   "file": "076.webp",
+   "w": 800,
+   "h": 660,
+   "alt": "Harry: This woman might well be the sanest adult he had ever met. He was even considering offering her the number-two position in whatever group he formed to fight the Dark Lord. / Harry: What would be a good name for that…? The Death Eater Eaters?"
+  },
+  {
+   "file": "077.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "McGonagall: And, Mr Potter, about your wand— / Harry: I know what you're going to ask. Take it. I hadn't planned to do anything, but I don't want you to have nightmares about me blowing up my house."
+  },
+  {
+   "file": "078.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "McGonagall: Oh no, Mr Potter! That isn't done. I only meant to warn you not to use it at home. The Ministry can detect underage magic, and it is prohibited without supervision."
+  },
+  {
+   "file": "079.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Ah. That sounds like a very sensible rule. I get it. Magic is dangerous and the rules are there for good reasons. Certain other matters are also dangerous. I get that too. / Harry: Remember that I am not stupid."
+  },
+  {
+   "file": "080.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "McGonagall: I am unlikely ever to forget it. Thank you, Harry. That does make me feel better about entrusting you with certain things. / McGonagall: Goodbye for now."
+  },
+  {
+   "file": "081.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry turned to go—into the Leaky Cauldron, and out towards the Muggle world. As his hand touched the door handle, he heard a last whisper from behind him. / McGonagall: Hermione Granger."
+  },
+  {
+   "file": "082.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry: What? / McGonagall: Look for a first-year girl named Hermione Granger on the train to Hogwarts."
+  },
+  {
+   "file": "083.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: Who is she?"
+  },
+  {
+   "file": "084.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "The courtyard is empty; a last few sparkles hang in the air. / There was no answer. When Harry turned around, Professor McGonagall was gone."
+  },
+  {
+   "file": "085.webp",
+   "w": 800,
+   "h": 160,
+   "alt": "AFTERMATH"
+  },
+  {
+   "file": "086.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "A round office crowded with spindly silver instruments and sleeping portraits; a red-gold phoenix on a perch. Behind a great desk sits an ancient wizard with a long silver beard and half-moon spectacles. / Hogwarts. The Headmaster's office. Late."
+  },
+  {
+   "file": "087.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Dumbledore: So, my dear. How did you find Harry?"
+  },
+  {
+   "file": "088.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "(opens mouth) / (closes mouth) / (opens mouth again)"
+  },
+  {
+   "file": "089.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Dumbledore: I see. / Dumbledore: Thank you for your report, Minerva. You may go."
+  },
+  {
+   "file": "090.webp",
+   "w": 800,
+   "h": 140,
+   "alt": ""
+  },
+  {
+   "file": "091.webp",
+   "w": 800,
+   "h": 340,
+   "alt": "To be continued"
+  }
+ ]
+}
