@@ -39,6 +39,8 @@ Move the elements around, resize them, etc. Change the virtual camera -- "pan" u
 
 Do not be afraid to **majorly** redo a panel from scratch, especially if it would flow better. This includes but is not limited to: repositioning the characters, resizing the entire panel (increasing the height is a good technique to get around difficult overlaps or otherwise too crowded panels), completely changing shot size/framing, splitting a panel into multiple panels, deleting/adding elements.
 
+In the case that it's an engine bug, definitely feel free to fix it. However, be mindful of how the change affects other panels -- you may need to relayout them.
+
 ## Final verification
 
 Re-render the panel to verify that it looks perfect. If not, adjust and try again.
