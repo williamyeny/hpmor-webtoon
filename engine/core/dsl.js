@@ -59,6 +59,6 @@ export class Episode {
   }
   // multi-panel tile
   multi(h, panels, bubbles = [], o = {}) {
-    return this.tile({ h, panels: panels.map((p) => ({ ...p, art: typeof p.art === 'function' || typeof p.art === 'string' ? p.art : shot(p.art) })), bubbles, ...(o.bg ? { bg: o.bg } : {}), ...(o.over ? { over: o.over } : {}) });
+    return this.tile({ h, panels: panels.map((p) => ({ ...p, art: typeof p.art === 'function' || typeof p.art === 'string' ? p.art : shot(p.art) })), bubbles, ...(o.bg ? { bg: o.bg } : {}), ...(o.over ? { over: o.over } : {}), ...(o.alt ? { alt: o.alt } : {}) });
   }
 }

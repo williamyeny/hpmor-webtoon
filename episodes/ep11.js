@@ -35,18 +35,21 @@ ep.panel(760, { cam: { on: ['hermione'], fr: 'bust' }, bg: LAKE({ boats: [] }), 
    inner('Harry', '*A telepathic hat. Of course. Why not.*', 400, 640, { w: 560 })], { mood: 'night' });
 
 // =============================================================== the Great Hall
-ep.bleed(1400, { cam: { x: 800, y: 520, w: 1500 }, bg: () => HG.greatHallWide() },
+// the Hall seen through its own great doorway: the reader steps in with the first-years
+const hallDoor = (e) => { const w = e.w, h = e.h, L = w * 0.09, R = w * 0.91, s = h * 0.46, t = h * 0.14; const arch = `M${L},${h + 10} L${L},${s} Q${L},${t + (s - t) * 0.22} ${w / 2},${t} Q${R},${t + (s - t) * 0.22} ${R},${s} L${R},${h + 10}`; return `<defs><clipPath id="ghd"><path clip-rule="evenodd" d="M-10,-10 L${w + 10},-10 L${w + 10},${h + 10} L-10,${h + 10}Z ${arch}Z"/></clipPath></defs>` + g({ 'clip-path': 'url(#ghd)' }, K.stoneWall(-10, -10, w + 20, h + 20, C.stone, 23, { bh: 58, minW: 80, maxW: 150 }), rect(-10, -10, w + 20, h + 20, { fill: '#140c08', opacity: 0.5 })) + path(arch, { fill: 'none', stroke: '#1a120c', 'stroke-width': 26, opacity: 0.55 }) + path(arch, { fill: 'none', stroke: '#2b2226', 'stroke-width': 7 }); };
+ep.bleed(1400, { cam: { x: 800, y: 540, w: 1400 }, bg: () => HG.greatHallWide(), over: hallDoor },
   [capC('The Great Hall.', 400, 80, { w: 260 }),
-   capC('Thousands of candles floated in mid-air. The ceiling wasn\'t there at all. There was only the night sky, full of stars.', 400, 1290, { w: 540 })], { mood: 'candle', fadeTop: false, alt: 'The Great Hall: four long house tables packed with students running toward a high table on a dais; thousands of candles floating in the air; the ceiling bewitched into a starry night sky; house banners on the walls.' });
+   capC('Thousands of candles floated in mid-air. The ceiling wasn\'t there at all. There was only the night sky, full of stars.', 400, 1290, { w: 540 })], { mood: 'candle', fadeTop: false, alt: 'The Great Hall, seen through its great stone doorway: four long house tables packed with students running toward a high table on a dais; thousands of candles floating in the air; the ceiling bewitched into a starry night sky; house banners on the walls.' });
 const FY = (o = {}) => [{ def: student(1201, 'n'), id: 's1', x: 380, y: 1080, s: 1.05, turn: 0.6, expr: 'awe' }, { def: student(1202, 'n'), id: 's2', x: 1360, y: 1080, s: 1.05, turn: -0.5, expr: 'worried' }, { def: harryRobes, id: 'harry', x: 700, y: 1080, s: 1.1, turn: 0.2, expr: 'awe', ...o.h }, { def: hermione, id: 'hermione', x: 900, y: 1080, s: 1.1, turn: -0.2, expr: 'delight', ...o.he }, { def: neville, id: 'neville', x: 1100, y: 1080, s: 1.05, turn: -0.3, expr: 'worried', ...o.n }];
 ep.panel(700, { cam: { x: 870, y: 790, w: 700 }, bg: () => HG.hallTable('g'), actors: FY({}) },
   [say('Hermione', 'It\'s bewitched to look like the sky outside!', 560, 110, { w: 320 }), inner('Harry', '*Of course it is.*', 150, 640, { w: 280 })], { mood: 'candle' });
 // the Hat's song
 const DAIS = () => HG.dais();
 const HAT = (mood = 'talk', x = 1000) => (e) => HG.stool(x, 900) + g({ transform: `translate(${x},${770})` }, HG.sortingHat(0.9, { mood }));
-ep.panel(820, { cam: { x: 1150, y: 618, w: 760 }, bg: DAIS, actors: [HAT('amused')], over: (e) => FX.sparkles([[e.w * 0.2, e.h * 0.2, 14], [e.w * 0.8, e.h * 0.25, 12]], { col: '#fff3b0' }) },
+// no frame: the Hat sings straight out onto the page, lit by the Hall's candles
+ep.cutout(790, { cam: { x: 1130, y: 620, w: 700 }, actors: [() => ellipse(1000, 904, 150, 16, { fill: '#000', opacity: 0.35, filter: 'url(#blur3)' }), HAT('amused')], behind: (e) => K.glow(e.w * 0.36, e.h * 0.52, 380, '#f3c878', 0.5), over: (e) => FX.sparkles([[e.w * 0.08, e.h * 0.34, 14], [e.w * 0.6, e.h * 0.28, 12], [e.w * 0.52, e.h * 0.8, 10]], { col: '#fff3b0' }) },
   [cap('On a stool on the dais sat a patched and frayed old wizard\'s hat. Then a rip near its brim opened wide like a mouth, and it began to sing.', 44, 34, { w: 540, size: 26 }),
-   hat('♪ *Oh, I\'m the Sorting Hat and I\'m okay, I sleep all year and I work one day…* ♪', 555, 450, { w: 340, tail: [300, 535] })], { mood: 'candle', alt: 'The Sorting Hat on its stool, singing through the rip in its brim.' });
+   hat('♪ *Oh, I\'m the Sorting Hat and I\'m okay, I sleep all year and I work one day…* ♪', 578, 450, { w: 330, tail: [330, 545] })], { alt: 'The Sorting Hat on its stool, standing on the page itself with no frame, singing through the rip in its brim.' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: () => HG.hallTable('g'), blur: 3, actors: FY({}) },
   [inner('Harry', 'Was the Hat *conscious?* In the sense of being aware of its own awareness? And if so, was it satisfied with only getting to talk to eleven-year-olds once a year?', 400, 100, { w: 600, size: 27 })], { mood: 'candle' });
 
@@ -55,11 +58,12 @@ const MCG = (o = {}) => ({ def: mcgonagall, id: 'mcgonagall', x: 600, y: 900, tu
 ep.panel(700, { cam: { x: 820, y: 600, w: 780 }, bg: DAIS, actors: [MCG(), HAT('sleep')] },
   [shout('McGonagall', '"Abbott, Hannah!"', 430, 110, { w: 300, size: 30 })], { mood: 'candle' });
 const verdict = (house, col, txt) => (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: col }) + FX.burst(ctx.w, ctx.h, ctx.w / 2, ctx.h / 2, { col: '#fff', op: 0.18 }) + FX.sfxText(ctx.w / 2, ctx.h * 0.62, txt, { size: Math.min(64, ctx.w / (txt.length * 0.9)), fill: '#f6e7c4', font: 'IM Fell English SC', weight: 400, sw: 5 });
-ep.multi(608, [
-  { x: M, y: 18, w: 752, h: 180, art: verdict('h', '#8a6a1a', 'HUFFLEPUFF!') },
-  { x: M, y: 214, w: 752, h: 180, art: verdict('h', '#8a6a1a', 'HUFFLEPUFF!') },
-  { x: M, y: 410, w: 752, h: 180, art: verdict('r', '#243a6a', 'RAVENCLAW!') },
-], [note('Abbott, Hannah', 400, 52, { size: 28, color: '#f6e7c4' }), note('Bones, Susan', 400, 248, { size: 28, color: '#f6e7c4' }), note('Boot, Terry', 400, 444, { size: 28, color: '#f6e7c4' })], { alt: 'Abbott, Hannah: HUFFLEPUFF! Bones, Susan: HUFFLEPUFF! Boot, Terry: RAVENCLAW!' });
+// the Sorting speeds up: the verdicts zigzag down the page on diagonal seams
+ep.multi(602, [
+  { x: M, y: 18, w: 752, h: 200, shape: 'cut', cutBottom: 40, art: verdict('h', '#8a6a1a', 'HUFFLEPUFF!') },
+  { x: M, y: 196, w: 752, h: 210, shape: 'cut', cutTop: 40, cutBottom: -40, art: verdict('h', '#8a6a1a', 'HUFFLEPUFF!') },
+  { x: M, y: 384, w: 752, h: 200, shape: 'cut', cutTop: -40, art: verdict('r', '#243a6a', 'RAVENCLAW!') },
+], [note('Abbott, Hannah', 400, 52, { size: 28, color: '#f6e7c4' }), note('Bones, Susan', 400, 254, { size: 28, color: '#f6e7c4' }), note('Boot, Terry', 400, 440, { size: 28, color: '#f6e7c4' })], { alt: 'Abbott, Hannah: HUFFLEPUFF! Bones, Susan: HUFFLEPUFF! Boot, Terry: RAVENCLAW!' });
 
 // staff, Flitwick & Lithuania
 const STAFF = () => HG.staffWall();
@@ -90,10 +94,14 @@ ep.panel(800, { cam: { on: ['hermione'], fr: 'close', dy: 0.1 }, bg: () => HG.ha
 ep.panel(460, { cam: { on: ['harry'], fr: 'close', dy: -0.1, zoom: 0.8 }, bg: () => HG.hallTable('r'), blur: 3, actors: FY({ h: { expr: 'deadpan' } }).slice(2, 3) }, [whisper('Harry', 'Never mind.', 400, 80, { w: 180 })], { mood: 'candle' });
 
 // Hermione
-ep.panel(760, { cam: { head: 'hermione', hw: 0.2, hx: 0.36, hy: 0.42 }, bg: () => HG.hallTable('r'), blur: 1, actors: [() => ellipse(900, 1084, 62, 11, { fill: '#000', opacity: 0.28 }) + [-1, 1].map((d) => path(`M${900 + d * 58},${1060} l${d * 16},6 M${900 + d * 62},${1040} l${d * 20},0 M${900 + d * 58},${1020} l${d * 16},-6`, { stroke: '#f1e6cc', 'stroke-width': 4, 'stroke-linecap': 'round', opacity: 0.75 })).join(''), ...FY({ he: { pose: 'tiptoe', expr: 'delight', y: 1040 } }).slice(3, 4)] },
-  [cap('Hermione was bouncing on her tiptoes so hard her feet were actually leaving the ground.', 44, 34, { w: 400 }), shout('McGonagall', '"Granger, Hermione!"', 610, 500, { w: 300, size: 30, tail: [790, 330] })], { mood: 'candle' });
-ep.panel(880, { cam: { x: 1000, y: 420, w: 700 }, bg: DAIS, actors: [() => HG.stool(1000, 900), { def: hermione, id: 'hermione', x: 1000, y: 900, s: 1.1, turn: 0.1, pose: 'sit', seat: 125, expr: 'determined' }, HG.hatOn('hermione', 'amused')], over: (e) => FX.speedLines(e.w, e.h, { n: 20, angle: 90 }) },
-  [cap('She ran full tilt, and jammed the patchy old eight-hundred-year-old artefact of forgotten magic down hard over her head. Harry winced.', 44, 34, { w: 440, size: 26 })], { mood: 'candle' });
+// no frame: Hermione bounces right up off the page
+ep.cutout(760, { cam: { head: 'hermione', hw: 0.2, hx: 0.36, hy: 0.42 }, ground: false, behind: (e) => K.glow(e.w * 0.36, e.h * 0.6, 360, '#f3c878', 0.5), actors: [() => ellipse(900, 1086, 150, 24, { fill: '#f3c878', opacity: 0.22, filter: 'url(#blur3)' }) + ellipse(900, 1084, 62, 11, { fill: '#000', opacity: 0.5 }) + [-1, 1].map((d) => path(`M${900 + d * 58},${1060} l${d * 16},6 M${900 + d * 62},${1040} l${d * 20},0 M${900 + d * 58},${1020} l${d * 16},-6`, { stroke: '#f1e6cc', 'stroke-width': 4, 'stroke-linecap': 'round', opacity: 0.75 })).join(''), ...FY({ he: { pose: 'tiptoe', expr: 'delight', y: 1040 } }).slice(3, 4)] },
+  [cap('Hermione was bouncing on her tiptoes so hard her feet were actually leaving the ground.', 44, 34, { w: 400 }), shout('McGonagall', '"Granger, Hermione!"', 610, 500, { w: 300, size: 30, tail: [790, 330] })], { alt: 'Hermione, on the page itself with no frame, bouncing so hard on her tiptoes that her feet leave the ground.' });
+// she jams the Hat down so hard its tip punches out through the top of the panel; Harry winces beside it
+ep.multi(880, [
+  { x: M, y: 130, w: 436, h: 732, mood: 'candle', breakout: 'top', art: { cam: { head: 'hermione', hw: 0.3, hx: 0.31, hy: 0.46 }, bg: DAIS, actors: [() => HG.stool(1000, 900), { def: hermione, id: 'hermione', x: 1000, y: 900, s: 1.1, turn: 0.1, pose: 'sit', seat: 125, expr: 'determined' }, HG.hatOn('hermione', 'amused')], over: (e) => FX.speedLines(e.w, e.h, { n: 16, angle: 90 }) } },
+  { x: 476, y: 250, w: 300, h: 612, mood: 'candle', art: { cam: { head: 'harry', hw: 0.66, hx: 0.5, hy: 0.5 }, bg: () => HG.hallTable('r'), blur: 3, actors: FY({ h: { expr: 'wince' } }).slice(2, 3) } },
+], [cap('She ran full tilt, and jammed the patchy old eight-hundred-year-old artefact of forgotten magic down hard over her head.', 766, 22, { w: 385, size: 26, anchor: 'tr', fixed: true }), cap('Harry winced.', 492, 266, { w: 240, size: 26, fixed: true })], { alt: 'Hermione on the stool, the huge Sorting Hat jammed down over her head, its tip poking up out of the panel. Beside her, Harry winces.' });
 ep.panel(460, verdict('r', '#243a6a', 'RAVENCLAW!'), [], { alt: 'RAVENCLAW!' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'bust', zoom: 0.9, dy: -0.1 }, bg: () => HG.hallTable('r'), blur: 2, actors: FY({ h: { expr: 'unimpressed', pose: 'crossArms' } }).slice(2, 3) },
   [inner('Harry', 'Talk about your foregone conclusions. In what weird alternative universe would that girl *not* be sorted into Ravenclaw?', 400, 110, { w: 540 }),
@@ -115,8 +123,9 @@ ep.bleed(640, { cam: { x: 800, y: 780, w: 880 }, bg: () => HG.hallTable('s'), ac
   [capC('All conversation stopped. All eyes turned to stare.', 400, 90, { w: 480 })], { mood: 'candle', alt: 'Every student in the Hall turns to stare.' });
 ep.panel(620, { cam: { on: ['harry'], fr: 'close' }, bg: () => HG.hallTable('r'), blur: 3, actors: FY({ h: { expr: { base: 'worried', sweat: true } } }).slice(2, 3) },
   [inner('Harry', 'For the first time in his entire life, Harry felt like he might be having an opportunity to experience stage fright.', 400, 110, { w: 540 })], { mood: 'candle' });
-ep.bleed(900, { cam: { x: 1030, y: 690, w: 820 }, bg: () => HG.hallTable('g'), actors: [{ def: fred, id: 'fred', x: 900, y: 1050, turn: 0.3, pose: 'armsUp', expr: 'laugh' }, { def: george, id: 'george', x: 1150, y: 1050, turn: -0.3, pose: 'armsUp', expr: 'laugh' }, ...[1221, 1222, 1223].map((sd, i) => ({ def: student(sd, 'g'), x: 500 + i * 450 + (i > 0 ? 600 : 0), y: 1060, s: 1.05, turn: 0.2, pose: 'raiseHand', expr: 'bigGrin' })), () => HG.tableFront()] },
-  [shout('Fred', '*HARRY POTTER!*', 270, 80, { w: 320, size: 34 }), shout('George', '*HARRY POTTER!*', 530, 215, { w: 320, size: 34 })], { mood: 'candle', alt: 'At the Gryffindor table, the Weasley twins leap up and start chanting.' });
+// the twins leap up so hard their arms punch out through the top of the panel
+ep.panel(900, { cam: { head: 'fred', hw: 0.2, hx: 0.31, hy: 0.1 }, bg: () => HG.hallTable('g'), actors: [{ def: fred, id: 'fred', x: 900, y: 1050, turn: 0.3, pose: 'armsUp', armF: { sh: -166, el: -6, hand: 'splay' }, armB: { sh: 162, el: 10, hand: 'splay' }, expr: 'laugh' }, { def: george, id: 'george', x: 1150, y: 1050, turn: -0.3, pose: 'armsUp', armF: { sh: -162, el: -10, hand: 'splay' }, armB: { sh: 166, el: 6, hand: 'splay' }, expr: 'laugh' }, ...[1221, 1222, 1223].map((sd, i) => ({ def: student(sd, 'g'), x: 500 + i * 450 + (i > 0 ? 600 : 0), y: 1060, s: 1.05, turn: 0.2, pose: 'raiseHand', expr: 'bigGrin' })), () => HG.tableFront()] },
+  [shout('Fred', '*HARRY POTTER!*', 262, 76, { w: 320, size: 34 }), shout('George', '*HARRY POTTER!*', 540, 196, { w: 320, size: 34 })], { mood: 'candle', breakout: 'top', ph: 562, panel: { y: 320 }, alt: 'At the Gryffindor table, the Weasley twins leap up and start chanting, their arms flung up out of the top of the panel.' });
 ep.bleed(1100, { cam: { x: 800, y: 640, w: 1500 }, bg: () => HG.greatHallWide() },
   [shout('hall', 'HARRY POTTER! HARRY POTTER! HARRY POTTER!', 400, 520, { w: 600, size: 52, noTail: true })], { mood: 'candle', fadeTop: false, alt: 'The whole Hall chants his name.' });
 ep.panel(1000, { cam: { on: ['harry'], fr: 'full', zoom: 0.8, dy: -0.9 }, bg: () => HG.greatHallWide(), blur: 2, actors: [{ def: harryRobes, id: 'harry', x: 800, y: 1150, s: 1.3, turn: 0.1, pose: 'walk', expr: 'grin' }] },
