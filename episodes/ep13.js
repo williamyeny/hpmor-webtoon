@@ -1,7 +1,6 @@
 // EPISODE 13 — The Game  (source: HPMOR ch. 12, the notices Book One skipped; ch. 13, first half)
 // Book Two opens. Sunday night: Dumbledore knows things. Monday morning: a note in Harry's own handwriting.
-import { Episode, say, shout, whisper, inner, cold, cap, capC, dark, plain, title, sfx, M } from '../engine/core/dsl.js';
-import { shot } from '../engine/core/scene.js';
+import { Episode, say, shout, whisper, inner, cold, cap, title, sfx, M } from '../engine/core/dsl.js';
 import { place } from '../engine/chars/rig.js';
 import { C } from '../engine/core/palette.js';
 import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';

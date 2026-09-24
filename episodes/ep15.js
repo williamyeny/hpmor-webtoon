@@ -1,17 +1,17 @@
 // EPISODE 15 — The Time-Turner  (source: HPMOR ch. 14)
 // Harry gets a time machine, and finds out who has been playing the Game.
-import { Episode, say, shout, whisper, inner, cold, cap, capC, dark, plain, title, sfx, M } from '../engine/core/dsl.js';
+import { Episode, say, shout, whisper, inner, cold, cap, capC, plain, title, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, polygon, rng } from '../engine/core/svg.js';
+import { g, rect, path, circle, ellipse, line, text } from '../engine/core/svg.js';
 import * as HG from '../engine/bg/hogwarts.js';
 import * as CS from '../engine/bg/castle.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
 import { mcgonagall, sprout, student, clearwater } from '../engine/chars/cast.js';
-import { harryRaven, harryPJ, hermioneRaven, terry, anthony, michael, nevilleHuff, ernie, derrick, slyTeen, conscience, aristocrat } from '../engine/chars/cast2.js';
-import { comedCan, pouch, quill, wand } from '../engine/props/props.js';
+import { harryRaven, harryPJ, hermioneRaven, terry, anthony, nevilleHuff, ernie, derrick, slyTeen, conscience, aristocrat } from '../engine/chars/cast2.js';
+import { pouch, quill, wand } from '../engine/props/props.js';
 import * as P2 from '../engine/props/props2.js';
-import { dayBeat, header, note } from './b2.js';
+import { header, note } from './b2.js';
 
 const ep = new Episode({ id: 'ep15', number: 15, title: 'The Time-Turner' });
 ep.setBg(C.paper);

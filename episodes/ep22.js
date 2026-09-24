@@ -1,13 +1,13 @@
 // EPISODE 22 — How to Lose  (source: HPMOR ch. 19)
 // Harry learns to lose, in public, and wins the school's respect. The turn toward the climax.
-import { Episode, say, shout, whisper, inner, cold, cap, capC, plain, title, sfx, M } from '../engine/core/dsl.js';
+import { Episode, say, shout, whisper, inner, cold, cap, plain, title, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
+import { g, rect, path, circle, ellipse, text } from '../engine/core/svg.js';
 import * as CS from '../engine/bg/castle.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
 import { quirrell, darkLord, student, mcgonagall } from '../engine/chars/cast.js';
-import { harryRaven, hermioneRaven, dracoSly, crabbe, goyle, zabini, terry, padma, anthony, dean, ernie, nevilleHuff, derrick, slyTeen, master, dojoStudent, youngQuirrell } from '../engine/chars/cast2.js';
+import { harryRaven, dracoSly, crabbe, goyle, zabini, terry, padma, anthony, derrick, slyTeen, master, dojoStudent, youngQuirrell } from '../engine/chars/cast2.js';
 import { wand, pouch } from '../engine/props/props.js';
 import * as P2 from '../engine/props/props2.js';
 import { place, POSES } from '../engine/chars/rig.js';
@@ -392,7 +392,6 @@ const RING = (o = {}) => {
   if (!o.noFront) out.push({ def: slyTeen(15), id: 'ringF1', x: 560, y: 1160, s: 1.55, turn: 0.5, pose: 'crossArms', expr: typeof e === 'function' ? e(11) : e }, { def: slyTeen(16), id: 'ringF2', x: 1660, y: 1170, s: 1.55, turn: -0.5, pose: 'handsHips', expr: typeof e === 'function' ? e(12) : e });
   return out;
 };
-const RING13 = (skip = []) => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].filter((i) => !skip.includes(i)).map((i) => { const a = Math.PI * (0.1 + i * 0.07); const x = 1100 + Math.cos(a) * 520 * (i % 2 ? 1 : -1), y = 820 - (i % 3) * 20; return { def: slyTeen(i + 4), id: 'ring' + i, x, y, s: 1.28, turn: x > 1100 ? -0.4 : 0.4, pose: 'crossArms', expr: 'grin' }; });
 const WANDPOUCH = () => g({}, g({ transform: 'translate(900,533) rotate(-86)' }, wand(120)), g({ transform: 'translate(1080,530) scale(0.9)' }, pouch(1)));
 ep.multi(1030, [
   P(18, 640, { cam: { x: 1040, y: 560, w: 900 }, bg: MAT, actors: [WANDPOUCH, H({ expr: 'focus', turn: 0.1 })] }),
@@ -475,8 +474,6 @@ ep.multi(900, [
   P(416, 466, { cam: ON(HL(), 420, 110, 20), bg: MAT, blur: 3, actors: [HL({ expr: 'sob' })] }),
 ], [say('Quirrell', 'Lose.', 300, 150, { anchor: 'tc', w: 140, size: 40, fixed: true, tail: 'quirrell@0' }),
    whisper('Harry', 'I, lose.', 560, 520, { anchor: 'tc', w: 180, fixed: true })]);
-// shoved from hand to hand: the ring closes in, arms out
-const SHOVE = (i) => ({ pose: 'reach', turn: i % 2 ? -0.4 : 0.4 });
 ep.multi(1330, [
   // shoved from hand to hand: the panel itself is knocked askew
   { ...P(18, 700, { cam: { x: 1100, y: 500, w: 1250 }, bg: MAT, mid: MID((e) => FX.speedLines(e.w, e.h, { n: 22, seed: 31, angle: -8 })), actors: [

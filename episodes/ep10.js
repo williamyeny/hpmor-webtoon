@@ -2,14 +2,14 @@
 import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, note, title, plain, M } from '../engine/core/dsl.js';
 import { shot } from '../engine/core/scene.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
+import { g, rect, path, circle, ellipse, line, text } from '../engine/core/svg.js';
 import * as S from '../engine/bg/station.js';
 import * as L from '../engine/bg/london.js';
 import * as K from '../engine/bg/kit.js';
 import * as CS from '../engine/bg/castle.js';
 import * as FX from '../engine/fx/fx.js';
 import { harryRobes, hermione, neville, makeExtra } from '../engine/chars/cast.js';
-import { bookHeld, bookOpen, comedCan, spray, foldedNote, sheet, toad, pouch, pencil } from '../engine/props/props.js';
+import { bookHeld, comedCan, spray, foldedNote, sheet, toad, pouch } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep10', number: 10, title: 'Positive Bias' });
 ep.setBg(C.paper);

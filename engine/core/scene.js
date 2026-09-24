@@ -108,3 +108,13 @@ export function shot(o) {
 }
 
 export const backdrop = (fill) => (ctx) => rect(0, 0, ctx.w, ctx.h, { fill });
+
+// Draw something at an actor's anchor (a prop in a hand, a mark on a face): atAnchor('harry', 'handB', svg, { dx, dy, rot, k }).
+// Use it in a shot's `actors` list or `fg` (world space), or with { space: 'panel' } in `over`. svg may be a function (a) => svg.
+// dx, dy are in the actor's own units and k scales with the actor, so the result follows the actor's size and the zoom.
+export const atAnchor = (id, part, svg, o = {}) => (e) => {
+  const a = (o.space === 'panel' ? e.anchors : e.wa)?.[id];
+  if (!a?.[part]) return '';
+  const [x, y] = a[part], s = a.s * (o.k ?? 1);
+  return g({ transform: `translate(${r2(x + (o.dx ?? 0) * a.s)},${r2(y + (o.dy ?? 0) * a.s)})${o.rot ? ` rotate(${o.rot})` : ''} scale(${r2(s)})` }, typeof svg === 'function' ? svg(a) : svg);
+};

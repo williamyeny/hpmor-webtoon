@@ -9,10 +9,10 @@ import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
 import { mcgonagall, student } from '../engine/chars/cast.js';
 import { place } from '../engine/chars/rig.js';
-import { harryRaven, harryPJ, anthony, terry, michael, nevilleHuff, ernie, dracoSly, crabbe, goyle, zabini, dean, hooch } from '../engine/chars/cast2.js';
-import { healerKit, wand, pouch } from '../engine/props/props.js';
+import { harryRaven, anthony, terry, michael, nevilleHuff, ernie, dracoSly, crabbe, goyle, zabini, dean, hooch } from '../engine/chars/cast2.js';
+import { healerKit, wand } from '../engine/props/props.js';
 import * as P2 from '../engine/props/props2.js';
-import { dayBeat, header, note } from './b2.js';
+import { dayBeat, header } from './b2.js';
 
 const ep = new Episode({ id: 'ep18', number: 18, title: 'Do Not Mess With Time' });
 ep.setBg(C.paper);
@@ -20,7 +20,6 @@ header(ep, 'EIGHTEEN', 'Do Not Mess With Time');
 dayBeat(ep, 'Thursday.', 'If you wanted to be specific, 7:24 on Thursday morning.');
 
 const PENCIL = (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#f3ead3' }) + [...Array(Math.ceil(ctx.h / 34)).keys()].map((k) => line(0, 20 + k * 34, ctx.w, 20 + k * 34, { stroke: '#b9c8d8', 'stroke-width': 1.4 })).join('') + line(70, 0, 70, ctx.h, { stroke: '#e2a0a0', 'stroke-width': 2 });
-const PT = (x, y, s, fs = 34, col = '#2d2a4a', a = 'middle') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, fill: col, 'text-anchor': a });
 const DORM = (o = {}) => () => CS.ravenclawDorm({ time: 'morning', ...o });
 
 // ---------------------------------------------------------------- the brilliant experiment

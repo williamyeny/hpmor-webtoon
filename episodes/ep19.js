@@ -1,6 +1,6 @@
 // EPISODE 19 — Your Father's Rock  (source: HPMOR ch. 17, second half)
 // Harry meets the most powerful wizard alive, and cannot tell whether he is mad or wise.
-import { Episode, say, shout, whisper, inner, cold, cap, capC, plain, title, sfx, M } from '../engine/core/dsl.js';
+import { Episode, say, shout, inner, cap, capC, title, sfx, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
 import { shot } from '../engine/core/scene.js';
 import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';

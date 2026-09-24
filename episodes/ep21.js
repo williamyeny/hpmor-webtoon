@@ -1,14 +1,14 @@
 // EPISODE 21 — Phoenix Song  (source: HPMOR ch. 18, second half)
 // Harry beats Snape and Dumbledore, and loses the Time-Turner and McGonagall's approval. The low point.
-import { Episode, say, shout, whisper, inner, cold, cap, capC, plain, title, sfx, M } from '../engine/core/dsl.js';
+import { Episode, say, shout, whisper, inner, cold, cap, capC, title, sfx, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
+import { g, rect, path, circle, line, text, rng } from '../engine/core/svg.js';
 import * as CS from '../engine/bg/castle.js';
 import * as HG from '../engine/bg/hogwarts.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
 import { snape, mcgonagall, dumbledore, fred, george, sprout, student } from '../engine/chars/cast.js';
-import { harryRaven, hermioneRaven, terry, padma, anthony, michael } from '../engine/chars/cast2.js';
+import { harryRaven, hermioneRaven, terry, padma, anthony } from '../engine/chars/cast2.js';
 import * as P2 from '../engine/props/props2.js';
 import { place } from '../engine/chars/rig.js';
 import { dayBeat, header } from './b2.js';

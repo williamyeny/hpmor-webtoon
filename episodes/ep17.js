@@ -1,8 +1,8 @@
 // EPISODE 17 — The Most Dangerous Student  (source: HPMOR ch. 16)
 // Quirrell's first lesson. Harry is finally taken seriously by a teacher: as a killer.
-import { Episode, say, shout, whisper, inner, cold, cap, capC, plain, title, sfx, M } from '../engine/core/dsl.js';
+import { Episode, say, shout, whisper, inner, cold, cap, title, sfx, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, polygon, rng } from '../engine/core/svg.js';
+import { g, rect, path, circle, ellipse, line, rng } from '../engine/core/svg.js';
 import * as CS from '../engine/bg/castle.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';

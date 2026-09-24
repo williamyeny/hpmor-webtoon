@@ -158,3 +158,7 @@ export function crater(w = 400) {
   return ellipse(0, 0, w / 2, w / 8, { fill: '#3a2a22', stroke: C.ink, 'stroke-width': 3 }) + ellipse(0, -4, w / 2.6, w / 12, { fill: '#1a120d' }) +
     [0, 1, 2, 3].map((i) => circle(-w * 0.2 + i * w * 0.14, -w * 0.18 - i * 30, w * 0.12 + i * 10, { fill: '#8a5fb0', opacity: 0.55 - i * 0.08, filter: 'url(#blur2)' })).join('');
 }
+
+// a cut-out figure cropped above the feet fades into the page below (y0..y1 as fractions of the panel height).
+// Use as a shot's `over`: fg: FX.fadeOut() or over: FX.fadeOut(0.6, 0.95)
+export const fadeOut = (y0 = 0.62, y1 = 0.97) => (e) => { const id = uid('fo'), W0 = -400, WW = e.w + 800; return `<defs><linearGradient id="${id}" gradientUnits="userSpaceOnUse" x1="0" y1="${e.h * y0}" x2="0" y2="${e.h * y1}"><stop offset="0" stop-color="${C.paper}" stop-opacity="0"/><stop offset="1" stop-color="${C.paper}" stop-opacity="1"/></linearGradient><mask id="${id}m"><rect x="${W0}" y="0" width="${WW}" height="${e.h + 400}" fill="url(#${id})"/></mask></defs>` + rect(W0, 0, WW, e.h + 400, { fill: `url(#${id})` }) + g({ mask: `url(#${id}m)` }, rect(W0, 0, WW, e.h + 400, { filter: 'url(#grain)', opacity: 0.35, style: 'mix-blend-mode:multiply' })); };

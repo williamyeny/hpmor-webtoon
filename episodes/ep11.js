@@ -1,13 +1,12 @@
 // EPISODE 11 — Potter, Harry!  (source: HPMOR ch. 9; the lake crossing and the Hall reveal ADDED)
-import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, note, title, plain, hat, M } from '../engine/core/dsl.js';
-import { shot } from '../engine/core/scene.js';
+import { Episode, say, shout, whisper, inner, cap, capC, dark, note, title, plain, hat, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
+import { g, rect, path, ellipse } from '../engine/core/svg.js';
 import * as HG from '../engine/bg/hogwarts.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
-import { harryRobes, hermione, neville, draco, mcgonagall, dumbledore, snape, quirrell, flitwick, sprout, hagrid, trelawney, clearwater, fred, george, student } from '../engine/chars/cast.js';
-import { toad, owl } from '../engine/props/props.js';
+import { harryRobes, hermione, neville, mcgonagall, dumbledore, snape, quirrell, flitwick, sprout, hagrid, trelawney, clearwater, fred, george, student } from '../engine/chars/cast.js';
+import { toad } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep11', number: 11, title: 'Potter, Harry!' });
 const NIGHT = '#0a1020';

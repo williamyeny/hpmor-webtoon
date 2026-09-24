@@ -7,12 +7,11 @@ import * as O from '../engine/bg/oxford.js';
 import * as L from '../engine/bg/london.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
-import { harry, dad, mum, mcgonagall, tom, doris, quirrell, james, lilyAdult, darkLord, makeExtra } from '../engine/chars/cast.js';
-import { envelope, seal, bookHeld, wand, pencil, tankard } from '../engine/props/props.js';
+import { harry, mcgonagall, tom, doris, quirrell, james, lilyAdult, darkLord, makeExtra } from '../engine/chars/cast.js';
+import { bookHeld, wand, pencil, tankard } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep03', number: 3, title: 'The Boy Who Lived' });
 ep.setBg(C.paper);
-const WAND = g({ transform: 'translate(0,26) rotate(180)' }, wand(120, '#4a2e1b'));
 const WAND_OUT = g({ transform: 'translate(0,4)' }, wand(120, '#4a2e1b')); // points out past the fingers when the arm is raised
 
 // =============================================================== August

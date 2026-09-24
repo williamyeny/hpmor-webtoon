@@ -2,7 +2,7 @@
 // The cold takes over and wins, and Harry *chooses* to stay cold. The low point begins.
 import { Episode, say, shout, whisper, inner, cold, cap, capC, plain, title, sfx, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
+import { g, rect, path, circle, ellipse, line, rng } from '../engine/core/svg.js';
 import * as CS from '../engine/bg/castle.js';
 import * as HG from '../engine/bg/hogwarts.js';
 import * as K from '../engine/bg/kit.js';
@@ -10,7 +10,7 @@ import * as FX from '../engine/fx/fx.js';
 import { snape, student, fred, george, mcgonagall, dad as DAD0, mum as MUM0 } from '../engine/chars/cast.js';
 const dadDef = () => DAD0, mumDef = () => MUM0;
 import { harryRaven, hermioneRaven, nevilleHuff, ernie, terry, padma, anthony, binns } from '../engine/chars/cast2.js';
-import { wand, bookOpen, bookHeld, sheet } from '../engine/props/props.js';
+import { wand, bookOpen, sheet } from '../engine/props/props.js';
 import * as P2 from '../engine/props/props2.js';
 import { dayBeat, header } from './b2.js';
 import { shot } from '../engine/core/scene.js';
@@ -143,7 +143,6 @@ ep.panel(1150, { cam: { x: 1000, y: 660, w: 660 }, under: PASSAGE, bg: '', actor
   [cap('Harry was looking at the dust ball when the assassin swept into the room.', 44, 24, { w: 640, fixed: true })], { mood: 'candle', shape: 'arch', frame: 'stone', ph: 1000, panel: { x: 90, w: 620, y: 132 }, alt: 'Professor Snape sweeps in through the dungeon doorway, robes billowing.' });
 ep.bleed(850, { cam: { x: 1150, y: 631, w: 1100 }, bg: PR({}), actors: [SN({ x: 1265, y: 900, turn: -0.3, pose: 'stand', expr: 'menace' }), ...CLASS({ h: { expr: 'horror' }, he: { expr: 'horror' }, who: { justin: { expr: 'horror' }, hannah: { expr: 'worried' } } })] },
   [cap('That was the first thought that crossed his mind. There was something quiet and deadly about the way the man stalked between the desks. Where Lucius would kill you with flawless elegance, this man would simply kill you.', 44, 40, { w: 640, fixed: true })], { alt: 'Snape stalks between the benches; the students freeze.' });
-const SDESK = () => CS.snapeDesk(1000);
 ep.panel(700, tilt(4, { cam: { x: 942, y: 429, w: 420 }, bg: PR({}), blur: 2, actors: [SN({ expr: 'cold', turn: -0.15 })] }, SHADE('#050a08', 0.5)),
   [say('Snape', 'Sit down. *Now.*', 180, 150, { w: 220, fixed: true })], { mood: 'candle' });
 ep.panel(1000, { cam: { x: 1000, y: 520, w: 560 }, bg: PR({}), actors: [SN({ pose: 'holdOne', turn: 0.15, expr: { base: 'coldSmile', eyes: { lookY: 0.5 } }, armF: { sh: 28, el: 100, hand: 'hold', prop: g({ transform: 'rotate(12)' }, sheet({ parchment: true, w: 70, h: 95 })) } }), () => CS.snapeDesk(1000, 1030), ...SIL([2031, 2032, 2033, 2034], [700, 900, 1120, 1320], 1270, 1.4)] },

@@ -1,8 +1,8 @@
 // EPISODE 14 — Minus Infinity  (source: HPMOR ch. 13, second half)
 // Harry wins the fight, loses the boy he saved, and loses the Game.
-import { Episode, say, shout, whisper, inner, cold, cap, capC, plain, sfx, M } from '../engine/core/dsl.js';
+import { Episode, say, shout, whisper, inner, cold, cap, sfx, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
+import { g, rect, path, ellipse, line, text } from '../engine/core/svg.js';
 import * as CS from '../engine/bg/castle.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';

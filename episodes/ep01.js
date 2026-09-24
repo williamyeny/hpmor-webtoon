@@ -3,12 +3,12 @@
 import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, note, title, plain, M } from '../engine/core/dsl.js';
 import { shot } from '../engine/core/scene.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text } from '../engine/core/svg.js';
+import { g, rect, path, line, text } from '../engine/core/svg.js';
 import * as O from '../engine/bg/oxford.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
 import { harry, dad, mum, figg, lilyTeen, petuniaTeen, vernon } from '../engine/chars/cast.js';
-import { envelope, sheet, seal, bookHeld, bookOpen, pencil, cat, crumpledBall, teacup } from '../engine/props/props.js';
+import { envelope, sheet, bookHeld, pencil, cat, crumpledBall } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep01', number: 1, title: 'A Day of Very Low Probability' });
 const NIGHT = '#07080d';

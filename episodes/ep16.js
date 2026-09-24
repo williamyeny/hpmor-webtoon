@@ -1,14 +1,14 @@
 // EPISODE 16 — Of Course This Means War  (source: HPMOR ch. 15)
 // Real magic turns out to be hard. Hermione is better at it. McGonagall's rules (which matter at the very end of HPMOR).
-import { Episode, say, shout, whisper, inner, cold, cap, capC, plain, title, sfx, M } from '../engine/core/dsl.js';
+import { Episode, say, shout, inner, cold, cap, capC, plain, title, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, rng, uid } from '../engine/core/svg.js';
+import { g, rect, path, circle, ellipse, line, uid } from '../engine/core/svg.js';
 import * as HG from '../engine/bg/hogwarts.js';
 import * as CS from '../engine/bg/castle.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
 import { mcgonagall, flitwick, student } from '../engine/chars/cast.js';
-import { harryRaven, hermioneRaven, terry, anthony, padma, michael, dean } from '../engine/chars/cast2.js';
+import { harryRaven, hermioneRaven, terry, anthony, padma, michael } from '../engine/chars/cast2.js';
 import { wand, bookOpen } from '../engine/props/props.js';
 import * as P2 from '../engine/props/props2.js';
 import { dayBeat, header } from './b2.js';
@@ -18,13 +18,11 @@ ep.setBg(C.paper);
 // rays for frameless (cut-out) panels: they fade out before the tile edges so nothing ends in a hard line
 const RAYS = (col, op, cx = 0.5, cy = 0.45, inner = 170) => (e) => { const id = uid('ry'); return `<defs><radialGradient id="${id}g" cx="${cx}" cy="${cy}" r="0.5"><stop offset="0.6" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient><mask id="${id}"><rect width="${e.w}" height="${e.h}" fill="url(#${id}g)"/></mask></defs>` + g({ mask: `url(#${id})` }, FX.burst(e.w, e.h, e.w * cx, e.h * cy, { col, op, inner })); };
 // a cut-out figure fades into the page below the waist (from ep08)
-const fadeOut = (y0 = 0.62, y1 = 0.97) => (e) => { const id = uid('fo'), W0 = -400, WW = e.w + 800; return `<defs><linearGradient id="${id}" gradientUnits="userSpaceOnUse" x1="0" y1="${e.h * y0}" x2="0" y2="${e.h * y1}"><stop offset="0" stop-color="${C.paper}" stop-opacity="0"/><stop offset="1" stop-color="${C.paper}" stop-opacity="1"/></linearGradient><mask id="${id}m"><rect x="${W0}" y="0" width="${WW}" height="${e.h + 400}" fill="url(#${id})"/></mask></defs>` + rect(W0, 0, WW, e.h + 400, { fill: `url(#${id})` }) + g({ mask: `url(#${id}m)` }, rect(W0, 0, WW, e.h + 400, { filter: 'url(#grain)', opacity: 0.35, style: 'mix-blend-mode:multiply' })); };
 header(ep, 'SIXTEEN', 'Of Course This Means War');
 dayBeat(ep, 'Monday.', 'If you wanted to be specific, 1:30 on Monday afternoon. Charms.');
 
 // ---------------------------------------------------------------- Charms
 const CH = () => CS.charmsRoom();
-const DESKS = (items = []) => () => CS.deskRow(1060, { h: 230, items });
 const GL = (x, st) => ({ x, fn: (xx, y) => CS.waterGlass(xx, y, 1.2, st) });
 const HS = (o = {}) => ({ def: harryRaven, id: 'harry', x: 900, y: 1060, s: 1.1, turn: 0.1, pose: 'wand', expr: 'focus', armB: { hand: 'hold', prop: wand(100) }, ...o });
 const HE = (o = {}) => ({ def: hermioneRaven, id: 'hermione', x: 1250, y: 1060, s: 1.1, turn: -0.2, pose: 'wand', expr: 'focus', armB: { hand: 'hold', prop: wand(100) }, ...o });
@@ -53,7 +51,7 @@ ep.panel(820, { cam: { on: ['harry', 'hermione'], fr: 'bust', dy: -0.5, zoom: 0.
   [cap('It was the obvious role for her in the scheme of things. Harry swallowed hard.', 44, 30, { w: 620, fixed: true }),
    say('Harry', 'Hermione? Do you have any idea what I might be doing wrong?', 240, 772, { anchor: 'bc', w: 330, fixed: true })], { mood: 'warm' });
 // Hermione turns her full helpfulness on Harry, and on the reader: no frame, just her face on the page (cut-out)
-ep.cutout(860, { cam: { head: 'hermione', hw: 0.46, hx: 0.5, hy: 0.54 }, actors: [HE({ turn: -0.1, pose: 'stand', expr: { base: 'delight', eyes: { sparkle: true } } })], behind: RAYS('#dba53a', 0.9, 0.5, 0.54, 240), over: fadeOut(0.88, 0.995) },
+ep.cutout(860, { cam: { head: 'hermione', hw: 0.46, hx: 0.5, hy: 0.54 }, actors: [HE({ turn: -0.1, pose: 'stand', expr: { base: 'delight', eyes: { sparkle: true } } })], behind: RAYS('#dba53a', 0.9, 0.5, 0.54, 240), over: FX.fadeOut(0.88, 0.995) },
   [cap('Hermione\'s eyes lit up with a terrible light of helpfulness. And something in the back of Harry\'s brain screamed in desperate humiliation.', 44, 30, { w: 620, fixed: true })], { mood: 'warm', alt: 'Hermione beams straight out of the page, eyes alight with helpfulness.' });
 ep.panel(900, { cam: { on: ['harry', 'hermione'], fr: 'bust', dy: -0.3, zoom: 0.9 }, bg: CH, actors: PAIR({ turn: -0.25, pose: 'wand', expr: 'wince' }, { x: 1620, turn: -0.4, pose: 'lecture', expr: 'smile' }, 'cool') },
   [cap('Five minutes later…', 44, 30, { w: 260, fixed: true }),
@@ -281,7 +279,7 @@ ep.panel(1000, { cam: { on: ['harry'], fr: 'waist', dy: -0.3 }, bg: COR, actors:
 ep.panel(620, { cam: { on: ['hermione'], fr: 'close' }, bg: COR, blur: 3, actors: [HEW({ expr: 'smug' })] },
   [say('Hermione', 'I did it in *three* days, actually.', 400, 64, { anchor: 'tc', w: 360, fixed: true })], { mood: 'warm' });
 // Harry leans out of the comic to share his secret with the reader (cut-out): only we can see the Time-Turner
-ep.cutout(940, { cam: { head: 'harry', hw: 0.42, hx: 0.5, hy: 0.4 }, actors: [HW({ expr: { base: 'scheme', eyes: { lookX: 0.3 } }, turn: -0.1 })], over: (e) => { const a = e.anchors.harry; return fadeOut(0.84, 0.99)(e) + (a ? K.glow(a.head[0] - a.hr * 0.2, a.head[1] + a.hr * 2.2, 60, '#ffe9a8', 0.9) + g({ transform: `translate(${a.head[0] - a.hr * 0.2},${a.head[1] + a.hr * 2.2}) scale(${a.hr / 200})` }, P2.timeTurner(1, { chain: false })) : ''); } },
+ep.cutout(940, { cam: { head: 'harry', hw: 0.42, hx: 0.5, hy: 0.4 }, actors: [HW({ expr: { base: 'scheme', eyes: { lookX: 0.3 } }, turn: -0.1 })], over: (e) => { const a = e.anchors.harry; return FX.fadeOut(0.84, 0.99)(e) + (a ? K.glow(a.head[0] - a.hr * 0.2, a.head[1] + a.hr * 2.2, 60, '#ffe9a8', 0.9) + g({ transform: `translate(${a.head[0] - a.hr * 0.2},${a.head[1] + a.hr * 2.2}) scale(${a.hr / 200})` }, P2.timeTurner(1, { chain: false })) : ''); } },
   [say('Harry', '2:47 on Saturday it is, then.', 400, 64, { anchor: 'tc', w: 340, fixed: true }),
    say('Harry', 'I\'m sure I\'ll find the time somewhere.', 630, 790, { w: 230, fixed: true })], { mood: 'warm', alt: 'Harry smiles. Something glints gold under his robes.' });
 ep.setBg('#2a2440');

@@ -1,14 +1,13 @@
 // EPISODE 12 — Self Awareness  (source: HPMOR ch. 10; ch. 12's whisper, resolutions and Quirrell's speech MOVED here)
-import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, note, title, plain, hat, M } from '../engine/core/dsl.js';
+import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, title, plain, hat, M } from '../engine/core/dsl.js';
 import { shot } from '../engine/core/scene.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
+import { g, rect, path, ellipse, line, text } from '../engine/core/svg.js';
 import * as HG from '../engine/bg/hogwarts.js';
 import * as S from '../engine/bg/station.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
-import { harryRobes, harryRaven, hermione, neville, mcgonagall, dumbledore, snape, quirrell, flitwick, sprout, hagrid, trelawney, clearwater, student, chaosLord, fred, george } from '../engine/chars/cast.js';
-import { sheet, pencil, galleon } from '../engine/props/props.js';
+import { harryRobes, harryRaven, hermione, neville, mcgonagall, dumbledore, snape, quirrell, hagrid, clearwater, student, chaosLord, fred, george } from '../engine/chars/cast.js';
 
 const ep = new Episode({ id: 'ep12', number: 12, title: 'Self Awareness' });
 const MIND = '#07080f';

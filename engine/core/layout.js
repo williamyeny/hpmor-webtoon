@@ -22,71 +22,72 @@ function panelShape(p) {
   return { d: (p.shape && shapeD(p)) || rrectD(0, 0, p.w, p.h, p.round ?? 5) };
 }
 
+// anchors from panel coordinates to tile coordinates
+function tileAnchors(ctx, p) {
+  const out = {};
+  for (const k in ctx.anchors || {}) {
+    const a = ctx.anchors[k]; const o = {};
+    for (const kk in a) o[kk] = Array.isArray(a[kk]) ? [a[kk][0] + p.x, a[kk][1] + p.y] : a[kk];
+    out[k] = o;
+  }
+  return out;
+}
+// the paper finish every panel gets: grain, mottle and the mood's edge darkening, over the rect (x, y, w, h)
+const paperFinish = (p, mood, x, y, w, h, vig) => [
+  p.grain === false ? '' : rect(x, y, w, h, { filter: 'url(#grain)', opacity: 0.55, style: 'mix-blend-mode:multiply' }),
+  p.grain === false || !vig ? '' : rect(x, y, w, h, { filter: 'url(#mottle)', opacity: 0.16, style: 'mix-blend-mode:multiply' }),
+  mood.vigOp ? rect(x, y, w, h, vig ? { fill: vig } : { fill: mood.vig, opacity: mood.vigOp * 0.55, style: 'mix-blend-mode:multiply' }) : '',
+].join('');
+// edges that fade into the page: bleeds fade top and bottom; the dissolve frame feathers every edge
+function edgeMask(p, id, w, h) {
+  if (p.border === 'bleed') {
+    const t = p.fadeTop === false, b = p.fadeBottom === false;
+    return { id: `${id}fm`, defs: `<linearGradient id="${id}fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="${t ? 1 : 0}"/><stop offset="${t ? 0 : 0.12}" stop-color="#fff"/><stop offset="${b ? 1 : 0.88}" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="${b ? 1 : 0}"/></linearGradient><mask id="${id}fm"><rect width="${w}" height="${h}" fill="url(#${id}fg)"/></mask>` };
+  }
+  const fz = p.frame === 'dissolve' ? (p.feather ?? Math.min(w, h) * 0.12) : 0;
+  if (fz) return { id: `${id}dm`, defs: `<filter id="${id}df" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="${r2(fz / 2)}"/></filter><mask id="${id}dm"><rect x="${r2(fz)}" y="${r2(fz)}" width="${r2(w - 2 * fz)}" height="${r2(h - 2 * fz)}" fill="#fff" filter="url(#${id}df)"/></mask>` };
+  return null;
+}
+// breakout: the characters step over the frame on the given edge(s) ('top' | 'bottom' | 'left' | 'right' | array).
+// They're drawn again, unclipped, only beyond that edge, with the panel's tint, grain and shading so there's no seam.
+function breakoutLayer(p, ctx, id, mood, wob) {
+  const { w, h } = p, m = 6, far = 3000;
+  const R = { top: [-far, -far, 2 * far + w, far + m], bottom: [-far, h - m, 2 * far + w, far], left: [-far, -far, far + m, 2 * far + h], right: [w - m, -far, far, 2 * far + h] };
+  const actors = p.art({ ...ctx, layer: 'actors', only: p.breakoutOnly ? [].concat(p.breakoutOnly) : null });
+  const tint = mood.tintOp ? `<filter id="${id}pt"><feFlood flood-color="${mood.tint}" flood-opacity="${Math.min(1, mood.tintOp * 1.2)}" result="f"/><feComposite in="f" in2="SourceGraphic" operator="in" result="fc"/><feBlend in="fc" in2="SourceGraphic" mode="multiply"/></filter>` : '';
+  const silhouette = `<filter id="${id}pw"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0"/></filter><mask id="${id}pm" maskUnits="userSpaceOnUse" x="-3000" y="-3000" width="${6000 + w}" height="${6000 + h}"><g filter="url(#${id}pw)">${g({ filter: wob }, actors)}</g></mask>`;
+  return `<clipPath id="${id}bo">${[].concat(p.breakout).map((e) => R[e] ? `<rect x="${R[e][0]}" y="${R[e][1]}" width="${R[e][2]}" height="${R[e][3]}"/>` : '').join('')}</clipPath>${tint}` +
+    g({ 'clip-path': `url(#${id}bo)` }, g({ filter: wob }, g({ filter: mood.desat ? `url(#${id}ds)` : null }, g({ filter: tint ? `url(#${id}pt)` : null }, actors))),
+      silhouette + g({ mask: `url(#${id}pm)` }, paperFinish(p, mood, -far, -far, 2 * far + w, 2 * far + h)));
+}
+
 export function composePanel(p, tileCtx) {
   const id = uid('p');
   const { w, h } = p;
   const mood = MOODS[p.mood || 'none'] || MOODS.none;
-  const shape = panelShape(p);
-  const ctx = { w, h, id, mood: p.mood, light: p.light ?? -0.6, tile: tileCtx };
-  // cutout: no frame and no background; the figures stand on the page itself (the reader's side of the frame)
-  if (p.cutout) ctx.layer = 'cutout';
+  const ctx = { w, h, id, mood: p.mood, light: p.light ?? -0.6, tile: tileCtx, layer: p.cutout ? 'cutout' : undefined };
   const art = typeof p.art === 'function' ? p.art(ctx) : (p.art || '');
-  if (p.cutout) {
-    const svg = `<g transform="translate(${r2(p.x)},${r2(p.y)})">${g({ filter: p.wobble === false ? null : 'url(#wobble)' }, art)}</g>`;
-    const anchors = {};
-    for (const k in ctx.anchors || {}) { const a = ctx.anchors[k]; const o = {}; for (const kk in a) o[kk] = Array.isArray(a[kk]) ? [a[kk][0] + p.x, a[kk][1] + p.y] : a[kk]; anchors[k] = o; }
-    return Object.assign(new String(svg), { anchors });
-  }
-  const bleed = p.border === 'bleed';
-  const fadeMask = bleed ? `<linearGradient id="${id}fg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#fff" stop-opacity="${p.fadeTop === false ? 1 : 0}"/><stop offset="${p.fadeTop === false ? 0 : 0.12}" stop-color="#fff"/>
-      <stop offset="${p.fadeBottom === false ? 1 : 0.88}" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="${p.fadeBottom === false ? 1 : 0}"/></linearGradient>
-      <mask id="${id}fm"><rect width="${w}" height="${h}" fill="url(#${id}fg)"/></mask>` : '';
+  const wob = p.wobble === false ? null : 'url(#wobble)';
+  // cutout: no frame and no background; the figures stand on the page itself (the reader's side of the frame)
+  if (p.cutout) return Object.assign(new String(`<g transform="translate(${r2(p.x)},${r2(p.y)})">${g({ filter: wob }, art)}</g>`), { anchors: tileAnchors(ctx, p) });
+  const shape = panelShape(p);
   const desat = mood.desat ? `<filter id="${id}ds"><feColorMatrix type="saturate" values="${1 - mood.desat}"/></filter>` : '';
   const vign = `<radialGradient id="${id}vg" cx="0.5" cy="0.48" r="0.75"><stop offset="0.55" stop-color="${mood.vig}" stop-opacity="0"/><stop offset="1" stop-color="${mood.vig}" stop-opacity="${mood.vigOp}"/></radialGradient>`;
-  const defs = `<clipPath id="${id}c"><path d="${shape.d}"/></clipPath>${fadeMask}${desat}${vign}`;
-  const wob = p.wobble === false ? null : 'url(#wobble)';
+  const edge = edgeMask(p, id, w, h);
+  const defs = `<clipPath id="${id}c"><path d="${shape.d}"/></clipPath>${p.border === 'bleed' && edge ? edge.defs : ''}${desat}${vign}`;
   const inner = g({ 'clip-path': `url(#${id}c)` },
     g({ filter: wob }, g({ filter: mood.desat ? `url(#${id}ds)` : null }, art)),
     mood.tintOp ? rect(0, 0, w, h, { fill: mood.tint, opacity: mood.tintOp, style: 'mix-blend-mode:soft-light' }) : '',
     mood.tintOp ? rect(0, 0, w, h, { fill: mood.tint, opacity: mood.tintOp * 0.6, style: 'mix-blend-mode:multiply' }) : '',
-    p.grain === false ? '' : rect(0, 0, w, h, { filter: 'url(#grain)', opacity: 0.55, style: 'mix-blend-mode:multiply' }),
-    p.grain === false ? '' : rect(0, 0, w, h, { filter: 'url(#mottle)', opacity: 0.16, style: 'mix-blend-mode:multiply' }),
-    mood.vigOp ? rect(0, 0, w, h, { fill: `url(#${id}vg)` }) : '',
+    paperFinish(p, mood, 0, 0, w, h, `url(#${id}vg)`),
     p.overlay ? (typeof p.overlay === 'function' ? p.overlay(ctx) : p.overlay) : '',
   );
-  const border = (p.border === 'none' || bleed) ? '' : (STYLES[p.frame || 'ink'] || STYLES.ink)(shape.d, p);
-  // breakout: the characters step over the frame on the given edge(s) ('top' | 'bottom' | 'left' | 'right' | array):
-  // the actors are drawn again, unclipped, but only beyond that edge (plus the border line itself)
-  let pop = '';
-  if (p.breakout && typeof p.art === 'function') {
-    const edges = [].concat(p.breakout), m = 6, far = 3000;
-    const R = { top: [-far, -far, 2 * far + w, far + m], bottom: [-far, h - m, 2 * far + w, far], left: [-far, -far, far + m, 2 * far + h], right: [w - m, -far, far, 2 * far + h] };
-    const cid = `${id}bo`;
-    const actorsOnly = p.art({ ...ctx, layer: 'actors', only: p.breakoutOnly ? [].concat(p.breakoutOnly) : null });
-    // the part beyond the frame gets the panel's mood tint too (multiplied onto the figure only), so no colour step at the edge
-    const tint = mood.tintOp ? `<filter id="${id}pt"><feFlood flood-color="${mood.tint}" flood-opacity="${Math.min(1, mood.tintOp * 1.2)}" result="f"/><feComposite in="f" in2="SourceGraphic" operator="in" result="fc"/><feBlend in="fc" in2="SourceGraphic" mode="multiply"/></filter>` : '';
-    pop = `<clipPath id="${cid}">${edges.map((e) => R[e] ? `<rect x="${R[e][0]}" y="${R[e][1]}" width="${R[e][2]}" height="${R[e][3]}"/>` : '').join('')}</clipPath>${tint}` +
-      g({ 'clip-path': `url(#${cid})` }, g({ filter: wob }, g({ filter: mood.desat ? `url(#${id}ds)` : null }, g({ filter: tint ? `url(#${id}pt)` : null }, actorsOnly))),
-        // same paper grain and edge darkening as inside the panel, laid over the figure only (masked by its silhouette)
-        `<filter id="${id}pw"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0"/></filter><mask id="${id}pm" maskUnits="userSpaceOnUse" x="-3000" y="-3000" width="${6000 + w}" height="${6000 + h}"><g filter="url(#${id}pw)">${g({ filter: wob }, actorsOnly)}</g></mask>` +
-        g({ mask: `url(#${id}pm)` },
-          p.grain === false ? '' : rect(-far, -far, 2 * far + w, 2 * far + h, { filter: 'url(#grain)', opacity: 0.55, style: 'mix-blend-mode:multiply' }),
-          mood.vigOp ? rect(-far, -far, 2 * far + w, 2 * far + h, { fill: mood.vig, opacity: mood.vigOp * 0.55, style: 'mix-blend-mode:multiply' }) : ''));
-  }
+  const body = !edge ? inner : (p.border === 'bleed' ? '' : edge.defs) + g({ mask: `url(#${edge.id})` }, inner);
+  const border = (p.border === 'none' || p.border === 'bleed') ? '' : (STYLES[p.frame || 'ink'] || STYLES.ink)(shape.d, p);
+  const pop = p.breakout && typeof p.art === 'function' ? breakoutLayer(p, ctx, id, mood, wob) : '';
   const shadow = p.shadow ? `<path d="${shape.d}" fill="#000" opacity="0.25" filter="url(#blur3)" transform="translate(4,8)"/>` : '';
-  // dissolve frame: feather every edge into the page (memories, a hug, a moment that shouldn't have hard edges)
-  const fz = p.frame === 'dissolve' ? (p.feather ?? Math.min(w, h) * 0.12) : 0;
-  const dz = fz ? `<filter id="${id}df" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="${r2(fz / 2)}"/></filter><mask id="${id}dm"><rect x="${r2(fz)}" y="${r2(fz)}" width="${r2(w - 2 * fz)}" height="${r2(h - 2 * fz)}" fill="#fff" filter="url(#${id}df)"/></mask>` : '';
-  const body = bleed ? g({ mask: `url(#${id}fm)` }, inner) : fz ? dz + g({ mask: `url(#${id}dm)` }, inner) : inner;
   const svg = `<g transform="translate(${r2(p.x)},${r2(p.y)})${p.rotate ? ` rotate(${p.rotate} ${w / 2} ${h / 2})` : ''}"><defs>${defs}</defs>${shadow}${body}${border}${pop}</g>`;
-  const anchors = {};
-  for (const k in ctx.anchors || {}) {
-    const a = ctx.anchors[k]; const o = {};
-    for (const kk in a) o[kk] = Array.isArray(a[kk]) ? [a[kk][0] + p.x, a[kk][1] + p.y] : a[kk];
-    anchors[k] = o;
-  }
-  return Object.assign(new String(svg), { anchors });
+  return Object.assign(new String(svg), { anchors: tileAnchors(ctx, p) });
 }
 
 // Resolve bubble positions/tails that refer to actors ("harry", "harry.head", "harry@1").

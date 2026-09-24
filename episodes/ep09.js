@@ -1,5 +1,5 @@
 // EPISODE 9 — The Moon  (source: HPMOR ch. 7, second half + Aftermath; the Neville prank SHOWN, from ch. 8's telling)
-import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, note, title, plain, M } from '../engine/core/dsl.js';
+import { Episode, say, shout, whisper, think, inner, cold, cap, dark, title, plain, M } from '../engine/core/dsl.js';
 import { shot } from '../engine/core/scene.js';
 import { C } from '../engine/core/palette.js';
 import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
@@ -8,7 +8,7 @@ import * as L from '../engine/bg/london.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
 import { harry, harryRobes, draco, fred, george, neville, chaosLord, makeExtra } from '../engine/chars/cast.js';
-import { comedCan, spray, earthrise, rocketPlate, bookOpen, owl, sheet, envelope, quill, galleon } from '../engine/props/props.js';
+import { comedCan, spray, earthrise, bookOpen, owl, sheet, quill, galleon } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep09', number: 9, title: 'The Moon' });
 ep.setBg(C.paper);

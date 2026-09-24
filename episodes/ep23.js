@@ -2,7 +2,7 @@
 // Harry chooses his first mentor. Dumbledore warns him what it will cost. "You win."
 import { Episode, say, shout, whisper, inner, cold, cap, capC, plain, title, sfx, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
+import { g, rect, path, circle, ellipse, line, rng } from '../engine/core/svg.js';
 import * as CS from '../engine/bg/castle.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
@@ -59,8 +59,6 @@ const TWO = (q = {}, h = {}) => [Q(q), QD, H(h)];
 // reverse angle: from the dais out toward the empty tiers of seats; Harry stands on the marble
 const REV = () => CS.defenceTiers() + [4, 3, 2, 1, 0].map((k) => CS.tierFront(k)).join('') + rect(-800, 1110, 4000, 900, { fill: '#e6e2da' }) + rect(-800, 1110, 4000, 8, { fill: '#b9b4aa' });
 const HR2 = (o = {}) => H({ x: 1150, y: 1400, turn: -0.2, ...o });          // Harry, seen from the dais
-const QF = (o = {}) => Q({ x: 640, y: 1720, s: 1.6, turn: 0.7, ...o });     // Quirrell's shoulder, foreground left
-const HF = (o = {}) => H({ x: 1440, y: 1190, s: 1.9, turn: -0.7, ...o });   // Harry's head, foreground right
 // move an actor spec so its head lands on world point [wx, wy]
 const PUT = (a, [wx, wy]) => { const [hx, hy] = HEAD({ ...a, x: 0, y: 0 }); return { ...a, x: wx - hx, y: wy - hy }; };
 // world point under panel point (px, py) for a camera
@@ -121,7 +119,6 @@ ep.multi(1170, [
 ep.panel(760, QC({ expr: { base: 'blank', brows: { raise: 0.8 } } }, 400, 470, 410, 724, { blur: 3 }),
   [say('Quirrell', 'Your… dark side…', 190, 80, { anchor: 'tc', w: 200, fixed: true }),
    cap('One of the strangest expressions Harry had seen on anyone\'s face.', 48, 600, { w: 340, fixed: true })], { mood: 'candle' });
-const HSitR = (o = {}) => HR2({ y: 1460, pose: SITG, ...o });   // sitting, seen from the dais
 ep.panel(980, { cam: PAT(HSit(), 440, 400, 780, 980), bg: ST, blur: 2, actors: [HSit({ pose: SITG, expr: 'neutral' })], over: (e) => FX.frost(e.w, e.h, 0.2, 173) },
   [say('Harry', 'It happens when I get angry. My blood runs cold, everything seems perfectly clear… In my first year at Muggle school someone tried to take away my ball, and I kicked him in the solar plexus, which I\'d read was a weak point. And I bit a maths teacher when she wouldn\'t accept my dominance.', 400, 80, { anchor: 'tc', w: 510, fixed: true })], { mood: 'candle', alt: 'Harry sits up on the floor to explain.' });
 ep.panel(960, HC({ pose: SITG, y: 1460, expr: 'think' }, 560, 470, 760, 924, { fg: { px: 30, py: 640, s: 2.3, expr: { base: 'focus', eyes: { lookY: 0.4 } } } }),

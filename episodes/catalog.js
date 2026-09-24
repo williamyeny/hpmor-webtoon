@@ -3,7 +3,6 @@ export const SERIES = {
   title: 'Harry Potter and the Methods of Rationality',
   short: 'Methods of Rationality',
   tagline: 'A boy raised on science meets a world made of magic, and refuses to stop asking why.',
-  arc: 'Book One',
 };
 // books, by the number of their first episode (the contents page puts a divider before each)
 export const BOOKS = [

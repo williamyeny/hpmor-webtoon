@@ -1,18 +1,16 @@
 // EPISODE 7 — The Winner Shall Lose  (source: HPMOR ch. 6, second half + Aftermath)
 import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, note, title, plain, M } from '../engine/core/dsl.js';
-import { shot } from '../engine/core/scene.js';
 import { C } from '../engine/core/palette.js';
 import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
 import * as L from '../engine/bg/london.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
 import { harry, mcgonagall, ollivander, dumbledore, trunkSeller, orangeMan } from '../engine/chars/cast.js';
-import { wand, pouch, coinBag, galleon, wandBox } from '../engine/props/props.js';
+import { wand, pouch, coinBag, galleon } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep07', number: 7, title: 'The Winner Shall Lose' });
 ep.setBg(C.paper);
 ep.beat(260, [plain('CHAPTER SEVEN', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('The Winner Shall Lose', 400, 170, { size: 48 })]);
-const MWAND = g({ transform: 'translate(0,26) rotate(180)' }, wand(120, '#4a2e1b'));
 const HWAND = g({ transform: 'translate(0,-4)' }, wand(104, '#8a5a2a')); // under the fist (gripped), pointing on past it
 
 // =============================================================== Ollivanders

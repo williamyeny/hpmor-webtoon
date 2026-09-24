@@ -2,14 +2,14 @@
 import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, note, title, plain, M } from '../engine/core/dsl.js';
 import { shot } from '../engine/core/scene.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
+import { g, rect, path, circle, ellipse, line, text } from '../engine/core/svg.js';
 import * as O from '../engine/bg/oxford.js';
 import * as L from '../engine/bg/london.js';
 import * as B from '../engine/bg/bank.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
-import { harry, mcgonagall, mum, della, youngHarry, goblin } from '../engine/chars/cast.js';
-import { wand, pouch, coinBag, healerKit, bookHeld } from '../engine/props/props.js';
+import { harry, mcgonagall, mum, della, youngHarry } from '../engine/chars/cast.js';
+import { wand, pouch, coinBag, healerKit } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep06', number: 6, title: 'The Planning Fallacy' });
 ep.setBg(C.paper);

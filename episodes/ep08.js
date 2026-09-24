@@ -1,6 +1,5 @@
 // EPISODE 8 — Reciprocation  (source: HPMOR ch. 7, first half; bookshop raid ADDED from summary)
-import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, note, title, plain, M } from '../engine/core/dsl.js';
-import { shot } from '../engine/core/scene.js';
+import { Episode, say, shout, whisper, think, inner, cap, capC, note, title, plain, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
 import { g, rect, path, circle, ellipse, line, text, rng, uid } from '../engine/core/svg.js';
 import * as O from '../engine/bg/oxford.js';
@@ -9,11 +8,10 @@ import * as S from '../engine/bg/station.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
 import { harry, harryRobes, dad, mum, draco, molly, fred, george, ron, ginny, stallMan, makeExtra } from '../engine/chars/cast.js';
-import { bookHeld, owl, comedCan, spray, envelope } from '../engine/props/props.js';
+import { owl, comedCan, spray } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep08', number: 8, title: 'Reciprocation' });
 // for cut-outs cropped above the feet: the figures dissolve into the page (paper colour + the gutter's grain) from y0 to y1 (0-1 of h)
-const fadeOut = (y0 = 0.62, y1 = 0.97) => (e) => { const id = uid('fo'), W0 = -400, WW = e.w + 800; return `<defs><linearGradient id="${id}" gradientUnits="userSpaceOnUse" x1="0" y1="${e.h * y0}" x2="0" y2="${e.h * y1}"><stop offset="0" stop-color="${C.paper}" stop-opacity="0"/><stop offset="1" stop-color="${C.paper}" stop-opacity="1"/></linearGradient><mask id="${id}m"><rect x="${W0}" y="0" width="${WW}" height="${e.h + 400}" fill="url(#${id})"/></mask></defs>` + rect(W0, 0, WW, e.h + 400, { fill: `url(#${id})` }) + g({ mask: `url(#${id}m)` }, rect(W0, 0, WW, e.h + 400, { filter: 'url(#grain)', opacity: 0.35, style: 'mix-blend-mode:multiply' })); };
 ep.setBg(C.paper);
 ep.beat(260, [plain('CHAPTER EIGHT', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Reciprocation', 400, 170, { size: 54 })]);
 
@@ -59,7 +57,7 @@ ep.panel(720, { cam: { on: ['mum'], fr: 'bust' }, bg: KX, blur: 2, actors: [MK({
 ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.1 }, bg: KX, blur: 2, actors: [HK({ expr: 'warm', turn: -0.4 })] },
   [say('Harry', 'Mum, I know you don\'t like the wizarding world very much. You don\'t have to come. I mean it.', 400, 125, { w: 480, fixed: true }),
    whisper('Harry', 'Besides, they all love me over there. If I have any problems, I just take off my sweatband, and I\'ll have *way* more help than I can handle.', 400, 830, { w: 520, size: 26, fixed: true })], { mood: 'day' });
-ep.cutout(900, { cam: { on: ['mum', 'harry'], fr: 'bust', padX: 1.2, dy: -0.28 }, bg: KX, ground: false, over: fadeOut(0.6, 0.9), actors: [MK({ x: 900, pose: 'kneel', expr: 'cry', turn: 0.5, armF: { sh: 40, el: 40, hand: 'open' }, armB: { sh: 65, el: 45, hand: 'open' } }), HK({ x: 1060, expr: 'teary', pose: 'stand', turn: -0.5 })] },
+ep.cutout(900, { cam: { on: ['mum', 'harry'], fr: 'bust', padX: 1.2, dy: -0.28 }, bg: KX, ground: false, over: FX.fadeOut(0.6, 0.9), actors: [MK({ x: 900, pose: 'kneel', expr: 'cry', turn: 0.5, armF: { sh: 40, el: 40, hand: 'open' }, armB: { sh: 65, el: 45, hand: 'open' } }), HK({ x: 1060, expr: 'teary', pose: 'stand', turn: -0.5 })] },
   [whisper('Mum', 'Oh, Harry. I do love you. Always remember that.', 280, 170, { w: 360, fixed: true }),
    inner('Harry', '*It\'s like she\'s afraid she\'ll never see me again.*', 400, 800, { w: 560 })], { mood: 'day', alt: 'Mum kneels and hugs Harry hard, crying.' });
 ep.panel(1020, { cam: { on: ['harry'], fr: 'close', zoom: 0.8, dy: 0.2 }, bg: KX, blur: 3, actors: [HK({ expr: 'worried', turn: -0.3 })] },
@@ -107,7 +105,7 @@ ep.panel(860, { cam: { x: 1480, y: 740, w: 1080 }, bg: KX, actors: [...WZ({ moll
   [say('Molly', 'Hello, dear. First time at Hogwarts? Ron\'s new, too—', 320, 104, { w: 420, fixed: true }),
    say('Molly', '*Harry Potter?*', 585, 262, { w: 260, fixed: true }),
    cap('Four boys, a red-headed girl, and an owl all swung round and froze in place.', 44, 730, { w: 560 })], { mood: 'day', alt: 'A family of fiery redheads (a plump mother, identical twin teenage boys, a tall skinny boy, a small girl, and a white owl) all freeze and stare at Harry.' });
-ep.cutout(780, { cam: { head: 'harry', hw: 0.3, hx: 0.5, hy: 0.55 }, bg: KX, ground: false, over: fadeOut(0.74, 0.98), actors: [HK({ x: 1100, expr: 'rant', pose: 'shrug', turn: 0.12, armF: { sh: -48, el: -75, hand: 'palm' }, armB: { sh: 48, el: 75, hand: 'palm' } })] },
+ep.cutout(780, { cam: { head: 'harry', hw: 0.3, hx: 0.5, hy: 0.55 }, bg: KX, ground: false, over: FX.fadeOut(0.74, 0.98), actors: [HK({ x: 1100, expr: 'rant', pose: 'shrug', turn: 0.12, armF: { sh: -48, el: -75, hand: 'palm' }, armB: { sh: 48, el: 75, hand: 'palm' } })] },
   [shout('Harry', 'Oh, *come on!* I bought a sweatband and everything!', 400, 138, { w: 440, size: 32, fixed: true })], { mood: 'day' });
 ep.panel(700, { cam: { on: ['fred', 'george'], fr: 'bust', dy: -0.4 }, bg: KX, blur: 2, actors: WZ({ fred: { expr: 'smug' }, george: { expr: 'smug' } }).slice(1, 3) },
   [say('Fred', 'Your picture was in the newspapers.', 270, 112, { w: 280, fixed: true })], { mood: 'day' });

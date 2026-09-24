@@ -1,13 +1,12 @@
 // EPISODE 2 — Everything I Believe Is False  (source: HPMOR ch. 2)
-import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, note, title, plain, M } from '../engine/core/dsl.js';
-import { shot } from '../engine/core/scene.js';
+import { Episode, say, shout, whisper, think, inner, cap, capC, dark, note, title, plain, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text } from '../engine/core/svg.js';
+import { g, rect, path, circle, line, text } from '../engine/core/svg.js';
 import * as O from '../engine/bg/oxford.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
 import { harry, dad, mum, mcgonagall, makeExtra } from '../engine/chars/cast.js';
-import { envelope, sheet, seal, bookHeld, cat, wand, teacup } from '../engine/props/props.js';
+import { envelope, bookHeld, cat, wand } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep02', number: 2, title: 'Everything I Believe Is False' });
 ep.setBg(C.paper);
@@ -15,7 +14,6 @@ ep.setBg(C.paper);
 // draw a panel-space effect inside the camera group (in front of the background, behind actors)
 const SCREEN = (fn) => (e) => g({ transform: `translate(${e.cam.x - e.w / 2 / e.z},${e.cam.y - e.h / 2 / e.z}) scale(${1 / e.z})` }, fn(e));
 const LR = (o = {}) => () => O.livingRoom({ letter: false, ...o });
-const WAND = g({ transform: 'translate(0,26) rotate(180)' }, wand(120, '#4a2e1b'));
 const MCG = (o = {}) => ({ def: mcgonagall, id: 'mcgonagall', x: 1010, y: 1010, turn: -0.35, expr: 'calm', ...o });
 const DAD = (o = {}) => ({ def: dad, id: 'dad', x: 730, y: 1000, turn: 0.4, ...o });
 const MUM = (o = {}) => ({ def: mum, id: 'mum', x: 1300, y: 990, turn: -0.4, ...o });
