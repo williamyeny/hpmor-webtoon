@@ -273,7 +273,7 @@ export function drawCharacter(def, opts = {}) {
   const shadeSide = light < 0 ? 1 : -1;
   const sc = T(sw * 1.5 * shadeSide, -B.torsoH * 0.5);
   layers.torso.push(g({ 'clip-path': `url(#${tid})` },
-    ellipse(sc[0], sc[1] + B.torsoH * 0.3, sw * 0.8, B.torsoH * 1.6, { fill: '#3b1f3a', opacity: 0.2 }),
+    ellipse(sc[0], sc[1] + B.torsoH * 0.3, sw * 0.8, B.torsoH * 1.6, { fill: '#3b1f3a', opacity: 0.18, filter: 'url(#blur4)' }),
     robeExtras.join(''),
     O.torsoDetail ? O.torsoDetail({ T, sw, ww, hw, tw, bt, B, lw, S, cx, R }) : ''));
   if (O.hem !== false && !O.robe) {
@@ -408,9 +408,7 @@ export function drawHead(def, o) {
   const L = o.light ?? -0.6;
   const shx = (L < 0 ? 1 : -1) * rx * 1.25 + s * rx * 0.2;
   main.push(g({ 'clip-path': `url(#${hid})` },
-    ellipse(shx, ry * 0.1, rx * 0.72, ry * 1.4, { fill: skinSh, opacity: 0.32 }),
-    ellipse(s * rx * 0.3, ry * 1.25, rx * 0.8, ry * 0.3, { fill: skinSh, opacity: 0.3 }),
-    def.hair?.shadowOnFace !== false ? ellipse(0, -ry * 0.62, rx * 1.2, ry * 0.36, { fill: skinSh, opacity: 0.35 }) : '',
+    ellipse(shx, ry * 0.1, rx * 0.8, ry * 1.5, { fill: skinSh, opacity: 0.22, filter: 'url(#blur4)' }),
     expr.cold ? path(`M${-rx},${-ry} L${rx},${-ry} L${rx},${ry * 0.2} L${-rx},${ry * 0.2}Z`, { fill: '#6d8fb0', opacity: 0.18 }) : '',
   ));
 

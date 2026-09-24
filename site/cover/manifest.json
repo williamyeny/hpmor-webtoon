@@ -1,0 +1,13 @@
+{
+ "id": "cover",
+ "title": "cover",
+ "subtitle": "",
+ "tiles": [
+  {
+   "file": "001.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": ""
+  }
+ ]
+}

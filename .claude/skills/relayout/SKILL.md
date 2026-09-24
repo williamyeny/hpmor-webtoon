@@ -7,7 +7,7 @@ Look directly at the .webp images themselves.
 ## What to check
  
 **Overlaps**
-- Balloons and captions don't cover anything important, like other balloons or captions, faces, or key action.
+- Balloons and captions don't cover anything important, like other balloons or captions, faces (hair is ok, but a 100% opacity element on the face itself is a no-go), or key action.
 - Characters don't overlap themselves wrongly, like an arm awkwardly twisted behind their back.
 - Nothing else overlaps in a way that looks wrong.
 **Text**
@@ -17,12 +17,14 @@ Look directly at the .webp images themselves.
 **Clipping**
 - Balloons and captions aren't cut off by the edge of the panel.
 **Empty space**
-- Screen real estate is at a premium. Avoid dead space; the visual weight should be roughly equal across a panel, except for stylistic reasons. 
+- Screen real estate is at a premium. Avoid dead space; the visual weight should be roughly equal across a panel. Narrowing the shot may help.
 **Details**
-- Make sure details are easy to see, not just text! You may need to do a narrower shot. 
+- Make sure details are easy to see, not just text! Again, narrowing the shot may help.
 **Also**
 - Balloon tails point at the right speaker.
 - Balloons read in a sensible order (left to right, top to bottom).
+
+There are exceptions to the rule, especially for stylistic reasons. Use your judgement for the final call.
 
 ## How to fix
 
