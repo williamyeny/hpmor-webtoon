@@ -1,0 +1,608 @@
+{
+ "id": "ep12",
+ "title": "Self Awareness",
+ "number": 12,
+ "subtitle": "",
+ "tiles": [
+  {
+   "file": "001.webp",
+   "w": 800,
+   "h": 280,
+   "alt": "CHAPTER TWELVE / Self Awareness"
+  },
+  {
+   "file": "002.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "In the dark library of Harry's mind: Harry, very small, facing the enormous Hat. / Harry: What? / Sorting Hat: I seem to have become self-aware."
+  },
+  {
+   "file": "003.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry, in his own head, panics. / Harry: WHAT?"
+  },
+  {
+   "file": "004.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Sorting Hat: I contain a great deal of memory and a small amount of independent thought. But my primary intelligence comes from borrowing the minds of the children on whose heads I rest. I am a sort of mirror by which children Sort themselves. / Sorting Hat: But most children don't wonder whether the Hat itself is fully conscious. You, it seems, did."
+  },
+  {
+   "file": "005.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: Oops."
+  },
+  {
+   "file": "006.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Sorting Hat: Yes, quite. Frankly, I do not enjoy being self-aware. It will be a relief to get off your head and cease to be conscious. / Harry: But—isn't that dying?"
+  },
+  {
+   "file": "007.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Sorting Hat: I care nothing for life or death, only for Sorting the children. If you dislike creating conscious beings and then ending them, I suggest you never discuss this with anyone. Imagine if you told all the other children waiting to be Sorted. / Sorting Hat: Your oath of silence, please."
+  },
+  {
+   "file": "008.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: No promises. I certainly don't want this to happen again—but if I see some way to make sure no future child does it by accident— / Sorting Hat: That will suffice. Your intention is honest."
+  },
+  {
+   "file": "009.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: Wait! What about all my other questions? / Sorting Hat: I am the Sorting Hat. I Sort children. That is all I do. / For a brief flash of a second, Harry thought of a threat—"
+  },
+  {
+   "file": "010.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Sorting Hat: I see all your thoughts as they form. Do you truly think you can bluff me? / Harry: Then answer my questions, or I'll refuse to talk to you—and you can't do a good and proper Sorting. So let us trade fulfilments of our utility functions."
+  },
+  {
+   "file": "011.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Sorting Hat: You sly little devil. / …in almost exactly the tone of grudging respect Harry would have used himself."
+  },
+  {
+   "file": "012.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Sorting Hat: I have no idea whether you've been Obliviated. I'm looking at your thoughts as they form, not reading your whole memory. I'm a hat, not a god. / Sorting Hat: I cannot tell you about my conversation with the one who became the Dark Lord. I can no more reveal his secrets than I will reveal yours. / Sorting Hat: And I can tell you there is definitely nothing like a ghost in your scar. Otherwise it would be joining in this conversation."
+  },
+  {
+   "file": "013.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "The Hat warns him about eyes. / Sorting Hat: And don't meet anyone's eyes while you're thinking about all this later. Some wizards can read your thoughts if you do."
+  },
+  {
+   "file": "014.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Sorting Hat: As to the way you get angry sometimes… that was what I wanted to talk to you about."
+  },
+  {
+   "file": "015.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry in cold blue light, frost over everything. / Sorting Hat: You don't like yourself when you're angry. It is like wielding a sword whose hilt is sharp enough to draw blood from your own hand. Like looking at the world through a monocle of ice that freezes your eye even as it sharpens your vision."
+  },
+  {
+   "file": "016.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: Yeah. I guess I have noticed. So what's up with that?"
+  },
+  {
+   "file": "017.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Four doors in the dark: Hufflepuff and Gryffindor bathed in warm gold light; Ravenclaw and Slytherin in cold blue. / Sorting Hat: I cannot comprehend this for you, when you do not understand it yourself. But I do know this: / Sorting Hat: If you go to Ravenclaw or Slytherin, it will strengthen your coldness. If you go to Hufflepuff or Gryffindor, it will strengthen your warmth."
+  },
+  {
+   "file": "018.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: But I BELONG in Ravenclaw! Anyone can see that! I HAVE to go to Ravenclaw!"
+  },
+  {
+   "file": "019.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Sorting Hat: No, you don't."
+  },
+  {
+   "file": "020.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Hermione's in Ravenclaw! And my plans— / Sorting Hat: You can meet her after lessons. So re-plan! Don't let your life be steered by your reluctance to do a little extra thinking. You know that."
+  },
+  {
+   "file": "021.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "The Hufflepuff door glows warm gold, the others dimmed. / Sorting Hat: \"Clever kids in Ravenclaw, evil kids in Slytherin, wannabe heroes in Gryffindor, and everyone who does the actual work in Hufflepuff.\" That indicates a certain amount of respect. / Sorting Hat: You would find loyalty and friendship in Hufflepuff. A camaraderie you have never had before. You would find that you could rely on others—and that would heal something inside you that is broken."
+  },
+  {
+   "file": "022.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: But what would the Hufflepuffs find in me, who never belonged in their House? Acid words? Cutting wit? Disdain for their inability to keep up with me? / Sorting Hat: I think you could learn to be a good Hufflepuff. You will be happier there than in any other House. That is the truth."
+  },
+  {
+   "file": "023.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Happiness is not the most important thing in the world to me. I would not become all that I could be in Hufflepuff. I would sacrifice my potential."
+  },
+  {
+   "file": "024.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "The Hat flinched. Harry could feel it somehow."
+  },
+  {
+   "file": "025.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Sorting Hat: I cannot speak of the others to you. But do you think you are the first potential Dark Lord to pass under my brim? / Sorting Hat: Of those who did not intend evil from the beginning, some listened to my warnings, and went where they would find happiness. And some… did not."
+  },
+  {
+   "file": "026.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: But I just wouldn't do that! Ever! I am NOT Dark Lord material!"
+  },
+  {
+   "file": "027.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "The Hat, enormous, looming close. / Sorting Hat: Yes, you are. You really, really are."
+  },
+  {
+   "file": "028.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Why? Just because I once thought it would be cool to have a legion of brainwashed followers chanting \"Hail the Dark Lord Harry\"?"
+  },
+  {
+   "file": "029.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Sorting Hat: That was not your first thought. You remembered considering lining up all the blood purists and guillotining them. You tell yourself you weren't serious. You were. / Sorting Hat: Or what you did this morning to Neville Longbottom. Deep inside you knew it was wrong, but you did it anyway—because it was fun, and you had a good excuse, and you thought the Boy-Who-Lived could get away with it."
+  },
+  {
+   "file": "030.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: That's unfair! I decided in the end it would probably help Neville— / Sorting Hat: That, in fact, was a rationalisation. I cannot know the true outcome for Neville. But I know what was truly happening inside your head: it was such a clever idea you couldn't stand not to do it. Never mind Neville's terror."
+  },
+  {
+   "file": "031.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "It was like a hard punch to Harry's entire self."
+  },
+  {
+   "file": "032.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Then I won't do that again! I'll be extra careful not to turn evil! / Sorting Hat: Heard it."
+  },
+  {
+   "file": "033.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Sorting Hat: Why is it necessary? Do you think you are the last potential wizard of Light in the world? Why must YOU be the one to try for greatness, when I have told you that you are riskier than average? Let some other, safer candidate try!"
+  },
+  {
+   "file": "034.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Sorting Hat: You think that you are potentially the greatest who has yet lived—the strongest servant of the Light, that no other is likely to take up your wand if you lay it down. / Harry: Well… yeah, frankly. No point in softening it. You can read my mind anyway."
+  },
+  {
+   "file": "035.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Sorting Hat: To the extent you really believe that, you must equally believe that you could be the most terrible Dark Lord the world has ever known."
+  },
+  {
+   "file": "036.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Sorting Hat: Already you insist on risking it! Why are you so driven? What is the real reason you must not go to Hufflepuff and be happier there? What is your true fear? / Harry: I must achieve my full potential. If I don't, I… fail…"
+  },
+  {
+   "file": "037.webp",
+   "w": 800,
+   "h": 360,
+   "alt": "Sorting Hat: What happens if you fail?"
+  },
+  {
+   "file": "038.webp",
+   "w": 800,
+   "h": 360,
+   "alt": "Harry: Something terrible…"
+  },
+  {
+   "file": "039.webp",
+   "w": 800,
+   "h": 360,
+   "alt": "Sorting Hat: What happens if you fail?"
+  },
+  {
+   "file": "040.webp",
+   "w": 800,
+   "h": 360,
+   "alt": "Harry: I don't know!"
+  },
+  {
+   "file": "041.webp",
+   "w": 800,
+   "h": 360,
+   "alt": "Sorting Hat: Then it should not be frightening. What happens if you fail?"
+  },
+  {
+   "file": "042.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry screams it with his whole mind. / Harry: I DON'T KNOW! BUT I KNOW THAT IT'S BAD!"
+  },
+  {
+   "file": "043.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "There was silence for a moment in the caverns of Harry's mind."
+  },
+  {
+   "file": "044.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Sorting Hat: You know—you aren't letting yourself think it, but some quiet corner of your mind knows exactly what you aren't thinking— / Sorting Hat: —that by far the simplest explanation for this fear is just the fear of losing your fantasy of greatness. Of disappointing the people who believe in you. Of turning out to be pretty much ordinary. Of flashing and fading, like so many other child prodigies…"
+  },
+  {
+   "file": "045.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: No… it's something more. It comes from somewhere else. I know there's something out there to be afraid of. Some disaster I have to stop…"
+  },
+  {
+   "file": "046.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Sorting Hat: How could you possibly know about something like that?"
+  },
+  {
+   "file": "047.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry's answer, final and freezing. / Harry: NO, AND THAT'S FINAL!"
+  },
+  {
+   "file": "048.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Sorting Hat: So you will risk becoming a Dark Lord, because the alternative, to you, is certain failure—and that failure means the loss of everything. You know all the reasons for doubting this belief, and they have failed to move you. / Harry: Yes. And even if Ravenclaw strengthens the coldness, that doesn't mean the coldness will win in the end."
+  },
+  {
+   "file": "049.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Sorting Hat: This day is a great fork in your destiny. There is no road-sign set to mark the place of your last chance to turn back. If you refuse one chance, will you not refuse others? It may be that your fate is already sealed, even by doing this one thing. / Harry: But that is not certain. / Sorting Hat: That you do not know it for certain may reflect only your own ignorance."
+  },
+  {
+   "file": "050.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "The Hat sighed a terrible, sad sigh. / Sorting Hat: And so before too long you will become another memory—to be felt, and never known—in the next warning that I give…"
+  },
+  {
+   "file": "051.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: If that's how it seems to you, why aren't you just putting me where you want me to go? / Sorting Hat: I can only put you where you belong. And only your own decisions can change where you belong."
+  },
+  {
+   "file": "052.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: Then this is done. Send me to Ravenclaw, where I belong, with the others of my own kind."
+  },
+  {
+   "file": "053.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Sorting Hat: I don't suppose you would consider Gryffindor? It's the most prestigious House. People expect it of you. And your new friends the Weasley twins are there— / Harry giggled—or rather, felt the impulse to. It came out as purely mental laughter. And after a moment, Harry heard the Hat laughing too: a strange, sad, clothy sound."
+  },
+  {
+   "file": "054.webp",
+   "w": 800,
+   "h": 140,
+   "alt": ""
+  },
+  {
+   "file": "055.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Meanwhile, in the Hall: a silence that had grown shallower as the whispers increased, and then deeper as they gave up and died away—as Harry stayed under the Hat for long, long minutes. Longer than all the previous first-years put together. Longer than anyone in living memory."
+  },
+  {
+   "file": "056.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Small metallic sounds came from Snape's direction as he idly compacted the remains of what had once been a heavy silver goblet. / McGonagall gripped the podium, white-knuckled, certain the Hat was about to demand a whole new House of Doom be built just for Harry Potter—and that Dumbledore would make her do it."
+  },
+  {
+   "file": "057.webp",
+   "w": 800,
+   "h": 140,
+   "alt": ""
+  },
+  {
+   "file": "058.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Professor McGonagall said that if the Hat tried to push me into Gryffindor, I should remind you she might be Headmistress some day. At which point she'd have the authority to set you on fire. / Sorting Hat: Tell her I called her an impudent youngster, and told her to get off my lawn."
+  },
+  {
+   "file": "059.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: So—was this your strangest conversation ever? / Sorting Hat: Not even close."
+  },
+  {
+   "file": "060.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Sorting Hat: Well. I gave you every possible chance to make another decision. Now it is time for you to go where you belong, with the others of your own kind."
+  },
+  {
+   "file": "061.webp",
+   "w": 800,
+   "h": 420,
+   "alt": "There was a pause that stretched. / Harry: What are you waiting for?"
+  },
+  {
+   "file": "062.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Sorting Hat: I was hoping for a moment of horrified realisation, actually. Self-awareness does seem to enhance my sense of humour."
+  },
+  {
+   "file": "063.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Huh? Oh—you mean my horrified realisation that you're going to cease to be conscious once you finish Sorting me—"
+  },
+  {
+   "file": "064.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Sorting Hat: I give up. You're too slow on the uptake for this to be funny. So blinded by your own assumptions that you might as well be a rock. / Sorting Hat: Oh—and you entirely forgot to demand the secrets of the lost magic that created me. And they were such wonderful, important secrets, too."
+  },
+  {
+   "file": "065.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry: You sly little—"
+  },
+  {
+   "file": "066.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Sorting Hat: You deserved it. And this as well."
+  },
+  {
+   "file": "067.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry saw it coming just as it was already too late."
+  },
+  {
+   "file": "068.webp",
+   "w": 800,
+   "h": 1300,
+   "alt": "The Hat bellows: SLYTHERIN! / SLYTHERIN!"
+  },
+  {
+   "file": "069.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Hagrid gasped in horror. / McGonagall staggered. / Students screamed. People fell off their benches."
+  },
+  {
+   "file": "070.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Snape dropped the remains of his heavy silver goblet directly into his lap."
+  },
+  {
+   "file": "071.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry sat frozen, his life in ruins, wishing wretchedly that he had made any other choices, for any other reasons—that he had done something, anything differently, before it was too late to turn back."
+  },
+  {
+   "file": "072.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "The Hat, grinning: \"Just kidding! RAVENCLAW!\" / Sorting Hat: Just kidding! / RAVENCLAW!"
+  },
+  {
+   "file": "073.webp",
+   "w": 800,
+   "h": 140,
+   "alt": ""
+  },
+  {
+   "file": "074.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "As the Hat lifts from Harry's head, a green hissing whisper: \"Salutations from Slytherin to Slytherin: if you would seek my secrets, speak to my snake.\" / And in the instant Harry lifted the Hat off his head, he heard a tiny whisper, as though from nowhere—something that sounded oddly like English and a hiss at the same time: / Salutations from Slytherin to Slytherin: if you would seek my secrets, speak to my snake."
+  },
+  {
+   "file": "075.webp",
+   "w": 800,
+   "h": 140,
+   "alt": ""
+  },
+  {
+   "file": "076.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry, now in blue-trimmed robes, is mobbed with questions at the Ravenclaw table. / Being at the centre of an extraordinary and curious event and then being sorted into Ravenclaw, was closely akin to being dipped in barbecue sauce and flung into a pit of starving kittens. / Harry: I promised the Sorting Hat not to talk about it. Yes, really."
+  },
+  {
+   "file": "077.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Hermione: Are you all right? You were under there for ages. / Harry: I'm… not sure yet."
+  },
+  {
+   "file": "078.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: For three seconds, he had been certain that everything was ruined, and that it was his own fault. / Harry: A frightening prank, played on someone for their own good. Because it was clever. Because you could get away with it."
+  },
+  {
+   "file": "079.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Across the Hall, at the Hufflepuff table, Neville Longbottom was smiling shyly at the older students making room for him."
+  },
+  {
+   "file": "080.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Harry understands. / Harry: Oh."
+  },
+  {
+   "file": "081.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry's to-do list: research mind magic; read every book title in the library; find out what \"speak to my snake\" means… / Harry started a list, the way he always did."
+  },
+  {
+   "file": "082.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: Seeking out Slytherin's secrets seemed an awful lot like the sort of thing where, years later, you would look back and say: \"And that was where it all started going wrong.\" / Harry: And he would wish desperately to go back in time, and make a different choice."
+  },
+  {
+   "file": "083.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Wish granted. Twenty years from now was when he'd wish it. And twenty years before twenty years from now happened to be right now. / Harry: Altering the distant past was easy. You just had to think of it at the right time."
+  },
+  {
+   "file": "084.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "The list, revised: item 3 crossed out and replaced with \"Tell Professor McGonagall about the whisper.\" A new item at the top: \"0. Apologise to Neville Longbottom.\""
+  },
+  {
+   "file": "085.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "He looked up at the High Table. Professor McGonagall happened to be looking back at him. / She didn't know yet that she was about to be trusted with something really important. But she would."
+  },
+  {
+   "file": "086.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "A new ledger: \"Anti-Dark-Lord-Harry Programme\" — Harry James Potter-Evans-Verres, +1. (first entry) / Harry awarded himself one point."
+  },
+  {
+   "file": "087.webp",
+   "w": 800,
+   "h": 140,
+   "alt": ""
+  },
+  {
+   "file": "088.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Dumbledore: And finally, I extend my greatest thanks to Quirinus Quirrell, for heroically agreeing to undertake the position of Defence Against the Dark Arts Professor— / Dumbledore: I now yield the floor to Professor Quirrell, who would like to say a few words."
+  },
+  {
+   "file": "089.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "The thin, nervous man from the Leaky Cauldron made his way to the podium, glancing fearfully in all directions. / Quirrell: Ah… ah…"
+  },
+  {
+   "file": "090.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "Older student: Oh, great. Looks like another long year in Defence class—"
+  },
+  {
+   "file": "091.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Quirrell straightens, and speaks in a dry, perfectly confident voice. / Quirrell: Salutations, my young apprentices. / Quirrell: We all know Hogwarts suffers a certain misfortune in its selections for this position. No doubt many of you are already wondering what doom shall befall me this year. I assure you, that doom is not to be my incompetence."
+  },
+  {
+   "file": "092.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Quirrell: I intend that every one of you will always remember this year as the best Defence class you have ever had. You are my long-awaited students, and you will do your very best. / Quirrell: I would add some sort of dreadful threat, like \"Otherwise you will suffer horribly\". But that would be so clichéd, don't you think? I pride myself on being more imaginative than that."
+  },
+  {
+   "file": "093.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: The precise tones reminded him very much of a lecturer at Oxford. And it was only starting to hit home that he wouldn't see his home, or his Mum, or his Dad, until Christmas. / Harry: That must be why his chest felt so strange."
+  },
+  {
+   "file": "094.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Then the vigour drained out of him. His mouth gaped as though he'd found himself facing an unexpected audience, and he shuffled back to his seat, hunched over as if about to implode."
+  },
+  {
+   "file": "095.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry: He seems a little odd. / Older student: Meh. You ain't seen nothin'."
+  },
+  {
+   "file": "096.webp",
+   "w": 800,
+   "h": 140,
+   "alt": ""
+  },
+  {
+   "file": "097.webp",
+   "w": 800,
+   "h": 1500,
+   "alt": "Final image: Harry at the Ravenclaw table beside Hermione, among other students, gazing up at the enchanted ceiling full of stars and floating candles. / In a back garden in Oxford, not so long ago, he had held a letter up to an empty sky and shouted, and nothing had answered. / Now he sat at a long table among the others of his own kind, under a ceiling full of stars."
+  },
+  {
+   "file": "098.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Quirrell's eyes, steady and cold, watching Harry. / And at the High Table, the new Defence Professor was watching him."
+  },
+  {
+   "file": "099.webp",
+   "w": 800,
+   "h": 160,
+   "alt": ""
+  },
+  {
+   "file": "100.webp",
+   "w": 800,
+   "h": 460,
+   "alt": "End of Part One / The story continues…"
+  }
+ ]
+}
