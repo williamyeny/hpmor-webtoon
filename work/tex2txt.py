@@ -1,0 +1,20 @@
+import re,sys,pathlib
+src=pathlib.Path('hpmor/chapters'); out=pathlib.Path('work/source-text')
+for f in sorted(src.glob('hpmor-chapter-*.tex')):
+    t=f.read_text()
+    t=re.sub(r'(?<!\\)%.*','',t)
+    t=re.sub(r'\\authorsnotetext\{(?:[^{}]|\{[^{}]*\})*\}','',t)
+    t=t.replace('\\authorsnotefootnotemark{}','')
+    t=re.sub(r'\\lettrine\{(.)\}\{([^}]*)\}',r'\1\2',t)
+    t=re.sub(r'\\chapter\{([^}]*)\}',r'# \1',t)
+    for cmd in ['emph','textit','textbf','textsc','uline','headline','scream','parsel','inlineSpell','spell','prophesy','letterMeta','shout','textsl','Quirrell','abbrev']:
+        t=re.sub(r'\\'+cmd+r'\{((?:[^{}]|\{[^{}]*\})*)\}',r'*\1*',t)
+    t=t.replace('~',' ')
+    t=re.sub(r'\\(begin|end)\{[^}]*\}(\[[^]]*\])?','',t)
+    t=re.sub(r'\\vspace\*?\{[^}]*\}','',t)
+    t=re.sub(r'\\(noindent|centering|hfill|par|newline|medskip|bigskip|smallskip)\b','',t)
+    t=re.sub(r'\\[a-zA-Z]+\*?(\[[^]]*\])?\{((?:[^{}]|\{[^{}]*\})*)\}',r'\2',t)
+    t=re.sub(r'\\([a-zA-Z]+)\b','',t)
+    t=t.replace('\\\\','\n')
+    t=re.sub(r'\n{3,}','\n\n',t)
+    (out/(f.stem.replace('hpmor-chapter-','ch')+'.txt')).write_text(t)

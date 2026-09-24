@@ -1,0 +1,5 @@
+node_modules/
+hpmor/
+.DS_Store
+work/tests/*.png
+scratch/
