@@ -89,8 +89,10 @@ a{color:inherit}
   padding:.65rem 1.4rem;border-radius:999px;box-shadow:0 1px 2px rgba(0,0,0,.4) inset,0 2px 0 #5d0f13,0 5px 14px rgba(90,20,20,.35)}
 .arc{font-family:'IM Fell English SC',serif;text-align:center;color:var(--ink2);margin:1.6rem 0 .4rem;font-size:1rem;letter-spacing:.5px}
 .arc:before,.arc:after{content:'';display:inline-block;width:3rem;height:1px;background:#bda981;vertical-align:middle;margin:0 .7rem}
-ol.eps{list-style:none;margin:0;padding:0 0 2rem}
+ol.eps{list-style:none;margin:0;padding:0}
 ol.eps li{border-bottom:1px dashed #cdb88d}
+/* no divider after a book's last episode: the next book's heading (or the card's end) follows */
+ol.eps li:last-child{border-bottom:none}
 ol.eps a,ol.eps .soon{display:flex;gap:.9rem;align-items:center;padding:.9rem 1.2rem;text-decoration:none}
 ol.eps .n{flex:none;width:2.4rem;height:2.4rem;font-size:1rem}
 ol.eps .tt{font-family:'IM Fell English',serif;font-size:1.2rem;line-height:1.2}
