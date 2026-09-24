@@ -19,8 +19,8 @@
   {
    "file": "003.webp",
    "w": 800,
-   "h": 840,
-   "alt": "Harry at breakfast, eating toast far too fast, dreaming of dungeons. / Dungeons! In Hogwarts! Harry's imagination was already sketching the chasms, narrow bridges, torch-lit sconces and patches of glowing moss. Would there be rats? Would there be dragons?"
+   "h": 1000,
+   "alt": "Harry at breakfast, grinning, dreaming of a proper dungeon: a chasm, a narrow rope bridge, torches, glowing moss, and eyes in the dark below. / Dungeons! In Hogwarts! Harry's imagination was already sketching the chasms, narrow bridges, torch-lit sconces and patches of glowing moss. Would there be rats? Would there be dragons?"
   },
   {
    "file": "004.webp",
@@ -32,7 +32,7 @@
    "file": "005.webp",
    "w": 800,
    "h": 620,
-   "alt": "S1: Pardon me… / S2: Harry? About Snape… / Harry: Yes, I'll try not to draw his attention…"
+   "alt": "Warning after warning. / S1: Pardon me… / S2: Harry? About Snape… / Harry: Yes, I'll try not to draw his attention…"
   },
   {
    "file": "006.webp",
@@ -74,13 +74,13 @@
    "file": "012.webp",
    "w": 800,
    "h": 1230,
-   "alt": "The actual Potions classroom cheered him up considerably. Strange preserved creatures floated in huge jars on every shelf. A fifty-centimetre spider that looked like an Acromantula, but was too small to be one. A large dust ball with eyes and feet."
+   "alt": "Shelves of murky jars with floating things in them, and a preserved giant spider. Harry gazes up in delight; Hermione refuses to look at the spider. / The actual Potions classroom cheered him up considerably. Strange preserved creatures floated in huge jars on every shelf. A fifty-centimetre spider that looked like an Acromantula, but was too small to be one. A large dust ball with eyes and feet."
   },
   {
    "file": "013.webp",
    "w": 800,
-   "h": 1100,
-   "alt": "Professor Snape sweeps in, robes billowing, towering over the rows of students. / Harry was looking at the dust ball when the assassin swept into the room."
+   "h": 1150,
+   "alt": "Professor Snape sweeps in through the dungeon doorway, robes billowing. / Harry was looking at the dust ball when the assassin swept into the room."
   },
   {
    "file": "014.webp",
@@ -182,7 +182,7 @@
    "file": "030.webp",
    "w": 800,
    "h": 1100,
-   "alt": "Frost spreads across the panel. Harry's face goes still and cold. / There was only a slight, only a very faint burning sensation in the back of Harry's throat, and no moisture at all in his eyes. If crying was not an effective strategy for destroying this Potions professor, then there was no point in crying. / Slowly, Harry sat up very straight. All his blood seemed to have been drained away and replaced with liquid nitrogen."
+   "alt": "Frost spreads across the panel, and its edges turn to ice. Harry's face goes still and cold. / There was only a slight, only a very faint burning sensation in the back of Harry's throat, and no moisture at all in his eyes. If crying was not an effective strategy for destroying this Potions professor, then there was no point in crying. / Slowly, Harry sat up very straight. All his blood seemed to have been drained away and replaced with liquid nitrogen."
   },
   {
    "file": "031.webp",
@@ -260,7 +260,7 @@
    "file": "043.webp",
    "w": 800,
    "h": 460,
-   "alt": "Snape's black eyes, very close. / Harry stared into Snape's cold gaze. And remembered the Hat's warning: don't meet anyone's eyes…"
+   "alt": "Snape's black eyes, very close, in an eye-shaped panel. / Harry stared into Snape's cold gaze. And remembered the Hat's warning: don't meet anyone's eyes…"
   },
   {
    "file": "044.webp",
@@ -271,8 +271,8 @@
   {
    "file": "045.webp",
    "w": 800,
-   "h": 760,
-   "alt": "Harry, eyes wide with realisation. / Harry: So it was you the Sorting Hat was warning me about!"
+   "h": 960,
+   "alt": "Harry, eyes wide with realisation, in a panel that bursts outward. / Harry: So it was you the Sorting Hat was warning me about!"
   },
   {
    "file": "046.webp",
@@ -296,7 +296,7 @@
    "file": "049.webp",
    "w": 800,
    "h": 700,
-   "alt": "Harry: You are making me feel threatened. And that is a mistake. / Snape: What do you intend to do about it, little boy?"
+   "alt": "Harry and Snape face each other across a slanted seam: cold blue on one side, candlelight on the other. / Harry: You are making me feel threatened. And that is a mistake. / Snape: What do you intend to do about it, little boy?"
   },
   {
    "file": "050.webp",
@@ -338,7 +338,7 @@
    "file": "056.webp",
    "w": 800,
    "h": 900,
-   "alt": "A sheet of paper in marker: I'M LEAVING / DOES ANYONE ELSE / NEED TO GET OUT? / He held up his message. Not to Snape. To the rest of the class."
+   "alt": "Held up to the reader, with no frame around it: a sheet of paper in marker, I'M LEAVING / DOES ANYONE ELSE / NEED TO GET OUT? / He held up his message. Not to Snape. To the rest of the class."
   },
   {
    "file": "057.webp",
@@ -367,8 +367,8 @@
   {
    "file": "061.webp",
    "w": 800,
-   "h": 620,
-   "alt": "An empty cupboard, dark inside. / The cupboard was empty."
+   "h": 700,
+   "alt": "The panel is the cupboard's open doorway, its door swung out onto the page. Inside: nothing. An empty cupboard. / The cupboard was empty."
   },
   {
    "file": "062.webp",
@@ -398,7 +398,7 @@
    "file": "066.webp",
    "w": 800,
    "h": 1000,
-   "alt": "His imagination showed him his parents yelling at him after he was expelled. / And Professor McGonagall, disappointed in him."
+   "alt": "Imagined, in two thought-clouds: his parents shouting; McGonagall's sad face. / His imagination showed him his parents yelling at him after he was expelled. / And Professor McGonagall, disappointed in him."
   },
   {
    "file": "067.webp",
@@ -416,7 +416,7 @@
    "file": "069.webp",
    "w": 800,
    "h": 1000,
-   "alt": "Remembered: Snape's smirk. / So he cast his thoughts back, and remembered the burning humiliation… / Snape: Tut, tut. Fame clearly isn't everything. / Snape: Ten points from Ravenclaw for backchat."
+   "alt": "Remembered: Snape's smirk, the memory's edges fading into the page. / So he cast his thoughts back, and remembered the burning humiliation… / Snape: Tut, tut. Fame clearly isn't everything. / Snape: Ten points from Ravenclaw for backchat."
   },
   {
    "file": "070.webp",

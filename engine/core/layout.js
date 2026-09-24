@@ -67,7 +67,7 @@ export function composePanel(p, tileCtx) {
     const edges = [].concat(p.breakout), m = 6, far = 3000;
     const R = { top: [-far, -far, 2 * far + w, far + m], bottom: [-far, h - m, 2 * far + w, far], left: [-far, -far, far + m, 2 * far + h], right: [w - m, -far, far, 2 * far + h] };
     const cid = `${id}bo`;
-    const actorsOnly = p.art({ ...ctx, layer: 'actors' });
+    const actorsOnly = p.art({ ...ctx, layer: 'actors', only: p.breakoutOnly ? [].concat(p.breakoutOnly) : null });
     // the part beyond the frame gets the panel's mood tint too (multiplied onto the figure only), so no colour step at the edge
     const tint = mood.tintOp ? `<filter id="${id}pt"><feFlood flood-color="${mood.tint}" flood-opacity="${Math.min(1, mood.tintOp * 1.2)}" result="f"/><feComposite in="f" in2="SourceGraphic" operator="in" result="fc"/><feBlend in="fc" in2="SourceGraphic" mode="multiply"/></filter>` : '';
     pop = `<clipPath id="${cid}">${edges.map((e) => R[e] ? `<rect x="${R[e][0]}" y="${R[e][1]}" width="${R[e][2]}" height="${R[e][3]}"/>` : '').join('')}</clipPath>${tint}` +

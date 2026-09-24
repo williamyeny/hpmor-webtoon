@@ -69,7 +69,7 @@ export function shot(o) {
       if (typeof a === 'function') { actorsSvg.push({ fn: a }); continue; }
       const p = place(a.def, { light: ctx.light, ...a });
       placed.push({ ...a, s: a.s ?? 1, anchors: p.anchors, y: a.y ?? 0 });
-      actorsSvg.push({ svg: p.svg });
+      actorsSvg.push({ svg: p.svg, id: a.id });
     }
     let cam = o.cam || { x: 400, y: 300, w: ctx.w };
     if (cam.head) cam = headCam(cam, placed, ctx);
@@ -96,7 +96,8 @@ export function shot(o) {
     const blur = o.blur ? `url(#blur${o.blur})` : null;
     const acts = actorsSvg.map((a) => a.fn ? a.fn(env) : a.svg).join('');
     // cutout panels (layout.js) draw no background: the figures stand on the page, with a soft shadow at their feet
-    if (ctx.layer === 'actors') return g({ transform: T }, acts);
+    // breakout layer: only the named actors when the panel says breakoutOnly (layout.js)
+    if (ctx.layer === 'actors') return g({ transform: T }, ctx.only ? actorsSvg.filter((a) => a.id && ctx.only.includes(a.id)).map((a) => a.svg).join('') : acts);
     if (ctx.layer === 'cutout') {
       const ground = o.ground === false ? '' : placed.map((p) => ellipse(p.x ?? 0, (p.y ?? 0) + 4, p.def.body.headRx * 1.5 * p.s, p.def.body.headRx * 0.28 * p.s, { fill: '#3a2a1a', opacity: 0.22, filter: 'url(#blur3)' })).join('');
       return behind + g({ transform: T }, ground, mid, acts, fg) + over;

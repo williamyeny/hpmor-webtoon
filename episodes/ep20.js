@@ -40,8 +40,34 @@ dayBeat(ep, 'Friday.', 'If you wanted to be specific, 8:05 on Friday morning. Br
 const BT = () => HG.hallTable('r', { day: true });
 const HB = (o = {}) => ({ def: harryRaven, id: 'harry', x: 800, y: 1050, s: 1.1, turn: 0.1, pose: 'stand', expr: 'neutral', ...o });
 const FRONT = () => HG.tableFront();
-ep.panel(840, { cam: { x: 950, y: 750, w: 620 }, bg: BT, actors: [HB({ expr: { base: 'bigGrin', eyes: { sparkle: true } } }), { def: padma, id: 'padma', x: 1100, y: 1050, s: 1.05, turn: -0.3, expr: 'neutral' }, FRONT] },
-  [cap('Dungeons! In Hogwarts! Harry\'s imagination was already sketching the chasms, narrow bridges, torch-lit sconces and patches of glowing moss. Would there be rats? Would there be *dragons?*', 44, 30, { w: 620, fixed: true })], { mood: 'day', alt: 'Harry at breakfast, eating toast far too fast, dreaming of dungeons.' });
+// Harry's daydream of a proper dungeon (panel coords): a chasm, a narrow bridge, torches, glowing moss, and something in the dark
+const DREAM = (ctx) => {
+  const { w, h } = ctx, id = 'ep20dr';
+  let o = `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2a38"/><stop offset="0.6" stop-color="#14141c"/><stop offset="1" stop-color="#050508"/></linearGradient></defs>` + rect(0, 0, w, h, { fill: `url(#${id})` });
+  const ink = { stroke: C.ink, 'stroke-width': 3, 'stroke-linejoin': 'round' };
+  // far wall arches
+  for (const x of [0.3, 0.5, 0.7]) o += path(`M${w * x - 40},${h * 0.62} L${w * x - 40},${h * 0.3} Q${w * x},${h * 0.18} ${w * x + 40},${h * 0.3} L${w * x + 40},${h * 0.62}Z`, { fill: '#0e0e16', stroke: '#3a3a4a', 'stroke-width': 3 });
+  // the depths: two eyes
+  o += K.glow(w * 0.56, h * 0.86, 70, '#ff8a2a', 0.35) + ellipse(w * 0.53, h * 0.86, 9, 5, { fill: '#ffb03a' }) + ellipse(w * 0.59, h * 0.86, 9, 5, { fill: '#ffb03a' });
+  // cliffs
+  o += path(`M0,${h * 0.46} L${w * 0.2},${h * 0.5} L${w * 0.26},${h * 0.62} L${w * 0.22},${h} L0,${h}Z`, { fill: '#4a4540', ...ink });
+  o += path(`M${w},${h * 0.44} L${w * 0.8},${h * 0.49} L${w * 0.74},${h * 0.6} L${w * 0.79},${h} L${w},${h}Z`, { fill: '#4a4540', ...ink });
+  // narrow rope bridge
+  const y0 = h * 0.5, sag = h * 0.1;
+  o += path(`M${w * 0.2},${y0} Q${w * 0.5},${y0 + sag * 2} ${w * 0.8},${y0 - 2}`, { fill: 'none', stroke: '#7a5a38', 'stroke-width': 12 });
+  for (let i = 1; i < 16; i++) { const t = i / 16, x = w * (0.2 + 0.6 * t), y = (1 - t) * (1 - t) * y0 + 2 * t * (1 - t) * (y0 + sag * 2) + t * t * (y0 - 2); o += line(x, y - 8, x, y + 6, { stroke: '#3a2618', 'stroke-width': 2 }) + line(x, y - 4, x, y - 44, { stroke: '#6a5a44', 'stroke-width': 1.6 }); }
+  o += path(`M${w * 0.2},${y0 - 46} Q${w * 0.5},${y0 + sag * 2 - 46} ${w * 0.8},${y0 - 48}`, { fill: 'none', stroke: '#8a7a5a', 'stroke-width': 2.4 });
+  // torches
+  o += CS.torch(w * 0.13, h * 0.42, 0.8) + CS.torch(w * 0.87, h * 0.4, 0.8);
+  // glowing moss
+  const R = rng(2003);
+  for (let i = 0; i < 14; i++) { const x = i < 7 ? R.range(0.02, 0.2) * w : R.range(0.8, 0.98) * w, y = R.range(0.55, 0.95) * h; o += K.glow(x, y, 26, '#8aff9a', 0.4) + ellipse(x, y, R.range(8, 16), R.range(4, 7), { fill: '#9af0a0' }); }
+  return o;
+};
+ep.multi(1000, [
+  { x: M, y: 18, w: 752, h: 964, mood: 'day', art: { cam: { x: 950, y: 643, w: 620 }, bg: BT, actors: [HB({ expr: { base: 'bigGrin', eyes: { sparkle: true } } }), { def: padma, id: 'padma', x: 1100, y: 1050, s: 1.05, turn: -0.3, expr: 'neutral' }, FRONT] } },
+  { x: 250, y: 236, w: 530, h: 316, shape: 'cloud', seed: 5, art: DREAM },
+], [cap('Dungeons! In Hogwarts! Harry\'s imagination was already sketching the chasms, narrow bridges, torch-lit sconces and patches of glowing moss. Would there be rats? Would there be *dragons?*', 44, 30, { w: 620, fixed: true })], { alt: 'Harry at breakfast, grinning, dreaming of a proper dungeon: a chasm, a narrow rope bridge, torches, glowing moss, and eyes in the dark below.', over: () => [[238, 506, 7], [262, 478, 10], [293, 456, 13]].map(([x, y, r]) => circle(x, y, r, { fill: '#f6efdc', stroke: C.ink, 'stroke-width': 3 })).join('') });
 ep.panel(1220, { cam: { x: 660, y: 490, w: 640 }, bg: BT, actors: [HB({ turn: -0.3, expr: 'neutral' }), { def: ernie, id: 'ernie', x: 520, y: 1050, s: 1.05, turn: 0.4, pose: 'stand', expr: 'worried' }, FRONT] },
   [say('Ernie', 'Neville thought I should warn you. Be careful of the Potions Master today. The older Hufflepuffs say Professor Snape can be really nasty to people he doesn\'t like, and he doesn\'t like most people who aren\'t Slytherins.', 400, 76, { anchor: 'tc', w: 520, fixed: true }),
    say('Ernie', 'Just keep your head down, and don\'t give him any reason to notice you.', 240, 440, { anchor: 'tc', w: 330, fixed: true }),
@@ -98,8 +124,23 @@ ep.multi(1230, [
   { x: 408, y: 738, w: 368, h: 474, mood: 'candle', art: { cam: { on: ['hermione'], fr: 'close', dy: 0.2 }, bg: PR({}), blur: 2, actors: CLASS({ he: { expr: { base: 'worried', eyes: { lookX: -1, lookY: 0.4 } }, turn: -0.5 } }) } },
 ], [cap('The actual Potions classroom cheered him up considerably. Strange preserved creatures floated in huge jars on every shelf. A fifty-centimetre spider that *looked* like an Acromantula, but was too small to *be* one. A large dust ball with eyes and feet.', 44, 36, { w: 620, fixed: true })],
   { alt: 'Shelves of murky jars with floating things in them, and a preserved giant spider. Harry gazes up in delight; Hermione refuses to look at the spider.' });
-ep.bleed(1100, tilt(-6, { cam: { x: 1000, y: 700, w: 800 }, bg: PR({}), blur: 2, actors: [{ def: snape, id: 'snape', x: 1000, y: 1100, s: 1.45, turn: 0.1, pose: 'walk', expr: 'menace' }, ...SIL([2021, 2022, 2023, 2024, 2025], [520, 760, 1000, 1240, 1480], 1400, 1.35)] }, SHADE('#050a08', 0.45)),
-  [cap('Harry was looking at the dust ball when the assassin swept into the room.', 44, 40, { w: 620, fixed: true })], { mood: 'candle', fadeBottom: false, alt: 'Professor Snape sweeps in, robes billowing, towering over the rows of students.' });
+// the assassin comes through the dungeon doorway: the panel IS the doorway
+// the dungeon passage behind the doorway, receding into the dark (panel coords)
+const PASSAGE = (e) => {
+  const { w, h } = e, vx = w / 2, vy = h * 0.46;
+  let o = rect(0, 0, w, h, { fill: '#050706' });
+  for (let k = 0; k < 7; k++) {
+    const t = Math.pow(0.72, k), aw = w * 1.1 * t, ah = h * 1.05 * t, x0 = vx - aw / 2, y0 = vy - ah * 0.55, sp = y0 + aw * 0.5;
+    const shade = ['#3e3a33', '#34302a', '#2a2722', '#201e1a', '#171613', '#100f0d', '#0a0a09'][k];
+    o += path(`M${x0},${y0 + ah} L${x0},${sp} A${aw / 2},${aw / 2} 0 0 1 ${x0 + aw},${sp} L${x0 + aw},${y0 + ah}Z`, { fill: shade, stroke: '#0a0908', 'stroke-width': 3 * t + 1 });
+  }
+  o += path(`M0,${h} L${vx - w * 0.07},${vy + h * 0.2} L${vx + w * 0.07},${vy + h * 0.2} L${w},${h}Z`, { fill: '#2a2620' }) + path(`M0,${h} L${vx - w * 0.07},${vy + h * 0.2} L${vx + w * 0.07},${vy + h * 0.2} L${w},${h}Z`, { fill: '#050706', opacity: 0.3 });
+  for (let k = 1; k < 5; k++) { const t = Math.pow(0.6, k), y = vy + h * 0.2 + (h - vy - h * 0.2) * t; o += line(vx - (vx - 0) * t - w * 0.07 * (1 - t), y, vx + (w - vx) * t + w * 0.07 * (1 - t), y, { stroke: '#0a0908', 'stroke-width': 2, opacity: 0.6 }); }
+  o += CS.torch(w * 0.1, h * 0.44, 0.75) + CS.torch(w * 0.9, h * 0.44, 0.75);
+  return o;
+};
+ep.panel(1150, { cam: { x: 1000, y: 660, w: 660 }, under: PASSAGE, bg: '', actors: [{ def: snape, id: 'snape', x: 1000, y: 1060, s: 1.45, turn: 0.1, pose: 'walk', expr: 'menace' }], over: SHADE('#050a08', 0.4) },
+  [cap('Harry was looking at the dust ball when the assassin swept into the room.', 44, 24, { w: 640, fixed: true })], { mood: 'candle', shape: 'arch', frame: 'stone', ph: 1000, panel: { x: 90, w: 620, y: 132 }, alt: 'Professor Snape sweeps in through the dungeon doorway, robes billowing.' });
 ep.bleed(850, { cam: { x: 1150, y: 631, w: 1100 }, bg: PR({}), actors: [SN({ x: 1265, y: 900, turn: -0.3, pose: 'stand', expr: 'menace' }), ...CLASS({ h: { expr: 'horror' }, he: { expr: 'horror' }, who: { justin: { expr: 'horror' }, hannah: { expr: 'worried' } } })] },
   [cap('That was the first thought that crossed his mind. There was something quiet and deadly about the way the man stalked between the desks. Where Lucius would kill you with flawless elegance, this man would simply kill you.', 44, 40, { w: 640, fixed: true })], { alt: 'Snape stalks between the benches; the students freeze.' });
 const SDESK = () => CS.snapeDesk(1000);
@@ -146,9 +187,9 @@ ep.panel(820, { cam: { x: 880, y: 560, w: 640 }, bg: PR({}), blur: 2, actors: CL
 ep.panel(560, tilt(3, { cam: { x: 863, y: 454, w: 560 }, bg: PR({}), blur: 3, actors: [SN({ turn: -0.7, expr: { base: 'cold', eyes: { open: 0.35 } } })] }, SHADE('#050a08', 0.45)),
   [say('Snape', 'Shut up, Potter. Ten more points from Ravenclaw. The rest of you, open your books to page three.', 240, 270, { w: 320, fixed: true })], { mood: 'candle' });
 // the cold arrives
-ep.panel(1100, { cam: { on: ['harry'], fr: 'close', dy: 0.15 }, bg: PR({}), blur: 3, actors: CLASS({ h: { expr: 'cold' } }), over: (e) => FX.frost(e.w, e.h, 0.55, 93) },
-  [cap('There was only a slight, only a very faint burning sensation in the back of Harry\'s throat, and no moisture at all in his eyes. If crying was not an effective strategy for destroying this Potions professor, then there was no point in crying.', 44, 30, { w: 620, fixed: true }),
-   cap('Slowly, Harry sat up very straight. All his blood seemed to have been drained away and replaced with liquid nitrogen.', 44, 860, { w: 620, fixed: true })], { mood: 'cold', alt: 'Frost spreads across the panel. Harry\'s face goes still and cold.' });
+ep.panel(1100, { cam: { on: ['harry'], fr: 'close', dy: 0.05 }, bg: PR({}), blur: 3, actors: CLASS({ h: { expr: 'cold' } }), over: (e) => FX.frost(e.w, e.h, 0.55, 93) },
+  [cap('There was only a slight, only a very faint burning sensation in the back of Harry\'s throat, and no moisture at all in his eyes. If crying was not an effective strategy for destroying this Potions professor, then there was no point in crying.', 80, 60, { w: 575, fixed: true }),
+   cap('Slowly, Harry sat up very straight. All his blood seemed to have been drained away and replaced with liquid nitrogen.', 80, 870, { w: 575, fixed: true })], { mood: 'cold', shape: 'jag', jag: 14, seed: 30, frame: 'glow', glow: '#cfe6ff', alt: 'Frost spreads across the panel, and its edges turn to ice. Harry\'s face goes still and cold.' });
 ep.panel(900, { cam: { x: 800, y: 723, w: 520 }, bg: PR({}), blur: 2, actors: CLASS({ he: { x: 890, expr: { base: 'pleading', eyes: { lookX: 0.7 } }, turn: -0.5, poseMod: { lean: 10 } }, who: { justin: { x: 1150 } }, h: { expr: { base: 'cold', eyes: { lookX: 0.6, lookY: -0.3 } }, turn: 0.25 } }), over: (e) => FX.frost(e.w, e.h, 0.55, 94) },
   [whisper('Hermione', 'Harry, stop, please, it\'s all right, we won\'t count it—', 480, 80, { anchor: 'tc', w: 360, fixed: true }),
    say('Snape', 'Talking in class, Granger? Three—', 400, 862, { anchor: 'bc', w: 420, fixed: true, noTail: true })], { mood: 'candle' });
@@ -176,11 +217,11 @@ ep.panel(620, tilt(-4, { cam: { x: 1030, y: 440, w: 480 }, bg: PR({}), blur: 3, 
 ep.panel(1120, { cam: { x: 810, y: 480, w: 620 }, bg: PR({}), actors: [SN({ x: 940, turn: -0.4, pose: 'crossArms', poseMod: { lean: 18, headTilt: 8 }, expr: { base: 'menace', eyes: { lookX: -0.5, lookY: 0.6 } } }), ...CLASS({ h: { expr: { base: 'cold', eyes: { lookX: 0.5, lookY: -0.6 } }, turn: 0.4 } })], over: (e) => FX.frost(e.w, e.h, 0.72, 104) },
   [say('Snape', 'And I find it increasingly unlikely that you were not Sorted into Slytherin. How did you stay out of my House? Ah, yes: the Hat claimed it was *joking.* For the first time in recorded history. What were you *really* chatting about with the Sorting Hat, Potter?', 400, 50, { anchor: 'tc', w: 580, fixed: true, shape: 'box' })], { mood: 'candle', alt: 'Snape leans down over Harry\'s bench.' });
 ep.panel(460, { cam: { on: ['snape'], fr: 'eyes', zoom: 1.45, dy: -0.04 }, bg: PR({}), actors: [SN({ x: 1150, turn: -0.05, expr: { base: 'menace', eyes: { open: 0.75, lookX: 0, lookY: 0 } } })], over: (e) => FX.doom(e.w, e.h, 105) + SHADE('#000', 0.35)(e) },
-  [cap('Harry stared into Snape\'s cold gaze. And remembered the Hat\'s warning: *don\'t meet anyone\'s eyes*…', 44, 22, { w: 640, fixed: true })], { mood: 'candle', y: 130, ph: 312, alt: 'Snape\'s black eyes, very close.' });
+  [cap('Harry stared into Snape\'s cold gaze. And remembered the Hat\'s warning: *don\'t meet anyone\'s eyes*…', 44, 22, { w: 640, fixed: true })], { mood: 'candle', y: 118, ph: 330, shape: 'eye', alt: 'Snape\'s black eyes, very close, in an eye-shaped panel.' });
 ep.panel(620, { cam: { x: 700, y: 765, w: 430 }, bg: PR({}), blur: 2, actors: CLASS({ h: { expr: { base: 'worried', eyes: { lookX: -0.9, lookY: 0.8 }, sweat: true }, turn: -0.1 } }), over: (e) => FX.frost(e.w, e.h, 0.35, 106) },
   [say('Snape', 'You seem oddly reluctant to look me in the eyes, Potter!', 400, 70, { anchor: 'tc', w: 460, fixed: true, noTail: true })], { mood: 'candle' });
-ep.panel(760, { cam: { x: 700, y: 720, w: 420 }, bg: PR({}), blur: 3, actors: CLASS({ h: { expr: { base: 'shock', eyes: { lookX: 0.3, lookY: -0.4 } }, turn: 0.25 } }), behind: (e) => FX.burst(e.w, e.h, e.w * 0.5, e.h * 0.66, { n: 70, op: 0.35 }) },
-  [shout('Harry', '*So it was* you *the Sorting Hat was warning me about!*', 400, 80, { anchor: 'tc', w: 480, fixed: true })], { mood: 'candle', alt: 'Harry, eyes wide with realisation.' });
+ep.panel(960, { cam: { head: 'harry', hw: 0.34, hx: 0.5, hy: 0.54 }, bg: PR({}), blur: 3, actors: CLASS({ who: { hannah: { x: -3000 }, justin: { x: 3000 } }, h: { expr: { base: 'shock', eyes: { lookX: 0.3, lookY: -0.4 } }, turn: 0.25 } }), behind: (e) => FX.burst(e.w, e.h, e.w * 0.5, e.h * 0.52, { n: 70, op: 0.35 }) },
+  [shout('Harry', '*So it was* you *the Sorting Hat was warning me about!*', 400, 92, { anchor: 'tc', w: 480, fixed: true })], { mood: 'candle', shape: 'burst', points: 18, seed: 45, panel: { y: 236 }, ph: 712, alt: 'Harry, eyes wide with realisation, in a panel that bursts outward.' });
 // the door
 ep.panel(900, { cam: { x: 800, y: 695, w: 1000 }, bg: PR({}), actors: [SN({ x: 1200, turn: -0.4, expr: { base: 'angry', eyes: { lookX: -0.6, lookY: 0.4 } } }), ...CLASS({ h: { x: -900 }, who: { padma: { expr: 'gasp', turn: -0.3 }, hannah: { expr: 'gasp', turn: -0.4 }, justin: { expr: 'gasp', turn: -0.4 } }, he: { expr: 'horror', turn: -0.4 } }), { def: harryRaven, id: 'harry', x: 700, y: 1400, s: 1.55, turn: -0.4, pose: 'walk', expr: 'cold' }], over: (e) => FX.frost(e.w, e.h, 0.72, 106) },
   [cold('Harry', 'I have no intention of letting one unprofessional teacher ruin my time at Hogwarts. I think I\'ll take my leave of this class, and hire a tutor. If any of you decide you don\'t care to be bullied by this man, my sessions will be open to you.', 340, 68, { anchor: 'tc', w: 460, fixed: true })], { mood: 'cold', alt: 'Harry walks out from the benches toward the door. The class stares.' });
@@ -190,11 +231,12 @@ ep.panel(900, { cam: { x: -280, y: 640, w: 700 }, bg: PR({}), actors: [{ def: ha
 ep.panel(760, { cam: { x: 25, y: 680, w: 800 }, bg: PR({}), actors: [{ def: harryRaven, id: 'harry', x: -250, y: 960, s: 1.1, turn: 0.5, pose: 'stand', expr: 'cold' }, SN({ x: 300, turn: -0.5, pose: 'crossArms', expr: 'coldSmile' })], over: (e) => FX.frost(e.w, e.h, 0.75, 108) },
   [cold('Harry', 'Open this door.', 220, 120, { w: 240, fixed: true }),
    say('Snape', 'No.', 460, 250, { w: 100, fixed: true })], { mood: 'cold' });
+// Harry and Snape square off across one diagonal seam
 ep.multi(700, [
-  { x: M, y: 18, w: 368, h: 664, mood: 'cold', art: { cam: { x: -250, y: 619, w: 300 }, bg: PR({}), blur: 3, actors: [{ def: harryRaven, id: 'harry', x: -250, y: 960, s: 1.1, turn: 0.3, expr: { base: 'cold', glint: true } }], over: (e) => FX.frost(e.w, e.h, 0.8, 109) } },
-  { x: 408, y: 18, w: 368, h: 664, mood: 'candle', art: tilt(4, { cam: { x: 300, y: 390, w: 300 }, bg: PR({}), blur: 3, actors: [SN({ x: 300, turn: -0.35, expr: { base: 'smug', eyes: { lookX: -0.6, lookY: 0.5 } } })] }, SHADE('#050a08', 0.5)) },
-], [cold('Harry', 'You are making me feel threatened. And that is a mistake.', 208, 60, { anchor: 'tc', w: 290, fixed: true }),
-   say('Snape', 'What do you intend to do about it, little boy?', 592, 64, { anchor: 'tc', w: 240, fixed: true })]);
+  { x: M, y: 18, w: 406, h: 664, shape: 'poly', pts: [[0, 0], [1, 0], [0.803, 1], [0, 1]], mood: 'cold', art: { cam: { x: -250, y: 619, w: 330 }, bg: PR({}), blur: 3, actors: [{ def: harryRaven, id: 'harry', x: -250, y: 960, s: 1.1, turn: 0.3, expr: { base: 'cold', glint: true } }], over: (e) => FX.frost(e.w, e.h, 0.8, 109) } },
+  { x: 366, y: 18, w: 410, h: 664, shape: 'poly', pts: [[0.195, 0], [1, 0], [1, 1], [0, 1]], mood: 'candle', art: tilt(4, { cam: { x: 300, y: 390, w: 334 }, bg: PR({}), blur: 3, actors: [SN({ x: 300, turn: -0.35, expr: { base: 'smug', eyes: { lookX: -0.6, lookY: 0.5 } } })] }, SHADE('#050a08', 0.5)) },
+], [cold('Harry', 'You are making me feel threatened. And that is a mistake.', 208, 70, { anchor: 'tc', w: 290, fixed: true }),
+   say('Snape', 'What do you intend to do about it, little boy?', 618, 70, { anchor: 'tc', w: 230, fixed: true })], { alt: 'Harry and Snape face each other across a slanted seam: cold blue on one side, candlelight on the other.' });
 ep.bleed(920, tilt(-5, { cam: { x: 850, y: 840, w: 700 }, bg: PR({}), actors: [SN({ x: 1090, y: 1190, turn: -0.4, expr: 'shock' }), { def: harryRaven, id: 'harry', x: 720, y: 1250, s: 1.5, turn: 0.35, pose: 'stand', poseMod: { armB: { sh: 100, el: 78, hand: 'fist', front: true } }, expr: { base: 'cold', eyes: { lookX: 0.5 } } }], behind: (e) => FX.burst(e.w, e.h, e.w * 0.3, e.h * 0.42, { n: 50, op: 0.18 }) }, (e) => FX.frost(e.w, e.h, 0.85, 109)),
   [cap('Harry took six long strides back into the room. Then he drew himself upright, and raised his right hand in one terrible motion, fingers poised to snap.', 44, 40, { w: 640, fixed: true })], { mood: 'cold', alt: 'Harry, towering in the aisle, one hand raised to snap. Snape stares.' });
 ep.panel(900, { cam: { x: 1230, y: 747, w: 520 }, bg: PR({}), blur: 2, actors: CLASS({ he: { pose: 'panic', seat: undefined, y: 1080, expr: 'yell', turn: -0.3 }, n: { pose: 'cower', seat: undefined, y: 1210, expr: 'horror', turn: -0.2 }, who: { ernie: { expr: 'horror' } } }), over: (e) => FX.frost(e.w, e.h, 0.4, 110) },
@@ -212,8 +254,17 @@ ep.panel(1000, { cam: { x: 480, y: 742, w: 340 }, bg: PR({}), blur: 2, actors: [
   [cap('Harry tried to say "What?", and found that no sound came out.', 44, 30, { w: 620, fixed: true }),
    cap('He put his hand into his pouch and tried to say "marker". Nothing, of course. Then it occurred to him to spell out M-A-R-K-E-R with his fingers. It worked. P-A-D. A pad of paper.', 44, 800, { w: 620, fixed: true })], { mood: 'candle' });
 const HOLDERS = (cx, cy, w, h) => [-1, 1].map((k) => { const x = cx + k * (w / 2 - 40), y = cy + h / 2 - 20; return path(`M${x - 46},${y + 420} L${x - 38},${y + 20} Q${x},${y - 10} ${x + 38},${y + 20} L${x + 46},${y + 420}Z`, { fill: '#1c1e2a', stroke: C.ink, 'stroke-width': 3 }) + ellipse(x, y - 4, 26, 30, { fill: '#f0c9a6', stroke: C.ink, 'stroke-width': 3 }) + ellipse(x - k * 18, y - 30, 12, 20, { fill: '#f0c9a6', stroke: C.ink, 'stroke-width': 3 }); }).join('');
-ep.bleed(900, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#1e2422' }) + g({ transform: `translate(${ctx.w / 2},${ctx.h / 2 + 30})` }, P2.sign(["I'M LEAVING", 'DOES ANYONE ELSE', 'NEED TO GET OUT?'], 620, 460)) + HOLDERS(ctx.w / 2, ctx.h / 2 + 30, 620, 460),
-  [cap('He held up his message. Not to Snape. To the rest of the class.', 44, 40, { w: 560, fixed: true })], { alt: 'A sheet of paper in marker: I\'M LEAVING / DOES ANYONE ELSE / NEED TO GET OUT?' });
+// the sign, held up to the class, and so to the reader: no frame, just the paper and Harry's hands on the page (sleeves fade out below)
+const SIGNUP = (ctx) => {
+  const cx = ctx.w / 2, cy = ctx.h / 2 + 30, sw = 620, sh = 460, id = 'ep20sg';
+  const fade = `<defs><linearGradient id="${id}" gradientUnits="userSpaceOnUse" x1="0" y1="${cy + sh / 2}" x2="0" y2="${ctx.h}"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><mask id="${id}m"><rect x="-100" y="-100" width="${ctx.w + 200}" height="${ctx.h + 200}" fill="url(#${id})"/></mask></defs>`;
+  return fade + g({ transform: `rotate(-2 ${cx} ${cy})` },
+    rect(cx - sw / 2 + 10, cy - sh / 2 + 16, sw, sh, { fill: '#3a2a1a', opacity: 0.25, filter: 'url(#blur3)' }),
+    g({ transform: `translate(${cx},${cy})` }, P2.sign(["I'M LEAVING", 'DOES ANYONE ELSE', 'NEED TO GET OUT?'], sw, sh)),
+    g({ mask: `url(#${id}m)` }, HOLDERS(cx, cy, sw, sh)));
+};
+ep.cutout(900, SIGNUP,
+  [cap('He held up his message. Not to Snape. To the rest of the class.', 44, 40, { w: 560, fixed: true })], { alt: 'Held up to the reader, with no frame around it: a sheet of paper in marker, I\'M LEAVING / DOES ANYONE ELSE / NEED TO GET OUT?' });
 ep.panel(800, { cam: { x: 850, y: 700, w: 1200 }, bg: PR({}), actors: [SN({ x: 1350, turn: -0.4, expr: { base: 'cold', eyes: { lookX: -0.6, lookY: 0.3 } } }), ...CLASS({ h: { x: -900 }, who: { padma: { expr: 'gasp', turn: -0.3 }, hannah: { expr: 'worried', turn: -0.4 }, justin: { expr: 'gasp', turn: -0.4 }, ernie: { expr: 'worried', turn: -0.4 }, terry: { expr: 'gasp', turn: -0.5 } }, he: { expr: 'worried', turn: -0.4 }, n: { expr: 'gasp', turn: -0.4 } }), { def: harryRaven, id: 'harry', x: 420, y: 1400, s: 1.45, turn: 0.5, pose: 'hold', expr: 'cold', armB: { sh: 60, el: 40, hand: 'hold', prop: g({ transform: 'rotate(92) translate(30,-2)' }, P2.sign(["I'M LEAVING", 'DOES ANYONE ELSE', 'NEED TO GET OUT?'], 170, 125)) } }], over: (e) => FX.frost(e.w, e.h, 0.6, 113) },
   [say('Snape', 'You\'re insane, Potter.', 540, 100, { w: 240, fixed: true }),
    cap('Aside from that, no-one spoke.', 44, 230, { w: 400, fixed: true })], { mood: 'candle', alt: 'Harry faces the class, holding up his sign. Snape watches from the front.' });
@@ -225,8 +276,23 @@ ep.panel(760, { cam: { x: 1650, y: 560, w: 700 }, bg: PR({}) },
    sfx('snap', 470, 600, { size: 54, font: "'Caveat', cursive", rot: -8 })], { mood: 'candle', alt: 'The closed cupboard door.' });
 ep.panel(820, tilt(4, { cam: { x: 1330, y: 520, w: 640 }, bg: PR({ cupboard: 'open' }), actors: [SN({ x: 1250, y: 920, turn: 0.4, pose: 'reach', expr: { base: 'angry', mouth: { type: 'shout', open: 0.5 } }, armB: { sh: 90, el: 10, hand: 'hold' } })] }, SHADE('#050a08', 0.4)),
   [cap('The Potions Master\'s face was completely enraged. He crossed the room in terrible strides and yanked open the cupboard door.', 44, 30, { w: 620, fixed: true })], { mood: 'candle', alt: 'Snape wrenches the cupboard door open.' });
-ep.panel(620, { cam: { x: 1650, y: 590, w: 440 }, bg: PR({ cupboard: 'open' }), over: SHADE('#000', 0.3) },
-  [capC('The cupboard was empty.', 400, 300, { w: 360, fixed: true })], { mood: 'candle', alt: 'An empty cupboard, dark inside.' });
+// the panel IS the cupboard's doorway (its door swung open onto the page): we look in with Snape
+const CUPIN = (e) => {
+  const { w, h } = e, bx = w * 0.16, by = h * 0.1, bw = w - 2 * bx, bh = h * 0.72;
+  const ink = { stroke: C.ink, 'stroke-width': 2.5, 'stroke-linejoin': 'round' };
+  return rect(0, 0, w, h, { fill: '#1a120d' }) +
+    path(`M0,0 L${bx},${by} L${bx},${by + bh} L0,${h}Z`, { fill: '#2a1c12', ...ink }) + path(`M${w},0 L${w - bx},${by} L${w - bx},${by + bh} L${w},${h}Z`, { fill: '#22170f', ...ink }) +
+    path(`M0,0 L${w},0 L${w - bx},${by} L${bx},${by}Z`, { fill: '#140d09', ...ink }) + path(`M0,${h} L${bx},${by + bh} L${w - bx},${by + bh} L${w},${h}Z`, { fill: '#3a2818', ...ink }) +
+    rect(bx, by, bw, bh, { fill: '#241810', ...ink }) + [0.25, 0.5, 0.75].map((t) => line(bx + bw * t, by, bx + bw * t, by + bh, { stroke: '#140d09', 'stroke-width': 2 })).join('') +
+    // light from the classroom falling in over the empty floor
+    path(`M${w * 0.1},${h} L${bx + bw * 0.1},${by + bh} L${bx + bw * 0.8},${by + bh} L${w * 0.95},${h}Z`, { fill: '#f0c080', opacity: 0.12 });
+};
+const CUPDOOR = () => { const x0 = 250, y0 = 40, h = 600, x1 = 120; return path(`M${x0},${y0} L${x1},${y0 - 30} L${x1},${y0 + h + 30} L${x0},${y0 + h}Z`, { fill: '#4a3624', stroke: C.ink, 'stroke-width': 3.5, 'stroke-linejoin': 'round' }) +
+  path(`M${x1 + 22},${y0 - 2} L${x0 - 18},${y0 + 22} L${x0 - 18},${y0 + h * 0.46} L${x1 + 22},${y0 + h * 0.46 - 6}Z`, { fill: '#3a2a1a', stroke: C.ink, 'stroke-width': 2 }) +
+  path(`M${x1 + 22},${y0 + h * 0.54 + 6} L${x0 - 18},${y0 + h * 0.54} L${x0 - 18},${y0 + h - 22} L${x1 + 22},${y0 + h + 2}Z`, { fill: '#3a2a1a', stroke: C.ink, 'stroke-width': 2 }) +
+  circle(x1 + 12, y0 + h * 0.5, 8, { fill: '#b08d45', stroke: C.ink, 'stroke-width': 2 }); };
+ep.panel(700, (e) => CUPIN(e) + SHADE('#000', 0.45)(e),
+  [capC('The cupboard was empty.', 668, 350, { w: 190, fixed: true })], { mood: 'candle', frame: 'wood', panel: { x: 250, y: 40, w: 300, h: 600 }, tile: { over: CUPDOOR }, alt: 'The panel is the cupboard\'s open doorway, its door swung out onto the page. Inside: nothing. An empty cupboard.' });
 
 // ---------------------------------------------------------------- one hour earlier
 ep.setBg('#1c2233');
@@ -240,10 +306,10 @@ ep.bleed(1100, { cam: { x: 1000, y: 560, w: 1100 }, bg: () => CS.corridor({ seed
 ep.panel(950, { cam: { x: 1000, y: 536, w: 320 }, bg: () => CS.corridor({ seed: 43, windows: [], torches: [500, 1500], dim: true }), blur: 3, actors: [{ def: harryRaven, id: 'harry', x: 1000, y: 900, s: 1.1, turn: 0, expr: 'horror' }], over: (e) => rect(0, 0, e.w, e.h, { fill: '#dfe8f5', opacity: 0.18 }) },
   [cap('Under the Cloak, his face was frozen in absolute horror. He had antagonised a teacher three orders of magnitude beyond anything he\'d ever managed before. He had threatened to walk out of Hogwarts. He had lost all of Ravenclaw\'s points. And then he had used the Time-Turner…', 44, 30, { w: 620, fixed: true })], { mood: 'candle' });
 ep.multi(1000, [
-  { x: M, y: 18, w: 752, h: 480, mood: 'sepia', art: { cam: { x: 965, y: 514, w: 520 }, bg: () => rect(-500, -500, 3000, 2000, { fill: '#b9a27a' }), actors: [{ def: dadDef(), id: 'dad', x: 850, y: 1000, turn: 0.3, pose: 'fists', expr: 'yell' }, { def: mumDef(), id: 'mum', x: 1050, y: 1010, turn: -0.3, pose: 'stand', expr: 'cry' }], over: (e) => FX.memoryEdge(e.w, e.h) } },
-  { x: M, y: 514, w: 752, h: 468, mood: 'sepia', art: { cam: { x: 892, y: 516, w: 440 }, bg: () => rect(-500, -500, 3000, 2000, { fill: '#b9a27a' }), actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1000, y: 1000, turn: 0, expr: 'sad' }], over: (e) => FX.memoryEdge(e.w, e.h) } },
+  { x: M, y: 18, w: 752, h: 480, shape: 'cloud', seed: 66, mood: 'sepia', art: { cam: { x: 965, y: 525, w: 520 }, bg: () => rect(-500, -500, 3000, 2000, { fill: '#b9a27a' }), actors: [{ def: dadDef(), id: 'dad', x: 850, y: 1000, turn: 0.3, pose: 'fists', expr: 'yell' }, { def: mumDef(), id: 'mum', x: 1050, y: 1010, turn: -0.3, pose: 'stand', expr: 'cry' }] } },
+  { x: M, y: 514, w: 752, h: 468, shape: 'cloud', seed: 67, mood: 'sepia', art: { cam: { x: 915, y: 512, w: 500 }, bg: () => rect(-500, -500, 3000, 2000, { fill: '#b9a27a' }), actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1000, y: 1000, turn: 0, expr: 'sad' }] } },
 ], [cap('His imagination showed him his parents yelling at him after he was expelled.', 36, 30, { w: 300, fixed: true }), cap('And Professor McGonagall, disappointed in him.', 36, 526, { w: 370, fixed: true })],
-  { alt: 'Imagined: his parents shouting; McGonagall\'s sad face.' });
+  { alt: 'Imagined, in two thought-clouds: his parents shouting; McGonagall\'s sad face.' });
 ep.panel(1100, { cam: { on: ['harry'], fr: 'bust', dy: -0.1 }, bg: () => CS.corridor({ seed: 43, windows: [], torches: [500, 1500], dim: true }), blur: 2, actors: [{ def: harryRaven, id: 'harry', x: 1000, y: 900, s: 1.1, turn: 0, pose: 'panic', expr: 'cry' }], over: (e) => rect(0, 0, e.w, e.h, { fill: '#dfe8f5', opacity: 0.18 }) },
   [cap('It was just too painful, and he couldn\'t bear it, and he *couldn\'t think of any way to save himself…*', 44, 30, { w: 620, fixed: true }),
    cap('The thought Harry allowed himself to think was that if getting angry had landed him in all this trouble, then maybe when he was angry he\'d think of a way out. Things seemed clearer, somehow, when he was angry.', 44, 740, { w: 620, fixed: true })], { mood: 'candle' });
@@ -252,7 +318,7 @@ ep.panel(760, { cam: { head: 'harry', hw: 0.95, hx: 0.5, hy: 0.56 }, bg: () => C
 ep.panel(1000, { cam: { x: 1072, y: 456, w: 360 }, bg: PR({}), blur: 3, actors: [SN({ x: 1150, turn: -0.25, expr: { base: 'smug', eyes: { lookX: -0.5, lookY: 0.4 } } })], over: (e) => FX.memoryEdge(e.w, e.h) + FX.frost(e.w, e.h, 0.45, 111) },
   [cap('So he cast his thoughts back, and remembered the burning humiliation…', 44, 30, { w: 620, fixed: true }),
    say('Snape', '*Tut, tut. Fame clearly isn\'t everything.*', 200, 330, { w: 250, fixed: true }),
-   say('Snape', '*Ten points from Ravenclaw for backchat.*', 210, 640, { w: 250, fixed: true })], { mood: 'sepia', alt: 'Remembered: Snape\'s smirk.' });
+   say('Snape', '*Ten points from Ravenclaw for backchat.*', 210, 640, { w: 250, fixed: true })], { mood: 'sepia', frame: 'dissolve', feather: 60, alt: 'Remembered: Snape\'s smirk, the memory\'s edges fading into the page.' });
 ep.bleed(1100, { cam: { x: 1085, y: 651, w: 420 }, bg: () => CS.corridor({ seed: 43, windows: [], torches: [500, 1500], dim: true }), actors: [{ def: harryRaven, id: 'harry', x: 1000, y: 900, s: 1.1, turn: 0, expr: 'cold' }], over: (e) => FX.frost(e.w, e.h, 0.85, 113) + rect(0, 0, e.w, e.h, { fill: '#0c1428', opacity: 0.25 }) },
   [cap('The calming cold washed back through his veins like a wave returning from some breaker. And Harry let out his breath.', 44, 40, { w: 620, fixed: true }),
    cold('Harry', 'Okay. Back to being sane now.', 570, 560, { w: 300, fixed: true })], { mood: 'cold', alt: 'The frost comes back, all the way.' });
