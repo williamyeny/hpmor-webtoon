@@ -92,7 +92,9 @@ function resolveBubbles(bubbles, panelsA) {
     if (b.tail !== undefined && b.tail !== null) b.tail = fix(b.tail);
     if (b.tails) b.tails = b.tails.map(fix).filter(Boolean);
     if (b.tail === undefined && b.who && !b.noTail && ['speech', 'shout', 'whisper', 'thought', 'cold'].includes(b.type || 'speech')) {
-      const t = fix(b.who.toLowerCase());
+      const r = resolveRef(b.who.toLowerCase(), panelsA, 'mouth');
+      const far = r && r.A.hr && (b.y ?? 0) > r.A.head[1] + r.A.hr * 2.6; // bubble well below the speaker's head: no tail
+      const t = far ? null : fix(b.who.toLowerCase());
       if (t) b.tail = t;
     }
     return b;

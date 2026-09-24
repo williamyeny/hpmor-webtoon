@@ -1,6 +1,6 @@
 // Panel effects, drawn in panel coordinates (ctx.w × ctx.h) unless noted.
 import { C } from '../core/palette.js';
-import { g, path, rect, circle, ellipse, line, smoothD, rng, shade, uid, r2, polygon } from '../core/svg.js';
+import { g, path, rect, circle, ellipse, line, smoothD, rng, shade, uid, r2, polygon, text } from '../core/svg.js';
 
 // radial "focus" lines converging on (cx, cy) — the comedic/intense burst
 export function burst(w, h, cx, cy, o = {}) {
@@ -115,4 +115,43 @@ export function screamShape(cx, cy, w, h, seed = 9) {
   const n = 30;
   for (let i = 0; i < n; i++) { const a = (i / n) * Math.PI * 2; const k = i % 2 ? R.range(1.05, 1.5) : R.range(0.65, 0.8); pts.push([cx + Math.cos(a) * w / 2 * k, cy + Math.sin(a) * h / 2 * k]); }
   return path('M' + pts.map((p) => `${r2(p[0])},${r2(p[1])}`).join(' L') + 'Z', { fill: '#f5efe2', stroke: '#8a1a1a', 'stroke-width': 3 });
+}
+
+// Physics going down the drain: orbits, apple, atom, brain, equations swirling into a vortex at (cx,cy)
+export function physicsDrain(w, h, cx, cy, o = {}) {
+  const R = rng(o.seed || 21);
+  let out = '';
+  for (let i = 0; i < 9; i++) { const r = 40 + i * 70; out += path(`M${cx + r},${cy} A${r},${r * 0.55} 0 1 1 ${cx - r * 0.2},${cy - r * 0.5}`, { fill: 'none', stroke: '#8fb4cf', 'stroke-width': 2.2, opacity: 0.55 - i * 0.04, transform: `rotate(${i * 23} ${cx} ${cy})` }); }
+  const items = [
+    (x, y, s) => circle(x, y, 22 * s, { fill: '#d9a55a', stroke: C.ink, 'stroke-width': 2 }) + ellipse(x, y, 40 * s, 9 * s, { fill: 'none', stroke: C.ink, 'stroke-width': 2 }),
+    (x, y, s) => circle(x, y, 18 * s, { fill: '#c43a32', stroke: C.ink, 'stroke-width': 2 }) + path(`M${x},${y - 18 * s} q4,-12 12,-14`, { stroke: '#4f7d5c', 'stroke-width': 3, fill: 'none' }),
+    (x, y, s) => circle(x, y, 5 * s, { fill: C.ink }) + [0, 60, 120].map((a) => ellipse(x, y, 30 * s, 10 * s, { fill: 'none', stroke: '#2f5f63', 'stroke-width': 2, transform: `rotate(${a} ${x} ${y})` })).join(''),
+    (x, y, s) => text(x, y, 'E = mc²', { 'font-family': 'Caveat', 'font-size': 34 * s, fill: '#2d2a4a', 'text-anchor': 'middle', 'font-weight': 700 }),
+    (x, y, s) => text(x, y, 'ΔE = 0', { 'font-family': 'Caveat', 'font-size': 30 * s, fill: '#2d2a4a', 'text-anchor': 'middle', 'font-weight': 700 }),
+    (x, y, s) => text(x, y, 'Ĥψ = iħ∂ψ/∂t', { 'font-family': 'Caveat', 'font-size': 28 * s, fill: '#2d2a4a', 'text-anchor': 'middle', 'font-weight': 700 }),
+    (x, y, s) => path(`M${x - 20 * s},${y} q-6,-22 14,-24 q20,-8 28,10 q14,4 6,20 q-6,12 -24,8 q-16,8 -24,-14Z`, { fill: '#e7b3b0', stroke: C.ink, 'stroke-width': 2 }),
+    (x, y, s) => text(x, y, 'F = ma', { 'font-family': 'Caveat', 'font-size': 30 * s, fill: '#2d2a4a', 'text-anchor': 'middle', 'font-weight': 700 }),
+  ];
+  for (let i = 0; i < (o.n ?? 16); i++) {
+    const a = R() * Math.PI * 2, r = R.range(80, Math.min(w, h) * 0.75), s = 0.6 + r / 500;
+    const x = cx + Math.cos(a) * r, y = cy + Math.sin(a) * r * 0.6;
+    out += g({ transform: `rotate(${R.range(-40, 40)} ${x} ${y})`, opacity: 0.4 + r / 900 }, items[i % items.length](x, y, s));
+  }
+  out += ellipse(cx, cy, 60, 30, { fill: '#0d1220' }) + ellipse(cx, cy, 30, 14, { fill: '#000' });
+  return out;
+}
+
+export function zebra(o = {}) {
+  let out = '';
+  const flame = (x, y, s) => path(`M${x},${y} q${-14 * s},${-30 * s} ${4 * s},${-60 * s} q${4 * s},${24 * s} ${16 * s},${10 * s} q${4 * s},${30 * s} ${-20 * s},${50 * s}Z`, { fill: '#f0a13c', stroke: '#c9601f', 'stroke-width': 2 }) + path(`M${x},${y - 6 * s} q${-6 * s},${-18 * s} ${4 * s},${-34 * s} q${6 * s},${18 * s} ${-4 * s},${34 * s}Z`, { fill: '#ffe08a' });
+  out += path('M-90,0 L-80,-70 Q-60,-110 20,-110 Q70,-110 90,-140 L130,-190 Q150,-196 158,-178 L140,-120 Q120,-80 100,-70 L90,0 L74,0 L70,-60 L-40,-60 L-50,0 L-66,0 L-66,-50 L-76,0Z', { fill: '#f4efe4', stroke: C.ink, 'stroke-width': 3 });
+  let d = ''; for (let i = 0; i < 8; i++) d += `M${-70 + i * 22},-100 q6,20 0,40 `; for (let i = 0; i < 3; i++) d += `M${100 + i * 12},${-150 + i * 20} l20,-8 `;
+  out += path(d, { stroke: '#1b1310', 'stroke-width': 7, fill: 'none', 'stroke-linecap': 'round' });
+  out += circle(144, -170, 4, { fill: C.ink });
+  out += flame(-60, -110, 1.1) + flame(0, -112, 1.4) + flame(60, -115, 1) + flame(118, -190, 1.2) + flame(-95, -60, 0.9);
+  return g({ transform: o.flip ? 'scale(-1,1)' : undefined }, out);
+}
+export function crater(w = 400) {
+  return ellipse(0, 0, w / 2, w / 8, { fill: '#3a2a22', stroke: C.ink, 'stroke-width': 3 }) + ellipse(0, -4, w / 2.6, w / 12, { fill: '#1a120d' }) +
+    [0, 1, 2, 3].map((i) => circle(-w * 0.2 + i * w * 0.14, -w * 0.18 - i * 30, w * 0.12 + i * 10, { fill: '#8a5fb0', opacity: 0.55 - i * 0.08, filter: 'url(#blur2)' })).join('');
 }

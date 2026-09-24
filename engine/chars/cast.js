@@ -62,8 +62,9 @@ export const harryScarf = { ...harryRobes, extraFront: 'scarf' };
 export const mcgonagall = {
   name: 'mcgonagall', body: { ...ADULT_F, torsoH: 160, legU: 118, legL: 112, shoulderW: 92, waistW: 70, hipW: 84, headRx: 45, headRy: 57, armU: 68, armL: 62 },
   skin: '#efd2bb', skinShade: '#cfa98f',
-  head: { jaw: 0.5, chin: 1.05, cheek: 0.82 },
-  face: adultFace({ eyeY: 2, eye: { color: '#3f6b4f', w: 21, h: 18, iris: 7.2 }, brow: { color: '#3a3136', len: 22, w: 3.8, gap: 7 }, nose: 'point', noseLen: 24, noseY: 22, mouthY: 40, mouth: { w: 18 }, cheekLines: true, lips: '#a45f5f', wrinkles: true }),
+  hatTop: 0.75,
+  head: { jaw: 0.44, chin: 1.08, cheek: 0.8 },
+  face: adultFace({ eyeY: 2, eye: { color: '#3f6b4f', w: 22, h: 19, iris: 7.6, lash: 1.9 }, brow: { color: '#3a3136', len: 21, w: 3.2, gap: 8 }, nose: 'point', noseLen: 21, noseY: 22, mouthY: 40, mouth: { w: 17 }, lips: '#b0585c', wrinkles: true }),
   hair: { color: '#2e2a2e', ...H.keyed({ base: 45,
     front: { F: [[-47, 6], [-50, -20], [-46, -44], [-20, -52], [0, -48], [20, -52], [46, -44], [50, -20], [47, 6], [41, -4], [35, -26], [14, -37], [0, -35], [-14, -37], [-35, -26], [-41, -4]],
              S: [[-42, 10], [-52, -18], [-48, -44], [-16, -52], [6, -49], [26, -51], [46, -42], [46, -20], [42, 2], [38, -6], [34, -26], [20, -38], [6, -36], [-8, -38], [-26, -28], [-34, -2]] },
@@ -73,10 +74,13 @@ export const mcgonagall = {
   }) },
   glasses: { r: 13.5, shape: 'square', frame: 0.8, color: '#2b2226' },
   outfit: { top: '#1f4a35', robe: true, robeColor: '#1f4a35', robeLen: 1.0, flare: 1.25, wideSleeves: true, cuffW: 2.2, cuff: '#7b2433', legs: '#1b1b1b', shoes: '#211612', neckline: true, robeTrim: '#7b2433',
-    torsoDetail: ({ T, sw, B, lw }) => { // tartan hint at the collar
-      const a = T(-sw * 0.5, -B.torsoH + 4), b = T(sw * 0.4, -B.torsoH + 4);
-      return path(`M${a[0]},${a[1]} Q${(a[0] + b[0]) / 2},${a[1] + 34} ${b[0]},${b[1]}`, { fill: 'none', stroke: '#7b2433', 'stroke-width': lw * 3.4 }) +
-        path(`M${a[0]},${a[1] + 3} Q${(a[0] + b[0]) / 2},${a[1] + 37} ${b[0]},${b[1] + 3}`, { fill: 'none', stroke: '#d6a33a', 'stroke-width': lw * 0.5, 'stroke-dasharray': '4 4' });
+    torsoDetail: ({ T, sw, B, lw }) => { // high collar, burgundy lapels, tartan-edged, gold brooch at the throat
+      const l = T(-sw * 0.42, -B.torsoH + 2), r = T(sw * 0.36, -B.torsoH + 2), m = T(-sw * 0.02, -B.torsoH * 0.62);
+      const lap = `M${l[0]},${l[1]} L${m[0]},${m[1]} L${r[0]},${r[1]}`;
+      const br = T(-sw * 0.03, -B.torsoH + 16);
+      return path(lap, { fill: 'none', stroke: '#7b2433', 'stroke-width': lw * 3.2, 'stroke-linejoin': 'round' }) +
+        path(lap, { fill: 'none', stroke: '#d6a33a', 'stroke-width': lw * 0.45, 'stroke-dasharray': '5 4' }) +
+        circle(br[0], br[1], 6.5, { fill: '#d9b35c', stroke: C.ink, 'stroke-width': lw * 0.6 }) + circle(br[0], br[1], 2.5, { fill: '#2f5a40' });
     } },
   hat: ({ rx, ry, s, lw }) => {
     const brimY = -ry * 0.72, tilt = s * 8;
@@ -186,3 +190,32 @@ export const vernon = {
   outfit: { top: '#6b5a48', legs: '#4a4038', shoes: '#2a1a12', collar: '#f2ecde', tie: '#3b4a6b', hem: false },
 };
 CAST.vernon = vernon;
+
+// ---------- extras: deterministic random bystanders (adults & children), for crowds and walk-ons
+const SKINS = [['#f3d2b5', '#dca88a'], ['#eec4a1', '#d49c7b'], ['#d7a57d', '#b77f5b'], ['#c48a61', '#9f6644'], ['#8e5a3b', '#6b3f27'], ['#f0d6c2', '#d2b19a']];
+const HAIRC = [C.hairBlack, C.hairBrown, C.hairChestnut, C.hairAuburn, C.hairGinger, C.hairBlonde, C.hairSandy, C.hairGrey, C.hairWhite];
+const ROBES = ['#3b3444', '#5b3553', '#2f4a33', '#243352', '#6b4429', '#7b2433', '#4a4a3a', '#6b5a70', '#35505a', '#8a6a45'];
+export function makeExtra(seed, o = {}) {
+  const R = rng('x' + seed);
+  const kid = o.kid ?? false;
+  const female = o.female ?? R.chance(0.5);
+  const old = !kid && (o.old ?? R.chance(0.25));
+  const [skin, skinShade] = R.pick(SKINS);
+  const hc = old ? R.pick([C.hairGrey, C.hairWhite, '#b9b4ab']) : R.pick(HAIRC);
+  const styles = female ? ['long', 'bun', 'pony', 'bushy', 'neat'] : (old ? ['bald', 'curly', 'neat'] : ['neat', 'curly', 'messy', 'neat']);
+  const st = o.hairStyle || R.pick(styles);
+  const hair = st === 'long' ? H.long('e' + seed, { len: 1.4 + R() * 0.6 }) : st === 'bun' ? H.bun('e' + seed, { bunR: 0.4 }) : st === 'pony' ? H.ponytail('e' + seed) :
+    st === 'bushy' ? H.bushy('e' + seed) : st === 'bald' ? H.bald({ fringe: true }) : st === 'curly' ? H.curlyShort('e' + seed, { recede: old ? 0.5 : 0 }) : st === 'messy' ? H.messy('e' + seed) : H.neat('e' + seed, { part: R.range(-0.4, 0.4) });
+  const robe = o.robe ?? R.pick(ROBES);
+  const body = kid ? { ...KID, torsoH: KID.torsoH * R.range(0.95, 1.05), legU: KID.legU * R.range(0.95, 1.08) } : { ...(female ? ADULT_F : ADULT_M), waistW: (female ? ADULT_F : ADULT_M).waistW * R.range(0.95, 1.3) };
+  const face = kid ? kidFace({ eye: { color: R.pick(['#5b4632', '#3d6a8a', '#3f6b4f', '#6a4a2a']) }, brow: { color: hc }, rosy: true, freckles: R.chance(0.2) })
+    : adultFace({ eye: { color: R.pick(['#5b4632', '#3d6a8a', '#3f6b4f', '#6a4a2a']), w: 19, h: 16, iris: 7 }, brow: { color: hc }, nose: R.pick(['long', 'button', 'long']), wrinkles: old, cheekLines: old, lips: female ? '#b8676b' : undefined, rosy: R.chance(0.4) });
+  return {
+    name: 'extra' + seed, body, skin, skinShade, head: { jaw: R.range(0.5, 0.7), chin: R.range(0.98, 1.06), cheek: R.range(0.86, 0.96) }, face,
+    hair: { color: hc, ...hair }, glasses: R.chance(0.15) ? { r: kid ? 16 : 13, shape: R.pick(['round', 'square']), frame: 0.8 } : undefined,
+    outfit: o.outfit || (o.muggle
+      ? { top: R.pick(['#8a4a3a', '#4a6a8a', '#6a7a4a', '#9a8a6a', '#5a4a6a']), legs: R.pick(['#3a3a4a', '#5a4a3a']), shoes: '#2a1a12', collar: R.chance(0.5) ? '#efe6d2' : undefined, ...(female && R.chance(0.6) ? { skirt: '#4a4a5a', skirtLen: 0.8, bareLegs: true } : {}) }
+      : { top: robe, robe: true, robeColor: robe, robeLen: 0.97, wideSleeves: true, cuffW: 1.8, legs: '#2a2630', shoes: '#2a1a12', robeTrim: shade(robe, -0.25) }),
+    hat: o.witchHat ? ({ rx, ry, s, lw }) => path(`M${-rx * 1.4},${-ry * 0.7} Q0,${-ry * 0.5} ${rx * 1.4},${-ry * 0.75} Q${rx * 0.7},${-ry * 0.95} ${rx * 0.5},${-ry * 0.95} Q${rx * 0.2 + s * 30},${-ry * 2.2} ${-rx * 0.1 + s * 40},${-ry * 2.4} Q${-rx * 0.3},${-ry * 1.6} ${-rx * 0.6},${-ry * 0.95} Q${-rx * 0.9},${-ry * 0.9} ${-rx * 1.4},${-ry * 0.7}Z`, { fill: shade(robe, -0.3), stroke: C.ink, 'stroke-width': lw }) : undefined,
+  };
+}

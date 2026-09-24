@@ -198,3 +198,43 @@ export function moonNight(o = {}) {
   out += circle((o.moonX ?? 1100) - 25, (o.moonY ?? 380) - 20, 18, { fill: '#d9dcc4' }) + circle((o.moonX ?? 1100) + 30, (o.moonY ?? 380) + 25, 12, { fill: '#d9dcc4' });
   return out;
 }
+
+// ---------------------------------------------------------------- the front doorstep, at character scale (1600 × 1200)
+// The open door is at x 700–1000; floor/step at y = 980. Inside (left) is warm; outside (right) is rain.
+export function doorstep(o = {}) {
+  const id = uid('ds');
+  let out = `<defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#141b2e"/><stop offset="1" stop-color="#34405a"/></linearGradient></defs>`;
+  out += rect(-200, -200, 2000, 1600, { fill: `url(#${id})` });
+  out += K.brickWall(-200, 0, 2000, 1000, '#7a4232', 31);
+  out += rect(-200, 0, 2000, 1000, { fill: '#0b1020', opacity: 0.45 });
+  // doorway
+  out += rect(660, 190, 380, 800, { fill: '#e9e0cc', ...K.bl(2.4) });
+  out += rect(690, 220, 320, 770, { fill: '#f0c878' });
+  out += K.glow(850, 600, 520, C.candle, 0.45);
+  out += K.wallpaper(690, 220, 320, 770, '#6b5a44', { stripes: true, c2: '#5f4f3b' }).replace('<rect', '<rect opacity="0.55"');
+  out += rect(690, 220, 320, 770, { fill: '#f7c86a', opacity: 0.35 });
+  // open door leaf
+  out += path('M1010,220 L1090,180 L1090,1010 L1010,990Z', { fill: '#2f4a33', ...K.bl(2) });
+  out += circle(1070, 610, 7, { fill: '#c9a24a' });
+  out += rect(640, 990, 420, 26, { fill: '#8a8272', ...K.bl(2) }); // step
+  out += path('M650,1016 L1050,1016 L1300,1300 L400,1300Z', { fill: '#f0c878', opacity: 0.18 });
+  out += rect(-200, 1016, 2000, 400, { fill: '#2b2f3c' });
+  out += rect(730, 100, 240, 60, { fill: '#e9e0cc', ...K.bl(1.6) }) + text(850, 142, '17', { 'font-family': 'IM Fell English', 'font-size': 36, fill: C.ink, 'text-anchor': 'middle' });
+  if (o.rain !== false) {
+    const R = rng(71); let r = '';
+    for (let i = 0; i < 260; i++) { const x = R.range(-200, 1800), y = R.range(-200, 1300); if (x > 660 && x < 1040 && y > 190 && y < 990) continue; r += line(x, y, x - 8, y + R.range(30, 60), { stroke: '#cfe0ee', 'stroke-width': R.range(1.2, 2.4), opacity: R.range(0.35, 0.7) }); }
+    out += r;
+  }
+  return out;
+}
+
+// kitchen with the dinner table in front (for the silent dinner)
+export function dinner(o = {}) { return kitchen(o) + dinnerTable(); }
+export function dinnerTable() {
+  let out = '';
+  out += rect(250, 850, 900, 34, { fill: '#8a5d38', ...K.bl(2.2), rx: 4 });
+  out += path('M240,852 L1160,852 L1180,930 L220,930Z', { fill: '#efe6d2', ...K.bl(1.8) });
+  for (const x of [380, 700, 1020]) out += ellipse(x, 850, 70, 14, { fill: '#f6f1e6', ...K.bl(1.6) }) + ellipse(x, 846, 40, 8, { fill: '#a0522d', opacity: 0.8 });
+  out += K.candle(560, 846, 1.1, true) + K.candle(840, 846, 1.1, true);
+  return out;
+}

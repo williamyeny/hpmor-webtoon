@@ -19,7 +19,7 @@ export function autoCam(cam, placed, ctx) {
   for (const p of list) {
     const A = p.anchors; const s = p.s;
     const hh = p.def.body.headRy * 2 * s; headH = Math.max(headH, hh);
-    const topY = A.top[1];
+    const topY = A.top[1] - (p.def.hatTop ?? 0) * hh;
     const feetY = p.y;
     const bodyH = feetY - topY;
     const b = topY + bodyH * fr[0];
@@ -27,17 +27,18 @@ export function autoCam(cam, placed, ctx) {
     const hx = A.head[0];
     left = Math.min(left, hx - hh * 0.75); right = Math.max(right, hx + hh * 0.75);
   }
-  if (cam.fr === 'close') { const c = (top + bot) / 2; top = c - headH * 0.85; bot = c + headH * 0.95; }
+  if (cam.fr === 'close') { const hy = Math.min(...list.map((p) => p.anchors.head[1])); const hy2 = Math.max(...list.map((p) => p.anchors.head[1])); top = hy - headH * 0.8 - (list[0].def.hatTop ?? 0) * headH * 0.35; bot = hy2 + headH * 0.72; }
   if (cam.fr === 'eyes') { const hy = list[0].anchors.head[1] + headH * 0.06; top = hy - headH * 0.32; bot = hy + headH * 0.3; }
   const aspect = ctx.w / ctx.h;
   let h = bot - top, w = right - left;
-  const padX = cam.padX ?? (list.length > 1 ? 1.25 : 1.6);
+  const padX = cam.padX ?? (list.length > 1 ? 1.25 : cam.fr === 'close' ? 1.25 : 1.6);
   w = Math.max(w * padX, h * aspect);
   h = w / aspect;
   let cx = (left + right) / 2, cy = (top + bot) / 2;
   // keep the top anchored: extra height goes to the bottom unless bias says otherwise
   const needH = bot - top;
   if (h > needH && cam.bias !== 'center') cy = top + h / 2 - (cam.bias === 'bottom' ? (h - needH) : (h - needH) * 0.18);
+  if (cam.fr === 'eyes') { const hy = list[0].anchors.head[1] + headH * 0.06; h = headH * 0.7; w = h * aspect; cx = list[0].anchors.head[0]; cy = hy; }
   const z = cam.zoom ?? 1;
   w /= z;
   cx += (cam.dx ?? 0) * headH; cy += (cam.dy ?? 0) * headH;
