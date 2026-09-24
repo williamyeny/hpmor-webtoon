@@ -121,7 +121,8 @@ These were found while logging Book Two. Each is marked with how it was resolved
   notice is back in Ep 13 (after the third-floor warning), with Harry's "*What was* that *about?*".
 - **"Spat upon."** In Ep 22 Quirrell asks "Did you think less of *me*, when I told you I had been
   spat upon?", but the spitting was cut from his dojo story for rating. Either restore a softer
-  version of that line in the story ("Some of them spat on me") or change the later line.
+  version of that line in the story ("Some of them spat on me") or change the later line. **FIXED:**
+  the later line now reads "…when I told you I had been pushed to the ground?", matching the story.
 
 ## Things left out of Book Two (to be picked up later)
 

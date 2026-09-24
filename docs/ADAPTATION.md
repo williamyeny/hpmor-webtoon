@@ -322,7 +322,7 @@ General conversions added for Book Two:
 | **Cut:** Falconsbane and Hitler; the shield that was Protego's ancestor; Quirrell praising Goyle's caution. | Length. |
 | The dojo is a sepia flashback under a "*Quirrell's story*" beat. The Dark Lord is only a dark figure with red eyes in the doorway. | Tagged as his account, which matters on a reread. |
 | The massacre: the Master's tongue ripped out → cut; "Crucioed the students into insanity… Killing Curse" → "hurt the Master's students until they went mad, and then he killed them". Told over an empty dojo and a fallen practice sword; nothing is shown. *(wide audience)* | Horror by implication. (The survivor's silhouette from the plan isn't drawn.) |
-| Quirrell's own humiliation loses the slaps, spitting and name-calling; now "They pushed me to the ground." *(wide audience)* | Rating. (He still says "spat upon" later; see `LOOSE_ENDS.md`.) |
+| Quirrell's own humiliation loses the slaps, spitting and name-calling; now "They pushed me to the ground." *(wide audience)* | Rating. His later "when I told you I had been spat upon?" becomes "…pushed to the ground?" to match. |
 | Stags locking horns illustrate the dominance-contest lecture. | Lecture → picture. |
 | "A quick hit in the groin" → "A quick hit". *(wide audience)* | Rating. |
 | Harry's imagined "old man with blood pouring from his mouth" → "an old man, and what had been done to him". *(wide audience)* | Follows the dojo edit. |
