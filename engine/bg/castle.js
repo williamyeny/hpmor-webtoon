@@ -442,7 +442,7 @@ export function dumbledoreOffice(o = {}) {
   // circular room hints: tall arched windows with night/dusk sky
   for (const x of [-560, 2560]) out += archWindow(x, -560, 220, 700, { sky: o.sky || 'dusk', seed: x });
   // sleeping portraits
-  for (let i = 0; i < 7; i++) { const x = -420 + i * 430, y = -760 + (i % 2) * 70; out += K.frame(x, y, 170, 210, rect(0, 0, 170, 210, { fill: R.pick(['#4a5a4a', '#5a4a3a', '#3a4a5a']) }) + circle(85, 95, 38, { fill: '#e0c8a8' }) + path('M60,92 q8,5 16,0 M94,92 q8,5 16,0', { stroke: C.ink, 'stroke-width': 2, fill: 'none' }) + path('M40,210 Q85,135 130,210Z', { fill: R.pick([C.burgundy, C.navy, C.forest, C.plum]) }) + (i % 3 === 0 ? path('M58,80 Q85,30 112,80', { fill: '#ddd' }) : '') + text(130, 60, 'z', { 'font-family': 'Caveat', 'font-size': 26, fill: '#e9dcc0' })); }
+  for (let i = 0; i < 7; i++) { const x = -420 + i * 430, y = -760 + (i % 2) * 70; out += K.frame(x, y, 170, 210, g({ transform: `translate(${x},${y})` }, rect(0, 0, 170, 210, { fill: R.pick(['#4a5a4a', '#5a4a3a', '#3a4a5a']) }) + circle(85, 95, 38, { fill: '#e0c8a8' }) + path('M60,92 q8,5 16,0 M94,92 q8,5 16,0', { stroke: C.ink, 'stroke-width': 2, fill: 'none' }) + path('M40,210 Q85,135 130,210Z', { fill: R.pick([C.burgundy, C.navy, C.forest, C.plum]) }) + (i % 3 === 0 ? path('M58,80 Q85,30 112,80', { fill: '#ddd' }) : '') + text(130, 60, 'z', { 'font-family': 'Caveat', 'font-size': 26, fill: '#e9dcc0' }))); }
   // shelves of instruments, left and right
   for (const [sx, sy] of [[-640, 160], [-640, 380], [1780, 160], [1780, 380]]) {
     out += rect(sx, sy, 640, 18, { fill: '#5a3a2a', ...bl(1.6) });
@@ -551,8 +551,9 @@ export function dojo(o = {}) {
   for (let x = -300; x <= 2300; x += 520) out += rect(x - 20, -700, 40, 1600, { fill: '#5a3a24', ...bl(2) });
   out += rect(-800, -720, 4000, 80, { fill: '#4a2e1b', ...bl(2) });
   for (const x of [-760, 2340]) { out += rect(x, -640, 420, 1540, { fill: '#efe6d2', ...bl(2) }); for (let k = 1; k < 4; k++) out += line(x + k * 105, -640, x + k * 105, 900, bl(1.4)); for (let k = 1; k < 8; k++) out += line(x, -640 + k * 190, x + 420, -640 + k * 190, bl(1.4)); }
-  if (o.empty) out += g({ transform: 'translate(1000,880) rotate(-6)' }, P2c.bokken(1.3));
   out += rect(-800, FLOOR, 4000, 500, { fill: '#b88a5a' }) + K.floorboards(-800, FLOOR, 4000, 500, '#c99a6a', 13);
+  // the dropped practice sword lies on the floor (drawn after it, or the boards cover it)
+  if (o.empty) out += g({ transform: 'translate(1000,920) rotate(-6)' }, P2c.bokken(1.3));
   return out;
 }
 // the room behind the third door: a small room with a bed and a tray of expensive sweets

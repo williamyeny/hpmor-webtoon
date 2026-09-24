@@ -75,8 +75,16 @@ Improving the rig or a background re-renders everywhere: just re-run the episode
   a different panel from the speaker's head. A balloon in the gutter keeps its tail only if it is
   within 2.6 head-radii below the head. Give `tail: [x, y]` or `noTail: true` to override.
 - **Hyphenated words don't break.** Words like Boy-Who-Lived or Nine-and-Three-Quarters are wrapped
-  in no-wrap spans, so a line never ends on a hyphen. Very long hyphenated words can force a wider
-  balloon.
+  in no-wrap spans, so a line never ends on a hyphen, unless the word alone is wider than the balloon
+  may be (He-Who-Must-Not-Be-Named in a shout); then it may break at its hyphens.
+- **Speaker names are loose.** `say('Professor Quirrell', …)` finds actor id `quirrell`, `'Mrs Figg'`
+  finds `figg` (titles like Mr/Mrs/Professor/Madam are dropped). If the same id appears in two panels
+  of one tile, the first panel wins: use `tail: 'snape@1'` to pick panel 1.
+- **Far tails.** Tails are a fixed short length, except when the speaker's head is far from the
+  balloon: then the tail reaches part of the way (up to 150px) instead of stubbing at a bystander.
+- **Shapes.** Shouts have a boxier spiky outline whose spike depth doesn't grow with width.
+  `shape: 'box'` on a `say`/`whisper` gives a rounder rectangle that hugs long text (use it for long
+  speeches in narrow panels; an ellipse is ~50px wider each side than its text).
 - **Warnings.** `render.mjs` prints lettering warnings per tile as `tile:warning,…`, where `i` is
   the balloon's index in the tile:
   - `border:i`: balloon *i*'s outline (tail included) crosses the frame of the panel holding its
@@ -84,7 +92,32 @@ Improving the rig or a background re-renders everywhere: just re-run the episode
   - `outline-edge:i`: balloon *i*'s outline goes past the edge of the tile itself.
   - `edge:i`: the text box is within 2px of the tile edge.
   - `overlap:i/j`: two balloons overlap by more than 6px.
+  - `face:i`: balloon *i*'s text covers a face visible in its panel. Almost always a real problem.
   `border` and `outline-edge` skip sfx, `plain`, `title`, `note` and big-Hat lettering.
+
+## Camera, poses and effects (engine pass, after Book Two)
+
+- **Aim at a head:** `cam: { head: 'harry', hw: 0.34, hx: 0.5, hy: 0.42 }` puts Harry's head centre at
+  (hx, hy) as fractions of the panel, with the head hw × the panel width across. Use it instead of
+  `fr: 'close'/'bust'` in narrow or very tall panels, and to leave a set amount of room for a balloon.
+  (Allow for tall hats yourself: Dumbledore's hat rises well above his head centre.)
+- **Tilt:** any cam may add `roll` in degrees for a Dutch angle, e.g. `{ on: ['snape'], fr: 'bust', roll: -8 }`.
+  The picture zooms just enough to hide empty corners; anchors and tails follow the tilt.
+- **Rotation:** an actor's `rot` turns the whole figure about its feet, and now its anchors (head,
+  mouth, hands) turn too, so tails and cameras aim correctly. Pose `'lie'` lies a character down
+  (head left; `rot: 90` for head right).
+- **Arms:** `armB: { front: true }` draws the far arm in front of the body (reaching across the chest,
+  a wand held in front). Anchors `handF` / `handB` give the hands' positions for aiming bolts or
+  placing props. In wide sleeves the hand now comes out past the cuff (`outfit.handOut` tunes it).
+  Dark sleeves get a faint light rim so arms read against dark robes.
+- **Faces:** `glasses: false` (or `noGlasses: true`) on an actor hides their glasses. Mouth
+  `'grimace'` = `'grit'`. The blue "cold" skin tint only applies to Harry (his dark side); set
+  `coldTint: true` on another character's def to allow it. A deep bow no longer turns the face sideways.
+- **Effects behind characters:** `behind: (e) => FX.burst(e.w, e.h, …)` on a shot draws panel-space
+  effects over the background but behind the actors (speed lines and bursts no longer cross faces).
+  `under` is beneath the whole background and `over` is on top of everything, as before.
+- **Previews:** `render.mjs --file work/tests/foo.js --png` writes `scratch/foo-NNN.png`. Each render
+  uses its own stage file, so several renders can run at once.
 
 ## Book Two modules
 

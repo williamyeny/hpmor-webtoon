@@ -27,8 +27,8 @@ export function speedLines(w, h, o = {}) {
 export function emanata(x, y, r, o = {}) {
   let d = '';
   const n = o.n ?? 7, a0 = o.a0 ?? -150, a1 = o.a1 ?? -30;
-  for (let i = 0; i < n; i++) { const a = ((a0 + (a1 - a0) * (i / (n - 1))) * Math.PI) / 180; d += `M${x + Math.cos(a) * r},${y + Math.sin(a) * r} L${x + Math.cos(a) * r * 1.35},${y + Math.sin(a) * r * 1.35} `; }
-  return path(d, { stroke: o.col || C.ink, 'stroke-width': o.w ?? 4, 'stroke-linecap': 'round' });
+  for (let i = 0; i < n; i++) { const a = ((a0 + (a1 - a0) * (i / (n - 1))) * Math.PI) / 180; d += `M${x + Math.cos(a) * r},${y + Math.sin(a) * r} L${x + Math.cos(a) * r * 1.5},${y + Math.sin(a) * r * 1.5} `; }
+  return path(d, { stroke: o.col || C.ink, 'stroke-width': o.w ?? 6, 'stroke-linecap': 'round' });
 }
 
 // The cold: frost creeping in from the panel edges. amount 0..1
@@ -93,7 +93,7 @@ export function fallingRobes(w, h, n = 12, seed = 4) {
 // sparkles / twinkles
 export function sparkles(pts, o = {}) {
   let out = '';
-  for (const [x, y, r] of pts) out += path(`M${x},${y - r} Q${x + r * 0.15},${y - r * 0.15} ${x + r},${y} Q${x + r * 0.15},${y + r * 0.15} ${x},${y + r} Q${x - r * 0.15},${y + r * 0.15} ${x - r},${y} Q${x - r * 0.15},${y - r * 0.15} ${x},${y - r}Z`, { fill: o.col || '#fff6cf', stroke: o.stroke || 'none' });
+  for (const [x, y, r] of pts) out += path(`M${x},${y - r} Q${x + r * 0.15},${y - r * 0.15} ${x + r},${y} Q${x + r * 0.15},${y + r * 0.15} ${x},${y + r} Q${x - r * 0.15},${y + r * 0.15} ${x - r},${y} Q${x - r * 0.15},${y - r * 0.15} ${x},${y - r}Z`, { fill: o.col || '#fff6cf', stroke: o.stroke || 'rgba(90,60,20,0.55)', 'stroke-width': o.sw ?? 1.6 });  // a faint warm outline so they read on light backgrounds too
   return out;
 }
 

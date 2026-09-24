@@ -58,7 +58,7 @@ function spikyD(cx,cy,rx,ry,seed){const R=rng(seed);
   // spike depth is set by the balloon's short side (capped), so long shouts don't grow huge spikes that cross panel frames
   const m=Math.min(Math.sqrt(rx*ry),170),n=Math.max(18,Math.min(34,Math.round((rx+ry)/15)));const pts=[];
   for(let i=0;i<n*2;i++){const a=i/(n*2)*Math.PI*2+0.05;const out=i%2===0;
-    const c=Math.cos(a),s=Math.sin(a);const ex=Math.sign(c)*Math.pow(Math.abs(c),2/2.4),ey=Math.sign(s)*Math.pow(Math.abs(s),2/2.4);
+    const c=Math.cos(a),s=Math.sin(a);const ex=Math.sign(c)*Math.pow(Math.abs(c),2/3),ey=Math.sign(s)*Math.pow(Math.abs(s),2/3);
     const bx=rx*ex,by=ry*ey,L=Math.hypot(bx,by)||1,d=out?m*(0.16+R()*0.14):-m*0.03;
     pts.push([cx+bx+bx/L*d,cy+by+by/L*d]);}
   return 'M'+pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' L')+'Z';}
@@ -124,6 +124,8 @@ window.layoutBubbles=async function(){
     if(d.weight)t.style.fontWeight=d.weight;
     const wScale=SCALABLE?1.12:1; t.style.maxWidth=Math.min(d.w*wScale, 740)+'px';
     t.style.display='inline-block';
+    // hyphenated words stay on one line, unless one is wider than the balloon can be (He-Who-Must-Not-Be-Named in a big font)
+    t.querySelectorAll('span[style*="nowrap"]').forEach((sp)=>{if(sp.getBoundingClientRect().width>parseFloat(t.style.maxWidth))sp.style.whiteSpace='normal';});
     // balance lines: shrink width while line count stays the same
     let r=t.getBoundingClientRect();
     const lh=parseFloat(getComputedStyle(t).lineHeight)||36;
@@ -182,7 +184,7 @@ window.layoutBubbles=async function(){
       const dash=d.type==='whisper'?'7 6':'';
       if(d.type==='hat'){g.appendChild(el('path',{d:superD(cx+4,cy+6,rx,ry,3.2,0.03,seed),fill:'rgba(0,0,0,0.35)'}));}
       // tails (stroked), then body (stroked), then an unstroked patch to merge tail into body
-      const rimN=box?5.5:d.type==='cold'?6:d.type==='shout'?2.4:d.type==='thought'?2.2:(d.type==='hat'?3.4:3.1);
+      const rimN=box?5.5:d.type==='cold'?6:d.type==='shout'?3:d.type==='thought'?2.2:(d.type==='hat'?3.4:3.1);
       const rimK=d.type==='shout'?1.12:d.type==='thought'?1.08:1;
       const T=tails.map(tp=>stdTail(cx,cy,rx*rimK,ry*rimK,rimN,tp[0],tp[1],d.type==='whisper'?0.9:1));
       tails.forEach((tp,i)=>{

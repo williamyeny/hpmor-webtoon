@@ -193,7 +193,7 @@ export function mouth(mx, my, m, st, k, lw, skin) {
       const d = `M${lx},${my + h * 0.55} Q${mx},${my - h * 0.6} ${rx},${my + h * 0.55} Q${mx},${my + h * 0.3} ${lx},${my + h * 0.55}Z`;
       return path(d, { fill: inside, ...S });
     }
-    case 'grit': {
+    case 'grit': case 'grimace': {
       const h = W * 0.32;
       const d = `M${lx},${my - h / 2 + curve * -3} L${rx},${my - h / 2 + curve * -3} Q${rx + 3},${my} ${rx},${my + h / 2} L${lx},${my + h / 2} Q${lx - 3},${my} ${lx},${my - h / 2 + curve * -3}Z`;
       let lines = `M${lx + 2},${my} L${rx - 2},${my}`;

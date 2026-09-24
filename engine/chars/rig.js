@@ -309,7 +309,9 @@ export function drawCharacter(def, opts = {}) {
     const handRot = -forearmAng * 180 / Math.PI + (a.hr || 0);
     const handType = a.hand || 'open';
     const handR = B.handR;
-    const hand = g({ transform: `translate(${r2(p[2][0])},${r2(p[2][1])}) rotate(${r2(handRot)})` },
+    // in wide sleeves the hand comes out past the cuff instead of hiding inside it
+    const hp = wide ? add(p[2], mul([Math.sin(forearmAng), Math.cos(forearmAng)], handR * (O.handOut ?? 1.05))) : p[2];
+    const hand = g({ transform: `translate(${r2(hp[0])},${r2(hp[1])}) rotate(${r2(handRot)})` },
       a.under ? a.under : '',
       handShape(handType, handR, lw * 0.9, far ? skinSh : skin, flip ? -side : side),
       a.prop ? a.prop : '');
@@ -389,7 +391,9 @@ export function drawHead(def, o) {
   const expr = o.expr || {};
   const rx = B.headRx, ry = B.headRy;
   const hd = { rx, ry, ...def.head };
-  const skin = expr.pale ? shade(def.skin, 0.25) : (expr.cold ? mixCold(def.skin) : def.skin);
+  // the blue 'cold' tint is Harry's dark side; other characters' cold/menace faces keep their own skin
+  const coldTint = expr.cold && (def.coldTint ?? /harry/i.test(def.name || ''));
+  const skin = expr.pale ? shade(def.skin, 0.25) : (coldTint ? mixCold(def.skin) : def.skin);
   const skinSh = def.skinShade || shade(def.skin, -0.18);
   const outline = headOutline(hd, t);
   const s = Math.sin(t * 0.62);
@@ -418,7 +422,7 @@ export function drawHead(def, o) {
   const shx = (L < 0 ? 1 : -1) * rx * 1.25 + s * rx * 0.2;
   main.push(g({ 'clip-path': `url(#${hid})` },
     ellipse(shx, ry * 0.1, rx * 0.8, ry * 1.5, { fill: skinSh, opacity: 0.22, filter: 'url(#blur4)' }),
-    expr.cold ? path(`M${-rx},${-ry} L${rx},${-ry} L${rx},${ry * 0.2} L${-rx},${ry * 0.2}Z`, { fill: '#6d8fb0', opacity: 0.18 }) : '',
+    coldTint ? path(`M${-rx},${-ry} L${rx},${-ry} L${rx},${ry * 0.2} L${-rx},${ry * 0.2}Z`, { fill: '#6d8fb0', opacity: 0.18 }) : '',
   ));
 
   // ---- face

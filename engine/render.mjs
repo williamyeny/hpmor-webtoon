@@ -30,12 +30,14 @@ function parseRange(s) {
 export async function openStage() {
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: TILE_W, height: 1200 }, deviceScaleFactor: SCALE });
-  const stageFile = path.join(ROOT, 'scratch', 'stage.html');
+  // one stage file per process, so several renders can run side by side without clobbering each other
+  const stageFile = path.join(ROOT, 'scratch', `stage-${process.pid}.html`);
   fs.mkdirSync(path.dirname(stageFile), { recursive: true });
   fs.writeFileSync(stageFile, `<!doctype html><html><head><meta charset="utf-8"><style>${fontCSS('file')}\n${STAGE_CSS}</style></head><body><div id="root"></div><script>${STAGE_JS}</script>
 <div style="position:absolute;left:-9999px;font-family:Andika">.<b>.</b><i>.</i></div><div style="position:absolute;left:-9999px;">${['Alegreya', 'Alegreya Sans', 'Alegreya SC', 'Caveat', 'IM Fell English', 'IM Fell English SC', 'IM Fell DW Pica', 'Pinyon Script', 'Grenze Gotisch', 'Patrick Hand', 'UnifrakturMaguntia'].map((f) => `<span style="font-family:'${f}'">a<i>a</i><b>a</b></span>`).join('')}</div></body></html>`);
   await page.goto(url.pathToFileURL(stageFile).href);
   await page.evaluate(() => document.fonts.ready);
+  fs.rmSync(stageFile, { force: true });
   return { browser, page };
 }
 
@@ -69,7 +71,7 @@ async function main() {
   const pngIdx = args.indexOf('--png');
   const onlyIdx = args.indexOf('--only');
   let modPath, epId;
-  if (fileIdx >= 0) { modPath = path.resolve(args[fileIdx + 1]); epId = path.basename(modPath, '.js'); }
+  if (fileIdx >= 0) { modPath = path.resolve(args[fileIdx + 1]); epId = path.parse(modPath).name; }
   else { epId = args[0]; modPath = path.join(ROOT, 'episodes', `${epId}.js`); }
   const mod = await import(url.pathToFileURL(modPath).href + `?t=${Date.now()}`);
   const ep = mod.default || mod;

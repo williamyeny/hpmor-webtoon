@@ -5,6 +5,7 @@
 //   dx, dy (in head-heights), zoom (multiplier), bias ('top'…)}.
 // Or aimed at one head: {head: 'harry', hw: 0.34, hx: 0.5, hy: 0.42}: the head is hw × the panel's width
 //   across, with its centre at (hx, hy) as fractions of the panel. Works the same in tall, narrow or wide panels.
+// Any cam may add roll: degrees of tilt (a Dutch angle), e.g. {on: ['snape'], fr: 'bust', roll: -8}.
 import { g, r2, rect } from './svg.js';
 import { place } from '../chars/rig.js';
 
@@ -73,13 +74,16 @@ export function shot(o) {
     let cam = o.cam || { x: 400, y: 300, w: ctx.w };
     if (cam.head) cam = headCam(cam, placed, ctx);
     else if (cam.on) cam = autoCam(cam, placed, ctx);
-    const z = ctx.w / cam.w;
-    const toPanel = (p) => [(p[0] - cam.x) * z + ctx.w / 2, (p[1] - cam.y) * z + ctx.h / 2];
+    // cam.roll (degrees) tilts the camera; the picture zooms just enough that no empty corners show
+    const roll = (o.cam && o.cam.roll) || 0, th = Math.abs(roll) * Math.PI / 180, cr = Math.cos(roll * Math.PI / 180), sr = Math.sin(roll * Math.PI / 180);
+    const cover = roll ? Math.max(Math.cos(th) + (ctx.h / ctx.w) * Math.sin(th), Math.cos(th) + (ctx.w / ctx.h) * Math.sin(th)) : 1;
+    const z = ctx.w / cam.w * cover;
+    const toPanel = (p) => { const x = (p[0] - cam.x) * z, y = (p[1] - cam.y) * z; return [x * cr - y * sr + ctx.w / 2, x * sr + y * cr + ctx.h / 2]; };
     for (const p of placed) if (p.id) {
       const an = {}; for (const k in p.anchors) an[k] = toPanel(p.anchors[k]);
       an.s = p.s * z; an.hr = p.def.body.headRy * p.s * z; ctx.anchors[p.id] = an;
     }
-    const T = `translate(${r2(ctx.w / 2)},${r2(ctx.h / 2)}) scale(${r2(z)}) translate(${r2(-cam.x)},${r2(-cam.y)})`;
+    const T = `translate(${r2(ctx.w / 2)},${r2(ctx.h / 2)})${roll ? ` rotate(${r2(roll)})` : ''} scale(${r2(z)}) translate(${r2(-cam.x)},${r2(-cam.y)})`;
     const wa = {}; for (const p of placed) if (p.id) wa[p.id] = { ...p.anchors, s: p.s, hr: p.def.body.headRy * p.s };
     const env = { ...ctx, cam, z, toPanel, wa };
     const bg = typeof o.bg === 'function' ? o.bg(env) : (o.bg || '');
@@ -87,9 +91,11 @@ export function shot(o) {
     const fg = typeof o.fg === 'function' ? o.fg(env) : (o.fg || '');
     const over = typeof o.over === 'function' ? o.over(env) : (o.over || '');
     const under = typeof o.under === 'function' ? o.under(env) : (o.under || '');
+    // behind: panel-coordinate effects (FX.burst, speedLines…) drawn over the background but behind the characters
+    const behind = typeof o.behind === 'function' ? o.behind(env) : (o.behind || '');
     const blur = o.blur ? `url(#blur${o.blur})` : null;
     const acts = actorsSvg.map((a) => a.fn ? a.fn(env) : a.svg).join('');
-    return under + g({ transform: T }, g({ filter: blur }, bg), mid, acts, fg) + over;
+    return under + (behind ? g({ transform: T }, g({ filter: blur }, bg)) + behind + g({ transform: T }, mid, acts, fg) : g({ transform: T }, g({ filter: blur }, bg), mid, acts, fg)) + over;
   };
 }
 
