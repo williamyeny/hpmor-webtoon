@@ -33,9 +33,13 @@ Improving the rig or a background re-renders everywhere: just re-run the episode
 | `engine/chars/expressions.js` | named expressions (see list) |
 | `engine/chars/hair.js` | hairstyles; `keyed()` = hand-authored front/¾ keyframes (Harry, McGonagall, Mum) |
 | `engine/chars/cast.js` | character designs; `makeExtra(seed, opts)` for crowds |
+| `engine/chars/cast2.js` | Book Two cast: House-robed first-years, older Slytherins, Hooch, Binns, Dumbledore in pyjamas, portraits, the dojo |
 | `engine/bg/kit.js` | furniture/architecture: bookcases (procedural books), windows w/ rain, fireplace, walls… |
 | `engine/bg/oxford.js` | Verres-Evans house locations |
+| `engine/bg/castle.js` | Book Two: Hogwarts from the inside (dorm, corridors, offices, classrooms, Defence hall, dojo, deep space) |
 | `engine/props/props.js` | envelope, wax seal, letters, books, wand, quill, cat, owl, teacup, galleon |
+| `engine/props/props2.js` | Book Two props: Time-Turner, pies, the Cloak, Remembrall, the rock, Fawkes, Pioneer 11… |
+| `episodes/b2.js` | shared Book Two staging: `dayBeat`, `header`, `note`, standard sets |
 | `engine/fx/fx.js` | burst lines, frost (the cold), doom (Quirrell), sparkles, physics drain, zebras… |
 
 ## Conventions
@@ -47,11 +51,122 @@ Improving the rig or a background re-renders everywhere: just re-run the episode
   arm *away from the face*, use the **B** arm with a positive angle (see `point`, `wave`,
   `wandUp`). Angles are degrees from straight down, positive toward the facing direction.
 - **Actor ids = lower-cased speaker names** (`harry`, `mcgonagall`, `dad`, `mum`). Then
-  `say('Harry', text, x, y)` gets an automatic tail to Harry's head. Tails are dropped
-  automatically when the balloon is far below the speaker's head.
-- **Lettering sizes:** dialogue 31px at 800-wide tiles (≈15px on a phone). Don't go below 25px.
+  `say('Harry', text, x, y)` gets an automatic tail to Harry's head. Automatic tails are
+  dropped when the speaker is in a different panel (see Lettering rules below).
+- **Lettering sizes:** scripts write dialogue at 31px on the 800-wide tile. At render the stage
+  scales balloon and caption text by 36/31 with a 34px floor (about 18px on a phone); sfx, titles
+  and `plain` text keep the size they are given.
 - **Moods:** `warm` (lamplit interiors), `candle` (night interiors), `rainy`, `night`, `dusk`,
   `cold` (Harry's dark side — pair with `FX.frost`), `sepia` (memories — pair with `FX.memoryEdge`).
 - **The cold motif:** expression `cold` (flat lids, pinprick pupils), mood `cold`, frost overlay,
   and `cold()` balloons (angular, pale blue, small caps). Use only when Harry's anger turns to
   calculation. See ART_BIBLE.md.
+
+## Lettering rules (`engine/core/layout.js`, `engine/core/stage.js`)
+
+- **Anchors.** A balloon's `x, y` is its centre by default (`anchor: 'c'`). Other anchors: `'tc'`
+  (top centre) and `'bc'` (bottom centre), plus the corners `'tl'`, `'tr'`, `'bl'`, `'br'`.
+  `cap()` defaults to `'tl'`. Use `'tc'` for a balloon hanging from the top of a panel and `'bc'`
+  for one sitting on the bottom, so it grows away from the edge as the text wraps.
+- **Balloons stay in their panel.** A balloon that isn't `fixed` is kept inside the bordered panel
+  that contains its centre (6px margin) while the stage nudges it off faces and other balloons.
+  Bleed and borderless panels don't count as frames. `fixed: true` balloons are never moved.
+- **Tails.** An automatic tail (speaker named, no `tail` given) is dropped when the balloon sits in
+  a different panel from the speaker's head. A balloon in the gutter keeps its tail only if it is
+  within 2.6 head-radii below the head. Give `tail: [x, y]` or `noTail: true` to override.
+- **Hyphenated words don't break.** Words like Boy-Who-Lived or Nine-and-Three-Quarters are wrapped
+  in no-wrap spans, so a line never ends on a hyphen. Very long hyphenated words can force a wider
+  balloon.
+- **Warnings.** `render.mjs` prints lettering warnings per tile as `tile:warning,…`, where `i` is
+  the balloon's index in the tile:
+  - `border:i`: balloon *i*'s outline (tail included) crosses the frame of the panel holding its
+    centre by more than 12px.
+  - `outline-edge:i`: balloon *i*'s outline goes past the edge of the tile itself.
+  - `edge:i`: the text box is within 2px of the tile edge.
+  - `overlap:i/j`: two balloons overlap by more than 6px.
+  `border` and `outline-edge` skip sfx, `plain`, `title`, `note` and big-Hat lettering.
+
+## Book Two modules
+
+### `engine/bg/castle.js`
+
+World coordinates as everywhere: floor at `FLOOR` (900), usable width about -200 to 2600. Also
+exports `HOUSE` colours.
+
+- **Shared bits:** `archWindow(x, y, w, h, {sky})` (`'day' | 'dusk' | 'night' | 'high'` (clouds
+  below) `| 'rain'`), `torch`, `portraitFrame` (a frame with painted scenery inside), `invisible(x,
+  y, s)` (Harry under the Cloak: a faint boy-shaped shimmer).
+- **Ravenclaw dorm:** `ravenclawDorm({time: 'night' | 'morning' | 'late', empty, harryNote, quiet,
+  clock, binClue, …})`, Harry's bed at x = 1100 with `dormBlanket()` as the foreground blanket;
+  pieces `fourPoster`, `bedBlanket`, `quieter(level)`, `nightstand`, `alarmClock(t = [h, m])`,
+  `trunkBox`, `cabinet`, `bin(clue)`. `trunkCavern()` is the trunk's cavern level.
+- **Corridors:** `corridor({portraits, rubble, dim, windows, torches})`, `staircases({swing,
+  flights})`, `gargoyleCorridor({open})`, `greenStudy()`.
+- **Offices:** `mcgonagallOffice()` with `mcgDesk`, `tartan`; `dumbledoreOffice({bird: 'chicken' |
+  'fire' | 'ash' | 'egg' | 'phoenix' | 'none', rack, door, doorOpen, sky})` with `dumbledoreThrone`,
+  `blackDesk`, `stoolFront`.
+- **Classrooms:** `classroom({windows, board, shelves, wall, sky})`, `blackboard(x, y, w, h,
+  {lines})`, `deskRow`, `waterGlass(state: 'warm' | 'cool' | 'ice')`, `charmsRoom`, `transfigRoom`
+  with `teacherDesk`, `greenhouse`, `potionsRoom({cupboard: 'open' | 'closed'})` with `cauldronRow`
+  and `snapeDesk`, `historyRoom`, `flyingField({brooms, sunX})` with `broomUnder(id)` for a seated
+  rider.
+- **Portraits as people:** paint `portraitCanvas(x, y, w, h)` in the background, put the painted
+  person as a normal rigged actor at the same spot, then put `wallWithHole(BG, x, y, w, h)` in
+  `actors` *between* the painted actor and the living ones:
+  `actors: [LADY, CS.wallWithHole(BG, x, y, w, h), HARRY]`. It redraws the background with a hole
+  over the canvas plus the gilt frame (`portraitFrameOnly`), so the painted person is framed and
+  still gets anchors and tails.
+- **The Defence hall:** `defenceStage({desk, banner, mat, spheres})` is the view from the seats (the
+  white marble stage, the dais, desk at x = 1000, the third door at the back); `defenceDesk`.
+  `defenceTiers({rows})` is the view from the stage up at the seats. Row *k*'s floor is at
+  `FLOOR - k * ROW` (`ROW` = 190); seat actors there with pose `'sit'`, then draw
+  `tierFront(k, {screens, lit, x0, x1})` after that row's actors and before the rows in front.
+  `screens` lists x positions of desk screens; `lit` shows `quirrellIcon` on them.
+- **Ep 22–23:** `dojo({empty})` (the sepia flashback; `empty` adds the fallen practice sword),
+  `restRoom()` (the room behind the third door), `deepSpace({seed, k, disc, discX, discR})`: the
+  star field and Milky Way. `k` scales star size (above 1 for wide shots); `disc: false` hides the
+  small marble circle, `discX`/`discR` place and size it. (The comment mentions `o.room` for fading
+  the classroom in; it isn't implemented.)
+
+### `engine/chars/cast2.js`
+
+Book Two designs, built from `cast.js` body types. House robes via `HOUSE` colours.
+
+- Regulars in House robes: `harryRaven`, `harryPJ` (pyjamas for the Game morning),
+  `hermioneRaven`, `nevilleHuff`, `dracoSly`.
+- First-years: `ernie`, `terry`, `anthony`, `padma`, `michael`, `dean`, `zabini`, `crabbe` (muscle),
+  `goyle` (balanced stance).
+- Older Slytherins: `derrick`, `slyTeen(seed)`, `conscience` (the one who says "Stop"; missing in
+  Ep 22).
+- Staff: `hooch`, `binns` (render with low opacity), `dumbledorePJ` (three layers of pink pyjamas,
+  squashed-mushroom hat).
+- Portraits: `oldLady`, `flubberwalt` (the fish hat), `aristocrat`.
+- Dojo flashback: `master`, `dojoStudent(seed)`, `youngQuirrell`.
+- Fred, George, Snape, Flitwick, Sprout and Quirrell are in `cast.js`.
+
+### `engine/props/props2.js`
+
+Drawn centred at (0, 0), scaled by transform, like `props.js`.
+
+- Time: `timeTurner(s, {shell, glow})`.
+- The Game: `pie(s, 'cherry' | 'blueberry')`, `splat`, `slip` (a blank note), `cerealBox`,
+  `cerealBar`, `tinyChocolate`, `giftBox`, `cloak(w, h)`.
+- Classes: `match(s, silver)`, `needle`, `pig`, `textbookPage('dementor' | 'victim' | 'dead')`,
+  `deskScreen`, `targetSphere`, `bolt(x1, y1, x2, y2)` (the red Simple Strike Hex), `broom`,
+  `remembrall(s, {red})`.
+- Dumbledore's office: `rock`, `potionsBook`, `chicken`, `egg`, `phoenix(s, {fly})`,
+  `instrument('blorple' | 'dial8' | 'wibblers')`.
+- Friday: `cake(s, n)` (n unlit candles), `sign(lines)`, `marker`, `ring`, `mat`, `bokken`.
+- `pioneer(s, {glint})`: Pioneer 11 with its golden plaque; `glint` adds the wrongness shimmer.
+
+### `episodes/b2.js`
+
+- `dayBeat(ep, day, specific, {h, color, sub, bg})`: the ch. 17-style opener ("Thursday." then the
+  small italic "If you wanted to be specific…"). Every Book Two episode starts with one.
+- `header(ep, chapterWord, title, {book, h})`: book line, "CHAPTER …", and title.
+- `note(text, x, y, {kind: 'hand' | 'quill', w, size, align, rot})`: a Game note lettered on paper.
+  `'hand'` is Harry's pencil (Caveat, left-aligned); the default is the Quotes Quill's regular
+  print (centred). Always `fixed`.
+- `RT()` draws the Ravenclaw table in the Great Hall; `DORM(opts)` gives a `bg` function for the
+  Ravenclaw dorm (`CS.ravenclawDorm(opts)`).
+

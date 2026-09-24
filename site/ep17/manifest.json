@@ -1,0 +1,632 @@
+{
+ "id": "ep17",
+ "title": "The Most Dangerous Student",
+ "number": 17,
+ "subtitle": "",
+ "tiles": [
+  {
+   "file": "001.webp",
+   "w": 800,
+   "h": 330,
+   "alt": "BOOK TWO · THE FIRST WEEK / CHAPTER SEVENTEEN / The Most Dangerous Student"
+  },
+  {
+   "file": "002.webp",
+   "w": 800,
+   "h": 300,
+   "alt": "Wednesday. / If you wanted to be specific, 2:23 on Wednesday afternoon. (Harry's watch said 11:23.)"
+  },
+  {
+   "file": "003.webp",
+   "w": 800,
+   "h": 1150,
+   "alt": "A vast hall with a white marble stage. Rows of empty desks, each with a blank white screen. Quirrell slumps at the lone desk like a switched-off puppet. / The Defence classroom was the largest Harry had yet seen at Hogwarts: tier upon tier of desks, facing a gigantic flat stage of white marble. On a raised dais of darker marble stood a lone teacher's desk. / At which Professor Quirrell sat slumped in his chair, head lolled back, drooling slightly over his robes."
+  },
+  {
+   "file": "004.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Now what does that remind me of…?"
+  },
+  {
+   "file": "005.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry alone in the back row, reading, surrounded by empty desks. / Harry had got there so early that nobody else had arrived. (English was defective when it came to time travel. In particular, it lacked any words for how convenient it was.)"
+  },
+  {
+   "file": "006.webp",
+   "w": 800,
+   "h": 800,
+   "alt": "Draco in the aisle by Harry's desk, with two very large boys looming behind him. / Draco: Potter? What are you doing here? / Harry: Draco? What are you doing in oh my god you have minions."
+  },
+  {
+   "file": "007.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Crabbe and Goyle, trying very hard to loom: leaning forward, hunching their shoulders, necks stuck out. / One of the lads standing behind Draco had rather a lot of muscle for an eleven-year-old. The other stood in a suspiciously balanced-looking stance. / Draco: Potter, I introduce to you Mr Crabbe, and Mr Goyle. / Crabbe: Please ta meetcha."
+  },
+  {
+   "file": "008.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Harry: You have minions! Where do I get minions? / Draco: I'm afraid, Potter, that the first step is to be Sorted into Slytherin. / Harry: What? That's not fair! / Draco: And then for your families to have an arrangement from before you were born."
+  },
+  {
+   "file": "009.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry: Um, hold on. So they've been told their whole lives that they're going to be your minions, and they've spent years imagining what minions are supposed to be like…"
+  },
+  {
+   "file": "010.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Crabbe and Goyle, looming in perfect unison. / Harry: …and what's worse, they do know each other, and they've been practising…"
+  },
+  {
+   "file": "011.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Crabbe: The boss told ya to shut it. / crack crack"
+  },
+  {
+   "file": "012.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Draco rounds on his two looming minions. / Draco: I told you not to do this in front of Harry Potter!"
+  },
+  {
+   "file": "013.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "The two looked a bit sheepish. / But the moment Draco turned away, they went back to looming."
+  },
+  {
+   "file": "014.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Draco: I apologise for the insult which these imbeciles have offered you. / Harry: I'd say you're being a little harsh on them, Draco. I think they're acting exactly the way I'd want my minions to act. I mean, if I had any minions."
+  },
+  {
+   "file": "015.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Draco's jaw dropped."
+  },
+  {
+   "file": "016.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Crabbe and Goyle confer in a stage whisper. / Crabbe: Hey, Gregory, you don' think he's tryna lure us away from the boss, do ya? / Goyle: I'm sure Mr Potter wouldn't be that foolish. / Harry: Oh, I wouldn't dream of it. It's just something to keep in mind if your current employer seems unappreciative."
+  },
+  {
+   "file": "017.webp",
+   "w": 800,
+   "h": 860,
+   "alt": "Crabbe: What's he doin' in Ravenclaw? / Goyle: I can't imagine, Mr Crabbe."
+  },
+  {
+   "file": "018.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Draco: Both of you shut up. That's an order."
+  },
+  {
+   "file": "019.webp",
+   "w": 800,
+   "h": 1260,
+   "alt": "Draco: You're confusing everyone, you know. Warrington said spending a long time under the Sorting Hat is a warning sign of a major Dark Wizard. / Draco: People were wondering if they should start sucking up to you. Then you protected a bunch of Hufflepuffs, for Merlin's sake. Then you told Derrick he's a disgrace to Salazar Slytherin. What's anyone supposed to think?"
+  },
+  {
+   "file": "020.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Harry: That the Sorting Hat put me in the House of \"Slytherin! Just kidding! Ravenclaw!\", and I've been acting accordingly."
+  },
+  {
+   "file": "021.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Mr Crabbe and Mr Goyle both giggled, causing Mr Goyle to quickly clap a hand over his mouth."
+  },
+  {
+   "file": "022.webp",
+   "w": 800,
+   "h": 1180,
+   "alt": "Draco: I do want to continue our last conversation. And I accept your conditions. / Harry: Would you mind terribly waiting until Saturday? I'm in a bit of a contest. See if I can read all my textbooks as fast as Hermione Granger did. / Draco: Granger. The mudblood who thinks she's Merlin? If you're trying to show her up, then all Slytherin wishes you the very best of luck, Potter."
+  },
+  {
+   "file": "023.webp",
+   "w": 800,
+   "h": 620,
+   "alt": "Harry: Oh, this is going to be so much fun to juggle. I can already tell."
+  },
+  {
+   "file": "024.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "The tiers, now full: all four Houses. On every desk, a white screen showing Quirrell's face. / At 2:35, Professor Quirrell gave a sudden jerk in his chair and sat up straight. And his face appeared on all the flat, white rectangles propped up on the students' desks."
+  },
+  {
+   "file": "025.webp",
+   "w": 800,
+   "h": 780,
+   "alt": "It was so much like Muggle television. There was something both nostalgic and sad about it. So much like a piece of home, and yet it wasn't, really."
+  },
+  {
+   "file": "026.webp",
+   "w": 800,
+   "h": 1150,
+   "alt": "Over the heads of the class: Quirrell on his dais, wide awake now. / Quirrell: Good afternoon, my young apprentices. Welcome to your first lesson in Battle Magic, as the founders of Hogwarts would have put it. Or, as it happens to be called in the late twentieth century, Defence Against the Dark Arts."
+  },
+  {
+   "file": "027.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "There was a certain amount of frantic scrabbling for parchment."
+  },
+  {
+   "file": "028.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Quirrell: No. Don't bother writing down what this subject was once called. No such pointless question will count toward your marks in any of my lessons. That is a promise."
+  },
+  {
+   "file": "029.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Quirrell strides across the white marble stage. / Quirrell: Those of you who have wasted time by reading your useless first-year Defence textbooks… / Someone made a choking sound. Harry wondered if it was Hermione."
+  },
+  {
+   "file": "030.webp",
+   "w": 800,
+   "h": 1150,
+   "alt": "A dragon's silhouette, wings raised, breathing a jet of fire. / Quirrell: The Hungarian Horntail is taller than a dozen men! It breathes fire so quickly and so accurately that it can melt a Snitch in mid-flight! / Quirrell: One Killing Curse will bring it down!"
+  },
+  {
+   "file": "031.webp",
+   "w": 800,
+   "h": 1500,
+   "alt": "A mountain troll's silhouette, club in hand, small yellow eyes. / Quirrell: The Mountain Troll is more dangerous than the Hungarian Horntail! It is strong enough to bite through steel! Its hide withstands Stunning Hexes and Cutting Charms! Its sense of smell can tell from afar whether its prey is part of a pack, or alone and vulnerable!"
+  },
+  {
+   "file": "032.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "The troll's torn-off arm already growing back, glowing. / Quirrell: It is always Transfiguring itself into its own body. Rip off its arm, and it will grow another within seconds! Fire and acid will confuse its regeneration, for an hour or two!"
+  },
+  {
+   "file": "033.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Quirrell: The mountain troll is the third most perfect killing machine in all Nature! One Killing Curse will bring it down."
+  },
+  {
+   "file": "034.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Quirrell holds up the first-year textbook between two fingers, like something unpleasant. / Quirrell: Your sad excuse for a textbook will suggest you expose the troll to sunlight. You do not encounter mountain trolls in open daylight!"
+  },
+  {
+   "file": "035.webp",
+   "w": 800,
+   "h": 1050,
+   "alt": "Quirrell: If, as an adult wizard, you find yourself incapable of the Killing Curse, you can simply Apparate away. Likewise if you face the second most perfect killing machine: a Dementor. You just Apparate away!"
+  },
+  {
+   "file": "036.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Quirrell's voice goes low and hard. The air around him feels subtly wrong. / Quirrell: Unless, of course, you are under the influence of an anti-Apparition jinx. No. There is exactly one monster which can threaten you once you are fully grown. The single most dangerous monster in all the world."
+  },
+  {
+   "file": "037.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "His eyes, very close. Something about them is wrong. / Quirrell: The Dark Wizard."
+  },
+  {
+   "file": "038.webp",
+   "w": 800,
+   "h": 1250,
+   "alt": "Quirrell jabs a finger at the class. / Quirrell: There is no defence without offence! There is no defence without fighting! / Quirrell: This reality is deemed too harsh for eleven-year-olds by the fat, overpaid, Auror-guarded politicians who mandated your curriculum."
+  },
+  {
+   "file": "039.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Quirrell, arms flung wide, triumphant. / Quirrell: To the abyss with those fools! Welcome to your first year of Battle Magic!"
+  },
+  {
+   "file": "040.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "clap clap clap / Harry started applauding. He couldn't help himself. It was too inspiring. (The rest of the class seemed too stunned to react.)"
+  },
+  {
+   "file": "041.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Quirrell perches on the front of his desk, relaxed. / Quirrell: Now to practicalities. I have combined all my first-year classes into one, which allows me to offer you twice as much classroom time as Doubles sessions…"
+  },
+  {
+   "file": "042.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Gasps of horror. / Quirrell: …an increased load which I will make up to you by not assigning any homework."
+  },
+  {
+   "file": "043.webp",
+   "w": 800,
+   "h": 720,
+   "alt": "Harry was pretty sure he was imagining Hermione's face accurately. / Also, Harry was in love. It would be a three-way wedding: him, the Time-Turner, and Professor Quirrell."
+  },
+  {
+   "file": "044.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Quirrell: For those who so choose, I have arranged some after-school activities. Do you want to show the world your own abilities, instead of watching fourteen other people play Quidditch? More than seven people can fight in an army."
+  },
+  {
+   "file": "045.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Quirrell: And for Christmas, I will grant someone a wish. Any school-related feat within my power, my influence, or above all, my ingenuity. Yes, I was in Slytherin, and I am offering to formulate a cunning plot on your behalf. The wish goes to whoever has earned the most Quirrell points."
+  },
+  {
+   "file": "046.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Harry: Hot damn. That would be Harry."
+  },
+  {
+   "file": "047.webp",
+   "w": 800,
+   "h": 950,
+   "alt": "Quirrell gestures to the wide, empty expanse of white marble. / Quirrell: Now leave your books at your desks, and come down onto this platform. It's time to play a game called Who's the Most Dangerous Student in the Classroom."
+  },
+  {
+   "file": "048.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "On the marble stage, the first-years in lines, firing red bolts at floating blue spheres. Harry's sphere goes \"bing\". / Harry: Ma-ha-su! / bing! / Professor Quirrell had dug up a spell that was incredibly easy to pronounce, with a ridiculously simple wand motion, which tended to hit wherever you happened to be looking. Useless in real combat, he said. It hurt about as much as a hard punch on the nose."
+  },
+  {
+   "file": "049.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Harry skipping left and right, firing bolt after bolt, grinning like mad. / Harry was feeling like a real wizard for the first time since he'd come to Hogwarts. / Harry: I can do magic! Fear me, laws of physics, I'm coming to violate you!"
+  },
+  {
+   "file": "050.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Quirrell: There is one student who mastered the Sumerian Simple Strike Hex faster than anyone else, and went on to help seven other students. Come forth, Hermione Granger. / Somewhere in the back of Harry's mind was the fear that Hermione was simply smarter than him."
+  },
+  {
+   "file": "051.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Quirrell: Could Miss Granger's intelligence make her the most dangerous student in the classroom? Let's find out, shall we? / Quirrell: Select any student you like, and cast the Simple Strike Hex on them."
+  },
+  {
+   "file": "052.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Hermione's face screwed up in horror, her wand trembling. / Quirrell: Come now. You have cast this spell perfectly over fifty times. It hurts as much as a hard punch, and lasts only a few seconds. / Quirrell: This is a direct order from your professor, Miss Granger. If you do not fire, you will lose a Quirrell point."
+  },
+  {
+   "file": "053.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Harry: Pick me. I'm not afraid… / His right hand was softly tapping his own chest, willing her to look his way."
+  },
+  {
+   "file": "054.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Hermione, calm now, wand lowered. / Hermione's wand twitched. Then her face relaxed, and she lowered her wand to her side. / Hermione: No."
+  },
+  {
+   "file": "055.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "Her voice was calm, and even though it wasn't loud, everyone heard it in the silence."
+  },
+  {
+   "file": "056.webp",
+   "w": 800,
+   "h": 1060,
+   "alt": "That reached her. But she keeps her shoulders straight. / Quirrell: Then I must deduct one point from you. This is a test, and you have failed it. / Quirrell: Knowing things isn't always enough, Miss Granger. If you cannot give and receive violence on the order of stubbing your toe, then you cannot defend yourself. Please rejoin your classmates."
+  },
+  {
+   "file": "057.webp",
+   "w": 800,
+   "h": 680,
+   "alt": "Her face looked peaceful. And Harry, for some odd reason, wanted to start clapping. Even though Professor Quirrell had been right."
+  },
+  {
+   "file": "058.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Quirrell: It becomes clear that Hermione Granger is not the most dangerous student in the classroom. Who do you think might actually be the most dangerous person here? Besides me, of course. / Quirrell: Draco, of the Noble and Most Ancient House of Malfoy. Come forth. …Mr Malfoy. Fire."
+  },
+  {
+   "file": "059.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "In one smooth motion Draco spins and fires at Hermione. It's over before anyone can move. / Draco: Mahasu! / Hermione: Ow!"
+  },
+  {
+   "file": "060.webp",
+   "w": 800,
+   "h": 1150,
+   "alt": "Quirrell: Well struck. Two Quirrell points. But tell me: why did you target Miss Granger? / Draco: Because she stood out the most. / Quirrell: And that is the true reason Draco Malfoy is dangerous. He knows who to strike and who not to strike. How to make allies, and avoid making enemies."
+  },
+  {
+   "file": "061.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Quirrell: It might seem that our game is done. And yet there is a single student in this classroom who is more dangerous than the scion of Malfoy. / Quirrell: Harry Potter. Come forth."
+  },
+  {
+   "file": "062.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "A wide gap of white marble between them. / Harry stopped well short of the dais. And Professor Quirrell didn't ask him to come any closer."
+  },
+  {
+   "file": "063.webp",
+   "w": 800,
+   "h": 950,
+   "alt": "Quirrell: The irony is, you all looked at the right person for entirely the wrong reasons. You think that Harry Potter defeated the Dark Lord, and so must be very dangerous. Bah. He was one year old."
+  },
+  {
+   "file": "064.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Quirrell: But after I heard rumours of one Ravenclaw facing down five older Slytherins, I interviewed several eyewitnesses. And I came to the conclusion that Harry Potter would be my most dangerous student."
+  },
+  {
+   "file": "065.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Harry, well back from the dais, raises a hand. Quirrell smiles. / Harry: Ah, Professor Quirrell… / Quirrell: You're thinking I've come up with a wrong answer, aren't you, Mr Potter? You will learn to expect better of me."
+  },
+  {
+   "file": "066.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Quirrell points at Harry: a challenge. / Quirrell: Mr Potter, all things have their accustomed uses. Give me ten unaccustomed uses of objects in this room for combat!"
+  },
+  {
+   "file": "067.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "For a moment Harry was rendered speechless by the sheer, raw shock of having been understood. / And then the ideas started to pour out."
+  },
+  {
+   "file": "068.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry: There are desks, heavy enough to be fatal if dropped from a great height. Chairs with metal legs that could impale someone. The air in this classroom would be deadly by its absence, and it can carry poison gas."
+  },
+  {
+   "file": "069.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "The Ravenclaws, impressed. / Quirrell: That's three. You need ten. The rest of the class thinks you've already used up the whole contents of the room."
+  },
+  {
+   "file": "070.webp",
+   "w": 800,
+   "h": 1150,
+   "alt": "Harry, grinning, pointing at the floor, the ceiling, the walls. / Harry: Ha! The floor can be removed to make a spike pit! The ceiling can be collapsed on someone! The walls can be raw material for Transfiguration into any number of deadly things. Knives, say."
+  },
+  {
+   "file": "071.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "The Slytherins, less sure now. / Quirrell: That's six. But surely you're scraping the bottom of the barrel now?"
+  },
+  {
+   "file": "072.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry, delighted, arms flung wide at the whole class. / Harry: I haven't even started! Just look at all the people!"
+  },
+  {
+   "file": "073.webp",
+   "w": 800,
+   "h": 1150,
+   "alt": "The Ravenclaws listen, their smiles gone. / Harry: Their blood can be used to drown someone. Ravenclaws are known for their brains, but their internal organs could be sold on the black market for enough to hire an assassin. Slytherins can be thrown at sufficient velocity to crush an enemy. And Hufflepuffs, in addition to being hard workers, contain bones that can be removed, sharpened, and used to stab someone."
+  },
+  {
+   "file": "074.webp",
+   "w": 800,
+   "h": 760,
+   "alt": "Even the Slytherins look shocked. / By now the rest of the class was staring at Harry in some horror. Even the Slytherins looked shocked."
+  },
+  {
+   "file": "075.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "Quirrell: That's ten, though I'm being generous about the Ravenclaw one. Now, for extra credit…"
+  },
+  {
+   "file": "076.webp",
+   "w": 800,
+   "h": 1150,
+   "alt": "Harry, happily holding up his own wand as exhibit A. / Harry: My robes can suffocate an enemy if wrapped round their head enough times. Hermione Granger's robes can be torn into strips and tied into a rope and used to hang someone. Draco Malfoy's robes can start a fire. My wand can be pushed into an enemy's brain through their eye socket…"
+  },
+  {
+   "file": "077.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Quirrell: Five points, and enough. / Harry: Hmph. You should have let me keep going until I'd won the House Cup. I haven't even started on what's in my pockets."
+  },
+  {
+   "file": "078.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Quirrell: Well, do you all understand what makes Mr Potter the most dangerous student in the classroom? Terry Boot, what makes your dorm-mate dangerous? / Terry: Ah… um… he's creative?"
+  },
+  {
+   "file": "079.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Quirrell's fist comes down on the desk with an amplified bang that makes everyone jump. / Quirrell: WRONG! / BANG / Quirrell: All of Mr Potter's ideas were worse than useless!"
+  },
+  {
+   "file": "080.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Quirrell paces the stage, ticking off Harry's ideas. / Quirrell: Remove the floor to make a spike trap? Ridiculous! In combat you do not have that sort of time. Transfigure the walls? Mr Potter cannot perform Transfiguration!"
+  },
+  {
+   "file": "081.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Quirrell mimes a stab with his wand, unimpressed. / Quirrell: He had exactly one idea he could use right now: to jam his wand through his enemy's eye socket. Which would more likely break his wand than kill his opponent. In short, Mr Potter, your proposals were uniformly awful."
+  },
+  {
+   "file": "082.webp",
+   "w": 800,
+   "h": 920,
+   "alt": "Harry: What? You asked for unusual ideas, not practical ones! How would you use something in this classroom to kill someone?"
+  },
+  {
+   "file": "083.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Quirrell's expression is disapproving, but there are smile crinkles around his eyes. / Quirrell: Mr Potter, I never said you were to kill. But to answer your question: hit them on the neck with the edge of a chair."
+  },
+  {
+   "file": "084.webp",
+   "w": 800,
+   "h": 560,
+   "alt": "The Slytherins laugh, with Harry, not at him."
+  },
+  {
+   "file": "085.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Quirrell: But Mr Potter has now shown why he is the most dangerous student in the classroom. He could have suggested using a desk to block a curse, or wrapping cloth around his arm for a shield."
+  },
+  {
+   "file": "086.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Quirrell: Instead, every single use he named was offensive rather than defensive. And either fatal, or potentially fatal."
+  },
+  {
+   "file": "087.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "A sense of vertigo. / Harry: What? Wait, that couldn't be true… surely there had to be a counterexample…"
+  },
+  {
+   "file": "088.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Quirrell, quiet and certain. The hum of wrongness around him. / Quirrell: This reflects a quality that we might call intent to kill. I have it. Harry Potter has it, which is how he could stare down five older Slytherins."
+  },
+  {
+   "file": "089.webp",
+   "w": 800,
+   "h": 1100,
+   "alt": "Draco flinches. / Quirrell: Draco Malfoy does not have it. Not yet. Yes you were shocked, Mr Malfoy; I was watching your face. There are censors inside your mind which make you flinch away from thoughts like that. Mr Potter thinks purely of killing the enemy. His censors are off."
+  },
+  {
+   "file": "090.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Quirrell points across the empty white marble at Harry, who stands well back from the dais. / Quirrell: His intent to kill makes Harry Potter the Most Dangerous Student in the Classroom."
+  },
+  {
+   "file": "091.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "Harry: That is so completely not what I am about!"
+  },
+  {
+   "file": "092.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "The Ravenclaws eye Harry warily. / Harry: But he could see the other students starting to believe it. The best denial he could come up with was \"I'm not a psychopath, I'm just very creative.\" Which sounded kind of ominous."
+  },
+  {
+   "file": "093.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Quirrell: And now, Mr Potter. Select any student you please for a Simple Strike Hex. You will do so before I dismiss this class."
+  },
+  {
+   "file": "094.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry, wand out, faces the Slytherins. / Slowly, as though on a roasting platter, Harry turned to face the Slytherins. And his eyes met Draco's."
+  },
+  {
+   "file": "095.webp",
+   "w": 800,
+   "h": 640,
+   "alt": "Draco, calm. / Draco didn't look the slightest bit afraid."
+  },
+  {
+   "file": "096.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "Harry, thinking. / Quirrell: Why the hesitation? Surely there's only one obvious choice. / Harry: Yes. Only one obvious choice."
+  },
+  {
+   "file": "097.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry hexes his own left arm. / Harry: Ma-ha-su!"
+  },
+  {
+   "file": "098.webp",
+   "w": 800,
+   "h": 700,
+   "alt": "There was complete silence in the classroom. Harry shook his left arm, trying to get rid of the lingering sting."
+  },
+  {
+   "file": "099.webp",
+   "w": 800,
+   "h": 1000,
+   "alt": "More silence. Finally, Professor Quirrell sighed. / Quirrell: Yes, quite ingenious. But there was a lesson to be taught, and you dodged it. One point from Ravenclaw, for showing off your own cleverness at the expense of the actual goal. Class dismissed."
+  },
+  {
+   "file": "100.webp",
+   "w": 800,
+   "h": 900,
+   "alt": "Harry, arms up, singing it out. / Harry: Just kidding! RAVENCLAW! / There was silence for a brief moment. A sound of people thinking. Then the murmurs started, and rapidly rose to a roar."
+  },
+  {
+   "file": "101.webp",
+   "w": 800,
+   "h": 1060,
+   "alt": "Harry turned toward Professor Quirrell. The two of them needed to talk. But Quirrell had slumped over, and was trudging back to his chair. / Harry: Stuff the zombie act. He'd probably wake up if Harry poked him a couple of times…"
+  },
+  {
+   "file": "102.webp",
+   "w": 800,
+   "h": 1150,
+   "alt": "A wave of wrongness. Harry sways and stops dead, dizzy. / WRONG / DON'T / BAD IDEA"
+  },
+  {
+   "file": "103.webp",
+   "w": 800,
+   "h": 820,
+   "alt": "Ravenclaws mob Harry, all talking at once. / And then a flock of Ravenclaws descended on him, and the discussions began."
+  },
+  {
+   "file": "104.webp",
+   "w": 800,
+   "h": 340,
+   "alt": "To be continued"
+  }
+ ]
+}
