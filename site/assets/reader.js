@@ -32,9 +32,9 @@
         if(!target){target=ids[0];label='Read again';}}
       if(target){var li=document.querySelector('ol.eps li[data-id="'+target+'"]');var t=li?li.querySelector('.tt').textContent:'';
         btn.href=target+'/'+(label==='Continue'?'#continue':'');
-        btn.querySelector('.lbl').textContent=(label==='Begin reading'?'Break the seal':label)+' \u00b7 Episode '+Number(target.slice(2));
+        btn.querySelector('.lbl').textContent={'Continue':'Continue reading','Next':'Read next','Read again':'Read again'}[label]||'Begin reading';
+        btn.querySelector('.ep').textContent='Episode '+Number(target.slice(2));
         btn.querySelector('.ttl').textContent=t;
-        var tt=btn.querySelector('.ttl'),fs=25.6;tt.style.fontSize='';while(tt.scrollWidth>tt.clientWidth+1&&fs>15){fs-=1;tt.style.fontSize=fs+'px';}
         btn.setAttribute('aria-label',label+': Episode '+Number(target.slice(2))+', '+t);}
     }
   }
