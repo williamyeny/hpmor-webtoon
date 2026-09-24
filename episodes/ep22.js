@@ -41,11 +41,14 @@ const P = (y, h, art, o = {}) => ({ x: M, y, w: 752, h, mood: 'candle', art, ...
 // the two-shot: Draco standing in the aisle, Harry seated behind his desk
 const HS = (o = {}) => HB({ seat: 70, ...o });
 const TWO = (y, w = 640) => ({ x: 1315, y, w });
-ep.multi(1010, [
-  P(18, 620, { cam: ON(HB({ pose: 'lecture', seat: undefined }), 470, 40, -85), bg: TI, blur: 2, actors: [HB({ expr: 'smug', pose: 'lecture', seat: undefined, turn: -0.15 })] }),
-  P(656, 336, { cam: { head: 'draco', hw: 0.24, hx: 0.8, hy: 0.52 }, bg: TI, blur: 3, actors: [DR({ expr: 'yell', pose: 'fists' })] }),
-], [say('Harry', 'You ask, what is our aim? I can answer in one word. It is victory. Victory at all costs—Victory in spite of all terrors—Victory, however long and hard the road may be, for without victory there is no—', 400, 56, { anchor: 'tc', w: 580, fixed: true }),
-   shout('Draco', '*Talk about SNAPE. What did you do?*', 262, 824, { w: 280, fixed: true })]);
+// Harry on his feet, orating straight at the reader (a cut-out: no frame, no classroom)
+ep.multi(1120, [
+  { ...P(18, 720, { cam: { head: 'harry', hw: 0.25, hx: 0.75, hy: 0.23 }
+, actors: [HB({ expr: 'smug', pose: 'lecture', seat: undefined, turn: -0.15, x: 1450 })] }), cutout: true, border: 'none' },
+  P(766, 336, { cam: { head: 'draco', hw: 0.24, hx: 0.8, hy: 0.52 }, bg: TI, blur: 3, actors: [DR({ expr: 'yell', pose: 'fists' })] }),
+], [say('Harry', 'You ask, what is our aim? I can answer in one word. It is victory. Victory at all costs—Victory in spite of all terrors—Victory, however long and hard the road may be, for without victory there is no—', 42, 236, { anchor: 'tl', w: 334, fixed: true, shape: 'box' }),
+   shout('Draco', '*Talk about SNAPE. What did you do?*', 262, 934,
+ { w: 280, fixed: true })]);
 ep.panel(1000, { cam: TWO(-60), bg: TI, actors: [DR({ expr: 'exasperated', pose: 'fists' }), HS({ expr: 'deadpan' }), FRONTH] },
   [say('Harry', 'You saw it. Everyone saw it. I snapped my fingers.', 560, 40, { anchor: 'tc', w: 320, fixed: true }),
    shout('Draco', '*Harry!* Stop teasing me!', 250, 250, { anchor: 'tc', w: 300, fixed: true }),
@@ -68,7 +71,8 @@ ep.multi(1300, [
 ], [say('Harry', 'Trade. I tell you a fact that isn\'t on the grapevine and does *not* go on the grapevine, and in *particular* does not go to your father. And you tell me what Slytherin thinks.', 400, 44, { anchor: 'tc', w: 540, fixed: true }),
    say('Harry', 'What I said was true. I did discover one of Severus\'s secrets, and I did do some blackmail. But Severus wasn\'t the only person involved.', 400, 700, { anchor: 'tc', w: 520, fixed: true, tail: 'harry@1' })]);
 ep.multi(960, [
-  P(18, 520, { cam: ON(DR(), 440, 0, -30), bg: TI, blur: 3, actors: [DR({ expr: { base: 'bigGrin', eyes: { sparkle: true } }, pose: 'fists' })] }),
+  // Draco's discovery explodes the frame
+  P(18, 520, { cam: ON(DR(), 440, 0, -30), bg: TI, blur: 3, behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.55, { n: 40, op: 0.5, col: '#f3e6c4', inner: 190 }), actors: [DR({ expr: { base: 'bigGrin', eyes: { sparkle: true } }, pose: 'fists' })] }, { shape: 'burst', points: 20, seed: 4 }),
   P(556, 386, { cam: ON(HS(), 480, -110, 20), bg: TI, blur: 3, actors: [HS({ expr: 'worried', turn: -0.4 }), FRONTH] }),
 ], [shout('Draco', '*I KNEW IT!*', 400, 66, { anchor: 'tc', w: 260, fixed: true }),
    cap('Harry\'s stomach sank. He had apparently said something very significant, and he didn\'t know why.', 44, 580, { w: 300, fixed: true })]);
@@ -77,9 +81,11 @@ ep.multi(1500, [
   P(776, 706, { cam: ON(DR(), 460, 40, -95), bg: TI, blur: 3, actors: [DR({ expr: { base: 'scheme', eyes: { sparkle: true } }, pose: 'point', turn: 0.3 })] }),
 ], [say('Draco', 'So here\'s what the reaction was like in Slytherin. First, all the idiots were like, "We hate Harry Potter! Let\'s go beat him up!" Then the second wave of idiots said, "Looks like Harry Potter was just another do-gooder after all."', 400, 56, { anchor: 'tc', w: 520, fixed: true }),
    say('Draco', 'And then the *really* smart people had a little discussion. If you could break Snape\'s hold over Dumbledore, you\'d just do it. So Snape\'s hold was some secret of Dumbledore\'s, and *you\'ve got the secret!* Father\'s been trying to get Snape to tell him for *years!*', 400, 800, { anchor: 'tc', w: 520, fixed: true, shape: 'box', tail: 'draco@1' })]);
-ep.panel(970, { cam: ON(DR({ turn: 0.1 }), 440, 0, -125), bg: TI, blur: 2, actors: [DR({ expr: { base: 'stern', eyes: { open: 0.7 } }, pose: 'stand', turn: 0.1 })] },
+// In his father's voice, Draco becomes a Malfoy portrait: a gilt oval on a dark green ground
+ep.panel(1100, { cam: { head: 'draco', hw: 0.47, hx: 0.5, hy: 0.43 }, bg: () => rect(-3000, -3000, 8000, 8000, { fill: '#2a3a2e' }), actors: [DR({ expr: { base: 'stern', eyes: { open: 0.7 } }, pose: 'stand', turn: 0.1 })] },
   [cap('(In a different, more formal cadence. His father\'s.)', 44, 30, { w: 560, fixed: true }),
-   say('Draco', 'I\'ll get an owl tonight. *My beloved son: as you have already realised, Harry Potter\'s importance has now become greater and more urgent. If you see any possible avenue of friendship or point of pressure, pursue it. The full resources of Malfoy are at your disposal.*', 400, 142, { anchor: 'tc', w: 520, fixed: true })], { mood: 'candle' });
+   say('Draco', 'I\'ll get an owl tonight. *My beloved son: as you have already realised, Harry Potter\'s importance has now become greater and more urgent. If you see any possible avenue of friendship or point of pressure, pursue it. The full resources of Malfoy are at your disposal.*', 400, 128, { anchor: 'tc', w: 620, fixed: true, shape: 'box', tail: [400, 590] })]
+, { mood: 'candle', shape: 'oval', frame: 'gilt', x: 175, w: 450, y: 528, ph: 548 });
 ep.multi(1520, [
   P(18, 640, { cam: ON(DR(), 400, -20, -60), bg: TI, blur: 3, actors: [DR({ expr: 'worried', turn: 0.3 })] }),
   P(676, 826, { cam: ON(DR(), 480, 0, -172), bg: TI, blur: 2, actors: [DR({ expr: 'yell', pose: 'panic', turn: 0.2 })] }),
@@ -152,9 +158,10 @@ ep.multi(1492, [
 ], [say('Quirrell', 'Most wizards do not bother much with what a Muggle would call martial arts. Is not a wand stronger than a fist? This attitude is stupid. Wands are held in fists. Mr Goyle, I will ask you to attack me.', 400, 56, { anchor: 'tc', w: 520, fixed: true, tail: 'quirrell@0' }),
    say('Goyle', 'Professor Quirrell, can I ask what level—', 520, 820, { anchor: 'tc', w: 280, fixed: true, tail: 'goyle@1' }),
    say('Quirrell', 'Sixth *dan.* You will not be hurt, and neither will I. And if you see an opening, please take it.', 250, 1110, { anchor: 'tc', w: 320, fixed: true, tail: 'quirrell@2' })]);
-ep.multi(1290, [
-  P(230, 400, { cam: { x: 1060, y: 540, w: 760 }, bg: ST(), mid: MID((e) => FX.speedLines(e.w, e.h, { n: 30, seed: 5 }) + FX.burst(e.w, e.h, e.w * 0.52, e.h * 0.45, { n: 26, op: 0.2 })), actors: [QF({ x: 950 }), GY({ x: 1180, pose: 'run', expr: 'yell' })] }, { mood: undefined }),
-  P(648, 624, { cam: { x: 920, y: 620, w: 1000 }, bg: ST(), mid: MID((e) => FX.speedLines(e.w, e.h, { n: 34, seed: 9, angle: -12 })), actors: [GY({ x: 1200, y: 930, pose: 'fallBack', expr: 'yell', turn: -0.5 }), Q({ x: 1040, y: 480, pose: 'panic', expr: 'focus', turn: 0.3, rot: -84 })] }, { mood: undefined }),
+// the fight: a diagonal seam between the charge and the throw
+ep.multi(1276, [
+  P(230, 430, { cam: { x: 1060, y: 540, w: 760 }, bg: ST(), mid: MID((e) => FX.speedLines(e.w, e.h, { n: 30, seed: 5 }) + FX.burst(e.w, e.h, e.w * 0.52, e.h * 0.45, { n: 26, op: 0.2 })), actors: [QF({ x: 950 }), GY({ x: 1180, pose: 'run', expr: 'yell' })] }, { mood: undefined, shape: 'cut', cutBottom: 70 }),
+  P(608, 650, { cam: { x: 920, y: 610, w: 1000 }, bg: ST(), mid: MID((e) => FX.speedLines(e.w, e.h, { n: 34, seed: 9, angle: -12 })), actors: [GY({ x: 1200, y: 930, pose: 'fallBack', expr: 'yell', turn: -0.5 }), Q({ x: 1040, y: 470, pose: 'panic', expr: 'focus', turn: 0.3, rot: -80 })] }, { mood: undefined, shape: 'cut', cutTop: 70 }),
 ], [cap('The boy blurred forward, fists flying. The Professor blocked every blow. It was all happening too fast to follow, and then Goyle was on his back with his legs pushing, and Quirrell was actually *flying through the air…*', 44, 26, { w: 640, fixed: true })], { alt: 'A blur of fists and feet; Quirrell sails through the air.' });
 ep.panel(920, { cam: { x: 1040, y: 690, w: 760 }, bg: ST(), actors: [Q({ x: 820, y: 930, pose: 'fallBack', expr: 'shock', turn: 0.4 }), GY({ x: 1270, pose: 'run', expr: 'shock' })] },
   [shout('Quirrell', 'Stop! You *win!*', 200, 196, { anchor: 'tc', w: 280, fixed: true }),
@@ -183,11 +190,13 @@ const RED = (id, k = 1) => (ctx) => { const a = ctx.anchors && ctx.anchors[id]; 
 const NAR = (text, y0, o = {}) => say('Quirrell', text, 400, Math.max(y0, 50), { anchor: 'tc', w: 540, fixed: true, noTail: true, ...o });
 const SEPP = (y, h, art) => P(y, h, { over: MEM, ...art, bg: DJ(art.bgo) }, { mood: 'sepia' });
 ep.multi(1000, [
-  SEPP(330, 652, { cam: { x: 1030, y: 420, w: 1400 }, actors: [MS({ x: 860, turn: 0.2 }), ...[0, 1, 2, 3, 4, 5].map((i) => DST(i, { x: [240, 430, 620, 1420, 1610, 1800][i], turn: i > 2 ? -0.3 : 0.3 })), YQ({ ...BOW, turn: -0.4, x: 1170, y: 1000 })] }),
+  // the memory opens: its edges dissolve into the dark page
+  { ...SEPP(330, 652, { cam: { x: 1030, y: 420, w: 1400 }, actors: [MS({ x: 860, turn: 0.2 }), ...[0, 1, 2, 3, 4, 5].map((i) => DST(i, { x: [240, 430, 620, 1420, 1610, 1800][i], turn: i > 2 ? -0.3 : 0.3 })), YQ({ ...BOW, turn: -0.4, x: 1170, y: 1000 })] }), frame: 'dissolve', feather: 40 },
 ], [NAR('I learned how to lose in a *dojo* in Asia, which, as any Muggle knows, is where all the good martial artists live. Its Master was that style\'s greatest living teacher. He had no idea that magic existed, of course.', 34)],
   { alt: 'Sepia: a mountain dojo, polished wooden floor, paper screens, snowy peaks beyond. An old Master; students in white; a young Quirrell bowing.' });
 ep.multi(1790, [
-  SEPP(450, 520, { cam: { x: 935, y: 610, w: 1000 }, actors: [MS({ x: 640, turn: 0.3, expr: 'stern' }), DST(0, { x: 1230, y: 990, pose: 'fallBack', expr: 'hurt', turn: -0.4 }), YQ({ x: 960, pose: 'run', expr: 'angry', turn: 0.5 })], over: (e) => MEM(e) + FX.burst(e.w, e.h, e.w * 0.66, e.h * 0.62, { n: 22, op: 0.18 }) }),
+  // he loses control: the panel lurches
+  { ...SEPP(450, 520, { cam: { x: 935, y: 610, w: 1000 }, actors: [MS({ x: 640, turn: 0.3, expr: 'stern' }), DST(0, { x: 1230, y: 990, pose: 'fallBack', expr: 'hurt', turn: -0.4 }), YQ({ x: 960, pose: 'run', expr: 'angry', turn: 0.5 })], over: (e) => MEM(e) + FX.burst(e.w, e.h, e.w * 0.66, e.h * 0.62, { n: 22, op: 0.18 }) }), shape: 'slant', slant: 60 },
   SEPP(1252, 520, { cam: { x: 1250, y: 700, w: 900 }, actors: [DST(2, { x: 1420, turn: -0.3, pose: 'crossArms', expr: 'stern' }), DST(3, { x: 1590, turn: -0.3, pose: 'crossArms', expr: 'stern' }), DST(4, { x: 1760, turn: -0.3, pose: 'stand', expr: 'stern' }), DST(1, { x: 1200, turn: -0.4, pose: 'reach', expr: 'stern' }), YQ({ x: 1000, pose: 'fallBack', expr: 'hurt', turn: 0.3 })] }),
 ], [NAR('During one of my first fights, after I had been beaten in a particularly humiliating fashion, I lost control and attacked my sparring partner. The Master told me there was a flaw in my temperament. And then he said that I would learn how to lose.', 40),
    NAR('One by one, the students approached me. I was *not* to defend myself. They pushed me to the ground. And to each one, I had to say, "I lose."', 1010)]);
@@ -198,17 +207,21 @@ ep.multi(1150, [
 const DL = (o = {}) => ({ def: darkLord, id: 'darklord', x: 1450, y: 960, turn: 0, pose: 'stand', expr: 'cold', ...o });
 ep.multi(1754, [
   { ...SEPP(400, 620, { cam: { x: 1060, y: 520, w: 1100 }, actors: [MS({ x: 640, turn: 0.3, expr: 'stern' }), DST(3, { x: 950, turn: 0.4, pose: 'fists', expr: 'horror' }), DST(4, { x: 1110, turn: 0.4, pose: 'fists', expr: 'horror' }), DL()] }), overlay: RED('darklord', 1.2) },
-  { ...SEPP(1038, 280, { cam: { on: ['darklord'], fr: 'eyes' }, actors: [DL()], over: (e) => MEM(e) + rect(0, 0, e.w, e.h, { fill: '#140a06', opacity: 0.35 }) }), overlay: RED('darklord', 0.9) },
+  // the Dark Lord's eyes, in an eye-shaped panel
+  { ...SEPP(1038, 280, { cam: { on: ['darklord'], fr: 'eyes' }, actors: [DL()], over: (e) => MEM(e) + rect(0, 0, e.w, e.h, { fill: '#140a06', opacity: 0.35 }) }), overlay: RED('darklord', 0.9), shape: 'eye' },
   SEPP(1336, 400, { cam: ON(MS({ x: 640, turn: 0.3 }), 440, -130, 10), blur: 3, actors: [MS({ x: 640, turn: 0.3, expr: 'stern' })] }),
 ], [NAR('Not long afterwards, another would-be student came to that hidden place. *He-Who-Must-Not-Be-Named.* He came openly, glowing red eyes and all. And he demanded—not asked but *demanded*—to be taught.', 34),
    say('Quirrell', 'The Master refused. The Dark Lord asked why he could not be a student. The Master told him: *he had no patience.*', 260, 1372, { anchor: 'tc', w: 320, fixed: true, noTail: true })],
   { alt: 'A dark figure with glowing red eyes stands in the open side of the dojo. The Master faces him.' });
 const BOKKEN = () => g({ transform: 'translate(980,1010) rotate(-8)' }, P2.bokken(1.6));
-ep.multi(1560, [
-  SEPP(470, 600, { cam: { x: 990, y: 930, w: 600 }, actors: [BOKKEN], over: (e) => MEM(e) + rect(0, 0, e.w, e.h, { fill: '#1a1210', opacity: 0.35 }) }),
-  SEPP(1088, 454, { cam: { x: 1233, y: 700, w: 1100 }, actors: [DST(5, { id: 'survivor', x: 1560, y: 980, pose: 'kneel', turn: 0.2, expr: 'blank', filter: 'brightness(0.12)' })], over: (e) => MEM(e) + rect(0, 0, e.w, e.h, { fill: '#1a1210', opacity: 0.3 }) }),
+// all that is left: the practice sword, alone on the dark page (a cut-out)
+const BOKKEN0 = () => g({ style: 'filter: sepia(0.75) brightness(0.9)' }, ellipse(985, 1030, 240, 12, { fill: '#000', opacity: 0.4, filter: 'url(#blur3)' }), BOKKEN());
+ep.multi(1150, [
+  { ...SEPP(450, 190, { cam: { x: 990, y: 1010, w: 700 }, actors: [BOKKEN0], over: () => '' }), cutout: true, border: 'none' },
+  SEPP(678, 454, { cam: { x: 1233, y: 700, w: 1100 }, actors: [DST(5, { id: 'survivor', x: 1560, y: 980, pose: 'kneel', turn: 0.2, expr: 'blank', filter: 'brightness(0.12)' })], over: (e) => MEM(e) + rect(0, 0, e.w, e.h, { fill: '#1a1210', opacity: 0.3 }) }),
 ], [NAR('You can guess what happened next. The students tried to rush him, and fell, stunned where they stood. And then, one by one, the Dark Lord hurt the Master\'s students until they went mad, and then he killed them, while the Master was forced to watch. And then the Master.', 36),
-   say('Quirrell', 'I learned this from the single surviving student, whom the Dark Lord left alive to tell the tale. He had been a friend of mine.', 240, 1128, { anchor: 'tc', w: 340, fixed: true, noTail: true, shape: 'box' })],
+   say('Quirrell', 'I learned this from the single surviving student, whom the Dark Lord left alive to tell the tale. He had been a friend of mine.', 240, 718,
+ { anchor: 'tc', w: 340, fixed: true, noTail: true, shape: 'box' })],
   { alt: 'The dojo, empty. A wooden practice sword lies on the floor. Later, one figure kneels alone in silhouette.' });
 ep.setBg(C.paper);
 ep.multi(1080, [
@@ -262,10 +275,12 @@ const STAGS = (ctx) => { const cx = ctx.w / 2, gy = ctx.h * 0.9; return SKETCH(c
 const CATS = (ctx) => { const cx = ctx.w / 2, gy = ctx.h * 0.92; return SKETCH(ctx) + g({ transform: `translate(${cx - 150},${gy}) scale(0.9) rotate(4)` }, cat('#e3a25a', '#b8742e', 150, -214)) + g({ transform: `translate(${cx + 150},${gy}) scale(-0.9,0.9)` }, cat('#8a8a90', '#5e5e66', 104, -138))
   + path(`M${cx - 30},${gy - 250} q30,-14 52,6 M${cx - 34},${gy - 228} q24,-8 40,4`, { fill: 'none', stroke: C.ink, 'stroke-width': 2.4, 'stroke-linecap': 'round', opacity: 0.6 }); };
 ep.multi(1560, [
-  { x: M, y: 566, w: 752, h: 484, art: STAGS },
-  { x: M, y: 1068, w: 752, h: 474, art: CATS },
+  // two torn-out pages of a naturalist's sketchbook, laid on the page
+  { x: 40, y: 566, w: 720, h: 484, art: STAGS, shape: 'torn', seed: 8, tear: 12, frame: 'paper', rotate: -1.5, shadow: true },
+  { x: 40, y: 1086, w: 720, h: 456, art: CATS, shape: 'torn', seed: 13, tear: 12, frame: 'paper', rotate: 1.2, shadow: true },
 ], [say('Quirrell', 'That is *not* precise. Many animals have dominance contests. They rush at each other with horns—trying to knock each other down, not gore each other. They fight with their claws *sheathed.* Surely with claws out they would stand a better chance? But then their enemy might unsheathe *theirs*, and both might be badly hurt.', 400, 72, { anchor: 'tc', w: 540, fixed: true, noTail: true }),
-   cap('Stags lock horns to push, not to kill. Cats fight with their claws in.', 44, 1086, { w: 420, fixed: true })], { alt: 'A naturalist\'s sketch: two stags with antlers locked, pushing; below, two cats swatting at each other with soft, clawless paws.' });
+   cap('Stags lock horns to push, not to kill. Cats fight with their claws in.', 64, 1114,
+ { w: 420, fixed: true })], { alt: 'A naturalist\'s sketch: two stags with antlers locked, pushing; below, two cats swatting at each other with soft, clawless paws.' });
 // the whole year in the tiers (reverse shot from the stage). o.a(k, i, x) → overrides; o.skip(k, i, x); o.extra[k] → more actors in row k
 const CLASS = (o = {}) => {
   const out = [];
@@ -310,8 +325,9 @@ ep.multi(1200, [
   P(456, 726, { cam: { x: 1160, y: 150, w: 900 }, bg: ST(), actors: [QDESK, Q({ pose: 'point', expr: 'calm', turn: 0.5 }), GY({ x: 1380, y: 730, pose: 'stand', expr: 'worried', turn: -0.4 })] }),
 ], [say('Quirrell', 'Unfortunately, I am told that your fingers are already powerful weapons. Do not snap them at any time during this lesson.', 556, 60, { anchor: 'tc', w: 330, fixed: true, shape: 'box', tail: 'quirrell@0' }),
    say('Quirrell', 'The point is *not* to avoid getting angry. Anger is natural. You need to learn how to lose even when you are angry. Or at least *pretend* to lose, so that you can *plan* your vengeance. As I did with Mr Goyle today…', 400, 500, { anchor: 'tc', w: 540, fixed: true, tail: 'quirrell@1' })]);
-ep.panel(900, { cam: ON(GY({ x: 1300, pose: 'panic' }), 480, 0, -120), bg: ST(), blur: 2, actors: [GY({ x: 1300, pose: 'panic', expr: 'horror', turn: -0.2 })], over: (e) => FX.emanata ? FX.emanata(e.w / 2, e.h * 0.66, 220, { n: 12 }) : '' },
-  [shout('Goyle', 'I\'m not better than you! I know you didn\'t really lose! Please don\'t plan any vengeances!', 400, 96, { anchor: 'tc', w: 460, fixed: true })], { mood: 'candle' });
+// Goyle's panic jumps off the page at us (a cut-out)
+ep.cutout(1000, { cam: { head: 'goyle', hw: 0.25, hx: 0.5, hy: 0.52 }, actors: [GY({ x: 1300, pose: 'panic', expr: 'horror', turn: -0.2 })], over: (e) => { const a = e.anchors.goyle; return a ? FX.emanata(a.head[0], a.head[1], a.hr * 2.2, { n: 3, a0: -200, a1: -150 }) + FX.emanata(a.head[0], a.head[1], a.hr * 2.2, { n: 3, a0: -30, a1: 20 }) : ''; } },
+  [shout('Goyle', 'I\'m not better than you! I know you didn\'t really lose! Please don\'t plan any vengeances!', 400, 92, { anchor: 'tc', w: 500, fixed: true })]);
 ep.multi(1000, [
   P(18, 400, { cam: ON(HT({ pose: 'stand', seat: undefined }), 460, -140, 0), bg: TI, blur: 2, actors: [HT({ expr: 'worried', pose: 'stand', seat: undefined, turn: -0.3 }), FRONT] }),
   P(436, 250, { cam: ON(Q(), 380, 110, 0), bg: ST(), blur: 3, actors: [Q({ turn: -0.1, expr: { base: 'calm', eyes: { open: 0.8 } } })] }),
@@ -378,9 +394,10 @@ const RING = (o = {}) => {
 };
 const RING13 = (skip = []) => [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].filter((i) => !skip.includes(i)).map((i) => { const a = Math.PI * (0.1 + i * 0.07); const x = 1100 + Math.cos(a) * 520 * (i % 2 ? 1 : -1), y = 820 - (i % 3) * 20; return { def: slyTeen(i + 4), id: 'ring' + i, x, y, s: 1.28, turn: x > 1100 ? -0.4 : 0.4, pose: 'crossArms', expr: 'grin' }; });
 const WANDPOUCH = () => g({}, g({ transform: 'translate(900,533) rotate(-86)' }, wand(120)), g({ transform: 'translate(1080,530) scale(0.9)' }, pouch(1)));
-ep.multi(1110, [
+ep.multi(1030, [
   P(18, 640, { cam: { x: 1040, y: 560, w: 900 }, bg: MAT, actors: [WANDPOUCH, H({ expr: 'focus', turn: 0.1 })] }),
-  P(676, 416, { cam: { x: 1010, y: 520, w: 460 }, bg: MAT, blur: 1, actors: [WANDPOUCH] }),
+  // the wand and pouch he gave up, set down on the page itself (a cut-out)
+  { ...P(824, 190, { cam: { x: 995, y: 527, w: 380 }, actors: [() => ellipse(990, 545, 190, 12, { fill: '#3a2a1a', opacity: 0.25, filter: 'url(#blur3)' }), WANDPOUCH] }), cutout: true, border: 'none' },
 ], [cap('Harry stood on a soft blue mat, such as might be found in a Muggle *dojo.* His wand lay on Professor Quirrell\'s desk, because otherwise he might try to jam it through someone\'s eye socket. His pouch lay there too.', 44, 36, { w: 620, fixed: true }),
    cap('He had pleaded with Professor Quirrell to Transfigure boxing gloves onto his hands. Professor Quirrell had given him a look of silent understanding, and refused.', 44, 694, { w: 620, fixed: true })]);
 ep.panel(520, { cam: ON(H(), 440, -150, 10), bg: MAT, blur: 3, actors: [H({ expr: 'pained', turn: -0.2 })] },
@@ -388,9 +405,10 @@ ep.panel(520, { cam: ON(H(), 440, -150, 10), bg: MAT, blur: 3, actors: [H({ expr
 ep.bleed(1250, { cam: { x: 1100, y: 640, w: 1500 }, bg: MAT, actors: [...RING().slice(0, 10), DK({ pose: 'handsHips', x: 1340, y: 905 }), H({ turn: 0.1 }), ...RING().slice(10).map((a) => a.id === 'ringF1' ? { ...a, x: 470 } : a), Q({ x: 720, y: 1140, s: 1.45, turn: 0.4, pose: 'lecture', expr: 'stern' })] },
   [cap('Professor Quirrell returned, escorting thirteen older Slytherins. Harry recognised one of them as the one he\'d hit with a pie. Two others from that confrontation were there too. The one who\'d said to stop, that they really shouldn\'t do this, was missing.', 44, 40, { w: 640, fixed: true }),
    say('Quirrell', 'Potter is *not* to be really hurt. Any and all *accidents* will be treated as deliberate. Then please feel free to take the Boy-Who-Lived down a few pegs.', 364, 1192, { anchor: 'bc', w: 500, fixed: true, tail: [200, 830] })], { alt: 'Harry, small, in the middle of a ring of big grinning Slytherin teenagers.' });
-ep.panel(1060, { cam: { x: 1220, y: 520, w: 720 }, bg: MAT, actors: [H({ expr: 'horror', turn: 0.4 }), DK({ pose: 'handsHips', expr: 'grin', x: 1360 })] },
-  [say('Quirrell', 'Potter, meet Mr Peregrine Derrick. He is better than you, and he is about to show you that.', 400, 50, { anchor: 'tc', w: 520, fixed: true, noTail: true }),
-   cap('A teenage boy fully half a metre taller than Harry, with defined muscles, facial hair, and a grin of terrible anticipation.', 44, 900, { w: 620, fixed: true })], { mood: 'candle' });
+// Derrick is too tall for the panel: his head breaks out over the top edge
+ep.panel(1010, { cam: { x: 1210, y: 765, w: 720 }, bg: MAT, actors: [H({ expr: 'horror', turn: 0.4 }), DK({ pose: 'handsHips', expr: 'grin', x: 1360 })] },
+  [say('Quirrell', 'Potter, meet Mr Peregrine Derrick. He is better than you, and he is about to show you that.', 56, 40, { anchor: 'tl', w: 356, fixed: true, noTail: true }),
+   cap('A teenage boy fully half a metre taller than Harry, with defined muscles, facial hair, and a grin of terrible anticipation.', 44, 850, { w: 620, fixed: true })], { mood: 'candle', breakout: 'top', ph: 812, panel: { y: 180 } });
 ep.multi(1240, [
   P(18, 400, { cam: ON(Q({ x: 500, y: 900 }), 480, -150, 0), bg: MAT, blur: 2, actors: [Q({ x: 500, y: 900, turn: 0.4, expr: 'calm' })] }),
   P(436, 460, { cam: { x: 1200, y: 540, w: 720 }, bg: MAT, actors: [H({ expr: { base: 'angry', mouth: { type: 'grit' } }, pose: 'cower', turn: 0.4 }), DK({ expr: 'smug', x: 1360 })] }),
@@ -421,18 +439,21 @@ const FOOTDOWN = (e) => { const a = e.wa.harry; if (!a) return ''; const cx = (a
     + path(`M${cx - 48},${cy + 8} L${cx + 54},${cy + 12}`, { stroke: '#4a3a2e', 'stroke-width': 6, 'stroke-linecap': 'round' }); };
 ep.multi(1090, [
   P(18, 620, { cam: ON(HA(), 600, 20, -80), bg: MAT, blur: 2, actors: [HA()], over: COLD(0.5, 153) }, { mood: 'cold' }),
-  P(656, 416, { cam: { x: 870, y: 420, w: 520 }, bg: () => rect(-500, -500, 3000, 2000, { fill: '#efe6d6' }), actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1000, y: 900, turn: 0.1, pose: 'stand', expr: { base: 'sad', eyes: { soft: true } } }], over: (e) => FX.memoryEdge(e.w, e.h) + rect(0, 0, e.w, e.h, { fill: '#fff', opacity: 0.12 }) }, { mood: 'sepia' }),
+  // the image of McGonagall flashes up and fades: no hard edges
+  P(656, 416, { cam: { x: 870, y: 420, w: 520 }, bg: () => rect(-500, -500, 3000, 2000, { fill: '#efe6d6' }), actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1000, y: 900, turn: 0.1, pose: 'stand', expr: { base: 'sad', eyes: { soft: true } } }], over: (e) => rect(0, 0, e.w, e.h, { fill: '#fff', opacity: 0.12 }) }, { mood: 'sepia', frame: 'dissolve', feather: 50 }),
 ], [cold('Harry', 'All he had to do was say it was over. And report the whole thing to the Headmaster. That would be the end of this *Defence Professor*…', 400, 50, { anchor: 'tc', w: 500, fixed: true, noTail: true }),
    cap('(An image of Professor McGonagall\'s face flashed before his eyes. She didn\'t look angry. Just sad.)', 44, 674, { w: 300, fixed: true })]);
 ep.multi(1330, [
   P(18, 300, { cam: ON(Q({ x: 500, y: 900 }), 460, -140, 0), bg: MAT, blur: 3, actors: [Q({ x: 500, y: 900, turn: 0.4, expr: 'calm' })] }),
-  P(336, 440, { cam: ON(HA({ turn: 0.3 }), 480, -120, -10), bg: MAT, blur: 2, actors: [HA({ turn: 0.3 })], over: COLD(0.55, 155) }, { mood: 'cold' }),
-  P(794, 518, { cam: { x: 1010, y: 820, w: 640 }, bg: MAT, actors: [HL({ expr: { base: 'cold', mouth: { type: 'grit' } } }), FOOTDOWN], over: COLD(0.5, 156) }, { mood: 'cold' }),
+  // Derrick's shove comes down on a diagonal: the seam between the panels tilts with the leg
+  P(336, 440, { cam: ON(HA({ turn: 0.3 }), 480, -120, -10), bg: MAT, blur: 2, actors: [HA({ turn: 0.3 })], over: COLD(0.55, 155) }, { mood: 'cold', shape: 'cut', cutBottom: -60 }),
+  P(734, 578, { cam: { x: 1010, y: 800, w: 640 }, bg: MAT, actors: [HL({ expr: { base: 'cold', mouth: { type: 'grit' } } }), FOOTDOWN], over: COLD(0.5, 156) }, { mood: 'cold', shape: 'cut', cutTop: -60 }),
 ], [say('Quirrell', 'Now tell him that he\'s better than you, Potter.', 240, 80, { anchor: 'tc', w: 300, fixed: true, tail: 'quirrell@0' }),
    cold('Harry', 'You\'re, better, than, me.', 560, 400, { anchor: 'tc', w: 260, fixed: true }),
    cap('Harry started to raise himself, and Derrick put a foot on his chest and shoved him back down.', 44, 812, { w: 420, fixed: true })]);
-ep.bleed(1100, { cam: { on: ['harry'], fr: 'eyes', zoom: 0.9, dy: -0.13 }, bg: MAT, actors: [HA({ turn: 0.1 })], over: (e) => FX.frost(e.w, e.h, 0.85, 157) + rect(0, 0, e.w, e.h, { fill: '#0c1428', opacity: 0.25 }) },
-  [cold('Harry', 'The world was becoming transparent as crystal. Lines of action and their consequences stretched out in utter clarity. The fool wouldn\'t be expecting him to strike back. A quick hit would stun him long enough for…', 400, 60, { anchor: 'tc', w: 560, fixed: true, noTail: true })], { mood: 'cold', alt: 'Ice-cold eyes. Crystal clarity.' });
+// Harry's cold eyes get the same eye-shaped panel as the Dark Lord's
+ep.panel(880, { cam: { on: ['harry'], fr: 'eyes', zoom: 0.8, dy: 0.02 }, bg: MAT, actors: [HA({ turn: 0.1 })], over: (e) => FX.frost(e.w, e.h, 0.85, 157) + rect(0, 0, e.w, e.h, { fill: '#0c1428', opacity: 0.25 }) },
+  [cold('Harry', 'The world was becoming transparent as crystal. Lines of action and their consequences stretched out in utter clarity. The fool wouldn\'t be expecting him to strike back. A quick hit would stun him long enough for…', 400, 58, { anchor: 'tc', w: 600, fixed: true, noTail: true })], { mood: 'cold', shape: 'eye', x: 0, w: 800, y: 340, ph: 520, alt: 'Ice-cold eyes. Crystal clarity.' });
 ep.multi(1150, [
   P(18, 330, { cam: ON(Q({ x: 500, y: 900 }), 460, -100, 0), bg: MAT, blur: 3, actors: [Q({ x: 500, y: 900, turn: 0.4, expr: 'calm' })] }),
   P(366, 766, { cam: { x: 820, y: 560, w: 900 }, bg: MAT, mid: MID((e) => FX.speedLines(e.w, e.h, { n: 26, seed: 21 })), actors: [Q({ x: 560, y: 860, turn: 0.4, pose: 'stand', expr: 'calm' }), H({ x: 1120, y: 1130, s: 1.75, pose: 'fists', turn: -0.6, expr: { base: 'cold', brows: { raise: -0.6 } } })], over: COLD(0.7, 159) }, { mood: 'cold' }),
@@ -440,8 +461,9 @@ ep.multi(1150, [
    cap('And with a sudden sharp motion Harry rolled, and sprang to his feet, and whirled on where stood his *real* enemy. The Defence Professor.', 44, 384, { w: 620, fixed: true })]);
 ep.bleed(720, { cam: ON(Q({ x: 600, y: 900 }), 330, 0, -50), bg: MAT, blur: 3, actors: [Q({ x: 600, y: 900, turn: 0.05, expr: { base: 'calm', eyes: { style: 'cold', open: 0.7 } } })], over: (e) => FX.doom(e.w, e.h, 161) },
   [say('Quirrell', 'You have no patience.', 400, 50, { anchor: 'tc', w: 360, size: 40, fixed: true })], { alt: 'Quirrell, quiet, looking straight at him. The same words the Master said.' });
-ep.panel(700, { cam: ON(MS(), 440, 0, 10), bg: DJ(), blur: 3, actors: [MS({ expr: 'sad' })], over: (e) => FX.memoryEdge(e.w, e.h) + rect(0, 0, e.w, e.h, { fill: '#2a1a14', opacity: 0.45 }) },
-  [cap('Harry faltered. His mind, well-honed in pessimism, drew him a picture of an old man, and what had been done to him.', 44, 30, { w: 620, fixed: true })], SEP);
+// the old Master, an image in Harry's mind: no hard edges
+ep.panel(760, { cam: ON(MS(), 440, 0, 10), bg: DJ(), blur: 3, actors: [MS({ expr: 'sad' })], over: (e) => rect(0, 0, e.w, e.h, { fill: '#2a1a14', opacity: 0.45 }) },
+  [cap('Harry faltered. His mind, well-honed in pessimism, drew him a picture of an old man, and what had been done to him.', 44, 20, { w: 620, fixed: true })], { ...SEP, frame: 'dissolve', feather: 60, y: 140, ph: 610 });
 ep.bleed(1080, { cam: { x: 1000, y: 570, w: 800 }, bg: MAT, actors: [...RING({ expr: 'laugh', noFront: true, skip: [2, 3, 6] }), HL({ expr: 'cry', turn: 0.3 }), DK({ x: 1060, y: 930, pose: 'sit', seat: 70, expr: 'laugh', turn: 0.4 })] },
   [cap('A moment later, Derrick pushed him to the mat again, and then sat down on him, and the breath went whooshing out of him.', 44, 40, { w: 620, fixed: true }),
    shout('Harry', 'Stop! Please stop!', 270, 916, { anchor: 'tc', w: 320, fixed: true })], { alt: 'Derrick sits on Harry.' });
@@ -456,9 +478,10 @@ ep.multi(900, [
 // shoved from hand to hand: the ring closes in, arms out
 const SHOVE = (i) => ({ pose: 'reach', turn: i % 2 ? -0.4 : 0.4 });
 ep.multi(1330, [
-  P(18, 700, { cam: { x: 1100, y: 500, w: 1250 }, bg: MAT, mid: MID((e) => FX.speedLines(e.w, e.h, { n: 22, seed: 31, angle: -8 })), actors: [
+  // shoved from hand to hand: the panel itself is knocked askew
+  { ...P(18, 700, { cam: { x: 1100, y: 500, w: 1250 }, bg: MAT, mid: MID((e) => FX.speedLines(e.w, e.h, { n: 22, seed: 31, angle: -8 })), actors: [
     ...RING({ expr: 'laugh', noFront: true }).map((a, i) => (i === 1 || i === 4 || i === 7 || i === 8 ? { ...a, pose: 'reach', turn: a.x > 1100 ? -0.4 : 0.4, y: a.y + 40, x: a.x + (a.x > 1100 ? -60 : 60) } : a)),
-    DK({ x: 1420, pose: 'point', expr: 'laugh' }), H({ x: 1060, y: 900, pose: 'panic', expr: 'sob', rot: -12, turn: -0.3 })] }),
+    DK({ x: 1420, pose: 'point', expr: 'laugh' }), H({ x: 1060, y: 900, pose: 'panic', expr: 'sob', rot: -12, turn: -0.3 })] }), shape: 'slant', slant: -56 },
   P(736, 576, { cam: ON(H({ x: 1060, pose: 'panic' }), 520, 40, 40), bg: MAT, blur: 2, actors: [H({ x: 1060, y: 900, pose: 'panic', expr: 'sob', rot: 8, turn: 0.3 })] }),
 ], [cap('Hands shoved Harry, sending him stumbling across the circle to another set of hands that shoved him again. He had long since passed the point of trying not to cry. He was just trying not to fall down.', 44, 36, { w: 620, fixed: true }),
    say('Derrick', 'I like it. Lose some more.', 560, 570, { anchor: 'tc', w: 260, fixed: true, tail: 'derrick@0' }),
@@ -469,8 +492,9 @@ ep.panel(860, { cam: { x: 1060, y: 590, w: 840 }, bg: MAT, actors: [...RING({ ex
   [cap('Harry tripped over a foot, and went crashing to the ground, hands not quite able to catch himself.', 44, 30, { w: 620, fixed: true })], { mood: 'candle' });
 const QM = (o = {}) => Q({ x: 850, y: 900, turn: 0.4, pose: 'stand', ...o });
 const HM = (o = {}) => H({ x: 1100, y: 900, turn: -0.4, pose: 'stand', ...o });
-ep.bleed(760, { cam: ON(Q({ x: 800, y: 900, pose: 'point' }), 440, 60, -70), bg: MAT, actors: [Q({ x: 800, y: 900, pose: 'point', expr: { base: 'yell', brows: { raise: -0.7, inner: -0.6 } }, turn: 0.4 })], behind: (e) => { const a = e.anchors.quirrell; return FX.burst(e.w, e.h, a ? a.head[0] : e.w / 2, a ? a.head[1] : e.h / 2, { n: 30, op: 0.25, inner: 150 }); } },
-  [shout('Quirrell', '*ENOUGH!* Step away from Mr Potter!', 400, 56, { anchor: 'tc', w: 460, fixed: true })], { alt: 'A voice sharp enough to cut iron.' });
+// ENOUGH: the shout bursts the frame
+ep.panel(800, { cam: ON(Q({ x: 800, y: 900, pose: 'point' }), 560, 60, 60), bg: MAT, actors: [Q({ x: 800, y: 900, pose: 'point', expr: { base: 'yell', brows: { raise: -0.7, inner: -0.6 } }, turn: 0.4 })], behind: (e) => { const a = e.anchors.quirrell; return FX.burst(e.w, e.h, a ? a.head[0] : e.w / 2, a ? a.head[1] : e.h / 2, { n: 30, op: 0.25, inner: 150 }); } },
+  [shout('Quirrell', '*ENOUGH!* Step away from Mr Potter!', 400, 56, { anchor: 'tc', w: 460, fixed: true })], { shape: 'burst', points: 18, seed: 12, y: 116, ph: 670, alt: 'A voice sharp enough to cut iron.' });
 ep.multi(1480, [
   P(18, 800, { cam: { x: 1030, y: 385, w: 1120 }, bg: MAT, actors: [...RING({ expr: 'horror', noFront: true }).map((a) => ({ ...a, x: a.x + (a.x > 1100 ? 90 : a.x < 1000 ? -60 : 0), y: a.y - 30 })), DK({ x: 1560, y: 880, expr: 'horror', turn: -0.2 }), Q({ x: 520, y: 900, pose: 'lecture', expr: 'cold', turn: 0.4 }), H({ x: 1060, y: 930, pose: LIE, expr: 'blank', turn: 0.3 })] }),
   P(836, 300, { cam: { head: 'draco', hw: 0.24, hx: 0.3, hy: 0.52 }, bg: TI, blur: 3, actors: [DS({ x: 1000, pose: 'point', seat: undefined, expr: 'cold', turn: 0.3 })] }),
@@ -501,11 +525,12 @@ ep.multi(1600, [
    say('Harry', 'Yes.', 360, 790, { anchor: 'tc', w: 120, fixed: true }),
    say('Quirrell', 'Will you be able to lose?', 540, 1090, { anchor: 'tc', w: 280, fixed: true }),
    say('Harry', 'I… think so…', 300, 1405, { anchor: 'tc', w: 220, fixed: true })]);
-ep.multi(1200, [
+ep.multi(1030, [
   P(18, 360, { cam: ON(QM(), 460, -140, 0), bg: MAT, blur: 3, actors: [QM({ turn: 0.3, expr: 'smile' })] }),
-  P(396, 786, { cam: { x: 960, y: 690, w: 660 }, bg: MAT, actors: [QM({ x: 730, pose: { ...POSES.bowGrand, lean: 80, headTilt: 20, armB: { sh: -30, el: 30, hand: 'open' }, armF: { sh: -60, el: -20, hand: 'open' } }, expr: { base: 'smile', eyes: { open: 0.5 } } }), HM({ x: 1150, expr: 'shock' })] }, { mood: undefined }),
+  // the bow: the two of them alone on the bare page, nothing else in the world (a cut-out)
+  { ...P(396, 610, { cam: { x: 950, y: 690, w: 600 }, bg: MAT, actors: [QM({ x: 730, pose: { ...POSES.bowGrand, lean: 40, headTilt: 12 }, expr: { base: 'smile', eyes: { open: 0.5 } } }), HM({ x: 1150, expr: 'shock' })] }), cutout: true, border: 'none' },
 ], [say('Quirrell', 'I think so too.', 250, 140, { anchor: 'tc', w: 230, fixed: true, tail: 'quirrell@0' }),
-   say('Quirrell', 'Congratulations, Harry Potter. *You win.*', 330, 1160, { anchor: 'bc', w: 460, fixed: true, tail: 'quirrell@1' })],
+   say('Quirrell', 'Congratulations, Harry Potter. *You win.*', 372, 392, { anchor: 'tl', w: 300, shape: 'box', fixed: true, tail: 'quirrell@1' })],
   { alt: 'Quirrell bows so low his thin hair almost touches the floor.' });
 // the whole year on its feet; some of Gryffindor up on their desks (drawn with the row below so the desk front doesn't hide them)
 const HOUSE = (k, i) => ['r', 'g', 'h', 's'][(i + k) % 4];
@@ -513,7 +538,8 @@ const ONDESK = (k, i) => HOUSE(k, i) === 'g' && k >= 2;
 const CHEER = (o = {}) => CLASS({ skip: (k, i, x) => (k === 1 && Math.abs(x - 1000) < 160) || ONDESK(k, i), a: (k, i) => ({ pose: (i + k) % 3 ? 'armsUp' : 'wave', seat: undefined, expr: (i + k) % 2 ? 'bigGrin' : 'laugh', turn: 0 }),
   extra: { 0: [], ...Object.fromEntries([1, 2, 3].map((k) => [k, [...[0, 1, 2, 3, 4, 5].filter((i) => ONDESK(k + 1, i)).map((i) => ({ def: student(2500 + (k + 1) * 10 + i, 'g'), id: `d${k}${i}`, x: 250 + i * 300 + ((k + 1) % 2) * 150, y: rowY(k + 1) - 90, s: 1.05, turn: 0, pose: 'armsUp', expr: 'laugh' })), ...(k === 1 ? [DS({ x: 1000, pose: 'armsUp', seat: undefined, expr: 'smile' })] : [])]])) } });
 ep.multi(1394, [
-  P(18, 580, { cam: { x: 1150, y: 115, w: 1500 }, bg: TI, actors: CHEER(), over: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.55, { n: 30, op: 0.12, inner: 330 }) }),
+  // the applause hits like a thunderclap: the frame jolts
+  P(18, 580, { cam: { x: 1150, y: 115, w: 1500 }, bg: TI, actors: CHEER(), over: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.55, { n: 30, op: 0.12, inner: 330 }) }, { shape: 'jag', jag: 14, seed: 5 }),
   P(616, 760, { cam: { x: 1080, y: 40, w: 1100 }, bg: TI, actors: CHEER() }),
 ], [cap('There was no single source, no first mover. The applause started all at once, like a massive thunderclap.', 44, 36, { w: 620, fixed: true }),
    cap('From Ravenclaw and Gryffindor and Hufflepuff and even Slytherin, probably because Draco Malfoy was applauding too. Half of Gryffindor was standing on their desks.', 44, 634, { w: 620, fixed: true })],
@@ -526,18 +552,20 @@ ep.multi(1350, [
 ], [say('Quirrell', 'Surprised, Mr Potter? You have just found out that the real world does not *always* work like your worst nightmares. They saw you confront your fear, and keep confronting it, even though you could have walked away at any time. Did you think less of *me*, when I told you I had been pushed to the ground?', 400, 84, { anchor: 'tc', w: 560, fixed: true, tail: 'quirrell@0' }),
    say('Quirrell', 'Your *extraordinary* achievement deserves an extraordinary reward. Remember that there are Slytherins, and then there are Slytherins. *Fifty-one points to Ravenclaw.*', 262, 826, { anchor: 'tc', w: 380, fixed: true, shape: 'box', tail: 'quirrell@1' })]);
 const RAVEN = [padma, anthony, terry];
-ep.panel(700, { cam: { x: 1100, y: 195, w: 1250 }, bg: TI, actors: CLASS({ skip: (k, i, x) => (k === 4 && Math.abs(x - 1450) < 160) || (k === 1 && Math.abs(x - 1000) < 160), a: (k, i) => ({ def: k === 2 && i < 3 ? RAVEN[i] : student(2600 + k * 10 + i, 'r'), pose: (i + k) % 2 ? 'armsUp' : 'wave', seat: undefined, expr: (i + k) % 3 ? 'laugh' : 'bigGrin' }) }) },
-  [cap('Pandemonium broke out among the Ravenclaws: howling, whistling, cheering.', 44, 30, { w: 620, fixed: true })], { mood: 'candle' });
+// the cheering spills over the top of the frame
+ep.panel(700, { cam: { x: 1100, y: 450, w: 1250 }, bg: TI, actors: CLASS({ skip: (k, i, x) => (k === 4 && (Math.abs(x - 1450) < 160 || x > 1700)) || (k === 1 && Math.abs(x - 1000) < 160), a: (k, i) => ({ def: k === 2 && i < 3 ? RAVEN[i] : student(2600 + k * 10 + i, 'r'), pose: (i + k) % 2 ? 'armsUp' : 'wave', seat: undefined, expr: (i + k) % 3 ? 'laugh' : 'bigGrin' }) }) },
+  [cap('Pandemonium broke out among the Ravenclaws: howling, whistling, cheering.', 44, 566, { w: 620, fixed: true })], { mood: 'candle', breakout: 'top', ph: 612, panel: { y: 70 } });
 ep.panel(900, { cam: { on: ['harry'], fr: 'close', dy: 0.1 }, bg: MAT, blur: 3, actors: [H({ x: 1100, y: 900, expr: 'worried' })] },
   [cap('(And in the same moment, Harry felt something *wrong* about that. Professor McGonagall had been right. There *should* have been consequences, a cost, a price. You couldn\'t just put everything back the way it was.)', 44, 30, { w: 620, fixed: true })], { mood: 'candle' });
 // Draco's small, quick thumbs-up: a fist at his chest with the thumb drawn on top
 const DTH = (o = {}) => DS({ x: 1000, pose: { ...POSES.stand, armB: { sh: 40, el: 110, hand: 'fist' } }, seat: undefined, expr: { base: 'smile', eyes: { wink: 'r' } }, turn: 0.2, ...o });
 const THUMB = (e) => { const a = e.wa.draco; if (!a) return ''; const [x, y] = a.handB, r = a.hr * 0.2; return path(`M${x - r * 0.5},${y - r * 0.6} Q${x - r * 0.7},${y - r * 2.4} ${x},${y - r * 2.5} Q${x + r * 0.6},${y - r * 2.3} ${x + r * 0.5},${y - r * 0.6}Z`, { fill: dracoSly.skin, stroke: C.ink, 'stroke-width': r * 0.28, 'stroke-linejoin': 'round' }); };
-ep.multi(1220, [
-  P(18, 820, { cam: ON(HM({ pose: 'armsUp', turn: 0 }), 470, 0, -150), bg: MAT, actors: [HM({ pose: 'armsUp', expr: 'smile', turn: 0 })] }),
-  P(856, 346, { cam: ON(DTH(), 420, -90, 30), bg: TI, blur: 3, actors: [DTH(), THUMB, FRONT1] }),
+// Draco's thumbs-up, small and quick: an inset tucked into the corner of Harry's panel
+ep.multi(900, [
+  P(18, 824, { cam: ON(HM({ pose: 'armsUp', turn: 0 }), 480, 105, -150), bg: MAT, actors: [HM({ pose: 'armsUp', expr: 'smile', turn: 0 })] }),
+  P(560, 314, { cam: ON(DTH(), 250, -20, 45), bg: TI, blur: 3, actors: [DTH(), THUMB, FRONT1] }, { x: 486, w: 280, shadow: true }),
 ], [say('Harry', 'Professor Quirrell, you are everything a member of your House should be. I think you must be just what Salazar Slytherin had in mind when he helped found Hogwarts. I thank you and your House. And I think this calls for three cheers for Slytherin. *Huzzah! Huzzah! HUZZAH!*', 400, 44, { anchor: 'tc', w: 600, fixed: true, shape: 'box' }),
-   cap('Draco\'s hand moved in a small, quick thumbs-up.', 44, 874, { w: 300, fixed: true })]);
+   cap('Draco\'s hand moved in a small, quick thumbs-up.', 414, 448, { w: 282, fixed: true })]);
 ep.panel(800, { cam: { on: ['zabini'], fr: 'bust' }, bg: TI, blur: 2, actors: [{ def: zabini, id: 'zabini', x: 1000, y: rowY(1), s: 1.1, turn: 0.1, pose: 'sit', seat: 140, expr: { base: 'suspicious', mouth: { type: 'smirk' } } }, () => CS.tierFront(1, { screens: [] })] },
   [cap('Most of the Slytherins looked shocked. A few stared at Professor Quirrell in wonder. And Blaise Zabini was looking at Harry with a calculating, intrigued expression.', 44, 30, { w: 620, fixed: true })], { mood: 'candle' });
 ep.multi(1400, [
@@ -548,7 +576,11 @@ ep.multi(1400, [
    say('Harry', 'I can…', 250, 690, { anchor: 'tc', w: 140, fixed: true }),
    say('Quirrell', '*Idiot.* Third door from the left, at the back of the stage. You will find a bed, some exceptionally tasty snacks, and some extremely light reading. You may not take your textbooks. Now go.', 498, 896, { anchor: 'tc', w: 460, fixed: true, shape: 'box', tail: 'quirrell@2' })],
   { alt: 'He says "idiot" fondly. The class is already laughing.' });
-ep.panel(700, { cam: { x: 900, y: 470, w: 820 }, bg: ST(), actors: [H({ x: 980, y: 700, turn: -0.6, pose: 'walk', expr: 'teary', s: 1.0 })] },
-  [cap('Harry went.', 44, 30, { w: 200, fixed: true })], { mood: 'candle', alt: 'Harry walks toward the third door at the back of the stage.' });
+// the last panel: we are already inside the quiet room behind the third door (bed, snacks, light reading),
+// and the door itself is a panel, with Harry coming through it
+ep.multi(610, [
+  P(110, 482, { cam: { x: 1010, y: 553, w: 1450 }, bg: () => CS.restRoom(), actors: [] }),
+  P(166, 370, { cam: { x: 1150, y: 790, w: 330 }, bg: () => TI() + CS.tierFront(1, { screens: [] }) + rect(-800, 780, 4000, 1000, { fill: '#d8d2c4' }), blur: 3, actors: [H({ x: 1150, y: 1010, turn: 0.1, pose: 'walk', expr: 'teary' })] }, { x: 54, w: 184, frame: 'wood', mood: undefined }),
+], [cap('Harry went.', 44, 30, { w: 200, fixed: true })], { alt: 'Inside the quiet room behind the third door: a bed, snacks, a few books. Harry comes in through the doorway.' });
 ep.end();
 export default ep;
