@@ -87,9 +87,9 @@ a{color:inherit}
   padding:.65rem 1.4rem;border-radius:999px;box-shadow:0 1px 2px rgba(0,0,0,.4) inset,0 2px 0 #5d0f13,0 5px 14px rgba(90,20,20,.35)}
 .arc{font-family:'IM Fell English SC',serif;text-align:center;color:var(--ink2);margin:1.6rem 0 .4rem;font-size:1rem;letter-spacing:.5px}
 .arc:before,.arc:after{content:'';display:inline-block;width:3rem;height:1px;background:#bda981;vertical-align:middle;margin:0 .7rem}
-ol.eps{list-style:none;margin:0;padding:0 1rem 2rem}
+ol.eps{list-style:none;margin:0;padding:0 0 2rem}
 ol.eps li{border-bottom:1px dashed #cdb88d}
-ol.eps a,ol.eps .soon{display:flex;gap:.9rem;align-items:center;padding:.85rem .3rem;text-decoration:none}
+ol.eps a,ol.eps .soon{display:flex;gap:.9rem;align-items:center;padding:.9rem 1.2rem;text-decoration:none}
 ol.eps .n{flex:none;width:2.4rem;height:2.4rem;font-size:1rem}
 ol.eps .tt{font-family:'IM Fell English',serif;font-size:1.2rem;line-height:1.2}
 ol.eps .bb{font-style:italic;color:var(--ink2);font-size:.95rem;line-height:1.3;margin-top:.15rem}
@@ -98,12 +98,17 @@ ol.eps li.read .n{background:radial-gradient(circle at 35% 30%,#a08868,#6b5840 7
 ol.eps li.read .tt,ol.eps li.read .bb{opacity:.6}
 ol.eps li.reading .n{box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--gold),0 1px 3px rgba(0,0,0,.4)}
 ol.eps li.reading{background:linear-gradient(90deg,rgba(201,162,74,.16),transparent)}
-ol.eps .bar2{position:relative;height:18px;margin-top:.9rem}
-ol.eps .bar2:before{content:'';position:absolute;left:0;right:0;top:11px;border-top:2px dotted #c9b48a}
-ol.eps .bar2 i{position:absolute;left:0;top:9px;height:5px;border-radius:3px;background:#2a1b14;box-shadow:0 0 0 .5px #2a1b14;clip-path:polygon(0 30%,100% 0,100% 100%,0 70%)}
-ol.eps .bar2 b{position:absolute;top:-17px;margin-left:-6px;width:34px;height:34px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M6%2036%20Q10%2022%2022%2012%20Q30%205%2038%202%20Q34%2010%2028%2017%20Q20%2027%208%2034Z%22%20fill%3D%22%23f4ecd6%22%20stroke%3D%22%235a4032%22%20stroke-width%3D%221.6%22/%3E%3Cpath%20d%3D%22M6%2036%20L26%2013%22%20stroke%3D%22%238a7458%22%20stroke-width%3D%221.2%22/%3E%3Cpath%20d%3D%22M4%2038%20L8%2033%22%20stroke%3D%22%232a1b14%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E") no-repeat center/contain;transform-origin:10% 95%;animation:scribe 1.6s ease-in-out infinite}
-@keyframes scribe{0%,100%{transform:rotate(0)}50%{transform:rotate(-9deg)}}
-@media (prefers-reduced-motion:reduce){ol.eps .bar2 b{animation:none}}
+/* progress: the Hogwarts Express puffing along a track towards the castle */
+ol.eps .bar2{position:relative;height:34px;margin:.8rem 24px 0 0}
+ol.eps .bar2:before{content:'';position:absolute;left:0;right:0;bottom:3px;height:7px;background:repeating-linear-gradient(90deg,#9c7c56 0 3px,transparent 3px 8px) 0 100%/100% 5px no-repeat,linear-gradient(#6e5238,#6e5238) 0 0/100% 2px no-repeat;opacity:.35}
+ol.eps .bar2:after{content:'';position:absolute;right:-24px;bottom:3px;width:20px;height:22px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2020%2022%22%3E%3Cpath%20d%3D%22M1%2022V9h2V7h2v2h2V5l3-4%203%204v4h2V7h2v2h2v13Z%22%20fill%3D%22%235a4032%22%2F%3E%3Crect%20x%3D%228.6%22%20y%3D%2215%22%20width%3D%222.8%22%20height%3D%227%22%20rx%3D%221.4%22%20fill%3D%22%23f2d58a%22%2F%3E%3Crect%20x%3D%223%22%20y%3D%2212%22%20width%3D%221.6%22%20height%3D%222.4%22%20fill%3D%22%23f2d58a%22%2F%3E%3Crect%20x%3D%2215.4%22%20y%3D%2212%22%20width%3D%221.6%22%20height%3D%222.4%22%20fill%3D%22%23f2d58a%22%2F%3E%3Cpath%20d%3D%22M10%201v-1h3l-1%201.2%201%201.2h-3%22%20fill%3D%22%238e1b24%22%2F%3E%3C%2Fsvg%3E") center/contain no-repeat}
+ol.eps .bar2 i{position:absolute;left:0;bottom:3px;height:7px;background:repeating-linear-gradient(90deg,#9c7c56 0 3px,transparent 3px 8px) 0 100%/100% 5px no-repeat,linear-gradient(#6e5238,#6e5238) 0 0/100% 2px no-repeat}
+ol.eps .bar2 b{position:absolute;bottom:4px;width:44px;height:28px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2044%2028%22%3E%3Crect%20x%3D%223%22%20y%3D%2220%22%20width%3D%2236%22%20height%3D%222.4%22%20fill%3D%22%232a1b14%22%2F%3E%3Crect%20x%3D%224%22%20y%3D%227%22%20width%3D%2212%22%20height%3D%2213.5%22%20rx%3D%221%22%20fill%3D%22%237e1720%22%2F%3E%3Crect%20x%3D%222%22%20y%3D%224.5%22%20width%3D%2216%22%20height%3D%223%22%20rx%3D%221%22%20fill%3D%22%232a1b14%22%2F%3E%3Crect%20x%3D%227%22%20y%3D%229.5%22%20width%3D%226%22%20height%3D%225%22%20rx%3D%221%22%20fill%3D%22%23f2d58a%22%2F%3E%3Crect%20x%3D%2215%22%20y%3D%2210%22%20width%3D%2222%22%20height%3D%2210.5%22%20rx%3D%224.5%22%20fill%3D%22%23a8222d%22%2F%3E%3Crect%20x%3D%2221%22%20y%3D%2210%22%20width%3D%221.6%22%20height%3D%2210.5%22%20fill%3D%22%23d9b25a%22%2F%3E%3Crect%20x%3D%2228%22%20y%3D%2210%22%20width%3D%221.6%22%20height%3D%2210.5%22%20fill%3D%22%23d9b25a%22%2F%3E%3Crect%20x%3D%2230.5%22%20y%3D%223.5%22%20width%3D%224%22%20height%3D%227%22%20fill%3D%22%232a1b14%22%2F%3E%3Crect%20x%3D%2229.5%22%20y%3D%222%22%20width%3D%226%22%20height%3D%222.2%22%20rx%3D%221%22%20fill%3D%22%232a1b14%22%2F%3E%3Ccircle%20cx%3D%2237.6%22%20cy%3D%2213.5%22%20r%3D%221.5%22%20fill%3D%22%23ffd88a%22%2F%3E%3Cpath%20d%3D%22M37%2020.5%20L42%2024.5%20L37%2024.5Z%22%20fill%3D%22%232a1b14%22%2F%3E%3Ccircle%20cx%3D%229.5%22%20cy%3D%2224%22%20r%3D%223.6%22%20fill%3D%22%232a1b14%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2224%22%20r%3D%223.6%22%20fill%3D%22%232a1b14%22%2F%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2224%22%20r%3D%223.6%22%20fill%3D%22%232a1b14%22%2F%3E%3Ccircle%20cx%3D%229.5%22%20cy%3D%2224%22%20r%3D%221.1%22%20fill%3D%22%23d9b25a%22%2F%3E%3Ccircle%20cx%3D%2220%22%20cy%3D%2224%22%20r%3D%221.1%22%20fill%3D%22%23d9b25a%22%2F%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2224%22%20r%3D%221.1%22%20fill%3D%22%23d9b25a%22%2F%3E%3C%2Fsvg%3E") center/contain no-repeat;animation:chug .5s steps(2) infinite}
+ol.eps .bar2 b:before,ol.eps .bar2 b:after{content:'';position:absolute;left:30px;top:-2px;width:9px;height:9px;border-radius:50%;background:#fffaf0;box-shadow:0 0 0 1px rgba(90,64,50,.25);opacity:0;animation:puff 1.6s ease-out infinite}
+ol.eps .bar2 b:after{animation-delay:.8s}
+@keyframes chug{0%{transform:translateY(0)}100%{transform:translateY(-1px)}}
+@keyframes puff{0%{opacity:.95;transform:translate(0,0) scale(.5)}100%{opacity:0;transform:translate(-18px,-14px) scale(1.5)}}
+@media (prefers-reduced-motion:reduce){ol.eps .bar2 b,ol.eps .bar2 b:before,ol.eps .bar2 b:after{animation:none}}
 ol.eps .soon .n{background:#9b8b6e}
 .foot{font-size:.85rem;color:#b9a888;text-align:center;padding:1.5rem 1rem 3rem;max-width:var(--col);margin:0 auto;line-height:1.5}
 .foot a{color:#d8c7a2}
@@ -135,7 +140,7 @@ const READER_JS = `
     if(s2.last&&E[s2.last]&&!E[s2.last].done)cur=s2.last;
     list.forEach(function(li){var id=li.dataset.id,e=E[id];
       if(e&&e.done){li.classList.add('read');}
-      else if(id===cur){li.classList.add('reading');var b=li.querySelector('.bar2');if(b){b.hidden=false;var pc=Math.max(4,Math.round((e.p||0)*100))+'%';b.querySelector('i').style.width=pc;b.querySelector('b').style.left=pc;}}
+      else if(id===cur){li.classList.add('reading');var b=li.querySelector('.bar2');if(b){b.hidden=false;var pc=Math.max(4,Math.round((e.p||0)*100))+'%';b.querySelector('i').style.width=pc;b.querySelector('b').style.left='max(0px, calc('+pc+' - 42px))';}}
     });
     var btn=document.getElementById('continue');
     if(btn){var target=cur,label='Continue';

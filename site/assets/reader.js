@@ -23,7 +23,7 @@
     if(s2.last&&E[s2.last]&&!E[s2.last].done)cur=s2.last;
     list.forEach(function(li){var id=li.dataset.id,e=E[id];
       if(e&&e.done){li.classList.add('read');}
-      else if(id===cur){li.classList.add('reading');var b=li.querySelector('.bar2');if(b){b.hidden=false;var pc=Math.max(4,Math.round((e.p||0)*100))+'%';b.querySelector('i').style.width=pc;b.querySelector('b').style.left=pc;}}
+      else if(id===cur){li.classList.add('reading');var b=li.querySelector('.bar2');if(b){b.hidden=false;var pc=Math.max(4,Math.round((e.p||0)*100))+'%';b.querySelector('i').style.width=pc;b.querySelector('b').style.left='max(0px, calc('+pc+' - 42px))';}}
     });
     var btn=document.getElementById('continue');
     if(btn){var target=cur,label='Continue';
