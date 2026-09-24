@@ -3,12 +3,23 @@
 //
 // cam can be explicit {x, y, w} or auto-framed: {on: ['harry','mum'], fr: 'close'|'bust'|'waist'|'knees'|'full'|'wide',
 //   dx, dy (in head-heights), zoom (multiplier), bias ('top'…)}.
+// Or aimed at one head: {head: 'harry', hw: 0.34, hx: 0.5, hy: 0.42}: the head is hw × the panel's width
+//   across, with its centre at (hx, hy) as fractions of the panel. Works the same in tall, narrow or wide panels.
 import { g, r2, rect } from './svg.js';
 import { place } from '../chars/rig.js';
 
 const FR = { // [fraction of body visible from the top, headroom in head-heights]
   eyes: [0.14, 0.02], close: [0.3, 0.25], bust: [0.45, 0.35], waist: [0.62, 0.4], knees: [0.8, 0.45], full: [1.0, 0.5], wide: [1.0, 1.4],
 };
+
+export function headCam(cam, placed, ctx) {
+  const p = placed.find((q) => q.id === cam.head);
+  if (!p) return { x: 400, y: 300, w: ctx.w };
+  const [hx, hy] = p.anchors.head;
+  const w = (p.def.body.headRx * 2 * p.s) / (cam.hw ?? 0.34);
+  const h = w * ctx.h / ctx.w;
+  return { x: hx + (0.5 - (cam.hx ?? 0.5)) * w, y: hy + (0.5 - (cam.hy ?? 0.42)) * h, w };
+}
 
 export function autoCam(cam, placed, ctx) {
   const ids = cam.on;
@@ -60,7 +71,8 @@ export function shot(o) {
       actorsSvg.push({ svg: p.svg });
     }
     let cam = o.cam || { x: 400, y: 300, w: ctx.w };
-    if (cam.on) cam = autoCam(cam, placed, ctx);
+    if (cam.head) cam = headCam(cam, placed, ctx);
+    else if (cam.on) cam = autoCam(cam, placed, ctx);
     const z = ctx.w / cam.w;
     const toPanel = (p) => [(p[0] - cam.x) * z + ctx.w / 2, (p[1] - cam.y) * z + ctx.h / 2];
     for (const p of placed) if (p.id) {

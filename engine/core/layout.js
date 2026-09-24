@@ -69,7 +69,14 @@ function resolveRef(ref, panelsA, fallbackAnchor = 'mouth') {
   let [id, part] = who.split('.');
   part = part || fallbackAnchor;
   const list = idx !== undefined ? [panelsA[+idx]] : panelsA;
-  for (const A of list) if (A && A[id] && A[id][part]) return { p: A[id][part], s: A[id].s || 1, A: A[id] };
+  for (const A of list) { const k = A && alias(A, id); if (k && A[k][part]) return { p: A[k][part], s: A[k].s || 1, A: A[k] }; }
+  return null;
+}
+// speaker names are loose: 'Mrs Figg' finds id 'figg', 'Professor Quirrell' finds 'quirrell', 'Mr Malfoy' finds 'lucius' only if spelled out
+function alias(A, id) {
+  if (A[id]) return id;
+  const words = id.replace(/[^a-z0-9 ]/g, '').split(/\s+/).filter((w) => w && !['mr', 'mrs', 'ms', 'miss', 'madam', 'professor', 'headmaster', 'the'].includes(w));
+  for (const k of [words.join(''), words.join('-'), words.at(-1), words[0]]) if (k && A[k]) return k;
   return null;
 }
 // rough balloon size estimate (matches stage.js padding closely enough for layout decisions)
@@ -154,7 +161,7 @@ function bubbleHTML(b, i) {
   const data = {
     type: b.type || 'speech', x: b.x, y: b.y, w: b.w || 360, tail: b.tail || null, anchor: b.anchor || 'c',
     tails: b.tails || null, size: b.size || null, font: b.font || null, color: b.color || null, align: b.align || null,
-    rot: b.rot || 0, fixed: b.fixed || false, pad: b.pad ?? null, bg: b.bg || null, border: b.border || null, weight: b.weight || null,
+    rot: b.rot || 0, shape: b.shape || null, fixed: b.fixed || false, pad: b.pad ?? null, bg: b.bg || null, border: b.border || null, weight: b.weight || null,
   };
   let html = b.html ?? escText(b.text || '').replace(/\*\*(.+?)\*\*/g, '<b>$1</b>').replace(/\*(.+?)\*/g, '<i>$1</i>').replace(/\n/g, '<br>');
   // keep hyphenated words (Boy-Who-Lived, Nine-and-Three-Quarters) on one line: wrap them in nowrap spans, text nodes only
@@ -182,6 +189,7 @@ ${under}${panels}${over}
   const rects = (tile.panels || []).map((p) => [p.x ?? 0, p.y ?? 0, p.w ?? W, p.h, p.border === 'none' || p.border === 'bleed' ? 0 : 1]);
   const bubbles = resolveBubbles(tile.bubbles, panelsA, W, H, rects).map(bubbleHTML).join('');
   const heads = [];
-  for (const A of panelsA) for (const id in A || {}) { const a = A[id]; if (a.head && a.hr) heads.push([Math.round(a.head[0]), Math.round(a.head[1] + a.hr * 0.28), Math.round(a.hr * 0.78)]); }
+  // faces the balloons avoid: only heads that are actually visible inside their own panel
+  panelsA.forEach((A, k) => { const [px, py, pw, ph] = rects[k] || [0, 0, W, H]; for (const id in A || {}) { const a = A[id]; if (a.head && a.hr && a.head[0] > px && a.head[0] < px + pw && a.head[1] > py && a.head[1] < py + ph) heads.push([Math.round(a.head[0]), Math.round(a.head[1] + a.hr * 0.28), Math.round(a.hr * 0.78)]); } });
   return { W, H, html: `<div id="tile" data-heads='${JSON.stringify(heads)}' data-panels='${JSON.stringify(rects.map((r) => r.map((v) => Math.round(v))))}' style="position:relative;width:${W}px;height:${H}px;overflow:hidden">${svg}<svg id="bsvg" width="${W}" height="${H}" style="position:absolute;left:0;top:0;overflow:visible"></svg>${bubbles}</div>` };
 }

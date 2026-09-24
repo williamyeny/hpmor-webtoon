@@ -54,9 +54,13 @@ function smooth(p,closed){const n=p.length;let d='M'+p[0][0].toFixed(1)+','+p[0]
     const c1=[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],c2=[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];
     d+=' C'+c1[0].toFixed(1)+','+c1[1].toFixed(1)+' '+c2[0].toFixed(1)+','+c2[1].toFixed(1)+' '+p2[0].toFixed(1)+','+p2[1].toFixed(1);}
   return d+(closed?'Z':'');}
-function spikyD(cx,cy,rx,ry,seed){const R=rng(seed);const n=26;const pts=[];
-  for(let i=0;i<n*2;i++){const a=i/(n*2)*Math.PI*2+0.05;const out=i%2===0;const k=out?1.16+R()*0.14:0.97;
-    const c=Math.cos(a),s=Math.sin(a);pts.push([cx+rx*k*Math.sign(c)*Math.pow(Math.abs(c),2/2.4),cy+ry*k*Math.sign(s)*Math.pow(Math.abs(s),2/2.4)]);}
+function spikyD(cx,cy,rx,ry,seed){const R=rng(seed);
+  // spike depth is set by the balloon's short side (capped), so long shouts don't grow huge spikes that cross panel frames
+  const m=Math.min(Math.sqrt(rx*ry),170),n=Math.max(18,Math.min(34,Math.round((rx+ry)/15)));const pts=[];
+  for(let i=0;i<n*2;i++){const a=i/(n*2)*Math.PI*2+0.05;const out=i%2===0;
+    const c=Math.cos(a),s=Math.sin(a);const ex=Math.sign(c)*Math.pow(Math.abs(c),2/2.4),ey=Math.sign(s)*Math.pow(Math.abs(s),2/2.4);
+    const bx=rx*ex,by=ry*ey,L=Math.hypot(bx,by)||1,d=out?m*(0.16+R()*0.14):-m*0.03;
+    pts.push([cx+bx+bx/L*d,cy+by+by/L*d]);}
   return 'M'+pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' L')+'Z';}
 function cloudD(cx,cy,rx,ry,seed){const R=rng(seed);const n=Math.max(9,Math.round((rx+ry)/22));let d='';const pts=[];
   for(let i=0;i<n;i++){const a=i/n*Math.PI*2;pts.push([cx+Math.cos(a)*rx,cy+Math.sin(a)*ry]);}
@@ -77,7 +81,8 @@ function stdTail(cx,cy,rx,ry,n,tx,ty,k){
   k=k||1;const th=Math.atan2(ty-cy,tx-cx);const ux=Math.cos(th),uy=Math.sin(th);const px=-uy,py=ux;
   const r=rimR(rx,ry,n,th);const ex=cx+ux*r,ey=cy+uy*r;           // rim point
   const bx=ex-ux*TAIL_IN,by=ey-uy*TAIL_IN;                           // base centre, a little inside
-  const L=TAIL_LEN*k,B=TAIL_BASE*k/2;
+  // fixed length, except when the speaker is far: then reach part of the way (a stub would point at whoever is in between)
+  const gap=Math.hypot(tx-ex,ty-ey);const L=(gap>170?Math.min(gap*0.6,150):TAIL_LEN)*k,B=TAIL_BASE*k/2*(L>TAIL_LEN*k?1.15:1);
   const tipx=ex+ux*L+px*L*0.18,tipy=ey+uy*L+py*L*0.18;               // gentle consistent lean
   const a=[bx+px*B,by+py*B],b=[bx-px*B,by-py*B];
   const ca=[ex+ux*L*0.45+px*B*0.55,ey+uy*L*0.45+py*B*0.55],cb=[ex+ux*L*0.5-px*B*0.2,ey+uy*L*0.5-py*B*0.2];
@@ -131,14 +136,14 @@ window.layoutBubbles=async function(){
     }
     r=t.getBoundingClientRect();
     const W=r.width,H=r.height;
-    const padX=d.pad!=null?d.pad:({speech:30,shout:40,whisper:26,thought:34,caption:22,captionC:22,cold:22,hat:30,mind:18,letter:26,dark:18}[d.type]??18);
-    const padY=({speech:18,shout:26,whisper:16,thought:22,caption:16,captionC:16,cold:16,hat:20,mind:12,letter:22,dark:14}[d.type]??10);
+    const padX=d.pad!=null?d.pad:({speech:30,shout:46,whisper:26,thought:34,caption:22,captionC:22,cold:22,hat:30,mind:18,letter:26,dark:18}[d.type]??18);
+    const padY=({speech:18,shout:30,whisper:16,thought:22,caption:16,captionC:16,cold:16,hat:20,mind:12,letter:22,dark:14}[d.type]??10);
     let left,top;
     if(d.anchor==='tc'){left=d.x-W/2;top=d.y;}else if(d.anchor==='bc'){left=d.x-W/2;top=d.y-H;}else if(d.anchor==='tl'){left=d.x;top=d.y;}else if(d.anchor==='tr'){left=d.x-W;top=d.y;}else if(d.anchor==='bl'){left=d.x;top=d.y-H;}else if(d.anchor==='br'){left=d.x-W;top=d.y-H;}
     else {left=d.x-W/2;top=d.y-H/2;}
     // collision avoidance with real sizes: faces, other balloons, tile edges
     if(!['sfx','plain','title','note','hatBig'].includes(d.type) && !d.fixed){
-      const isB=['speech','whisper','shout','thought','cold','hat'].includes(d.type); const PX=isB?W*0.08+padX*0.55+6:padX+6, PY=isB?H*0.1+padY*0.7+6:padY+6;
+      const isB=['speech','whisper','shout','thought','cold','hat'].includes(d.type); const bx0=d.shape==='box'; const PX=isB?W*(bx0?0.025:0.08)+padX*0.55+6:padX+6, PY=isB?H*(bx0?0.04:0.1)+padY*0.7+6:padY+6;
       const R0=(l,t)=>({x:l-PX,y:t-PY,w:W+PX*2,h:H+PY*2});
       const hitC=(r,c)=>{const cx=Math.max(r.x,Math.min(c[0],r.x+r.w)),cy=Math.max(r.y,Math.min(c[1],r.y+r.h));return Math.hypot(cx-c[0],cy-c[1])<c[2];};
       const hitR=(a,b)=>a.x<b.x+b.w&&b.x<a.x+a.w&&a.y<b.y+b.h&&b.y<a.y+a.h;
@@ -165,17 +170,19 @@ window.layoutBubbles=async function(){
     const stroke=d.border||({cold:'#314c68',hat:'#2a170c',dark:'#000'}[d.type]||INK);
     const tails=d.tails||(d.tail?[d.tail]:[]);
     if(['speech','whisper','shout','thought','cold','hat'].includes(d.type)){
-      const sq=d.type==='shout'?1:1; const rx=W/2*1.2+padX*0.55, ry=H/2*1.2+padY*0.7;
+      // shape 'box' (speech/whisper): a rounder rectangle that hugs long text instead of an ellipse ~50px wider each side
+      const box=d.shape==='box'&&['speech','whisper'].includes(d.type);
+      const rx=box?W/2*1.05+padX*0.5:W/2*1.2+padX*0.55, ry=box?H/2*1.08+padY*0.7:H/2*1.2+padY*0.7;
       let shape;
       if(d.type==='shout')shape=spikyD(cx,cy,rx,ry,seed);
       else if(d.type==='thought')shape=cloudD(cx,cy,rx,ry,seed);
       else if(d.type==='cold')shape=angularD(cx-rx,cy-ry,rx*2,ry*2,18);
-      else shape=superD(cx,cy,rx,ry,d.type==='hat'?3.4:3.1,0.03,seed);
+      else shape=superD(cx,cy,rx,ry,box?5.5:d.type==='hat'?3.4:3.1,0.03,seed);
       const sw=d.type==='whisper'?2.2:(d.type==='cold'?2:2.8);
       const dash=d.type==='whisper'?'7 6':'';
       if(d.type==='hat'){g.appendChild(el('path',{d:superD(cx+4,cy+6,rx,ry,3.2,0.03,seed),fill:'rgba(0,0,0,0.35)'}));}
       // tails (stroked), then body (stroked), then an unstroked patch to merge tail into body
-      const rimN=d.type==='cold'?6:d.type==='shout'?2.4:d.type==='thought'?2.2:(d.type==='hat'?3.4:3.1);
+      const rimN=box?5.5:d.type==='cold'?6:d.type==='shout'?2.4:d.type==='thought'?2.2:(d.type==='hat'?3.4:3.1);
       const rimK=d.type==='shout'?1.12:d.type==='thought'?1.08:1;
       const T=tails.map(tp=>stdTail(cx,cy,rx*rimK,ry*rimK,rimN,tp[0],tp[1],d.type==='whisper'?0.9:1));
       tails.forEach((tp,i)=>{
@@ -209,6 +216,8 @@ window.layoutBubbles=async function(){
   bubs.forEach((b,i)=>{const d=JSON.parse(b.dataset.b);if(['sfx','plain','title','note','hatBig'].includes(d.type)||!gs[i])return;
     let bb;try{bb=gs[i].getBBox();}catch(e){return;}const tr=rs[i];const cx=tr.left-T.left+tr.width/2,cy=tr.top-T.top+tr.height/2;
     if(bb.x<0||bb.y<0||bb.x+bb.width>TW||bb.y+bb.height>TH)warn.push('outline-edge:'+i);
+    // text sitting on a face (heads are [x, y, r] face circles); tails are allowed to approach
+    const tx0=tr.left-T.left,ty0=tr.top-T.top;if(HEADS.some(c=>c[0]>0&&c[0]<TW&&c[1]>0&&c[1]<TH&&Math.hypot(Math.max(tx0,Math.min(c[0],tx0+tr.width))-c[0],Math.max(ty0,Math.min(c[1],ty0+tr.height))-c[1])<c[2]*0.8))warn.push('face:'+i);
     const p=panelOf(cx,cy);if(p&&(bb.x<p[0]-12||bb.y<p[1]-12||bb.x+bb.width>p[0]+p[2]+12||bb.y+bb.height>p[1]+p[3]+12))warn.push('border:'+i);});
   rs.forEach((r,i)=>{if(r.left<T.left+2||r.right>T.right-2||r.top<T.top+2||r.bottom>T.bottom-2)warn.push('edge:'+i);
     rs.forEach((q,j)=>{if(j>i&&r.left<q.right-6&&q.left<r.right-6&&r.top<q.bottom-6&&q.top<r.bottom-6)warn.push('overlap:'+i+'/'+j);});});

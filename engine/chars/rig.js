@@ -50,6 +50,8 @@ export const POSES = {
   hug:        { armF: { sh: 75, el: 80, hand: 'open' }, armB: { sh: 80, el: 70, hand: 'open' }, legF: { hip: -3 }, legB: { hip: 4 }, lean: 6 },
   scribble:   { armF: { sh: 45, el: 75, hand: 'hold' }, armB: { sh: 40, el: 90, hand: 'palm' }, legF: { hip: 88, knee: -86 }, legB: { hip: 84, knee: -84 }, hipY: 'sit', lean: 12, headTilt: 12 },
   cower:      { armF: { sh: 60, el: 130, hand: 'fist' }, armB: { sh: 50, el: 130, hand: 'fist' }, legF: { hip: -6, knee: 10 }, legB: { hip: 6, knee: 8 }, lean: -6, headTilt: 8 },
+  // lying down, head to the left (pass rot: 90 for head to the right)
+  lie:        { armF: { sh: -4, el: 6, hand: 'open' }, armB: { sh: 6, el: -6, hand: 'open' }, legF: { hip: -2 }, legB: { hip: 3 }, rot: -90, headTilt: 0 },
   tiptoe:     { armF: { sh: -30, el: 60, hand: 'fist' }, armB: { sh: 30, el: -60, hand: 'fist' }, legF: { hip: -2 }, legB: { hip: 2 }, hipY: 10 },
 };
 
@@ -164,7 +166,9 @@ export function drawCharacter(def, opts = {}) {
   const neckBase = R([cx * 0.7, -B.torsoH]);
   const headTilt = (pose.headTilt || 0) + (opts.headTilt || 0);
   const neckTop = add(neckBase, rot([0, -B.neck], deg(lean * 0.6)));
-  const headC = add(neckTop, rot([0, -B.headRy * (B.headAttach ?? 0.92)], deg(lean * 0.6 + headTilt)));
+  // the head follows the lean only so far: a deep bow shouldn't turn the face on its side (eyes stacked)
+  const hTilt = clamp(lean * 0.6 + headTilt, -30, 30);
+  const headC = add(neckTop, rot([0, -B.headRy * (B.headAttach ?? 0.92)], deg(hTilt)));
   const hipF = add(hip, [-B.hipW * 0.26 * (1 - 0.3 * bt) + cx * 0.3, 0]);
   const hipB = add(hip, [B.hipW * 0.26 * (1 - 0.5 * bt) + cx * 0.3, 0]);
 
@@ -344,7 +348,7 @@ export function drawCharacter(def, opts = {}) {
   layers.armF.push(arm(armFp, aF, false));
 
   // ---- head
-  const H = drawHead(def, { turn: ht, expr, lw, light, tilt: lean * 0.6 + headTilt, extras: opts.extras || {}, hatOff: opts.hatOff, hairOverride: opts.hair, mask: opts.mask });
+  const H = drawHead(def, { turn: ht, expr, lw, light, tilt: hTilt, extras: opts.extras || {}, noGlasses: opts.noGlasses || opts.glasses === false || (opts.extras || {}).glasses === false, hatOff: opts.hatOff, hairOverride: opts.hair, mask: opts.mask });
   const headG = g({ transform: `translate(${r2(headC[0])},${r2(headC[1])}) rotate(${r2(lean * 0.6 + headTilt)})` }, H.main);
   const headBack = g({ transform: `translate(${r2(headC[0])},${r2(headC[1])}) rotate(${r2(lean * 0.6 + headTilt)})` }, H.back);
   // neck
@@ -548,9 +552,14 @@ export function place(def, o = {}) {
   const s = o.s ?? 1;
   const lw = (o.lw ?? 3.1) / Math.pow(s, 0.55);
   const res = drawCharacter(def, { ...o, lw });
-  const transform = `translate(${r2(o.x ?? 0)},${r2(o.y ?? 0)}) scale(${r2(s)})${o.rot ? ` rotate(${o.rot})` : ''}`;
+  // rotation (o.rot, or a pose's own rot, e.g. 'lie') turns the whole figure about its feet; anchors turn with it
+  const pz = typeof o.pose === 'string' ? POSES[o.pose] : o.pose;
+  const rotD = o.rot ?? pz?.rot ?? 0;
+  const lift = pz?.rot ? -def.body.hipW * 0.42 : 0; // lying figures rest on the floor, not half inside it
+  const transform = `translate(${r2(o.x ?? 0)},${r2(o.y ?? 0)}) scale(${r2(s)})${lift ? ` translate(0,${r2(lift)})` : ''}${rotD ? ` rotate(${rotD})` : ''}`;
+  const ca = Math.cos(rotD * Math.PI / 180), sa = Math.sin(rotD * Math.PI / 180);
   const A = {};
-  for (const k in res.anchors) A[k] = [(o.x ?? 0) + res.anchors[k][0] * s, (o.y ?? 0) + res.anchors[k][1] * s];
+  for (const k in res.anchors) { const [ax, ay] = res.anchors[k]; A[k] = [(o.x ?? 0) + (ax * ca - ay * sa) * s, (o.y ?? 0) + (ax * sa + ay * ca + lift) * s]; }
   const svg = g({ transform, opacity: o.opacity, filter: o.filter }, res.svg);
   return Object.assign(new String(svg), { anchors: A, svg });
 }
