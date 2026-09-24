@@ -99,12 +99,11 @@ ol.eps li.read .n{background:radial-gradient(circle at 35% 30%,#a08868,#6b5840 7
 ol.eps li.read .tt,ol.eps li.read .bb{opacity:.6}
 ol.eps li.reading .n{box-shadow:0 0 0 3px var(--paper),0 0 0 5px var(--gold),0 1px 3px rgba(0,0,0,.4)}
 ol.eps li.reading{background:linear-gradient(90deg,rgba(201,162,74,.16),transparent)}
-/* progress: the fore-edge of a book's pages, with a ribbon bookmark tucked in at your place (echoes the big book) */
-ol.eps .bar2{position:relative;height:30px;margin-top:.8rem}
-ol.eps .bar2:before{content:'';position:absolute;z-index:1;left:0;right:0;top:3px;height:9px;border-radius:2px;background:repeating-linear-gradient(90deg,#f7efdc 0 2px,#e6dbc2 2px 3px);box-shadow:0 1px 2px rgba(60,30,10,.18);opacity:.8}
-ol.eps .bar2 i{position:absolute;z-index:2;left:0;top:3px;height:9px;border-radius:2px 0 0 2px;background:repeating-linear-gradient(90deg,#e2c894 0 2px,#a68256 2px 3px);box-shadow:0 1px 2px rgba(60,30,10,.3)}
-ol.eps .bar2 b{position:absolute;z-index:0;top:6px;width:13px;height:26px;margin-left:-6.5px;transform-origin:50% 0;animation:sway 5s ease-in-out infinite;background:linear-gradient(90deg,#a8871f,#e2bf5a 45%,#b8952c);clip-path:polygon(0 0,100% 0,100% 100%,50% 78%,0 100%);filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
-@media (prefers-reduced-motion:reduce){ol.eps .bar2 b{animation:none}}
+/* progress: a thin gilt rule that fills as you read, ending in the same diamond as the book cover */
+ol.eps .bar2{position:relative;height:14px;margin:.8rem 6px 0 0}
+ol.eps .bar2:before{content:'';position:absolute;left:0;right:0;top:6px;height:1px;background:#c9a24a;opacity:.35}
+ol.eps .bar2 i{position:absolute;left:0;top:5.5px;height:2px;border-radius:1px;background:linear-gradient(90deg,#b8923a,#e2bf5a 70%,#c9a24a);box-shadow:0 0 4px rgba(226,191,90,.5)}
+ol.eps .bar2 b{position:absolute;top:2px;width:9px;height:9px;margin-left:-4.5px;background:linear-gradient(135deg,#f0d27e,#b8923a);transform:rotate(45deg);box-shadow:0 0 0 2px var(--paper),0 0 6px rgba(226,191,90,.7)}
 ol.eps .soon .n{background:#9b8b6e}
 .foot{font-size:.85rem;color:#b9a888;text-align:center;padding:1.5rem 1rem 3rem;max-width:var(--col);margin:0 auto;line-height:1.5}
 .foot a{color:#d8c7a2}
