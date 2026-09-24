@@ -46,3 +46,36 @@ order (a later balloon never moves above an earlier one it overlaps).
 Tiles are 800 css px wide (rendered at 1000 px). A normal beat is 460–760 px tall; a big beat
 is a full-bleed 1000–1400 px panel faded into the gutter. Gutter colour changes with the scene
 (parchment for day, near-black navy for night and the mind), with gradient transition tiles.
+
+## Panel frames (the user's direction, 2026-09-24)
+A frame is part of the storytelling, not a box around it. Special frames exist to pull the reader
+**into** the scene. Two examples the user liked:
+- **The frame belongs to the scene.** Ep 3's huge archway: the characters walk through an archway,
+  and the panel itself is shaped like the archway, so the reader walks through it with them.
+- **No frame at all.** A character or object stands straight on the page (a cut-out), as if it
+  has stepped out of the comic into the reader's own world.
+
+What they share: the frame makes the reader feel physically present. Aim for roughly **1 in 5
+panels** being non-standard, but never force one. A plain rectangle is the right choice whenever a
+special frame would hurt readability, break the flow, or pull the reader out of the moment. If a
+special frame needs explaining, it's the wrong frame.
+
+Vocabulary (see `docs/ENGINE.md` → "Panel frames" for how):
+- **Shaped by the scene.** Doorways and arches (`arch`, `gothic` with a `stone` or `wood` frame);
+  windows; a keyhole when someone peeks or eavesdrops; an oval `gilt` frame for portraits and
+  mirrors; a `screen` for Quirrell's face on every desk; `torn` paper for notes and letters;
+  `cloud` for daydreams and imagined scenes; `eye` for an eyes-only close-up.
+- **Shaped by the feeling.** `slant` or a diagonal `cut` for a lurch, a fall, a chase; a `burst`
+  panel for a shock or a spell hitting; a `glow` frame for magic (the stars, the Time-Turner).
+- **Cut-outs** (`ep.cutout`): a character or object on the bare page, no background. Best for a
+  beat that should feel close to the reader: a character turning to us, a triumphant pose, a key
+  object (the letter, the Time-Turner, the rock). Use them for moments, not for conversations.
+- **Breakouts** (`breakout: 'top'` etc.): part of a character crosses the frame edge (a hat, a
+  pointing arm, a leap), so the action spills onto the page. Good for energy and entrances.
+- **Layout tricks.** An inset close-up overlapping a big panel; panels with a shared diagonal seam;
+  a borderless bleed that dissolves into the gutter; one tall panel beside a stack of small ones.
+
+Keep: reading order obvious (top to bottom, left to right); balloons inside or clearly attached to
+their panel; the frame's colour and style consistent with the scene's mood (stone and wood for the
+castle, gilt for the Headmaster, glow for magic, paper for notes). Don't repeat the same trick
+back to back; save the boldest frames for the biggest beats.

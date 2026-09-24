@@ -39,6 +39,7 @@ Improving the rig or a background re-renders everywhere: just re-run the episode
 | `engine/bg/castle.js` | Book Two: Hogwarts from the inside (dorm, corridors, offices, classrooms, Defence hall, dojo, deep space) |
 | `engine/props/props.js` | envelope, wax seal, letters, books, wand, quill, cat, owl, teacup, galleon |
 | `engine/props/props2.js` | Book Two props: Time-Turner, pies, the Cloak, Remembrall, the rock, Fawkes, Pioneer 11… |
+| `engine/core/frames.js` | panel shapes (arch, keyhole, torn, burst…) and frame styles (stone, gilt, wood, glow) |
 | `episodes/b2.js` | shared Book Two staging: `dayBeat`, `header`, `note`, standard sets |
 | `engine/fx/fx.js` | burst lines, frost (the cold), doom (Quirrell), sparkles, physics drain, zebras… |
 
@@ -96,6 +97,29 @@ Improving the rig or a background re-renders everywhere: just re-run the episode
   - `overlap:i/j`: two balloons overlap by more than 6px.
   - `face:i`: balloon *i*'s text covers a face visible in its panel. Almost always a real problem.
   `border` and `outline-edge` skip sfx, `plain`, `title`, `note` and big-Hat lettering.
+
+## Panel frames (`engine/core/frames.js`)
+
+Why and when: `docs/ART_BIBLE.md` → "Panel frames" (about 1 in 5 panels, only where it deepens immersion).
+
+- **Shape:** `shape` on any panel. In `ep.panel`/`ep.bleed` pass it in the panel options (4th argument):
+  `ep.panel(900, shot, bubbles, { shape: 'arch', frame: 'stone' })`. In `ep.multi` put it on the panel object.
+  Shapes: `arch` (round top; `spring` = where the curve starts, 0-1 of h), `gothic` (pointed arch), `oval`,
+  `circle`, `eye` (almond), `keyhole`, `diamond`, `slant` (`slant` px, + leans right), `cut` (diagonal top/bottom:
+  `cutTop`, `cutBottom` px), `torn` (`seed`, `tear`), `burst` (`points`, `seed`), `cloud`, `screen`, plus the
+  older `poly` (`pts` as 0-1 fractions) and a function `(w, h, p) => pathD`.
+- **Frame style:** `frame`: `ink` (default), `gilt`, `stone`, `wood`, `glow` (`glow` colour), `paper`, `double`,
+  `none`. Thick styles (stone, gilt, wood) eat ~10px inside the edge: keep balloons clear of it.
+- **Cut-out:** `ep.cutout(h, shot, bubbles, opts)`: no frame, no background (the shot's `bg` is skipped), a soft
+  shadow at each actor's feet (`ground: false` on the shot to drop it). `fg`, `mid`, `behind` and `over` still draw.
+  Frame the camera so the whole figure (or the part you want) fits: nothing is clipped, so anything outside the
+  panel box spills onto the page. Balloons are free-floating (no panel frame to stay inside).
+- **Breakout:** `breakout: 'top' | 'bottom' | 'left' | 'right'` (or an array) redraws the actors, unclipped, beyond
+  that edge, so a hat, an arm or a leaping figure crosses the frame line. Only the characters break out, not
+  the background. Aim the camera so the part that should cross actually extends past the edge.
+- **Inset / overlap:** in `ep.multi`, later panels draw on top of earlier ones; give an inset `shadow: true`.
+- Lettering treats shaped panels by their bounding box (the `border:i` warning), so keep balloons well inside the
+  visible shape of arches, ovals and keyholes by eye.
 
 ## Camera, poses and effects (engine pass, after Book Two)
 

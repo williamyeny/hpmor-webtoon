@@ -3,6 +3,7 @@
 import { baseDefs } from './filters.js';
 import { C, MOODS } from './palette.js';
 import { uid, rect, g, el, r2, rrectD, polyD, escText } from './svg.js';
+import { shapeD, STYLES } from './frames.js';
 
 export const TILE_W = 800;
 
@@ -20,6 +21,7 @@ function panelShape(p) {
   const { w, h } = p;
   if (p.shape === 'poly' && p.pts) return { d: polyD(p.pts.map(([x, y]) => [x * w, y * h]), true) };
   if (p.shape === 'circle') return { d: `M${w / 2},0 A${w / 2},${h / 2} 0 1 1 ${w / 2 - 0.01},0Z` };
+  const named = p.shape && shapeD(p); if (named) return { d: named }; // frames.js: arch, gothic, keyhole, torn, burst…
   const rad = p.round ?? 5;
   return { d: rrectD(0, 0, w, h, rad) };
 }
@@ -30,7 +32,15 @@ export function composePanel(p, tileCtx) {
   const mood = MOODS[p.mood || 'none'] || MOODS.none;
   const shape = panelShape(p);
   const ctx = { w, h, id, mood: p.mood, light: p.light ?? -0.6, tile: tileCtx };
+  // cutout: no frame and no background; the figures stand on the page itself (the reader's side of the frame)
+  if (p.cutout) ctx.layer = 'cutout';
   const art = typeof p.art === 'function' ? p.art(ctx) : (p.art || '');
+  if (p.cutout) {
+    const svg = `<g transform="translate(${r2(p.x)},${r2(p.y)})">${g({ filter: p.wobble === false ? null : 'url(#wobble)' }, art)}</g>`;
+    const anchors = {};
+    for (const k in ctx.anchors || {}) { const a = ctx.anchors[k]; const o = {}; for (const kk in a) o[kk] = Array.isArray(a[kk]) ? [a[kk][0] + p.x, a[kk][1] + p.y] : a[kk]; anchors[k] = o; }
+    return Object.assign(new String(svg), { anchors });
+  }
   const bleed = p.border === 'bleed';
   const fadeMask = bleed ? `<linearGradient id="${id}fg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#fff" stop-opacity="${p.fadeTop === false ? 1 : 0}"/><stop offset="${p.fadeTop === false ? 0 : 0.12}" stop-color="#fff"/>
@@ -49,11 +59,21 @@ export function composePanel(p, tileCtx) {
     mood.vigOp ? rect(0, 0, w, h, { fill: `url(#${id}vg)` }) : '',
     p.overlay ? (typeof p.overlay === 'function' ? p.overlay(ctx) : p.overlay) : '',
   );
-  const border = (p.border === 'none' || bleed) ? '' :
-    `<path d="${shape.d}" fill="none" stroke="${p.borderColor || C.ink}" stroke-width="${p.borderWidth || 3.5}" filter="url(#wobble)" stroke-linejoin="round"/>`;
+  const border = (p.border === 'none' || bleed) ? '' : (STYLES[p.frame || 'ink'] || STYLES.ink)(shape.d, p);
+  // breakout: the characters step over the frame on the given edge(s) ('top' | 'bottom' | 'left' | 'right' | array):
+  // the actors are drawn again, unclipped, but only beyond that edge (plus the border line itself)
+  let pop = '';
+  if (p.breakout && typeof p.art === 'function') {
+    const edges = [].concat(p.breakout), m = 6, far = 3000;
+    const R = { top: [-far, -far, 2 * far + w, far + m], bottom: [-far, h - m, 2 * far + w, far], left: [-far, -far, far + m, 2 * far + h], right: [w - m, -far, far, 2 * far + h] };
+    const cid = `${id}bo`;
+    const actorsOnly = p.art({ ...ctx, layer: 'actors' });
+    pop = `<clipPath id="${cid}">${edges.map((e) => R[e] ? `<rect x="${R[e][0]}" y="${R[e][1]}" width="${R[e][2]}" height="${R[e][3]}"/>` : '').join('')}</clipPath>` +
+      g({ 'clip-path': `url(#${cid})` }, g({ filter: wob }, g({ filter: mood.desat ? `url(#${id}ds)` : null }, actorsOnly)));
+  }
   const shadow = p.shadow ? `<path d="${shape.d}" fill="#000" opacity="0.25" filter="url(#blur3)" transform="translate(4,8)"/>` : '';
   const body = bleed ? g({ mask: `url(#${id}fm)` }, inner) : inner;
-  const svg = `<g transform="translate(${r2(p.x)},${r2(p.y)})${p.rotate ? ` rotate(${p.rotate} ${w / 2} ${h / 2})` : ''}"><defs>${defs}</defs>${shadow}${body}${border}</g>`;
+  const svg = `<g transform="translate(${r2(p.x)},${r2(p.y)})${p.rotate ? ` rotate(${p.rotate} ${w / 2} ${h / 2})` : ''}"><defs>${defs}</defs>${shadow}${body}${border}${pop}</g>`;
   const anchors = {};
   for (const k in ctx.anchors || {}) {
     const a = ctx.anchors[k]; const o = {};

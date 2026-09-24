@@ -25,6 +25,10 @@ Look directly at the .webp images themselves.
 - Screen real estate is at a premium. Avoid dead space; the visual weight should be roughly equal across a panel. Narrowing the shot may help.
 **Details**
 - Make sure details are easy to see, not just text! Again, narrowing the shot may help.
+**Frames**
+- Could this panel's frame pull the reader deeper into the scene? About 1 in 5 panels should be non-standard: shaped by the scene (an archway the characters walk through, a keyhole, a portrait's gilt oval), shaped by the feeling (a slant for a lurch, a burst for a shock), a frameless cut-out of a character or object on the bare page, or a character breaking out over the frame edge. See `docs/ART_BIBLE.md` → "Panel frames" and `docs/ENGINE.md` → "Panel frames".
+- Never at the cost of readability, flow or immersion: a plain rectangle is right for most dialogue. Don't repeat the same trick back to back.
+- For special frames already there: balloons stay inside the visible shape (arches and ovals are narrower at the top), and thick frames (stone, gilt, wood) don't cover faces or text.
 **Also**
 - Balloon tails point at the right speaker.
 - Balloons read in a sensible order (left to right, top to bottom).

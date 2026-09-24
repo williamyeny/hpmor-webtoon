@@ -18,6 +18,7 @@ If the request is ambiguous in a way that changes what you'd do (which of two si
 **Beat or scene** (rewrite, cut, add, reorder, change what happens). Before editing, write down for yourself: what the scene is for (its turn, and what it plants or pays off), and what the change does to that. Then:
 - Edit or rebuild the panels using the existing vocabulary: `say/shout/whisper/cap/capC/inner/cold/hat/note`, `ep.panel/bleed/multi/beat`, `shot({ cam, bg, actors })`. See `docs/ENGINE.md`.
 - New character, prop, location or effect → add it to `engine/chars/cast.js`, `engine/props/`, `engine/bg/`, `engine/fx/` in the existing style (`docs/ART_BIBLE.md`). Remember: engine changes affect **every** episode, so re-render all episodes that use what you touched.
+- Consider the panel frame as part of the storytelling (`docs/ART_BIBLE.md` → "Panel frames"): a new or rebuilt beat may deserve a shaped frame, a cut-out or a breakout, if it deepens immersion.
 - Keep the art-direction motifs intact (warm vs. **cold** for Harry's dark side, Quirrell's "wrongness", sepia for memories) unless the change is *about* them.
 
 ## 3. Follow the change everywhere else

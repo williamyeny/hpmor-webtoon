@@ -6,7 +6,7 @@
 // Or aimed at one head: {head: 'harry', hw: 0.34, hx: 0.5, hy: 0.42}: the head is hw × the panel's width
 //   across, with its centre at (hx, hy) as fractions of the panel. Works the same in tall, narrow or wide panels.
 // Any cam may add roll: degrees of tilt (a Dutch angle), e.g. {on: ['snape'], fr: 'bust', roll: -8}.
-import { g, r2, rect } from './svg.js';
+import { g, r2, rect, ellipse } from './svg.js';
 import { place } from '../chars/rig.js';
 
 const FR = { // [fraction of body visible from the top, headroom in head-heights]
@@ -95,6 +95,12 @@ export function shot(o) {
     const behind = typeof o.behind === 'function' ? o.behind(env) : (o.behind || '');
     const blur = o.blur ? `url(#blur${o.blur})` : null;
     const acts = actorsSvg.map((a) => a.fn ? a.fn(env) : a.svg).join('');
+    // cutout panels (layout.js) draw no background: the figures stand on the page, with a soft shadow at their feet
+    if (ctx.layer === 'actors') return g({ transform: T }, acts);
+    if (ctx.layer === 'cutout') {
+      const ground = o.ground === false ? '' : placed.map((p) => ellipse(p.x ?? 0, (p.y ?? 0) + 4, p.def.body.headRx * 1.5 * p.s, p.def.body.headRx * 0.28 * p.s, { fill: '#3a2a1a', opacity: 0.22, filter: 'url(#blur3)' })).join('');
+      return behind + g({ transform: T }, ground, mid, acts, fg) + over;
+    }
     return under + (behind ? g({ transform: T }, g({ filter: blur }, bg)) + behind + g({ transform: T }, mid, acts, fg) : g({ transform: T }, g({ filter: blur }, bg), mid, acts, fg)) + over;
   };
 }
