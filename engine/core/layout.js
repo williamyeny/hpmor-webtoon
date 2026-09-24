@@ -71,7 +71,12 @@ export function composePanel(p, tileCtx) {
     // the part beyond the frame gets the panel's mood tint too (multiplied onto the figure only), so no colour step at the edge
     const tint = mood.tintOp ? `<filter id="${id}pt"><feFlood flood-color="${mood.tint}" flood-opacity="${Math.min(1, mood.tintOp * 1.2)}" result="f"/><feComposite in="f" in2="SourceGraphic" operator="in" result="fc"/><feBlend in="fc" in2="SourceGraphic" mode="multiply"/></filter>` : '';
     pop = `<clipPath id="${cid}">${edges.map((e) => R[e] ? `<rect x="${R[e][0]}" y="${R[e][1]}" width="${R[e][2]}" height="${R[e][3]}"/>` : '').join('')}</clipPath>${tint}` +
-      g({ 'clip-path': `url(#${cid})` }, g({ filter: wob }, g({ filter: mood.desat ? `url(#${id}ds)` : null }, g({ filter: tint ? `url(#${id}pt)` : null }, actorsOnly))));
+      g({ 'clip-path': `url(#${cid})` }, g({ filter: wob }, g({ filter: mood.desat ? `url(#${id}ds)` : null }, g({ filter: tint ? `url(#${id}pt)` : null }, actorsOnly))),
+        // same paper grain and edge darkening as inside the panel, laid over the figure only (masked by its silhouette)
+        `<filter id="${id}pw"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0"/></filter><mask id="${id}pm" maskUnits="userSpaceOnUse" x="-3000" y="-3000" width="${6000 + w}" height="${6000 + h}"><g filter="url(#${id}pw)">${g({ filter: wob }, actorsOnly)}</g></mask>` +
+        g({ mask: `url(#${id}pm)` },
+          p.grain === false ? '' : rect(-far, -far, 2 * far + w, 2 * far + h, { filter: 'url(#grain)', opacity: 0.55, style: 'mix-blend-mode:multiply' }),
+          mood.vigOp ? rect(-far, -far, 2 * far + w, 2 * far + h, { fill: mood.vig, opacity: mood.vigOp * 0.55, style: 'mix-blend-mode:multiply' }) : ''));
   }
   const shadow = p.shadow ? `<path d="${shape.d}" fill="#000" opacity="0.25" filter="url(#blur3)" transform="translate(4,8)"/>` : '';
   // dissolve frame: feather every edge into the page (memories, a hug, a moment that shouldn't have hard edges)
