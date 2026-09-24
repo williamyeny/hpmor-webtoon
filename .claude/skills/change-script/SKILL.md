@@ -32,13 +32,11 @@ A line or scene is rarely isolated. Check and update all of these:
 5. **`episodes/catalog.js`** — episode title or blurb, if the change makes them wrong.
 6. **Alt text** (`alt:` on panels) — keep it describing what is actually drawn.
 
-## 4. Re-render, re-check, publish
+## 4. Re-check and publish
 
-1. Re-render every affected episode **in full** (`node engine/render.mjs epXX`) — tile numbers shift when panels are added or removed, and the manifest must match. Fix any `LETTERING WARNINGS`.
-2. Run the **relayout** skill on every tile you added or changed, plus one tile either side (look at the actual `site/epXX/*.webp` images, 3 at a time, re-render until they're right).
-3. Read the changed stretch as a stranger: does it still flow into the tiles before and after? Does the scene still turn? Is anything now confusing or redundant?
-4. `node engine/build-site.mjs`
-5. Commit with a message saying what changed and why, then push (the Pages workflow deploys `site/`). If other work is in progress in the tree, stage only the files this change touched.
+1. Run the **relayout** skill on every tile you added or changed, plus one tile either side, in every episode you touched (including callbacks in other episodes). It covers rendering, previews, warnings and rebuilding the site. One difference: `python3 work/wordcheck.py epXX` should now show exactly the wording changes you meant to make, and nothing else.
+2. Read the changed stretch as a stranger: does it still flow into the tiles before and after? Does the scene still turn? Is anything now confusing or redundant?
+3. Commit with a message saying what changed and why, then push (the Pages workflow deploys `site/`). If other work is in progress in the tree, stage only the files this change touched.
 
 ## 5. Report back
 

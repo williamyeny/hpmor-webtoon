@@ -5,9 +5,31 @@ description: review the layout of the specified panel(s) and fix them as needed.
 
 Your job is to make sure the layout of the panel(s) looks perfect. Don't forget: this is a medium for phones, which demands extra clarity.
 
+## Where things are
+
+- **Episode scripts:** `episodes/epXX.js` (Book Two helpers in `episodes/b2.js`). Each `ep.panel` / `ep.bleed` / `ep.multi` / `ep.beat` / `ep.cutout` / `ep.tile` call makes one tile, numbered in order from 1.
+- **Rendered tiles:** `site/epXX/NNN.webp`, listed in `site/epXX/manifest.json`. Each tile's `alt` there includes its balloon text, so searching the manifest for a line finds its tile number.
+- **Reference:** `docs/ENGINE.md` (all options: cameras, poses, balloons, frames, warnings) and `docs/ART_BIBLE.md` (look, lettering, page rhythm, panel frames).
+- **Engine code, if a fix belongs there:**
+  - `engine/core/layout.js`: tile composition, balloon placement and tails.
+  - `engine/core/stage.js`: in-browser lettering, balloon shapes and the warnings.
+  - `engine/core/scene.js`: cameras.
+  - `engine/core/frames.js`: panel shapes and frame styles.
+  - `engine/chars/rig.js`: characters and `POSES`.
+
 ## How to check
 
 Look directly at the .webp images themselves.
+- Whole episode at a glance: `node engine/contact.mjs epXX 300 2600` writes overview sheets to `scratch/sheet-epXX-NN.png`.
+- Quick previews while iterating: `node engine/render.mjs epXX --png 5-9` (or `--png 3,7,12`) writes `scratch/epXX-NNN.png` without touching `site/`.
+- Several tiles side by side: `node work/stack.mjs scratch/out.png a.png b.png c.png --w 700`. To zoom in on a detail, crop with sharp (e.g. `sharp(f).extract({left, top, width, height}).resize({width: 500})`).
+- Every render prints `LETTERING WARNINGS epXX: 12:face:0,border:1 | …` (tile number, then warning:balloon index):
+  - `face`: text covers a visible face.
+  - `border`: an outline crosses its panel frame by more than 12px.
+  - `outline-edge`: an outline runs past the tile edge.
+  - `overlap`: two balloons overlap.
+  - `edge`: text is within 2px of the tile edge.
+- Tiles that use a given pose or hold a prop: `node work/tilesfor.mjs epXX crossArms,facepalm --props`.
 
 ## What to check
  
@@ -41,13 +63,52 @@ If there is an issue that you've noticed and isn't in the above section, feel fr
 
 Move the elements around, resize them, etc. Change the virtual camera -- "pan" up/down/left/right, "zoom" in/out.
 
+The main levers (all in the episode file; details in `docs/ENGINE.md`):
+- **Balloons:** `say/shout/whisper/cap/capC/inner/cold('Who', 'text', x, y, { w, anchor, fixed, tail, noTail, shape, size })`.
+  - Tile coordinates are 800 wide, and y runs down from the tile top.
+  - `anchor`: `'tc'` hangs a balloon from its top-centre, `'bc'` sits it on its bottom-centre; `'tl'` and the other corners work too.
+  - `fixed: true` stops the auto-placer moving it.
+  - `tail`: `[x, y]`, `'harry'`, or `'harry@1'` to aim at Harry in panel 1 of the tile.
+  - `shape: 'box'` gives a rounder rectangle for long speech in narrow panels.
+  - Split a long line into two balloons only at a sentence break, and never change the words.
+- **Camera** (the `cam` of a shot):
+  - `{ x, y, w }` in world units.
+  - `{ on: ['harry'], fr: 'close'|'bust'|'waist'|'knees'|'full', dx, dy, zoom }` frames automatically.
+  - `{ head: 'harry', hw, hx, hy }` puts a head at an exact spot and size in the panel; the most reliable choice in tall or narrow panels.
+  - `roll` tilts the camera.
+- **Actors:**
+  - Position: `x, y` (feet), `s` (scale), `turn` (-1 to 1).
+  - Body: `pose` (see `POSES` in `engine/chars/rig.js`), `armF`/`armB` overrides (e.g. `{ sh, el, hand, front: true }`), `rot`, `lean`.
+  - Face: `expr`, `glasses: false`.
+- **Panels:**
+  - `ep.panel(h, shot, bubbles, { ph, pad, x, w, mood, alt, shape, frame, breakout })`.
+  - `ep.bleed` (edge to edge; `fadeTop`/`fadeBottom`).
+  - `ep.multi(h, [panels])` (several panels in one tile; later panels draw on top).
+  - `ep.cutout` (no frame, no background).
+  - A taller panel (`h`) is often the easiest fix for crowding.
+- **Layers in a shot:**
+  - `bg`: the set.
+  - `mid`: between the set and the actors.
+  - `actors`: functions in the list draw in order, e.g. a desk in front of someone.
+  - `fg`: in front of the actors.
+  - `behind`: effects behind the actors, in panel coordinates.
+  - `over`: on top of everything.
+  - `under`: beneath the set.
+- Keep the `alt:` text describing what's actually drawn if you change the picture.
+
 Do not be afraid to **majorly** redo a panel from scratch, especially if it would flow better. This includes but is not limited to: repositioning the characters, resizing the entire panel (increasing the height is a good technique to get around difficult overlaps or otherwise too crowded panels), completely changing shot size/framing, splitting a panel into multiple panels, deleting/adding elements.
 
-In the case that it's an engine bug, definitely feel free to fix it. However, be mindful of how the change affects other panels -- you may need to relayout them.
+In the case that it's an engine bug, definitely feel free to fix it. However, be mindful of how the change affects other panels -- you may need to relayout them. Re-render every episode after an engine change (`for e in $(seq -w 1 23); do node engine/render.mjs ep$e; done`) and look at what moved; `node work/tilesfor.mjs` helps find the tiles a pose change affects.
 
 ## Final verification
 
 Re-render the panel to verify that it looks perfect. If not, adjust and try again.
+
+When the episode is done:
+1. `node engine/render.mjs epXX` (a full render; it writes `site/epXX/` and the manifest, and tile numbers shift if panels were added or removed).
+2. Make sure it prints no `face` warnings, and only `border`/`outline-edge` warnings you've looked at and judged deliberate.
+3. `python3 work/wordcheck.py epXX` must say SAME WORDS IN ORDER (it compares every balloon's text with git HEAD).
+4. `node engine/build-site.mjs` refreshes the episode pages and contents.
 
 ## Batching
 
