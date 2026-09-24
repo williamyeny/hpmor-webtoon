@@ -49,7 +49,7 @@ a{color:inherit}
 .card .h{font-family:'IM Fell English',serif;font-size:1.45rem;margin:.2rem 0}
 .card .b{font-style:italic;color:var(--ink2);font-size:1rem}
 .muted{color:var(--ink2);font-size:.95rem}
-/* ---------- the book (main call to action): a leather volume with a ribbon bookmark at your place */
+/* ---------- the book (main call to action): a leather volume with a ribbon bookmark tucked between the pages */
 .book{position:relative;display:block;width:12.5rem;height:16rem;margin:1.6rem auto 4.2rem;text-decoration:none;perspective:900px;-webkit-tap-highlight-color:transparent}
 .book:before{content:'';position:absolute;inset:-18% -30%;background:radial-gradient(ellipse at 50% 50%,rgba(255,207,117,.42),rgba(255,207,117,0) 62%);z-index:-1;animation:candle 4s ease-in-out infinite}
 @keyframes candle{0%,100%{opacity:.75}50%{opacity:1}}
@@ -66,7 +66,7 @@ a{color:inherit}
 .book .orn{position:relative;display:block;width:4.5rem;height:1px;background:#c9a24a;margin:.7rem 0 .75rem;opacity:.9}
 .book .orn:after{content:'';position:absolute;left:50%;top:50%;width:7px;height:7px;background:#c9a24a;transform:translate(-50%,-50%) rotate(45deg)}
 .book .ttl{font-family:'IM Fell English',serif;font-size:1.45rem;line-height:1.12}
-.book .ribbon{position:absolute;right:26px;bottom:-40px;width:28px;height:62px;z-index:2;transform-origin:50% 0;animation:sway 5s ease-in-out infinite;
+.book .ribbon{position:absolute;right:30px;bottom:-42px;width:24px;height:90px;transform-origin:50% 0;animation:sway 5s ease-in-out infinite;
   background:linear-gradient(90deg,#a8871f,#e2bf5a 45%,#b8952c);clip-path:polygon(0 0,100% 0,100% 100%,50% 82%,0 100%);filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))}
 @keyframes sway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(3deg)}}
 .book .lbl{position:absolute;left:0;right:0;bottom:-3.9rem;text-align:center;font-family:'IM Fell English SC',serif;font-size:1rem;letter-spacing:1px;color:#6b1a1f}
@@ -201,8 +201,8 @@ ${hasCover ? '<div class="cover"><img src="cover.webp" width="1000" height="1250
 <h1><small>Harry Potter and the</small>Methods of Rationality</h1>
 <p>${esc(SERIES.tagline)}</p>
 ${ready.length ? `<a class="book" id="continue" href="${ready[0].id}/" aria-label="Begin reading: Episode 1, ${esc(ready[0].title)}">
-<span class="pages"></span><span class="cover"><span class="spine"></span><span class="face"><span class="ep">Episode 1</span><span class="orn"></span><span class="ttl">${esc(ready[0].title)}</span></span></span>
-<span class="ribbon"></span><span class="lbl">Begin reading</span>
+<span class="pages"></span><span class="ribbon"></span><span class="cover"><span class="spine"></span><span class="face"><span class="ep">Episode 1</span><span class="orn"></span><span class="ttl">${esc(ready[0].title)}</span></span></span>
+<span class="lbl">Begin reading</span>
 </a>` : ''}
 </header>
 <div class="arc">${esc(SERIES.arc)}</div>
