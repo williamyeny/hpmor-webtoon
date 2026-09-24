@@ -32,7 +32,7 @@
    "file": "005.webp",
    "w": 800,
    "h": 880,
-   "alt": "Draco says it lightly, pleasantly, as if it were nothing. / Draco: She has some sort of perverse obsession about the Malfoys, and her father is politically opposed to us, so he prints every word. / Draco: As soon as I'm old enough, I'm going to make her pay. Curse her properly—the kind of curse St Mungo's can't fix."
+   "alt": "Draco says it lightly, pleasantly, as if it were nothing. / Draco: She has some sort of perverse obsession about the Malfoys, and her father is politically opposed to us, so he prints every word. / Draco: As soon as I'm old enough, I'm going to make her pay. Curse her properly. The kind of curse St Mungo's can't fix."
   },
   {
    "file": "006.webp",
@@ -73,8 +73,8 @@
   {
    "file": "012.webp",
    "w": 800,
-   "h": 1010,
-   "alt": "Draco: Look—I'll explain how it really works, like you were already in Slytherin. The courts use truth potion, but it's a joke: you just get yourself Obliviated before you testify. / Draco: And if I'm involved, it touches the honour of a Noble House, so it goes to the Wizengamot—where Father has the votes. Afterwards, the Lovegoods have to pay us reparations."
+   "h": 1060,
+   "alt": "Draco: Look, I'll explain how it really works, like you were already in Slytherin. The courts use truth potion, but it's a joke: you just get yourself Obliviated before you testify. / Draco: And if I'm involved, it touches the honour of a Noble House, so it goes to the Wizengamot, where Father has the votes. Afterwards, the Lovegoods have to pay us reparations."
   },
   {
    "file": "013.webp",
@@ -122,7 +122,7 @@
    "file": "020.webp",
    "w": 800,
    "h": 900,
-   "alt": "Draco: You've got weirder taste than a Lestrange. I suppose you want her all to yourself, huh? / Harry: Yep. I can owe you a favour for it— / Draco: Nah. This one's free."
+   "alt": "Draco: You've got weirder taste than a Lestrange. I suppose you want her all to yourself, huh? / Harry: Yep. I'll owe you a favour for it. / Draco: Nah. This one's free."
   },
   {
    "file": "021.webp",
@@ -157,13 +157,13 @@
   {
    "file": "026.webp",
    "w": 800,
-   "h": 960,
-   "alt": "Draco: You're looking all serious. Let me guess—your Muggle parents told you this sort of thing was bad. / Draco: Like Father says, there may be four Houses, but in the end everyone belongs to either Slytherin or Hufflepuff. And you're not on the Hufflepuff end."
+   "h": 1000,
+   "alt": "Draco: You're looking all serious. Let me guess. Your Muggle parents told you this sort of thing was bad. / Draco: Like Father says, there may be four Houses, but in the end everyone belongs to either Slytherin or Hufflepuff. And you're not on the Hufflepuff end."
   },
   {
    "file": "027.webp",
    "w": 800,
-   "h": 640,
+   "h": 680,
    "alt": "Draco: If you side with the Malfoys under the table… our power and your reputation… you could get away with things even I can't. Want to try it for a while?"
   },
   {
@@ -194,25 +194,25 @@
    "file": "032.webp",
    "w": 800,
    "h": 800,
-   "alt": "Harry: We. The scientists. The line of Francis Bacon and the blood of the Enlightenment. / Harry: Quick check, Draco. Have wizards ever been to the Moon? You know—that thing?"
+   "alt": "Harry: We. The scientists. The line of Francis Bacon and the blood of the Enlightenment. / Harry: Quick check, Draco. Have wizards ever been to the Moon? You know, that thing?"
   },
   {
    "file": "033.webp",
    "w": 800,
-   "h": 680,
-   "alt": "Draco: Go to the—it's just a—you can't Apparate to somewhere you've never been. How would anyone get to the Moon in the first place?"
+   "h": 700,
+   "alt": "Draco: Go to the… it's just a… you can't Apparate to somewhere you've never been. How would anyone get to the Moon in the first place?"
   },
   {
    "file": "034.webp",
    "w": 800,
    "h": 920,
-   "alt": "Harry dashes down the stairs into the cavern of his trunk, between stacked boxes of books. / Harry: Hold on—I'd like to show you a book—I think I remember which box it's in— / (Harry had inherited the nigh-magical Verres ability to remember where all his books were, which was rather mysterious considering the lack of any genetic connection.)"
+   "alt": "Harry dashes down the stairs into the cavern of his trunk, between stacked boxes of books. / Harry: Hold on, I'd like to show you a book. I think I remember which box it's in… / (Harry had inherited the nigh-magical Verres ability to remember where all his books were, which was rather mysterious considering the lack of any genetic connection.)"
   },
   {
    "file": "035.webp",
    "w": 800,
    "h": 980,
-   "alt": "An open book. On the right-hand page, the photograph: astronauts on the grey lunar surface, and the Earth — blue and white — hanging in the black sky. / The one with the white, dry, cratered land, and the suited people, and the blue-white globe hanging over it all. / That picture. The picture, if only one picture in all the world were to survive."
+   "alt": "An open book. On the right-hand page, the photograph: astronauts on the grey lunar surface, and the Earth, blue and white, hanging in the black sky. / The one with the white, dry, cratered land, and the suited people, and the blue-white globe hanging over it all. / That picture. The picture, if only one picture in all the world were to survive."
   },
   {
    "file": "036.webp",
@@ -254,13 +254,13 @@
    "file": "042.webp",
    "w": 800,
    "h": 820,
-   "alt": "Draco: You're telling the truth. You wouldn't fake a whole book just for this—I can hear it in your voice. / Draco: But… if Muggles have that kind of power… then what are we?"
+   "alt": "Draco: You're telling the truth. You wouldn't fake a whole book just for this. I can hear it in your voice. / Draco: But… if Muggles have that kind of power… then what are we?"
   },
   {
    "file": "043.webp",
    "w": 800,
-   "h": 720,
-   "alt": "Harry: No, Draco, that's not it. Science taps the power of human understanding—looking at the world and figuring out how it works. It's not a Muggle thing. It's a human thing."
+   "h": 750,
+   "alt": "Harry: No, Draco, that's not it. Science taps the power of human understanding. You look at the world and figure out how it works. It's not a Muggle thing. It's a human thing."
   },
   {
    "file": "044.webp",
@@ -289,14 +289,14 @@
   {
    "file": "048.webp",
    "w": 800,
-   "h": 660,
+   "h": 680,
    "alt": "Draco: You think you can master both arts. Add the powers together, and… make yourself Lord of the two worlds?"
   },
   {
    "file": "049.webp",
    "w": 800,
    "h": 1000,
-   "alt": "Harry gives an evil laugh, which just seemed to come naturally at that point. / Harry: MWAHAHAHA— / Harry: The whole world you know is one square on a much larger game board, Draco. But I really am Ravenclaw. I don't want to rule the universe. I just think it could be more sensibly organised."
+   "alt": "Harry gives an evil laugh, which just seemed to come naturally at that point. / Harry: MWAHAHAHA! / Harry: The whole world you know is one square on a much larger game board, Draco. But I really am Ravenclaw. I don't want to rule the universe. I just think it could be more sensibly organised."
   },
   {
    "file": "050.webp",
@@ -356,7 +356,7 @@
    "file": "059.webp",
    "w": 800,
    "h": 760,
-   "alt": "Two tall figures with scarves wound over their heads like shrouds, only their eyes glinting through. / When Harry looked up, two figures were approaching—looking utterly ridiculous, with their faces cloaked by winter scarves. / Fred: Hello, Mr Bronze. Can we interest you in joining the Order of Chaos?"
+   "alt": "Two tall figures with scarves wound over their heads like shrouds, only their eyes glinting through. / When Harry looked up, two figures were approaching. They looked utterly ridiculous, their faces cloaked by winter scarves. / Fred: Hello, Mr Bronze. Can we interest you in joining the Order of Chaos?"
   },
   {
    "file": "060.webp",
@@ -368,7 +368,7 @@
    "file": "061.webp",
    "w": 800,
    "h": 1000,
-   "alt": "Three shrouded figures cavort around the terrified boy, laughing evilly — and showering him with chocolate and coins. / Fred: Have some Knuts, boy! / George: Have a silver Sickle!"
+   "alt": "Three shrouded figures cavort around the terrified boy, laughing evilly, and showering him with chocolate and coins. / Fred: Have some Knuts, boy! / George: Have a silver Sickle!"
   },
   {
    "file": "062.webp",
@@ -404,13 +404,13 @@
    "file": "067.webp",
    "w": 800,
    "h": 720,
-   "alt": "Draco alone at a desk in a green-hung stone room by a fire, quill in hand. / That night, after all the day's fuss had subsided. A private room in the Slytherin dungeons—you had to be the very best of the House to have one."
+   "alt": "Draco alone at a desk in a green-hung stone room by a fire, quill in hand. / That night, after all the day's fuss had subsided. A private room in the Slytherin dungeons. You had to be the very best of the House to have one."
   },
   {
    "file": "068.webp",
    "w": 800,
    "h": 620,
-   "alt": "\"Dear Father,\" — and a spreading blot of ink. / And then he stopped. Ink slowly dripped from his quill, staining the parchment near the words."
+   "alt": "\"Dear Father,\" and a spreading blot of ink. / And then he stopped. Ink slowly dripped from his quill, staining the parchment near the words."
   },
   {
    "file": "069.webp",
