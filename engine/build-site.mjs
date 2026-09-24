@@ -49,7 +49,7 @@ a{color:inherit}
 .muted{color:var(--ink2);font-size:.95rem}
 /* ---------- contents */
 .cover{position:relative;line-height:0}
-.cover img{width:100%;display:block}
+.cover img{width:100%;height:auto;display:block}
 .cover .fade{position:absolute;inset:auto 0 0 0;height:30%;background:linear-gradient(transparent,var(--paper))}
 .head{padding:0 1.3rem 1rem;text-align:center;line-height:1.25}
 .head h1{font-family:'IM Fell English',serif;font-weight:400;font-size:2.1rem;margin:.2rem 0 .4rem;letter-spacing:.3px}

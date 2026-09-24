@@ -3,7 +3,7 @@ export const SERIES = {
   title: 'Harry Potter and the Methods of Rationality',
   short: 'Methods of Rationality',
   tagline: 'A boy raised on science meets a world made of magic — and refuses to stop asking why.',
-  arc: 'Book One · The Sorting of Harry Potter',
+  arc: 'Book One',
 };
 export const EPISODES = [
   { id: 'ep01', number: 1, title: 'A Day of Very Low Probability', blurb: 'A letter arrives. Mum says magic is real. Dad says it can\'t be. Harry says: test it.' },
