@@ -1,5 +1,5 @@
 // EPISODE 8 — Reciprocation  (source: HPMOR ch. 7, first half; bookshop raid ADDED from summary)
-import { Episode, say, shout, whisper, think, inner, cap, capC, note, title, plain, M } from '../engine/core/dsl.js';
+import { Episode, say, shout, whisper, inner, cap, capC, note, title, plain, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
 import { g, rect, path, circle, ellipse, line, text, rng, uid } from '../engine/core/svg.js';
 import * as O from '../engine/bg/oxford.js';
@@ -11,42 +11,47 @@ import { harry, harryRobes, dad, mum, draco, molly, fred, george, ron, ginny, st
 import { owl, comedCan, spray } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep08', number: 8, title: 'Reciprocation' });
-// for cut-outs cropped above the feet: the figures dissolve into the page (paper colour + the gutter's grain) from y0 to y1 (0-1 of h)
 ep.setBg(C.paper);
 ep.beat(260, [plain('CHAPTER EIGHT', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Reciprocation', 400, 170, { size: 54 })]);
+// Harry's pencil notes: Caveat on cream paper
+const T = (x, y, s, fs, a = 'middle', col = '#2d2a4a') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': a, fill: col });
+const OWL = (x, y, k = 0.5) => (e) => g({ transform: `translate(${x},${y}) scale(${k})` }, owl({ col: '#e8e0d0' }));
 
 // =============================================================== the great second-hand bookshop raid (ADDED)
 const shop = (seed) => () => rect(-500, -500, 3000, 3000, { fill: '#6b4a3a' }) + K.bookcase(-100, 120, 400, 820, 'r' + seed) + K.bookcase(320, 120, 400, 820, 's' + seed) + K.bookcase(740, 120, 400, 820, 't' + seed) + K.bookcase(1160, 120, 400, 820, 'u' + seed) + rect(-500, 940, 3000, 600, { fill: '#5a3a22' }) + K.bookPile(300, 940, 8, seed) + K.bookPile(1100, 940, 6, seed + 1);
-const DR = (o = {}) => ({ def: dad, id: 'dad', x: 900, y: 1060, turn: 0.4, pose: 'hold', expr: 'delight', armF: { sh: 30, el: 70, hand: 'hold', under: g({ transform: 'rotate(90) translate(-22,12)' }, K.bookPile(0, 0, 6, 3, 0.8)) }, armB: { sh: 15, el: -80, hand: 'hold' }, ...o });
-const HR = (o = {}) => ({ def: harry, id: 'harry', x: 650, y: 1060, s: 1.1, turn: 0.4, pose: 'hold', expr: 'bigGrin', armF: { sh: 30, el: 70, hand: 'hold', under: g({ transform: 'rotate(90) translate(-20,12)' }, K.bookPile(0, 0, 6, 5, 0.7)) }, armB: { sh: 15, el: -80, hand: 'hold' }, ...o });
-ep.panel(900, { cam: { on: ['harry', 'dad'], fr: 'waist', dy: -1.3 }, bg: () => O.livingRoom({ letter: false }), actors: [DR({ pose: 'lecture', expr: 'determined', armF: undefined, armB: undefined }), HR({ pose: 'present', expr: 'hopeful', armF: undefined, armB: undefined })] },
+const DR = (o = {}) => ({ def: dad, id: 'dad', x: 900, y: 1060, turn: 0.4, pose: 'hold', expr: 'delight', ...o });
+const HR = (o = {}) => ({ def: harry, id: 'harry', x: 650, y: 1060, s: 1.1, turn: 0.4, pose: 'hold', expr: 'bigGrin', ...o });
+// arms full of books, a pile gripped in the near hand
+const armful = (seed, dx, k) => ({ armF: { sh: 30, el: 70, hand: 'hold', under: g({ transform: `rotate(90) translate(${dx},12)` }, K.bookPile(0, 0, 6, seed, k)) }, armB: { sh: 15, el: -80, hand: 'hold' } });
+const DBOOKS = armful(3, -22, 0.8), HBOOKS = armful(5, -20, 0.7);
+const HOME = () => O.livingRoom({ letter: false });
+ep.panel(900, { cam: { on: ['harry', 'dad'], fr: 'waist', dy: -1.3 }, bg: HOME, actors: [DR({ pose: 'lecture', expr: 'determined' }), HR({ pose: 'present', expr: 'hopeful' })] },
   [cap('Two days before term. Harry explained that this might be his big chance to do something really revolutionary.', 44, 34, { w: 460 }),
    say('Dad', 'Then we\'d better get you some books.', 560, 280, { w: 340 })], { mood: 'warm', alt: 'At home: Harry explains; Dad decides.' });
 ep.beat(220, [capC('The Greatest Second-hand Bookshop Raid Ever: four cities, two days.', 400, 110, { w: 560 })]);
 // the raid montage: four shops on a tilted cross of seams (the rush of four cities in two days)
 const quad = (pts) => { const xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]), x = Math.min(...xs), y = Math.min(...ys), w = Math.max(...xs) - x, h = Math.max(...ys) - y; return { x, y, w, h, shape: 'poly', pts: pts.map(([a, b]) => [(a - x) / w, (b - y) / h]) }; };
 ep.multi(820, [
-  { ...quad([[M, 18], [405, 18], [393, 403], [M, 418]]), mood: 'warm', art: { cam: { on: ['harry', 'dad'], fr: 'waist', zoom: 0.8, dy: 0.1 }, bg: shop(1), actors: [DR(), HR()] } },
-  { ...quad([[419, 18], [776, 18], [776, 388], [407, 403]]), mood: 'warm', art: { cam: { on: ['harry', 'dad'], fr: 'waist', zoom: 0.8, dy: 0.1 }, bg: shop(2), actors: [DR({ expr: 'focus', pose: 'think', armF: undefined, armB: undefined }), HR({ expr: 'awe' })] } },
-  { ...quad([[M, 432], [393, 417], [381, 802], [M, 802]]), mood: 'warm', art: { cam: { on: ['harry', 'dad'], fr: 'waist', zoom: 0.8, dy: 0.1 }, bg: shop(3), actors: [DR({ expr: 'laugh' }), HR({ expr: 'laugh', pose: 'armsUp', armF: undefined, armB: undefined })] } },
+  { ...quad([[M, 18], [405, 18], [393, 403], [M, 418]]), mood: 'warm', art: { cam: { on: ['harry', 'dad'], fr: 'waist', zoom: 0.8, dy: 0.1 }, bg: shop(1), actors: [DR(DBOOKS), HR(HBOOKS)] } },
+  { ...quad([[419, 18], [776, 18], [776, 388], [407, 403]]), mood: 'warm', art: { cam: { on: ['harry', 'dad'], fr: 'waist', zoom: 0.8, dy: 0.1 }, bg: shop(2), actors: [DR({ expr: 'focus', pose: 'think' }), HR({ expr: 'awe', ...HBOOKS })] } },
+  { ...quad([[M, 432], [393, 417], [381, 802], [M, 802]]), mood: 'warm', art: { cam: { on: ['harry', 'dad'], fr: 'waist', zoom: 0.8, dy: 0.1 }, bg: shop(3), actors: [DR({ expr: 'laugh', ...DBOOKS }), HR({ expr: 'laugh', pose: 'armsUp' })] } },
   { ...quad([[407, 417], [776, 402], [776, 802], [395, 802]]), mood: 'rainy', art: { cam: { x: 800, y: 700, w: 1400 }, bg: () => O.houseExterior(), actors: [(e) => g({}, ...[0, 1, 2, 3, 4].map((i) => rect(560 + (i % 3) * 110, 980 - Math.floor(i / 3) * 90, 100, 86, { fill: '#b9955e', stroke: C.ink, 'stroke-width': 3 })))] } },
 ], [cap('Oxford', 36, 30, { w: 200, fixed: true }), cap('Cambridge', 430, 30, { w: 200, fixed: true }), cap('London', 36, 446, { w: 200, fixed: true }), cap('Bath', 424, 434, { w: 200, fixed: true })], { alt: 'Montage: Harry and Dad in four dusty bookshops, arms full of books, laughing; then boxes of books stacked outside the house in the rain.' });
 ep.panel(890, (ctx) => {
   const w = ctx.w, h = ctx.h;
   let out = rect(0, 0, w, h, { fill: '#3a2618' }) + K.glow(w / 2, h * 0.2, 500, C.candle, 0.4);
   const R = rng(4);
-  for (let r = 0; r < 4; r++) for (let k = 0; k < 5; k++) { const x = 48 + k * 144, y = h - 40 - r * 136, bw = 132; out += rect(x, y - 124, bw, 124, { fill: mixB(R), stroke: C.ink, 'stroke-width': 3 }) + text(x + bw / 2, y - 54, R.pick(['PHYSICS', 'CHEM.', 'MATHS', 'SCI-FI', 'BIOLOGY', 'HISTORY', 'ECON.']), { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': 26, 'text-anchor': 'middle', fill: '#3a2618' }); }
+  for (let r = 0; r < 4; r++) for (let k = 0; k < 5; k++) { const x = 48 + k * 144, y = h - 40 - r * 136, bw = 132; out += rect(x, y - 124, bw, 124, { fill: R.pick(['#b9955e', '#c9a56e', '#a9854e']), stroke: C.ink, 'stroke-width': 3 }) + text(x + bw / 2, y - 54, R.pick(['PHYSICS', 'CHEM.', 'MATHS', 'SCI-FI', 'BIOLOGY', 'HISTORY', 'ECON.']), { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': 26, 'text-anchor': 'middle', fill: '#3a2618' }); }
   return out;
-  function mixB(R) { return R.pick(['#b9955e', '#c9a56e', '#a9854e']); }
 }, [cap('Thirty boxes of science books, now sitting in the cavern level of Harry\'s trunk. His father had tried to hide the till displays, but Harry figured he must have spent at least a thousand pounds.', 44, 30, { w: 600, size: 26 })],
   { alt: 'The cavern under the trunk, stacked with thirty cardboard boxes labelled PHYSICS, MATHS, SCI-FI…' });
-ep.panel(620, { cam: { on: ['harry', 'dad'], fr: 'bust' }, bg: () => O.livingRoom({ letter: false }), actors: [DR({ expr: 'smile', pose: 'stand', armF: undefined, armB: undefined }), HR({ expr: 'hopeful', pose: 'stand', armF: undefined, armB: undefined })] },
+ep.panel(620, { cam: { on: ['harry', 'dad'], fr: 'bust' }, bg: HOME, actors: [DR({ expr: 'smile', pose: 'stand' }), HR({ expr: 'hopeful', pose: 'stand' })] },
   [say('Harry', 'I\'ll pay you back as soon as I figure out how to convert wizarding gold into Muggle money.', 250, 100, { w: 340 }),
    say('Dad', 'Go boil your head.', 580, 520, { w: 220 })], { mood: 'warm' });
 
 // =============================================================== King's Cross
-ep.setBg(C.paper);
 const KX = () => S.kingsCross();
+const P9 = () => S.platform934();
 const HK = (o = {}) => ({ def: harry, id: 'harry', x: 1000, y: 1080, s: 1.1, turn: -0.3, pose: 'stand', mask: 'sweatband', ...o });
 const MK = (o = {}) => ({ def: mum, id: 'mum', x: 780, y: 1090, turn: 0.4, pose: 'hold', expr: 'teary', ...o });
 const DK = (o = {}) => ({ def: dad, id: 'dad', x: 1260, y: 1090, turn: -0.4, pose: 'stand', expr: 'calm', ...o });
@@ -99,7 +104,7 @@ const WZ = (o = {}) => [
   { def: george, id: 'george', x: 1860, y: 1080, turn: -0.4, pose: 'stand', expr: 'grin', ...(o.george || {}) },
   { def: ron, id: 'ron', x: 1330, y: 1080, s: 1.05, turn: -0.3, pose: 'stand', expr: 'neutral', armF: { sh: 20, el: 30, hand: 'hold' }, ...(o.ron || {}) },
   { def: ginny, id: 'ginny', x: 1600, y: 1080, s: 0.9, turn: -0.3, pose: 'stand', expr: 'shock', ...(o.ginny || {}) },
-  (e) => g({ transform: 'translate(1300,700) scale(0.6)' }, owl({ col: '#e8e0d0' })),
+  OWL(1300, 700, 0.6),
 ];
 ep.panel(860, { cam: { x: 1480, y: 740, w: 1080 }, bg: KX, actors: [...WZ({ molly: { expr: 'shock' }, fred: { expr: 'shock' }, george: { expr: 'shock' }, ron: { expr: 'shock' } }), HK({ x: 1100, turn: 0.5, expr: 'hopeful', pose: 'walk' })] },
   [say('Molly', 'Hello, dear. First time at Hogwarts? Ron\'s new, too—', 320, 104, { w: 420, fixed: true }),
@@ -128,10 +133,8 @@ ep.panel(960, { cam: { x: 930, y: 880, w: 640 }, bg: KX, actors: [HK({ x: 950, y
 // the doubt loop, drawn inside a thought cloud (the narration stays outside it)
 ep.panel(920, (ctx) => {
   const w = ctx.w, cx = w / 2, cy = 520;
-  const T = (x, y, s, fs = 38, col = '#2d2a4a') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': 'middle', fill: col });
   const A = (x1, y1, x2, y2) => { const a = Math.atan2(y2 - y1, x2 - x1); return line(x1, y1, x2, y2, { stroke: '#c43a32', 'stroke-width': 4 }) + path(`M${x2},${y2} L${x2 - 16 * Math.cos(a - 0.45)},${y2 - 16 * Math.sin(a - 0.45)} M${x2},${y2} L${x2 - 16 * Math.cos(a + 0.45)},${y2 - 16 * Math.sin(a + 0.45)}`, { stroke: '#c43a32', 'stroke-width': 4, fill: 'none' }); };
-  let out = rect(0, 0, w, ctx.h, { fill: '#f4ecd6' });
-  out += circle(cx, cy, 70, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 3, 'stroke-dasharray': '14 10' }) + T(cx, cy + 14, 'doubt', 44, '#c43a32');
+  let out = circle(cx, cy, 70, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 3, 'stroke-dasharray': '14 10' }) + T(cx, cy + 14, 'doubt', 44, 'middle', '#c43a32');
   out += T(200, 320, 'I\'ll get through', 42) + T(590, 320, '…if I believe', 42) + T(570, 750, '…but now I\'m worried', 40) + T(200, 750, '…so I don\'t believe', 40);
   out += A(345, 308, 480, 308) + A(590, 350, 590, 700) + A(420, 738, 360, 738) + A(200, 700, 200, 360);
   return rect(0, 0, w, ctx.h, { fill: '#f4ecd6' }) + g({ transform: `translate(${cx},${ctx.h / 2 + 8}) scale(0.8) translate(${-cx},${-cy})` }, out);
@@ -142,19 +145,17 @@ ep.panel(900, { cam: { on: ['harry'], fr: 'close', zoom: 0.9, dy: 0.1 }, bg: KX,
    inner('Harry', 'He shut his eyes, ignored everything he knew about justified credibility, and just tried to believe *really hard*…', 400, 790, { w: 520 })], { mood: 'day' });
 // through the barrier: the reader looks out of the brick archway Harry has just come through
 const barrierArch = (e) => { const w = e.w, h = e.h, t = h * 0.1, id = uid('ba'); return `<defs><clipPath id="${id}"><path d="M0,0 L${w},0 L${w},${h} L${w * 0.93},${h} L${w * 0.93},${h * 0.34} Q${w * 0.93},${t} ${w / 2},${t} Q${w * 0.07},${t} ${w * 0.07},${h * 0.34} L${w * 0.07},${h} L0,${h}Z"/></clipPath></defs>` + g({ 'clip-path': `url(#${id})` }, K.brickWall(0, 0, w, h, '#7a4232', 12), rect(0, 0, w, h, { fill: '#1a0e08', opacity: 0.5 })) + path(`M${w * 0.07},${h} L${w * 0.07},${h * 0.34} Q${w * 0.07},${t} ${w / 2},${t} Q${w * 0.93},${t} ${w * 0.93},${h * 0.34} L${w * 0.93},${h}`, { fill: 'none', stroke: '#2a1a10', 'stroke-width': 8 }); };
-ep.bleed(1040, { cam: { x: 1480, y: 560, w: 1750 }, bg: () => S.platform934(), over: barrierArch, actors: [...[911, 912, 913, 914, 915, 916].map((sd, i) => ({ def: makeExtra(sd, { kid: i % 2 === 0, witchHat: i === 5 }), x: [1080, 2090, 1210, 2230, 1960, 2330][i], y: 960 + (i % 3) * 25, turn: i % 2 ? -0.6 : 0.6, pose: i % 2 ? 'walk' : 'stand', s: i % 2 === 0 ? 1.05 : 1 })),
+ep.bleed(1040, { cam: { x: 1480, y: 560, w: 1750 }, bg: P9, over: barrierArch, actors: [...[911, 912, 913, 914, 915, 916].map((sd, i) => ({ def: makeExtra(sd, { kid: i % 2 === 0, witchHat: i === 5 }), x: [1080, 2090, 1210, 2230, 1960, 2330][i], y: 960 + (i % 3) * 25, turn: i % 2 ? -0.6 : 0.6, pose: i % 2 ? 'walk' : 'stand', s: i % 2 === 0 ? 1.05 : 1 })),
   { def: harry, id: 'harry', x: 900, y: 1560, s: 2.3, turn: 0.4, pose: 'stand', expr: 'awe', mask: 'sweatband' }] },
   [capC('…and the sounds around him changed.', 400, 70, { w: 440 }),
    cap('A bright open-air platform, a massive scarlet steam engine, and it went entirely without saying that there was no such place in King\'s Cross Station and no room to hide it.', 300, 866, { w: 466, size: 26 })], { mood: 'day', alt: 'Platform Nine-and-Three-Quarters: a long scarlet steam train, the Hogwarts Express, puffing white steam; crowds of children and parents; an iron archway sign reading 9¾.' });
-ep.panel(820, { cam: { on: ['harry'], fr: 'close', zoom: 0.9, dy: 0.05 }, bg: () => S.platform934(), blur: 3, actors: [{ def: harry, id: 'harry', x: 760, y: 1260, s: 1.3, turn: 0.3, expr: 'think', mask: 'sweatband' }] },
+ep.panel(820, { cam: { on: ['harry'], fr: 'close', zoom: 0.9, dy: 0.05 }, bg: P9, blur: 3, actors: [{ def: harry, id: 'harry', x: 760, y: 1260, s: 1.3, turn: 0.3, expr: 'think', mask: 'sweatband' }] },
   [inner('Harry', 'So either (a) I just teleported somewhere else entirely, (b) they can fold space like nobody\'s business, or (c) they are simply ignoring all the rules.', 400, 110, { w: 600 }),
    cap('He also felt vaguely dirtied by having made a deliberate effort to believe something.', 44, 690, { w: 560, size: 26 })], { mood: 'day' });
 
 // =============================================================== Ron, Mr Spoo, and Quidditch
-const P9 = () => S.platform934();
 const HP = (o = {}) => ({ def: harryRobes, id: 'harry', x: 1000, y: 1150, s: 1.1, turn: 0.4, pose: 'stand', mask: 'scarf', ...o });
 const RP = (o = {}) => ({ def: ron, id: 'ron', x: 1250, y: 1150, s: 1.05, turn: -0.4, pose: 'stand', expr: 'neutral', ...o });
-const OWL = (x, y) => (e) => g({ transform: `translate(${x},${y}) scale(0.5)` }, owl({ col: '#e8e0d0' }));
 ep.panel(1000, { cam: { on: ['harry', 'ron'], fr: 'waist', dy: -1.7 }, bg: P9, actors: [HP({ expr: 'focus', mask: undefined, def: harry }), RP({ expr: 'awe' }), OWL(1292, 925)] },
   [say('Ron', 'Cor. Are you *really* Harry Potter?', 556, 108, { w: 300, fixed: true, tail: [690, 430] }),
    say('Harry', 'I have no logical way of knowing that for certain. For all *I* know, there could easily be spells to polymorph a child into a specified appearance—', 298, 370, { w: 430, size: 27, fixed: true, shape: 'box' })], { mood: 'day' });
@@ -173,7 +174,6 @@ ep.panel(1000, { cam: { on: ['ron'], fr: 'waist', dx: 0.62, dy: -0.4, zoom: 0.85
 const quidditch = (ctx) => {
   const w = ctx.w, h = ctx.h;
   let out = rect(0, 0, w, h, { fill: '#faf3e1' });
-  const T = (x, y, s, fs = 30, a = 'middle', col = '#2d2a4a') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': a, fill: col });
   out += T(w / 2, 62, 'QUIDDITCH (as explained, with hand gestures)', 38);
   out += rect(50, 96, w - 100, 210, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 3 }) + T(w / 2, 160, 'goals: 10 points each', 44) + T(w / 2, 212, '(~15-20 per game)', 36) + T(w / 2, 272, 'so maybe ~150-200 points of actual play', 34);
   out += circle(w / 2, 390, 30, { fill: '#e7bb4f', stroke: '#2d2a4a', 'stroke-width': 3 }) + path(`M${w / 2 - 30},380 q-60,-34 -100,8 M${w / 2 + 30},380 q60,-34 100,8`, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 3 }) + T(w / 2, 486, 'the Snitch: 150 POINTS ?!', 58, 'middle', '#c43a32') + T(w / 2, 546, 'mostly luck. ends the game.', 38);
@@ -267,7 +267,6 @@ ep.panel(980, { cam: { on: ['draco'], fr: 'bust', zoom: 0.9, dy: -0.55 }, bg: P9
 ep.panel(700, (ctx) => {
   const w = ctx.w, h = ctx.h;
   let out = rect(0, 0, w, h, { fill: '#faf3e1' });
-  const T = (x, y, s, fs = 30, a = 'middle', col = '#2d2a4a') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': a, fill: col });
   out += T(w / 2, 64, 'RECIPROCATION (Cialdini, ch. 2)', 42);
   out += rect(40, 104, 290, 160, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 3 }) + T(185, 175, 'unasked gift', 42) + T(185, 228, '(a secret)', 36);
   out += rect(w - 330, 104, 290, 160, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 3 }) + T(w - 185, 175, 'pressure to', 42) + T(w - 185, 228, 'give one back', 42);
@@ -295,6 +294,9 @@ ep.panel(860, { cam: { on: ['draco'], fr: 'close', zoom: 0.85, dy: 0.1 }, bg: P9
 
 // =============================================================== the Comed-Tea
 const ST = () => S.comedStall(1300, 1150);
+// a Comed-Tea can in the near hand: held low, or raised to drink
+const CAN = { sh: 55, el: 70, hand: 'hold', under: g({ transform: 'rotate(125) translate(8,18)' }, comedCan(1.3)) };
+const CAN_UP = { sh: 55, el: 80, hand: 'hold', under: g({ transform: 'rotate(115) translate(8,12)' }, comedCan(1.3)) };
 // the counter front again, drawn over the stall-holder so he stands behind it
 const STF = () => rect(1080, 1030, 440, 130, { fill: '#6b4429', ...K.bl(2) }) + rect(1070, 1010, 460, 26, { fill: '#8a5d38', ...K.bl(2) });
 ep.panel(900, { cam: { x: 1250, y: 910, w: 900 }, bg: P9, mid: ST, actors: [{ def: stallMan, id: 'stall', x: 1420, y: 1050, turn: -0.4, pose: 'holdOne', expr: 'shock', armF: { sh: 55, el: 75, hand: 'hold', prop: g({ transform: 'translate(0,10)' }, comedCan(1.1)) } }, STF, DP({ x: 980, y: 1180, turn: 0.4 }), HP({ x: 1110, y: 1180, turn: 0.4, expr: 'focus' })],
@@ -313,16 +315,16 @@ ep.cutout(620, (ctx) => {
   let out = ellipse(px, py + 122, 120, 16, { fill: '#3a2a1a', opacity: 0.2, filter: 'url(#blur3)' });
   out += g({ transform: `translate(${px},${py}) scale(1.7)` }, path('M-60,-20 Q-80,60 0,70 Q80,60 60,-20Z', { fill: '#8a6a4a', stroke: C.ink, 'stroke-width': 3 }), ellipse(0, -20, 64, 16, { fill: '#1a120a', stroke: C.ink, 'stroke-width': 3 }));
   out += [0, 1, 2].map((i) => g({ transform: `translate(${px + 90 + i * 130},${py - 150 - i * 95}) rotate(${-30 - i * 12})` }, comedCan(2.2))).join('');
-    return out;
+  return out;
 },
   [note('burp', 110, 330, { size: 40, color: '#5a3a22', fixed: true }), note('burp', 470, 400, { size: 40, color: '#5a3a22', fixed: true }), note('*BURP*', 650, 470, { size: 48, color: '#5a3a22', fixed: true }), cap('Twenty-two burps later…', 44, 30, { w: 360 })], { alt: 'The pouch swallows can after can, burping each time.' });
-ep.panel(820, { cam: { on: ['draco', 'harry'], fr: 'bust', dy: -0.8 }, bg: P9, actors: [DP({ x: 1000, y: 1180, turn: 0.4, pose: 'holdOne', expr: 'deadpan', armF: { sh: 55, el: 80, hand: 'hold', under: g({ transform: 'rotate(115) translate(8,12)' }, comedCan(1.3)) } }), HP({ x: 1200, y: 1180, turn: -0.4, pose: 'holdOne', expr: 'focus', mask: 'scarfDown', armF: { sh: 55, el: 80, hand: 'hold', under: g({ transform: 'rotate(115) translate(8,12)' }, comedCan(1.3)) } })] },
+ep.panel(820, { cam: { on: ['draco', 'harry'], fr: 'bust', dy: -0.8 }, bg: P9, actors: [DP({ x: 1000, y: 1180, turn: 0.4, pose: 'holdOne', expr: 'deadpan', armF: CAN_UP }), HP({ x: 1200, y: 1180, turn: -0.4, pose: 'holdOne', expr: 'focus', mask: 'scarfDown', armF: CAN_UP })] },
   [cap('They pulled the rings at the same time, and drank. It tasted *bright green*—extra-fizzy, and limer than lime.', 44, 30, { w: 520 }), cap('Aside from that, nothing else happened.', 240, 715, { w: 480, fixed: true })], { mood: 'day' });
 ep.panel(700, { cam: { on: ['harry'], fr: 'close', zoom: 0.9, dy: 0.3 }, bg: P9, blur: 3, actors: [HP({ x: 1200, y: 1180, expr: 'suspicious', mask: 'scarfDown' })] },
   [inner('Harry', 'If this guy took advantage of a natural accident to sell me twenty-four cans of nothing, I\'m going to applaud his entrepreneurial spirit and then kill him.', 400, 590, { w: 600 })], { mood: 'day' });
 ep.panel(660, { cam: { on: ['stall'], fr: 'close', zoom: 0.9, dy: -0.1 }, bg: P9, blur: 3, mid: ST, actors: [{ def: stallMan, id: 'stall', x: 1420, y: 1000, turn: -0.3, expr: 'smile' }] },
   [say('Stall-holder', 'It doesn\'t always happen immediately. But it\'s guaranteed once per can, or your money back.', 400, 100, { w: 540 })], { mood: 'day' });
-ep.panel(1000, { cam: { on: ['harry'], fr: 'waist', zoom: 0.9, dy: -0.35 }, bg: P9, actors: [HP({ x: 1200, y: 1180, turn: 0.5, pose: 'walk', expr: 'smug', mask: 'scarfDown', armF: { sh: 55, el: 70, hand: 'hold', under: g({ transform: 'rotate(125) translate(8,18)' }, comedCan(1.3)) } })] },
+ep.panel(1000, { cam: { on: ['harry'], fr: 'waist', zoom: 0.9, dy: -0.35 }, bg: P9, actors: [HP({ x: 1200, y: 1180, turn: 0.5, pose: 'walk', expr: 'smug', mask: 'scarfDown', armF: CAN })] },
   [inner('Harry', 'In his state of mental preparedness, Lucius Malfoy could walk past in a ballerina outfit and it wouldn\'t make him do a spit-take. Just what wacky shenanigan was the universe supposed to cough up *now?*', 400, 110, { w: 600, size: 27 }),
    cap('He swigged, and glanced back at the newspaper stand.', 44, 900, { w: 640 })], { mood: 'day' });
 // the Quibbler itself, held up to the reader: no frame, just the newspaper on the page
@@ -335,7 +337,7 @@ ep.panel(900, { cam: { on: ['harry', 'draco'], fr: 'bust', dy: -0.6 }, bg: P9, b
 ep.panel(900, { cam: { on: ['harry'], fr: 'close', zoom: 0.95, dy: 0.3 }, bg: P9, blur: 3, actors: [HP({ x: 1200, y: 1180, expr: 'blank', mask: 'scarfDown' })] },
   [say('Harry', 'Buh-bluh-buh-buh…', 400, 80, { w: 400 }),
    cap('Too many competing objections, that was the problem. Every time Harry tried to say "But we\'re only eleven!", the objection "But men can\'t get pregnant!" demanded priority, and was then run over by "But there\'s nothing between us, really!"', 44, 650, { w: 600, size: 26 })], { mood: 'day' });
-ep.panel(720, { cam: { on: ['draco'], fr: 'bust', zoom: 0.9, dy: -0.2 }, bg: P9, blur: 2, actors: [DP({ x: 1000, y: 1180, expr: { base: 'awe', eyes: { sparkle: false } }, pose: 'holdOne', armF: { sh: 55, el: 70, hand: 'hold', under: g({ transform: 'rotate(125) translate(8,18)' }, comedCan(1.3)) } })] },
+ep.panel(720, { cam: { on: ['draco'], fr: 'bust', zoom: 0.9, dy: -0.2 }, bg: P9, blur: 2, actors: [DP({ x: 1000, y: 1180, expr: { base: 'awe', eyes: { sparkle: false } }, pose: 'holdOne', armF: CAN })] },
   [say('Draco', 'I take it back. That was pretty good.', 400, 100, { w: 480 })], { mood: 'day' });
 ep.panel(980, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.15 }, bg: P9, blur: 2, actors: [HP({ x: 1200, y: 1180, expr: { base: 'cross', mouth: { type: 'grit' } }, pose: 'fists', mask: 'scarfDown' })] },
   [say('Harry', 'Hey, Draco. You know what I bet is even better for becoming friends than exchanging secrets?', 400, 100, { w: 580 }),

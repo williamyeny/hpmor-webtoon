@@ -1,18 +1,20 @@
 // EPISODE 5 — Six Minutes  (source: HPMOR ch. 5, second half)
-import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, note, title, plain, M } from '../engine/core/dsl.js';
-import { shot } from '../engine/core/scene.js';
+import { Episode, say, shout, whisper, inner, cold, cap, capC, note, title, plain, M } from '../engine/core/dsl.js';
 import { C } from '../engine/core/palette.js';
 import { g, rect, path, circle, ellipse } from '../engine/core/svg.js';
 import * as L from '../engine/bg/london.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
 import { harry, mcgonagall, draco, dracoFitting, lucius, malkin, asst1, asst2 } from '../engine/chars/cast.js';
-import { wand, cane } from '../engine/props/props.js';
+import { wand } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep05', number: 5, title: 'Six Minutes' });
 ep.setBg(C.paper);
 ep.beat(260, [plain('CHAPTER FIVE', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Six Minutes', 400, 170, { size: 54 })]);
-const WAND = g({ transform: 'translate(0,9) rotate(-20) translate(0,-4)' }, wand(120, '#4a2e1b'));
+const wandIn = (rot) => g({ transform: `translate(0,9) rotate(${rot}) translate(0,-4)` }, wand(120, '#4a2e1b')); // gripped in the hand
+const WAND = wandIn(-20);
+const SPARK = [[100, 200, 20], [700, 160, 16], [120, 600, 12], [680, 560, 18]];
+const sparkles = (pts = SPARK) => (e) => FX.sparkles(pts, { col: '#fff3b0' });
 const MX = L.shopAt('Madam Malkin', { seed: 7 });
 const DA = () => L.diagonAlley({ seed: 7 });
 
@@ -20,7 +22,7 @@ const DA = () => L.diagonAlley({ seed: 7 });
 ep.panel(900, { cam: { on: ['mcgonagall', 'harry'], fr: 'knees' }, bg: DA, actors: [{ def: mcgonagall, id: 'mcgonagall', x: MX - 160, y: 1080, turn: 0.4, pose: 'stand', expr: 'calm' }, { def: harry, id: 'harry', x: MX + 80, y: 1080, s: 1.1, turn: -0.4, pose: 'stand', expr: 'unimpressed' }] },
   [say('McGonagall', 'I\'m going to go off for a few minutes while you get fitted. Will you be all right with that, Mr Potter?', 540, 110, { w: 370 }),
    cap('Harry nodded. He hated clothes shopping with a fiery passion, and couldn\'t blame the older witch for feeling the same way.', 30, 740, { w: 370 })], { mood: 'day' });
-ep.panel(900, { cam: { on: ['mcgonagall', 'harry'], fr: 'knees' }, bg: DA, actors: [{ def: mcgonagall, id: 'mcgonagall', x: MX - 160, y: 1080, turn: 0.4, pose: 'wand', expr: 'calm', armB: { sh: 118, el: 0, hand: 'hold', prop: g({ transform: 'translate(0,9) rotate(60) translate(0,-4)' }, wand(120, '#4a2e1b')) } }, { def: harry, id: 'harry', x: MX + 80, y: 1080, s: 1.1, turn: -0.4, pose: 'stand', expr: 'worried' }] },
+ep.panel(900, { cam: { on: ['mcgonagall', 'harry'], fr: 'knees' }, bg: DA, actors: [{ def: mcgonagall, id: 'mcgonagall', x: MX - 160, y: 1080, turn: 0.4, pose: 'wand', expr: 'calm', armB: { sh: 118, el: 0, hand: 'hold', prop: wandIn(60) } }, { def: harry, id: 'harry', x: MX + 80, y: 1080, s: 1.1, turn: -0.4, pose: 'stand', expr: 'worried' }] },
   [say('McGonagall', 'You\'ll need to be clear to Madam Malkin\'s senses, so I am removing the disguise.', 615, 40, { w: 300, anchor: 'tc', shape: 'box' })], { mood: 'day' });
 ep.panel(640, { cam: { on: ['mcgonagall'], fr: 'bust', dx: 0.8 }, bg: DA, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: MX - 160, y: 1080, turn: 0.4, pose: 'stand', expr: 'calm' }] },
   [say('McGonagall', 'I went to school with her. Even then, she was the most *composed* person I knew. She wouldn\'t turn a hair if You-Know-Who himself walked into her shop.', 540, 70, { w: 400, size: 30 })], { mood: 'day' });
@@ -47,12 +49,12 @@ ep.panel(640, { cam: { on: ['draco'], fr: 'bust' }, bg: MI, blur: 2, actors: [DR
 ep.panel(720, { cam: { on: ['harry'], fr: 'close' }, bg: MI, blur: 3, actors: [HAR({ expr: { base: 'scheme' } })], over: (e) => FX.frost(e.w, e.h, 0.15, 4) },
   [inner('Harry', 'Harry could predict exactly where this conversation was about to go.', 400, 90, { w: 460 }),
    inner('Harry', 'And he decided, in a split second of frustration, that enough was enough.', 400, 650, { w: 540 })], { mood: 'warm' });
-ep.cutout(800, { cam: { on: ['harry'], fr: 'full' }, bg: MI, blur: 2, actors: [HAR({ expr: 'awe', pose: 'reach', turn: 0.5 })], behind: (e) => FX.sparkles([[100, 200, 20], [700, 160, 16], [120, 600, 12], [680, 560, 18]], { col: '#fff3b0' }) },
+ep.cutout(800, { cam: { on: ['harry'], fr: 'full' }, bg: MI, blur: 2, actors: [HAR({ expr: 'awe', pose: 'reach', turn: 0.5 })], behind: sparkles() },
   [whisper('Harry', 'Good heavens. It couldn\'t be.', 400, 90, { w: 320 }),
    whisper('Harry', 'Your… *name*, sir?', 150, 470, { w: 240, fixed: true, tail: [300, 370] })], { mood: 'warm', ph: 710 });
 ep.panel(560, { cam: { on: ['draco'], fr: 'close' }, bg: MI, blur: 3, actors: [DRA({ expr: 'confused' })] },
   [say('Draco', 'Draco Malfoy.', 190, 100, { w: 260 }), cap('said Draco Malfoy, looking slightly puzzled.', 440, 48, { w: 300 })], { mood: 'warm' });
-ep.panel(820, { cam: { on: ['harry'], fr: 'bust' }, bg: MI, blur: 2, actors: [HAR({ expr: { base: 'pleading', tearDrop: true }, pose: 'hold' })], behind: (e) => FX.sparkles([[100, 200, 20], [700, 160, 16], [120, 600, 12], [680, 560, 18]], { col: '#fff3b0' }) },
+ep.panel(820, { cam: { on: ['harry'], fr: 'bust' }, bg: MI, blur: 2, actors: [HAR({ expr: { base: 'pleading', tearDrop: true }, pose: 'hold' })], behind: sparkles() },
   [say('Harry', 'It *is* you! Draco Malfoy. I—I never thought I\'d be so honoured, sir.', 400, 90, { w: 440 }),
    cap('Harry wished he could make tears come out of his eyes. The others usually started crying at around this point.', 280, 640, { w: 460 })], { mood: 'warm' });
 ep.panel(880, { cam: { head: 'draco', hw: 0.42, hx: 0.52, hy: 0.3 }, bg: MI, blur: 2, actors: [DRA({ expr: 'smug', pose: 'crossArms' })] },
@@ -103,7 +105,7 @@ ep.multi(560, [
 ep.panel(700, { cam: { on: ['draco'], fr: 'bust' }, bg: MI, blur: 2, actors: [DRA({ expr: 'shock', pose: 'panic' })] },
   [shout('Draco', '*Harry Potter?* *The* Harry…', 280, 110, { w: 360, size: 34 })], { mood: 'warm' });
 ep.beat(320, [capC('There was a brief silence.', 400, 160, { w: 360 })]);
-ep.cutout(950, { cam: { on: ['draco'], fr: 'full' }, bg: MI, actors: [DRA({ expr: 'delight', pose: 'hold', armF: { sh: 40, el: 92, hand: 'fist' }, armB: { sh: -10, el: 158, hand: 'fist', front: true } })], behind: (e) => FX.sparkles([[100, 200, 20], [700, 160, 16], [120, 600, 12], [680, 560, 18], [400, 80, 14]], { col: '#fff3b0' }) },
+ep.cutout(950, { cam: { on: ['draco'], fr: 'full' }, bg: MI, actors: [DRA({ expr: 'delight', pose: 'hold', armF: { sh: 40, el: 92, hand: 'fist' }, armB: { sh: -10, el: 158, hand: 'fist', front: true } })], behind: sparkles([...SPARK, [400, 80, 14]]) },
   [say('Draco', 'Harry Potter? *The* Harry Potter? Gosh, I\'ve *always* wanted to meet you!', 400, 110, { w: 460 })], { mood: 'warm', ph: 780, pad: 110, alt: 'Draco, with sudden bright enthusiasm, clasps his hands like a fan.' });
 ep.panel(460, { cam: { on: ['asst1'], fr: 'close' }, bg: MI, blur: 3, actors: [AS1({ expr: 'wince' })] },
   [cap('Draco\'s attendant emitted a sound like she was strangling, but kept on with her work.', 44, 30, { w: 440 })], { mood: 'warm' });
@@ -117,28 +119,29 @@ RF(500, 'cross', 'delight', 'Shut *up* shut *up* shut *up*.', 'I\'m just so *del
 RF(620, 'angry', 'happy', 'Burst into flames and die.', 'Everyone\'s hero! I\'ve always wanted to be just like you when I grow up, so I can—', 190, -1.15);
 
 // =============================================================== Lucius
+const LUC = (o = {}) => ({ def: lucius, id: 'lucius', x: 1800, y: 1000, turn: -0.3, expr: 'menace', ...o });
 ep.panel(560, { cam: { on: ['draco'], fr: 'close' }, bg: MI, blur: 3, actors: [DRA({ expr: 'horror' })] }, [], { mood: 'warm', alt: 'Draco freezes in absolute horror mid-sentence.' });
-ep.panel(1345, { cam: { x: 1800, y: 668, w: 380 }, bg: MI, blur: 1, actors: [{ def: lucius, id: 'lucius', x: 1800, y: 1000, turn: -0.3, pose: 'stand', expr: 'menace', armB: { sh: 20, el: 25, hand: 'hold', prop: g({ transform: 'translate(0,10) rotate(45)' }, path('M0,12 L0,215', { stroke: '#2a1b14', 'stroke-width': 14, 'stroke-linecap': 'round' }), path('M0,12 L0,215', { stroke: '#6b4429', 'stroke-width': 9, 'stroke-linecap': 'round' }), circle(0, -19, 13, { fill: '#c9ced4', stroke: '#2a1b14', 'stroke-width': 3 })) } }],
+ep.panel(1345, { cam: { x: 1800, y: 668, w: 380 }, bg: MI, blur: 1, actors: [LUC({ armB: { sh: 20, el: 25, hand: 'hold', prop: g({ transform: 'translate(0,10) rotate(45)' }, path('M0,12 L0,215', { stroke: '#2a1b14', 'stroke-width': 14, 'stroke-linecap': 'round' }), path('M0,12 L0,215', { stroke: '#6b4429', 'stroke-width': 9, 'stroke-linecap': 'round' }), circle(0, -19, 13, { fill: '#c9ced4', stroke: '#2a1b14', 'stroke-width': 3 })) } })],
   over: (e) => K.glow(e.w * 0.5, e.h * 0.2, 500, '#fff2c8', 0.35) },
   [cap('Tall. White-haired. Coldly elegant in black robes of the finest quality. One hand gripping a silver-handled cane which took on the character of a deadly weapon just by being in that hand.', 60, 24, { w: 600, fixed: true }),
    cap('His eyes regarded the room with the dispassionate quality of an executioner.', 400, 1226, { w: 500, anchor: 'tc', fixed: true })], { mood: 'night', x: 150, w: 500, pad: 220, ph: 970, frame: 'wood', alt: 'Lucius Malfoy in the doorway, backlit: tall, platinum-haired, a silver-headed cane in his hand.' });
-ep.panel(620, { cam: { on: ['lucius'], fr: 'close' }, bg: MI, blur: 3, actors: [{ def: lucius, id: 'lucius', x: 1800, y: 1000, turn: -0.3, expr: 'menace' }] },
+ep.panel(620, { cam: { on: ['lucius'], fr: 'close' }, bg: MI, blur: 3, actors: [LUC()] },
   [cold('Lucius', 'Draco. *What* are you *saying?*', 280, 110, { w: 340 })], { mood: 'cold' });
 ep.panel(660, { cam: { head: 'harry', hw: 0.78, hx: 0.5, hy: 0.54, roll: -5 }, bg: MI, blur: 3, actors: [HAR({ expr: { base: 'shock', eyes: { lookX: 1 } } })], over: (e) => FX.speedLines(e.w, e.h, { n: 20, col: '#fff', angle: 0 }) },
   [inner('Harry', 'In one split second of sympathetic panic, Harry formulated a rescue plan.', 400, 140, { w: 560 })], { mood: 'warm', shape: 'cut', cutTop: 70, cutBottom: 70 });
-ep.panel(760, { cam: { on: ['harry'], fr: 'bust' }, bg: MI, blur: 2, actors: [HAR({ expr: 'delight', pose: 'reach', turn: 0.6 })], behind: (e) => FX.sparkles([[100, 200, 20], [700, 160, 16], [120, 600, 12], [680, 560, 18]], { col: '#fff3b0' }) },
+ep.panel(760, { cam: { on: ['harry'], fr: 'bust' }, bg: MI, blur: 2, actors: [HAR({ expr: 'delight', pose: 'reach', turn: 0.6 })], behind: sparkles() },
   [shout('Harry', 'Lucius Malfoy! *The* Lucius Malfoy?', 400, 110, { w: 440, size: 38 })], { mood: 'warm' });
 ep.panel(500, { cam: { on: ['asst1'], fr: 'bust', dy: -0.3 }, bg: MI, blur: 3, actors: [AS1({ turn: 0.5, pose: 'facepalm', expr: 'wince', armB: undefined, armF: { sh: 30, el: 150, hand: 'palm', hr: 0 } })] },
   [cap('One of Malkin\'s assistants had to turn away and face the wall.', 44, 30, { w: 400 })], { mood: 'warm' });
-ep.panel(550, { cam: { head: 'lucius', hw: 1.32, hx: 0.57, hy: 0.42 }, bg: MI, blur: 3, actors: [{ def: lucius, id: 'lucius', x: 1800, y: 1000, turn: -0.3, expr: 'menace' }],
+ep.panel(550, { cam: { head: 'lucius', hw: 1.32, hx: 0.57, hy: 0.42 }, bg: MI, blur: 3, actors: [LUC()],
   over: (e) => `<defs><linearGradient id="ep05lucV" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b0d14" stop-opacity="0.92"/><stop offset="0.36" stop-color="#0b0d14" stop-opacity="0.15"/><stop offset="0.6" stop-color="#0b0d14" stop-opacity="0.2"/><stop offset="1" stop-color="#0b0d14" stop-opacity="0.95"/></linearGradient><radialGradient id="ep05lucH" cx="0.5" cy="0.5" r="0.55"><stop offset="0.55" stop-color="#0b0d14" stop-opacity="0"/><stop offset="1" stop-color="#0b0d14" stop-opacity="0.9"/></radialGradient></defs>` + rect(0, 0, e.w, e.h, { fill: 'url(#ep05lucV)' }) + rect(0, 0, e.w, e.h, { fill: 'url(#ep05lucH)' }) },
   [cold('Lucius', 'Harry Potter.', 400, 62, { w: 260, fixed: true, noTail: true })], { mood: 'cold', shape: 'eye', pad: 160, ph: 370 });
 ep.panel(960, { cam: { on: ['harry'], fr: 'waist', dy: 0.35 }, bg: MI, actors: [HAR({ expr: 'bigGrin', pose: 'bowGrand', lean: -20 })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.4, { col: '#f0c878', op: 0.4 }) },
   [say('Harry', 'I am so, *so* honoured to meet you!', 400, 90, { w: 360 }),
    say('Harry', 'Your son has been telling me *all* about you! But of course I knew about you before then. Everyone knows about you, the great Lucius Malfoy!', 400, 792, { w: 560, fixed: true, tail: [392, 590] })], { mood: 'warm' });
-ep.panel(700, { cam: { on: ['harry'], fr: 'close', dy: -0.12 }, bg: MI, blur: 3, actors: [HAR({ expr: 'delight' })], behind: (e) => FX.sparkles([[100, 200, 20], [700, 160, 16], [120, 500, 12], [680, 460, 18]], { col: '#fff3b0' }) },
+ep.panel(700, { cam: { on: ['harry'], fr: 'close', dy: -0.12 }, bg: MI, blur: 3, actors: [HAR({ expr: 'delight' })], behind: sparkles([[100, 200, 20], [700, 160, 16], [120, 500, 12], [680, 460, 18]]) },
   [say('Harry', 'The most honoured laureate of all the House of Slytherin! I\'ve been thinking about trying to get into Slytherin myself, just because I heard you were in it as a child—', 400, 178, { w: 560, size: 28, fixed: true })], { mood: 'warm' });
-ep.panel(560, { cam: { on: ['lucius'], fr: 'close' }, bg: MI, blur: 3, actors: [{ def: lucius, id: 'lucius', x: 1800, y: 1000, turn: -0.3, expr: { base: 'shock', eyes: { style: 'normal', open: 1 } } }] },
+ep.panel(560, { cam: { on: ['lucius'], fr: 'close' }, bg: MI, blur: 3, actors: [LUC({ expr: { base: 'shock', eyes: { style: 'normal', open: 1 } } })] },
   [cap('The dark eyes widened, shocked surprise replacing deadly threat.', 44, 30, { w: 420 })], { mood: 'warm' });
 
 // =============================================================== McGonagall bursts in
@@ -147,7 +150,7 @@ ep.panel(1186, { cam: { head: 'mcgonagall', hw: 0.22, hx: 0.5, hy: 0.03 }, bg: M
   [shout('McGonagall', 'WHAT ARE YOU *SAYING*, MR POTTER?!', 400, 151, { w: 420, size: 40, fixed: true })], { mood: 'warm', breakout: 'top', pad: 466, ph: 700, alt: 'McGonagall bursts in through the door, still holding a glass of red wine, in pure horror.' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: MI, blur: 3, actors: [HAR({ expr: { base: 'shock', mouth: { type: 'o', open: 0.4 } } })] },
   [cap('Harry\'s mouth opened automatically, and then blocked on nothing-to-say.', 44, 30, { w: 400 })], { mood: 'warm' });
-ep.panel(820, { cam: { on: ['draco'], fr: 'bust', dy: -0.3, dx: 0.59 }, bg: MI, actors: [DRA({ expr: 'delight', pose: 'reach', turn: 0.4 })], behind: (e) => FX.sparkles([[100, 200, 20], [700, 160, 16], [120, 600, 12]], { col: '#fff3b0' }) },
+ep.panel(820, { cam: { on: ['draco'], fr: 'bust', dy: -0.3, dx: 0.59 }, bg: MI, actors: [DRA({ expr: 'delight', pose: 'reach', turn: 0.4 })], behind: sparkles(SPARK.slice(0, 3)) },
   [shout('Draco', 'Professor McGonagall! Is it really you?', 390, 130, { w: 500 }), say('Draco', 'I\'ve heard *so much* about you from my father!', 606, 445, { w: 250, fixed: true })], { mood: 'warm' });
 ep.panel(700, { cam: { on: ['draco'], fr: 'close', dy: 0.4 }, bg: MI, blur: 3, actors: [DRA({ expr: 'happy', turn: 0.3 })] },
   [say('Draco', 'I\'ve been thinking of trying to get Sorted into *Gryffindor* so I can—', 400, 610, { w: 540, fixed: true })], { mood: 'warm' });
@@ -186,7 +189,8 @@ ep.panel(620, (ctx) => {
   out += ellipse(324, 530, 118, 24, { fill: '#7a1426', stroke: C.ink, 'stroke-width': 3 }) + ellipse(300, 524, 40, 7, { fill: '#c84a5a', opacity: 0.6 });
   return out;
 }, [note('drip', 530, 410, { size: 48, color: '#f6e7cf' }), note('drip', 515, 480, { size: 40, color: '#f6e7cf' })], { mood: 'warm', shape: 'oval', x: 110, w: 580, alt: 'Close on McGonagall\'s hand: the forgotten wine glass tilts, dripping red wine into a small puddle on the floor.' });
-ep.panel(700, { cam: { on: ['mcgonagall', 'malkin'], fr: 'bust' }, bg: MI, actors: [MAL({ x: 1300, turn: 0.4, expr: 'calm', pose: 'stand' }), { def: mcgonagall, id: 'mcgonagall', x: 1560, y: 1010, turn: -0.4, pose: 'stand', expr: 'calm' }] },
+const MCG = (o = {}) => ({ def: mcgonagall, id: 'mcgonagall', x: 1560, y: 1010, turn: -0.3, ...o });
+ep.panel(700, { cam: { on: ['mcgonagall', 'malkin'], fr: 'bust' }, bg: MI, actors: [MAL({ x: 1300, turn: 0.4, expr: 'calm', pose: 'stand' }), MCG({ turn: -0.4, pose: 'stand', expr: 'calm' })] },
   [say('McGonagall', 'Madam Malkin. What has been happening here?', 560, 90, { w: 300 })], { mood: 'warm' });
 ep.multi(360, [0, 1, 2, 3].map((i) => ({ x: M + i * 190, y: 18, w: 176, h: 324, mood: 'warm', art: { cam: { on: ['malkin'], fr: 'close' }, bg: MI, blur: 3, actors: [MAL({ x: 1300, turn: 0.2, expr: i < 3 ? 'calm' : { base: 'calm', mouth: { type: 'wobble' } } })] } })),
   [note('one', 112, 300, { size: 40, color: '#fff3dc' }), note('two', 302, 300, { size: 40, color: '#fff3dc' }), note('three', 492, 300, { size: 40, color: '#fff3dc' }), note('four', 682, 300, { size: 40, color: '#fff3dc' })]);
@@ -195,18 +199,18 @@ ep.bleed(900, { cam: { x: 810, y: 700, w: 940 }, bg: MI,
   behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.5, { bg: '#f6e3b0', col: '#e0b060', op: 0.5 }), fg: (e) => L.tapeMeasures(900, 790, 0.55, 9),
   over: (e) => FX.sfxText(e.w * 0.3, e.h * 0.2, 'BWAHAHA', { size: 70, rot: -8 }) + FX.sfxText(e.w * 0.75, e.h * 0.3, 'HAHAHA', { size: 54, rot: 6 }) },
   [cap('Madam Malkin looked back silently for four seconds, and then cracked up. That set off both of her assistants, one of whom fell to her hands and knees, giggling hysterically.', 30, 880, { w: 530, anchor: 'bl' })], { mood: 'warm', alt: 'Madam Malkin and both assistants collapse in hysterical laughter. Harry stands on his footstool, tape measures still draped over him.' });
-ep.panel(780, { cam: { on: ['mcgonagall'], fr: 'bust', dy: 0.3 }, bg: MI, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1560, y: 1010, turn: -0.3, pose: 'handsHips', expr: 'stern' }], over: (e) => FX.frost(e.w, e.h, 0.3, 11) },
+ep.panel(780, { cam: { on: ['mcgonagall'], fr: 'bust', dy: 0.3 }, bg: MI, blur: 2, actors: [MCG({ pose: 'handsHips', expr: 'stern' })], over: (e) => FX.frost(e.w, e.h, 0.3, 11) },
   [say('McGonagall', 'I leave you alone for six minutes.', 190, 180, { w: 300 }),
    say('McGonagall', 'Six minutes, Mr Potter, *by the very clock.*', 400, 680, { w: 520, fixed: true })], { mood: 'warm' });
 ep.panel(460, { cam: { on: ['harry'], fr: 'close' }, bg: MI, blur: 3, actors: [HAR({ expr: 'embarrassed' })] },
   [say('Harry', 'I was only joking around!', 400, 90, { w: 320 })], { mood: 'warm' });
-ep.bleed(1440, { cam: { on: ['mcgonagall'], fr: 'bust', dy: 0.15 }, bg: MI, blur: 3, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1560, y: 1010, turn: -0.2, pose: 'armsUp', expr: 'rant' }],
+ep.bleed(1440, { cam: { on: ['mcgonagall'], fr: 'bust', dy: 0.15 }, bg: MI, blur: 3, actors: [MCG({ turn: -0.2, pose: 'armsUp', expr: 'rant' })],
   behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.45, { bg: '#f6e0b0', col: '#c9922e', op: 0.6, n: 110 }) },
   [shout('McGonagall', '*Draco Malfoy said in front of his father that he wanted to be sorted into Gryffindor!*', 400, 180, { w: 460, fixed: true }),
    shout('McGonagall', 'Joking around *isn\'t enough* to *do* that! What part of "get fitted for robes" sounded to you like *please cast a Confundus Charm on the entire universe?!*', 400, 1150, { w: 520, fixed: true })], { mood: 'warm' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: MI, blur: 3, actors: [HAR({ expr: 'think' })] },
   [say('Harry', 'He was in a situational context where those actions made internal sense—', 400, 100, { w: 440 })], { mood: 'warm' });
-ep.panel(1060, { cam: { on: ['mcgonagall'], fr: 'bust', dy: 0.2 }, bg: MI, blur: 2, actors: [{ def: mcgonagall, id: 'mcgonagall', x: 1560, y: 1010, turn: -0.3, pose: 'facepalm', expr: 'exasperated', armF: { sh: 60, el: 130, hand: 'palm', hr: 0 } }] },
+ep.panel(1060, { cam: { on: ['mcgonagall'], fr: 'bust', dy: 0.2 }, bg: MI, blur: 2, actors: [MCG({ pose: 'facepalm', expr: 'exasperated', armF: { sh: 60, el: 130, hand: 'palm', hr: 0 } })] },
   [say('McGonagall', 'No. Don\'t explain. I don\'t want to know what happened in here, *ever.*', 400, 110, { w: 500, fixed: true }),
    say('McGonagall', 'Whatever dark power inhabits you, it is *contagious*, and I don\'t want to end up like poor Draco Malfoy, poor Madam Malkin, and her two poor assistants.', 400, 880, { w: 540, fixed: true })], { mood: 'warm' });
 ep.panel(820, { cam: { x: 815, y: 690, w: 960 }, bg: MI, actors: [MAL({ x: 560, turn: 0.2, pose: 'slump', expr: 'laugh', lean: -24 }), AS2({ x: 430, pose: 'sitFloor', expr: 'laugh' }), AS1({ x: 1230, pose: 'kneel', expr: 'laugh', turn: -0.2, armB: { sh: 12, el: 20, hand: 'hold', prop: WAND } }), { def: harry, id: 'harry', ...H0, s: 1.1, turn: 0.5, pose: 'stand', expr: { base: 'calm', eyes: { lookX: -0.8 } } }], fg: (e) => L.tapeMeasures(780, 790, 0.55, 9) },
