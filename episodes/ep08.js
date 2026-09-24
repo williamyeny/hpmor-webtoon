@@ -2,7 +2,7 @@
 import { Episode, say, shout, whisper, think, inner, cold, cap, capC, dark, note, title, plain, M } from '../engine/core/dsl.js';
 import { shot } from '../engine/core/scene.js';
 import { C } from '../engine/core/palette.js';
-import { g, rect, path, circle, ellipse, line, text, rng } from '../engine/core/svg.js';
+import { g, rect, path, circle, ellipse, line, text, rng, uid } from '../engine/core/svg.js';
 import * as O from '../engine/bg/oxford.js';
 import * as L from '../engine/bg/london.js';
 import * as S from '../engine/bg/station.js';
@@ -12,6 +12,8 @@ import { harry, harryRobes, dad, mum, draco, molly, fred, george, ron, ginny, st
 import { bookHeld, owl, comedCan, spray, envelope } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep08', number: 8, title: 'Reciprocation' });
+// for cut-outs cropped above the feet: the figures dissolve into the page (paper colour + the gutter's grain) from y0 to y1 (0-1 of h)
+const fadeOut = (y0 = 0.62, y1 = 0.97) => (e) => { const id = uid('fo'), W0 = -400, WW = e.w + 800; return `<defs><linearGradient id="${id}" gradientUnits="userSpaceOnUse" x1="0" y1="${e.h * y0}" x2="0" y2="${e.h * y1}"><stop offset="0" stop-color="${C.paper}" stop-opacity="0"/><stop offset="1" stop-color="${C.paper}" stop-opacity="1"/></linearGradient><mask id="${id}m"><rect x="${W0}" y="0" width="${WW}" height="${e.h + 400}" fill="url(#${id})"/></mask></defs>` + rect(W0, 0, WW, e.h + 400, { fill: `url(#${id})` }) + g({ mask: `url(#${id}m)` }, rect(W0, 0, WW, e.h + 400, { filter: 'url(#grain)', opacity: 0.35, style: 'mix-blend-mode:multiply' })); };
 ep.setBg(C.paper);
 ep.beat(260, [plain('CHAPTER EIGHT', 400, 90, { font: "'IM Fell English SC', serif", size: 28, color: '#5a4032' }), title('Reciprocation', 400, 170, { size: 54 })]);
 
@@ -23,12 +25,14 @@ ep.panel(900, { cam: { on: ['harry', 'dad'], fr: 'waist', dy: -1.3 }, bg: () => 
   [cap('Two days before term. Harry explained that this might be his big chance to do something really revolutionary.', 44, 34, { w: 460 }),
    say('Dad', 'Then we\'d better get you some books.', 560, 280, { w: 340 })], { mood: 'warm', alt: 'At home: Harry explains; Dad decides.' });
 ep.beat(220, [capC('The Greatest Second-hand Bookshop Raid Ever: four cities, two days.', 400, 110, { w: 560 })]);
+// the raid montage: four shops on a tilted cross of seams (the rush of four cities in two days)
+const quad = (pts) => { const xs = pts.map((q) => q[0]), ys = pts.map((q) => q[1]), x = Math.min(...xs), y = Math.min(...ys), w = Math.max(...xs) - x, h = Math.max(...ys) - y; return { x, y, w, h, shape: 'poly', pts: pts.map(([a, b]) => [(a - x) / w, (b - y) / h]) }; };
 ep.multi(820, [
-  { x: M, y: 18, w: 368, h: 390, mood: 'warm', art: { cam: { on: ['harry', 'dad'], fr: 'waist', zoom: 0.8, dy: 0.1 }, bg: shop(1), actors: [DR(), HR()] } },
-  { x: 408, y: 18, w: 368, h: 390, mood: 'warm', art: { cam: { on: ['harry', 'dad'], fr: 'waist', zoom: 0.8, dy: 0.1 }, bg: shop(2), actors: [DR({ expr: 'focus', pose: 'think', armF: undefined, armB: undefined }), HR({ expr: 'awe' })] } },
-  { x: M, y: 422, w: 368, h: 380, mood: 'warm', art: { cam: { on: ['harry', 'dad'], fr: 'waist', zoom: 0.8, dy: 0.1 }, bg: shop(3), actors: [DR({ expr: 'laugh' }), HR({ expr: 'laugh', pose: 'armsUp', armF: undefined, armB: undefined })] } },
-  { x: 408, y: 422, w: 368, h: 380, mood: 'rainy', art: { cam: { x: 800, y: 700, w: 1400 }, bg: () => O.houseExterior(), actors: [(e) => g({}, ...[0, 1, 2, 3, 4].map((i) => rect(560 + (i % 3) * 110, 980 - Math.floor(i / 3) * 90, 100, 86, { fill: '#b9955e', stroke: C.ink, 'stroke-width': 3 })))] } },
-], [cap('Oxford', 36, 30, { w: 200, fixed: true }), cap('Cambridge', 420, 30, { w: 200, fixed: true }), cap('London', 36, 434, { w: 200, fixed: true }), cap('Bath', 420, 434, { w: 200, fixed: true })], { alt: 'Montage: Harry and Dad in four dusty bookshops, arms full of books, laughing; then boxes of books stacked outside the house in the rain.' });
+  { ...quad([[M, 18], [405, 18], [393, 403], [M, 418]]), mood: 'warm', art: { cam: { on: ['harry', 'dad'], fr: 'waist', zoom: 0.8, dy: 0.1 }, bg: shop(1), actors: [DR(), HR()] } },
+  { ...quad([[419, 18], [776, 18], [776, 388], [407, 403]]), mood: 'warm', art: { cam: { on: ['harry', 'dad'], fr: 'waist', zoom: 0.8, dy: 0.1 }, bg: shop(2), actors: [DR({ expr: 'focus', pose: 'think', armF: undefined, armB: undefined }), HR({ expr: 'awe' })] } },
+  { ...quad([[M, 432], [393, 417], [381, 802], [M, 802]]), mood: 'warm', art: { cam: { on: ['harry', 'dad'], fr: 'waist', zoom: 0.8, dy: 0.1 }, bg: shop(3), actors: [DR({ expr: 'laugh' }), HR({ expr: 'laugh', pose: 'armsUp', armF: undefined, armB: undefined })] } },
+  { ...quad([[407, 417], [776, 402], [776, 802], [395, 802]]), mood: 'rainy', art: { cam: { x: 800, y: 700, w: 1400 }, bg: () => O.houseExterior(), actors: [(e) => g({}, ...[0, 1, 2, 3, 4].map((i) => rect(560 + (i % 3) * 110, 980 - Math.floor(i / 3) * 90, 100, 86, { fill: '#b9955e', stroke: C.ink, 'stroke-width': 3 })))] } },
+], [cap('Oxford', 36, 30, { w: 200, fixed: true }), cap('Cambridge', 430, 30, { w: 200, fixed: true }), cap('London', 36, 446, { w: 200, fixed: true }), cap('Bath', 424, 434, { w: 200, fixed: true })], { alt: 'Montage: Harry and Dad in four dusty bookshops, arms full of books, laughing; then boxes of books stacked outside the house in the rain.' });
 ep.panel(890, (ctx) => {
   const w = ctx.w, h = ctx.h;
   let out = rect(0, 0, w, h, { fill: '#3a2618' }) + K.glow(w / 2, h * 0.2, 500, C.candle, 0.4);
@@ -55,8 +59,8 @@ ep.panel(720, { cam: { on: ['mum'], fr: 'bust' }, bg: KX, blur: 2, actors: [MK({
 ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.1 }, bg: KX, blur: 2, actors: [HK({ expr: 'warm', turn: -0.4 })] },
   [say('Harry', 'Mum, I know you don\'t like the wizarding world very much. You don\'t have to come. I mean it.', 400, 125, { w: 480, fixed: true }),
    whisper('Harry', 'Besides, they all love me over there. If I have any problems, I just take off my sweatband, and I\'ll have *way* more help than I can handle.', 400, 830, { w: 520, size: 26, fixed: true })], { mood: 'day' });
-ep.panel(900, { cam: { on: ['mum', 'harry'], fr: 'bust', padX: 1.2, dy: -0.4 }, bg: KX, blur: 2, actors: [MK({ x: 900, pose: 'kneel', expr: 'cry', turn: 0.5, armF: { sh: 40, el: 40, hand: 'open' }, armB: { sh: 65, el: 45, hand: 'open' } }), HK({ x: 1060, expr: 'teary', pose: 'stand', turn: -0.5 })] },
-  [whisper('Mum', 'Oh, Harry. I do love you. Always remember that.', 290, 115, { w: 360, fixed: true }),
+ep.cutout(900, { cam: { on: ['mum', 'harry'], fr: 'bust', padX: 1.2, dy: -0.28 }, bg: KX, ground: false, over: fadeOut(0.6, 0.9), actors: [MK({ x: 900, pose: 'kneel', expr: 'cry', turn: 0.5, armF: { sh: 40, el: 40, hand: 'open' }, armB: { sh: 65, el: 45, hand: 'open' } }), HK({ x: 1060, expr: 'teary', pose: 'stand', turn: -0.5 })] },
+  [whisper('Mum', 'Oh, Harry. I do love you. Always remember that.', 280, 170, { w: 360, fixed: true }),
    inner('Harry', '*It\'s like she\'s afraid she\'ll never see me again.*', 400, 800, { w: 560 })], { mood: 'day', alt: 'Mum kneels and hugs Harry hard, crying.' });
 ep.panel(1020, { cam: { on: ['harry'], fr: 'close', zoom: 0.8, dy: 0.2 }, bg: KX, blur: 3, actors: [HK({ expr: 'worried', turn: -0.3 })] },
   [say('Harry', 'Mum, you know I\'m not going to turn into your sister just because I\'m learning magic, right?', 400, 135, { w: 540, fixed: true }),
@@ -84,8 +88,8 @@ ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: KX, blur: 3, actors: [H
 ep.panel(800, { cam: { on: ['mum', 'harry'], fr: 'bust', dy: -0.95 }, bg: KX, actors: [MK({ x: 800, expr: 'confused', pose: 'stand' }), HK({ x: 1020, turn: -0.4, expr: 'smile' })] },
   [say('Mum', 'Are you sure Professor McGonagall didn\'t tell you anything?', 280, 100, { w: 400 }),
    say('Harry', 'Maybe she was distracted.', 580, 290, { w: 300 })], { mood: 'day' });
-ep.panel(800, { cam: { on: ['dad', 'mum'], fr: 'bust', dy: -0.5 }, bg: KX, blur: 1, actors: [MK({ x: 800, expr: 'yell', pose: 'panic', turn: 0.3 }), DK({ x: 1000, expr: 'yell', pose: 'point', turn: 0.2 })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.4, { col: '#e0b060', op: 0.5 }) },
-  [shout('both', '*Harry!* *What did you do?!*', 400, 130, { w: 380, size: 38, tails: ['mum', 'dad'] })], { mood: 'day' });
+ep.panel(884, { cam: { head: 'mum', hw: 0.2, hx: 0.28, hy: 0.1 }, bg: KX, blur: 1, actors: [MK({ x: 800, expr: 'yell', pose: 'panic', turn: 0.3, armF: { sh: -152, el: -14, hand: 'splay' }, armB: { sh: 152, el: 14, hand: 'splay' } }), DK({ x: 1050, expr: 'yell', pose: 'point', turn: 0.2 })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.4, { col: '#e0b060', op: 0.5 }) },
+  [shout('both', '*Harry!* *What did you do?!*', 400, 116, { w: 380, size: 38, tails: ['mum', 'dad'] })], { mood: 'day', breakout: 'top', ph: 582, panel: { y: 284 } });
 ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.2 }, bg: KX, blur: 2, actors: [HK({ expr: 'flustered', pose: 'panic' })] },
   [say('Harry', 'I, um… about half as bad as the Incident with the Science Project?', 400, 130, { w: 440, fixed: true }),
    shout('Harry', 'Oh look, there are some people with an owl, I\'ll go ask them how to get in!', 400, 860, { w: 520, size: 28, fixed: true })], { mood: 'day' });
@@ -103,8 +107,8 @@ ep.panel(860, { cam: { x: 1480, y: 740, w: 1080 }, bg: KX, actors: [...WZ({ moll
   [say('Molly', 'Hello, dear. First time at Hogwarts? Ron\'s new, too—', 320, 104, { w: 420, fixed: true }),
    say('Molly', '*Harry Potter?*', 585, 262, { w: 260, fixed: true }),
    cap('Four boys, a red-headed girl, and an owl all swung round and froze in place.', 44, 730, { w: 560 })], { mood: 'day', alt: 'A family of fiery redheads (a plump mother, identical twin teenage boys, a tall skinny boy, a small girl, and a white owl) all freeze and stare at Harry.' });
-ep.panel(700, { cam: { head: 'harry', hw: 0.3, hx: 0.5, hy: 0.6 }, bg: KX, blur: 2, actors: [HK({ x: 1100, expr: 'rant', pose: 'shrug', turn: 0.4 })] },
-  [shout('Harry', 'Oh, *come on!* I bought a sweatband and everything!', 400, 145, { w: 440, size: 32, fixed: true })], { mood: 'day' });
+ep.cutout(780, { cam: { head: 'harry', hw: 0.3, hx: 0.5, hy: 0.55 }, bg: KX, ground: false, over: fadeOut(0.74, 0.98), actors: [HK({ x: 1100, expr: 'rant', pose: 'shrug', turn: 0.12, armF: { sh: -48, el: -75, hand: 'palm' }, armB: { sh: 48, el: 75, hand: 'palm' } })] },
+  [shout('Harry', 'Oh, *come on!* I bought a sweatband and everything!', 400, 138, { w: 440, size: 32, fixed: true })], { mood: 'day' });
 ep.panel(700, { cam: { on: ['fred', 'george'], fr: 'bust', dy: -0.4 }, bg: KX, blur: 2, actors: WZ({ fred: { expr: 'smug' }, george: { expr: 'smug' } }).slice(1, 3) },
   [say('Fred', 'Your picture was in the newspapers.', 270, 112, { w: 280, fixed: true })], { mood: 'day' });
 ep.panel(1040, { cam: { on: ['dad', 'harry'], fr: 'waist', dy: -1.9 }, bg: KX, actors: [DK({ x: 880, turn: 0.4, expr: 'suspicious', pose: 'walk', armB: { sh: 10, el: 10 } }), HK({ x: 1100, turn: -0.4, expr: 'flustered', pose: 'shrug' })] },
@@ -120,10 +124,11 @@ ep.panel(1040, { cam: { on: ['fred', 'molly'], fr: 'bust', dy: -1.95 }, bg: KX, 
   [say('Fred', 'And whatever you do, don\'t think of an elephant.', 510, 105, { w: 400, fixed: true, shape: 'box' }),
    say('Molly', '*George!* Ignore him, Harry dear, there\'s no reason not to think of an elephant.', 250, 318, { w: 400, fixed: true }),
    say('Fred', 'I\'m Fred, Mum, not George—', 575, 525, { w: 320, fixed: true })], { mood: 'day' });
-ep.bleed(960, { cam: { x: 960, y: 860, w: 720 }, bg: KX, actors: [HK({ x: 950, y: 1100, turn: 0.4, pose: 'run', expr: 'determined' }), L.trunk(740, 1110, 0.35, '#7a4e2e', true)], over: (e) => FX.speedLines(e.w, e.h, { n: 40 }) },
+ep.panel(960, { cam: { x: 930, y: 880, w: 640 }, bg: KX, actors: [HK({ x: 950, y: 1100, turn: 0.4, pose: 'run', expr: 'determined' }), L.trunk(740, 1110, 0.35, '#7a4e2e', true)], over: (e) => FX.speedLines(e.w, e.h, { n: 40 }) },
   [say('Harry', 'Thanks!', 420, 110, { w: 200 }),
-   inner('Harry', 'Wait a minute. It only works *if you believe in it?*', 400, 860, { w: 560 })], { mood: 'day' });
-ep.panel(820, (ctx) => {
+   inner('Harry', 'Wait a minute. It only works *if you believe in it?*', 380, 860, { w: 560 })], { mood: 'day', shape: 'slant', slant: 70 });
+// the doubt loop, drawn inside a thought cloud (the narration stays outside it)
+ep.panel(920, (ctx) => {
   const w = ctx.w, cx = w / 2, cy = 520;
   const T = (x, y, s, fs = 38, col = '#2d2a4a') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': 'middle', fill: col });
   const A = (x1, y1, x2, y2) => { const a = Math.atan2(y2 - y1, x2 - x1); return line(x1, y1, x2, y2, { stroke: '#c43a32', 'stroke-width': 4 }) + path(`M${x2},${y2} L${x2 - 16 * Math.cos(a - 0.45)},${y2 - 16 * Math.sin(a - 0.45)} M${x2},${y2} L${x2 - 16 * Math.cos(a + 0.45)},${y2 - 16 * Math.sin(a + 0.45)}`, { stroke: '#c43a32', 'stroke-width': 4, fill: 'none' }); };
@@ -131,16 +136,18 @@ ep.panel(820, (ctx) => {
   out += circle(cx, cy, 70, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 3, 'stroke-dasharray': '14 10' }) + T(cx, cy + 14, 'doubt', 44, '#c43a32');
   out += T(200, 320, 'I\'ll get through', 42) + T(590, 320, '…if I believe', 42) + T(570, 750, '…but now I\'m worried', 40) + T(200, 750, '…so I don\'t believe', 40);
   out += A(345, 308, 480, 308) + A(590, 350, 590, 700) + A(420, 738, 360, 738) + A(200, 700, 200, 360);
-  return out;
+  return rect(0, 0, w, ctx.h, { fill: '#f4ecd6' }) + g({ transform: `translate(${cx},${ctx.h / 2 + 8}) scale(0.8) translate(${-cx},${-cy})` }, out);
 },
-  [cap('It was at times like this that Harry hated his mind for working fast enough to realise this was a case of *resonant doubt.*', 44, 30, { w: 500, size: 26 })], { alt: 'A loop in pencil: "I\'ll get through… if I believe… but now I\'m worried… so I don\'t believe…" around the word "doubt".' });
+  [cap('It was at times like this that Harry hated his mind for working fast enough to realise this was a case of *resonant doubt.*', 44, 22, { w: 500, size: 26, fixed: true })], { alt: 'A loop in pencil: "I\'ll get through… if I believe… but now I\'m worried… so I don\'t believe…" around the word "doubt".', shape: 'cloud', seed: 5, ph: 740, panel: { y: 160 } });
 ep.panel(900, { cam: { on: ['harry'], fr: 'close', zoom: 0.9, dy: 0.1 }, bg: KX, blur: 3, actors: [HK({ expr: { base: 'wince' } })] },
   [shout('Dad', 'Harry! Get back here, you have some explaining to do!', 360, 145, { w: 380, size: 28, tail: [785, 250] }),
    inner('Harry', 'He shut his eyes, ignored everything he knew about justified credibility, and just tried to believe *really hard*…', 400, 790, { w: 520 })], { mood: 'day' });
-ep.bleed(1000, { cam: { x: 1260, y: 830, w: 1100 }, bg: () => S.platform934(), actors: [...[911, 912, 913, 914, 915, 916].map((sd, i) => ({ def: makeExtra(sd, { kid: i % 2 === 0, witchHat: i === 5 }), x: [1210, 1090, 1370, 1700, 1540, 1810][i], y: 1080 + (i % 3) * 30, turn: i % 2 ? -0.6 : 0.6, pose: i % 2 ? 'walk' : 'stand', s: i % 2 === 0 ? 1.05 : 1 })),
-  { def: harry, id: 'harry', x: 950, y: 1300, s: 1.45, turn: 0.4, pose: 'stand', expr: 'awe', mask: 'sweatband' }] },
+// through the barrier: the reader looks out of the brick archway Harry has just come through
+const barrierArch = (e) => { const w = e.w, h = e.h, t = h * 0.1, id = uid('ba'); return `<defs><clipPath id="${id}"><path d="M0,0 L${w},0 L${w},${h} L${w * 0.93},${h} L${w * 0.93},${h * 0.34} Q${w * 0.93},${t} ${w / 2},${t} Q${w * 0.07},${t} ${w * 0.07},${h * 0.34} L${w * 0.07},${h} L0,${h}Z"/></clipPath></defs>` + g({ 'clip-path': `url(#${id})` }, K.brickWall(0, 0, w, h, '#7a4232', 12), rect(0, 0, w, h, { fill: '#1a0e08', opacity: 0.5 })) + path(`M${w * 0.07},${h} L${w * 0.07},${h * 0.34} Q${w * 0.07},${t} ${w / 2},${t} Q${w * 0.93},${t} ${w * 0.93},${h * 0.34} L${w * 0.93},${h}`, { fill: 'none', stroke: '#2a1a10', 'stroke-width': 8 }); };
+ep.bleed(1040, { cam: { x: 1480, y: 560, w: 1750 }, bg: () => S.platform934(), over: barrierArch, actors: [...[911, 912, 913, 914, 915, 916].map((sd, i) => ({ def: makeExtra(sd, { kid: i % 2 === 0, witchHat: i === 5 }), x: [1080, 2090, 1210, 2230, 1960, 2330][i], y: 960 + (i % 3) * 25, turn: i % 2 ? -0.6 : 0.6, pose: i % 2 ? 'walk' : 'stand', s: i % 2 === 0 ? 1.05 : 1 })),
+  { def: harry, id: 'harry', x: 900, y: 1560, s: 2.3, turn: 0.4, pose: 'stand', expr: 'awe', mask: 'sweatband' }] },
   [capC('…and the sounds around him changed.', 400, 70, { w: 440 }),
-   cap('A bright open-air platform, a massive scarlet steam engine, and it went entirely without saying that there was no such place in King\'s Cross Station and no room to hide it.', 290, 800, { w: 470, size: 26 })], { mood: 'day', alt: 'Platform Nine-and-Three-Quarters: a long scarlet steam train, the Hogwarts Express, puffing white steam; crowds of children and parents; an iron archway sign reading 9¾.' });
+   cap('A bright open-air platform, a massive scarlet steam engine, and it went entirely without saying that there was no such place in King\'s Cross Station and no room to hide it.', 300, 866, { w: 466, size: 26 })], { mood: 'day', alt: 'Platform Nine-and-Three-Quarters: a long scarlet steam train, the Hogwarts Express, puffing white steam; crowds of children and parents; an iron archway sign reading 9¾.' });
 ep.panel(820, { cam: { on: ['harry'], fr: 'close', zoom: 0.9, dy: 0.05 }, bg: () => S.platform934(), blur: 3, actors: [{ def: harry, id: 'harry', x: 760, y: 1260, s: 1.3, turn: 0.3, expr: 'think', mask: 'sweatband' }] },
   [inner('Harry', 'So either (a) I just teleported somewhere else entirely, (b) they can fold space like nobody\'s business, or (c) they are simply ignoring all the rules.', 400, 110, { w: 600 }),
    cap('He also felt vaguely dirtied by having made a deliberate effort to believe something.', 44, 690, { w: 560, size: 26 })], { mood: 'day' });
@@ -167,21 +174,21 @@ ep.panel(1000, { cam: { on: ['ron'], fr: 'waist', dx: 0.62, dy: -0.4, zoom: 0.85
    cap('Asking this was a mistake.', 390, 900, { w: 380 })], { mood: 'day' });
 const quidditch = (ctx) => {
   const w = ctx.w, h = ctx.h;
-  let out = rect(0, 0, w, h, { fill: '#f4ecd6' });
+  let out = rect(0, 0, w, h, { fill: '#faf3e1' });
   const T = (x, y, s, fs = 30, a = 'middle', col = '#2d2a4a') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': a, fill: col });
   out += T(w / 2, 62, 'QUIDDITCH (as explained, with hand gestures)', 38);
   out += rect(50, 96, w - 100, 210, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 3 }) + T(w / 2, 160, 'goals: 10 points each', 44) + T(w / 2, 212, '(~15-20 per game)', 36) + T(w / 2, 272, 'so maybe ~150-200 points of actual play', 34);
   out += circle(w / 2, 390, 30, { fill: '#e7bb4f', stroke: '#2d2a4a', 'stroke-width': 3 }) + path(`M${w / 2 - 30},380 q-60,-34 -100,8 M${w / 2 + 30},380 q60,-34 100,8`, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 3 }) + T(w / 2, 486, 'the Snitch: 150 POINTS ?!', 58, 'middle', '#c43a32') + T(w / 2, 546, 'mostly luck. ends the game.', 38);
   return out;
 };
-ep.panel(600, quidditch, [], { alt: 'Harry\'s notes on Quidditch: goals are 10 points; the golden Snitch is 150 points, mostly luck, and ends the game.' });
+ep.panel(600, quidditch, [], { alt: 'Harry\'s notes on Quidditch: goals are 10 points; the golden Snitch is 150 points, mostly luck, and ends the game.', shape: 'torn', frame: 'paper', seed: 8, tear: 12, rotate: -1.2, shadow: true });
 ep.panel(1000, { cam: { on: ['harry'], fr: 'waist', zoom: 0.85, dy: -0.2 }, bg: P9, actors: [HP({ expr: 'rant', pose: 'lecture' })] },
   [say('Harry', 'That violates every possible rule of game design! Whichever Seeker gets lucky swoops in and makes everyone else\'s work moot!', 400, 110, { w: 540 }),
    say('Harry', 'Who was the first Seeker, the King\'s idiot son who wanted to play but couldn\'t understand the rules? Get rid of the Snitch. *Buy a clock.*', 400, 860, { w: 560, size: 28 })], { mood: 'day' });
 ep.panel(720, { cam: { on: ['ron'], fr: 'bust', dy: -0.4 }, bg: P9, blur: 2, actors: [RP({ expr: 'horror' })] },
   [shout('Ron', 'But if you get rid of the Snitch, how will anyone know when the game *ends?*', 400, 160, { w: 500, size: 28 })], { mood: 'day' });
-ep.panel(880, { cam: { on: ['harry'], fr: 'close', zoom: 0.9, dy: -0.55 }, bg: P9, blur: 3, actors: [HP({ expr: 'scheme' })] },
-  [say('Harry', 'I *am* the Boy-Who-Lived. People will listen to me. It wouldn\'t take much time to write the Ninety-Five Theses of the Snitchless Reformation and nail them to a church door.', 400, 200, { w: 500, size: 27, fixed: true })], { mood: 'day' });
+ep.panel(900, { cam: { head: 'harry', hw: 0.32, hx: 0.5, hy: 0.77 }, bg: P9, blur: 3, actors: [HP({ expr: { base: 'scheme', glint: false }, pose: 'crossArms' })] },
+  [say('Harry', 'I *am* the Boy-Who-Lived. People will listen to me. It wouldn\'t take much time to write the Ninety-Five Theses of the Snitchless Reformation and nail them to a church door.', 400, 272, { w: 460, size: 27, fixed: true })], { mood: 'day', shape: 'gothic', frame: 'wood', spring: 0.3 });
 
 // =============================================================== Draco
 const DP = (o = {}) => ({ def: draco, id: 'draco', x: 760, y: 1150, s: 1.1, turn: 0.4, pose: 'stand', expr: 'smug', ...o });
@@ -236,7 +243,8 @@ ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: P9, blur: 3, actors: [H
 ep.panel(980, { cam: { on: ['draco'], fr: 'bust', zoom: 0.85, dy: -0.35 }, bg: P9, blur: 2, actors: [DP({ expr: 'smug', pose: 'crossArms' })] },
   [say('Draco', 'Father *knew* what I was doing, of course. But he taught me *how*, and if I grin the right way *while* I\'m doing it, it becomes a father-son thing and then he *has* to buy me an ice-cream.', 400, 150, { w: 560, size: 27 }),
    say('Draco', 'Or I\'ll give him this sort of sad look.', 400, 880, { w: 420 })], { mood: 'day' });
-ep.panel(560, { cam: { on: ['draco'], fr: 'close' }, bg: P9, blur: 3, actors: [DP({ expr: 'pleading' })] }, [note('(sad look)', 640, 440, { size: 40 })], { mood: 'day', alt: 'Draco demonstrates the sad look. It is devastatingly effective.' });
+// the sad look, framed like a romance-comic close-up: a soft pink oval with sparkles
+ep.panel(580, { cam: { on: ['draco'], fr: 'close' }, bg: P9, blur: 3, actors: [DP({ expr: 'pleading' })], behind: (e) => rect(0, 0, e.w, e.h, { fill: '#f7c4d2', opacity: 0.8 }) + K.glow(e.w / 2, e.h * 0.4, e.w * 0.55, '#fff8fa', 0.8), over: (e) => FX.sparkles([[e.w * 0.17, e.h * 0.3, 20], [e.w * 0.84, e.h * 0.24, 16], [e.w * 0.12, e.h * 0.62, 12], [e.w * 0.86, e.h * 0.58, 22], [e.w * 0.25, e.h * 0.12, 10]], { col: '#fff6fa' }) }, [note('(sad look)', 680, 520, { size: 40 })], { shape: 'oval', frame: 'glow', glow: '#f2a2b8', ph: 500, alt: 'Draco demonstrates the sad look. It is devastatingly effective.' });
 ep.panel(800, { cam: { on: ['harry'], fr: 'bust', zoom: 0.9, dy: -0.2 }, bg: P9, blur: 2, actors: [HD({ expr: 'awe' })] },
   [say('Harry', 'You\'ve had *lessons* on how to manipulate people?', 400, 90, { w: 480 }), say('Draco', 'Of course. I\'m a *Malfoy.* Father bought me tutors.', 420, 690, { w: 480, tail: [30, 740] })], { mood: 'day' });
 ep.panel(1000, { cam: { on: ['harry', 'draco'], fr: 'bust', dy: -2.0 }, bg: P9, actors: [DP({ expr: 'smug' }), HD({ expr: 'bigGrin' })] },
@@ -260,7 +268,7 @@ ep.panel(980, { cam: { on: ['draco'], fr: 'bust', zoom: 0.9, dy: -0.55 }, bg: P9
    say('Draco', 'Your turn?', 175, 700, { w: 240, fixed: true })], { mood: 'day' });
 ep.panel(700, (ctx) => {
   const w = ctx.w, h = ctx.h;
-  let out = rect(0, 0, w, h, { fill: '#f4ecd6' });
+  let out = rect(0, 0, w, h, { fill: '#faf3e1' });
   const T = (x, y, s, fs = 30, a = 'middle', col = '#2d2a4a') => text(x, y, s, { 'font-family': 'Caveat', 'font-weight': 700, 'font-size': fs, 'text-anchor': a, fill: col });
   out += T(w / 2, 64, 'RECIPROCATION (Cialdini, ch. 2)', 42);
   out += rect(40, 104, 290, 160, { fill: 'none', stroke: '#2d2a4a', 'stroke-width': 3 }) + T(185, 175, 'unasked gift', 42) + T(185, 228, '(a secret)', 36);
@@ -268,8 +276,8 @@ ep.panel(700, (ctx) => {
   out += path(`M334,184 L${w - 336},184`, { stroke: '#c43a32', 'stroke-width': 5 }) + path(`M${w - 350},172 l14,12 l-14,12`, { fill: 'none', stroke: '#c43a32', 'stroke-width': 5 });
   out += T(w / 2, 332, 'a gift of 2 Sickles beats an offer of 20.', 40) + T(w / 2, 398, 'knowing the trick ≠ immune to it.', 44, 'middle', '#c43a32');
   return out;
-}, [cap('Knowing that Draco\'s hopeful face had probably been drilled into him by months of practice did not make it any less effective. Well, *less* effective. Unfortunately not *ineffective.*', 60, 462, { w: 580, size: 26, fixed: true })],
-  { alt: 'Harry\'s notes: an unasked-for gift (a secret) creates pressure to give one back. "Knowing the trick ≠ immune to it."' });
+}, [cap('Knowing that Draco\'s hopeful face had probably been drilled into him by months of practice did not make it any less effective. Well, *less* effective. Unfortunately not *ineffective.*', 60, 500, { w: 580, size: 26, fixed: true })],
+  { alt: 'Harry\'s notes: an unasked-for gift (a secret) creates pressure to give one back. "Knowing the trick ≠ immune to it."', ph: 450, shape: 'torn', frame: 'paper', seed: 3, tear: 12, rotate: 1, shadow: true });
 ep.panel(1000, { cam: { on: ['harry'], fr: 'bust', dy: -0.3 }, bg: P9, blur: 2, actors: [HD({ expr: 'focus', pose: 'raiseHand', armB: { sh: 110, el: 50, hand: 'palm' } })] },
   [say('Harry', 'Draco, just so you know, I recognise *exactly* what you\'re doing. My books call it *reciprocation.*', 400, 160, { w: 500, fixed: true }),
    say('Harry', 'I didn\'t say I wouldn\'t respond. I just need time to pick something private but just as non-damaging.', 400, 840, { w: 480, fixed: true })], { mood: 'day' });
@@ -301,14 +309,15 @@ ep.panel(600, { cam: { on: ['draco'], fr: 'close', zoom: 0.9, dy: 0.05 }, bg: P9
 ep.panel(960, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.1 }, bg: P9, blur: 2, actors: [HP({ x: 1110, y: 1180, expr: 'rant', pose: 'fists' })] },
   [say('Harry', 'No. I\'m sorry. I just don\'t believe it. There is just *no way* a bloody *drink* can manipulate reality to produce *comedy setups.*', 400, 160, { w: 540, fixed: true }),
    say('Harry', 'I *have* to investigate. *Have* to.\nTwo dozen cans, please.', 400, 830, { w: 560, fixed: true })], { mood: 'day' });
-ep.panel(620, (ctx) => {
+// the pouch and its cans, cut out onto the page itself
+ep.cutout(620, (ctx) => {
   const w = ctx.w, h = ctx.h, px = w * 0.34, py = h * 0.74;
-  let out = rect(0, 0, w, h, { fill: '#6b4429' }) + K.glow(px, py - 60, 260, '#f7c86a', 0.25);
+  let out = ellipse(px, py + 122, 120, 16, { fill: '#3a2a1a', opacity: 0.2, filter: 'url(#blur3)' });
   out += g({ transform: `translate(${px},${py}) scale(1.7)` }, path('M-60,-20 Q-80,60 0,70 Q80,60 60,-20Z', { fill: '#8a6a4a', stroke: C.ink, 'stroke-width': 3 }), ellipse(0, -20, 64, 16, { fill: '#1a120a', stroke: C.ink, 'stroke-width': 3 }));
   out += [0, 1, 2].map((i) => g({ transform: `translate(${px + 90 + i * 130},${py - 150 - i * 95}) rotate(${-30 - i * 12})` }, comedCan(2.2))).join('');
     return out;
 },
-  [note('burp', 110, 330, { size: 40, color: '#f4ecd6', fixed: true }), note('burp', 470, 400, { size: 40, color: '#f4ecd6', fixed: true }), note('*BURP*', 650, 470, { size: 48, color: '#f4ecd6', fixed: true }), cap('Twenty-two burps later…', 44, 30, { w: 360 })], { mood: 'warm', alt: 'The pouch swallows can after can, burping each time.' });
+  [note('burp', 110, 330, { size: 40, color: '#5a3a22', fixed: true }), note('burp', 470, 400, { size: 40, color: '#5a3a22', fixed: true }), note('*BURP*', 650, 470, { size: 48, color: '#5a3a22', fixed: true }), cap('Twenty-two burps later…', 44, 30, { w: 360 })], { alt: 'The pouch swallows can after can, burping each time.' });
 ep.panel(820, { cam: { on: ['draco', 'harry'], fr: 'bust', dy: -0.8 }, bg: P9, actors: [DP({ x: 1000, y: 1180, turn: 0.4, pose: 'holdOne', expr: 'deadpan', armF: { sh: 55, el: 80, hand: 'hold', under: g({ transform: 'rotate(115) translate(8,12)' }, comedCan(1.3)) } }), HP({ x: 1200, y: 1180, turn: -0.4, pose: 'holdOne', expr: 'focus', mask: 'scarfDown', armF: { sh: 55, el: 80, hand: 'hold', under: g({ transform: 'rotate(115) translate(8,12)' }, comedCan(1.3)) } })] },
   [cap('They pulled the rings at the same time, and drank. It tasted *bright green*—extra-fizzy, and limer than lime.', 44, 30, { w: 520 }), cap('Aside from that, nothing else happened.', 240, 715, { w: 480, fixed: true })], { mood: 'day' });
 ep.panel(700, { cam: { on: ['harry'], fr: 'close', zoom: 0.9, dy: 0.3 }, bg: P9, blur: 3, actors: [HP({ x: 1200, y: 1180, expr: 'suspicious', mask: 'scarfDown' })] },
@@ -318,12 +327,13 @@ ep.panel(660, { cam: { on: ['stall'], fr: 'close', zoom: 0.9, dy: -0.1 }, bg: P9
 ep.panel(1000, { cam: { on: ['harry'], fr: 'waist', zoom: 0.9, dy: -0.35 }, bg: P9, actors: [HP({ x: 1200, y: 1180, turn: 0.5, pose: 'walk', expr: 'smug', mask: 'scarfDown', armF: { sh: 55, el: 70, hand: 'hold', under: g({ transform: 'rotate(125) translate(8,18)' }, comedCan(1.3)) } })] },
   [inner('Harry', 'In his state of mental preparedness, Lucius Malfoy could walk past in a ballerina outfit and it wouldn\'t make him do a spit-take. Just what wacky shenanigan was the universe supposed to cough up *now?*', 400, 110, { w: 600, size: 27 }),
    cap('He swigged, and glanced back at the newspaper stand.', 44, 900, { w: 640 })], { mood: 'day' });
-ep.bleed(920, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#e8dcc0' }) + g({ transform: `translate(${ctx.w / 2},${ctx.h * 0.5}) scale(1.6) rotate(-2)` }, S.quibblerPage()), [], { alt: 'The Quibbler\'s front page. Headline: BOY-WHO-LIVED GETS DRACO MALFOY PREGNANT.' });
-ep.bleed(900, { cam: { on: ['harry', 'draco'], fr: 'bust', dy: -0.6 }, bg: P9, blur: 3,
+// the Quibbler itself, held up to the reader: no frame, just the newspaper on the page
+ep.cutout(920, (ctx) => g({ transform: `translate(${ctx.w / 2 + 10},${ctx.h * 0.5 + 14}) scale(1.45) rotate(-2)` }, rect(-210, -270, 420, 540, { fill: '#3a2a1a', opacity: 0.28, filter: 'url(#blur3)' })) + g({ transform: `translate(${ctx.w / 2},${ctx.h * 0.5}) scale(1.45) rotate(-2)` }, S.quibblerPage().replace('font-size="52"', 'font-size="42"')), [], { alt: 'The Quibbler\'s front page. Headline: BOY-WHO-LIVED GETS DRACO MALFOY PREGNANT.' });
+ep.panel(900, { cam: { on: ['harry', 'draco'], fr: 'bust', dy: -0.6 }, bg: P9, blur: 3,
   actors: [HP({ x: 1200, y: 1180, turn: -0.3, pose: 'fists', expr: 'rant', mask: 'scarfDown' }), DP({ x: 1000, y: 1180, turn: 0.3, pose: 'panic', expr: 'horror' })],
   behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h / 2, { bg: '#e8ffd8', col: '#6ad05a', op: 0.6, n: 110 }),
-  over: (e) => { const hm = e.anchors?.harry?.mouth, dm = e.anchors?.draco?.mouth; return (hm ? spray(hm[0] - 30, hm[1] + 10, -1, 1.15) : '') + (dm ? spray(dm[0] + 30, dm[1] + 10, 1, 1.15) : '') + FX.sfxText(e.w / 2, e.h * 0.14, 'PFFFFT', { size: 120, fill: '#caffb0', rot: -6 }); } },
-  [shout('Draco', '*GAH!*', 130, 780, { w: 180, size: 40 })], { mood: 'day', alt: 'Harry and Draco spray bright green fizz all over each other in a double spit-take.' });
+  over: (e) => { const hm = e.anchors?.harry?.mouth, dm = e.anchors?.draco?.mouth; return (hm ? spray(hm[0] - 30, hm[1] + 10, -1, 1.15) : '') + (dm ? spray(dm[0] + 30, dm[1] + 10, 1, 1.15) : '') + FX.sfxText(e.w / 2, e.h * 0.21, 'PFFFFT', { size: 100, fill: '#caffb0', rot: -6 }); } },
+  [shout('Draco', '*GAH!*', 170, 640, { w: 180, size: 40 })], { mood: 'day', shape: 'burst', points: 18, seed: 4, alt: 'Harry and Draco spray bright green fizz all over each other in a double spit-take.' });
 ep.panel(900, { cam: { on: ['harry'], fr: 'close', zoom: 0.95, dy: 0.3 }, bg: P9, blur: 3, actors: [HP({ x: 1200, y: 1180, expr: 'blank', mask: 'scarfDown' })] },
   [say('Harry', 'Buh-bluh-buh-buh…', 400, 80, { w: 400 }),
    cap('Too many competing objections, that was the problem. Every time Harry tried to say "But we\'re only eleven!", the objection "But men can\'t get pregnant!" demanded priority, and was then run over by "But there\'s nothing between us, really!"', 44, 650, { w: 600, size: 26 })], { mood: 'day' });

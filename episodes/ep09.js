@@ -64,8 +64,9 @@ ep.panel(860, { cam: { on: ['harry'], fr: 'bust' }, bg: P9(), blur: 4, actors: [
 ep.panel(730, { cam: { on: ['draco'], fr: 'bust', zoom: 0.8, dy: -0.05 }, bg: P9(), blur: 4, actors: [DP({ expr: 'focus', pose: 'holdOne', armF: { ...CAN, sh: 60, el: 85 } })] },
   [say('Draco', 'Huh? Do tell.', 230, 95, { w: 300, fixed: true }), cap('Draco started to take another swig. Harry timed it exactly right:', 40, 606, { w: 430, fixed: true })], { mood: 'day' });
 ep.panel(560, { cam: { on: ['harry'], fr: 'close' }, bg: P9(), blur: 4, actors: [HP({ expr: 'scheme' })] }, [say('Harry', 'I was thinking: *some day I\'m going to marry that woman.*', 400, 110, { w: 460 })], { mood: 'day' });
-ep.bleed(820, { cam: { on: ['draco'], fr: 'bust' }, bg: P9(), blur: 4, actors: [DP({ expr: 'horror', pose: 'panic' })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.45, { bg: '#e8ffd8', col: '#6ad05a', op: 0.5 }), over: (e) => spray(e.w * 0.52, e.h * 0.5, 1, 1.8) + FX.sfxText(e.w / 2, e.h * 0.2, 'KER-SPLUTCH', { size: 80, fill: '#caffb0', rot: 4 }) },
-  [shout('Draco', '*Are you NUTS?*', 400, 700, { w: 300, size: 38 })], { mood: 'day' });
+// the payoff of the spit-take gag: this time the whole panel explodes
+ep.panel(840, { cam: { on: ['draco'], fr: 'bust', zoom: 0.92, dy: -0.02 }, bg: P9(), blur: 4, actors: [DP({ expr: 'horror', pose: 'panic' })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.45, { bg: '#e8ffd8', col: '#6ad05a', op: 0.5 }), over: (e) => spray(e.w * 0.52, e.h * 0.5, 1, 1.8) + FX.sfxText(e.w / 2, e.h * 0.2, 'KER-SPLUTCH', { size: 66, fill: '#caffb0', rot: 4 }) },
+  [shout('Draco', '*Are you NUTS?*', 400, 660, { w: 300, size: 38 })], { mood: 'day', shape: 'burst', points: 18, seed: 11 });
 ep.panel(720, { cam: { head: 'harry', hw: 0.44, hx: 0.5, hy: 0.46 }, bg: P9(), blur: 4, actors: [HP({ expr: 'coldSmile', ...CROSS })], over: (e) => FX.frost(e.w, e.h, 0.3, 7) },
   [cold('Harry', 'Quite the opposite. I\'m so sane it burns like ice.', 400, 110, { w: 440 })], { mood: 'cold' });
 ep.panel(900, { cam: { on: ['draco'], fr: 'bust', zoom: 0.92, dx: -0.3, dy: -0.12 }, bg: P9(), blur: 4, actors: [DP({ expr: { base: 'smug', eyes: { open: 0.8 } } })] },
@@ -78,21 +79,23 @@ ep.tile({ h: 140, panels: [], bubbles: [], bg: { top: C.paper, bottom: '#1c2a3a'
 ep.panel(800, { cam: { on: ['harry'], fr: 'close', dy: 0.1 }, bg: P9(), blur: 4, actors: [HP({ expr: 'cold' })], over: (e) => FX.frost(e.w, e.h, 0.8, 8) },
   [dark('Charming. Happy. Generous with his favours to his friends. Draco wasn\'t a psychopath. That was the sad and awful part.', 400, 120, { w: 580 }),
    dark('It didn\'t take an evil mutant to say what Draco had said. It was very simple, very human. To Draco, his enemies weren\'t people.', 400, 680, { w: 580 })], { mood: 'cold', alt: 'Harry\'s face, very still, frosted over.' });
-ep.panel(940, (ctx) => {
+// the imagined list floats straight on the dark page: no frame, no backdrop
+ep.cutout(940, (ctx) => {
   const w = ctx.w, h = ctx.h;
-  let out = rect(0, 0, w, h, { fill: '#0e1a28' });
+  let out = K.glow(w * 0.5, h * 0.5, 420, '#9bb7cf', 0.18);
   // a scroll of names, a crude guillotine silhouette, very faint
   out += g({ transform: `translate(${w * 0.3},${h * 0.5})` }, rect(-110, -200, 220, 400, { fill: '#dfe8ef', opacity: 0.9, stroke: '#6a8aa8', 'stroke-width': 2 }), ...Array.from({ length: 12 }, (_, i) => line(-90, -170 + i * 30, 60 - (i % 3) * 30, -170 + i * 30, { stroke: '#4a6a86', 'stroke-width': 4 })), text(0, -210, 'BLOOD PURISTS', { 'font-family': 'Alegreya SC', 'font-size': 22, fill: '#dfe8ef', 'text-anchor': 'middle' }));
   out += g({ transform: `translate(${w * 0.72},${h * 0.52})`, opacity: 0.8 }, rect(-80, -260, 14, 440, { fill: '#9bb7cf' }), rect(66, -260, 14, 440, { fill: '#9bb7cf' }), rect(-80, -270, 160, 16, { fill: '#9bb7cf' }), path('M-66,-200 L66,-160 L66,-120 L-66,-160Z', { fill: '#dcebf5' }), rect(-110, 170, 220, 30, { fill: '#9bb7cf' }));
-  return out + FX.frost(w, h, 0.9, 9);
+  return out;
 }, [cold('Harry', 'I wonder how difficult it would be to just make a list of all the top blood purists and kill them.', 400, 105, { w: 560, fixed: true }),
     cap('(They\'d tried exactly that in the French Revolution, more or less. It hadn\'t worked out well. Maybe he should find out what went wrong, and whether it was easy to fix.)', 40, 730, { w: 530, size: 25, fixed: true })],
-  { border: 'none', alt: 'In Harry\'s imagination, in freezing blue: a scroll of names headed BLOOD PURISTS, and beside it, the outline of a guillotine.' });
+  { alt: 'In Harry\'s imagination, in freezing blue: a scroll of names headed BLOOD PURISTS, and beside it, the outline of a guillotine.' });
 ep.setBg(C.paper);
 ep.tile({ h: 140, panels: [], bubbles: [], bg: { top: '#1c2a3a', bottom: C.paper } });
-ep.panel(720, { cam: { x: 1250, y: -335, w: 850 }, bg: P9(), actors: [(e) => circle(1300, -420, 60, { fill: '#f4f4ee', opacity: 0.7 }) + circle(1285, -430, 10, { fill: '#e2e2da', opacity: 0.7 }) + circle(1320, -400, 7, { fill: '#e2e2da', opacity: 0.7 })] },
-  [inner('Harry', '*So the world is broken and flawed and insane, and cruel and bloody and dark. This is news? You always knew that, anyway…*', 400, 120, { w: 560 }),
-   cap('Harry gazed up at the pale shape of the Moon, visible that morning through the cloudless air.', 40, 570, { w: 420 })], { mood: 'day', alt: 'Above the station\'s iron arches, the pale morning Moon.' });
+// looking up through the station's iron arch: the panel is the arch
+ep.panel(880, { cam: { x: 1250, y: -210, w: 850 }, bg: P9(), actors: [(e) => K.glow(1300, -420, 170, '#ffffff', 0.35) + circle(1300, -420, 74, { fill: '#f7f7f1', opacity: 0.85 }) + circle(1280, -434, 13, { fill: '#e0e0d6', opacity: 0.8 }) + circle(1326, -398, 9, { fill: '#e0e0d6', opacity: 0.8 }) + circle(1310, -450, 6, { fill: '#e0e0d6', opacity: 0.8 })] },
+  [inner('Harry', '*So the world is broken and flawed and insane, and cruel and bloody and dark. This is news? You always knew that, anyway…*', 400, 470, { w: 560 }),
+   cap('Harry gazed up at the pale shape of the Moon, visible that morning through the cloudless air.', 40, 690, { w: 420 })], { mood: 'day', shape: 'arch', spring: 0.46, panel: { borderWidth: 6, borderColor: '#34393f' }, alt: 'Above the station\'s iron arches, the pale morning Moon.' });
 
 // =============================================================== the pitch
 ep.panel(1000, { cam: { on: ['draco', 'harry'], fr: 'waist', dy: -0.4 }, bg: P9(), mid: TABLE, actors: [DP({ expr: 'smile', pose: 'gesture' }), HP({ expr: 'sad' })] },
@@ -103,7 +106,9 @@ ep.panel(680, { cam: { on: ['draco'], fr: 'close', zoom: 0.85, dy: -0.12 }, bg: 
 ep.panel(720, { cam: { on: ['harry'], fr: 'close', zoom: 0.8, dy: 0.12 }, bg: P9(), blur: 3, actors: [HP({ expr: 'focus' })], over: (e) => FX.frost(e.w, e.h, 0.2, 10) },
   [inner('Harry', '*Aren\'t we a clever little serpent. Eleven years old and already coaxing your prey from hiding…*', 400, 92, { w: 600, fixed: true }),
    say('Harry', 'Draco, you want to explain the whole blood purity thing to me? I\'m sort of new.', 400, 610, { w: 520, fixed: true })], { mood: 'day' });
-ep.panel(1000, (ctx) => {
+// Draco's creed as a hanging House banner: a dagged hem and gold trim
+const BANNER = (w, h) => { const d = 70, n = 5, pts = [[0, 0], [w, 0], [w, h - d]]; for (let i = n; i > 0; i--) pts.push([w * (i - 0.5) / n, h], [w * (i - 1) / n, h - d]); return 'M' + pts.map(([x, y]) => `${Math.round(x)},${Math.round(y)}`).join(' L') + 'Z'; };
+ep.panel(1060, (ctx) => {
   const w = ctx.w, h = ctx.h;
   let out = `<defs><linearGradient id="fade" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e7bb4f"/><stop offset="1" stop-color="#2a2220"/></linearGradient></defs>` + rect(0, 0, w, h, { fill: '#1d1812' });
   // four founders' treasures, bright on the left, generations of wizards fading to the right
@@ -114,8 +119,8 @@ ep.panel(1000, (ctx) => {
   out += rect(0, h - 120, w, 120, { fill: 'url(#fade)', opacity: 0.4 });
   return out;
 }, [dark('"Our powers have grown weaker, generation by generation, as the Mudblood taint increases. Where Salazar and Godric and Rowena and Helga raised Hogwarts by their power, no wizard of these faded days has risen to rival them."', 400, 110, { w: 600, size: 27 }),
-    dark('"If the taint isn\'t checked, our wands will break, the line of Merlin will end, and our children will be left scratching at the dirt like the Muggles. And darkness will cover all the world for ever."', 400, 860, { w: 600, size: 27 })],
-  { border: 'none', alt: 'A tapestry-like illustration: the four Founders\' treasures shining, then a line of wizards, each generation\'s wand-spark dimmer than the last.' });
+    dark('"If the taint isn\'t checked, our wands will break, the line of Merlin will end, and our children will be left scratching at the dirt like the Muggles. And darkness will cover all the world for ever."', 400, 850, { w: 600, size: 27 })],
+  { shape: BANNER, frame: 'gilt', alt: 'A tapestry-like illustration: the four Founders\' treasures shining, then a line of wizards, each generation\'s wand-spark dimmer than the last.' });
 ep.panel(800, { cam: { on: ['harry'], fr: 'bust', zoom: 0.85, dy: -0.55 }, bg: P9(), blur: 2, actors: [HP({ expr: 'think', ...THINK })] },
   [say('Harry', 'Persuasive. But I have to correct you on one point of fact. Your information about the Muggles is a bit out of date. *We* aren\'t exactly scratching at the dirt any more.', 400, 170, { w: 540, size: 28, fixed: true })], { mood: 'day' });
 ep.panel(460, { cam: { on: ['draco'], fr: 'close' }, bg: P9(), blur: 3, actors: [DP({ expr: 'shock' })] }, [shout('Draco', '*What?* What do you mean, *we?*', 300, 105, { w: 340, size: 30, fixed: true })], { mood: 'day' });
@@ -128,8 +133,9 @@ ep.panel(920, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#3a2618' }) + K.glow(ct
   g({}, ...Array.from({ length: 16 }, (_, i) => rect(40 + (i % 6) * 125, ctx.h - 60 - Math.floor(i / 6) * 130 - 110, 115, 110, { fill: '#b9955e', stroke: C.ink, 'stroke-width': 3 }))) +
   shot({ cam: { on: ['harry'], fr: 'full', zoom: 0.7, dx: -0.9, dy: -0.2 }, actors: [{ def: harryRobes, id: 'harry', x: 400, y: 1000, s: 1.1, turn: 0.6, pose: 'run', expr: 'determined', mask: 'scarfDown' }] })(ctx) + FX.speedLines(ctx.w, ctx.h, { n: 20 }),
   [say('Harry', 'Hold on, I\'d like to show you a book. I think I remember which box it\'s in…', 338, 120, { w: 430, fixed: true }),
-   cap('(Harry had inherited the nigh-magical Verres ability to remember where all his books were, which was rather mysterious considering the lack of any genetic connection.)', 40, 700, { w: 560, size: 24, fixed: true })], { mood: 'warm', alt: 'Harry dashes down the stairs into the cavern of his trunk, between stacked boxes of books.' });
-ep.bleed(980, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#6b4429' }) + K.glow(ctx.w / 2, ctx.h / 2, 600, '#fff2c8', 0.35) + g({ transform: `translate(${ctx.w / 2 - 110},${ctx.h * 0.52}) scale(5.4)` }, bookOpen({ w: 150, h: 104, col: '#243352' })) + g({ transform: `translate(${ctx.w / 2 + 92},${ctx.h * 0.52})` }, earthrise(340, 250)),
+   cap('(Harry had inherited the nigh-magical Verres ability to remember where all his books were, which was rather mysterious considering the lack of any genetic connection.)', 40, 700, { w: 560, size: 24, fixed: true })], { mood: 'warm', shape: 'slant', slant: 56, alt: 'Harry dashes down the stairs into the cavern of his trunk, between stacked boxes of books.' });
+// THE picture: the open book lies on the page itself, between the reader's hands
+ep.cutout(980, (ctx) => ellipse(ctx.w / 2 + 10, ctx.h * 0.52 + 252, 370, 32, { fill: '#3a2a1a', opacity: 0.28, filter: 'url(#blur3)' }) + g({ transform: `translate(${ctx.w / 2},${ctx.h * 0.52}) scale(4.6)` }, bookOpen({ w: 150, h: 104, col: '#243352' })) + g({ transform: `translate(${ctx.w / 2 + 174},${ctx.h * 0.52})` }, earthrise(310, 228)),
   [dark('The one with the white, dry, cratered land, and the suited people, and the blue-white globe hanging over it all.', 400, 90, { w: 560, fixed: true }),
    dark('*That* picture. *The* picture, if only one picture in all the world were to survive.', 400, 895, { w: 560, fixed: true })], { alt: 'An open book. On the right-hand page, the photograph: astronauts on the grey lunar surface, and the Earth, blue and white, hanging in the black sky.' });
 ep.panel(720, { cam: { on: ['harry'], fr: 'close', zoom: 0.78, dy: 0.05 }, bg: P9(), blur: 3, actors: [HP({ expr: { base: 'hopeful', eyes: { teary: true } } })] },
@@ -152,8 +158,9 @@ const ROCKET = (c, fire) => {
   return o;
 };
 ep.multi(940, [
-  { x: M, y: 300, w: 368, h: 622, art: (c) => ROCKET(c, true) },
-  { x: 408, y: 300, w: 368, h: 622, art: (c) => ROCKET(c, false) },
+  // the book's plates, held up like prints: paper edges, a slight tilt, a shadow
+  { x: M, y: 300, w: 368, h: 610, art: (c) => ROCKET(c, true), frame: 'paper', rotate: -2, shadow: true },
+  { x: 408, y: 300, w: 368, h: 610, art: (c) => ROCKET(c, false), frame: 'paper', rotate: 2, shadow: true },
 ], [say('Harry', 'This is a rocket going up. The fire pushes it higher, until it gets to the Moon.', 208, 152, { w: 290, tail: null, fixed: true }), say('Harry', 'That tiny speck next to it is a person.', 592, 152, { w: 230, tail: null, fixed: true })],
   { alt: 'Two book plates: a Saturn V rocket lifting off on a column of fire; the same rocket on the ground, with a tiny speck of a person beside it.' });
 ep.panel(880, { cam: { on: ['harry'], fr: 'bust', zoom: 0.9, dy: -0.1 }, bg: P9(), blur: 2, actors: [HP({ expr: 'focus', pose: 'gesture' })] },
@@ -173,15 +180,17 @@ ep.panel(800, { cam: { on: ['harry'], fr: 'close', zoom: 0.78, dy: 0.12 }, bg: P
    say('Harry', 'If you can learn to think of yourself as a *human* instead of a *wizard*, then you can train your powers as a human.', 400, 660, { w: 520, fixed: true })], { mood: 'day' });
 ep.panel(680, { cam: { on: ['draco'], fr: 'bust', zoom: 0.9, dy: -0.2 }, bg: P9(), blur: 2, actors: [DP({ expr: { base: 'awe', eyes: { sparkle: false } } })] },
   [say('Draco', 'You think you can master *both* arts. Add the powers together, and… make yourself Lord of the two worlds?', 400, 142, { w: 520, fixed: true })], { mood: 'day' });
-ep.panel(1000, { cam: { on: ['harry'], fr: 'waist', zoom: 0.72, dy: 0.1 }, bg: P9(), blur: 2, actors: [HP({ expr: { base: 'scheme', glint: true }, pose: 'armsUp' })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.35, { bg: '#2a1a3a', col: '#8a5fb0', op: 0.7 }) },
-  [shout('Harry', 'MWAHAHAHA!', 400, 100, { w: 340, size: 40, fixed: true }),
-   say('Harry', 'The whole world you know is one square on a much larger game board, Draco. But I really *am* Ravenclaw. I don\'t want to rule the universe. I just think it could be more sensibly organised.', 400, 780, { w: 540, size: 27, fixed: true })], { mood: 'day', alt: 'Harry gives an evil laugh, which just seemed to come naturally at that point.' });
+// the evil laugh can't be contained: his hands fly up past the frame
+ep.panel(1080, { cam: { head: 'harry', hw: 0.38, hx: 0.5, hy: 0.17 }, bg: P9(), blur: 2, actors: [HP({ expr: { base: 'scheme', glint: true }, pose: 'armsUp' })], behind: (e) => FX.burst(e.w, e.h, e.w / 2, e.h * 0.17, { bg: '#2a1a3a', col: '#8a5fb0', op: 0.7 }) },
+  [shout('Harry', 'MWAHAHAHA!', 400, 74, { w: 300, size: 40, fixed: true }),
+   say('Harry', 'The whole world you know is one square on a much larger game board, Draco. But I really *am* Ravenclaw. I don\'t want to rule the universe. I just think it could be more sensibly organised.', 400, 890, { w: 540, size: 27, fixed: true })], { mood: 'day', breakout: 'top', ph: 872, panel: { y: 190 }, alt: 'Harry gives an evil laugh, which just seemed to come naturally at that point.' });
 ep.panel(460, { cam: { on: ['draco'], fr: 'close' }, bg: P9(), blur: 3, actors: [DP({ expr: 'awe' })] }, [say('Draco', 'Why are you telling *me* this?', 280, 100, { w: 280 })], { mood: 'day' });
 ep.panel(860, { cam: { on: ['harry'], fr: 'bust', zoom: 0.9, dy: -0.08 }, bg: P9(), blur: 2, actors: [HP({ expr: 'determined' })] },
   [say('Harry', 'There aren\'t many people who know how to do *true* science. Help would be helpful.', 400, 110, { w: 480, fixed: true }),
    say('Harry', 'But science isn\'t like learning a spell. The power comes with a cost. A cost so high that most people refuse to pay it.', 400, 730, { w: 520, fixed: true })], { mood: 'day' });
 ep.panel(460, { cam: { on: ['draco'], fr: 'close' }, bg: P9(), blur: 3, actors: [DP({ expr: 'focus' })] }, [say('Draco', 'And that cost?', 250, 95, { w: 320, fixed: true })], { mood: 'day' });
-ep.panel(420, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#f4ecd6' }), [say('Harry', 'Learning to admit you\'re wrong.', 400, 210, { w: 460, size: 44, tail: null, fixed: true })], { alt: 'Learning to admit you\'re wrong.' });
+// the answer, with no panel around it: said straight to the reader
+ep.beat(400, [say('Harry', 'Learning to admit you\'re wrong.', 400, 200, { w: 460, size: 44, tail: null, fixed: true })]);
 ep.panel(460, { cam: { on: ['draco'], fr: 'close' }, bg: P9(), blur: 3, actors: [DP({ expr: 'deadpan' })] }, [say('Draco', 'Um. You going to explain that?', 280, 100, { w: 300 })], { mood: 'day' });
 ep.panel(840, { cam: { on: ['harry'], fr: 'bust', zoom: 0.8, dy: -0.3 }, bg: P9(), blur: 2, actors: [HP({ expr: 'warm', pose: 'gesture' })] },
   [say('Harry', 'Trying to figure out how something works, the first ninety-nine explanations you come up with are wrong. So you have to admit you\'re wrong, over and over and over again. And every time you change your mind, you change yourself.', 400, 195, { w: 540, size: 27, fixed: true })], { mood: 'day' });
@@ -199,9 +208,10 @@ ep.panel(820, { cam: { x: 1360, y: 800, w: 820 }, bg: P9(), actors: [HP({ x: 110
    say('Fred', 'Hello, Mr Bronze. Can we interest you in joining the Order of Chaos?', 545, 660, { w: 340, fixed: true, tail: 'fred' })], { mood: 'day', alt: 'Two tall figures with scarves wound over their heads like shrouds, only their eyes glinting through.' });
 // the prank (shown)
 const NEV = (o = {}) => ({ def: neville, id: 'neville', x: 1300, y: 1180, s: 1.05, turn: -0.2, pose: 'cower', expr: 'horror', ...o });
-ep.panel(760, { cam: { on: ['neville'], fr: 'waist' }, bg: P9(), blur: 2, actors: [NEV({ pose: 'stand', expr: 'worried' })] },
-  [cap('Meanwhile, not far away, a small, round boy had been left alone for a moment on the platform. He looked sure he was about to be attacked by Death Eaters.', 44, 34, { w: 460 }),
-   cap('(There\'s a saying: the fear is often worse than the thing itself.)', 330, 620, { w: 420, size: 25 })], { mood: 'day', alt: 'A small, round-faced boy stands alone and very frightened.' });
+// alone on the bare page: no platform, no crowd, nobody near him
+ep.cutout(820, { cam: { on: ['neville'], fr: 'full', zoom: 0.8, dx: -0.62, dy: -0.03 }, actors: [NEV({ pose: 'stand', expr: 'worried' })] },
+  [cap('Meanwhile, not far away, a small, round boy had been left alone for a moment on the platform. He looked sure he was about to be attacked by Death Eaters.', 30, 30, { w: 380, fixed: true }),
+   cap('(There\'s a saying: the fear is often worse than the thing itself.)', 30, 600, { w: 300, size: 25, fixed: true })], { alt: 'A small, round-faced boy stands alone and very frightened.' });
 ep.bleed(1000, { cam: { x: 1320, y: 930, w: 840 }, bg: P9(), actors: [
   { def: chaosLord(fred, 1), id: 'fred', x: 1040, y: 1180, turn: 0.5, pose: 'armsUp', expr: 'laugh' },
   NEV({ x: 1410, y: 1110, s: 0.95 }),
@@ -212,11 +222,12 @@ ep.bleed(1000, { cam: { x: 1320, y: 930, w: 840 }, bg: P9(), actors: [
 ep.panel(560, { cam: { on: ['neville'], fr: 'close' }, bg: P9(), blur: 3, actors: [NEV({ x: 1300, y: 1120, s: 0.95, expr: 'teary' })] }, [whisper('Neville', 'go away', 400, 110, { w: 160, size: 24 })], { mood: 'day' });
 ep.panel(800, { cam: { x: 1475, y: 800, w: 1250 }, bg: P9(), actors: [...[921, 922, 923].map((sd, i) => ({ def: makeExtra(sd, {}), x: 945 + i * 180, y: 1120, turn: 0.3, pose: 'stand', expr: 'confused', s: 0.95 })), { def: chaosLord(fred, 1), x: 1580, y: 1180, turn: 0.7, pose: 'run', expr: 'laugh' }, { def: chaosLord(harryRobes, 3), id: 'harry', x: 1780, y: 1200, s: 1.1, turn: 0.7, pose: 'run', expr: 'laugh' }, { def: chaosLord(george, 2), x: 1980, y: 1180, turn: 0.7, pose: 'run', expr: 'laugh' }], behind: (e) => FX.speedLines(e.w, e.h, { n: 30 }) },
   [shout('Harry', 'AAAH! THE LIGHT! IT BURNS!', 505, 120, { w: 360, size: 30, fixed: true, tail: 'harry' }),
-   cap('Some of the crowd had wanted to interfere at first. Then they saw what was actually happening, and were too confused to do anything.', 40, 630, { w: 600, size: 26, fixed: true })], { mood: 'day' });
+   cap('Some of the crowd had wanted to interfere at first. Then they saw what was actually happening, and were too confused to do anything.', 40, 612, { w: 600, size: 26, fixed: true })], { mood: 'day', shape: 'cut', cutTop: -60, cutBottom: -60 });
 ep.panel(620, { cam: { on: ['harry'], fr: 'close' }, bg: P9(), blur: 3, actors: [{ def: harryRobes, id: 'harry', x: 1200, y: 1180, s: 1.1, turn: 0.2, expr: 'bigGrin', mask: 'scarfDown' }] },
   [inner('Harry', 'Hopefully, he wouldn\'t be as scared of being bullied in the future. That\'s called desensitisation therapy.', 400, 90, { w: 620 }),
    inner('Harry', 'It was *definitely* for his own good.', 400, 548, { w: 400, fixed: true })], { mood: 'day', alt: 'Harry, very pleased with himself.' });
-ep.panel(380, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#f4ecd6' }), [cap('Wasn\'t it?', 330, 158, { w: 200 })], { alt: 'Wasn\'t it?' });
+// the narrator turns to the reader: no panel at all
+ep.beat(340, [cap('Wasn\'t it?', 330, 140, { w: 200 })]);
 
 // =============================================================== Aftermath: Draco's letter
 ep.setBg('#10201a');
@@ -234,10 +245,18 @@ ep.panel(660, { cam: { head: 'draco', hw: 0.6, hx: 0.5, hy: 0.35 }, bg: SR, blur
 ep.panel(600, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#2e1e12' }) + K.glow(ctx.w * 0.8, ctx.h * 0.2, 400, C.candle, 0.4) + g({ transform: `translate(${ctx.w / 2},${ctx.h / 2}) rotate(-2)` }, sheet({ w: 700, h: 500, parchment: true, font: 'Pinyon Script', size: 40, top: 80, lh: 1.32, color: '#1f3a2a', margin: 40, lines: ['Dear Father,', 'Suppose I told you I met a student,', 'not already of our acquaintance,', 'who called you a ‘flawless instrument', 'of death’ and said that I was your', '‘one weak point’.', 'What would you say about him?'] })),
   [], { mood: 'candle', alt: 'Draco\'s letter: "Dear Father, suppose I told you I met a student, not already of our acquaintance, who called you a \'flawless instrument of death\' and said that I was your \'one weak point\'. What would you say about him?"' });
 ep.panel(560, { cam: { x: 720, y: 400, w: 620 }, bg: SR, actors: [(e) => g({ transform: 'translate(700,420) scale(1.2)' }, owl({ col: '#2a2a2a', flying: true, letter: true }))] }, [cap('It didn\'t take long for the family owl to bring the reply.', 40, 28, { w: 620, fixed: true })], { mood: 'candle', alt: 'A black owl swoops in with a sealed letter.' });
-ep.panel(580, (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#10201a' }) + K.glow(ctx.w / 2, ctx.h / 2, 500, '#c9ced4', 0.25) + g({ transform: `translate(${ctx.w / 2},${ctx.h / 2})` }, sheet({ w: 700, h: 480, parchment: true, font: 'Pinyon Script', size: 40, top: 80, lh: 1.32, color: '#1d1a20', margin: 40, lines: ['My beloved son,', 'I would say that you had been', 'so fortunate as to meet someone', 'who enjoys the intimate confidence', 'of our friend and valuable ally,', '', { t: 'Severus Snape.', size: 56 }] })),
+// the reply floats on the dark page itself, lit coldly from nowhere
+ep.cutout(600, (ctx) => K.glow(ctx.w / 2, ctx.h / 2, 520, '#c9ced4', 0.25) + g({ transform: `translate(${ctx.w / 2},${ctx.h / 2}) rotate(1.5)` }, sheet({ w: 700, h: 480, parchment: true, font: 'Pinyon Script', size: 40, top: 80, lh: 1.32, color: '#1d1a20', margin: 40, lines: ['My beloved son,', 'I would say that you had been', 'so fortunate as to meet someone', 'who enjoys the intimate confidence', 'of our friend and valuable ally,', '', { t: 'Severus Snape.', size: 56 }] })),
   [], { mood: 'candle', alt: 'Lucius\'s reply: "My beloved son, I would say that you had been so fortunate as to meet someone who enjoys the intimate confidence of our friend and valuable ally, Severus Snape."' });
-ep.panel(620, { cam: { x: 1350, y: 700, w: 700 }, bg: SR, actors: [(e) => g({ transform: 'translate(1350,800) rotate(20)' }, rect(-60, -40, 120, 80, { fill: '#e9dcb0', stroke: C.ink, 'stroke-width': 3 }), path('M-60,40 Q-20,0 -40,-40', { fill: 'none', stroke: '#e8773a', 'stroke-width': 6 }))] },
-  [cap('Draco stared at the letter for a while. Then he threw it into the fire.', 44, 30, { w: 440 })], { mood: 'candle', alt: 'The letter curls in the flames.' });
+// the last panel is the hearth itself: we stare into the fire with Draco
+const FLAME = (cx, base, hh, wd, fill) => path(`M${cx - wd},${base} Q${cx - wd * 1.1},${base - hh * 0.55} ${cx - wd * 0.1},${base - hh} Q${cx + wd * 0.15},${base - hh * 0.5} ${cx + wd * 0.5},${base - hh * 0.62} Q${cx + wd * 1.05},${base - hh * 0.3} ${cx + wd},${base}Z`, { fill });
+ep.panel(760, { cam: { x: 1350, y: 800, w: 222 }, bg: SR, actors: [(e) => g({ transform: 'translate(1352,818) rotate(12)' },
+    rect(-60, -40, 120, 80, { fill: '#e9dcb0', stroke: C.ink, 'stroke-width': 1.4 }),
+    ...[-24, -12, 0, 12].map((y, i) => path(`M-46,${y} q10,-4 20,0 t20,0 t20,0 t${14 - i * 6},0`, { fill: 'none', stroke: '#1d1a20', 'stroke-width': 1.1, opacity: 0.55 })),
+    path('M-60,40 L-60,4 Q-44,10 -38,22 Q-24,18 -18,40Z', { fill: '#2a1a10' }), path('M-60,4 Q-44,10 -38,22 Q-24,18 -18,40', { fill: 'none', stroke: '#e8773a', 'stroke-width': 2.4 }))
+    + FLAME(1296, 900, 62, 22, '#f0a13c') + FLAME(1336, 900, 84, 26, '#f0a13c') + FLAME(1394, 900, 56, 20, '#f0a13c')
+    + FLAME(1306, 900, 34, 12, '#ffe08a') + FLAME(1342, 900, 48, 14, '#ffe08a') + FLAME(1390, 900, 30, 10, '#ffe08a')] },
+  [cap('Draco stared at the letter for a while. Then he threw it into the fire.', 400, 22, { w: 500, anchor: 'tc', fixed: true })], { mood: 'candle', shape: 'arch', spring: 0.42, frame: 'stone', ph: 612, panel: { y: 130 }, alt: 'The letter curls in the flames.' });
 ep.setBg(C.paper);
 ep.tile({ h: 140, panels: [], bubbles: [], bg: { top: '#10201a', bottom: C.paper } });
 ep.end();
