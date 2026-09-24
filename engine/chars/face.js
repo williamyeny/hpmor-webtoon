@@ -157,8 +157,8 @@ export function mouth(mx, my, m, st, k, lw, skin) {
       return path(`M${lx},${my + 1} Q${mx + W * 0.1},${my + 5} ${rx + 3},${my - 7}`, { fill: 'none', ...S }) +
         path(`M${rx + 1},${my - 9} q3,1 3,5`, { fill: 'none', ...S, 'stroke-width': lw * 0.8 });
     case 'wobble': {
-      const n = 4; let d = `M${lx},${my}`;
-      for (let i = 1; i <= n; i++) d += ` Q${lx + (W / n) * (i - 0.5)},${my + (i % 2 ? -5 : 5)} ${lx + (W / n) * i},${my}`;
+      const n = 3; let d = `M${lx},${my}`;
+      for (let i = 1; i <= n; i++) d += ` Q${lx + (W / n) * (i - 0.5)},${my + (i % 2 ? -3 : 3)} ${lx + (W / n) * i},${my}`;
       return path(d, { fill: 'none', ...S });
     }
     case 'cat':

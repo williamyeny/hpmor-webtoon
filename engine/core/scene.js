@@ -27,7 +27,8 @@ export function autoCam(cam, placed, ctx) {
     const hx = A.head[0];
     left = Math.min(left, hx - hh * 0.75); right = Math.max(right, hx + hh * 0.75);
   }
-  if (cam.fr === 'close' || cam.fr === 'eyes') { const c = (top + bot) / 2; top = c - headH * 0.85; bot = c + headH * (cam.fr === 'eyes' ? 0.3 : 0.95); }
+  if (cam.fr === 'close') { const c = (top + bot) / 2; top = c - headH * 0.85; bot = c + headH * 0.95; }
+  if (cam.fr === 'eyes') { const hy = list[0].anchors.head[1] + headH * 0.06; top = hy - headH * 0.32; bot = hy + headH * 0.3; }
   const aspect = ctx.w / ctx.h;
   let h = bot - top, w = right - left;
   const padX = cam.padX ?? (list.length > 1 ? 1.25 : 1.6);
@@ -63,7 +64,7 @@ export function shot(o) {
     const toPanel = (p) => [(p[0] - cam.x) * z + ctx.w / 2, (p[1] - cam.y) * z + ctx.h / 2];
     for (const p of placed) if (p.id) {
       const an = {}; for (const k in p.anchors) an[k] = toPanel(p.anchors[k]);
-      an.s = p.s * z; ctx.anchors[p.id] = an;
+      an.s = p.s * z; an.hr = p.def.body.headRy * p.s * z; ctx.anchors[p.id] = an;
     }
     const T = `translate(${r2(ctx.w / 2)},${r2(ctx.h / 2)}) scale(${r2(z)}) translate(${r2(-cam.x)},${r2(-cam.y)})`;
     const env = { ...ctx, cam, z, toPanel };

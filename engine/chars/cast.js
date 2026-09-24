@@ -42,11 +42,7 @@ const harryBase = {
       F: [[-66, 26], [-76, -10], [-66, -50], [0, -70], [66, -50], [76, -10], [66, 26], [0, 12]],
       S: [[-70, 34], [-88, -6], [-78, -50], [-4, -72], [58, -50], [60, -10], [52, 18], [-12, 16]],
     },
-    strands: {
-      F: [[[-30, -80], [-24, -50], [-14, -8]], [[4, -84], [8, -50], [12, -6]], [[30, -80], [32, -48], [36, -8]], [[-52, -58], [-46, -36], [-38, -10]]],
-      S: [[[-18, -80], [-12, -50], [-2, -10]], [[14, -84], [18, -50], [24, -6]], [[36, -80], [40, -48], [44, -8]], [[-58, -54], [-54, -30], [-44, -8]]],
-    },
-    strandColor: '#3d3947',
+    strandColor: '#0e0b10',
   }) },
   browsOverHair: true,
   glasses: { r: 17.5, shape: 'round', frame: 0.85, color: '#2b2226' },
@@ -178,3 +174,15 @@ export const petuniaTeen = {
   outfit: { top: '#8a8f7a', skirt: '#5a5f55', skirtLen: 0.85, bareLegs: true, socks: '#efe6d2', shoes: '#3a2a22', sleeve: '#8a8f7a', collar: '#efe6d2' },
 };
 Object.assign(CAST, { figg, lilyTeen, petuniaTeen });
+
+// ---------- Vernon Dursley (a memory, and a lucky escape): large, moustached
+export const vernon = {
+  name: 'vernon', body: { ...ADULT_M, headRx: 60, headRy: 58, neck: 6, neckW: 40, shoulderW: 150, waistW: 190, hipW: 170, torsoH: 180, armW: 34, legW: 40 },
+  skin: '#eab89c', skinShade: '#c98f74',
+  head: { jaw: 0.8, chin: 1.0, cheek: 1.0 },
+  face: adultFace({ eye: { color: '#4a4a5a', w: 13, h: 11, iris: 5 }, brow: { color: '#5a3a24', len: 20, w: 5 }, nose: 'button', mouthY: 44, rosy: true }),
+  hair: { color: '#5a3a24', ...H.neat('vern', { part: 0.3 }) },
+  facialHair: ({ rx, ry, s, lw, F, mz }) => path(`M${mz.x - 30},${F.mouthY - 2} Q${mz.x - 14},${F.mouthY - 20} ${mz.x},${F.mouthY - 12} Q${mz.x + 14},${F.mouthY - 20} ${mz.x + 30},${F.mouthY - 2} Q${mz.x},${F.mouthY - 6} ${mz.x - 30},${F.mouthY - 2}Z`, { fill: '#5a3a24', stroke: C.ink, 'stroke-width': lw * 0.8 }),
+  outfit: { top: '#6b5a48', legs: '#4a4038', shoes: '#2a1a12', collar: '#f2ecde', tie: '#3b4a6b', hem: false },
+};
+CAST.vernon = vernon;

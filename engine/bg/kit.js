@@ -137,7 +137,7 @@ export function windowFrame(x, y, w, h, o = {}) {
   if (o.rain) {
     const R = rng(o.seed || 9);
     for (let i = 0; i < w * h / 900; i++) { const rx = x + R() * w, ry = y + R() * h; view += line(rx, ry, rx - 3, ry + R.range(14, 30), { stroke: '#e3eef5', 'stroke-width': 1.2, opacity: R.range(0.35, 0.75) }); }
-    for (let i = 0; i < w * h / 3000; i++) { const rx = x + R() * w, ry = y + R() * h; view += path(`M${rx},${ry} q2,8 0,${R.range(10, 26)}`, { stroke: '#f2f7fa', 'stroke-width': 2.4, fill: 'none', opacity: 0.55 }) + circle(rx, ry, 2.2, { fill: '#f7fbfd', opacity: 0.7 }); }
+    for (let i = 0; i < w * h / 3000; i++) { const rx = x + R() * w, ry = y + R() * h; view += path(`M${rx},${ry} q2,8 0,${R.range(10, 26)}`, { stroke: '#f2f7fa', 'stroke-width': 2.4, fill: 'none', opacity: 0.55 }) + circle(rx, ry, 1.3, { fill: '#f7fbfd', opacity: 0.6 }); }
   }
   out += g({ 'clip-path': `url(#${id}c)` }, view);
   // glazing bars

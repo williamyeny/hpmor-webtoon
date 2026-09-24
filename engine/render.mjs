@@ -64,6 +64,7 @@ async function main() {
   const args = process.argv.slice(2);
   const fileIdx = args.indexOf('--file');
   const png = args.includes('--png');
+  const coverMode = args.includes('--cover');
   const pngIdx = args.indexOf('--png');
   const onlyIdx = args.indexOf('--only');
   let modPath, epId;
@@ -77,7 +78,7 @@ async function main() {
   if (onlyIdx >= 0) pick = parseRange(args[onlyIdx + 1]);
 
   const { browser, page } = await openStage();
-  const outDir = png ? path.join(ROOT, 'scratch') : path.join(ROOT, 'site', epId);
+  const outDir = png || coverMode ? path.join(ROOT, 'scratch') : path.join(ROOT, 'site', epId);
   fs.mkdirSync(outDir, { recursive: true });
   const manifestPath = path.join(ROOT, 'site', epId, 'manifest.json');
   let manifest = { id: epId, title: ep.title, number: ep.number, subtitle: ep.subtitle || '', tiles: [] };
@@ -89,6 +90,7 @@ async function main() {
     const tile = tiles[i];
     const { buf, H } = await renderTile(page, tile);
     const name = `${String(n).padStart(3, '0')}`;
+    if (coverMode) { await sharp(buf).webp({ quality: 84 }).toFile(path.join(ROOT, 'site', 'cover.webp')); continue; }
     if (png) {
       fs.writeFileSync(path.join(outDir, `${epId}-${name}.png`), buf);
     } else {
@@ -98,7 +100,7 @@ async function main() {
     }
     process.stdout.write(`\r${epId} tile ${n}/${tiles.length}   `);
   }
-  if (!png) {
+  if (!png && !coverMode) {
     manifest.title = ep.title; manifest.number = ep.number; manifest.subtitle = ep.subtitle || '';
     manifest.tiles = manifest.tiles.slice(0, tiles.length);
     fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 1));

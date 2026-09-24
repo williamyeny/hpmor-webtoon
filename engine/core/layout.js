@@ -84,9 +84,10 @@ function resolveBubbles(bubbles, panelsA) {
       const r = resolveRef(t, panelsA, 'mouth');
       if (!r) return null;
       const bx = b.x ?? 400, by = b.y ?? 100;
-      const dx = bx - r.p[0], dy = by - r.p[1]; const L = Math.hypot(dx, dy) || 1;
-      const off = Math.min(Math.max(r.s * 48, 14), 110, L * 0.5);
-      return [r.p[0] + (dx / L) * off, r.p[1] + (dy / L) * off];
+      const base = r.A.head && r.A.hr ? r.A.head : r.p;
+      const dx = bx - base[0], dy = by - base[1]; const L = Math.hypot(dx, dy) || 1;
+      const off = r.A.hr ? Math.min(r.A.hr * 1.12, L * 0.6) : Math.min(Math.max(r.s * 48, 14), 110, L * 0.5);
+      return [base[0] + (dx / L) * off, base[1] + (dy / L) * off];
     };
     if (b.tail !== undefined && b.tail !== null) b.tail = fix(b.tail);
     if (b.tails) b.tails = b.tails.map(fix).filter(Boolean);

@@ -7,7 +7,7 @@ import { g, rect, path, circle, ellipse, line, text } from '../engine/core/svg.j
 import * as O from '../engine/bg/oxford.js';
 import * as K from '../engine/bg/kit.js';
 import * as FX from '../engine/fx/fx.js';
-import { harry, dad, mum, figg, lilyTeen, petuniaTeen } from '../engine/chars/cast.js';
+import { harry, dad, mum, figg, lilyTeen, petuniaTeen, vernon } from '../engine/chars/cast.js';
 import { envelope, sheet, seal, bookHeld, bookOpen, pencil, cat, crumpledBall, teacup } from '../engine/props/props.js';
 
 const ep = new Episode({ id: 'ep01', number: 1, title: 'A Day of Very Low Probability' });
@@ -96,15 +96,11 @@ ep.panel(700, { cam: { on: ['lily', 'pet'], fr: 'bust' }, bg: gardenMem,
   actors: [{ def: petuniaTeen, id: 'pet', x: 760, y: 1100, turn: 0.45, expr: 'pleading', pose: 'reach' }, { def: lilyTeen, id: 'lily', x: 1060, y: 1100, turn: -0.45, expr: 'worried', pose: 'crossArms' }] },
   [cap('“I begged her to use it on me. For *years.* She always said no—the most ridiculous excuses. A *centaur* told her not to…”', 300, 40, { w: 440 })], MEM);
 
-const vernon = (x, y) => g({ transform: `translate(${x},${y})` },
-  ellipse(0, -300, 190, 230, { fill: '#5b4a3e', stroke: C.ink, 'stroke-width': 4 }), circle(0, -600, 110, { fill: '#e2b89a', stroke: C.ink, 'stroke-width': 4 }),
-  path('M-70,-560 Q0,-520 70,-560 Q40,-530 0,-535 Q-40,-530 -70,-560Z', { fill: '#5a3a24', stroke: C.ink, 'stroke-width': 3 }),
-  circle(-38, -610, 7, { fill: C.ink }), circle(38, -610, 7, { fill: C.ink }), path('M-100,-680 Q0,-760 100,-680', { fill: '#4a3522', stroke: C.ink, 'stroke-width': 3 }));
-ep.panel(760, { cam: { x: 900, y: 700, w: 1300 }, bg: gardenMem,
-  actors: [vernon(1180, 1120), { def: petuniaTeen, id: 'pet', x: 760, y: 1100, turn: 0.4, expr: 'horror', pose: 'panic' }] },
+ep.panel(760, { cam: { on: ['pet', 'vernon'], fr: 'waist' }, bg: gardenMem,
+  actors: [{ def: vernon, id: 'vernon', x: 1120, y: 1120, turn: -0.4, expr: 'smug', pose: 'handsHips' }, { def: petuniaTeen, id: 'pet', x: 740, y: 1100, turn: 0.4, expr: 'horror', pose: 'panic' }] },
   [cap('“Then I started going out with a boy called Vernon Dursley. He said he wanted a son, and he\'d name him *Dudley.*”', 60, 36, { w: 460 }),
-   say('Vernon', 'Dudley Dursley. Good strong name.', 560, 250, { w: 250, tail: [640, 330] }),
-   whisper('Petunia', '*Dudley… Dursley?*', 200, 560, { w: 220, tail: 'pet' })], MEM);
+   say('Vernon', 'Dudley Dursley. Good strong name, that.', 560, 260, { w: 250 }),
+   whisper('Petunia', '*Dudley… Dursley?*', 200, 600, { w: 220, tail: 'pet' })], MEM);
 
 ep.panel(700, { cam: { on: ['lily', 'pet'], fr: 'bust' }, bg: gardenMem,
   actors: [{ def: petuniaTeen, id: 'pet', x: 760, y: 1100, turn: 0.45, expr: 'determined', pose: 'holdOne', armF: { prop: g({ transform: 'translate(0,34)' }, path('M-10,-30 L10,-30 L14,-4 Q14,30 0,30 Q-14,30 -14,-4Z', { fill: '#9fd0a8', stroke: C.ink, 'stroke-width': 2 }), rect(-6, -42, 12, 14, { fill: '#8a6a3a', stroke: C.ink, 'stroke-width': 2 })) } },
@@ -122,7 +118,7 @@ ep.panel(760, { cam: { on: ['dad', 'mum'], fr: 'waist' }, bg: LR(), actors: [DAD
 ep.panel(700, { cam: { on: ['dad'], fr: 'bust', dx: 0.3 }, bg: LR(), actors: [DAD({ expr: 'cross', pose: 'handsHips' })] },
   [say('Dad', 'Petunia. You *know* that can\'t be true. Do I really have to explain why?', 470, 100, { w: 360 })], { mood: 'warm' });
 
-ep.panel(640, { cam: { on: ['mum'], fr: 'bust' }, bg: LR(), actors: [MUM({ expr: 'pleading', pose: 'hug', turn: -0.4 })] },
+ep.panel(640, { cam: { on: ['mum'], fr: 'bust' }, bg: LR(), actors: [MUM({ expr: 'pleading', pose: 'hold', turn: -0.4 })] },
   [say('Mum', 'My love, I know I can\'t win arguments with you, but please, just this once—', 270, 90, { w: 380 })], { mood: 'warm' });
 
 // ---- DAD! MUM!
@@ -168,8 +164,8 @@ ep.panel(700, { cam: { on: ['dad', 'mum', 'harry'], fr: 'waist' }, bg: LR(),
    say('Dad', '—it isn\'t a question of *trust*, dear, it\'s a question of *evidence*—', 220, 190, { w: 300, size: 26 }),
    whisper('Harry', 'I\'m going to go to my room.', 600, 560, { w: 240 })], { mood: 'warm' });
 
-ep.panel(760, { cam: { x: 640, y: 620, w: 1100 }, bg: () => O.stairs(),
-  actors: [{ def: harry, id: 'harry', x: 640, y: 562, s: 1.0, turn: 0.6, pose: 'walk', expr: 'sad' }] },
+ep.panel(760, { cam: { x: 640, y: 640, w: 1100 }, bg: () => O.stairs(),
+  actors: [{ def: harry, id: 'harry', x: O.stairStep(6)[0], y: O.stairStep(6)[1], s: 1.0, turn: 0.6, pose: 'walk', expr: 'sad' }] },
   [whisper('Mum', '—never *listen*—', 160, 560, { w: 200, tail: [80, 700] }),
    whisper('Dad', '—being *hysterical*—', 330, 660, { w: 220, tail: [260, 760] }),
    cap('And they went on fighting while Harry climbed the stairs.', 420, 36, { w: 320 })], { mood: 'warm', alt: 'Harry climbs the staircase alone; muffled argument drifts up from below.' });
@@ -197,11 +193,11 @@ const deskTop = (inner2) => (ctx) => rect(0, 0, ctx.w, ctx.h, { fill: '#6e4a2c' 
 ep.multi(620, [
   { x: M, y: 18, w: 360, h: 280, mood: 'candle', art: deskTop((c) => g({ transform: `translate(${c.w / 2},${c.h / 2}) rotate(-6)` }, sheet({ w: 280, h: 200, ruled: true, lines: [{ t: 'Dear Deputy Headmistress', size: 24 }], top: 50 }))) },
   { x: 400, y: 18, w: 376, h: 280, mood: 'candle', art: deskTop((c) => g({ transform: `translate(${c.w * 0.45},${c.h * 0.55})` }, crumpledBall(40, 2)) + g({ transform: `translate(${c.w * 0.72},${c.h * 0.4}) rotate(40)` }, pencil(120))) },
-  { x: M, y: 316, w: 752, h: 286, mood: 'candle', art: deskTop((c) => g({ transform: `translate(${c.w / 2},${c.h / 2 + 60}) rotate(-2)` }, sheet({ w: 560, h: 520, parchment: false, ruled: true, top: 50, size: 21, lh: 1.05, lines: [
+  { x: M, y: 316, w: 752, h: 286, mood: 'candle', art: deskTop((c) => g({ transform: `translate(${c.w / 2},${282}) rotate(-2)` }, sheet({ w: 560, h: 520, parchment: false, ruled: true, top: 50, size: 21, lh: 1.05, lines: [
     { t: 'Dear Deputy Headmistress Minerva McGonagall,', size: 23 }, 'Or Whomsoever It May Concern:', '',
     'I recently received your letter of acceptance to Hogwarts, addressed to Mr H. Potter.', 'I am extremely interested in attending Hogwarts, conditional on', 'such a place actually existing.'] }))) },
 ], [cap('This called for careful calligraphy.', 430, 250, { w: 300 })], {});
-ep.panel(560, (ctx) => deskTop((c) => g({ transform: `translate(${c.w / 2},${c.h / 2 - 40}) rotate(-2)` }, sheet({ w: 600, h: 540, ruled: true, top: 44, size: 21, lh: 1.08, lines: [
+ep.panel(560, (ctx) => deskTop((c) => g({ transform: `translate(${c.w / 2},${300}) rotate(-2)` }, sheet({ w: 600, h: 540, ruled: true, top: 44, size: 21, lh: 1.08, lines: [
   'Mother mentioned that you sent a Hogwarts representative to Lily Potter', '(then Lily Evans) in order to demonstrate to her family that magic', 'was real. If you could do this for my own family it would be', 'extremely helpful.', '', { t: 'Harry James Potter-Evans-Verres', size: 26 }] })))(ctx),
   [cap('P.S. — My father is highly sceptical. I myself am uncertain.', 380, 440, { w: 360, anchor: 'tl' })], { mood: 'candle', alt: 'Harry\'s letter to Hogwarts, in careful handwriting.' });
 
@@ -246,7 +242,7 @@ ep.panel(700, { cam: { on: ['harry'], fr: 'bust' }, bg: GD(), blur: 2, actors: [
 ep.panel(460, { cam: { on: ['harry'], fr: 'close' }, bg: GD(), blur: 2, actors: [{ def: harry, id: 'harry', x: 780, y: 1030, s: 1.1, turn: 0.1, expr: 'embarrassed' }] },
   [whisper('Harry', 'Letter—', 560, 110, { w: 160, size: 22 })], { mood: 'dusk' });
 
-ep.bleed(1250, { cam: { x: 860, y: 400, w: 1150 }, bg: GD({ star: true }), actors: [{ def: harry, id: 'harry', x: 800, y: 1080, s: 1.5, turn: 0.1, pose: 'holdUp', expr: 'yell', armB: { prop: g({ transform: 'translate(0,20) scale(0.5) rotate(180)' }, envelope({ back: true })) } }],
+ep.bleed(1250, { cam: { x: 860, y: 560, w: 1150 }, bg: GD({ star: true }), actors: [{ def: harry, id: 'harry', x: 800, y: 1190, s: 2.3, turn: 0.15, pose: 'holdUp', expr: 'yell', armB: { sh: 160, el: 6, hand: 'hold', prop: g({ transform: 'translate(0,24) scale(0.42) rotate(180)' }, envelope({ back: true })) } }],
   under: (e) => '' },
   [shout('Harry', 'LETTER FOR HOGWARTS! CAN I GET AN OWL?', 400, 170, { w: 520, size: 46 })], { mood: 'dusk', alt: 'Low angle: Harry thrusts the envelope at the enormous evening sky and yells.' });
 
@@ -276,14 +272,11 @@ ep.panel(760, { cam: { on: ['figg', 'harry'], fr: 'bust' }, bg: GD(),
   [say('Harry', '…Yes. I got a letter from Hogwarts. They want my owl by the 31st of July, but—', 230, 90, { w: 330 }),
    say('Mrs Figg', 'But you don\'t *have* an owl! Poor dear. I can\'t imagine *what* someone was thinking, sending you just the standard letter.', 560, 560, { w: 380 })], { mood: 'dusk' });
 
-ep.panel(620, (ctx) => {
-  const s = shot({ cam: { x: 1250, y: 760, w: 700 }, bg: GD(), actors: [
-    (env) => g({}, ...Array.from({ length: 22 }, (_, i) => path(`M${1100 + i * 44},900 L${1100 + i * 44},720 L${1120 + i * 44},702 L${1140 + i * 44},720 L${1140 + i * 44},900Z`, { fill: '#8a6e50', stroke: '#3e2a1f', 'stroke-width': 2 })))] })(ctx);
-  // wrinkled hand reaching over, Harry's hand giving the envelope
-  return s + g({ transform: `translate(${ctx.w * 0.7},${ctx.h * 0.35}) rotate(80)` }, path('M-30,0 L30,0 L34,220 L-34,220Z', { fill: '#6b4a6e', stroke: C.ink, 'stroke-width': 3 }), path('M-26,-6 Q-30,-60 0,-70 Q34,-66 28,-6Z', { fill: '#ecc9ae', stroke: C.ink, 'stroke-width': 3 })) +
-    g({ transform: `translate(${ctx.w * 0.38},${ctx.h * 0.55}) rotate(-12) scale(1.3)` }, envelope({})) +
-    g({ transform: `translate(${ctx.w * 0.2},${ctx.h * 0.72}) rotate(-70)` }, path('M-24,0 L24,0 L26,200 L-26,200Z', { fill: '#c9922e', stroke: C.ink, 'stroke-width': 3 }), path('M-22,-4 Q-24,-50 0,-56 Q24,-50 22,-4Z', { fill: '#f3d2b5', stroke: C.ink, 'stroke-width': 3 }));
-}, [cap('Hardly thinking at all by now, Harry handed it over.', 44, 30, { w: 400 })], { mood: 'dusk', alt: 'A wrinkled hand reaches over the fence; Harry hands up the envelope.' });
+const FENCE = (env) => g({}, ...Array.from({ length: 22 }, (_, i) => path(`M${1100 + i * 44},900 L${1100 + i * 44},720 L${1120 + i * 44},702 L${1140 + i * 44},720 L${1140 + i * 44},900Z`, { fill: '#8a6e50', stroke: '#3e2a1f', 'stroke-width': 2 })), rect(1100, 760, 1100, 18, { fill: '#6e5438', stroke: '#3e2a1f', 'stroke-width': 1.6 }));
+ep.panel(700, { cam: { on: ['figg', 'harry'], fr: 'bust' }, bg: GD(),
+  actors: [{ def: figg, id: 'figg', x: 1420, y: 1180, turn: -0.5, expr: 'warm', pose: 'stand', armB: { sh: 72, el: 18, hand: 'open' }, lean: 8 }, FENCE,
+    { def: harry, id: 'harry', x: 1130, y: 1040, s: 1.1, turn: 0.4, pose: 'holdUp', expr: 'blank', armB: { sh: 128, el: 8, hand: 'hold', prop: g({ transform: 'translate(0,34) scale(0.4) rotate(170)' }, envelope({})) } }] },
+  [cap('Hardly thinking at all by now, Harry handed it over.', 44, 30, { w: 400 })], { mood: 'dusk', alt: 'A wrinkled hand reaches over the fence; Harry hands up the envelope.' });
 
 ep.panel(760, { cam: { on: ['figg'], fr: 'bust', dx: -0.4 }, bg: GD(), actors: [{ def: figg, id: 'figg', x: 1500, y: 1180, turn: -0.3, expr: 'warm', pose: 'wave' }, (env) => g({ transform: 'translate(1330,712) scale(0.9)' }, cat({ col: '#8f8f8f' }))] },
   [say('Mrs Figg', 'Just leave it to me, dear. In a jiffy or two I\'ll have someone over.', 260, 90, { w: 330 })], { mood: 'dusk' });

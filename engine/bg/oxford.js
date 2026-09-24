@@ -51,19 +51,23 @@ export function armchairBack(x, y, s = 1.2, col = C.mustardDark) {
 }
 
 // ---------------------------------------------------------------- stairs & landing (1200 × 1100)
+export const STAIR = { x0: 150, y0: 1040, w: 80, h: 58 };
+export const stairStep = (k) => [STAIR.x0 + k * STAIR.w + STAIR.w * 0.45, STAIR.y0 - k * STAIR.h];
 export function stairs(o = {}) {
   let out = K.wallpaper(0, 0, 1200, 1100, '#6b5a44', { stripes: true, c2: '#5f4f3b' });
-  // diagonal staircase rising to the right
-  const steps = 12;
-  for (let i = 0; i < steps; i++) {
-    const x = 150 + i * 70, y = 1000 - i * 62;
-    out += rect(x, y, 700 - i * 0, 62, { fill: i % 2 ? '#7a4e2e' : '#6e4428', ...K.bl(1.6) });
-    out += rect(x, y, 70, 14, { fill: C.burgundy, opacity: 0.9 });
-  }
-  out += path('M150,1000 L990,256 L1200,256 L1200,1100 L150,1100Z', { fill: '#000', opacity: 0.12 });
-  // banister
-  out += path('M120,860 L960,120', { stroke: '#4a2e1b', 'stroke-width': 18, 'stroke-linecap': 'round' });
-  for (let i = 0; i < 12; i++) { const x = 150 + i * 70, y = 1000 - i * 62; out += rect(x + 28, y - 150 + 8, 10, 150, { fill: '#5e3b22', ...K.bl(1.2) }); }
+  // side-view staircase rising to the right (feet on step k at stairStep(k))
+  const n = 12, x0 = STAIR.x0, y0 = STAIR.y0, sw = STAIR.w, sh = STAIR.h;
+  let poly = `M${x0 - 40},1200 L${x0 - 40},${y0}`;
+  for (let i = 0; i < n; i++) poly += ` L${x0 + i * sw},${y0 - i * sh} L${x0 + (i + 1) * sw},${y0 - i * sh} L${x0 + (i + 1) * sw},${y0 - (i + 1) * sh}`;
+  poly += ` L1300,${y0 - n * sh} L1300,1200Z`;
+  out += path(poly, { fill: '#6e4428', ...K.bl(2) });
+  for (let i = 0; i < n; i++) out += rect(x0 + i * sw, y0 - i * sh - 6, sw, 12, { fill: C.burgundy, ...K.bl(1.2) }) + rect(x0 + (i + 1) * sw - 6, y0 - (i + 1) * sh, 6, sh, { fill: '#5a3620' });
+  out += path(`M${x0 - 40},${y0 + 40} L1300,${y0 - n * sh + 40 + (1300 - x0 - n * sw) * 0} L1300,1200 L${x0 - 40},1200Z`, { fill: '#000', opacity: 0.08 });
+  // banister & balusters
+  const bh = 300;
+  for (let i = 0; i < n; i++) out += rect(x0 + i * sw + sw * 0.4, y0 - i * sh - bh, 10, bh, { fill: '#5e3b22', ...K.bl(1.2) });
+  out += path(`M${x0 - 20},${y0 - bh + 20} L${x0 + n * sw},${y0 - n * sh - bh + 30}`, { stroke: '#3e2716', 'stroke-width': 20, 'stroke-linecap': 'round' });
+  out += rect(x0 - 40, y0 - bh - 20, 30, bh + 20, { fill: '#4a2e1b', ...K.bl(1.6) }) + circle(x0 - 25, y0 - bh - 26, 16, { fill: '#4a2e1b', ...K.bl(1.6) });
   out += K.frame(160, 180, 140, 180, rect(0, 0, 140, 180, { fill: '#7d8b6a' }) + circle(70, 70, 30, { fill: '#e8d6a6' }));
   out += K.frame(380, 120, 120, 90, rect(0, 0, 120, 90, { fill: '#5a6f8c' }));
   return out;

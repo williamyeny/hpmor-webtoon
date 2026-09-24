@@ -30,7 +30,7 @@ export function seal(x, y, r, letter = 'H') {
   for (let i = 0; i < 14; i++) { const a = (i / 14) * Math.PI * 2; const k = 1 + (R() - 0.5) * 0.22; pts.push([x + Math.cos(a) * r * k, y + Math.sin(a) * r * k]); }
   return path(smoothD(pts, true, 0.6), { fill: '#9c1f25', stroke: '#5a0f13', 'stroke-width': 1.4 }) +
     circle(x, y, r * 0.66, { fill: '#b52a2f', stroke: '#6b1216', 'stroke-width': 1 }) +
-    text(x, y + r * 0.26, letter, { 'font-family': 'IM Fell English SC', 'font-size': r * 0.8, fill: '#6b1216', 'text-anchor': 'middle' }) +
+    text(x, y + r * 0.26, letter, { 'font-family': 'IM Fell English SC', 'font-size': r * (letter.length > 2 ? 0.34 : 0.8), fill: '#6b1216', 'text-anchor': 'middle' }) +
     ellipse(x - r * 0.3, y - r * 0.35, r * 0.22, r * 0.12, { fill: '#fff', opacity: 0.35 });
 }
 
